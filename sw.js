@@ -1,5 +1,5 @@
 // 動動腦小學堂 離線快取。遊戲更新時，把版本號加 1。
-const CACHE = 'ddn-v5';
+const CACHE = 'ddn-v6';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {

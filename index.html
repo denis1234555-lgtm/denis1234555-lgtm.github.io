@@ -139,7 +139,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
 [data-sub="measure"], [data-sub="share"], [data-sub="ordinal"], [data-sub="calendar"] { --c: var(--math); --c-soft: var(--math-soft); --c-deep: var(--math-deep); }
 [data-sub="spotdiff"] { --c: var(--geo); --c-soft: var(--geo-soft); --c-deep: var(--geo-deep); }
 [data-sub="trace"], [data-sub="sequence"], [data-sub="match"], [data-sub="maze"], [data-sub="puzzle"], [data-sub="coloring"] { --c: var(--color); --c-soft: var(--color-soft); --c-deep: var(--color-deep); }
-[data-sub="emotion"], [data-sub="body"], [data-sub="jobs"], [data-sub="seasons"], [data-sub="food"] { --c: var(--life); --c-soft: var(--life-soft); --c-deep: var(--life-deep); }
+[data-sub="calm"], [data-sub="emotion"], [data-sub="body"], [data-sub="jobs"], [data-sub="seasons"], [data-sub="food"] { --c: var(--life); --c-soft: var(--life-soft); --c-deep: var(--life-deep); }
 [data-sub="manners"] { --c: var(--cn); --c-soft: var(--cn-soft); --c-deep: var(--cn-deep); }
 [data-sub="trash"] { --c: var(--geo); --c-soft: var(--geo-soft); --c-deep: var(--geo-deep); }
 .o-bin { width: clamp(46px, 15vw, 76px); height: auto; }
@@ -462,6 +462,14 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
 .sheet-card h2 img { width: 44px; height: 44px; border-radius: 12px; }
 .sheet-card ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 8px; line-height: 1.6; }
 .sheet-card .kbd { display: inline-block; padding: 0 8px; border-radius: 8px; background: var(--bg); font-weight: 700; }
+.limit-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.limit-btn { border: 0; padding: 8px 14px; border-radius: 999px; background: var(--bg); font-weight: 900; box-shadow: 0 3px 0 var(--line-deep); }
+.limit-btn[aria-checked="true"] { background: var(--ink); color: var(--bg); }
+.rest { background: var(--sun-soft); box-shadow: 0 8px 0 var(--mascot-deep); }
+.rest h2 { font-size: 1.7rem; }
+.rest .btn { background: var(--math); box-shadow: 0 6px 0 var(--math-deep); color: #fff; }
+.rest .btn:disabled { background: var(--good); box-shadow: 0 6px 0 var(--good-deep); }
+.time-tip { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 25; background: var(--ink); color: var(--bg); padding: 12px 20px; border-radius: 999px; font-weight: 900; box-shadow: 0 6px 18px rgba(0, 0, 0, .25); white-space: nowrap; }
 .rep-open { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 8px 16px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-weight: 900; }
 @media (max-width: 430px) { .top .icon-btn { width: 40px; height: 40px; } .pill { height: 40px; padding: 0 10px; font-size: 1.1rem; } .tools { gap: 6px; } .logo { width: 36px; height: 36px; } }
 @media (max-width: 560px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .srow { grid-template-columns: 6em minmax(0, 1fr) auto; } }
@@ -730,6 +738,11 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         <span class="art"><span class="emo">😄😢</span></span>
         <span class="name">認識情緒</span><span class="what" data-small="開心、難過、生氣、害怕" data-big="情緒和怎麼面對">開心、難過、生氣、害怕</span>
       </button>
+      <button class="subject" data-sub="calm" id="sub-calm">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="calm">0</span></span>
+        <span class="art"><span class="emo">😮‍💨🧸</span></span>
+        <span class="name">好好說不生氣</span><span class="what" data-small="分享玩具、時間到了、輸贏" data-big="手足相處、輸贏、冷靜方法">分享玩具、時間到了、輸贏</span>
+      </button>
       <button class="subject" data-sub="body" id="sub-body">
         <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="body">0</span></span>
         <span class="art"><span class="emo">👀👂</span></span>
@@ -820,6 +833,18 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
       <h3>在家可以這樣練習</h3>
       <div id="tips"></div>
     </div>
+    <div class="block">
+      <h3>遊戲時間提醒</h3>
+      <p class="note">設定每天可以玩多久。快到時圓圓會先提醒，時間到了會等這一回合玩完，再請孩子休息；要繼續玩需要家長解鎖。</p>
+      <div class="limit-row" role="radiogroup" aria-label="每天遊戲時間">
+        <button class="limit-btn" data-min="0" role="radio">不限制</button>
+        <button class="limit-btn" data-min="10" role="radio">10 分鐘</button>
+        <button class="limit-btn" data-min="15" role="radio">15 分鐘</button>
+        <button class="limit-btn" data-min="20" role="radio">20 分鐘</button>
+        <button class="limit-btn" data-min="30" role="radio">30 分鐘</button>
+      </div>
+      <p class="note" id="limitToday"></p>
+    </div>
     <!-- 贊助區：在下方 script 的 DONATE_URL 填入綠界「實況主收款」網址後才會顯示 -->
     <section id="support" class="block support" hidden>
       <div class="sup-top">
@@ -846,6 +871,17 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
       <button id="installClose" class="btn small" style="align-self:center">知道了</button>
     </div>
   </div>
+
+  <section id="rest" class="done rest" hidden>
+    <svg id="restMascot" viewBox="0 0 120 120" class="mascot is-happy" aria-hidden="true"></svg>
+    <h2>時間到了，休息一下！</h2>
+    <p id="restMsg"></p>
+    <div class="row-btns">
+      <button id="restOk" class="btn">好，我休息一下</button>
+    </div>
+    <button id="restUnlock" class="link-btn">家長解鎖，再玩一下</button>
+  </section>
+  <div id="timeTip" class="time-tip" hidden>⏰ 再玩一下下，就要休息囉！</div>
 
   <section id="done" class="done" hidden>
     <svg id="doneMascot" viewBox="0 0 120 120" class="mascot is-happy" aria-hidden="true"></svg>
@@ -1378,6 +1414,43 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     { e: '🤭', q: '不小心說了不好聽的話，朋友難過了，怎麼辦？', a: [['🙇', '說對不起'], ['😂', '哈哈大笑'], ['🏃', '跑走']], why: '說錯話也可以道歉，下次換成好聽的話', say: '對不起，我不應該那樣說。', lv: 1 },
     { e: '😆', q: '想讓大家笑，可以怎麼做？', a: [['🤡', '講好笑的故事'], ['🤬', '說罵人的話'], ['💩', '一直說大便']], why: '好笑的話要讓大家都開心，不讓別人難過或不舒服', lv: 1 },
     { e: '👂', q: '聽到別人說「我要揍扁你」，你可以怎麼做？', a: [['🙋', '告訴老師'], ['👊', '先打他'], ['🤬', '罵回去']], why: '聽到嚇人的話，要告訴老師或爸爸媽媽', say: '老師，他說要打我。', lv: 1 }
+  ];
+  const CALM = [
+    { e: '🧸', q: '妹妹拿了你的玩具，你很生氣，可以怎麼做？', a: [['🗣️', '說：可以還我嗎'], ['👊', '打妹妹'], ['😭', '搶回來大哭']], why: '用說的，不打人。妹妹還小，不懂的時候可以請爸媽幫忙', say: '這是我的，可以還給我嗎？', lv: 1 },
+    { e: '👧', q: '妹妹也想玩你的玩具，你可以怎麼做？', a: [['🔄', '輪流玩'], ['🙅', '都不給她'], ['👐', '推開她']], why: '輪流玩，大家都可以玩到', say: '我玩一下，再換你玩。', lv: 1 },
+    { e: '💎', q: '有一個最寶貝、不想借的玩具，怎麼辦？', a: [['📦', '先收好，拿別的給妹妹'], ['👊', '她一碰就打她'], ['😭', '一直哭']], why: '最寶貝的可以先收好，拿別的玩具跟妹妹一起玩', say: '這個給你玩好不好？', lv: 1 },
+    { e: '🍗', q: '晚餐只有一隻大雞腿，大家都想吃，怎麼辦？', a: [['🍽️', '切開大家分'], ['✊', '一個人搶走'], ['😡', '不給我就生氣']], why: '好吃的東西大家分著吃，一起吃更開心', say: '我們一起分著吃。', lv: 1 },
+    { e: '😞', q: '雞腿給了妹妹，你好失望，可以怎麼做？', a: [['🗣️', '說下次可以換我嗎'], ['💥', '摔碗生氣'], ['🙅', '都不吃飯']], why: '說出想要的，下次就有機會', say: '我好想吃，下次可以換我嗎？', lv: 1 },
+    { e: '🥦', q: '碗裡有不喜歡的青菜，可以怎麼做？', a: [['😋', '試吃一小口'], ['🗑️', '偷偷丟掉'], ['😭', '大哭不吃']], why: '試一小口，也許會發現很好吃', say: '我吃一小口試試看。', lv: 1 },
+    { e: '⏰', q: '玩得正開心，媽媽說時間到了，怎麼辦？', a: [['👍', '說好，收起來'], ['😭', '大哭不要'], ['🏃', '跑走繼續玩']], why: '時間到就停下來，明天還可以再玩', say: '好，我明天再玩。', lv: 1 },
+    { e: '🎮', q: '還想玩，可以怎麼跟爸媽說？', a: [['🙏', '好好問可以再玩一次嗎'], ['😡', '我就是要玩'], ['💥', '丟東西']], why: '好好問，爸媽說不行的時候，也要接受', say: '我可以再玩一次就好嗎？', lv: 1 },
+    { e: '📺', q: '看電視時間到了，爸爸關掉電視，你可以怎麼做？', a: [['🧸', '去玩別的'], ['😭', '大哭大叫'], ['👊', '打爸爸']], why: '電視關了，還有好多好玩的事可以做', say: '好，那我去玩積木。', lv: 1 },
+    { e: '🛁', q: '要洗澡了，可是你還在玩，怎麼做？', a: [['⏳', '玩完這次就去'], ['🙅', '說不要洗'], ['🏃', '躲起來']], why: '跟爸媽說好玩完這次，就說到做到', say: '我玩完這次就去洗澡。', lv: 1 },
+    { e: '😴', q: '睡覺時間到了，還不想睡，怎麼辦？', a: [['📖', '聽個故事就上床'], ['🏃', '一直跑來跑去'], ['😭', '大哭']], why: '睡飽了，明天才有力氣玩', say: '好，講完故事我就睡。', lv: 1 },
+    { e: '😠', q: '覺得很生氣、身體熱熱的，第一步要做什麼？', a: [['🛑', '先停下來'], ['👊', '打東西'], ['📢', '大叫']], why: '先停下來，不讓生氣變成打人', say: '我需要停一下。', lv: 1 },
+    { e: '🌬️', q: '哪一個是讓自己冷靜下來的好方法？', a: [['😮‍💨', '深呼吸數到五'], ['💥', '摔東西'], ['👊', '打人']], why: '慢慢吸氣、吐氣，數到五，心情會慢慢平靜', say: '吸氣，吐氣，一二三四五。', lv: 1 },
+    { e: '🫂', q: '生氣難過的時候，可以抱什麼讓自己舒服一點？', a: [['🧸', '抱抱娃娃'], ['🦶', '踢門'], ['😬', '咬人']], why: '抱抱娃娃或找爸媽抱抱，心情會好一點', say: '我想要抱抱。', lv: 1 },
+    { e: '🤕', q: '不小心打了妹妹，怎麼辦？', a: [['🙇', '說對不起，問她痛不痛'], ['🏃', '跑走'], ['🙈', '說是她先的']], why: '打了人要說對不起，關心她有沒有受傷', say: '對不起，你痛不痛？', lv: 1 },
+    { e: '🍰', q: '蛋糕切好了，你的那塊比較小，可以怎麼想？', a: [['😊', '有吃到就很開心'], ['😡', '一直生氣'], ['✊', '搶別人的']], why: '有吃到就很幸福，下次可以先問能不能換', say: '有吃到我就很開心。', lv: 1 },
+    { e: '🏆', q: '玩遊戲輸給妹妹，你可以怎麼做？', a: [['👏', '說你好棒'], ['💥', '把遊戲推翻'], ['😭', '大哭耍賴']], why: '輸了也可以為別人鼓掌，下次再加油', say: '你好棒！我們再玩一次。', lv: 1 },
+    { e: '🛒', q: '在超市想買玩具，媽媽說不行，怎麼辦？', a: [['🗣️', '好吧，生日再買'], ['😭', '躺在地上哭'], ['🦶', '跺腳生氣']], why: '不是每次都可以買，可以把它放進願望清單', say: '好吧，那我生日再買。', lv: 1 },
+    { e: '🏰', q: '妹妹弄倒你的積木城堡，你好難過，可以怎麼做？', a: [['🗣️', '說我好難過，請爸媽幫忙'], ['👊', '打她'], ['💥', '弄壞她的東西']], why: '說出感覺，請大人幫忙，再一起重新蓋', say: '我好難過，可以幫我嗎？', lv: 1 },
+    { e: '🍬', q: '想吃糖果，可是快要吃飯了，怎麼辦？', a: [['⏳', '吃完飯再吃'], ['😭', '現在就要'], ['🙈', '偷偷吃']], why: '先吃飯，飯後再吃一顆', say: '好，吃完飯再吃。', lv: 1 },
+    { e: '🎈', q: '妹妹的氣球破了，她在哭，你可以怎麼做？', a: [['🤗', '安慰她'], ['😂', '笑她'], ['🙉', '不理她']], why: '當個好哥哥好姊姊，陪她一下', say: '不要哭，我陪你。', lv: 1 },
+    { e: '🔄', q: '輪到妹妹先玩，你要怎麼做？', a: [['⏳', '等一下輪到我'], ['✊', '搶過來'], ['😠', '推她']], why: '等一等，很快就輪到你', say: '好，你先玩，等一下換我。', lv: 1 },
+    { e: '📱', q: '爸媽在講電話，你有事情要說，怎麼辦？', a: [['✋', '輕輕拍手臂等一下'], ['📢', '一直大叫'], ['😭', '大哭']], why: '輕輕拍爸媽的手臂，等他們講完', say: '我等你講完。', lv: 1 },
+    { e: '🥇', q: '比賽贏了，可以對朋友說「我第一名，你最後一名」嗎？', a: [['🙅', '不可以，他會難過'], ['👍', '可以，因為我贏了'], ['😝', '還要做鬼臉']], why: '贏了很開心，但不笑別人。可以謝謝朋友陪你玩', say: '謝謝你陪我玩！', lv: 1 },
+    { e: '💯', q: '考了 100 分，跟朋友說什麼比較好？', a: [['😊', '我好開心，一起練習吧'], ['😝', '我 100 分，你 0 分'], ['🙄', '你好笨']], why: '分享開心，不跟別人比來比去', say: '我好開心，我們一起練習好不好？', lv: 1 },
+    { e: '😢', q: '有人笑你「你最後一名」，你很難過，可以怎麼說？', a: [['🗣️', '我不喜歡你這樣說'], ['👊', '打他'], ['😭', '大哭不玩了']], why: '說出感覺，自己下次再加油就好', say: '我不喜歡你這樣說，我下次會加油。', lv: 1 },
+    { e: '🏃', q: '賽跑輸了，覺得好不甘心，可以怎麼做？', a: [['😮‍💨', '深呼吸，下次再加油'], ['💥', '生氣丟東西'], ['🤥', '說別人作弊']], why: '輸了會不甘心很正常，深呼吸，下次再努力', say: '我下次再加油！', lv: 1 },
+    { e: '🎲', q: '玩遊戲一直輸，好想哭，可以怎麼做？', a: [['🗣️', '說我需要休息一下'], ['💥', '把遊戲推翻'], ['👊', '打贏的人']], why: '難過時可以先休息，等心情好了再玩', say: '我需要休息一下。', lv: 1 },
+    { e: '🏅', q: '朋友得到第一名，你可以說什麼？', a: [['👏', '恭喜你'], ['🙄', '有什麼了不起'], ['😠', '不理他']], why: '為別人開心，也是很棒的事', say: '恭喜你！', lv: 1 },
+    { e: '🥈', q: '比賽得了第二名，你可以怎麼想？', a: [['😊', '我已經很棒了'], ['😭', '沒有第一名就不要'], ['😡', '生氣不玩']], why: '有努力就很棒，不一定要第一名', say: '我已經很棒了！', lv: 1 },
+    { e: '🌋', q: '生氣到快要爆炸了，可以去哪裡讓自己冷靜？', a: [['🛋️', '安靜角落坐一下'], ['🏃', '衝出家門'], ['🚪', '用力甩門']], why: '可以去安靜角落坐一下，抱抱娃娃，等心情平靜', say: '我去安靜角落坐一下。', lv: 1 },
+    { e: '😶', q: '心裡很難過，可是說不出來，可以怎麼做？', a: [['🖍️', '畫出心情'], ['💥', '亂摔東西'], ['🤐', '一直悶著']], why: '可以畫畫，或指出心情臉，讓爸媽知道', say: '我現在很難過。', lv: 1 },
+    { e: '🐢', q: '一生氣就想動手，可以學小烏龜怎麼做？', a: [['🐢', '縮起來深呼吸'], ['👊', '先打再說'], ['📢', '大吼大叫']], why: '像小烏龜縮進殼裡，深呼吸三次，再出來好好說', say: '我先深呼吸三次。', lv: 1 },
+    { e: '🔢', q: '生氣的時候慢慢數數，可以數到多少？', a: [['🔟', '慢慢數到十'], ['0️⃣', '不用數'], ['💥', '數完就打人']], why: '慢慢數到十，生氣會變小一點', say: '一、二、三……數到十。', lv: 1 },
+    { e: '💬', q: '想說出自己的心情，哪一句最好？', a: [['🗣️', '我很生氣，因為玩具被拿走'], ['🤬', '都是你啦'], ['😤', '哼！']], why: '說出「我覺得……因為……」，別人就懂你了', say: '我很生氣，因為我的玩具被拿走了。', lv: 1 }
   ];
   const KIND = ['謝謝你', '你好棒', '我們一起玩', '對不起', '沒關係', '請借我好嗎', '你需要幫忙嗎', '早安', '你的畫好漂亮', '我可以一起玩嗎', '加油', '請等我一下', '你還好嗎', '我們輪流玩'];
   const UNKIND = [['我要揍扁你', '我很生氣，請你停下來'], ['你好笨', '我們一起想想看'], ['走開啦', '我想自己玩一下'], ['你好醜', '每個人都不一樣'], ['閉嘴', '請你小聲一點'], ['我不跟你好了', '我現在很生氣，等一下再玩'], ['臭大便', '我們來玩別的'], ['哼，不要理你', '我現在不想玩，等一下好嗎'], ['你是壞人', '我不喜歡你這樣做'], ['都是你的錯', '我們一起想辦法'], ['屁股屁股（上課時大叫）', '上課要安靜聽老師說']];
@@ -1982,6 +2055,10 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         after: [[`答案是${t.n}`]], key: t.e
       };
     },
+    calm() {
+      const t = pick(CALM);
+      return Object.assign(bankQ(CALM, t), { practice: t.say });
+    },
     emotion() {
       if (Math.random() < .45) {
         const pool = EMO_FACE.filter(f => age === 'big' || f[2] === 1), t = pick(pool);
@@ -2283,15 +2360,40 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     if (m) { void mascot.getBoundingClientRect(); mascot.classList.add(m); }
   }
 
-  function show(id) { ['home', 'game', 'done', 'gate', 'report'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); }
+  function show(id) { ['home', 'game', 'done', 'gate', 'report', 'rest'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); }
 
   function addStar() {
+    const pt = playToday(); pt.stars++; store.set('playToday', pt);
     st.stars++; total++; subStars[st.sub] = (subStars[st.sub] || 0) + 1;
     store.set('stars', total); store.set('subStars', subStars);
     $('totalStars').textContent = total;
   }
 
+  // 每天遊戲時間：只在玩題目時計時
+  const today = () => new Date().toDateString();
+  function playToday() { const p = store.get('playToday', {}); return p.d === today() ? p : { d: today(), ms: 0, stars: 0, unlocked: 0 }; }
+  function limitMs() { const m = store.get('limitMin', 0); return m ? m * 60000 + playToday().unlocked : 0; }
+  function overLimit() { const L = limitMs(); return L > 0 && playToday().ms >= L; }
+  let tipShown = false;
+  setInterval(() => {
+    if ($('game').hidden || document.hidden) return;
+    const p = playToday(); p.ms += 1000; store.set('playToday', p);
+    const L = limitMs();
+    if (L && !tipShown && L - p.ms <= 60000 && L - p.ms > 0) {
+      tipShown = true; $('timeTip').hidden = false; say([['再玩一下下，就要休息囉']]);
+      setTimeout(() => { $('timeTip').hidden = true; }, 6000);
+    }
+  }, 1000);
+  function showRest() {
+    const p = playToday(), mins = Math.max(1, Math.round(p.ms / 60000));
+    $('restMsg').textContent = `今天玩了 ${mins} 分鐘，拿到 ${p.stars} 顆星星。我們把遊戲收起來，明天再一起玩！`;
+    show('rest');
+    const m = $('restMascot'); m.classList.remove('is-happy'); void m.getBoundingClientRect(); m.classList.add('is-happy');
+    say([['時間到了，我們休息一下，明天再一起玩']]);
+  }
+
   function startRound(sub) {
+    if (overLimit()) { showRest(); return; }
     const recent = store.get('recent', {});
     st = { sub, i: 0, stars: 0, total: ROUND, results: [], q: null, first: true, locked: false, used: new Set(recent[sub] || []) };
     $('game').dataset.sub = sub; $('done').dataset.sub = sub;
@@ -2412,7 +2514,11 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     { n: '英文字母', s: [['A', 'A'], ['B', 'B'], ['C', 'C'], ['D', 'D']] },
     { n: '說對不起', s: [['🛑', '停下來'], ['👀', '看著對方'], ['🙇', '說對不起'], ['🤝', '問他還好嗎']] },
     { n: '吵架了', s: [['😮‍💨', '深呼吸'], ['🗣️', '說出感覺'], ['🤝', '一起想辦法']] },
-    { n: '想玩別人的玩具', s: [['🙋', '先問可以嗎'], ['⏳', '等一等'], ['🧸', '輪到我玩'], ['🔄', '玩完還給他']] }
+    { n: '想玩別人的玩具', s: [['🙋', '先問可以嗎'], ['⏳', '等一等'], ['🧸', '輪到我玩'], ['🔄', '玩完還給他']] },
+    { n: '生氣的時候', s: [['😠', '發現自己生氣'], ['🛑', '先停下來'], ['😮‍💨', '深呼吸'], ['🗣️', '說出感覺']] },
+    { n: '玩具時間結束', s: [['⏰', '時間快到了'], ['🎮', '玩最後一次'], ['📦', '把玩具收好'], ['👍', '明天再玩']] },
+    { n: '小烏龜冷靜法', s: [['🛑', '停下來'], ['🐢', '縮進殼裡'], ['😮‍💨', '深呼吸三次'], ['🗣️', '出來好好說']] },
+    { n: '好吃的大家分', s: [['🍗', '好吃的菜'], ['🔪', '切一切'], ['🍽️', '大家分一分'], ['😋', '一起吃']] }
   ];
   const MATCHES = [
     { n: '把動物和牠愛吃的東西連起來', p: [['🐰', '🥕'], ['🐵', '🍌'], ['🐶', '🦴'], ['🐱', '🐟'], ['🐼', '🎋'], ['🐭', '🧀'], ['🐝', '🌸']] },
@@ -2793,10 +2899,12 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     tone([523, 659, 784, 1046], .13, 'sine');
     setTimeout(() => burst($('doneScore'), 40), 150);
     say([[`拿到${s}顆星星。${msg}`]]);
+    const L = limitMs();
+    if (L && playToday().ms >= L - 30000) setTimeout(() => { if (!$('done').hidden) showRest(); }, 3500);
   }
 
   /* ---------- 家長專區 ---------- */
-  const SUBNAME = { cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本' };
+  const SUBNAME = { cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣' };
   const TIPS = {
     math: '吃點心時一起數一數有幾個。', compare: '分東西時問孩子「哪一邊比較多？」', money: '買東西時讓孩子幫忙拿硬幣付錢。',
     time: '用家裡的時鐘說「8 點要刷牙睡覺」。', cn: '看繪本時，指著簡單的字唸給孩子聽。', zhuyin: '從孩子名字的注音開始，一天認一個。',
@@ -2813,12 +2921,15 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     seasons: '換季整理衣服時，讓孩子分出夏天和冬天的衣服。', food: '吃飯時讓孩子說說盤子裡哪些是蔬菜。',
     trace: '準備粗一點的筆，在紙上照著描也很有幫助。', sequence: '做事前先說步驟：「先洗手，再吃飯」。', match: '玩配對卡或收衣服時配襪子。',
     maze: '用紙畫簡單的迷宮，讓孩子用手指走。', puzzle: '從 4 塊、9 塊的實體拼圖開始玩。', coloring: '準備著色本，讓孩子自由發揮。',
+    calm: '孩子為玩具或食物生氣時，先抱住或靠近他，說出他的感覺（你很想要對不對），等冷靜了再教他一句可以說的話。要結束遊戲前 5 分鐘先預告，時間到用「說到做到」來稱讚他。孩子愛比第一名時，多稱讚他的努力（你一直練習），少說「你最棒、第一名」。可以在家設一個安靜角落，平時就練習小烏龜深呼吸。',
     manners: '孩子說屁股、大便或「揍扁你」這類話時，先不要大笑或大驚小怪，平靜地說「這句話會讓人不舒服，可以換成⋯⋯」，並給他一句可以替代的話。孩子不肯道歉時，先幫他說出感覺（你也嚇到了對不對？），再陪他一起說；不要逼或罰，說出口後立刻稱讚他很勇敢。大人也要以身作則，常說請、謝謝、對不起。', trash: '倒垃圾時讓孩子幫忙分類；各縣市規定略有不同，以居住地的規定為準。'
   };
   // 綠界「實況主收款」的贊助網址，例如 https://p.ecpay.com.tw/XXXXXXX；留空就不會顯示贊助區
   const DONATE_URL = '';
   let gateAns = 0;
-  function openGate() {
+  let gateNext = null;
+  function openGate(next) {
+    gateNext = typeof next === 'function' ? next : null;
     const a = rand(11, 19), b = rand(11, 19); gateAns = a + b;
     $('gateQ').textContent = `${a} + ${b} = ?`;
     const set = new Set([gateAns]); while (set.size < 3) set.add(gateAns + pick([-10, -2, -1, 1, 2, 10]));
@@ -2826,7 +2937,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     shuffle([...set]).forEach((v, i) => {
       const btn = document.createElement('button'); btn.className = 'opt chunky'; btn.id = 'gate' + i;
       btn.innerHTML = `<span class="o-num" style="font-size:2rem">${v}</span>`;
-      btn.addEventListener('click', () => { if (v === gateAns) { renderReport(); show('report'); } else { btn.classList.add('wrong'); btn.disabled = true; } });
+      btn.addEventListener('click', () => { if (v === gateAns) { if (gateNext) { gateNext(); return; } renderReport(); show('report'); } else { btn.classList.add('wrong'); btn.disabled = true; } });
       box.appendChild(btn);
     });
     try { speechSynthesis.cancel(); } catch (e) {}
@@ -2890,6 +3001,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     $('tips').innerHTML = tipSubs.length
       ? `<ul>${tipSubs.map(k => { const r = rows.find(x => x.sub === k); return `<li><b>${SUBNAME[k]}</b>（答對率 ${r.a}%）：${TIPS[k]}</li>`; }).join('')}<li>每天玩 1～2 回合就好，短時間、常常玩，比一次玩很久更有效。</li></ul>`
       : '<p class="empty">玩過幾回合後，這裡會依孩子的表現給練習建議。</p>';
+    drawLimit();
     if (/^https:\/\/p\.ecpay\.com\.tw\//.test(DONATE_URL)) { $('donateBtn').href = DONATE_URL; $('support').hidden = false; }
     $('resetRow').innerHTML = '<button id="resetBtn" class="link-btn">清除所有紀錄</button>';
     $('resetBtn').addEventListener('click', askReset);
@@ -2931,9 +3043,21 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
   $('backBtn').addEventListener('click', () => { try { speechSynthesis.cancel(); } catch (e) {} refreshGot(); show('home'); });
   $('homeBtn').addEventListener('click', () => show('home'));
   $('againBtn').addEventListener('click', () => startRound(st.sub));
-  $('reportBtn').addEventListener('click', openGate);
+  $('reportBtn').addEventListener('click', () => openGate());
+  $('restOk').addEventListener('click', () => { say([['你好棒，說到做到！']]); $('restOk').textContent = '你好棒，說到做到！'; $('restOk').disabled = true; });
+  $('restUnlock').addEventListener('click', () => openGate(() => {
+    const p = playToday(); p.unlocked += 10 * 60000; store.set('playToday', p); tipShown = false;
+    $('restOk').disabled = false; $('restOk').textContent = '好，我休息一下'; show('home');
+  }));
+  function drawLimit() {
+    const m = store.get('limitMin', 0);
+    document.querySelectorAll('.limit-btn').forEach(b => b.setAttribute('aria-checked', String(Number(b.dataset.min) === m)));
+    const p = playToday(), used = Math.round(p.ms / 60000);
+    $('limitToday').textContent = m ? `今天已經玩了 ${used} 分鐘，上限 ${m} 分鐘${p.unlocked ? `（今天已解鎖多玩 ${p.unlocked / 60000} 分鐘）` : ''}。` : `今天已經玩了 ${used} 分鐘。`;
+  }
+  document.querySelectorAll('.limit-btn').forEach(b => b.addEventListener('click', () => { store.set('limitMin', Number(b.dataset.min)); tipShown = false; drawLimit(); }));
   $('donateBtn').addEventListener('click', () => track('donate-click', '按了贊助'));
-  $('reportBtn2').addEventListener('click', openGate);
+  $('reportBtn2').addEventListener('click', () => openGate());
   $('gateBack').addEventListener('click', () => show('home'));
   $('repBack').addEventListener('click', () => show('home'));
 
