@@ -12,6 +12,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="動動腦">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<script data-goatcounter="https://denis1234555.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>動動腦小學堂</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -675,6 +676,10 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
   const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const others = (pool, t, n, key) => shuffle(pool.filter(x => key(x) !== key(t))).slice(0, n);
   const delay = ms => new Promise(r => setTimeout(r, ms));
+  // 使用統計（GoatCounter，不用 cookie、不記錄個人身分）；沒有載入統計時什麼都不做
+  function track(path, title) {
+    try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, title: title || path, event: true }); } catch (e) {}
+  }
 
   function numberOptions(ans, count, min, max) {
     const set = new Set([ans]); let tries = 0;
@@ -1662,6 +1667,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     const recent = store.get('recent', {});
     st = { sub, i: 0, stars: 0, total: ROUND, results: [], q: null, first: true, locked: false, used: new Set(recent[sub] || []) };
     $('game').dataset.sub = sub; $('done').dataset.sub = sub;
+    track(`play-${sub}-${age}`, `開始玩：${sub}（${age === 'small' ? '3–4 歲' : '5–6 歲'}）`);
     show('game');
     if (sub === 'memory') startMemory(); else nextQ();
   }
@@ -1923,6 +1929,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
   $('homeBtn').addEventListener('click', () => show('home'));
   $('againBtn').addEventListener('click', () => startRound(st.sub));
   $('reportBtn').addEventListener('click', openGate);
+  $('donateBtn').addEventListener('click', () => track('donate-click', '按了贊助'));
   $('reportBtn2').addEventListener('click', openGate);
   $('gateBack').addEventListener('click', () => show('home'));
   $('repBack').addEventListener('click', () => show('home'));
@@ -1937,7 +1944,8 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
   const laterUntil = store.get('installLater', 0);
   if (hasManifest && !standalone && Date.now() > laterUntil) $('installCard').hidden = false;
   window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; });
-  window.addEventListener('appinstalled', () => { $('installCard').hidden = true; deferredPrompt = null; });
+  window.addEventListener('appinstalled', () => {
+    track('installed', '已安裝到桌面'); $('installCard').hidden = true; deferredPrompt = null; });
   function installSteps() {
     const ua = navigator.userAgent;
     const ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -1947,6 +1955,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     return ['用 <b>Chrome</b> 打開這個網頁。', '點右上角的 <span class="kbd">⋮</span>。', '選 <span class="kbd">安裝應用程式</span> 或 <span class="kbd">加到主畫面</span>。', '按 <span class="kbd">安裝</span>，桌面就會出現圓圓的圖示。'];
   }
   $('installBtn').addEventListener('click', async () => {
+    track('install-click', '按了變成 icon 放到桌面');
     if (deferredPrompt) {
       deferredPrompt.prompt();
       try { await deferredPrompt.userChoice; } catch (e) {}
