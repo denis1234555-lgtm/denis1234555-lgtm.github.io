@@ -272,6 +272,11 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
 .o-pic { font-size: clamp(3.2rem, 18vw, 5.8rem); line-height: 1; }
 .o-swatch { width: 74%; aspect-ratio: 1; border-radius: 50%; box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .12); }
 .o-shape { width: 80%; height: auto; }
+.options.waiting .opt { cursor: default; }
+.options.waiting .opt:not(.reading) { opacity: .55; }
+.opt.reading { position: relative; z-index: 1; transform: scale(1.06); box-shadow: 0 6px 0 var(--c-deep), 0 0 0 5px var(--c), 0 0 24px 6px var(--c); animation: glow .8s ease-in-out infinite alternate; }
+.opt.reading::after { content: "🔊"; position: absolute; top: -10px; right: -8px; font-size: 1.3rem; background: var(--surface); border-radius: 50%; width: 34px; height: 34px; display: grid; place-items: center; box-shadow: 0 2px 0 var(--line-deep); }
+@keyframes glow { from { box-shadow: 0 6px 0 var(--c-deep), 0 0 0 4px var(--c), 0 0 10px 2px var(--c); } to { box-shadow: 0 6px 0 var(--c-deep), 0 0 0 6px var(--c), 0 0 28px 8px var(--c); } }
 .opt.right { background: var(--good-soft); box-shadow: 0 6px 0 var(--good-deep), inset 0 0 0 4px var(--good); animation: pop .4s ease; }
 .opt.wrong { animation: shake .4s ease; opacity: .35; }
 @keyframes pop { 40% { transform: scale(1.1) rotate(-3deg); } 70% { transform: scale(.97); } }
@@ -1696,11 +1701,32 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
       box.appendChild(b);
     });
     drawTrack();
-    say(q.speech);
+    q.readOpts = q.options.every(o => o.label && /class="o-(life|time|dir|num)/.test(o.html));
+    readQuestion(q);
+  }
+
+  // 先唸題目；需要看懂文字的選項，逐一發亮並唸出來，唸完才開放作答
+  async function readQuestion(q) {
+    const box = $('options'), cur = st;
+    const btns = [...box.children];
+    const reading = soundOn && q.readOpts && 'speechSynthesis' in window;
+    box.classList.toggle('waiting', reading);
+    await say(q.speech);
+    if (!reading) return;
+    for (let i = 0; i < btns.length; i++) {
+      if (st !== cur || st.q !== q || $('game').hidden) return;
+      btns[i].classList.add('reading');
+      await say([[q.options[i].label]]);
+      btns[i].classList.remove('reading');
+      await delay(120);
+    }
+    if (st !== cur || st.q !== q) return;
+    box.classList.remove('waiting');
+    tone([784], .08, 'sine');
   }
 
   function choose(b, o) {
-    if (st.locked || b.disabled) return;
+    if (st.locked || b.disabled || $('options').classList.contains('waiting')) return;
     if (o.correct) {
       st.locked = true; b.classList.add('right');
       if (st.q.reveal) $('stage').classList.add('solved');
@@ -1924,7 +1950,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
   $('ageBig').addEventListener('click', () => setAge('big'));
   $('soundBtn').addEventListener('click', () => setSound(!soundOn));
   document.querySelectorAll('.subject').forEach(b => b.addEventListener('click', () => startRound(b.dataset.sub)));
-  $('speakBtn').addEventListener('click', () => st && say(st.q.speech));
+  $('speakBtn').addEventListener('click', () => { if (!st || !st.q) return; if (st.sub === 'memory' || st.locked) say(st.q.speech); else readQuestion(st.q); });
   $('backBtn').addEventListener('click', () => { try { speechSynthesis.cancel(); } catch (e) {} refreshGot(); show('home'); });
   $('homeBtn').addEventListener('click', () => show('home'));
   $('againBtn').addEventListener('click', () => startRound(st.sub));
