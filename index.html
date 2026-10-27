@@ -470,6 +470,49 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
 .rest .btn { background: var(--math); box-shadow: 0 6px 0 var(--math-deep); color: #fff; }
 .rest .btn:disabled { background: var(--good); box-shadow: 0 6px 0 var(--good-deep); }
 .time-tip { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 25; background: var(--ink); color: var(--bg); padding: 12px 20px; border-radius: 999px; font-weight: 900; box-shadow: 0 6px 18px rgba(0, 0, 0, .25); white-space: nowrap; }
+.subject .lock-chip, .subject .trial-note { display: none; }
+.subject.premium.locked .got { display: none; }
+.subject.premium.locked .lock-chip { display: flex; position: absolute; top: 24px; right: 24px; padding: 2px 10px; border-radius: 999px; background: var(--ink); color: var(--bg); font-weight: 900; font-size: .85rem; }
+.subject.premium.locked.can-try .trial-note { display: block; font-size: .8rem; font-weight: 900; margin-top: 2px; }
+[data-sub="challenge"], [data-sub="cnword"], [data-sub="mathpro"], [data-sub="enspell"], [data-sub="clockpro"], [data-sub="tracepro"] { --c: #C98A06; --c-soft: var(--sun-soft); --c-deep: #9A6A00; }
+.subject.premium.gold { background: linear-gradient(135deg, #E9A90B, #D98A00); }
+.o-word { font-weight: 900; font-size: clamp(1.6rem, 7.5vw, 2.6rem); line-height: 1.2; }
+.o-word.lat { font-family: var(--f-display); font-weight: 800; letter-spacing: .04em; }
+.tens { display: flex; gap: 14px; align-items: flex-end; justify-content: center; flex-wrap: wrap; }
+.tens .rod { width: 18px; height: 120px; border-radius: 5px; background: repeating-linear-gradient(var(--c) 0 10px, var(--c-soft) 10px 12px); box-shadow: 0 0 0 2px var(--c-deep); }
+.tens .unit { width: 18px; height: 10px; border-radius: 3px; background: var(--c); box-shadow: 0 0 0 2px var(--c-deep); }
+.tens .units { display: flex; flex-direction: column-reverse; gap: 2px; }
+.coin-mini { width: clamp(26px, 8vw, 38px); height: auto; }
+.o-life .coins, span.coins { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; max-width: 100%; }
+.voice-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+.voice-btn { border: 0; border-radius: 18px; padding: 10px 6px; background: var(--bg); display: flex; flex-direction: column; align-items: center; gap: 2px; box-shadow: 0 4px 0 var(--line-deep); font-weight: 900; }
+.voice-btn .e { font-size: 2rem; line-height: 1.1; }
+.voice-btn .sub { font-size: .75rem; color: var(--muted); font-weight: 700; }
+.voice-btn[aria-checked="true"] { background: var(--sun-soft); box-shadow: 0 4px 0 var(--mascot-deep), inset 0 0 0 3px var(--sun); }
+.promo { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: space-between; background: linear-gradient(135deg, #FFF3CC, #FFE29A); border-radius: 22px; padding: 14px 16px; box-shadow: 0 5px 0 var(--mascot-deep); color: #3A2A00; }
+.promo-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 200px; }
+.promo-text b { font-size: 1.1rem; }
+.promo-text span { font-size: .9rem; }
+.promo .btn { background: var(--math); box-shadow: 0 5px 0 var(--math-deep); }
+body.is-full .promo { display: none; }
+.plans { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.plans th, .plans td { padding: 6px 4px; text-align: center; border-bottom: 1px solid var(--line); }
+.plans td:first-child { text-align: left; font-weight: 700; }
+.plans th:last-child, .plans td:last-child { background: var(--sun-soft); }
+.buy-steps { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 4px; }
+.pro-box { border: 3px solid #E9A90B; }
+.pro-box ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 4px; }
+.code-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.code-row input { flex: 1; min-width: 0; font: inherit; font-size: 1.1rem; font-weight: 700; letter-spacing: .06em; padding: 10px 14px; border-radius: 14px; border: 2px solid var(--line-deep); background: var(--bg); color: var(--ink); text-transform: uppercase; }
+.pro-ok { color: var(--good); font-weight: 900; }
+.week-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.week-strip div { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: .8rem; color: var(--muted); }
+.week-strip i { font-style: normal; width: 100%; aspect-ratio: 1; border-radius: 10px; display: grid; place-items: center; font-weight: 900; color: var(--ink); background: var(--bg); }
+.week-strip i.on { background: var(--sun); color: #3A2A00; }
+.weekly.locked .weekly-body { filter: blur(5px); pointer-events: none; user-select: none; }
+.weekly { position: relative; }
+.weekly .lock-over { display: none; }
+.weekly.locked .lock-over { display: grid; position: absolute; inset: 0; place-items: center; text-align: center; font-weight: 900; padding: 20px; }
 .rep-open { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 8px 16px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-weight: 900; }
 @media (max-width: 430px) { .top .icon-btn { width: 40px; height: 40px; } .pill { height: 40px; padding: 0 10px; font-size: 1.1rem; } .tools { gap: 6px; } .logo { width: 36px; height: 36px; } }
 @media (max-width: 560px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .srow { grid-template-columns: 6em minmax(0, 1fr) auto; } }
@@ -543,7 +586,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
       </div>
     </div>
 
-    <nav class="jump" aria-label="主題分類"><a href="#g-0" class="jump-chip" style="--g: var(--cn)">語文</a><a href="#g-1" class="jump-chip" style="--g: var(--math)">數學</a><a href="#g-2" class="jump-chip" style="--g: var(--geo)">觀察</a><a href="#g-3" class="jump-chip" style="--g: var(--time)">思考</a><a href="#g-4" class="jump-chip" style="--g: var(--color)">動手玩</a><a href="#g-5" class="jump-chip" style="--g: var(--life)">生活</a></nav>
+    <nav class="jump" aria-label="主題分類"><a href="#g-0" class="jump-chip" style="--g: var(--cn)">語文</a><a href="#g-1" class="jump-chip" style="--g: var(--math)">數學</a><a href="#g-2" class="jump-chip" style="--g: var(--geo)">觀察</a><a href="#g-3" class="jump-chip" style="--g: var(--time)">思考</a><a href="#g-4" class="jump-chip" style="--g: var(--color)">動手玩</a><a href="#g-5" class="jump-chip" style="--g: var(--life)">生活</a><a href="#g-6" class="jump-chip" style="--g: var(--sun)">⭐ 進階版</a></nav>
 
     <div class="groups">
       <h3 class="group-title" id="g-0" style="--g: var(--cn)">語文 <small>中文、注音、英文、詞語、故事</small></h3>
@@ -558,10 +601,10 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         <span class="art"><span class="kai sm">ㄅㄆㄇ</span></span>
         <span class="name">注音</span><span class="what" data-small="聽聲音找注音" data-big="注音開頭、看注音找圖">聽聲音找注音</span>
       </button>
-      <button class="subject" data-sub="spell" id="sub-spell">
-        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="spell">0</span></span>
+      <button class="subject premium" data-sub="spell" id="sub-spell">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="spell">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
         <span class="art"><span class="kai sm">ㄇㄚ</span></span>
-        <span class="name">注音拼音</span><span class="what" data-small="看圖拼注音" data-big="拼音、找出正確拼法">看圖拼注音</span>
+        <span class="name">注音拼音</span><span class="what" data-small="看圖拼注音" data-big="拼音、找出正確拼法">看圖拼注音</span><span class="trial-note">可以免費試玩 1 次</span>
       </button>
       <button class="subject" data-sub="en" id="subEn">
         <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="en">0</span></span>
@@ -573,15 +616,15 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         <span class="art"><span class="abc"><span style="font-family:var(--f-display);font-size:3.2rem">A</span><span style="font-size:3rem;color:#E8701F">a</span></span></span>
         <span class="name">ABC 字母</span><span class="what" data-small="聽字母、A 是 apple" data-big="大小寫配對、開頭字母">聽字母、A 是 apple</span>
       </button>
-      <button class="subject" data-sub="words" id="sub-words">
-        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="words">0</span></span>
+      <button class="subject premium" data-sub="words" id="sub-words">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="words">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
         <span class="art"><span class="emo sm">🐘↔🐭</span></span>
-        <span class="name">相反詞・量詞</span><span class="what" data-small="大和小、快和慢" data-big="相反詞、一隻狗一本書">大和小、快和慢</span>
+        <span class="name">相反詞・量詞</span><span class="what" data-small="大和小、快和慢" data-big="相反詞、一隻狗一本書">大和小、快和慢</span><span class="trial-note">可以免費試玩 1 次</span>
       </button>
-      <button class="subject" data-sub="story" id="sub-story">
-        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="story">0</span></span>
+      <button class="subject premium" data-sub="story" id="sub-story">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="story">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
         <span class="art"><span class="emo">📖👂</span></span>
-        <span class="name">聽故事</span><span class="what" data-small="聽短故事回答問題" data-big="比較長的故事">聽短故事回答問題</span>
+        <span class="name">聽故事</span><span class="what" data-small="聽短故事回答問題" data-big="比較長的故事">聽短故事回答問題</span><span class="trial-note">可以免費試玩 1 次</span>
       </button>
       </div>
       <h3 class="group-title" id="g-1" style="--g: var(--math)">數學 <small>數數、加減、比較、時間、錢</small></h3>
@@ -601,20 +644,20 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         <span class="art"><span class="emo">🐘<small>🐭</small></span></span>
         <span class="name">比大小</span><span class="what" data-small="哪邊比較多、哪個最大" data-big="多少、大小、數字比較">哪邊比較多、哪個最大</span>
       </button>
-      <button class="subject" data-sub="measure" id="sub-measure">
-        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="measure">0</span></span>
+      <button class="subject premium" data-sub="measure" id="sub-measure">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="measure">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
         <span class="art"><span class="emo">📏</span></span>
-        <span class="name">比長短</span><span class="what" data-small="長短、高矮" data-big="長短、高矮、輕重">長短、高矮</span>
+        <span class="name">比長短</span><span class="what" data-small="長短、高矮" data-big="長短、高矮、輕重">長短、高矮</span><span class="trial-note">可以免費試玩 1 次</span>
       </button>
-      <button class="subject" data-sub="share" id="sub-share">
-        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="share">0</span></span>
+      <button class="subject premium" data-sub="share" id="sub-share">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="share">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
         <span class="art"><span class="emo sm">🍬🍬👦👧</span></span>
-        <span class="name">平分</span><span class="what" data-small="分給 2 個人" data-big="分給 2～4 個人">分給 2 個人</span>
+        <span class="name">平分</span><span class="what" data-small="分給 2 個人" data-big="分給 2～4 個人">分給 2 個人</span><span class="trial-note">可以免費試玩 1 次</span>
       </button>
-      <button class="subject" data-sub="ordinal" id="sub-ordinal">
-        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="ordinal">0</span></span>
+      <button class="subject premium" data-sub="ordinal" id="sub-ordinal">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="ordinal">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
         <span class="art"><span class="emo sm">🥇🥈🥉</span></span>
-        <span class="name">第幾個</span><span class="what" data-small="從左邊數第幾個" data-big="第幾個、排在第幾">從左邊數第幾個</span>
+        <span class="name">第幾個</span><span class="what" data-small="從左邊數第幾個" data-big="第幾個、排在第幾">從左邊數第幾個</span><span class="trial-note">可以免費試玩 1 次</span>
       </button>
       <button class="subject" data-sub="money" id="sub-money">
         <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="money">0</span></span>
@@ -626,10 +669,10 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         <span class="art"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28" fill="#fff" stroke="#7C4DD0" stroke-width="5"/><g stroke="#B9A6E6" stroke-width="3" stroke-linecap="round"><path d="M32 8v4M32 52v4M8 32h4M52 32h4"/></g><path d="M32 32V16" stroke="#7C4DD0" stroke-width="4" stroke-linecap="round"/><path d="M32 32h11" stroke="#2B2633" stroke-width="5" stroke-linecap="round"/><circle cx="32" cy="32" r="3.5" fill="#2B2633"/></svg></span>
         <span class="name">時鐘</span><span class="what" data-small="看時鐘認整點" data-big="整點、半點">看時鐘認整點</span>
       </button>
-      <button class="subject" data-sub="calendar" id="sub-calendar">
-        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="calendar">0</span></span>
+      <button class="subject premium" data-sub="calendar" id="sub-calendar">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="calendar">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
         <span class="art"><span class="emo">🗓️</span></span>
-        <span class="name">星期和月份</span><span class="what" data-small="明天星期幾" data-big="星期、月份、一年幾個月">明天星期幾</span>
+        <span class="name">星期和月份</span><span class="what" data-small="明天星期幾" data-big="星期、月份、一年幾個月">明天星期幾</span><span class="trial-note">可以免費試玩 1 次</span>
       </button>
       </div>
       <h3 class="group-title" id="g-2" style="--g: var(--geo)">觀察 <small>形狀、顏色、位置、找不同</small></h3>
@@ -659,10 +702,10 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         <span class="art"><svg viewBox="0 0 120 70" aria-hidden="true"><text x="60" y="52" text-anchor="middle" font-size="46">🐰</text><path d="M0 70V44c10-14 26-14 34-4 8-12 26-14 34-2 8-12 28-10 36 2 8-6 14-4 16-2V70z" fill="#43A047"/><path d="M0 70V54c14-8 30-6 40 0 12-8 30-8 42 0 12-6 28-6 38 0V70z" fill="#2E7D32"/></svg></span>
         <span class="name">躲貓貓</span><span class="what" data-small="誰躲在後面？" data-big="只露出一點點，猜猜是誰">誰躲在後面？</span>
       </button>
-      <button class="subject" data-sub="spotdiff" id="sub-spotdiff">
-        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="spotdiff">0</span></span>
+      <button class="subject premium" data-sub="spotdiff" id="sub-spotdiff">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="spotdiff">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
         <span class="art"><span class="emo">🔍</span></span>
-        <span class="name">找不同</span><span class="what" data-small="找出 1 個不一樣" data-big="找出 2 個不一樣">找出 1 個不一樣</span>
+        <span class="name">找不同</span><span class="what" data-small="找出 1 個不一樣" data-big="找出 2 個不一樣">找出 1 個不一樣</span><span class="trial-note">可以免費試玩 1 次</span>
       </button>
       </div>
       <h3 class="group-title" id="g-3" style="--g: var(--time)">思考 <small>找不同類、推理、猜謎</small></h3>
@@ -700,15 +743,15 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         <span class="art"><span class="emo sm">🥚🐣🐔</span></span>
         <span class="name">排順序</span><span class="what" data-small="排 3 張" data-big="排 4 張">排 3 張</span>
       </button>
-      <button class="subject" data-sub="maze" id="sub-maze">
-        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="maze">0</span></span>
+      <button class="subject premium" data-sub="maze" id="sub-maze">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="maze">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
         <span class="art"><span class="emo">🐭🧀</span></span>
-        <span class="name">走迷宮</span><span class="what" data-small="小迷宮" data-big="大迷宮">小迷宮</span>
+        <span class="name">走迷宮</span><span class="what" data-small="小迷宮" data-big="大迷宮">小迷宮</span><span class="trial-note">可以免費試玩 1 次</span>
       </button>
-      <button class="subject" data-sub="puzzle" id="sub-puzzle">
-        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="puzzle">0</span></span>
+      <button class="subject premium" data-sub="puzzle" id="sub-puzzle">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="puzzle">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
         <span class="art"><span class="emo">🧩</span></span>
-        <span class="name">拼圖</span><span class="what" data-small="4 塊拼圖" data-big="9 塊拼圖">4 塊拼圖</span>
+        <span class="name">拼圖</span><span class="what" data-small="4 塊拼圖" data-big="9 塊拼圖">4 塊拼圖</span><span class="trial-note">可以免費試玩 1 次</span>
       </button>
       <button class="subject" data-sub="memory" id="sub-memory">
         <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="memory">0</span></span>
@@ -753,10 +796,10 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         <span class="art"><span class="emo">👨‍🚒👩‍⚕️</span></span>
         <span class="name">認識職業</span><span class="what" data-small="消防員、醫生、老師" data-big="更多職業">消防員、醫生、老師</span>
       </button>
-      <button class="subject" data-sub="seasons" id="sub-seasons">
-        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="seasons">0</span></span>
+      <button class="subject premium" data-sub="seasons" id="sub-seasons">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="seasons">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
         <span class="art"><span class="emo sm">🌸☀️🍂❄️</span></span>
-        <span class="name">四季和穿衣</span><span class="what" data-small="認識四季" data-big="季節順序和穿衣">認識四季</span>
+        <span class="name">四季和穿衣</span><span class="what" data-small="認識四季" data-big="季節順序和穿衣">認識四季</span><span class="trial-note">可以免費試玩 1 次</span>
       </button>
       <button class="subject" data-sub="food" id="sub-food">
         <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="food">0</span></span>
@@ -769,6 +812,117 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         <span class="name">垃圾分類</span><span class="what" data-small="一般垃圾、回收、廚餘" data-big="回收再分紙、塑膠、鐵罐、玻璃">一般垃圾、回收、廚餘</span>
       </button>
       </div>
+      <h3 class="group-title" id="g-6" style="--g: var(--sun)">⭐ 進階版・學科 <small>挑戰、語文、英文、數學、邏輯</small></h3>
+      <div class="subjects">
+      <button class="subject premium gold" data-sub="challenge" id="sub-challenge">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="challenge">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="emo">🏆</span></span>
+        <span class="name">綜合大考驗</span><span class="what" data-small="小班各科混合 15 題" data-big="大班各科混合 15 題">小班各科混合 15 題</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="cnword" id="sub-cnword">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="cnword">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="kai sm">蘋果</span></span>
+        <span class="name">認詞語</span><span class="what" data-small="聽詞語找圖片" data-big="看詞找圖、看圖選詞">聽詞語找圖片</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="cnsimilar" id="sub-cnsimilar">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="cnsimilar">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="kai sm">大太天</span></span>
+        <span class="name">相似字</span><span class="what" data-small="分辨長得像的字" data-big="更多相似字">分辨長得像的字</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="sentence" id="sub-sentence">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="sentence">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="emo sm">✏️📝</span></span>
+        <span class="name">句子填空</span><span class="what" data-small="我用＿＿喝水" data-big="動詞、形容詞">我用＿＿喝水</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="zhuyinpro" id="sub-zhuyinpro">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="zhuyinpro">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="kai sm">ㄏ+ㄨ+ㄚ</span></span>
+        <span class="name">注音拼讀進階</span><span class="what" data-small="兩個注音拼起來" data-big="三個注音拼起來">兩個注音拼起來</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="enspell" id="sub-enspell">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="enspell">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="abc"><span>🐶</span><span>dog</span></span></span>
+        <span class="name">英文拼字</span><span class="what" data-small="找第一個字母" data-big="選出正確拼字">找第一個字母</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="enphrase" id="sub-enphrase">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="enphrase">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="abc"><span>👋</span><span>Hi</span></span></span>
+        <span class="name">英文生活用語</span><span class="what" data-small="聽英文選情境" data-big="看情境選英文">聽英文選情境</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="enverb" id="sub-enverb">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="enverb">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="abc"><span>🏃</span><span>run</span></span></span>
+        <span class="name">英文動作</span><span class="what" data-small="聽英文找動作" data-big="動作和英文配對">聽英文找動作</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="mathpro" id="sub-mathpro">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="mathpro">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="eqart">15+4</span></span>
+        <span class="name">數學先修</span><span class="what" data-small="數到 20、10 以內加法" data-big="20 以內加減、十和一、數到 100">數到 20、10 以內加法</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="wordpro" id="sub-wordpro">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="wordpro">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="emo sm">🐦➕🐦</span></span>
+        <span class="name">應用題進階</span><span class="what" data-small="有圖的加減故事" data-big="兩步驟、買東西">有圖的加減故事</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="moneypro" id="sub-moneypro">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="moneypro">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="emo">🛒</span></span>
+        <span class="name">買東西找錢</span><span class="what" data-small="付剛好的錢" data-big="找錢、一共幾元">付剛好的錢</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="clockpro" id="sub-clockpro">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="clockpro">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="emo">🕒</span></span>
+        <span class="name">時鐘進階</span><span class="what" data-small="整點和半點" data-big="每 5 分鐘">整點和半點</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="patternpro" id="sub-patternpro">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="patternpro">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="eqart">2,4,6,?</span></span>
+        <span class="name">規律進階</span><span class="what" data-small="找規律、少了哪一個" data-big="跳著數、越來越多">找規律、少了哪一個</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="deduce" id="sub-deduce">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="deduce">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="emo sm">🐶❓🐱</span></span>
+        <span class="name">邏輯推理</span><span class="what" data-small="猜猜在哪個盒子" data-big="誰排在中間">猜猜在哪個盒子</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      </div>
+      <h3 class="group-title" id="g-7" style="--g: var(--sun)">⭐ 進階版・生活與動手 <small>描字、故事、安全、科學、節日、動物</small></h3>
+      <div class="subjects">
+      <button class="subject premium gold" data-sub="tracepro" id="sub-tracepro">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="tracepro">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="kai sm">我你</span></span>
+        <span class="name">國字描寫</span><span class="what" data-small="筆畫少的國字" data-big="一年級常見國字">筆畫少的國字</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="storyseq" id="sub-storyseq">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="storyseq">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="emo sm">🐢🏁🏆</span></span>
+        <span class="name">故事排序</span><span class="what" data-small="排 3 格故事" data-big="排 4 格故事">排 3 格故事</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="safety" id="sub-safety">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="safety">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="emo">⛑️</span></span>
+        <span class="name">安全教育</span><span class="what" data-small="走失、陌生人、電梯" data-big="地震、火災、網路安全">走失、陌生人、電梯</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="science" id="sub-science">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="science">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="emo">🔬</span></span>
+        <span class="name">科學小常識</span><span class="what" data-small="浮沉、磁鐵、植物" data-big="光、水、天氣">浮沉、磁鐵、植物</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="festival" id="sub-festival">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="festival">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="emo">🧧🥮</span></span>
+        <span class="name">認識節日</span><span class="what" data-small="過年、中秋、端午" data-big="節日日期和習俗">過年、中秋、端午</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      <button class="subject premium gold" data-sub="animals" id="sub-animals">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="animals">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
+        <span class="art"><span class="emo">🦒🐳</span></span>
+        <span class="name">動物知識</span><span class="what" data-small="會飛、住哪、吃什麼" data-big="幾隻腳、怎麼呼吸">會飛、住哪、吃什麼</span><span class="trial-note">可以免費試玩 1 次</span>
+      </button>
+      </div>
+    </div>
+
+    <div class="promo" id="promoCard">
+      <div class="promo-text"><b>⭐ 想玩更多？</b><span>標準版開放 60 個主題，完整版再加上綜合大考驗、四種朗讀聲音和每週學習報告。</span></div>
+      <button id="promoBtn" class="btn small">家長看這裡</button>
     </div>
 
     <div class="parents">
@@ -829,6 +983,11 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
       <p class="note">最近 20 回合的答對率，虛線是平均。</p>
       <div class="chart" id="chart"></div>
     </div>
+    <div class="block weekly" id="weeklyBlock">
+      <h3>本週學習報告 <small class="note">⭐ 完整版</small></h3>
+      <div class="weekly-body" id="weeklyBody"></div>
+      <div class="lock-over">🔒 開啟完整版後，就能看到每週的學習報告</div>
+    </div>
     <div class="block tips">
       <h3>在家可以這樣練習</h3>
       <div id="tips"></div>
@@ -844,6 +1003,16 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         <button class="limit-btn" data-min="30" role="radio">30 分鐘</button>
       </div>
       <p class="note" id="limitToday"></p>
+    </div>
+    <div class="block" id="voiceBlock">
+      <h3>朗讀聲音 <small class="note">⭐ 完整版</small></h3>
+      <p class="note">選一個孩子喜歡的聲音。聲音是用裝置內建語音調整的，每台手機聽起來會有一點不同。</p>
+      <div class="voice-row" id="voiceRow"></div>
+      <p class="note" id="voiceMsg"></p>
+    </div>
+    <div class="block pro-box" id="proBox">
+      <h3>⭐ 進階版</h3>
+      <div id="proBody"></div>
     </div>
     <!-- 贊助區：在下方 script 的 DONATE_URL 填入綠界「實況主收款」網址後才會顯示 -->
     <section id="support" class="block support" hidden>
@@ -862,6 +1031,17 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     </div>
     <p class="note" style="text-align:center">紀錄只存在這台裝置的瀏覽器裡，換手機或清除瀏覽器資料就會不見。</p>
   </section>
+
+  <div id="lockSheet" class="sheet" hidden>
+    <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="lockTitle">
+      <h2 id="lockTitle">⭐ 這是進階版的關卡</h2>
+      <p>試玩已經用完囉！請爸爸媽媽到家長專區看看怎麼開啟。</p>
+      <div class="row-btns" style="justify-content:flex-start">
+        <button id="lockParent" class="btn small" style="background:var(--math);box-shadow:0 5px 0 var(--math-deep)">請爸媽看看</button>
+        <button id="lockClose" class="btn ghost small">先玩別的</button>
+      </div>
+    </div>
+  </div>
 
   <div id="installSheet" class="sheet" hidden>
     <div class="sheet-card" role="dialog" aria-modal="true" aria-labelledby="installTitle">
@@ -1362,6 +1542,170 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     }, extra || {});
   }
   const lvPool = bank => age === 'small' ? bank.filter(x => x.lv === 1) : bank;
+  /* ---------- 進階版題庫 ---------- */
+  const SAFETY = [
+    { e: '🍬', q: '不認識的人說要給你糖果，叫你跟他走，怎麼辦？', a: [['🙅', '說不要，去找爸媽'], ['🍬', '跟他走'], ['🤐', '不跟爸媽說']], lv: 1 },
+    { e: '🏬', q: '在百貨公司和爸媽走散了，怎麼辦？', a: [['🧍', '站在原地或找服務台'], ['🏃', '到處亂跑'], ['🚪', '自己走出去']], lv: 1 },
+    { e: '🩱', q: '有人要碰你泳衣蓋住的地方，怎麼辦？', a: [['🙅', '大聲說不要，告訴爸媽'], ['🤫', '保守秘密'], ['😶', '不敢說']], why: '泳衣蓋住的地方是你的身體隱私，誰都不可以碰，一定要告訴爸媽', lv: 1 },
+    { e: '🛗', q: '坐電梯的時候，要怎麼做？', a: [['🧍', '站好不亂按'], ['🤸', '跳來跳去'], ['✋', '手放門縫']], lv: 1 },
+    { e: '💊', q: '看到像糖果的藥丸，可以吃嗎？', a: [['🙅', '不可以，要問大人'], ['😋', '可以吃'], ['🤫', '偷偷吃']], lv: 1 },
+    { e: '🪟', q: '可以爬到窗戶邊嗎？', a: [['🙅', '不可以，很危險'], ['👍', '可以'], ['🧗', '爬高高看外面']], lv: 1 },
+    { e: '✂️', q: '拿剪刀走路時，要怎麼拿？', a: [['👇', '刀尖朝下慢慢走'], ['🏃', '拿著跑'], ['🤺', '揮來揮去']], lv: 1 },
+    { e: '🌏', q: '地震了，要怎麼做？', a: [['🫣', '趴下、掩護、穩住'], ['🏃', '馬上衝出去'], ['🛗', '去搭電梯']], why: '地震時趴下、掩護頭部、穩住，等搖晃停了再聽大人的話離開', lv: 1 },
+    { e: '🚨', q: '聽到火災警報，要怎麼做？', a: [['👨‍👧', '跟著大人往外走'], ['🙈', '躲到床底下'], ['🛗', '去搭電梯']], lv: 1 },
+    { e: '🔥', q: '衣服著火了，要怎麼做？', a: [['🛑', '停下、躺下、滾一滾'], ['🏃', '趕快跑'], ['💨', '用嘴巴吹']], why: '衣服著火要停、躺、滾，跑會讓火更大', lv: 2 },
+    { e: '🚪', q: '一個人在家，有人敲門，怎麼辦？', a: [['📞', '不開門，打給爸媽'], ['🔓', '馬上開門'], ['🗣️', '說爸媽不在家']], lv: 2 },
+    { e: '🏊', q: '在游泳池邊，要怎麼做？', a: [['🚶', '慢慢走'], ['🏃', '用跑的'], ['🤸', '推別人下水']], lv: 1 },
+    { e: '🚲', q: '騎腳踏車要戴什麼？', a: [['⛑️', '安全帽'], ['🧢', '棒球帽'], ['🕶️', '太陽眼鏡']], lv: 1 },
+    { e: '📱', q: '一定要記住誰的電話？', a: [['👨‍👩‍👧', '爸爸媽媽的電話'], ['🍕', '披薩店的電話'], ['🎮', '遊戲的電話']], lv: 2 },
+    { e: '🔥', q: '在地上看到打火機，怎麼辦？', a: [['🗣️', '告訴大人'], ['🔥', '拿來玩'], ['🎒', '放進書包']], lv: 1 },
+    { e: '🐕', q: '看到不認識的狗狗，可以直接摸嗎？', a: [['🙋', '先問主人可不可以'], ['✋', '直接摸'], ['🦶', '踢牠']], lv: 1 },
+    { e: '⛈️', q: '在外面遇到打雷，可以躲在大樹下嗎？', a: [['🏠', '不行，要進到屋子裡'], ['🌳', '可以躲樹下'], ['🧗', '爬到樹上']], lv: 2 },
+    { e: '🅿️', q: '在停車場要怎麼走？', a: [['🤝', '牽著大人的手'], ['🏃', '自己跑'], ['🙈', '躲在車子後面']], lv: 1 },
+    { e: '🚗', q: '坐車時，頭可以伸出窗外嗎？', a: [['🙅', '不可以'], ['👍', '可以'], ['🙌', '手也伸出去']], lv: 1 },
+    { e: '💻', q: '網路上有人問你家住在哪裡，怎麼辦？', a: [['🙅', '不說，告訴爸媽'], ['🏠', '告訴他'], ['📸', '傳照片給他']], lv: 2 },
+    { e: '🔪', q: '廚房的刀子可以自己拿來玩嗎？', a: [['🙅', '不可以'], ['👍', '可以'], ['🤺', '拿來比劍']], lv: 1 }
+  ];
+  const SCIENCE = [
+    { e: '🛁', q: '哪一個會浮在水上？', a: [['🦆', '小鴨玩具'], ['🪨', '石頭'], ['🪙', '硬幣']], lv: 1 },
+    { e: '🌊', q: '哪一個會沉到水底？', a: [['🪨', '石頭'], ['🍃', '樹葉'], ['🪶', '羽毛']], lv: 1 },
+    { e: '🧲', q: '磁鐵可以吸起什麼？', a: [['📎', '迴紋針'], ['🧸', '布娃娃'], ['🍎', '蘋果']], lv: 1 },
+    { e: '🧲', q: '哪一個磁鐵吸得起來？', a: [['🔩', '鐵螺絲'], ['🪵', '木頭'], ['🧻', '衛生紙']], lv: 2 },
+    { e: '🌱', q: '植物長大需要什麼？', a: [['☀️', '陽光和水'], ['🍬', '糖果'], ['📺', '電視']], lv: 1 },
+    { e: '☀️', q: '冰塊放在太陽下會怎樣？', a: [['💧', '融化成水'], ['🔥', '著火'], ['🧊', '變更大']], lv: 1 },
+    { e: '❄️', q: '水放進冷凍庫，會變成什麼？', a: [['🧊', '冰塊'], ['☁️', '雲'], ['🔥', '火']], lv: 1 },
+    { e: '🌧️', q: '快下雨的時候，天上會有什麼？', a: [['☁️', '烏雲'], ['🌈', '彩虹'], ['⭐', '星星']], lv: 1 },
+    { e: '🌅', q: '太陽從哪一邊升起來？', a: [['🌅', '東邊'], ['🌇', '西邊'], ['⬆️', '北邊']], lv: 2 },
+    { e: '🌈', q: '彩虹有幾種顏色？', a: [['7️⃣', '七種'], ['3️⃣', '三種'], ['🔟', '十種']], lv: 2 },
+    { e: '🌍', q: '地球上面積最大的是什麼？', a: [['🌊', '海洋'], ['🏜️', '沙漠'], ['🏙️', '城市']], lv: 2 },
+    { e: '💡', q: '哪一個會自己發光？', a: [['☀️', '太陽'], ['🌙', '月亮'], ['🪞', '鏡子']], why: '太陽會自己發光，月亮是反射太陽的光', lv: 2 },
+    { e: '🐛', q: '毛毛蟲長大會變成什麼？', a: [['🦋', '蝴蝶'], ['🐦', '小鳥'], ['🐍', '蛇']], lv: 1 },
+    { e: '🐸', q: '蝌蚪長大會變成什麼？', a: [['🐸', '青蛙'], ['🐟', '魚'], ['🐢', '烏龜']], lv: 1 },
+    { e: '🫁', q: '哪一個是會呼吸的生物？', a: [['🐶', '小狗'], ['🪨', '石頭'], ['🧸', '布娃娃']], lv: 1 },
+    { e: '🔊', q: '哪一個聲音最大聲？', a: [['🥁', '打鼓'], ['🤫', '說悄悄話'], ['🍃', '樹葉飄下來']], lv: 1 },
+    { e: '🌰', q: '把種子種到土裡，先長出什麼？', a: [['🌱', '小芽'], ['🍎', '蘋果'], ['🌸', '花']], lv: 1 },
+    { e: '🔌', q: '哪一個要用電才會動？', a: [['💡', '電燈'], ['📖', '書'], ['🧸', '娃娃']], lv: 1 },
+    { e: '🔍', q: '用放大鏡看東西，會變怎樣？', a: [['🔍', '變大'], ['🤏', '變小'], ['🌈', '變彩色']], lv: 1 },
+    { e: '🍲', q: '水煮開了，會冒出什麼？', a: [['♨️', '水蒸氣'], ['🧊', '冰塊'], ['🌈', '彩虹']], lv: 2 },
+    { e: '🌙', q: '晚上貓頭鷹在做什麼？', a: [['🦉', '出來找食物'], ['😴', '睡大覺'], ['🏊', '游泳']], lv: 2 },
+    { e: '🔦', q: '用手電筒照東西，後面會出現什麼？', a: [['👤', '影子'], ['🌈', '彩虹'], ['💧', '水']], lv: 2 }
+  ];
+  const FESTIVAL = [
+    { e: '🧨', q: '過年的時候，長輩會給小朋友什麼？', a: [['🧧', '紅包'], ['🥮', '月餅'], ['🎃', '南瓜燈']], lv: 1 },
+    { e: '🌕', q: '中秋節要吃什麼？', a: [['🥮', '月餅'], ['🍦', '冰淇淋'], ['🎂', '生日蛋糕']], lv: 1 },
+    { e: '🥮', q: '中秋節晚上要看什麼？', a: [['🌕', '月亮'], ['🌈', '彩虹'], ['☀️', '太陽']], lv: 1 },
+    { e: '🌊', q: '端午節要划什麼船？', a: [['🐉', '龍舟'], ['⛵', '帆船'], ['🚢', '大郵輪']], lv: 1 },
+    { e: '🐉', q: '端午節要吃什麼？', a: [['🫔', '粽子'], ['🥮', '月餅'], ['🍰', '蛋糕']], lv: 1 },
+    { e: '🌃', q: '元宵節晚上要提什麼？', a: [['🏮', '燈籠'], ['☂️', '雨傘'], ['🎒', '書包']], lv: 1 },
+    { e: '🎅', q: '聖誕節會布置什麼樹？', a: [['🎄', '聖誕樹'], ['🌴', '椰子樹'], ['🌸', '櫻花樹']], lv: 1 },
+    { e: '🎁', q: '聖誕老公公坐什麼送禮物？', a: [['🛷', '雪橇'], ['🚌', '公車'], ['🚀', '火箭']], lv: 1 },
+    { e: '🎂', q: '過生日要吹熄什麼？', a: [['🕯️', '蠟燭'], ['🎈', '氣球'], ['🎺', '喇叭']], lv: 1 },
+    { e: '🚪', q: '過年要在門上貼什麼？', a: [['📜', '春聯'], ['📰', '報紙'], ['🗺️', '地圖']], lv: 1 },
+    { e: '🧧', q: '除夕晚上全家一起吃的叫什麼？', a: [['🍲', '年夜飯'], ['🥪', '早餐'], ['🍦', '點心']], lv: 2 },
+    { e: '🎈', q: '台灣的兒童節是哪一天？', a: [['📅', '4 月 4 日'], ['🎄', '12 月 25 日'], ['🎆', '1 月 1 日']], lv: 2 },
+    { e: '👩', q: '母親節可以送媽媽什麼花？', a: [['💐', '康乃馨'], ['🌵', '仙人掌'], ['🍂', '落葉']], lv: 1 },
+    { e: '👨', q: '台灣的父親節是哪一天？', a: [['📅', '8 月 8 日'], ['🎈', '4 月 4 日'], ['🎄', '12 月 25 日']], lv: 2 },
+    { e: '🎆', q: '新年的第一天是幾月幾日？', a: [['📅', '1 月 1 日'], ['📅', '6 月 1 日'], ['📅', '10 月 10 日']], lv: 2 },
+    { e: '🎄', q: '聖誕節是幾月幾日？', a: [['📅', '12 月 25 日'], ['📅', '1 月 1 日'], ['📅', '8 月 8 日']], lv: 2 },
+    { e: '🧧', q: '過年會放什麼，發出劈哩啪啦的聲音？', a: [['🧨', '鞭炮'], ['🎹', '鋼琴'], ['🎻', '小提琴']], lv: 1 },
+    { e: '🎃', q: '萬聖節小朋友會說什麼要糖果？', a: [['🍬', '不給糖就搗蛋'], ['🧧', '恭喜發財'], ['🎄', '聖誕快樂']], lv: 2 },
+    { e: '👴', q: '過年見到長輩，要說什麼？', a: [['🧧', '新年快樂'], ['🎄', '聖誕快樂'], ['🎂', '生日快樂']], lv: 1 },
+    { e: '☀️', q: '端午節中午，大家常常試著讓什麼站起來？', a: [['🥚', '雞蛋'], ['🍌', '香蕉'], ['🧸', '娃娃']], why: '端午節中午有「立蛋」的習俗', lv: 2 },
+    { e: '🏮', q: '元宵節常常會猜什麼？', a: [['❓', '燈謎'], ['⚽', '足球'], ['🎲', '骰子']], lv: 2 }
+  ];
+  const ANIMALS = [
+    { e: '☁️', q: '哪一個會在天上飛？', a: [['🦅', '老鷹'], ['🐘', '大象'], ['🐢', '烏龜']], lv: 1 },
+    { e: '🌊', q: '哪一個住在海裡？', a: [['🐬', '海豚'], ['🐒', '猴子'], ['🐪', '駱駝']], lv: 1 },
+    { e: '📏', q: '哪一個的脖子最長？', a: [['🦒', '長頸鹿'], ['🐷', '豬'], ['🐰', '兔子']], lv: 1 },
+    { e: '🕷️', q: '蜘蛛有幾隻腳？', a: [['8️⃣', '八隻'], ['6️⃣', '六隻'], ['4️⃣', '四隻']], lv: 2 },
+    { e: '🐞', q: '昆蟲有幾隻腳？', a: [['6️⃣', '六隻'], ['8️⃣', '八隻'], ['2️⃣', '兩隻']], lv: 2 },
+    { e: '🥚', q: '哪一個會生蛋？', a: [['🐔', '母雞'], ['🐄', '乳牛'], ['🐶', '小狗']], lv: 1 },
+    { e: '🦘', q: '袋鼠寶寶住在哪裡？', a: [['👜', '媽媽的口袋'], ['🌳', '樹上'], ['🌊', '水裡']], lv: 1 },
+    { e: '❄️', q: '冬天會躲起來冬眠的是誰？', a: [['🐻', '熊'], ['🐶', '狗'], ['🐔', '雞']], lv: 2 },
+    { e: '🌊', q: '世界上最大的動物是？', a: [['🐳', '藍鯨'], ['🐭', '老鼠'], ['🐱', '貓']], lv: 2 },
+    { e: '🏃', q: '跑得最快的動物是？', a: [['🐆', '獵豹'], ['🐢', '烏龜'], ['🐌', '蝸牛']], lv: 1 },
+    { e: '🌙', q: '哪一個晚上才出來活動？', a: [['🦉', '貓頭鷹'], ['🐓', '公雞'], ['🦋', '蝴蝶']], lv: 1 },
+    { e: '🦓', q: '斑馬身上是什麼花紋？', a: [['🦓', '黑白條紋'], ['🐆', '點點'], ['🌈', '彩虹色']], lv: 1 },
+    { e: '🐣', q: '小雞是從哪裡出來的？', a: [['🥚', '蛋'], ['🌳', '樹'], ['🌊', '海']], lv: 1 },
+    { e: '🕸️', q: '會吐絲結網的是誰？', a: [['🕷️', '蜘蛛'], ['🐜', '螞蟻'], ['🐝', '蜜蜂']], lv: 1 },
+    { e: '🐼', q: '熊貓最愛吃什麼？', a: [['🎋', '竹子'], ['🍖', '肉'], ['🍕', '披薩']], lv: 1 },
+    { e: '🏜️', q: '駱駝背上有什麼？', a: [['🐫', '駝峰'], ['🎒', '書包'], ['🪶', '翅膀']], lv: 1 },
+    { e: '🦔', q: '刺蝟身上有什麼？', a: [['📌', '尖尖的刺'], ['🪶', '羽毛'], ['🐟', '魚鱗']], lv: 1 },
+    { e: '🐟', q: '魚在水裡用什麼呼吸？', a: [['🫧', '鰓'], ['👃', '鼻子'], ['👂', '耳朵']], lv: 2 },
+    { e: '🍼', q: '哪一個寶寶是喝媽媽的奶長大的？', a: [['🐶', '小狗'], ['🐥', '小雞'], ['🐟', '小魚']], lv: 2 },
+    { e: '🐧', q: '企鵝會不會飛？', a: [['🏊', '不會飛，會游泳'], ['🕊️', '會飛很高'], ['🚀', '會飛上太空']], lv: 1 },
+    { e: '🦎', q: '變色龍有什麼本領？', a: [['🎨', '改變身體顏色'], ['🔥', '噴火'], ['🎵', '唱歌']], lv: 2 },
+    { e: '🐝', q: '蜜蜂會做什麼？', a: [['🍯', '做蜂蜜'], ['🥛', '做牛奶'], ['🥚', '生雞蛋']], lv: 1 }
+  ];
+  const SENT = [
+    { e: '💧', q: '我用＿＿喝水。', a: [['🥤', '杯子'], ['👟', '鞋子'], ['🧢', '帽子']], lv: 1 },
+    { e: '📝', q: '我用＿＿寫字。', a: [['✏️', '鉛筆'], ['🥄', '湯匙'], ['🧦', '襪子']], lv: 1 },
+    { e: '🌙', q: '晚上要在＿＿上睡覺。', a: [['🛏️', '床'], ['🚗', '車子'], ['🌳', '樹']], lv: 1 },
+    { e: '🌧️', q: '下雨了，要撐＿＿。', a: [['☂️', '雨傘'], ['🧹', '掃把'], ['📺', '電視']], lv: 1 },
+    { e: '🐶', q: '小狗＿＿叫。', a: [['', '汪汪'], ['', '喵喵'], ['', '哞哞']], lv: 1 },
+    { e: '🐱', q: '小貓＿＿叫。', a: [['', '喵喵'], ['', '汪汪'], ['', '呱呱']], lv: 1 },
+    { e: '🎵', q: '我用＿＿聽聲音。', a: [['👂', '耳朵'], ['👃', '鼻子'], ['🦶', '腳']], lv: 1 },
+    { e: '🥶', q: '天氣冷了，要穿＿＿。', a: [['🧥', '外套'], ['🩳', '短褲'], ['🩱', '泳衣']], lv: 1 },
+    { e: '🍚', q: '我吃飯用＿＿。', a: [['🥢', '筷子'], ['✏️', '鉛筆'], ['🧦', '襪子']], lv: 1 },
+    { e: '🦷', q: '我用＿＿刷牙。', a: [['🪥', '牙刷'], ['🧹', '掃把'], ['🔑', '鑰匙']], lv: 1 },
+    { e: '🌃', q: '天黑了，打開＿＿。', a: [['💡', '電燈'], ['☂️', '雨傘'], ['🎈', '氣球']], lv: 1 },
+    { e: '🧼', q: '我在＿＿洗澡。', a: [['🛁', '浴室'], ['🍳', '廚房'], ['🚗', '車上']], lv: 1 },
+    { e: '🍳', q: '媽媽在＿＿煮飯。', a: [['🍳', '廚房'], ['🛁', '浴室'], ['🏫', '學校']], lv: 2 },
+    { e: '🐦', q: '小鳥在天上＿＿。', a: [['🕊️', '飛'], ['🏊', '游泳'], ['🏃', '跑步']], lv: 2 },
+    { e: '🐟', q: '魚在水裡＿＿。', a: [['🏊', '游'], ['🕊️', '飛'], ['🧗', '爬']], lv: 2 },
+    { e: '📖', q: '我＿＿一本書。', a: [['', '看'], ['', '吃'], ['', '唱']], lv: 2 },
+    { e: '🎤', q: '我們＿＿一首歌。', a: [['', '唱'], ['', '看'], ['', '穿']], lv: 2 },
+    { e: '👟', q: '出門要＿＿鞋子。', a: [['', '穿'], ['', '吃'], ['', '看']], lv: 2 },
+    { e: '☀️', q: '夏天的太陽好＿＿。', a: [['🔥', '熱'], ['🧊', '冰'], ['🌙', '黑']], lv: 2 },
+    { e: '😪', q: '我好＿＿，想睡覺了。', a: [['😪', '累'], ['😄', '開心'], ['🍽️', '餓']], lv: 2 },
+    { e: '🍽️', q: '我肚子好＿＿，想吃飯。', a: [['🍽️', '餓'], ['😪', '睏'], ['🥶', '冷']], lv: 2 }
+  ];
+  const PHRASES = [['Good morning', '早上起床見到媽媽', '🌅'], ['Good night', '晚上要睡覺了', '🌙'], ['Thank you', '別人送你禮物', '🎁'], ['Sorry', '不小心撞到人', '💥'], ['Hello', '見到新朋友', '👋'],
+    ['Goodbye', '要回家了', '🏠'], ['Please', '想請別人幫忙', '🙏'], ['Happy birthday', '朋友生日', '🎂'], ['I love you', '跟爸媽說愛他們', '❤️'], ['Excuse me', '想從別人旁邊經過', '🚶'],
+    ["You're welcome", '別人跟你說謝謝', '😊'], ['How are you', '問朋友好不好', '🙂'], ["Let's play", '邀朋友一起玩', '⚽'], ['Help', '需要別人幫忙', '🆘'], ['Good job', '稱讚朋友做得好', '👍'],
+    ['Happy new year', '新年到了', '🎆'], ['Merry Christmas', '聖誕節到了', '🎄'], ['See you', '說明天見', '👀'], ["I'm hungry", '肚子餓了', '🍽️'], ['Yes, please', '別人問你要不要吃點心', '🍪']];
+  const VERBS = [['run', '🏃', '跑'], ['jump', '🤸', '跳'], ['swim', '🏊', '游泳'], ['eat', '😋', '吃'], ['sleep', '😴', '睡覺'], ['read', '📖', '讀書'], ['sing', '🎤', '唱歌'], ['dance', '💃', '跳舞'],
+    ['cry', '😭', '哭'], ['laugh', '😂', '笑'], ['walk', '🚶', '走路'], ['drink', '🥤', '喝'], ['write', '✍️', '寫字'], ['draw', '🎨', '畫畫'], ['cook', '🍳', '煮飯'], ['ride', '🚲', '騎車'],
+    ['fly', '✈️', '飛'], ['climb', '🧗', '爬'], ['wash', '🧼', '洗'], ['play', '⚽', '玩'], ['sit', '🪑', '坐'], ['clap', '👏', '拍手']];
+  const SIMILAR = [[['大', '大小的大'], ['太', '太陽的太'], ['天', '天空的天']], [['人', '大人的人'], ['入', '入口的入'], ['八', '數字八']], [['日', '日出的日'], ['目', '眼睛，目'], ['白', '白色的白'], ['田', '田地的田']],
+    [['土', '泥土的土'], ['王', '國王的王'], ['工', '工人的工']], [['木', '樹木的木'], ['本', '書本的本'], ['禾', '禾苗的禾']], [['口', '嘴巴，口'], ['回', '回家的回'], ['日', '日出的日']],
+    [['力', '力氣的力'], ['刀', '刀子的刀'], ['九', '數字九']], [['午', '中午的午'], ['牛', '小牛的牛'], ['千', '一千的千']], [['手', '小手的手'], ['毛', '毛巾的毛'], ['才', '天才的才']],
+    [['小', '大小的小'], ['少', '多少的少'], ['水', '喝水的水']], [['上', '上面的上'], ['下', '下面的下'], ['卡', '卡片的卡']], [['今', '今天的今'], ['令', '命令的令'], ['合', '合作的合']]];
+  const PRO_SEQS = [
+    { n: '三隻小豬', s: [['🌾', '蓋稻草屋'], ['🌬️', '被風吹倒'], ['🧱', '改蓋磚屋'], ['😊', '住得好安心']] },
+    { n: '龜兔賽跑', s: [['🏁', '比賽開始'], ['🐇', '兔子睡著了'], ['🐢', '烏龜慢慢走'], ['🏆', '烏龜贏了']] },
+    { n: '番茄長大', s: [['🌱', '發芽'], ['🌿', '長高'], ['🟢', '結綠番茄'], ['🍅', '變紅了']] },
+    { n: '寄卡片', s: [['🖍️', '畫卡片'], ['✉️', '放進信封'], ['📮', '寄出去'], ['😄', '奶奶收到']] },
+    { n: '雪人', s: [['❄️', '下雪'], ['⛄', '堆雪人'], ['☀️', '出太陽'], ['💧', '雪人融化']] },
+    { n: '釣魚', s: [['🎣', '拿釣竿'], ['🌊', '甩進水裡'], ['🐟', '魚上鉤'], ['🪣', '放進水桶']] },
+    { n: '做果汁', s: [['🍊', '拿橘子'], ['🔪', '大人切開'], ['🧃', '擠成果汁'], ['😋', '喝果汁']] },
+    { n: '生病了', s: [['🤒', '發燒'], ['🏥', '看醫生'], ['💊', '吃藥休息'], ['😊', '病好了']] },
+    { n: '放風箏', s: [['🪁', '拿風箏'], ['🏃', '跑一跑'], ['🌬️', '風吹起來'], ['☁️', '飛得好高']] },
+    { n: '上學路上', s: [['🔴', '紅燈等一等'], ['🟢', '綠燈亮了'], ['🚸', '走斑馬線'], ['🏫', '到學校']] },
+    { n: '洗衣服', s: [['👕', '髒衣服'], ['🧺', '放進洗衣機'], ['🫧', '洗乾淨'], ['☀️', '晾乾']] },
+    { n: '搭飛機', s: [['🧳', '收行李'], ['🛫', '飛機起飛'], ['☁️', '飛在天上'], ['🛬', '降落了']] },
+    { n: '毛毛蟲', s: [['🐛', '毛毛蟲'], ['🍃', '吃好多葉子'], ['😴', '睡好久'], ['🦋', '變成蝴蝶']] },
+    { n: '煮麵', s: [['💧', '燒開水'], ['🍜', '放麵進去'], ['⏰', '等一等'], ['😋', '開動']] },
+    { n: '下雨天', s: [['☁️', '天空變暗'], ['🌧️', '下雨了'], ['☂️', '撐雨傘'], ['🌈', '雨停出彩虹']] },
+    { n: '剪頭髮', s: [['💇', '坐好'], ['✂️', '剪一剪'], ['🚿', '洗頭'], ['😎', '變帥了']] },
+    { n: '去超市', s: [['📝', '寫購物清單'], ['🛒', '推推車'], ['🍎', '挑水果'], ['💰', '結帳']] },
+    { n: '寫功課', s: [['🎒', '拿出功課'], ['✏️', '寫字'], ['✅', '檢查'], ['📚', '收進書包']] },
+    { n: '打掃房間', s: [['🧸', '撿玩具'], ['🧹', '掃地'], ['🧽', '擦桌子'], ['✨', '好乾淨']] },
+    { n: '露營', s: [['⛺', '搭帳篷'], ['🔥', '大人生火'], ['🌽', '烤玉米'], ['🌌', '看星星']] }
+  ];
+
+  const WORDS2 = [['🍎', '蘋果'], ['🍌', '香蕉'], ['🍉', '西瓜'], ['🍇', '葡萄'], ['🍓', '草莓'], ['👩‍🏫', '老師'], ['🏫', '學校'], ['🎒', '書包'], ['✏️', '鉛筆'], ['🚗', '汽車'],
+    ['🚌', '公車'], ['🚂', '火車'], ['✈️', '飛機'], ['☀️', '太陽'], ['🌙', '月亮'], ['⭐', '星星'], ['☂️', '雨傘'], ['👕', '衣服'], ['👟', '鞋子'], ['🧢', '帽子'],
+    ['🐶', '小狗'], ['🐱', '小貓'], ['🐰', '兔子'], ['🐯', '老虎'], ['🐘', '大象'], ['🐼', '熊貓'], ['🍰', '蛋糕'], ['🥛', '牛奶'], ['🍞', '麵包'], ['👁️', '眼睛'],
+    ['👂', '耳朵'], ['📱', '手機'], ['📺', '電視'], ['🕰️', '時鐘'], ['🌸', '花朵'], ['🌳', '大樹'], ['🐧', '企鵝'], ['🦋', '蝴蝶'], ['🐸', '青蛙'], ['⛄', '雪人'], ['🚀', '火箭'], ['🦒', '長頸鹿']];
+  const CVC = [['cat', '🐱'], ['dog', '🐶'], ['pig', '🐷'], ['hen', '🐔'], ['fox', '🦊'], ['bus', '🚌'], ['sun', '☀️'], ['cup', '🥤'], ['hat', '🎩'], ['bed', '🛏️'],
+    ['box', '📦'], ['bat', '🦇'], ['map', '🗺️'], ['net', '🥅'], ['pen', '🖊️'], ['bug', '🐛'], ['ant', '🐜'], ['owl', '🦉'], ['cow', '🐮'], ['bee', '🐝'],
+    ['car', '🚗'], ['leg', '🦵'], ['web', '🕸️'], ['nut', '🥜'], ['rat', '🐀'], ['van', '🚐'], ['egg', '🥚'], ['ice', '🧊']];
+  const VOW = 'aeiou', CONS = 'bcdfghjklmnprstvwz';
+  const TRACE_PRO_SMALL = '人口山上下大小土工王日月田中天木水火文牛'.split('').map(c => [c, c, 'k']);
+  const TRACE_PRO_BIG = '我你他爸媽花草左右石白耳目手足多少早名字車馬鳥魚羊'.split('').map(c => [c, c, 'k']);
+  const CH_SUBS_UNUSED = 0;
+  const CH_SUBS = ['math', 'addsub', 'compare', 'measure', 'share', 'ordinal', 'money', 'time', 'calendar', 'cn', 'zhuyin', 'spell', 'en', 'abc', 'words', 'geo', 'solid', 'color', 'position', 'odd', 'logic', 'riddle', 'life', 'body', 'jobs', 'seasons', 'food', 'emotion'];
   const MANNERS = [
     { e: '🎠', q: '溜滑梯好多人在玩，要怎麼做？', a: [['🧍', '排隊等'], ['💨', '插隊'], ['🤜', '推開別人']], why: '要排隊，一個一個輪流玩', lv: 1 },
     { e: '💥', q: '不小心撞到別人，要說什麼？', a: [['🙇', '對不起'], ['🙄', '走開啦'], ['🤐', '不說話']], why: '撞到別人，要說對不起', lv: 1 },
@@ -2055,6 +2399,297 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         after: [[`答案是${t.n}`]], key: t.e
       };
     },
+    safety() { return bankQ(SAFETY, pick(lvPool(SAFETY))); },
+    science() { return bankQ(SCIENCE, pick(lvPool(SCIENCE))); },
+    festival() { return bankQ(FESTIVAL, pick(lvPool(FESTIVAL))); },
+    animals() { return bankQ(ANIMALS, pick(lvPool(ANIMALS))); },
+    sentence() {
+      const t = pick(lvPool(SENT)), q = bankQ(SENT, t);
+      q.stage = `<div><div class="pic">${t.e}</div><div class="phrase" style="margin-top:8px">${t.q.replace('＿＿', '<span class="blank">？</span>')}</div></div>`;
+      q.prompt = '選出對的詞，把句子填好'; q.speech = [[t.q.replace('＿＿', '什麼') + '選出對的詞']];
+      q.after = [[t.q.replace('＿＿', t.a[0][1])]];
+      return q;
+    },
+    enphrase() {
+      const t = pick(PHRASES), n = age === 'small' ? 2 : 3;
+      if (age === 'small') {
+        const opts = shuffle([t, ...others(PHRASES, t, n, x => x[0])]);
+        return {
+          prompt: '聽英文，什麼時候會說這句話？', speech: [[t[0], 'en-US'], ['什麼時候會說這句話？']], stage: `<div class="word">${t[0]}</div>`,
+          options: opts.map(o => ({ html: optLife([o[2], o[1]]), label: o[1], correct: o === t })),
+          after: [[t[0], 'en-US'], [t[1] + '的時候說']], key: 's' + t[0]
+        };
+      }
+      const opts = shuffle([t, ...others(PHRASES, t, n, x => x[0])]);
+      return {
+        prompt: `${t[1]}，英文要說什麼？`, speech: [[`${t[1]}，英文要說什麼？`]], stage: `<div class="pic">${t[2]}</div>`,
+        options: opts.map(o => ({ html: `<span class="o-life"><span class="t solo" style="font-family:var(--f-display)">${o[0]}</span></span>`, label: o[0], lang: 'en-US', correct: o === t })),
+        after: [[t[0], 'en-US']], key: 'b' + t[0]
+      };
+    },
+    enverb() {
+      const t = pick(VERBS), n = age === 'small' ? 2 : 3;
+      if (age === 'small' || Math.random() < .5) {
+        const opts = shuffle([t, ...others(VERBS, t, n, x => x[1])]);
+        return {
+          prompt: '聽英文，找出對的動作', speech: [['哪一個是'], [t[0], 'en-US']], stage: `<div class="word">${t[0]}</div>`,
+          options: opts.map(o => ({ html: picHTML(o[1]), label: o[2], correct: o === t })),
+          after: [[t[0], 'en-US'], [t[2]]], key: 'p' + t[0]
+        };
+      }
+      const opts = shuffle([t, ...others(VERBS, t, n, x => x[0])]);
+      return {
+        prompt: '這個動作的英文是？', speech: [['這個動作，英文是什麼？']], stage: `<div class="pic">${t[1]}</div>`,
+        options: opts.map(o => ({ html: `<span class="o-life"><span class="t solo" style="font-family:var(--f-display)">${o[0]}</span></span>`, label: o[0], lang: 'en-US', correct: o === t })),
+        after: [[t[0], 'en-US'], [t[2]]], key: 'w' + t[0]
+      };
+    },
+    cnsimilar() {
+      const g = pick(SIMILAR), t = pick(g), extra = age === 'small' ? [] : others(SIMILAR.flat(), t, 1, x => x[0]).filter(x => !g.includes(x));
+      const opts = shuffle([...g.slice(0, age === 'small' ? 3 : 4), ...extra].filter((x, i, a) => a.findIndex(y => y[0] === x[0]) === i)).slice(0, age === 'small' ? 3 : 4);
+      if (!opts.includes(t)) opts[0] = t;
+      return {
+        prompt: '聽一聽，找出對的字', speech: [[`${t[1]}。哪一個是${t[0]}？`]], stage: '<div class="pic">👂</div>',
+        options: shuffle(opts).map(o => ({ html: charHTML(o[0]), label: o[0], correct: o === t })),
+        after: [[t[1]]], key: t[0] + g[0][0]
+      };
+    },
+    zhuyinpro() {
+      const pool = SP.filter(x => age === 'big' ? true : [...x[2]].length === 2), t = pick(pool), parts = [...t[2]];
+      const set = new Set([t[2]]);
+      for (let k = 0; k < 40 && set.size < (age === 'small' ? 3 : 4); k++) {
+        const ch = parts.slice(), i = rand(0, ch.length - 1), sw = ZY_SWAP[ch[i]];
+        if (sw) { ch[i] = pick(sw.split('')); set.add(ch.join('')); }
+        if (ch.length === 3 && Math.random() < .3) set.add([ch[1], ch[0], ch[2]].join(''));
+      }
+      while (set.size < (age === 'small' ? 3 : 4)) set.add(pick(SP)[2]);
+      return {
+        prompt: `${parts.join(' + ')} 會拼成哪一個？`, speech: [[`${t[1]}的${t[0]}，是哪幾個注音拼起來的？`]],
+        stage: `<div><div class="pic">${t[3]}</div><div class="o-zy" style="font-size:2.6rem">${parts.join(' ＋ ')} ＝ ？</div></div>`,
+        options: shuffle([...set]).map(z => ({ html: `<span class="o-zy">${z}</span>`, label: z, correct: z === t[2] })),
+        after: [[`${t[1]}的${t[0]}`]], key: 'z' + t[0] + t[1]
+      };
+    },
+    wordpro() {
+      const big = age === 'big';
+      const T = big ? [
+        () => { const a = rand(3, 8), b = rand(1, a - 1), c = rand(1, 5); return [`盤子裡有 ${a} 顆糖，吃掉 ${b} 顆，媽媽又給 ${c} 顆，現在有幾顆？`, a - b + c, '🍬']; },
+        () => { const p = rand(2, 5), n = rand(2, 3); return [`一顆蘋果 ${p} 元，買 ${n} 顆要幾元？`, p * n, '🍎']; },
+        () => { const a = rand(6, 12), b = rand(2, a - 2); return [`哥哥有 ${a} 張貼紙，妹妹有 ${b} 張，哥哥比妹妹多幾張？`, a - b, '⭐']; },
+        () => { const a = rand(2, 4), b = rand(2, 4); return [`有 ${a} 個盤子，每盤放 ${b} 個餅乾，一共有幾個？`, a * b, '🍪']; },
+        () => { const a = rand(10, 18), b = rand(2, 8); return [`公車上有 ${a} 個人，到站下車 ${b} 個人，還剩幾個人？`, a - b, '🚌']; },
+        () => { const a = rand(3, 9), b = rand(3, 9); return [`小明跳了 ${a} 下，小美跳了 ${b} 下，兩個人一共跳了幾下？`, a + b, '🤸']; }
+      ] : [
+        () => { const a = rand(1, 3), b = rand(1, 2); return [`樹上有 ${a} 隻小鳥，又飛來 ${b} 隻，一共有幾隻？`, a + b, '🐦', a, b]; },
+        () => { const a = rand(2, 4), b = 1; return [`有 ${a} 個氣球，飛走了 ${b} 個，還剩幾個？`, a - b, '🎈', a, -b]; },
+        () => { const a = rand(1, 3), b = rand(1, 2); return [`碗裡有 ${a} 顆草莓，媽媽又放 ${b} 顆，現在有幾顆？`, a + b, '🍓', a, b]; },
+        () => { const a = rand(2, 5), b = rand(1, a - 1); return [`有 ${a} 片餅乾，吃掉 ${b} 片，還剩幾片？`, a - b, '🍪', a, -b]; }
+      ];
+      const [q, ans, e, a, b] = pick(T)();
+      const pics = !big ? (b > 0 ? `<div class="sum">${countHTML({ e }, a)}<span class="op">+</span>${countHTML({ e }, b)}</div>` : `<div class="count">${Array.from({ length: a }, (_, i) => i >= a + b ? `<span class="gone"><i>${e}</i></span>` : `<span>${e}</span>`).join('')}</div>`) : `<div class="pic" style="font-size:4rem">${e}</div>`;
+      return {
+        prompt: '想一想，答案是多少？', speech: [[q]], stage: `<div><div class="story">${q}</div>${pics}</div>`,
+        options: numberOptions(ans, big ? 4 : 3, 0, 20).map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })),
+        after: [[`答案是${ans}`]], key: q
+      };
+    },
+    patternpro() {
+      if (age === 'big' && Math.random() < .6) {
+        const kind = pick(['by2', 'by5', 'by10', 'down', 'grow']);
+        if (kind === 'grow') {
+          const e = pick(['🟢', '⭐', '🍎', '🔺']), s0 = rand(1, 2), step = rand(1, 2), seq = [s0, s0 + step, s0 + 2 * step], ans = s0 + 3 * step;
+          return {
+            prompt: '照規律，下一格有幾個？', speech: [['照規律，下一格應該有幾個？']],
+            stage: `<div class="seq">${seq.map(n => `<span style="width:auto;padding:0 8px;font-size:1.3rem">${e.repeat(n)}</span>`).join('')}<span class="q">?</span></div>`,
+            options: numberOptions(ans, 4, 1, 12).map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })), after: [[`每次多${step}個，下一格有${ans}個`]], key: 'g' + e + s0 + step
+          };
+        }
+        const st0 = kind === 'by2' ? rand(1, 6) * 2 : kind === 'by5' ? rand(1, 4) * 5 : kind === 'by10' ? rand(1, 5) * 10 : rand(8, 20);
+        const d = { by2: 2, by5: 5, by10: 10, down: -1 }[kind], seq = [st0, st0 + d, st0 + 2 * d], ans = st0 + 3 * d;
+        return {
+          prompt: '下一個數字是多少？', speech: [[`${seq.join('、')}，下一個是多少？`]],
+          stage: `<div class="seq">${seq.map(x => `<span>${x}</span>`).join('')}<span class="q">?</span></div>`,
+          options: numberOptions(ans, 4, 0, 100).map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })), after: [[`每次${d > 0 ? '多' : '少'}${Math.abs(d)}，下一個是${ans}`]], key: kind + st0
+        };
+      }
+      const kind = pick(age === 'small' ? ['AAB', 'ABB', 'gap'] : ['ABC', 'AABB', 'gap']), syms = shuffle(PAT).slice(0, 4);
+      const unitK = kind === 'gap' ? (age === 'small' ? 'AB' : 'ABC') : kind, unit = unitK.split('').map(ch => syms['ABC'.indexOf(ch)]);
+      const len = unit.length * 2 + 1, seq = Array.from({ length: len }, (_, i) => unit[i % unit.length]);
+      let hole = len - 1; if (kind === 'gap') hole = rand(1, len - 2);
+      const ans = seq[hole];
+      const opts = shuffle([...new Set([...unit, syms[3]])]).slice(0, age === 'small' ? 3 : 4); if (!opts.includes(ans)) opts[0] = ans;
+      return {
+        prompt: kind === 'gap' ? '中間少了哪一個？' : '下一個應該是什麼？', speech: [[kind === 'gap' ? '找找規律，中間少了哪一個？' : '找找規律，下一個應該是什麼？']],
+        stage: `<div class="pattern">${seq.map((x, i) => i === hole ? '<span class="q">?</span>' : `<span>${x}</span>`).join('')}</div>`,
+        options: shuffle(opts).map(o => ({ html: picHTML(o), label: o, correct: o === ans })), after: [['答對了']], key: kind + unit.join('') + hole
+      };
+    },
+    deduce() {
+      if (age === 'small') {
+        const boxes = shuffle([['🟥', '紅色'], ['🟦', '藍色'], ['🟨', '黃色']]), ani = pick(FACES), ans = boxes[2];
+        return {
+          prompt: `${ani[1]}不在${boxes[0][1]}盒子，也不在${boxes[1][1]}盒子，牠在哪裡？`, speech: [[`${ani[1]}不在${boxes[0][1]}的盒子，也不在${boxes[1][1]}的盒子，${ani[1]}在哪一個盒子？`]],
+          stage: `<div class="pic">${ani[0]}❓</div>`,
+          options: shuffle(boxes).map(b => ({ html: optLife(b), label: b[1], correct: b === ans })), after: [[`${ani[1]}在${ans[1]}的盒子`]], key: ani[0] + boxes.map(b => b[0]).join('')
+        };
+      }
+      const [L, M, R] = shuffle(FACES).slice(0, 3);
+      const variant = rand(0, 2);
+      const clues = variant === 0 ? [`${R[0]} 在最右邊`, `${L[0]} 在 ${M[0]} 的左邊`] : variant === 1 ? [`${L[0]} 在最左邊`, `${R[0]} 在 ${M[0]} 的右邊`] : [`${M[0]} 不在兩邊`, `${L[0]} 在 ${R[0]} 的左邊`];
+      const spoken = variant === 0 ? [`${R[1]}在最右邊`, `${L[1]}在${M[1]}的左邊`] : variant === 1 ? [`${L[1]}在最左邊`, `${R[1]}在${M[1]}的右邊`] : [`${M[1]}不在兩邊`, `${L[1]}在${R[1]}的左邊`];
+      const askPos = pick(['左邊', '中間', '右邊']), ans = { 左邊: L, 中間: M, 右邊: R }[askPos];
+      return {
+        prompt: `排成一排，誰在${askPos === '中間' ? '中間' : '最' + askPos}？`, speech: [[`三個好朋友排成一排。${spoken.join('，')}。誰在${askPos === '中間' ? '中間' : '最' + askPos}？`]],
+        stage: `<div><div class="ord"><span><i>❓</i></span><span><i>❓</i></span><span><i>❓</i></span></div><div class="story" style="margin-top:10px">${clues.join('<br>')}</div></div>`,
+        options: shuffle([L, M, R]).map(o => ({ html: picHTML(o[0]), label: o[1], correct: o === ans })), after: [[`排好是${L[1]}、${M[1]}、${R[1]}`]], key: L[0] + M[0] + R[0] + askPos + variant
+      };
+    },
+    moneypro() {
+      if (age === 'small') {
+        const target = rand(2, 10);
+        const make = v => { const c = []; let r = v; for (const d of [10, 5, 1]) while (r >= d) { c.push(d); r -= d; } return c; };
+        const vals = shuffle([target, ...shuffle([target + 1, target - 1, target + 5, target + 2].filter(v => v > 0 && v <= 15)).slice(0, 2)]);
+        return {
+          prompt: `要付 ${target} 元，哪一組錢剛剛好？`, speech: [[`要付${target}元，哪一組錢剛剛好？`]], stage: '<div class="pic">🛒</div>',
+          options: vals.map(v => ({ html: `<span class="coins">${make(v).map(c => coinHTML(c, 'coin-mini')).join('')}</span>`, label: `${v}元`, correct: v === target })),
+          after: [[`${make(target).join('加')}，剛好${target}元`]], key: 't' + target
+        };
+      }
+      const item = pick([['✏️', '鉛筆'], ['🍬', '糖果'], ['🧃', '果汁'], ['🍞', '麵包'], ['🎈', '氣球'], ['📒', '筆記本']]);
+      if (Math.random() < .6) {
+        const pay = pick([10, 20, 50]), price = rand(Math.max(1, pay - 19), pay - 1), ch = pay - price;
+        return {
+          prompt: `${item[1]} ${price} 元，付 ${pay} 元，要找回幾元？`, speech: [[`${item[1]}${price}元，付了${pay}元，要找回幾元？`]],
+          stage: `<div><div class="pic" style="font-size:4.5rem">${item[0]}</div><div class="coins">${coinHTML(pay === 20 ? 10 : pay, 'coin-s')}${pay === 20 ? coinHTML(10, 'coin-s') : ''}</div></div>`,
+          options: numberOptions(ch, 4, 0, 49).map(v => ({ html: `<span class="o-time">${v} 元</span>`, label: `${v}元`, correct: v === ch })), after: [[`${pay}減${price}，找回${ch}元`]], key: 'c' + price + pay
+        };
+      }
+      const p1 = rand(3, 15), p2 = rand(3, 15), tot = p1 + p2, it2 = pick([['🍪', '餅乾'], ['🍎', '蘋果'], ['🧸', '小熊']]);
+      return {
+        prompt: `${item[1]} ${p1} 元，${it2[1]} ${p2} 元，一共要幾元？`, speech: [[`${item[1]}${p1}元，${it2[1]}${p2}元，一共要付幾元？`]],
+        stage: `<div class="pic" style="font-size:4.5rem">${item[0]}${it2[0]}</div>`,
+        options: numberOptions(tot, 4, 1, 40).map(v => ({ html: `<span class="o-time">${v} 元</span>`, label: `${v}元`, correct: v === tot })), after: [[`一共${tot}元`]], key: 's' + p1 + '-' + p2
+      };
+    },
+    challenge() {
+      const sub = pick(CH_SUBS), q = GEN[sub]();
+      q.prompt = `【${SUBNAME[sub]}】${q.prompt}`; q.key = 'ch' + sub + q.key; q.practice = '';
+      return q;
+    },
+    cnword() {
+      const t = pick(WORDS2), n = age === 'small' ? 2 : 3;
+      if (age === 'small' || Math.random() < .5) {
+        const opts = shuffle([t, ...others(WORDS2, t, n, x => x[0])]);
+        return {
+          prompt: `「${t[1]}」是哪一個？`, speech: age === 'small' ? [[`${t[1]}，${t[1]}是哪一個？`]] : [['看看這兩個字，找出對的圖片']],
+          stage: `<div class="phrase">${t[1]}</div>`,
+          options: opts.map(o => ({ html: picHTML(o[0]), label: o[1], correct: o === t })),
+          after: [[`這是${t[1]}`]], key: 'w' + t[1]
+        };
+      }
+      const opts = shuffle([t, ...others(WORDS2, t, n, x => x[1])]);
+      return {
+        prompt: '這是什麼？找出對的詞語', speech: [['看圖片，找出對的詞語']], stage: `<div class="pic">${t[0]}</div>`,
+        options: opts.map(o => ({ html: `<span class="o-word">${o[1]}</span>`, label: o[1], correct: o === t })),
+        after: [[`這是${t[1]}`]], key: 'p' + t[1]
+      };
+    },
+    mathpro() {
+      const big = age === 'big', n = big ? 4 : 3;
+      const numOpts = (ans, lo, hi) => numberOptions(ans, n, lo, hi).map(v => ({ html: numHTML(v), label: String(v), correct: v === ans }));
+      const type = pick(big ? ['add20', 'sub20', 'tens', 'next100', 'oddeven', 'cmp100'] : ['next20', 'next20', 'cmp20', 'add10']);
+      if (type === 'next20' || type === 'next100') {
+        const hi = type === 'next20' ? 17 : 97, a = rand(type === 'next20' ? 5 : 20, hi);
+        return {
+          prompt: '下一個數字是多少？', speech: [[`${a}、${a + 1}、${a + 2}，下一個是多少？`]],
+          stage: `<div class="seq"><span>${a}</span><span>${a + 1}</span><span>${a + 2}</span><span class="q">?</span></div>`,
+          options: numOpts(a + 3, 1, 100), after: [[`${a + 3}`]], key: 'nx' + a
+        };
+      }
+      if (type === 'cmp20' || type === 'cmp100') {
+        const hi = type === 'cmp20' ? 20 : 99, a = rand(type === 'cmp20' ? 1 : 10, hi); let b; do { b = rand(type === 'cmp20' ? 1 : 10, hi); } while (b === a);
+        const ans = Math.max(a, b);
+        return {
+          prompt: '哪一個數字比較大？', speech: [[`${a}和${b}，哪一個比較大？`]], stage: '',
+          options: [a, b].map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })), after: [[`${ans}比較大`]], key: 'c' + a + '-' + b
+        };
+      }
+      if (type === 'add10') {
+        const a = rand(1, 7), b = rand(1, 10 - a), r = a + b;
+        return {
+          prompt: `${a} + ${b} = ?`, speech: [[`${a}加${b}等於多少？`]], stage: `<div class="eq">${a} + ${b} = <span class="q">?</span></div>`,
+          options: numOpts(r, 1, 10), after: [[`${a}加${b}等於${r}`]], key: 'a' + a + b
+        };
+      }
+      if (type === 'add20' || type === 'sub20') {
+        const plus = type === 'add20', a = plus ? rand(6, 15) : rand(11, 20), b = plus ? rand(2, 20 - a) : rand(2, 9), r = plus ? a + b : a - b;
+        return {
+          prompt: `${a} ${plus ? '+' : '−'} ${b} = ?`, speech: [[`${a}${plus ? '加' : '減'}${b}等於多少？`]],
+          stage: `<div class="eq">${a} ${plus ? '+' : '−'} ${b} = <span class="q">?</span></div>`,
+          options: numOpts(r, 0, 20), after: [[`${a}${plus ? '加' : '減'}${b}等於${r}`]], key: (plus ? 'p' : 'm') + a + b
+        };
+      }
+      if (type === 'tens') {
+        const t = rand(1, 5), o = rand(0, 9), v = t * 10 + o;
+        return {
+          prompt: '這裡一共是多少？', speech: [[`${t}個十，和${o}個一，一共是多少？`]],
+          stage: `<div><div class="tens">${'<span class="rod"></span>'.repeat(t)}<span class="units">${'<span class="unit"></span>'.repeat(o)}</span></div><div class="word-zh" style="margin-top:10px">${t} 個十，${o} 個一</div></div>`,
+          options: numOpts(v, 1, 99), after: [[`${t}個十和${o}個一，是${v}`]], key: 't' + v
+        };
+      }
+      const want = Math.random() < .5 ? '雙數' : '單數', nums = shuffle(Array.from({ length: 20 }, (_, i) => i + 1));
+      const ans = nums.find(x => (x % 2 === 0) === (want === '雙數')), rest = nums.filter(x => (x % 2 === 0) !== (want === '雙數')).slice(0, 3);
+      return {
+        prompt: `哪一個是${want}？`, speech: [[`哪一個是${want}？`]], stage: '',
+        options: shuffle([ans, ...rest]).map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })),
+        after: [[`${ans}是${want}`]], key: 'oe' + want + ans
+      };
+    },
+    enspell() {
+      const t = pick(CVC), w = t[0];
+      if (age === 'small') {
+        const first = w[0], opts = shuffle([first, ...shuffle('abcdefghijklmnopqrstuvwxyz'.split('').filter(c => c !== first)).slice(0, 2)]);
+        return {
+          prompt: `${w} 的第一個字母是？`, speech: [[w, 'en-US'], ['的第一個字母是哪一個？']],
+          stage: `<div><div class="pic">${t[1]}</div><div class="word">${'_' + w.slice(1)}</div></div>`,
+          options: opts.map(c => ({ html: `<span class="o-letter">${c}</span>`, label: c, correct: c === first })),
+          after: [[`${first.toUpperCase()}, ${w}`, 'en-US']], key: 'f' + w
+        };
+      }
+      const set = new Set([w]);
+      for (let k = 0; k < 40 && set.size < 4; k++) {
+        const ch = w.split(''), i = rand(0, 2);
+        ch[i] = VOW.includes(ch[i]) ? pick(VOW.replace(ch[i], '')) : pick(CONS.replace(ch[i], ''));
+        set.add(ch.join(''));
+      }
+      return {
+        prompt: '哪一個拼字是對的？', speech: [['看圖片，哪一個拼字是對的？']], stage: `<div class="pic">${t[1]}</div>`,
+        options: shuffle([...set]).map(x => ({ html: `<span class="o-word lat">${x}</span>`, label: x, correct: x === w })),
+        after: [[w, 'en-US'], [w.split('').join(', '), 'en-US']], key: 's' + w
+      };
+    },
+    clockpro() {
+      const step = age === 'small' ? 30 : 5, h = rand(1, 12), m = rand(0, 60 / step - 1) * step;
+      const label = (a, b) => b === 0 ? `${a} 點` : (b === 30 && age === 'small') ? `${a} 點半` : `${a} 點 ${b} 分`;
+      const spoken = (a, b) => label(a, b).replace(/ /g, '');
+      const set = new Map([[h + ':' + m, [h, m]]]);
+      const near = [[h, (m + step) % 60], [h, (m + 60 - step) % 60], [h % 12 + 1, m], [(h + 10) % 12 + 1, m], [m / 5 || 12, (h % 12) * 5]];
+      for (const c of shuffle(near)) { if (set.size >= (age === 'small' ? 3 : 4)) break; if (c[0] >= 1 && c[0] <= 12 && c[1] % step === 0) set.set(c[0] + ':' + c[1], c); }
+      while (set.size < (age === 'small' ? 3 : 4)) { const c = [rand(1, 12), rand(0, 60 / step - 1) * step]; set.set(c[0] + ':' + c[1], c); }
+      const opts = shuffle([...set.values()]);
+      if (Math.random() < .6) {
+        return {
+          prompt: '現在是幾點幾分？', speech: [['看看時鐘，現在是幾點幾分？']], stage: clockHTML(h, m, 'clock-big'),
+          options: opts.map(([a, b]) => ({ html: `<span class="o-time">${label(a, b)}</span>`, label: spoken(a, b), correct: a === h && b === m })),
+          after: [[age === 'big' && m ? `長針指著${m / 5}，是${m}分，現在是${spoken(h, m)}` : spoken(h, m)]], key: 'r' + h + ':' + m
+        };
+      }
+      return {
+        prompt: `哪一個是 ${label(h, m)}？`, speech: [[`哪一個時鐘是${spoken(h, m)}？`]], stage: '',
+        options: opts.map(([a, b]) => ({ html: clockHTML(a, b, 'o-clock'), label: spoken(a, b), correct: a === h && b === m })),
+        after: [[spoken(h, m)]], key: 'f' + h + ':' + m
+      };
+    },
     calm() {
       const t = pick(CALM);
       return Object.assign(bankQ(CALM, t), { practice: t.say });
@@ -2292,20 +2927,39 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
   const loadVoices = () => { try { voices = speechSynthesis.getVoices(); } catch (e) {} };
   loadVoices();
   try { speechSynthesis.onvoiceschanged = loadVoices; } catch (e) {}
-  function voiceFor(lang) {
+  // 朗讀聲音（進階版）：用裝置內建語音，調整音調和速度；有男聲語音時，爸爸、哥哥會改用男聲
+  const VOICES = {
+    yuan: { n: '圓圓', e: '🐻', pitch: 1.15, rate: 1, g: '' },
+    dad: { n: '爸爸', e: '👨', pitch: .75, rate: .92, g: 'm' },
+    mom: { n: '媽媽', e: '👩', pitch: 1.0, rate: .95, g: 'f' },
+    bro: { n: '哥哥', e: '👦', pitch: 1.05, rate: 1.05, g: 'm' },
+    sis: { n: '妹妹', e: '👧', pitch: 1.55, rate: 1.05, g: 'f' }
+  };
+  const MALE = /zhiwei|yunjhe|yun-jhe|male|男|kangkang|yunxi|yunyang|daniel|alex|fred|aaron|guy|david|mark/i;
+  const FEMALE = /hanhan|yating|meijia|mei-jia|female|女|xiaoxiao|huihui|samantha|victoria|karen|zira|google/i;
+  function voiceProfile() { const k = isFull() ? store.get('voice', 'yuan') : 'yuan'; return VOICES[k] || VOICES.yuan; }
+  function voiceFor(lang, g) {
     const norm = v => v.lang.replace('_', '-');
-    return voices.find(v => norm(v) === lang) || voices.find(v => norm(v).startsWith(lang.slice(0, 2)));
+    const list = voices.filter(v => norm(v) === lang).concat(voices.filter(v => norm(v) !== lang && norm(v).startsWith(lang.slice(0, 2))));
+    if (g === 'm') return list.find(v => MALE.test(v.name)) || list[0];
+    if (g === 'f') return list.find(v => FEMALE.test(v.name) && !MALE.test(v.name)) || list[0];
+    return list[0];
   }
+  let sayProfile = null;
   function say(parts) {
     return new Promise(resolve => {
       if (!soundOn || !('speechSynthesis' in window)) return resolve();
       try {
         speechSynthesis.cancel();
         const timer = setTimeout(resolve, 4000 + 2500 * (parts.length - 1));
-        parts.forEach(([text, lang = 'zh-TW'], i) => {
+        parts.forEach(([text, lang], i) => { lang = lang || 'zh-TW';
           const u = new SpeechSynthesisUtterance(text);
-          u.lang = lang; u.rate = lang.startsWith('en') ? .8 : .9; u.pitch = 1.15;
-          const v = voiceFor(lang); if (v) u.voice = v;
+          const vp = sayProfile || voiceProfile();
+          const v = voiceFor(lang, vp.g);
+          const maleVoice = v && MALE.test(v.name);
+          u.lang = lang; u.rate = (lang.startsWith('en') ? .8 : .9) * vp.rate;
+          u.pitch = vp.g === 'm' && maleVoice ? Math.min(1, vp.pitch + .2) : vp.pitch;
+          if (v) u.voice = v;
           if (i === parts.length - 1) u.onend = u.onerror = () => { clearTimeout(timer); resolve(); };
           speechSynthesis.speak(u);
         });
@@ -2394,6 +3048,11 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
 
   function startRound(sub) {
     if (overLimit()) { showRest(); return; }
+    if (!canPlay(sub)) {
+      const tr = trials();
+      if (tr[sub]) { showLock(); return; }
+      tr[sub] = Date.now(); store.set('trials', tr); drawPro();
+    }
     const recent = store.get('recent', {});
     st = { sub, i: 0, stars: 0, total: ROUND, results: [], q: null, first: true, locked: false, used: new Set(recent[sub] || []) };
     $('game').dataset.sub = sub; $('done').dataset.sub = sub;
@@ -2401,7 +3060,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     show('game');
     if (sub === 'memory') startMemory();
     else if (ENG[sub]) { st.total = ENG[sub].total(); nextItem(); }
-    else nextQ();
+    else { if (sub === 'challenge') st.total = 15; nextQ(); }
   }
 
   function nextQ() {
@@ -2444,7 +3103,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     for (let i = 0; i < btns.length; i++) {
       if (st !== cur || st.q !== q || $('game').hidden) return;
       btns[i].classList.add('reading');
-      await say([[q.options[i].label]]);
+      await say([[q.options[i].label, q.options[i].lang]]);
       btns[i].classList.remove('reading');
       await delay(450);
     }
@@ -2584,7 +3243,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     trace: {
       total: () => 5,
       render() {
-        const pool = age === 'small' ? TRACE_SMALL : TRACE_BIG;
+        const pool = st.tracePool || (age === 'small' ? TRACE_SMALL : TRACE_BIG);
         let t; do { t = pick(pool); } while (st.used.has('tr' + t[0]) && st.used.size < pool.length);
         st.used.add('tr' + t[0]); st.tr = { t, tries: 0 };
         const spoken = t[2] === 'z' ? '這個注音' : t[2] === 'e' ? '這個英文字母' : t[2] === 'n' ? `數字${t[0]}` : `${t[0]}這個字`;
@@ -2635,11 +3294,19 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
         });
       }
     },
+    storyseq: {
+      total: () => 5,
+      render() { st.seqPool = PRO_SEQS; ENG.sequence.render(); }
+    },
+    tracepro: {
+      total: () => 5,
+      render() { st.tracePool = age === 'small' ? TRACE_PRO_SMALL : TRACE_PRO_BIG; ENG.trace.render(); }
+    },
     sequence: {
       total: () => 5,
       render() {
-        const pool = SEQS.filter(q => !st.used.has('sq' + q.n));
-        const t = pick(pool.length ? pool : SEQS); st.used.add('sq' + t.n);
+        const SRC = st.seqPool || SEQS, pool = SRC.filter(q => !st.used.has('sq' + q.n));
+        const t = pick(pool.length ? pool : SRC); st.used.add('sq' + t.n);
         const steps = age === 'small' ? t.s.slice(0, 3) : t.s;
         st.sq = { steps, placed: [] };
         setQ(`${t.n}：照順序排排看`, [[`${t.n}，先發生的放第一個，照順序排排看`]]);
@@ -2903,8 +3570,95 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     if (L && playToday().ms >= L - 30000) setTimeout(() => { if (!$('done').hidden) showRest(); }, 3500);
   }
 
+  /* ---------- 進階版 ---------- */
+  // 購買頁網址（之後填）；解鎖碼只存雜湊值，原始解鎖碼清單另外保存，不要上傳
+  const BUY_URL = ''; // 蝦皮商品網址，例如 https://shopee.tw/...
+  const FULL_ONLY = new Set(['challenge']);
+  const PREMIUM = new Set(['spell', 'words', 'story', 'measure', 'share', 'ordinal', 'calendar', 'seasons', 'spotdiff', 'maze', 'puzzle', 'challenge', 'cnword', 'mathpro', 'enspell', 'clockpro', 'tracepro', 'zhuyinpro', 'enphrase', 'enverb', 'wordpro', 'patternpro', 'deduce', 'moneypro', 'cnsimilar', 'sentence', 'storyseq', 'safety', 'science', 'festival', 'animals']);
+  const PRO_HASHES = new Set(["7e5903dc82a73c41e5a6", "b0dd6f755dadda28b23e", "f69a9c9c2308a32204a4", "5b7d9d1dc88ecdd74656", "542cf72a3e277f9708d4", "b1ec26798b86f8373429", "2ae3a1145a16728f6f73", "a71df925da9b9076a5e3", "265a4c4c741bda122042", "3160a51142deb0334392", "2c4ccf60a799e3efaf39", "3d8ba88f543c0899d37d", "027c8de191a0827d04cc", "2047fbee22eac4676ad6", "972f92cbd4fd1f74fef1", "75abc652561b1cb35eb4", "0ae5c80b586e21d52986", "8fea70c0f05f00b0072b", "2290455697c971eb8bdf", "c74498222de3471ce058", "436aa0dfc9412e51b6c6", "e19bfddf6c22efe37d29", "d679ffe7a91106c890c4", "e91e9816ef178e7bb4b2", "3c93bc82ca8eecbd430a", "325e758cf9de8525f8db", "977d8bf9e7f91e21f803", "121e94a09859114de801", "5916576e42e050ec1a7d", "4a6799b2edaead3fc324", "db89648171b730b1bedb", "43583943369447b244b4", "e3e6be8188b04f1af348", "68692d4f3d8d440b0c91", "9aea044cc60341d8d839", "498565ae1492aed078a5", "171c84fa089ebdfcbbe0", "27b7c09f55c8e405dfd4", "833e22d86d5746e87c1d", "51e7bf9f271e82cfe511", "f9c0f25b5f9a5cf8d3a5", "45c536a56e4b7c81ee72", "a49f2ee0d254ebbc79e1", "0549f0e5efdb3280338f", "d8b38a4271ef9818653b", "fc63b08c781a0da0b3ca", "7a09249c3b67655d26e4", "1cab37bee8e50c8c06e0", "4f8740a47558a7c0ed39", "af9b8b10a78d451af0cf", "639ecc9cc60f128c1cae", "75454720e84a1181367e", "002b97385a38f792272a", "e7a3df28a3b37e0c6499", "80e9bacc4c396bbe8b6b", "75f7cd70a09d907b1e97", "53d8b19780aa7142891b", "6cb1c36a1b370dfcbf69", "23818ae0f307a6488e79", "65eb6c77048a076b3c2d", "4fe59a81aa80ce5af124", "575a81d95fdceb5f8f52", "7dfcea412d081a36099c", "32320beca3be5740c2a1", "685b6d2adae99502e5da", "a8a9294888701496fce0", "93fb683302b6920d1e70", "c9083f18071cdf424e72", "2f2326280b714bde0610", "2fc1f35d78cc023ec5ec", "744cc5a3f19276b51807", "cc8708e87d723e214546", "0aa937a7981cf0c50744", "3a2d0cdac60276428bb1", "7a6ccda1b4e5f6c33466", "c9bd17f02b190b3ea424", "dbc9026a1f59a2062d5c", "101028fbbca60952a092", "9157831181c2ab3c3259", "5f9b95bcb7bd278fa3d0", "51d98529a90e1da24ccf", "0239ec8a5197b258200e", "d338c77db19c0a15860e", "ec96c0d93903051ca667", "1892f14fbb0643dc82ad", "d08f5ec97b6e6a7f3743", "ce5713937003eb4f9368", "4512dc0ce5d01491f6f9", "7529b08e9dcdd664d540", "bf69fac517162b1bde92", "f4657e6e0cf1a143b5fd", "9c75618eae4fc05ecfb6", "39e33c0b836e7e0d555f", "df42ae25c62fc6725e59", "ea6a6fd2ed1c42aef2ff", "07dac94ea6a1ce15adf5", "edc262ec3cf456026e1f", "95b5c22386a7da3ac9c3", "4349f832cde523a1e327", "bc32e3851c4474d1fb2b", "b787898d7068322bdb00", "2c952cfc01a45f555304", "c7e6ab59c6f66d31fbd5", "27553a2f753d680d8a6f", "bb61f55309418dce1608", "6f3b5e4a0eec86e28e75", "1c7f9a9bca93b720099c", "2515a8232049034d8bad", "a90619983d862d74e43c", "d2155d7cf0caab1b9c5a", "da505fad31d728f1b5a6", "751b4fec01f7c48ab195", "dde16653ca5df0b7438c", "68ef9a426c4364189306", "df18995c27061efad502", "c7a81c48056a74010bc7", "0e6948f73c0b0ed79a6f", "e94c7809668316ea0ea1", "414609f923da273cc8b6", "bce95645cf340c67a97e", "2dbcaa30f24b29bdf511", "2856a6e63147c29afdd3", "76ae508ac90635390364", "1ea1e11dac123bf6945e", "61fc9012148da5d0bb10", "c043561919acb499e581", "1a8462d44af1ad9dcc32", "2fab3e5d807d0605f136", "71f93df3b1e335c616c5", "28154f231692041bb1bd", "ffb3a6448bda65a26e71", "c4445142f91865eeceb1", "f04060481052dd495b21", "8697f2f38d5091d694f7", "8731464204dae70c0cc2", "25494cfecbc52717afd1", "01180078580703ee8bab", "bf6a6a954597a5abb0eb", "78dca60801921f8abc18", "a08eaa9e826387c354fc", "1c7ea1934a71378e8525", "e511d6585c6ae4ac8faf", "128ff32f530461d20683", "93bdd65768c7b9e9b718", "b1616c7fc5eac19105cf", "b804f6db5612ad478346", "b2ab123da58b0a55a9f2", "21a7d7b0256a12d9408f", "2c4a3298fce67f0e5fc9", "55ff47dff11b0c9b1af1", "893f372d0db19de2a250", "c32bc42135a7c963e431", "5c206b4675aaf9455ff4", "85e56110f75b3375b947", "1ab2b03b26a4a1dc6057", "78b6cdc741a0f679efec", "2b2b04d3b5b3a440cdb6", "aeba0ed072c4bb29030c", "a9465361f3ca80ec9e9b", "847e9b04ab2216371492", "db88c9003f95db8ad37a", "619421d943cc246a2b08", "8cd5fd136a00ee787ed7", "e82db9e1e4dd0e23d3ba", "0b634e8b0c47fbf6ceeb", "7ef8a1ffe3a16d1dd5a2", "c6ec03db4d88d404f9a8", "10e6d8addb8968e28d93", "ee297ae9854670355398", "5cb0be80fa862c8dea19", "6049defc437f89a2dd1a", "04d281090c3463b023f7", "f94347ec231a767a3f32", "6df9b86ea151ff2c1376", "ee978661faf000cefae6", "90f983970662b15a41f7", "6b9cd7724983baa9f8a0", "88c5f0fbf450c43996bd", "831f9d687fbc059c96a9", "4eda36c821a9ffec47bc", "b3f523be17dce9aad2a4", "4a7f306f83f64b51886f", "518146a1acd0cdf03531", "031077cd7987733be680", "6291c13f51ef599e2b63", "b0ed3136004731aa9046", "b994aaea6ac4434b361a", "4bcf38821185db7117e4", "b5a13cb27e5b09dca99f", "96d9f28e2d45fe317a05", "2440058e22a595ccef06", "241b8cfc801290790475", "f2acbaa8683f604a1586", "e85fd79d189ce5318d27", "6294b28f215b32e666bb", "c7c9c3991d7f881dbeb8", "0010f13bcf614afc737b", "ce5965d8bdd9a4c6b8b4", "cc45a54ff0672e8b9136", "ca69d9469ef30c77e558", "08d7183e384c985ca497", "f58b6178d32e903b7548", "a803bc5a51d977b6b94d", "b1d1b23c112b65a7364c", "ea86cb7d27a4168ffbc6", "76510dcbb5bb6fce2daa", "93731512385b3c3fd896", "162d3c44bf41056aeea6", "271a7f997f768d43d9e5", "7d4f09c53d416957e799", "0a13382e5164c6e5bf5a", "18a5afb06170944a335c", "4e428c986bbe8479f0c3", "d7231a92c18ed5a25a99", "c35d224f8c55e39fca0f", "85c398b8907b4c6170e5", "c76f1b639e86a34d3fd1", "78302490918406001057", "9b4450e637239f6d0e91", "fd9f1cfbd833ccad8741", "22898b94de4ef0fa942e", "92c5237cd05f76ed8bc7", "1518f6ccd04de297c1a2", "1a9b4d07226fcb3d49a0", "6dd8348ebbad179e5ff9", "0e56a7a5be5db956e73f", "2783f68941fc3cd1efda", "97811d20f5a869907ab9", "5a2bb82457a6e358c0ad", "cb23164f324615ab7246", "c9c3aa7907fb94e6041e", "ccc4da733c1ea211f505", "b8ef56aceaa2cbcb2970", "40649cbc63ff14c67141", "017b3d35f4c179b5ac84", "b02cd9b64650b6cb18b8", "b52d2b67f5ff8cc20421", "10c6ad10660d412cce16", "837fa948ac2aa8d8236d", "2eaea4f36f9414f91279", "52b012ec2cd280c9cba1", "526c130010b892cbe4d8", "4fe10426c7ce48780052", "f5e1106be122d635d66d", "2ab513ccdded0111fe51", "75be7ef737f2aed21bf1", "7232bac855836cbd2a9f", "d041708a0040e1910b83", "0b871c838a053bb1026b", "3d5202fef0c7c1b06610", "1733c9a2d187b218a50c", "a18066220e353d6eeb7f", "ca0d3bade477c4492774", "2d396e3de8f4aff64a36", "815dfe0c927c088c34e8", "9a4cc5794bf8d8112f31", "bb56ee62bd5783c15331", "319c5fb9ac603935811f", "0a5613c00d425855b12f", "e719ec7656a6c01c9c9b", "ce43870cf3ba9699bf92", "4dd2ccd238b1d113e46d", "51529350898e6fc60857", "3b15836e442673b5f6a9", "c7189844b64c9a0f7c05", "abb4249ef6ca88ae4ecd", "d60724fd7cb20902c7f5", "0bc54808f3db9cb03d00", "f3b33f6efaff59b28112", "46b70603022ae48fbcb3", "263390451a2535f3aced", "8e052db68ff44a6ece4f", "5dbd197a663f8bc4a9a3", "bd6034db162bb8ff85e4", "14a9c445f137c3a4bb78", "a70acf6b39ec2ee0e833", "77bf552bb5d42cd58bb7", "748fadcc8ad174aff4bd", "acc9d75fd5f5f21192bf", "460b0db54f46fd51fa7d", "403f5246a0d104313d9e", "651c86f23da950c17cdf", "5c1d96b680cc1b387655", "b602db296460feb50c97", "772aa87ea9ce28dea8c1", "d3d22c9598a3ed61b54a", "25b76bb6deb5c43e381f", "b8ade15dba64adfa7c17", "179dabf6ccb8bf0831e8", "990ebee676bcf8c1f8dd", "856d496219e6b5b26a7d", "8bdc6385b47b16d0c172", "e90b34a377f2e72c2677", "3cbb3bf550fcdfa01a8d", "d43af345785c356026b4", "42908d66c3fd84286077", "1e16ce822115e21cca20", "c0b7566bb57789eff65c", "94e092288e890d508d11", "fd5104d1d78823cfc780"]);
+  const STD_HASHES = new Set(["e42c9f670150e1462b8e", "12aae8e27f9adf37abf8", "81182e59b1b66187852a", "5ec0dd13a376126b51b0", "de9d15c9de98a340baab", "165225d327d0f75af756", "58bf0b5c2f9e0cc28242", "401f6e0ba4d58b33842b", "0528dd582bffae4cddc2", "4d2c6d6e1ecd015affa0", "c2e8b8663f4abfb6b37a", "33542e95b60d2a4d381f", "785f9567711dd696e236", "c1194eb1d4fd60de5714", "7c45bae94a99393225ef", "dcc10f787fec13d5c6ba", "4a57d1cb09aaed88b8c2", "71d121b18f386529749d", "2ae4c7e41dca7ecaa8ac", "57dc18cdcb31418e23e2", "1dfc6c6dc2507db40834", "40a115991c582833309a", "7afcb7356b3c319284b1", "5c614fd0569ed7df5302", "b9bb3c98fb318b795a9f", "1844fe3b48613dc977f5", "f9fa6b95d228e3e23c4c", "c6bcac520b4c1582cff3", "8c1b3dde403b37c1ad06", "17f579e9ea1b30070149", "1875b36ab1bb329743e4", "7acd086071c9a905d076", "a65a56d6ec83a9964eee", "84e75bb96564a5c7de99", "951d5184f4a40e636bc9", "f8503306f204e815279f", "8eafb0a9c18afc58e413", "f7cc4df22ef30980e5ab", "2541dcd6385d9e5d7a6b", "dc63a88791d639fdbd8f", "ad4068cb6077f3fb722a", "e9e0ecde17e73a9207e2", "e2753e985e4dd5453d14", "ba8b50c82a41a199b079", "14c034cfe62483cf55bb", "7349b5b2f68745863dd4", "0784b86573e48baac554", "54784f5b53063fe75ee1", "1c58962d7c2916c7ece8", "8f7458a0bb8b123b89f6", "933868acaf57ce940ea3", "49f96c758d3b1840801b", "cb959523efaa19417794", "2e9444cad1db7d8bf3d2", "4df075e59d4d608f0ae9", "dd5db6cef3cd66c5d17e", "4fb24e1182cc6d78ecae", "cffe2ef7062e946875a8", "9718be61618116b19191", "86e6120ea6a7edb26622", "0d6140e830ae092da190", "7b7255685be3bd49afee", "ab742041520f493c0ca9", "c8b9bb242e23a354fc85", "ed85ed7130e61d4d09ef", "b2befad51c501097ae6d", "805f615acf73b472fbe3", "a8008ca1ba0ee912acaf", "5a52cf59c75407ffa440", "941d7c3707ddfaf8d88c", "e7439c8f7ba779c4d4c3", "00fb1bbc52c8aeceec12", "4aefa365fe90ba85f82d", "7de736b2e92b19064467", "c3717f0592ed00dbcb40", "f30a84086f18ab995e15", "31629d9dd8e2d4a28110", "28325e9d530972b66895", "205cdfbdc5e006600844", "bbe94a5f8f9eb1efbbf5", "9246ed3d141a12ba2bc5", "d3d515ae5c6b9dc3aa69", "0eb1dbcf1caf1db3836a", "deae140531c1c561bb34", "215a2fdd9ca2d2796ba3", "d45cf813e3039dd8342d", "5749c7af8d6f8f8d8f69", "af8750d33b467a602de4", "db4fc63dbf13b7999d79", "acf78d129e350d6cd01a", "ee15842bba9efc450b52", "bc4b85d2c1a3732751d7", "a92813ed5fa0edb05759", "9c5f7113cf2ef55b61ca", "2ffb61ae231f15cad51d", "f10de1bc4147d040190c", "af35e7eac9a2e86cd617", "497ce8fe44a9bbf84304", "060746e047a9d980cabd", "77342376a41bb97f00a2", "9cb0706b8aad99b5c6b3", "31deae3079e96bdba41c", "90209413dd0f1c365785", "e633e93583edec52ac2f", "592c97df2a96200977d0", "d08fa4face5718185d00", "a8f724754d0b18124f50", "0899267229b339de5aa7", "07c9b84bd7d52916d313", "924235828e70393d03d8", "fb2d2b4d830a96db3bfc", "3cd902e1b17f07566506", "a64d4a457ce89d4d749c", "212d8037267cd9786c2b", "da59f1e63d1c401880a1", "2699f278d8ce2d779705", "2bfa2f6d554cf2e8e1bc", "fee18a237b9736a63fdc", "8331d043baf377897837", "24bd819d4ce480b14197", "778c19bd128e115ab8aa", "752a7ca1659ce8fa6418", "a2845b6a8c2f634f6b4b", "8a69594034f0799b8c8e", "2ffbfb2e19943bfb214e", "4cc758a3c09ab905bbd0", "a24e791f55952c44e0d6", "061d14aa5952b41e0d67", "78e26f8d31428a66626d", "7bf27144dd1ee6b1e040", "8ed71ba16076963a48bc", "8ed6d423b0a6fa56f18a", "94d59a2317b4fdb95b3a", "167e471ee20f04fc735f", "28a416a81caecbd55fd4", "a812e949ae17a240b891", "5bc1801db8bae71b73a7", "b0a001dbb2f5083cfacb", "0d8ae9a9220d1f3ee513", "f8e2463363edf073d5eb", "6f74c922debb8cc68e4d", "1606588cfb0c14d70bb2", "d0e85a95cafbb5fe5bc0", "8ddfb2bb9a73bdc32428", "d1296bfafaff0f668f08", "1e8af3e40af68355483a", "c9b36e8737f0a51d9e42", "3dfca88b7375fadf5c0c", "654b0cda4e75ac5ba6e3", "7cb568203d4d6830997e", "9a1dddebc2cc59a6be52", "420eafdd2c98fa054249", "fa83d5ddada6b8b8fcd4", "26145f47f408c9c8176a", "fe7bb2f65d4fd212a010", "99b257882b2d6d86cbab", "5f34838841a03d65ac72", "b5ec8904dbdf9a06fa07", "180f110e96b7786009f5", "79eb2290c0222fa41fed", "fdcfeaf0b49a64072463", "e50658f770c0bedc7d73", "b54eec403451e9e3c4bc", "e602dffa306c5d959014", "3c735b010096d1a287b3", "11d4a87b5d82cf8a39a2", "c2f459ebf8f3731111ea", "c00b95abc7d9d98fc12a", "ed86f62100787140c5f9", "164e93c9cf115363533e", "19904597b62b0f91a863", "c164090bd600ce25a4aa", "2156c092ef088f631bf0", "c24e2ade2caedfc1c8f6", "383f5f9e62adcce4b530", "1b8cbe3a5682d30b4f9e", "e23c66903aa94d2f9b1b", "e86f474cfb211e9f7fa1", "046b2903bcb34dbb9f63", "dcd78e345be718eb7a61", "3ac9e1a19ca23e90369b", "e207b11d50dab292c9a2", "92ca4b63218ac33afadb", "5dc25819a32f48330ded", "90a241228b71c1d0af76", "3ea8ee7935864794d8b3", "c740d468484037acd29d", "def11b8c91cdd7988091", "98b0e5fe535ebb3395bf", "d366d3ff482e61a2bd4c", "6deac8f4bdd321f20710", "bb621d178d72bbb518cf", "e24b37bfd0f28ccb0a86", "ac28592803710e58e411", "7fd72e56385731ca0770", "9483d83ef8ba20cc8737", "279afa89b99c0de42bcf", "273a5b849517dbd97ba2", "3234b6f0f5b835ecd14b", "7b6ce5a5f1de7c410612", "95101d0b54d4e0fc44c5", "b7039cadace5a23c0abd", "89b561c6731021f65ee8", "c1099f94884210d5da9d", "9ba93df3cf851edf08c2", "ba3e28e60b33862d024e", "711be195cc8aabd6850c", "c7d16c8963ddcf6f0c68", "ceb54230d8ec115e9e84", "fe822410b122e9e1c677", "20d2888a4edd410a5b14", "2a24037253d238a56aaf", "0f8812f65a124ba91bee", "11f3c1237e1ae3b1624e", "a0a1a77cb3aef5599bc3", "e070943622e08f0ce5e9", "5f28ecee0dc084287230", "8ce16c86a7170f474749", "ad63f3a41e65066a0981", "6e4a25341f61fabf8b68", "9a20b0546f58c88b840d", "307b7025ee9528e8bfc8", "666139de09427a5e2eee", "54993811d11fdccd65df", "ac545a4753a3c54dbb82", "162be4e53cd3f9de201b", "92e134573844b0536450", "f75c7e456ac0d1746c22", "721f8bf37bfdd5332ac7", "e0b01ba3def9fb1c1ee5", "bb1cd9a771fe43eb2a0a", "dceba1f7297dcfdfff6d", "6c944b5eb5961c7c6e20", "000b00b7c3aa03d6b09c", "06b816064cda55205f5e", "f05b5649a8c26ff750ed", "7d28a2e8c0800ddad496", "60fa94cfab1182910c81", "8ac04c71b110a4fa4a3d", "5e16b968c051b4cad93b", "f4833264c1acde21c463", "46584a308fafeaba97be", "f2b5663897142dba9374", "0c8e017918b0ef690066", "cabd9ac25abb3c67a51f", "fc977e4473f16cf0ffb1", "82e5caa7e3d4eab58b63", "70c96c45f6320a6b8b24", "d8d1ac8d70a36ed789de", "8647b49aaebe52e53072", "f5e6d7a4263a75b1caad", "73000d054f8bddc79efc", "82c302adaf78b52313b6", "1ce06a8274ce5c7f8b2a", "dac863cf18f511f98a95", "a5aea8d2217eef3eef47", "582a43b78b79a8f44a54", "fe1c676718a45d5d4305", "f7fd37c746b7758c9203", "9ff3319e3883932a1e17", "a76e2ca429b883c0a5bc", "25dc6c090ebfa08c105b", "8632829f5aedf9cf3e7c", "a1b022d45880e5cc4b1b", "bd3f70b97adc5f81662b", "d6d890d92aff30807877", "0237a3a1663b3cde4904", "ab3403b8c15521e859ab", "55ffa5febf8735ec9d03", "e78636e910dc9c0a8d40", "04347a3187a6f367abe8", "40e8d9b830ce342e0e85", "5fefe58e316376fd782b", "ad4ec311cfccb8a5ae2d", "31dcafd66b6477145881", "7b92a10d665aae57f46d", "aa2126ea9b96fa1de0fd", "360df7a25890d0a2a6f7", "634eb94cdef54609dc56", "8d7a38b3a59bf91fae34", "6a19d6d78285212ba635", "4f81d2c6d7c4d2f9c4a8", "9d9adc905ae4e896d8db", "5bc1a0e989e3696bdafd", "3d39f3658b25060c4142", "0561717cf7f1728851ec", "a787710a3dd2a81a0f8c", "7070751f0ddbffae2896", "1f0ac2020fbb5d4f2619", "61f825e57dd03fae8af0", "09505f489db43f21bb9e", "7355a033f3332898c717", "c382f5f194eb09c14e42", "4d1a50871a6d0ea8a562", "5cda23ccf2ac75fb2de3", "b59b3aec0b749c3eb95f", "d1fc4fabb6027cc27dbf", "1f07826440bcf5e787cb", "d42bb284f77b9d5199af", "b7f6ce54390ada0d801d"]);
+  // 0 免費、1 標準版（NT$299，60 個主題）、2 完整版（NT$399，全部功能）
+  function proLevel() { const v = store.get('proLevel', 0); return v === 1 || v === 2 ? v : 0; }
+  const isPro = () => proLevel() >= 1;
+  const isFull = () => proLevel() >= 2;
+  const canPlay = sub => !PREMIUM.has(sub) || proLevel() >= (FULL_ONLY.has(sub) ? 2 : 1);
+  function trials() { return store.get('trials', {}); }
+  function drawPro() {
+    document.body.classList.toggle('is-pro', isPro()); document.body.classList.toggle('is-full', isFull());
+    const tr = trials();
+    document.querySelectorAll('.subject.premium').forEach(b => {
+      const lock = !canPlay(b.dataset.sub);
+      b.classList.toggle('locked', lock); b.classList.toggle('can-try', lock && !tr[b.dataset.sub]);
+      const chip = b.querySelector('.lock-chip'); if (chip) chip.textContent = FULL_ONLY.has(b.dataset.sub) ? '🔒 完整版' : '🔒 進階';
+    });
+  }
+  async function sha(text) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+    return [...new Uint8Array(buf)].map(x => x.toString(16).padStart(2, '0')).join('').slice(0, 20);
+  }
+  async function tryCode(raw) {
+    const norm = String(raw || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+    if (norm.length < 11) return 0;
+    try { const h = await sha(norm); return PRO_HASHES.has(h) ? 2 : STD_HASHES.has(h) ? 1 : 0; } catch (e) { return 0; }
+  }
+  function renderProBox() {
+    const el = $('proBody'), lv = proLevel();
+    const codeForm = `<label class="note" for="codeInput">已經有解鎖碼了？</label>
+      <div class="code-row"><input id="codeInput" placeholder="例如 DDS-XXXX-XXXX" autocomplete="off" autocapitalize="characters"><button id="codeBtn" class="btn small" style="background:var(--good);box-shadow:0 5px 0 var(--good-deep)">開啟</button></div>
+      <p class="note" id="codeMsg" aria-live="polite"></p>`;
+    const buy = BUY_URL ? `<a class="btn small" id="buyBtn" href="${BUY_URL}" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:none;display:inline-block;background:#EE4D2D;box-shadow:0 5px 0 #B8341A">到蝦皮購買解鎖碼</a>` : '<p class="note">購買連結即將推出。</p>';
+    if (lv === 2) { el.innerHTML = '<p class="pro-ok">✅ 已經開啟完整版，全部功能都可以使用，謝謝你的支持！</p><p class="note">開啟紀錄存在這台裝置；換手機時，用同一組解鎖碼再輸入一次就好。</p>'; return; }
+    el.innerHTML = (lv === 1 ? '<p class="pro-ok">✅ 已經開啟標準版（60 個主題）。</p><p class="note">升級完整版，再加上綜合大考驗、四種朗讀聲音和每週學習報告。</p>' : '<p class="note">免費版的 30 個主題都可以一直玩。想玩更多，有兩種方案：</p>') + `
+      <table class="plans"><thead><tr><th></th><th>免費</th><th>標準版<br>NT$299</th><th>完整版<br>NT$399</th></tr></thead><tbody>
+        <tr><td>學習主題</td><td>30 個</td><td>60 個</td><td>全部 61 個</td></tr>
+        <tr><td>綜合大考驗</td><td>–</td><td>–</td><td>✓</td></tr>
+        <tr><td>四種朗讀聲音</td><td>–</td><td>–</td><td>✓</td></tr>
+        <tr><td>每週學習報告</td><td>–</td><td>–</td><td>✓</td></tr>
+        <tr><td>3–4／5–6 歲兩種難度</td><td>✓</td><td>✓</td><td>✓</td></tr></tbody></table>
+      <p class="note">一次買斷，不用月費。每個鎖住的主題都可以先免費試玩 1 次。</p>
+      <ol class="buy-steps"><li>在蝦皮下單，選「標準版」或「完整版」</li><li>下單後，在蝦皮聊聊收到解鎖碼</li><li>回到這裡輸入解鎖碼，馬上開放</li></ol>
+      ${buy}${codeForm}`;
+    $('codeBtn').addEventListener('click', async () => {
+      const got = await tryCode($('codeInput').value);
+      if (!got) { $('codeMsg').textContent = '解鎖碼不對，請檢查有沒有打錯（英文字母和數字）。'; return; }
+      if (got <= proLevel()) { $('codeMsg').textContent = '這台裝置已經開啟這個方案了。'; return; }
+      store.set('proLevel', got); track(got === 2 ? 'unlock-full' : 'unlock-std', got === 2 ? '開啟完整版' : '開啟標準版');
+      drawPro(); renderProBox(); renderWeekly(); renderVoices(); tone([523, 659, 784, 1046], .12, 'sine');
+    });
+  }
+  function renderWeekly() {
+    const blk = $('weeklyBlock'); blk.classList.toggle('locked', !isFull());
+    const hist = store.get('history', []), now = Date.now(), DAYMS = 864e5;
+    const start = new Date(); start.setHours(0, 0, 0, 0);
+    const days = Array.from({ length: 7 }, (_, k) => { const d = new Date(start.getTime() - (6 - k) * DAYMS); return d; });
+    const dayStars = days.map(d => hist.filter(h => h.t >= d.getTime() && h.t < d.getTime() + DAYMS).reduce((a, h) => a + h.s, 0));
+    const wk = hist.filter(h => now - h.t < 7 * DAYMS), last = hist.filter(h => now - h.t >= 7 * DAYMS && now - h.t < 14 * DAYMS);
+    const sum = l => l.reduce((a, h) => a + h.s, 0);
+    const by = {}; wk.filter(h => h.sub !== 'memory' && h.sub !== 'coloring').forEach(h => { (by[h.sub] = by[h.sub] || { s: 0, n: 0, c: 0 }); by[h.sub].s += h.s; by[h.sub].n += h.n; by[h.sub].c++; });
+    const rows = Object.entries(by).map(([k, v]) => ({ k, a: pct(v.s, v.n), c: v.c })).sort((x, y) => y.a - x.a);
+    const best = rows.find(r => r.c >= 1), focus = rows.slice().reverse().find(r => r.a < 85);
+    const wd = ['日', '一', '二', '三', '四', '五', '六'];
+    $('weeklyBody').innerHTML = `
+      <div class="week-strip">${days.map((d, k) => `<div><i class="${dayStars[k] ? 'on' : ''}">${dayStars[k] || ''}</i>${k === 6 ? '今天' : '週' + wd[d.getDay()]}</div>`).join('')}</div>
+      <p>這週練習了 <b>${dayStars.filter(Boolean).length} 天</b>，拿到 <b>${sum(wk)} 顆星</b>${last.length ? `（上週 ${sum(last)} 顆）` : ''}。</p>
+      ${best ? `<p>這週表現最好：<b>${SUBNAME[best.k]}</b>（${best.a}%）</p>` : '<p class="note">這週還沒有紀錄。</p>'}
+      ${focus ? `<p>下週建議多練習：<b>${SUBNAME[focus.k]}</b>（${focus.a}%）。${TIPS[focus.k] || ''}</p>` : ''}`;
+  }
+  function renderVoices() {
+    const cur = isFull() ? store.get('voice', 'yuan') : 'yuan';
+    $('voiceRow').innerHTML = Object.entries(VOICES).map(([k, v]) => `<button class="voice-btn" role="radio" aria-checked="${k === cur}" data-v="${k}"><span class="e">${v.e}</span>${v.n}<span class="sub">${k === 'yuan' ? '預設' : isFull() ? '點一下試聽' : '可以試聽'}</span></button>`).join('');
+    $('voiceRow').querySelectorAll('.voice-btn').forEach(b => b.addEventListener('click', () => {
+      const k = b.dataset.v, wasOn = soundOn;
+      soundOn = true; sayProfile = VOICES[k];
+      say([[`你好，我是${VOICES[k].n}，我們一起動動腦！`]]).then(() => { sayProfile = null; soundOn = wasOn; });
+      if (k === 'yuan' || isFull()) { store.set('voice', k); track('voice-' + k, '選擇朗讀聲音：' + VOICES[k].n); $('voiceMsg').textContent = `已經換成「${VOICES[k].n}」的聲音。`; renderVoices(); }
+      else $('voiceMsg').textContent = `這是「${VOICES[k].n}」的聲音試聽。開啟完整版後就可以換成這個聲音。`;
+    }));
+  }
+  function showLock() { track('premium-locked', '進階主題試玩用完'); $('lockSheet').hidden = false; }
+
   /* ---------- 家長專區 ---------- */
-  const SUBNAME = { cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣' };
+  const SUBNAME = { cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識' };
   const TIPS = {
     math: '吃點心時一起數一數有幾個。', compare: '分東西時問孩子「哪一邊比較多？」', money: '買東西時讓孩子幫忙拿硬幣付錢。',
     time: '用家裡的時鐘說「8 點要刷牙睡覺」。', cn: '看繪本時，指著簡單的字唸給孩子聽。', zhuyin: '從孩子名字的注音開始，一天認一個。',
@@ -2921,6 +3675,12 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     seasons: '換季整理衣服時，讓孩子分出夏天和冬天的衣服。', food: '吃飯時讓孩子說說盤子裡哪些是蔬菜。',
     trace: '準備粗一點的筆，在紙上照著描也很有幫助。', sequence: '做事前先說步驟：「先洗手，再吃飯」。', match: '玩配對卡或收衣服時配襪子。',
     maze: '用紙畫簡單的迷宮，讓孩子用手指走。', puzzle: '從 4 塊、9 塊的實體拼圖開始玩。', coloring: '準備著色本，讓孩子自由發揮。',
+    challenge: '綜合大考驗可以每週玩一次，看看各科有沒有進步。', cnword: '看繪本時，指著兩個字的詞讓孩子唸唸看。', mathpro: '用積木或吸管，十個綁成一捆，玩「幾個十和幾個一」。',
+    enspell: '看到英文招牌時，一起唸出字母。', zhuyinpro: '用注音卡把聲母、韻母拼在一起唸。', enphrase: '每天用一句英文打招呼，像 Good morning。',
+    enverb: '玩「我說你做」：jump、run、clap。', wordpro: '買東西時讓孩子算算看要付多少。', patternpro: '用串珠或積木排規律讓孩子接下去。', deduce: '玩「猜猜我在哪」的小遊戲。',
+    moneypro: '讓孩子拿零錢付款，再一起算找回多少。', cnsimilar: '把長得像的字寫在一起，比比看哪裡不一樣。', sentence: '說話時讓孩子接最後一個詞。',
+    storyseq: '看繪本後，請孩子說說先發生什麼、後發生什麼。', safety: '定期和孩子演練走失、地震時要怎麼做，並背熟爸媽電話。',
+    science: '在家做浮沉、磁鐵的小實驗。', festival: '過節時說說這個節日的故事和習俗。', animals: '去動物園或看動物影片時，一起聊聊牠們的特點。', clockpro: '出門前問孩子：「現在幾點幾分？」', tracepro: '描寫時注意坐姿和握筆，一天寫 3～5 個字就好。',
     calm: '孩子為玩具或食物生氣時，先抱住或靠近他，說出他的感覺（你很想要對不對），等冷靜了再教他一句可以說的話。要結束遊戲前 5 分鐘先預告，時間到用「說到做到」來稱讚他。孩子愛比第一名時，多稱讚他的努力（你一直練習），少說「你最棒、第一名」。可以在家設一個安靜角落，平時就練習小烏龜深呼吸。',
     manners: '孩子說屁股、大便或「揍扁你」這類話時，先不要大笑或大驚小怪，平靜地說「這句話會讓人不舒服，可以換成⋯⋯」，並給他一句可以替代的話。孩子不肯道歉時，先幫他說出感覺（你也嚇到了對不對？），再陪他一起說；不要逼或罰，說出口後立刻稱讚他很勇敢。大人也要以身作則，常說請、謝謝、對不起。', trash: '倒垃圾時讓孩子幫忙分類；各縣市規定略有不同，以居住地的規定為準。'
   };
@@ -3001,7 +3761,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     $('tips').innerHTML = tipSubs.length
       ? `<ul>${tipSubs.map(k => { const r = rows.find(x => x.sub === k); return `<li><b>${SUBNAME[k]}</b>（答對率 ${r.a}%）：${TIPS[k]}</li>`; }).join('')}<li>每天玩 1～2 回合就好，短時間、常常玩，比一次玩很久更有效。</li></ul>`
       : '<p class="empty">玩過幾回合後，這裡會依孩子的表現給練習建議。</p>';
-    drawLimit();
+    drawLimit(); renderProBox(); renderWeekly(); renderVoices();
     if (/^https:\/\/p\.ecpay\.com\.tw\//.test(DONATE_URL)) { $('donateBtn').href = DONATE_URL; $('support').hidden = false; }
     $('resetRow').innerHTML = '<button id="resetBtn" class="link-btn">清除所有紀錄</button>';
     $('resetBtn').addEventListener('click', askReset);
@@ -3044,6 +3804,10 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
   $('homeBtn').addEventListener('click', () => show('home'));
   $('againBtn').addEventListener('click', () => startRound(st.sub));
   $('reportBtn').addEventListener('click', () => openGate());
+  $('lockClose').addEventListener('click', () => { $('lockSheet').hidden = true; });
+  $('promoBtn').addEventListener('click', () => { track('promo-click', '首頁進階版介紹'); openGate(() => { renderReport(); show('report'); setTimeout(() => $('proBox').scrollIntoView({ behavior: 'smooth' }), 100); }); });
+  document.addEventListener('click', e => { if (e.target && e.target.id === 'buyBtn') track('buy-click', '點了蝦皮購買'); });
+  $('lockParent').addEventListener('click', () => { $('lockSheet').hidden = true; openGate(() => { renderReport(); show('report'); setTimeout(() => $('proBox').scrollIntoView({ behavior: 'smooth' }), 100); }); });
   $('restOk').addEventListener('click', () => { say([['你好棒，說到做到！']]); $('restOk').textContent = '你好棒，說到做到！'; $('restOk').disabled = true; });
   $('restUnlock').addEventListener('click', () => openGate(() => {
     const p = playToday(); p.unlocked += 10 * 60000; store.set('playToday', p); tipShown = false;
@@ -3096,7 +3860,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
   $('installSheet').addEventListener('click', e => { if (e.target === $('installSheet')) $('installSheet').hidden = true; });
 
   $('totalStars').textContent = total;
-  refreshGot(); setAge(age); setSound(soundOn);
+  refreshGot(); setAge(age); setSound(soundOn); drawPro();
 })();
 </script>
 
