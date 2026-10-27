@@ -1,0 +1,1894 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="動動腦小學堂：給 3–6 歲小朋友的免費益智學習遊戲，有中文、注音、英文、數學、時鐘、幾何、禮貌、垃圾分類等 21 個主題。">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>動動腦小學堂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@500;700;900&display=swap">
+<style>
+/* 版面：像一盒積木。每個科目一個顏色，所有按鈕都有厚底陰影，按下去會「壓下」；小幫手「圓圓」陪著出題 */
+:root {
+  --bg: #EAF4FB; --dot: #D3E5F3; --surface: #FFFFFF; --ink: #1B2A3A; --muted: #5B6B7C;
+  --line: #D3DEE8; --line-deep: #B7C6D4;
+  --math: #EE7424; --cn: #D93F48; --en: #2C7BCB; --geo: #1F9365; --sun: #F7BD1E; --grape: #8757CC;
+  --math-soft: #FFEBDC; --cn-soft: #FCE2E3; --en-soft: #DFEDFB; --geo-soft: #DAF2E6; --sun-soft: #FFF3CC;
+  --math-deep: #BF5612; --cn-deep: #A62B33; --en-deep: #1B5C9E; --geo-deep: #136F4B;
+  --time: #7C4DD0; --time-soft: #EEE6FA; --time-deep: #5A33A3; --life: #0E8F9C; --life-soft: #DAF2F4; --life-deep: #0A6973; --color: #DD4C8C; --color-soft: #FCE3EF; --color-deep: #AC2F67;
+  --good: #1F9365; --good-soft: #DAF2E6; --good-deep: #136F4B;
+  --mascot: #FFC93C; --mascot-deep: #E8A50E; --mascot-ink: #2B2633; --cheek: #FF9DAA;
+  --f-display: "Baloo 2", "Noto Sans TC", system-ui, sans-serif;
+  --f-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --f-kai: "LXGW WenKai TC", "Kaiti TC", "BiauKai", "DFKai-SB", "STKaiti", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1923; --dot: #1A2836; --surface: #1B2836; --ink: #EEF3F8; --muted: #9DADBD;
+    --line: #2E3F50; --line-deep: #0A121A;
+    --math: #FF9550; --cn: #F2666E; --en: #61A6EE; --geo: #41BD8A; --sun: #F7C744; --grape: #A982EA;
+    --math-soft: #3A2618; --cn-soft: #3B1F23; --en-soft: #18293D; --geo-soft: #15302A; --sun-soft: #3A3115;
+    --math-deep: #A9531C; --cn-deep: #9C3138; --en-deep: #24578E; --geo-deep: #1C6B4C;
+    --time: #A982EA; --time-soft: #2A2140; --time-deep: #5B3F98; --life: #3CC3CF; --life-soft: #12313A; --life-deep: #1E6F78; --color: #F57BB0; --color-soft: #3B1B2B; --color-deep: #9A3463;
+    --good: #41BD8A; --good-soft: #15302A; --good-deep: #1C6B4C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1923; --dot: #1A2836; --surface: #1B2836; --ink: #EEF3F8; --muted: #9DADBD;
+  --line: #2E3F50; --line-deep: #0A121A;
+  --math: #FF9550; --cn: #F2666E; --en: #61A6EE; --geo: #41BD8A; --sun: #F7C744; --grape: #A982EA;
+  --math-soft: #3A2618; --cn-soft: #3B1F23; --en-soft: #18293D; --geo-soft: #15302A; --sun-soft: #3A3115;
+  --math-deep: #A9531C; --cn-deep: #9C3138; --en-deep: #24578E; --geo-deep: #1C6B4C;
+    --time: #A982EA; --time-soft: #2A2140; --time-deep: #5B3F98; --life: #3CC3CF; --life-soft: #12313A; --life-deep: #1E6F78; --color: #F57BB0; --color-soft: #3B1B2B; --color-deep: #9A3463;
+  --good: #41BD8A; --good-soft: #15302A; --good-deep: #1C6B4C;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--dot) 2px, transparent 2.5px);
+  background-size: 28px 28px;
+  color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 18px 48px;
+  -webkit-tap-highlight-color: transparent;
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
+.wrap { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+.screen { display: flex; flex-direction: column; gap: 18px; }
+
+/* 厚底「積木」按鈕 */
+.chunky { border: 0; background: var(--surface); border-radius: 24px; box-shadow: 0 6px 0 var(--line-deep); transition: transform .1s ease, box-shadow .1s ease; }
+.chunky:active:not(:disabled) { transform: translateY(5px); box-shadow: 0 1px 0 var(--line-deep); }
+
+/* 頁首 */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.brand h1 { margin: 0; font-size: clamp(1.05rem, 4.6vw, 1.6rem); font-weight: 900; letter-spacing: .03em; white-space: nowrap; }
+.logo { width: 42px; height: 42px; flex: none; }
+.tools { display: flex; align-items: center; gap: 8px; flex: none; }
+.pill { display: flex; align-items: center; gap: 6px; height: 46px; padding: 0 14px; border-radius: 999px; background: var(--surface); box-shadow: 0 4px 0 var(--line-deep); font-family: var(--f-display); font-weight: 800; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.pill svg { width: 24px; height: 24px; }
+.icon-btn { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 4px 0 var(--line-deep); }
+.icon-btn:active { box-shadow: 0 0 0 var(--line-deep); transform: translateY(4px); }
+.icon-btn svg { width: 22px; height: 22px; }
+
+/* 小幫手圓圓 */
+.mascot { flex: none; overflow: visible; }
+.mascot .happy, .mascot .think { display: none; }
+.mascot.is-happy .normal, .mascot.is-think .normal { display: none; }
+.mascot.is-happy .happy { display: inline; }
+.mascot.is-think .think { display: inline; }
+.mascot.is-happy { animation: hop .5s ease; }
+@keyframes hop { 30% { transform: translateY(-12px) rotate(-4deg); } 60% { transform: translateY(0) rotate(3deg); } }
+
+/* 首頁 */
+.hero { display: flex; align-items: center; gap: 14px; background: var(--sun-soft); border-radius: 32px; padding: 18px 20px; box-shadow: 0 6px 0 var(--mascot-deep); }
+.hero .mascot { width: 104px; height: 104px; animation: bob 3s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(-5px); } }
+.hero-text { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.hero-text h2 { margin: 0; font-size: clamp(1.25rem, 5vw, 1.6rem); font-weight: 900; line-height: 1.35; text-wrap: balance; }
+.age { display: inline-flex; padding: 5px; border-radius: 999px; background: var(--surface); align-self: flex-start; gap: 4px; }
+.age button { white-space: nowrap; border: 0; background: none; padding: 8px 16px; border-radius: 999px; font-weight: 900; color: var(--muted); font-size: 1rem; }
+.age button[aria-checked="true"] { background: var(--ink); color: var(--bg); }
+
+.subjects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.subject {
+  --c: var(--math); --c-soft: var(--math-soft); --c-deep: var(--math-deep);
+  position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 2px; text-align: left;
+  padding: 16px 16px 18px; border-radius: 28px; border: 0; background: var(--c);
+  color: #fff; box-shadow: 0 8px 0 var(--c-deep); transition: transform .1s ease, box-shadow .1s ease; overflow: hidden;
+}
+.subject:hover { transform: translateY(-3px); box-shadow: 0 11px 0 var(--c-deep); }
+.subject:active { transform: translateY(6px); box-shadow: 0 2px 0 var(--c-deep); }
+.subject .art { height: 110px; border-radius: 20px; background: rgba(255, 255, 255, .92); display: grid; place-items: center; margin-bottom: 10px; color: var(--c); }
+.subject .art .emo { font-size: 3.4rem; line-height: 1; white-space: nowrap; }
+.subject .art .kai { font-family: var(--f-kai); font-weight: 700; font-size: 4.4rem; line-height: 1; color: #C9333C; }
+.subject .art .abc { display: flex; align-items: center; gap: 6px; font-family: var(--f-display); font-weight: 800; font-size: 2.2rem; color: #1F68B3; }
+.subject .art .abc span:first-child { font-size: 3.2rem; }
+.subject .art svg { height: 70px; width: auto; }
+.subject .name { font-size: 1.5rem; font-weight: 900; line-height: 1.3; }
+.subject .what { font-size: .95rem; opacity: .92; line-height: 1.4; }
+.subject .got { position: absolute; top: 24px; right: 24px; display: flex; align-items: center; gap: 3px; padding: 2px 10px; border-radius: 999px; background: var(--mascot); color: #3A2A00; font-family: var(--f-display); font-weight: 800; font-size: .95rem; }
+.subject .got svg { width: 15px; height: 15px; }
+[data-sub="math"] { --c: var(--math); --c-soft: var(--math-soft); --c-deep: var(--math-deep); }
+[data-sub="cn"] { --c: var(--cn); --c-soft: var(--cn-soft); --c-deep: var(--cn-deep); }
+[data-sub="en"] { --c: var(--en); --c-soft: var(--en-soft); --c-deep: var(--en-deep); }
+[data-sub="geo"] { --c: var(--geo); --c-soft: var(--geo-soft); --c-deep: var(--geo-deep); }
+[data-sub="time"] { --c: var(--time); --c-soft: var(--time-soft); --c-deep: var(--time-deep); }
+[data-sub="color"], [data-sub="memory"] { --c: var(--color); --c-soft: var(--color-soft); --c-deep: var(--color-deep); }
+[data-sub="zhuyin"] { --c: var(--cn); --c-soft: var(--cn-soft); --c-deep: var(--cn-deep); }
+[data-sub="money"] { --c: var(--math); --c-soft: var(--math-soft); --c-deep: var(--math-deep); }
+[data-sub="compare"] { --c: var(--time); --c-soft: var(--time-soft); --c-deep: var(--time-deep); }
+[data-sub="manners"] { --c: var(--cn); --c-soft: var(--cn-soft); --c-deep: var(--cn-deep); }
+[data-sub="trash"] { --c: var(--geo); --c-soft: var(--geo-soft); --c-deep: var(--geo-deep); }
+.o-bin { width: clamp(46px, 15vw, 76px); height: auto; }
+.options.cols-4 .o-life .t { font-size: clamp(.9rem, 3.8vw, 1.15rem); }
+[data-sub="addsub"] { --c: var(--math); --c-soft: var(--math-soft); --c-deep: var(--math-deep); }
+[data-sub="solid"] { --c: var(--geo); --c-soft: var(--geo-soft); --c-deep: var(--geo-deep); }
+[data-sub="hide"] { --c: var(--life); --c-soft: var(--life-soft); --c-deep: var(--life-deep); }
+[data-sub="logic"] { --c: var(--time); --c-soft: var(--time-soft); --c-deep: var(--time-deep); }
+[data-sub="riddle"] { --c: var(--color); --c-soft: var(--color-soft); --c-deep: var(--color-deep); }
+@media (min-width: 640px) {
+  .subjects.five { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .subjects.five > * { grid-column: span 2; }
+  .subjects.five > :nth-child(n+4) { grid-column: span 3; }
+}
+.count span.gone { position: relative; }
+.count span.gone i { font-style: normal; opacity: .35; }
+.count span.gone::after { content: "✕"; position: absolute; inset: 0; display: grid; place-items: center; color: var(--cn); font-family: var(--f-display); font-weight: 800; font-size: .9em; opacity: 1; }
+.eq { font-family: var(--f-display); font-weight: 800; font-size: clamp(3.4rem, 16vw, 5.4rem); line-height: 1; letter-spacing: .02em; }
+.eq .q { color: var(--c); }
+.story { font-weight: 900; font-size: clamp(1.2rem, 5vw, 1.5rem); line-height: 1.5; margin-bottom: 10px; text-wrap: balance; }
+.o-solid { width: 84%; height: auto; }
+.solid-big { width: clamp(150px, 46vw, 210px); height: auto; }
+.hide { position: relative; width: 280px; max-width: 100%; height: 250px; overflow: hidden; border-radius: 24px; }
+.hide .ani { position: absolute; font-size: 150px; line-height: 1; transform: translateX(-50%); transition: transform .7s cubic-bezier(.3, 1.4, .5, 1); }
+.hide .cover { position: absolute; left: 0; bottom: 0; width: 100%; height: 155px; z-index: 2; }
+.stage.solved .hide .ani { transform: translate(-50%, -62px); }
+.pattern { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.pattern span { width: clamp(46px, 13vw, 72px); aspect-ratio: 1; display: grid; place-items: center; border-radius: 16px; background: var(--surface); font-size: clamp(1.8rem, 8vw, 2.8rem); box-shadow: 0 4px 0 var(--line-deep); }
+.pattern .q { box-shadow: none; border: 3px dashed var(--c); background: none; color: var(--c); font-family: var(--f-display); font-weight: 800; }
+.shadowcard { background: #FFFFFF; border-radius: 28px; padding: 10px 26px; box-shadow: 0 6px 0 var(--line-deep); }
+.shadowcard .sil { font-size: clamp(7rem, 34vw, 10rem); line-height: 1.1; filter: brightness(0); opacity: .82; transition: filter .5s ease, opacity .5s ease; }
+.stage.solved .shadowcard .sil { filter: none; opacity: 1; }
+.riddle { background: var(--surface); border-radius: 24px; padding: 18px 20px; font-weight: 900; font-size: clamp(1.25rem, 5.4vw, 1.6rem); line-height: 1.6; text-align: left; box-shadow: 0 5px 0 var(--line-deep); max-width: 30em; text-wrap: pretty; }
+.riddle::before { content: "謎題"; display: block; width: fit-content; margin-bottom: 6px; padding: 0 10px; border-radius: 999px; background: var(--c); color: #fff; font-size: .8rem; }
+.subject .art .eqart { font-family: var(--f-display); font-weight: 800; font-size: 2.4rem; color: #BF5612; }
+.subject .art .sil { font-size: 3.6rem; filter: brightness(0); opacity: .8; } --c: var(--en); --c-soft: var(--en-soft); --c-deep: var(--en-deep); }
+[data-sub="position"] { --c: var(--en); --c-soft: var(--en-soft); --c-deep: var(--en-deep); }
+[data-sub="odd"] { --c: var(--geo); --c-soft: var(--geo-soft); --c-deep: var(--geo-deep); }
+[data-sub="life"] { --c: var(--life); --c-soft: var(--life-soft); --c-deep: var(--life-deep); }
+.groups { display: flex; flex-direction: column; gap: 14px; }
+.group-title { margin: 8px 0 -2px; display: flex; align-items: center; gap: 10px; font-size: 1.15rem; font-weight: 900; }
+.group-title::before { content: ""; width: 12px; height: 12px; border-radius: 4px; background: var(--g); transform: rotate(45deg); }
+.group-title small { font-size: .85rem; font-weight: 500; color: var(--muted); }
+.subject .art .kai.sm { font-size: 3.2rem; letter-spacing: .04em; }
+.subject .art .emo.sm { font-size: 2.6rem; }
+.subject .art .emo.stack { display: grid; justify-items: center; font-size: 2.2rem; line-height: 1.05; }
+.subject .art .emo small { font-size: .55em; }
+.options:empty { display: none; }
+.options.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.options.cols-2 .opt { aspect-ratio: 5 / 4; }
+.o-group { display: flex; flex-wrap: wrap; justify-content: center; gap: .1em; max-width: 4.4em; font-size: clamp(1.7rem, 7vw, 2.6rem); line-height: 1.15; }
+.o-coin { width: 88%; height: auto; }
+.coins { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; }
+.coin-s { width: clamp(76px, 23vw, 118px); height: auto; filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .15)); }
+.word-zh { font-weight: 900; font-size: clamp(1.6rem, 7vw, 2.2rem); line-height: 1.2; margin-top: 4px; }
+.o-letter { font-family: var(--f-display); font-weight: 800; font-size: clamp(3rem, 16vw, 5.2rem); line-height: 1; }
+.o-letter .lo { color: var(--c); }
+.bigletter { font-family: var(--f-display); font-weight: 800; font-size: clamp(7rem, 36vw, 11rem); line-height: 1; color: var(--c); }
+.pos { gap: 6px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, auto); width: min(100%, 330px); font-size: clamp(3.2rem, 15vw, 5rem); line-height: 1.1; text-align: center; }
+.pos .obj { grid-area: 2 / 2; font-size: 1.25em; }
+.o-dir { display: flex; flex-direction: column; align-items: center; gap: 6px; font-weight: 900; font-size: clamp(1.1rem, 4.6vw, 1.5rem); }
+.o-dir svg { width: clamp(42px, 13vw, 64px); height: auto; color: var(--c); }
+.o-life { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+.o-life .e { font-size: clamp(2.5rem, 13vw, 4.2rem); line-height: 1.1; }
+.o-life .t { font-weight: 900; font-size: clamp(.95rem, 4vw, 1.25rem); line-height: 1.25; }
+.o-life .t.big { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.2rem, 11vw, 3.6rem); }
+.stage.mem-stage { padding: 14px; place-items: stretch; }
+.mem { display: grid; gap: 10px; width: 100%; }
+.mem-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 460px; margin: 0 auto; }
+.mem-6 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.card { aspect-ratio: 3 / 4; border: 0; border-radius: 18px; background: var(--c); color: #fff; box-shadow: 0 5px 0 var(--c-deep); display: grid; place-items: center; font-size: clamp(2.2rem, 11vw, 3.6rem); line-height: 1; transition: transform .1s ease; }
+.card .back { font-family: var(--f-display); font-weight: 800; opacity: .85; }
+.card .front { display: none; }
+.card.open, .card.matched { background: var(--surface); box-shadow: 0 5px 0 var(--line-deep); animation: flip .25s ease; }
+.card.open .front, .card.matched .front { display: inline; }
+.card.open .back, .card.matched .back { display: none; }
+.card.matched { background: var(--good-soft); box-shadow: 0 5px 0 var(--good-deep), inset 0 0 0 3px var(--good); }
+@keyframes flip { from { transform: rotateY(90deg); } }
+@media (min-width: 640px) { .subjects.four { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 639px) { .subjects > .subject:last-child:nth-child(odd) { grid-column: span 2; } }
+@media (min-width: 640px) { .subjects { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.clock-big { width: clamp(190px, 58vw, 270px); height: auto; filter: drop-shadow(0 6px 0 var(--c-deep)); }
+.o-clock { width: 88%; height: auto; }
+.o-time { font-weight: 900; font-size: clamp(1.6rem, 7.5vw, 2.6rem); line-height: 1.2; text-align: center; }
+.mix { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.blob { width: clamp(58px, 17vw, 100px); aspect-ratio: 1; border-radius: 50%; box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .12); }
+.blob.q { border: 4px dashed var(--c); box-shadow: none; display: grid; place-items: center; font-family: var(--f-display); font-weight: 800; font-size: 2.4rem; color: var(--c); }
+.parents { display: flex; gap: 12px; align-items: flex-start; background: var(--surface); border-radius: 22px; padding: 14px 16px; color: var(--muted); font-size: .9rem; line-height: 1.6; }
+.parents b { color: var(--ink); }
+.parents svg { width: 22px; height: 22px; flex: none; margin-top: 2px; }
+
+/* 遊戲畫面 */
+.game-top { display: flex; align-items: center; gap: 12px; }
+.back { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; flex: none; box-shadow: 0 4px 0 var(--line-deep); }
+.back svg { width: 22px; height: 22px; }
+.track { flex: 1; min-width: 0; display: flex; justify-content: space-between; gap: 2px; padding: 8px 12px; border-radius: 999px; background: var(--surface); box-shadow: 0 4px 0 var(--line-deep); }
+.slot { width: 100%; max-width: 26px; aspect-ratio: 1; display: grid; place-items: center; }
+.slot svg { width: 100%; height: 100%; }
+.slot.is-now svg { animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 50% { transform: scale(1.25); } }
+
+.ask { display: flex; align-items: flex-end; gap: 10px; }
+.ask .mascot { width: 76px; height: 76px; }
+.bubble { position: relative; flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; background: var(--surface); border-radius: 24px; padding: 12px 12px 12px 18px; box-shadow: 0 5px 0 var(--line-deep); }
+.bubble::before { content: ""; position: absolute; left: -9px; bottom: 18px; width: 18px; height: 18px; background: var(--surface); transform: rotate(45deg); border-radius: 3px; }
+.prompt { position: relative; margin: 0; flex: 1; min-width: 0; font-size: clamp(1.2rem, 4.8vw, 1.6rem); font-weight: 900; line-height: 1.35; text-wrap: balance; }
+.speak { flex: none; width: 58px; height: 58px; border-radius: 50%; border: 0; background: var(--c); color: #fff; display: grid; place-items: center; box-shadow: 0 5px 0 var(--c-deep); }
+.speak:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--c-deep); }
+.speak svg { width: 30px; height: 30px; }
+
+.stage { background: var(--c-soft); border-radius: 32px; padding: 22px 14px; min-height: 230px; display: grid; place-items: center; text-align: center; box-shadow: inset 0 0 0 4px var(--surface); }
+.count { display: flex; flex-wrap: wrap; justify-content: center; gap: .12em .18em; max-width: 6.2em; font-size: clamp(2.8rem, 12.5vw, 4.4rem); line-height: 1.15; }
+.count span { display: inline-block; animation: drop .35s ease backwards; }
+.count span:nth-child(2) { animation-delay: .05s; } .count span:nth-child(3) { animation-delay: .1s; }
+.count span:nth-child(4) { animation-delay: .15s; } .count span:nth-child(5) { animation-delay: .2s; }
+.count span:nth-child(n+6) { animation-delay: .25s; }
+@keyframes drop { from { transform: translateY(-14px) scale(.6); opacity: 0; } }
+.sum { display: flex; align-items: center; justify-content: center; gap: 6px 12px; flex-wrap: wrap; }
+.sum .count { max-width: 3.4em; font-size: clamp(2.3rem, 10vw, 3.6rem); }
+.op { font-family: var(--f-display); font-weight: 800; font-size: clamp(3rem, 12vw, 4rem); color: var(--c); line-height: 1; }
+.pic { font-size: clamp(7.5rem, 38vw, 11.5rem); line-height: 1.05; animation: drop .4s ease; }
+.bigchar { font-family: var(--f-kai); font-weight: 700; font-size: clamp(7.5rem, 36vw, 11.5rem); line-height: 1.05; background: var(--surface); border-radius: 24px; padding: 0 .12em; min-width: 1.3em; box-shadow: 0 6px 0 var(--line-deep); background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 50% 50%; background-position: center; }
+.word { font-family: var(--f-display); font-weight: 800; font-size: clamp(3.4rem, 15vw, 5.2rem); line-height: 1.05; letter-spacing: .02em; color: var(--c); }
+.seq { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.seq span { width: clamp(64px, 18vw, 96px); aspect-ratio: 1; border-radius: 22px; background: var(--surface); display: grid; place-items: center; font-family: var(--f-display); font-weight: 800; font-size: clamp(2.4rem, 10vw, 3.4rem); box-shadow: 0 5px 0 var(--line-deep); }
+.seq .q { box-shadow: none; border: 4px dashed var(--c); background: none; color: var(--c); }
+
+.options { display: grid; gap: 14px; padding-bottom: 6px; }
+.options.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.options.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.opt { aspect-ratio: 1; display: grid; place-items: center; padding: 6px; }
+.opt:disabled { cursor: default; }
+.o-num { font-family: var(--f-display); font-weight: 800; font-size: clamp(3rem, 15vw, 5rem); line-height: 1; }
+.o-char { font-family: var(--f-kai); font-weight: 700; font-size: clamp(3.2rem, 17vw, 5.6rem); line-height: 1; }
+.o-pic { font-size: clamp(3.2rem, 18vw, 5.8rem); line-height: 1; }
+.o-swatch { width: 74%; aspect-ratio: 1; border-radius: 50%; box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .12); }
+.o-shape { width: 80%; height: auto; }
+.opt.right { background: var(--good-soft); box-shadow: 0 6px 0 var(--good-deep), inset 0 0 0 4px var(--good); animation: pop .4s ease; }
+.opt.wrong { animation: shake .4s ease; opacity: .35; }
+@keyframes pop { 40% { transform: scale(1.1) rotate(-3deg); } 70% { transform: scale(.97); } }
+@keyframes shake { 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
+
+.confetti { position: fixed; inset: 0; pointer-events: none; z-index: 20; overflow: hidden; }
+.confetti i { position: absolute; width: 12px; height: 12px; border-radius: 3px; }
+
+/* 結束畫面 */
+.done { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 26px 18px 30px; background: var(--surface); border-radius: 32px; box-shadow: 0 8px 0 var(--line-deep); }
+.done .mascot { width: 130px; height: 130px; }
+.done h2 { margin: 0; font-size: 1.9rem; font-weight: 900; }
+.done p { margin: 0; color: var(--muted); font-size: 1.05rem; }
+.star-row { display: flex; justify-content: center; gap: 2px; width: 100%; }
+.star-row svg { width: min(32px, 8.4vw); height: min(32px, 8.4vw); }
+.star-row svg.on { animation: drop .4s ease backwards; }
+.big-score { font-family: var(--f-display); font-weight: 800; font-size: 3.4rem; line-height: 1; color: var(--c); font-variant-numeric: tabular-nums; }
+.row-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+.btn { border: 0; border-radius: 999px; padding: 14px 28px; font-weight: 900; font-size: 1.15rem; background: var(--c); color: #fff; box-shadow: 0 6px 0 var(--c-deep); }
+.btn:active { transform: translateY(5px); box-shadow: 0 1px 0 var(--c-deep); }
+.btn.ghost { background: var(--bg); color: var(--ink); box-shadow: 0 6px 0 var(--line-deep); }
+
+/* 家長頁 */
+.rep-head { display: flex; align-items: center; gap: 12px; }
+.rep-head h2 { margin: 0; font-size: 1.5rem; font-weight: 900; }
+.kid-banner { display: flex; align-items: center; gap: 14px; background: var(--sun-soft); border-radius: 28px; padding: 16px 18px; box-shadow: 0 6px 0 var(--mascot-deep); }
+.kid-banner .mascot { width: 84px; height: 84px; }
+.kid-banner b { display: block; font-size: clamp(1.25rem, 5vw, 1.55rem); font-weight: 900; line-height: 1.35; }
+.kid-banner span { color: var(--muted); }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.kpi { background: var(--surface); border-radius: 20px; padding: 12px 14px; box-shadow: 0 4px 0 var(--line-deep); display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.kpi .v { font-family: var(--f-display); font-weight: 800; font-size: 1.9rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kpi .v small { font-size: .55em; margin-left: 2px; }
+.kpi .k { color: var(--muted); font-size: .85rem; line-height: 1.35; }
+.block { background: var(--surface); border-radius: 24px; padding: 18px; box-shadow: 0 5px 0 var(--line-deep); display: flex; flex-direction: column; gap: 12px; }
+.block h3 { margin: 0; font-size: 1.2rem; font-weight: 900; }
+.note { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+.srow { display: grid; grid-template-columns: 7.2em minmax(0, 1fr) auto; gap: 4px 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.srow:first-child { border-top: 0; padding-top: 0; }
+.sname { font-weight: 900; display: flex; align-items: center; gap: 8px; min-width: 0; }
+.sname i { width: 10px; height: 10px; border-radius: 3px; background: var(--c); flex: none; }
+.sbar { height: 14px; border-radius: 999px; background: var(--bg); overflow: hidden; }
+.sbar span { display: block; height: 100%; border-radius: 999px; background: var(--c); }
+.spct { font-family: var(--f-display); font-weight: 800; font-size: 1.2rem; font-variant-numeric: tabular-nums; text-align: right; min-width: 3.2em; }
+.smeta { grid-column: 2 / 4; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; color: var(--muted); font-size: .85rem; }
+.tag { padding: 1px 10px; border-radius: 999px; font-weight: 700; font-size: .8rem; }
+.tag.bad { background: var(--cn-soft); color: var(--cn); }
+.tag.mid { background: var(--sun-soft); color: var(--ink); }
+.tag.good { background: var(--good-soft); color: var(--good); }
+.trend.up { color: var(--good); font-weight: 700; }
+.trend.down { color: var(--cn); font-weight: 700; }
+.chart svg { width: 100%; height: auto; display: block; }
+.tips ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; }
+.tips li b { color: var(--ink); }
+.empty { text-align: center; color: var(--muted); padding: 10px 0; }
+.link-btn { border: 0; background: none; color: var(--muted); text-decoration: underline; padding: 6px; align-self: center; }
+.confirm { display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.btn.small { padding: 8px 18px; font-size: 1rem; }
+.btn.danger { background: var(--cn); box-shadow: 0 5px 0 var(--cn-deep); }
+.gate { background: var(--surface); border-radius: 28px; padding: 24px 18px; box-shadow: 0 6px 0 var(--line-deep); text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center; }
+.gate h2 { margin: 0; font-size: 1.4rem; font-weight: 900; }
+.gate .q { font-family: var(--f-display); font-weight: 800; font-size: 2.6rem; line-height: 1.1; }
+.gate .options { width: 100%; max-width: 420px; }
+.gate .opt { aspect-ratio: 2 / 1; }
+.support { background: var(--sun-soft); box-shadow: 0 5px 0 var(--mascot-deep); }
+.sup-top { display: flex; gap: 14px; align-items: flex-start; }
+.sup-icon { font-size: 2.6rem; line-height: 1; }
+.btn.donate { align-self: flex-start; text-decoration: none; background: var(--math); box-shadow: 0 6px 0 var(--math-deep); display: inline-block; }
+.sup-fine { font-size: .8rem; }
+.rep-open { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 8px 16px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-weight: 900; }
+@media (max-width: 430px) { .top .icon-btn { width: 40px; height: 40px; } .pill { height: 40px; padding: 0 10px; font-size: 1.1rem; } .tools { gap: 6px; } .logo { width: 36px; height: 36px; } }
+@media (max-width: 560px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .srow { grid-template-columns: 6em minmax(0, 1fr) auto; } }
+
+@media (max-width: 560px) {
+  .options.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .options.cols-4 .opt { aspect-ratio: 5 / 4; }
+  .options { gap: 12px; }
+  .subjects { gap: 14px; }
+  .subject { padding: 12px 12px 14px; border-radius: 24px; }
+  .subject .art { height: 92px; }
+  .subject .art .emo { font-size: 2.7rem; }
+  .subject .art .kai { font-size: 3.6rem; }
+  .subject .art svg { height: 56px; }
+  .subject .art .abc span:first-child { font-size: 2.6rem; }
+  .subject .got { top: 18px; right: 18px; }
+  .subject .name { font-size: 1.3rem; }
+  .hero { padding: 14px 16px; gap: 10px; }
+  .hero .mascot { width: 84px; height: 84px; }
+  .ask .mascot { width: 60px; height: 60px; }
+  .stage { min-height: 210px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    
+    <symbol id="star" viewBox="0 0 24 24"><path d="M12 2.2l2.95 6 6.6.85-4.85 4.6 1.25 6.55L12 17.05l-5.95 3.15 1.25-6.55-4.85-4.6 6.6-.85z"/></symbol>
+  </defs>
+</svg>
+
+<main class="wrap">
+  <header class="top">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 42 42" aria-hidden="true">
+        <rect x="2" y="2" width="18" height="18" rx="6" fill="var(--math)"/>
+        <circle cx="31" cy="11" r="9" fill="var(--en)"/>
+        <path d="M11 23.5 20.5 39.5h-19z" fill="var(--geo)" stroke="var(--geo)" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="22" y="22" width="18" height="18" rx="6" fill="var(--cn)"/>
+      </svg>
+      <h1>動動腦小學堂</h1>
+    </div>
+    <div class="tools">
+      <div class="pill" title="累積的星星"><svg aria-hidden="true" fill="var(--sun)"><use href="#star"/></svg><span id="totalStars">0</span></div>
+      <button id="soundBtn" class="chunky icon-btn" aria-pressed="true" aria-label="聲音開關"></button>
+      <button id="reportBtn" class="chunky icon-btn" aria-label="家長專區：學習紀錄"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></button>
+    </div>
+  </header>
+
+  <section id="home" class="screen">
+    <div class="hero">
+      <svg viewBox="0 0 120 120" class="mascot" aria-hidden="true"></svg>
+      <div class="hero-text">
+        <h2>嗨！我是圓圓，<br>今天想玩什麼？</h2>
+        <div class="age" role="radiogroup" aria-label="年齡">
+          <button id="ageSmall" role="radio" data-age="small" aria-checked="true">3–4 歲</button>
+          <button id="ageBig" role="radio" data-age="big" aria-checked="false">5–6 歲</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="groups">
+      <h3 class="group-title" style="--g: var(--cn)">語文 <small>中文、注音、英文、字母</small></h3>
+      <div class="subjects four">
+      <button class="subject" data-sub="cn" id="subCn">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="cn">0</span></span>
+        <span class="art"><span class="kai">山</span></span>
+        <span class="name">中文</span><span class="what" data-small="看圖片找出對的字" data-big="看圖找字、看字找圖">看圖片找出對的字</span>
+      </button>
+      <button class="subject" data-sub="zhuyin" id="sub-zhuyin">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="zhuyin">0</span></span>
+        <span class="art"><span class="kai sm">ㄅㄆㄇ</span></span>
+        <span class="name">注音</span><span class="what" data-small="聽聲音找注音" data-big="注音開頭、看注音找圖">聽聲音找注音</span>
+      </button>
+      <button class="subject" data-sub="en" id="subEn">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="en">0</span></span>
+        <span class="art"><span class="abc"><span>🐱</span><span>cat</span></span></span>
+        <span class="name">英文</span><span class="what" data-small="聽單字找圖片" data-big="單字、顏色、數字">聽單字找圖片</span>
+      </button>
+      <button class="subject" data-sub="abc" id="sub-abc">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="abc">0</span></span>
+        <span class="art"><span class="abc"><span style="font-family:var(--f-display);font-size:3.2rem">A</span><span style="font-size:3rem;color:#E8701F">a</span></span></span>
+        <span class="name">ABC 字母</span><span class="what" data-small="聽字母、A 是 apple" data-big="大小寫配對、開頭字母">聽字母、A 是 apple</span>
+      </button>
+      </div>
+      <h3 class="group-title" style="--g: var(--math)">數學 <small>數數、加減、比較、錢、時間</small></h3>
+      <div class="subjects five">
+      <button class="subject" data-sub="math" id="subMath">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="math">0</span></span>
+        <span class="art"><span class="emo">🍎🍎</span></span>
+        <span class="name">數一數</span><span class="what" data-small="數一數有幾個" data-big="加法、找規律、數到 10">數一數有幾個</span>
+      </button>
+      <button class="subject" data-sub="addsub" id="sub-addsub">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="addsub">0</span></span>
+        <span class="art"><span class="eqart">3+2=?</span></span>
+        <span class="name">加減法</span><span class="what" data-small="5 以內的加法" data-big="10 以內加減、應用題">5 以內的加法</span>
+      </button>
+      <button class="subject" data-sub="compare" id="sub-compare">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="compare">0</span></span>
+        <span class="art"><span class="emo">🐘<small>🐭</small></span></span>
+        <span class="name">比大小</span><span class="what" data-small="哪邊比較多、哪個最大" data-big="多少、大小、數字比較">哪邊比較多、哪個最大</span>
+      </button>
+      <button class="subject" data-sub="money" id="sub-money">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="money">0</span></span>
+        <span class="art"><svg viewBox="0 0 110 64" aria-hidden="true"><circle cx="38" cy="34" r="26" fill="#E5B93F" stroke="#B08720" stroke-width="3"/><text x="38" y="42" text-anchor="middle" font-size="22" font-weight="800" font-family="'Baloo 2', sans-serif" fill="#3A2A10">50</text><circle cx="82" cy="38" r="20" fill="#C9CED6" stroke="#8F96A1" stroke-width="3"/><text x="82" y="45" text-anchor="middle" font-size="18" font-weight="800" font-family="'Baloo 2', sans-serif" fill="#2B2F36">10</text></svg></span>
+        <span class="name">認識錢幣</span><span class="what" data-small="認識 1、5、10、50 元" data-big="認錢幣、算一共幾元">認識 1、5、10、50 元</span>
+      </button>
+      <button class="subject" data-sub="time" id="subTime">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="time">0</span></span>
+        <span class="art"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28" fill="#fff" stroke="#7C4DD0" stroke-width="5"/><g stroke="#B9A6E6" stroke-width="3" stroke-linecap="round"><path d="M32 8v4M32 52v4M8 32h4M52 32h4"/></g><path d="M32 32V16" stroke="#7C4DD0" stroke-width="4" stroke-linecap="round"/><path d="M32 32h11" stroke="#2B2633" stroke-width="5" stroke-linecap="round"/><circle cx="32" cy="32" r="3.5" fill="#2B2633"/></svg></span>
+        <span class="name">時鐘</span><span class="what" data-small="看時鐘認整點" data-big="整點、半點">看時鐘認整點</span>
+      </button>
+      </div>
+      <h3 class="group-title" style="--g: var(--geo)">觀察 <small>形狀、立體、顏色、位置</small></h3>
+      <div class="subjects five">
+      <button class="subject" data-sub="geo" id="subGeo">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="geo">0</span></span>
+        <span class="art"><svg viewBox="0 0 132 64" aria-hidden="true"><circle cx="26" cy="36" r="24" fill="#EE7424"/><path d="M66 10 90 58H42z" fill="#2C7BCB" stroke="#2C7BCB" stroke-width="4" stroke-linejoin="round"/><rect x="100" y="16" width="30" height="42" rx="5" fill="#1F9365"/></svg></span>
+        <span class="name">幾何</span><span class="what" data-small="認識形狀" data-big="形狀名稱、數邊">認識形狀</span>
+      </button>
+      <button class="subject" data-sub="solid" id="sub-solid">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="solid">0</span></span>
+        <span class="art"><svg viewBox="0 0 120 64" aria-hidden="true"><circle cx="24" cy="36" r="20" fill="#2C7BCB"/><ellipse cx="18" cy="29" rx="7" ry="5" fill="#fff" opacity=".4"/><path d="M50 22l10-9h26l-10 9z" fill="#4DC394"/><rect x="50" y="22" width="26" height="34" fill="#1F9365"/><path d="M76 22l10-9v34l-10 9z" fill="#136F4B"/><path d="M104 8 92 56a12 4 0 0 0 24 0z" fill="#EE7424"/><ellipse cx="104" cy="56" rx="12" ry="4" fill="#BF5612"/></svg></span>
+        <span class="name">立體圖形</span><span class="what" data-small="球體、正方體、圓柱" data-big="立體圖形和生活物品">球體、正方體、圓柱</span>
+      </button>
+      <button class="subject" data-sub="color" id="subColor">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="color">0</span></span>
+        <span class="art"><svg viewBox="0 0 96 64" aria-hidden="true"><circle cx="34" cy="24" r="18" fill="#E53935" opacity=".9"/><circle cx="62" cy="24" r="18" fill="#FDD835" opacity=".9"/><circle cx="48" cy="44" r="18" fill="#1E88E5" opacity=".85"/></svg></span>
+        <span class="name">顏色</span><span class="what" data-small="認識顏色" data-big="水果的顏色、混色">認識顏色</span>
+      </button>
+      <button class="subject" data-sub="position" id="sub-position">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="position">0</span></span>
+        <span class="art"><span class="emo stack">🐱<span>📦</span></span></span>
+        <span class="name">上下左右</span><span class="what" data-small="上面、下面、旁邊" data-big="上下左右">上面、下面、旁邊</span>
+      </button>
+      <button class="subject" data-sub="hide" id="sub-hide">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="hide">0</span></span>
+        <span class="art"><svg viewBox="0 0 120 70" aria-hidden="true"><text x="60" y="52" text-anchor="middle" font-size="46">🐰</text><path d="M0 70V44c10-14 26-14 34-4 8-12 26-14 34-2 8-12 28-10 36 2 8-6 14-4 16-2V70z" fill="#43A047"/><path d="M0 70V54c14-8 30-6 40 0 12-8 30-8 42 0 12-6 28-6 38 0V70z" fill="#2E7D32"/></svg></span>
+        <span class="name">躲貓貓</span><span class="what" data-small="誰躲在後面？" data-big="只露出一點點，猜猜是誰">誰躲在後面？</span>
+      </button>
+      </div>
+      <h3 class="group-title" style="--g: var(--time)">思考 <small>找不同、推理、猜謎、記憶</small></h3>
+      <div class="subjects four">
+      <button class="subject" data-sub="odd" id="sub-odd">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="odd">0</span></span>
+        <span class="art"><span class="emo sm">🍎🍌🚗</span></span>
+        <span class="name">哪個不一樣</span><span class="what" data-small="三個裡面找不同" data-big="四個裡面找不同">三個裡面找不同</span>
+      </button>
+      <button class="subject" data-sub="logic" id="sub-logic">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="logic">0</span></span>
+        <span class="art"><span class="emo sm">🔴🔵🔴❓</span></span>
+        <span class="name">推理</span><span class="what" data-small="找規律、看影子猜" data-big="進階規律、影子配對">找規律、看影子猜</span>
+      </button>
+      <button class="subject" data-sub="riddle" id="sub-riddle">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="riddle">0</span></span>
+        <span class="art"><span class="emo">🤔</span></span>
+        <span class="name">猜謎</span><span class="what" data-small="簡單的動物、水果謎語" data-big="生活物品謎語">簡單的動物、水果謎語</span>
+      </button>
+      <button class="subject" data-sub="life" id="sub-life">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="life">0</span></span>
+        <span class="art"><span class="emo">🚦🪥</span></span>
+        <span class="name">生活常識</span><span class="what" data-small="安全、衛生、天氣" data-big="加上動物家、垃圾分類">安全、衛生、天氣</span>
+      </button>
+      </div>
+      <h3 class="group-title" style="--g: var(--life)">生活 <small>生活常識、禮貌、垃圾分類</small></h3>
+      <div class="subjects">
+      <button class="subject" data-sub="memory" id="sub-memory">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="memory">0</span></span>
+        <span class="art"><svg viewBox="0 0 100 64" aria-hidden="true"><rect x="14" y="6" width="36" height="52" rx="8" fill="#DD4C8C" transform="rotate(-8 32 32)"/><text x="30" y="42" text-anchor="middle" font-size="26" font-weight="800" font-family="'Baloo 2', sans-serif" fill="#fff" transform="rotate(-8 32 32)">?</text><rect x="52" y="6" width="36" height="52" rx="8" fill="#fff" stroke="#DD4C8C" stroke-width="3" transform="rotate(7 70 32)"/><text x="70" y="44" text-anchor="middle" font-size="26" transform="rotate(7 70 32)">🐶</text></svg></span>
+        <span class="name">記憶翻牌</span><span class="what" data-small="3 對牌配對" data-big="6 對牌配對">3 對牌配對</span>
+      </button>
+      <button class="subject" data-sub="manners" id="sub-manners">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="manners">0</span></span>
+        <span class="art"><span class="emo">🙇🙏</span></span>
+        <span class="name">禮貌</span><span class="what" data-small="對不起、請、謝謝" data-big="排隊、借東西、安慰朋友">對不起、請、謝謝</span>
+      </button>
+      <button class="subject" data-sub="trash" id="sub-trash">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="trash">0</span></span>
+        <span class="art"><svg viewBox="0 0 120 64" aria-hidden="true"><path d="M8 18h30l-3 42H11z" fill="#6F7B86"/><rect x="5" y="12" width="36" height="7" rx="3" fill="#56616B"/><path d="M44 18h30l-3 42H47z" fill="#2C7BCB"/><rect x="41" y="12" width="36" height="7" rx="3" fill="#1B5C9E"/><text x="59" y="47" text-anchor="middle" font-size="18" fill="#fff">♻</text><path d="M80 18h30l-3 42H83z" fill="#3E9B4F"/><rect x="77" y="12" width="36" height="7" rx="3" fill="#2E7D3B"/></svg></span>
+        <span class="name">垃圾分類</span><span class="what" data-small="一般垃圾、回收、廚餘" data-big="回收再分紙、塑膠、鐵罐、玻璃">一般垃圾、回收、廚餘</span>
+      </button>
+      </div>
+    </div>
+
+    <div class="parents">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5"/></svg>
+      <span><b>給家長：</b>每回合 10 題，約 3 分鐘。題目會唸出來，第一次就答對得一顆星，答錯可以一直試到對。卡片右上角是每個科目累積的星星。沒有聲音時，請確認裝置不是靜音。<br><button id="reportBtn2" class="rep-open">看孩子的學習紀錄</button></span>
+    </div>
+  </section>
+
+  <section id="game" class="screen" hidden>
+    <div class="game-top">
+      <button id="backBtn" class="chunky back" aria-label="回首頁">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <div id="track" class="track" aria-label="進度"></div>
+    </div>
+    <div class="ask">
+      <svg id="gameMascot" viewBox="0 0 120 120" class="mascot" aria-hidden="true"></svg>
+      <div class="bubble">
+        <p id="prompt" class="prompt" aria-live="polite"></p>
+        <button id="speakBtn" class="speak" aria-label="再聽一次">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="stage" class="stage"></div>
+    <div id="options" class="options"></div>
+  </section>
+
+  <section id="gate" class="screen" hidden>
+    <div class="gate">
+      <h2>家長專區</h2>
+      <p class="note">請家長回答下面的問題，再進入學習紀錄。</p>
+      <div class="q" id="gateQ"></div>
+      <div class="options cols-3" id="gateOpts"></div>
+      <button id="gateBack" class="btn ghost small">回首頁</button>
+    </div>
+  </section>
+
+  <section id="report" class="screen" hidden>
+    <div class="rep-head">
+      <button id="repBack" class="chunky back" aria-label="回首頁"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <h2>學習紀錄</h2>
+    </div>
+    <div class="kid-banner">
+      <svg viewBox="0 0 120 120" class="mascot is-happy" aria-hidden="true"></svg>
+      <div><b id="kidLine"></b><span id="kidSub"></span></div>
+    </div>
+    <div class="kpis" id="kpis"></div>
+    <div class="block">
+      <h3>各科表現</h3>
+      <p class="note">答對率是「第一次就答對」的比例，由低到高排列，排在前面的是比較需要加強的科目。</p>
+      <div id="subRows"></div>
+      <p class="note" id="unplayed"></p>
+    </div>
+    <div class="block">
+      <h3>成長曲線</h3>
+      <p class="note">最近 20 回合的答對率，虛線是平均。</p>
+      <div class="chart" id="chart"></div>
+    </div>
+    <div class="block tips">
+      <h3>在家可以這樣練習</h3>
+      <div id="tips"></div>
+    </div>
+    <!-- 贊助區：在下方 script 的 DONATE_URL 填入綠界「實況主收款」網址後才會顯示 -->
+    <section id="support" class="block support" hidden>
+      <div class="sup-top">
+        <span class="sup-icon" aria-hidden="true">🥤</span>
+        <div>
+          <h3>喜歡動動腦小學堂嗎？</h3>
+          <p class="note">遊戲免費、沒有廣告。如果孩子玩得開心，歡迎請作者喝杯飲料，支持我們繼續加新題目。</p>
+        </div>
+      </div>
+      <a id="donateBtn" class="btn donate" href="#" target="_blank" rel="noopener">請作者喝杯飲料</a>
+      <p class="note sup-fine">會開啟綠界科技的安全付款頁面，可以用信用卡、ATM 或超商付款，金額自由決定。</p>
+    </section>
+    <div class="confirm" id="resetRow">
+      <button id="resetBtn" class="link-btn">清除所有紀錄</button>
+    </div>
+    <p class="note" style="text-align:center">紀錄只存在這台裝置的瀏覽器裡，換手機或清除瀏覽器資料就會不見。</p>
+  </section>
+
+  <section id="done" class="done" hidden>
+    <svg id="doneMascot" viewBox="0 0 120 120" class="mascot is-happy" aria-hidden="true"></svg>
+    <h2 id="doneTitle">完成了！</h2>
+    <div class="big-score" id="doneScore">0 / 10</div>
+    <div class="star-row" id="doneStars"></div>
+    <p id="doneMsg"></p>
+    <div class="row-btns">
+      <button id="againBtn" class="btn">再玩一次</button>
+      <button id="homeBtn" class="btn ghost">換一個主題</button>
+    </div>
+  </section>
+</main>
+<div id="confetti" class="confetti" aria-hidden="true"></div>
+
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem('ddn-' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem('ddn-' + k, JSON.stringify(v)); } catch (e) {} }
+  };
+  let age = store.get('age', 'small');
+  let total = store.get('stars', 0);
+  let soundOn = store.get('sound', true);
+  let subStars = store.get('subStars', {});
+  const reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const rand = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const others = (pool, t, n, key) => shuffle(pool.filter(x => key(x) !== key(t))).slice(0, n);
+  const delay = ms => new Promise(r => setTimeout(r, ms));
+
+  function numberOptions(ans, count, min, max) {
+    const set = new Set([ans]); let tries = 0;
+    while (set.size < count && tries < 60) {
+      const c = ans + (Math.random() < .5 ? -1 : 1) * rand(1, 3);
+      if (c >= min && c <= max) set.add(c);
+      tries++;
+    }
+    for (let k = min; set.size < count && k <= max; k++) set.add(k);
+    return shuffle([...set]);
+  }
+
+  /* ---------- 題庫 ---------- */
+  const ITEMS = [
+    { e: '🍎', n: '蘋果' }, { e: '🍓', n: '草莓' }, { e: '🐟', n: '小魚' }, { e: '⭐', n: '星星' },
+    { e: '🎈', n: '氣球' }, { e: '🚗', n: '車子' }, { e: '🐥', n: '小雞' }, { e: '🍪', n: '餅乾' },
+    { e: '🐞', n: '瓢蟲' }, { e: '🍩', n: '甜甜圈' }
+  ];
+  const CN = [
+    { ch: '山', e: '⛰️', say: '高山的山', lv: 1 }, { ch: '水', e: '💧', say: '喝水的水', lv: 1 },
+    { ch: '火', e: '🔥', say: '火', lv: 1 }, { ch: '日', e: '☀️', say: '太陽，日', lv: 1 },
+    { ch: '月', e: '🌙', say: '月亮的月', lv: 1 }, { ch: '人', e: '🧍', say: '人', lv: 1 },
+    { ch: '口', e: '👄', say: '嘴巴，口', lv: 1 }, { ch: '手', e: '✋', say: '小手的手', lv: 1 },
+    { ch: '目', e: '👁️', say: '眼睛，目', lv: 1 }, { ch: '木', e: '🌳', say: '樹木的木', lv: 1 },
+    { ch: '魚', e: '🐟', say: '小魚的魚', lv: 1 }, { ch: '鳥', e: '🐦', say: '小鳥的鳥', lv: 1 },
+    { ch: '馬', e: '🐴', say: '馬', lv: 1 }, { ch: '牛', e: '🐮', say: '牛', lv: 1 },
+    { ch: '羊', e: '🐑', say: '羊', lv: 1 }, { ch: '花', e: '🌸', say: '花朵的花', lv: 1 },
+    { ch: '雨', e: '🌧️', say: '下雨的雨', lv: 1 }, { ch: '雲', e: '☁️', say: '白雲的雲', lv: 1 },
+    { ch: '車', e: '🚗', say: '汽車的車', lv: 2 }, { ch: '門', e: '🚪', say: '大門的門', lv: 2 },
+    { ch: '米', e: '🍚', say: '白米的米', lv: 2 }, { ch: '耳', e: '👂', say: '耳朵的耳', lv: 2 },
+    { ch: '星', e: '⭐', say: '星星的星', lv: 2 }, { ch: '貓', e: '🐱', say: '小貓的貓', lv: 2 },
+    { ch: '狗', e: '🐶', say: '小狗的狗', lv: 2 }, { ch: '蛋', e: '🥚', say: '雞蛋的蛋', lv: 2 },
+    { ch: '書', e: '📖', say: '看書的書', lv: 2 }, { ch: '傘', e: '☂️', say: '雨傘的傘', lv: 2 },
+    { ch: '心', e: '❤️', say: '愛心的心', lv: 2 }, { ch: '石', e: '🪨', say: '石頭的石', lv: 2 },
+    { ch: '竹', e: '🎋', say: '竹子的竹', lv: 2 }, { ch: '衣', e: '👕', say: '衣服的衣', lv: 2 },
+    { ch: '豬', e: '🐷', say: '小豬的豬', lv: 2 }, { ch: '雞', e: '🐔', say: '小雞的雞', lv: 2 },
+    { ch: '鴨', e: '🦆', say: '鴨子的鴨', lv: 2 }, { ch: '熊', e: '🐻', say: '小熊的熊', lv: 2 },
+    { ch: '象', e: '🐘', say: '大象的象', lv: 2 }, { ch: '蛇', e: '🐍', say: '蛇', lv: 2 },
+    { ch: '冰', e: '🧊', say: '冰塊的冰', lv: 2 }, { ch: '雪', e: '❄️', say: '下雪的雪', lv: 2 },
+    { ch: '電', e: '⚡', say: '閃電的電', lv: 2 }, { ch: '燈', e: '💡', say: '電燈的燈', lv: 2 },
+    { ch: '球', e: '⚽', say: '皮球的球', lv: 2 }, { ch: '船', e: '⛵', say: '小船的船', lv: 2 },
+    { ch: '鞋', e: '👟', say: '鞋子的鞋', lv: 2 }, { ch: '帽', e: '🧢', say: '帽子的帽', lv: 2 },
+    { ch: '筆', e: '✏️', say: '鉛筆的筆', lv: 2 }, { ch: '床', e: '🛏️', say: '床', lv: 2 },
+    { ch: '草', e: '🌿', say: '小草的草', lv: 2 }, { ch: '葉', e: '🍃', say: '葉子的葉', lv: 2 }
+  ];
+  const EN = [
+    { w: 'apple', e: '🍎', zh: '蘋果', lv: 1 }, { w: 'banana', e: '🍌', zh: '香蕉', lv: 1 },
+    { w: 'cat', e: '🐱', zh: '貓', lv: 1 }, { w: 'dog', e: '🐶', zh: '狗', lv: 1 },
+    { w: 'fish', e: '🐟', zh: '魚', lv: 1 }, { w: 'bird', e: '🐦', zh: '鳥', lv: 1 },
+    { w: 'sun', e: '☀️', zh: '太陽', lv: 1 }, { w: 'moon', e: '🌙', zh: '月亮', lv: 1 },
+    { w: 'car', e: '🚗', zh: '車子', lv: 1 }, { w: 'ball', e: '⚽', zh: '球', lv: 1 },
+    { w: 'egg', e: '🥚', zh: '蛋', lv: 1 }, { w: 'milk', e: '🥛', zh: '牛奶', lv: 1 },
+    { w: 'book', e: '📖', zh: '書', lv: 2 }, { w: 'cake', e: '🍰', zh: '蛋糕', lv: 2 },
+    { w: 'bus', e: '🚌', zh: '公車', lv: 2 }, { w: 'duck', e: '🦆', zh: '鴨子', lv: 2 },
+    { w: 'frog', e: '🐸', zh: '青蛙', lv: 2 }, { w: 'tree', e: '🌳', zh: '樹', lv: 2 },
+    { w: 'flower', e: '🌸', zh: '花', lv: 2 }, { w: 'star', e: '⭐', zh: '星星', lv: 2 },
+    { w: 'shoe', e: '👟', zh: '鞋子', lv: 2 }, { w: 'pig', e: '🐷', zh: '豬', lv: 2 },
+    { w: 'lion', e: '🦁', zh: '獅子', lv: 1 }, { w: 'bear', e: '🐻', zh: '熊', lv: 1 },
+    { w: 'rabbit', e: '🐰', zh: '兔子', lv: 1 }, { w: 'cow', e: '🐮', zh: '牛', lv: 1 },
+    { w: 'bread', e: '🍞', zh: '麵包', lv: 1 }, { w: 'bee', e: '🐝', zh: '蜜蜂', lv: 1 },
+    { w: 'tiger', e: '🐯', zh: '老虎', lv: 2 }, { w: 'monkey', e: '🐒', zh: '猴子', lv: 2 },
+    { w: 'elephant', e: '🐘', zh: '大象', lv: 2 }, { w: 'horse', e: '🐴', zh: '馬', lv: 2 },
+    { w: 'sheep', e: '🐑', zh: '羊', lv: 2 }, { w: 'chicken', e: '🐔', zh: '雞', lv: 2 },
+    { w: 'snake', e: '🐍', zh: '蛇', lv: 2 }, { w: 'turtle', e: '🐢', zh: '烏龜', lv: 2 },
+    { w: 'whale', e: '🐳', zh: '鯨魚', lv: 2 }, { w: 'panda', e: '🐼', zh: '熊貓', lv: 2 },
+    { w: 'rice', e: '🍚', zh: '飯', lv: 2 }, { w: 'water', e: '💧', zh: '水', lv: 2 },
+    { w: 'juice', e: '🧃', zh: '果汁', lv: 2 }, { w: 'cookie', e: '🍪', zh: '餅乾', lv: 2 },
+    { w: 'pizza', e: '🍕', zh: '披薩', lv: 2 }, { w: 'grapes', e: '🍇', zh: '葡萄', lv: 2 },
+    { w: 'orange', e: '🍊', zh: '橘子', lv: 2 }, { w: 'strawberry', e: '🍓', zh: '草莓', lv: 2 },
+    { w: 'watermelon', e: '🍉', zh: '西瓜', lv: 2 }, { w: 'carrot', e: '🥕', zh: '紅蘿蔔', lv: 2 },
+    { w: 'corn', e: '🌽', zh: '玉米', lv: 2 }, { w: 'ice cream', e: '🍦', zh: '冰淇淋', lv: 2 },
+    { w: 'cup', e: '🥤', zh: '杯子', lv: 2 }, { w: 'bed', e: '🛏️', zh: '床', lv: 2 },
+    { w: 'chair', e: '🪑', zh: '椅子', lv: 2 }, { w: 'door', e: '🚪', zh: '門', lv: 2 },
+    { w: 'key', e: '🔑', zh: '鑰匙', lv: 2 }, { w: 'phone', e: '📱', zh: '手機', lv: 2 },
+    { w: 'bag', e: '🎒', zh: '書包', lv: 2 }, { w: 'pencil', e: '✏️', zh: '鉛筆', lv: 2 },
+    { w: 'kite', e: '🪁', zh: '風箏', lv: 2 }, { w: 'balloon', e: '🎈', zh: '氣球', lv: 2 },
+    { w: 'boat', e: '⛵', zh: '船', lv: 2 }, { w: 'train', e: '🚂', zh: '火車', lv: 2 },
+    { w: 'plane', e: '✈️', zh: '飛機', lv: 2 }, { w: 'bike', e: '🚲', zh: '腳踏車', lv: 2 },
+    { w: 'hat', e: '🎩', zh: '帽子', lv: 2 }, { w: 'umbrella', e: '☂️', zh: '雨傘', lv: 2 },
+    { w: 'eye', e: '👁️', zh: '眼睛', lv: 2 }, { w: 'ear', e: '👂', zh: '耳朵', lv: 2 },
+    { w: 'nose', e: '👃', zh: '鼻子', lv: 2 }, { w: 'mouth', e: '👄', zh: '嘴巴', lv: 2 },
+    { w: 'hand', e: '✋', zh: '手', lv: 2 }, { w: 'foot', e: '🦶', zh: '腳', lv: 2 },
+    { w: 'rain', e: '🌧️', zh: '下雨', lv: 2 }, { w: 'snow', e: '❄️', zh: '雪', lv: 2 },
+    { w: 'cloud', e: '☁️', zh: '雲', lv: 2 }, { w: 'rainbow', e: '🌈', zh: '彩虹', lv: 2 }
+  ];
+  const AW = {
+    A: ['apple', '🍎'], B: ['ball', '⚽'], C: ['cat', '🐱'], D: ['dog', '🐶'], E: ['egg', '🥚'], F: ['fish', '🐟'],
+    G: ['grapes', '🍇'], H: ['hat', '🎩'], I: ['ice cream', '🍦'], J: ['juice', '🧃'], K: ['kite', '🪁'], L: ['lion', '🦁'],
+    M: ['moon', '🌙'], N: ['nose', '👃'], O: ['orange', '🍊'], P: ['pig', '🐷'], Q: ['queen', '👑'], R: ['rabbit', '🐰'],
+    S: ['sun', '☀️'], T: ['tree', '🌳'], U: ['umbrella', '☂️'], V: ['violin', '🎻'], W: ['watch', '⌚'], Y: ['yo-yo', '🪀'], Z: ['zebra', '🦓']
+  };
+  const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const LOOKALIKE = { b: 'dpq', d: 'bpq', p: 'qbd', q: 'pdb', m: 'nw', n: 'mhu', u: 'nv', w: 'mv', i: 'jl', j: 'ig', l: 'it', h: 'nk', f: 't', t: 'f', c: 'eo', e: 'co', o: 'ca', a: 'od', g: 'qj', y: 'v', v: 'yu', s: 'z', z: 's', r: 'n', k: 'h', x: 'k' };
+  const COLORS = [
+    { w: 'red', hex: '#E53935', zh: '紅色' }, { w: 'blue', hex: '#1E88E5', zh: '藍色' },
+    { w: 'yellow', hex: '#FDD835', zh: '黃色' }, { w: 'green', hex: '#43A047', zh: '綠色' },
+    { w: 'orange', hex: '#FB8C00', zh: '橘色' }, { w: 'purple', hex: '#8E24AA', zh: '紫色' },
+    { w: 'pink', hex: '#F06FAA', zh: '粉紅色' }, { w: 'brown', hex: '#8D6E63', zh: '咖啡色' },
+    { w: 'black', hex: '#212121', zh: '黑色' }, { w: 'white', hex: '#FFFFFF', zh: '白色' }
+  ];
+  const NUMS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+  const SHAPES = [
+    { id: 'circle', zh: '圓形', sides: 0, lv: 1 }, { id: 'square', zh: '正方形', sides: 4, lv: 1 },
+    { id: 'triangle', zh: '三角形', sides: 3, lv: 1 }, { id: 'rectangle', zh: '長方形', sides: 4, lv: 1 },
+    { id: 'star', zh: '星形', sides: -1, lv: 1 }, { id: 'heart', zh: '愛心', sides: -1, lv: 1 },
+    { id: 'oval', zh: '橢圓形', sides: 0, lv: 2 }, { id: 'diamond', zh: '菱形', sides: 4, lv: 2 },
+    { id: 'pentagon', zh: '五邊形', sides: 5, lv: 2 }, { id: 'hexagon', zh: '六邊形', sides: 6, lv: 2 }
+  ];
+  const SHAPE_COLORS = ['var(--math)', 'var(--cn)', 'var(--en)', 'var(--geo)', 'var(--sun)', 'var(--grape)'];
+  const OBJS = [
+    { e: '🍌', n: '香蕉', c: 'yellow' }, { e: '🍓', n: '草莓', c: 'red' }, { e: '🥕', n: '紅蘿蔔', c: 'orange' },
+    { e: '🍇', n: '葡萄', c: 'purple' }, { e: '🐸', n: '青蛙', c: 'green' }, { e: '🍅', n: '番茄', c: 'red' },
+    { e: '🥦', n: '花椰菜', c: 'green' }, { e: '🍆', n: '茄子', c: 'purple' }, { e: '🌽', n: '玉米', c: 'yellow' },
+    { e: '🐷', n: '小豬', c: 'pink' }, { e: '🍊', n: '橘子', c: 'orange' }, { e: '🐳', n: '鯨魚', c: 'blue' }
+  ];
+  const MIX = [['red', 'yellow', 'orange'], ['blue', 'yellow', 'green'], ['red', 'blue', 'purple'], ['red', 'white', 'pink']];
+  function clockHTML(h, m, cls) {
+    const ha = ((h % 12) + m / 60) * 30, ma = m * 6;
+    const nums = Array.from({ length: 12 }, (_, i) => {
+      const n = i + 1, a = (n * 30 - 90) * Math.PI / 180;
+      return `<text x="${(50 + 35 * Math.cos(a)).toFixed(1)}" y="${(50 + 35 * Math.sin(a) + 4.3).toFixed(1)}" text-anchor="middle" font-size="12.5" font-weight="800" font-family="'Baloo 2', system-ui, sans-serif" fill="var(--ink)">${n}</text>`;
+    }).join('');
+    const ticks = Array.from({ length: 60 }, (_, i) => {
+      const a = i * 6 * Math.PI / 180, big = i % 5 === 0, r1 = big ? 42 : 43.5;
+      return `<line x1="${(50 + r1 * Math.sin(a)).toFixed(1)}" y1="${(50 - r1 * Math.cos(a)).toFixed(1)}" x2="${(50 + 46 * Math.sin(a)).toFixed(1)}" y2="${(50 - 46 * Math.cos(a)).toFixed(1)}" stroke="var(--line-deep)" stroke-width="${big ? 1.8 : .8}"/>`;
+    }).join('');
+    return `<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="var(--surface)" stroke="var(--c)" stroke-width="3.5"/>${ticks}${nums}<line x1="50" y1="50" x2="50" y2="28" stroke="var(--ink)" stroke-width="5.5" stroke-linecap="round" transform="rotate(${ha} 50 50)"/><line x1="50" y1="50" x2="50" y2="14" stroke="var(--c)" stroke-width="3.2" stroke-linecap="round" transform="rotate(${ma} 50 50)"/><circle cx="50" cy="50" r="4" fill="var(--ink)"/></svg>`;
+  }
+  const ZY = [
+    { z: 'ㄅ', w: '杯子', c: '杯', e: '🥤', lv: 1 }, { z: 'ㄆ', w: '葡萄', c: '葡', e: '🍇', lv: 1 },
+    { z: 'ㄇ', w: '貓咪', c: '貓', e: '🐱', lv: 1 }, { z: 'ㄈ', w: '飛機', c: '飛', e: '✈️', lv: 1 },
+    { z: 'ㄉ', w: '蛋糕', c: '蛋', e: '🍰', lv: 1 }, { z: 'ㄊ', w: '兔子', c: '兔', e: '🐰', lv: 1 },
+    { z: 'ㄋ', w: '牛奶', c: '牛', e: '🥛', lv: 1 }, { z: 'ㄌ', w: '老虎', c: '老', e: '🐯', lv: 1 },
+    { z: 'ㄍ', w: '狗狗', c: '狗', e: '🐶', lv: 1 }, { z: 'ㄏ', w: '花朵', c: '花', e: '🌸', lv: 1 },
+    { z: 'ㄎ', w: '褲子', c: '褲', e: '👖', lv: 2 }, { z: 'ㄐ', w: '雞腿', c: '雞', e: '🍗', lv: 2 },
+    { z: 'ㄑ', w: '氣球', c: '氣', e: '🎈', lv: 2 }, { z: 'ㄒ', w: '西瓜', c: '西', e: '🍉', lv: 2 },
+    { z: 'ㄓ', w: '竹子', c: '竹', e: '🎋', lv: 2 }, { z: 'ㄔ', w: '車子', c: '車', e: '🚗', lv: 2 },
+    { z: 'ㄕ', w: '書本', c: '書', e: '📖', lv: 2 }, { z: 'ㄖ', w: '肉包', c: '肉', e: '🥟', lv: 2 },
+    { z: 'ㄗ', w: '嘴巴', c: '嘴', e: '👄', lv: 2 }, { z: 'ㄘ', w: '草莓', c: '草', e: '🍓', lv: 2 },
+    { z: 'ㄙ', w: '三明治', c: '三', e: '🥪', lv: 2 }, { z: 'ㄧ', w: '衣服', c: '衣', e: '👕', lv: 2 },
+    { z: 'ㄨ', w: '烏龜', c: '烏', e: '🐢', lv: 2 }, { z: 'ㄩ', w: '魚', c: '魚', e: '🐟', lv: 2 }
+  ];
+  const ODD = [
+    { name: '水果', items: [['🍎', '蘋果'], ['🍌', '香蕉'], ['🍇', '葡萄'], ['🍓', '草莓'], ['🍊', '橘子'], ['🍉', '西瓜'], ['🍐', '梨子'], ['🍑', '桃子']] },
+    { name: '動物', items: [['🐶', '小狗'], ['🐱', '小貓'], ['🐰', '兔子'], ['🐻', '熊'], ['🐼', '熊貓'], ['🐸', '青蛙'], ['🐯', '老虎'], ['🐮', '牛']] },
+    { name: '交通工具', items: [['🚗', '汽車'], ['🚌', '公車'], ['🚲', '腳踏車'], ['✈️', '飛機'], ['🚂', '火車'], ['🚒', '消防車'], ['🚀', '火箭'], ['🚕', '計程車']] },
+    { name: '穿戴的東西', items: [['👕', '衣服'], ['👖', '褲子'], ['👗', '裙子'], ['🧦', '襪子'], ['🧢', '帽子'], ['👟', '鞋子'], ['🧤', '手套'], ['🧣', '圍巾']] },
+    { name: '蔬菜', items: [['🥕', '紅蘿蔔'], ['🥦', '花椰菜'], ['🌽', '玉米'], ['🍆', '茄子'], ['🥬', '青菜'], ['🥒', '小黃瓜'], ['🧅', '洋蔥'], ['🫑', '青椒']] },
+    { name: '甜點', items: [['🍰', '蛋糕'], ['🍩', '甜甜圈'], ['🍪', '餅乾'], ['🍦', '冰淇淋'], ['🍭', '棒棒糖'], ['🧁', '杯子蛋糕'], ['🍫', '巧克力'], ['🍬', '糖果']] },
+    { name: '海裡的動物', items: [['🐬', '海豚'], ['🐳', '鯨魚'], ['🦈', '鯊魚'], ['🐙', '章魚'], ['🦀', '螃蟹'], ['🐠', '熱帶魚'], ['🦑', '魷魚'], ['🐡', '河豚']] },
+    { name: '樂器', items: [['🎹', '鋼琴'], ['🎸', '吉他'], ['🥁', '鼓'], ['🎺', '喇叭'], ['🎻', '小提琴'], ['🎷', '薩克斯風']] },
+    { name: '文具', items: [['✏️', '鉛筆'], ['📏', '尺'], ['✂️', '剪刀'], ['📎', '迴紋針'], ['🖍️', '蠟筆'], ['📒', '筆記本'], ['📐', '三角板']] }
+  ];
+  const LIFE = [
+    { e: '🚦', q: '紅燈亮了，要怎麼做？', a: [['✋', '停下來等'], ['🏃', '快跑過去'], ['🚶', '慢慢走過去']], why: '紅燈要停下來，等綠燈再走', lv: 1 },
+    { e: '🌧️', q: '下雨天出門，要帶什麼？', a: [['☂️', '雨傘'], ['🕶️', '太陽眼鏡'], ['🎈', '氣球']], why: '下雨要帶雨傘', lv: 1 },
+    { e: '🥶', q: '天氣好冷，要穿什麼？', a: [['🧥', '外套'], ['🩳', '短褲'], ['🩴', '拖鞋']], why: '天氣冷要穿外套', lv: 1 },
+    { e: '🌙', q: '晚上睡覺前，要做什麼？', a: [['🪥', '刷牙'], ['🍭', '吃糖果'], ['📺', '看電視']], why: '睡覺前要刷牙', lv: 1 },
+    { e: '🍚', q: '吃飯前，要先做什麼？', a: [['🧼', '洗手'], ['🎮', '玩遊戲'], ['🛏️', '睡覺']], why: '吃飯前要洗手', lv: 1 },
+    { e: '🐟', q: '魚住在哪裡？', a: [['🌊', '水裡'], ['🌳', '樹上'], ['🌵', '沙漠']], why: '魚住在水裡', lv: 1 },
+    { e: '🐦', q: '小鳥的家在哪裡？', a: [['🌳', '樹上'], ['🌊', '水裡'], ['🧊', '冰上']], why: '小鳥住在樹上', lv: 1 },
+    { e: '🤒', q: '生病了，要去哪裡？', a: [['🏥', '醫院'], ['🏫', '學校'], ['🎡', '遊樂園']], why: '生病要去看醫生', lv: 1 },
+    { e: '🐧', q: '企鵝住在哪裡？', a: [['🧊', '冰天雪地'], ['🌵', '沙漠'], ['🌳', '樹上']], why: '企鵝住在很冷的地方', lv: 2 },
+    { e: '🐪', q: '駱駝住在哪裡？', a: [['🌵', '沙漠'], ['🧊', '冰天雪地'], ['🌊', '水裡']], why: '駱駝住在沙漠', lv: 2 },
+    { e: '🍌', q: '香蕉皮要丟哪裡？', a: [['🍂', '廚餘'], ['♻️', '資源回收'], ['🗑️', '一般垃圾']], why: '香蕉皮是廚餘', lv: 2 },
+    { e: '🥫', q: '空的鐵罐要丟哪裡？', a: [['♻️', '資源回收'], ['🍂', '廚餘'], ['🗑️', '一般垃圾']], why: '鐵罐可以回收', lv: 2 },
+    { e: '📰', q: '舊報紙要丟哪裡？', a: [['♻️', '資源回收'], ['🍂', '廚餘'], ['🗑️', '一般垃圾']], why: '報紙可以回收', lv: 2 },
+    { e: '🧻', q: '用過的衛生紙要丟哪裡？', a: [['🗑️', '一般垃圾'], ['♻️', '資源回收'], ['🍂', '廚餘']], why: '用過的衛生紙是一般垃圾', lv: 2 },
+    { e: '🔥', q: '失火了，要打哪個電話？', a: [['📞', '119'], ['📞', '110'], ['📞', '123']], why: '失火或受傷，打 119', num: true, lv: 2 },
+    { e: '🚗', q: '坐車的時候，要做什麼？', a: [['🔒', '繫安全帶'], ['🙌', '把手伸出窗外'], ['🤸', '站起來跳']], why: '坐車要繫好安全帶', lv: 2 },
+    { e: '😎', q: '太陽很大，出門要戴什麼？', a: [['🧢', '帽子'], ['🧤', '手套'], ['🧣', '圍巾']], why: '太陽大要戴帽子', lv: 1 },
+    { e: '🍬', q: '吃完糖果，要做什麼？', a: [['🪥', '刷牙'], ['🍭', '再吃一顆'], ['🛌', '直接睡覺']], why: '吃完糖果要刷牙', lv: 1 },
+    { e: '🚸', q: '過馬路，要走哪裡？', a: [['🦓', '斑馬線'], ['🚗', '車子中間'], ['🧱', '圍牆上面']], why: '過馬路要走斑馬線', lv: 1 },
+    { e: '🔌', q: '可以用手指摸插座嗎？', a: [['🙅', '不可以'], ['👍', '可以'], ['🤷', '不知道']], why: '插座有電，不可以摸', lv: 1 },
+    { e: '🍳', q: '爐子上的鍋子很燙，怎麼辦？', a: [['🙅', '不要碰'], ['✋', '用手摸摸看'], ['🤸', '在旁邊跳']], why: '很燙的東西不要碰', lv: 1 },
+    { e: '🥛', q: '牛奶是從哪裡來的？', a: [['🐮', '乳牛'], ['🐔', '母雞'], ['🐟', '魚']], why: '牛奶來自乳牛', lv: 1 },
+    { e: '🥚', q: '雞蛋是誰生的？', a: [['🐔', '母雞'], ['🐮', '乳牛'], ['🐷', '小豬']], why: '雞蛋是母雞生的', lv: 1 },
+    { e: '🧸', q: '玩完玩具，要怎麼做？', a: [['📦', '收好'], ['🗑️', '丟掉'], ['🛋️', '放在地上']], why: '玩完玩具要收好', lv: 1 },
+    { e: '🌃', q: '晚上抬頭看天空，會看到什麼？', a: [['🌙', '月亮星星'], ['🌈', '彩虹'], ['☀️', '大太陽']], why: '晚上會看到月亮和星星', lv: 1 },
+    { e: '🍯', q: '蜂蜜是誰做的？', a: [['🐝', '蜜蜂'], ['🦋', '蝴蝶'], ['🐞', '瓢蟲']], why: '蜂蜜是蜜蜂做的', lv: 2 },
+    { e: '🤧', q: '打噴嚏的時候，要怎麼做？', a: [['💪', '用手肘遮住'], ['😮', '對著別人'], ['👏', '拍手']], why: '打噴嚏要用手肘遮住', lv: 2 },
+    { e: '👮', q: '遇到危險要找警察，打哪個電話？', a: [['📞', '110'], ['📞', '119'], ['📞', '123']], why: '找警察打 110', num: true, lv: 2 },
+    { e: '🏊', q: '可以自己去游泳池玩水嗎？', a: [['👨‍👧', '要大人陪'], ['🏃', '自己去'], ['🌙', '晚上偷偷去']], why: '玩水一定要有大人陪', lv: 2 },
+    { e: '🥤', q: '喝完的寶特瓶要丟哪裡？', a: [['♻️', '資源回收'], ['🍂', '廚餘'], ['🗑️', '一般垃圾']], why: '寶特瓶可以回收', lv: 2 },
+    { e: '⛈️', q: '打雷的時候，要待在哪裡？', a: [['🏠', '屋子裡'], ['🌳', '大樹下'], ['🏖️', '海邊']], why: '打雷要待在屋子裡', lv: 2 },
+    { e: '🍎', q: '吃水果前，要先做什麼？', a: [['🚰', '洗乾淨'], ['🧦', '放進襪子'], ['🐶', '給小狗聞']], why: '水果要先洗乾淨', lv: 2 }
+  ];
+  const POS_OBJ = [{ e: '📦', n: '箱子' }, { e: '🌳', n: '大樹' }, { e: '🪑', n: '椅子' }, { e: '🚗', n: '車子' }, { e: '🏠', n: '房子' }];
+  const POS_ANI = [{ e: '🐱', n: '小貓' }, { e: '🐶', n: '小狗' }, { e: '🐰', n: '小兔子' }, { e: '🐥', n: '小雞' }, { e: '🐻', n: '小熊' }];
+  const DIRS = {
+    up: { zh: '上面', area: '1 / 2', rot: 0 }, down: { zh: '下面', area: '3 / 2', rot: 180 },
+    left: { zh: '左邊', area: '2 / 1', rot: -90 }, right: { zh: '右邊', area: '2 / 3', rot: 90 }
+  };
+  const MEM_ICONS = ['🐶', '🐱', '🐰', '🐻', '🐼', '🐸', '🍎', '🍌', '🍓', '🚗', '⭐', '🌸', '🎈', '🐟', '🦁', '🐯', '🐵', '🦄', '🐢', '🦋', '🍉', '🍇', '🍩', '🚀', '🚂', '⚽', '🎁', '🌈', '🍦', '🐧'];
+  const FACES = [['🐶', '小狗'], ['🐱', '小貓'], ['🐰', '兔子'], ['🐻', '熊'], ['🐼', '熊貓'], ['🐯', '老虎'], ['🦁', '獅子'], ['🐮', '牛'], ['🐷', '小豬'], ['🐸', '青蛙'], ['🐵', '猴子'], ['🐔', '雞'], ['🦊', '狐狸'], ['🐨', '無尾熊'], ['🐭', '老鼠'], ['🐧', '企鵝'], ['🦄', '獨角獸'], ['🐹', '倉鼠']];
+  const COVERS = {
+    bush: { n: '草叢', svg: '<path d="M0 155V62C14 20 52 12 74 40 92 4 142 0 160 34 180 6 230 8 244 44 262 30 280 38 280 46V155Z" fill="#43A047"/><path d="M0 155V96c22-24 58-22 76-4 20-22 64-22 84 0 22-20 66-20 84-2 14-8 30-8 36 0V155Z" fill="#2E7D32"/><circle cx="58" cy="70" r="6" fill="#E53935"/><circle cx="196" cy="58" r="6" fill="#E53935"/><circle cx="132" cy="110" r="6" fill="#FDD835"/>' },
+    box: { n: '箱子', svg: '<rect x="14" y="10" width="252" height="145" rx="6" fill="#C8955A"/><path d="M14 10h252l-18 30H32z" fill="#DDB07A"/><rect x="122" y="10" width="36" height="145" fill="#E9CFA4"/><path d="M40 70h50M40 86h34" stroke="#9A6A36" stroke-width="5" stroke-linecap="round"/>' },
+    rock: { n: '大石頭', svg: '<path d="M0 155V70C18 34 60 14 104 20 140 2 196 6 226 30 258 40 280 62 280 80V155Z" fill="#9AA3AC"/><path d="M0 155V112c40-16 96-10 140 0 46-14 100-16 140 0V155Z" fill="#7E8891"/><ellipse cx="86" cy="54" rx="22" ry="10" fill="#B9C0C7"/><ellipse cx="196" cy="70" rx="14" ry="7" fill="#B9C0C7"/>' },
+    wall: { n: '圍牆', svg: '<rect x="0" y="0" width="280" height="155" fill="#C0644A"/><g stroke="#E8D3C3" stroke-width="4"><path d="M0 2h280M0 40h280M0 78h280M0 116h280"/><path d="M50 2v38M120 2v38M190 2v38M260 2v38M15 40v38M85 40v38M155 40v38M225 40v38M50 78v38M120 78v38M190 78v38M260 78v38M15 116v39M85 116v39M155 116v39M225 116v39"/></g>' }
+  };
+  const SOLIDS = [
+    { id: 'sphere', zh: '球體', lv: 1 }, { id: 'cube', zh: '正方體', lv: 1 }, { id: 'cylinder', zh: '圓柱體', lv: 1 },
+    { id: 'cone', zh: '圓錐體', lv: 1 }, { id: 'cuboid', zh: '長方體', lv: 2 }, { id: 'pyramid', zh: '角錐', lv: 2 }
+  ];
+  const OBJ3D = [
+    ['⚽', '足球', 'sphere', 1], ['🏀', '籃球', 'sphere', 1], ['🌍', '地球儀', 'sphere', 2], ['🍊', '橘子', 'sphere', 1],
+    ['🎲', '骰子', 'cube', 1], ['🧊', '冰塊', 'cube', 1], ['🥫', '罐頭', 'cylinder', 1], ['🔋', '電池', 'cylinder', 2],
+    ['🥁', '鼓', 'cylinder', 1], ['🍦', '冰淇淋甜筒', 'cone', 1], ['🎄', '聖誕樹', 'cone', 2], ['📦', '紙箱', 'cuboid', 2],
+    ['🧱', '磚塊', 'cuboid', 2]
+  ];
+  const PAT = ['🍎', '🍌', '🍇', '⭐', '🌙', '☀️', '🐶', '🐱', '🐰', '🔴', '🔵', '🟡', '🟢', '❤️', '🌸', '🚗', '🎈', '🐟'];
+  const SHADOW = [['🐘', '大象'], ['🦒', '長頸鹿'], ['🐢', '烏龜'], ['🐌', '蝸牛'], ['🦋', '蝴蝶'], ['🐓', '公雞'], ['🐈', '貓'], ['🐕', '狗'], ['🦆', '鴨子'], ['🐟', '魚'], ['🚲', '腳踏車'], ['✈️', '飛機'], ['🎸', '吉他'], ['☂️', '雨傘'], ['🔑', '鑰匙'], ['🍐', '梨子'], ['🍌', '香蕉'], ['🐇', '兔子'], ['🦀', '螃蟹'], ['🐙', '章魚'], ['🦖', '恐龍'], ['🚁', '直升機'], ['⛵', '帆船'], ['🍄', '香菇']];
+  const RIDDLES = [
+    { q: '長長耳朵紅眼睛，愛吃紅蘿蔔，蹦蹦跳跳真可愛。', e: '🐰', n: '兔子', lv: 1 },
+    { q: '脖子長長，身上有花斑點，是最高的動物。', e: '🦒', n: '長頸鹿', lv: 1 },
+    { q: '鼻子長長像水管，耳朵大大像扇子。', e: '🐘', n: '大象', lv: 1 },
+    { q: '穿著黑白衣服，最愛吃竹子。', e: '🐼', n: '熊貓', lv: 1 },
+    { q: '紅紅的臉，圓圓的身體，咬一口脆脆甜甜。', e: '🍎', n: '蘋果', lv: 1 },
+    { q: '彎彎的像月亮，穿著黃色外衣，剝開才能吃。', e: '🍌', n: '香蕉', lv: 1 },
+    { q: '綠色的皮，紅色的肉，還有黑黑的籽，夏天吃好涼快。', e: '🍉', n: '西瓜', lv: 1 },
+    { q: '會汪汪叫，會幫忙看家，是人類的好朋友。', e: '🐶', n: '小狗', lv: 1 },
+    { q: '會喵喵叫，愛吃魚，晚上眼睛亮亮的。', e: '🐱', n: '小貓', lv: 1 },
+    { q: '有漂亮的翅膀，五顏六色，喜歡停在花上。', e: '🦋', n: '蝴蝶', lv: 1 },
+    { q: '背著房子慢慢走，下雨天最愛出來。', e: '🐌', n: '蝸牛', lv: 1 },
+    { q: '穿綠色衣服，呱呱叫，會跳得很遠。', e: '🐸', n: '青蛙', lv: 1 },
+    { q: '早上喔喔喔叫，叫大家起床。', e: '🐓', n: '公雞', lv: 1 },
+    { q: '早上從東邊出來，讓大家暖暖的、亮亮的。', e: '☀️', n: '太陽', lv: 1 },
+    { q: '下雨天打開，晴天收起來。', e: '☂️', n: '雨傘', lv: 1 },
+    { q: '冰冰涼涼甜甜的，夏天最好吃，放太久會融化。', e: '🍦', n: '冰淇淋', lv: 1 },
+    { q: '沒有腳也沒有手，在水裡游來游去。', e: '🐟', n: '魚', lv: 1 },
+    { q: '有翅膀卻不是鳥，載很多人飛到很遠的地方。', e: '✈️', n: '飛機', lv: 1 },
+    { q: '越洗越小，洗完手香香的。', e: '🧼', n: '肥皂', lv: 2 },
+    { q: '有臉沒有嘴，有針不會縫，滴答滴答一直走。', e: '🕰️', n: '時鐘', lv: 2 },
+    { q: '白白的，冬天從天上輕輕飄下來，摸起來冰冰的。', e: '❄️', n: '雪', lv: 2 },
+    { q: '圓圓扁扁，可以拿去買東西。', e: '🪙', n: '硬幣', lv: 2 },
+    { q: '開門鎖門都要靠它，小小一支放在口袋。', e: '🔑', n: '鑰匙', lv: 2 },
+    { q: '有時圓圓，有時彎彎，晚上才出來。', e: '🌙', n: '月亮', lv: 2 },
+    { q: '雨後天空出現，有七種顏色，像一座橋。', e: '🌈', n: '彩虹', lv: 2 },
+    { q: '有八隻腳，住在海裡，還會噴墨汁。', e: '🐙', n: '章魚', lv: 2 },
+    { q: '有兩個輪子，要用腳踩才會往前跑。', e: '🚲', n: '腳踏車', lv: 2 },
+    { q: '身上有很多刺，卻是好吃的水果，切開黃黃的。', e: '🍍', n: '鳳梨', lv: 2 },
+    { q: '一顆一顆紫色的，長成一大串。', e: '🍇', n: '葡萄', lv: 2 },
+    { q: '橫著走路，有兩隻大鉗子。', e: '🦀', n: '螃蟹', lv: 2 },
+    { q: '長長的身體沒有腳，在地上滑來滑去。', e: '🐍', n: '蛇', lv: 2 },
+    { q: '裝了熱水或冷水，口渴就倒一杯來喝。', e: '🫖', n: '水壺', lv: 2 },
+    { q: '頭上戴紅帽子，身上穿白衣服，雨後長在樹下。', e: '🍄', n: '香菇', lv: 2 },
+    { q: '肚子上有口袋，可以把寶寶放進去，跳得很高。', e: '🦘', n: '袋鼠', lv: 2 }
+  ];
+  const MANNERS = [
+    { e: '🎠', q: '溜滑梯好多人在玩，要怎麼做？', a: [['🧍', '排隊等'], ['💨', '插隊'], ['🤜', '推開別人']], why: '要排隊，一個一個輪流玩', lv: 1 },
+    { e: '💥', q: '不小心撞到別人，要說什麼？', a: [['🙇', '對不起'], ['🙄', '走開啦'], ['🤐', '不說話']], why: '撞到別人，要說對不起', lv: 1 },
+    { e: '🙋', q: '需要別人幫忙，要怎麼說？', a: [['🙏', '請幫幫我'], ['😤', '快點給我'], ['😭', '一直哭']], why: '請人幫忙，要說「請」', lv: 1 },
+    { e: '🎁', q: '別人送你禮物，要說什麼？', a: [['😊', '謝謝'], ['😑', '不說話'], ['🙅', '我不要']], why: '收到東西，要說謝謝', lv: 1 },
+    { e: '🏫', q: '早上到學校看到老師，要說什麼？', a: [['👋', '老師早'], ['🌙', '晚安'], ['🤐', '不理老師']], why: '看到老師，要說老師早', lv: 1 },
+    { e: '🧸', q: '想玩朋友的玩具，要怎麼做？', a: [['🙏', '問可以借我嗎'], ['✊', '直接搶過來'], ['😭', '大哭']], why: '想借東西，要先問', lv: 1 },
+    { e: '🏠', q: '要回家了，跟朋友說什麼？', a: [['👋', '再見'], ['🌅', '早安'], ['🙄', '哼']], why: '離開時要說再見', lv: 1 },
+    { e: '🤕', q: '朋友跌倒了，要怎麼做？', a: [['🤝', '扶他起來'], ['😂', '哈哈大笑'], ['🏃', '趕快跑走']], why: '朋友跌倒，要扶他起來，問他還好嗎', lv: 1 },
+    { e: '🍪', q: '你有點心，朋友也想吃，怎麼辦？', a: [['🤲', '分一點給他'], ['🙈', '藏起來'], ['😝', '吃給他看']], why: '好東西可以和朋友分享', lv: 1 },
+    { e: '🙇', q: '別人跟你說對不起，你可以說什麼？', a: [['🤝', '沒關係'], ['😠', '走開'], ['🙄', '哼']], why: '別人道歉，可以說沒關係', lv: 1 },
+    { e: '🗣️', q: '別人在說話的時候，要怎麼做？', a: [['👂', '安靜聽完'], ['📢', '大聲插嘴'], ['🙉', '摀住耳朵']], why: '別人說話時，要安靜聽完', lv: 2 },
+    { e: '🚪', q: '進別人房間之前，要先做什麼？', a: [['✊', '先敲門'], ['🏃', '直接衝進去'], ['🦶', '用腳踢門']], why: '進房間前要先敲門', lv: 2 },
+    { e: '✋', q: '上課時想上廁所，要怎麼做？', a: [['✋', '舉手告訴老師'], ['🏃', '自己跑出去'], ['🤐', '一直忍著']], why: '要舉手告訴老師', lv: 2 },
+    { e: '🏺', q: '不小心弄壞別人的東西，怎麼辦？', a: [['🙇', '道歉並告訴大人'], ['🙈', '偷偷藏起來'], ['🤥', '說不是我']], why: '要說對不起，並告訴大人', lv: 2 },
+    { e: '😢', q: '朋友難過哭了，可以怎麼做？', a: [['🤗', '安慰他'], ['😂', '笑他'], ['🙉', '不理他']], why: '朋友難過時，可以安慰他', lv: 2 },
+    { e: '🍽️', q: '吃飯的時候，要怎麼做？', a: [['🪑', '坐好慢慢吃'], ['🏃', '邊跑邊吃'], ['📢', '大聲吵鬧']], why: '吃飯要坐好，慢慢吃', lv: 2 },
+    { e: '📞', q: '接電話的時候，第一句要說什麼？', a: [['😊', '您好'], ['😤', '幹嘛'], ['🤐', '不說話']], why: '接電話要先說您好', lv: 2 },
+    { e: '🚌', q: '公車上老爺爺沒有位子坐，怎麼辦？', a: [['🪑', '讓座給他'], ['😴', '假裝睡覺'], ['🙄', '不理他']], why: '要讓座給老人家', lv: 2 },
+    { e: '🧹', q: '玩完玩具，朋友還在收，怎麼辦？', a: [['🤝', '一起幫忙收'], ['🏃', '自己先跑走'], ['🛋️', '坐著看']], why: '大家一起收比較快', lv: 2 },
+    { e: '🏆', q: '玩遊戲輸了，要怎麼做？', a: [['👏', '恭喜贏的人'], ['😠', '生氣丟東西'], ['😭', '大哭耍賴']], why: '輸了也要恭喜別人，下次再加油', lv: 2 },
+    { e: '🧃', q: '想喝飲料，跟媽媽怎麼說？', a: [['🙏', '請給我飲料'], ['😤', '我要喝'], ['🦶', '一直跺腳']], why: '要東西時要說「請」', lv: 2 }
+  ];
+  const BINS = {
+    general: { n: '一般垃圾', c: '#6F7B86', d: '#56616B', icon: '✕' }, recycle: { n: '資源回收', c: '#2C7BCB', d: '#1B5C9E', icon: '♻' },
+    food: { n: '廚餘', c: '#3E9B4F', d: '#2E7D3B', icon: '🍂' }, paper: { n: '紙類', c: '#D99A1E', d: '#A87410', icon: '📄' },
+    plastic: { n: '塑膠類', c: '#2C7BCB', d: '#1B5C9E', icon: '🧴' }, metal: { n: '鐵鋁罐', c: '#8E99A4', d: '#6B7681', icon: '🥫' },
+    glass: { n: '玻璃類', c: '#1E9C8E', d: '#14776C', icon: '🍾' }
+  };
+  const TRASH = [
+    { e: '🍌', n: '香蕉皮', bin: 'food', lv: 1 }, { e: '🍎', n: '吃剩的蘋果', bin: 'food', lv: 1 }, { e: '🍚', n: '剩飯剩菜', bin: 'food', lv: 1 },
+    { e: '🥬', n: '爛掉的菜葉', bin: 'food', lv: 1 }, { e: '🍉', n: '西瓜皮', bin: 'food', lv: 1 }, { e: '🥚', n: '雞蛋殼', bin: 'food', lv: 2 },
+    { e: '🍞', n: '吃剩的麵包', bin: 'food', lv: 2 },
+    { e: '🧻', n: '用過的衛生紙', bin: 'general', lv: 1 }, { e: '😷', n: '用過的口罩', bin: 'general', lv: 1 },
+    { e: '🦴', n: '大骨頭', bin: 'general', lv: 2 }, { e: '🩹', n: '用過的 OK 繃', bin: 'general', lv: 2 },
+    { e: '📰', n: '舊報紙', bin: 'recycle', sub: 'paper', lv: 1 }, { e: '📦', n: '紙箱', bin: 'recycle', sub: 'paper', lv: 1 },
+    { e: '📚', n: '舊課本', bin: 'recycle', sub: 'paper', lv: 2 }, { e: '🧴', n: '洗髮精空瓶', bin: 'recycle', sub: 'plastic', lv: 1 },
+    { e: '🥤', n: '沖乾淨的塑膠杯', bin: 'recycle', sub: 'plastic', lv: 2 }, { e: '🥫', n: '空鐵罐', bin: 'recycle', sub: 'metal', lv: 1 },
+    { e: '🍾', n: '玻璃瓶', bin: 'recycle', sub: 'glass', lv: 1 }, { e: '🫙', n: '玻璃罐', bin: 'recycle', sub: 'glass', lv: 2 },
+    { e: '🔋', n: '用完的電池', bin: 'recycle', sub: 'battery', lv: 2 }
+  ];
+  function binHTML(k) {
+    const b = BINS[k];
+    return `<svg class="o-bin" viewBox="0 0 100 110" aria-hidden="true"><rect x="38" y="4" width="24" height="10" rx="4" fill="${b.d}"/><rect x="8" y="12" width="84" height="14" rx="6" fill="${b.d}"/><path d="M14 28h72l-7 76a6 6 0 0 1-6 6H27a6 6 0 0 1-6-6z" fill="${b.c}"/><path d="M36 40v56M50 40v56M64 40v56" stroke="#fff" stroke-opacity=".25" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="66" r="20" fill="#fff" opacity=".92"/><text x="50" y="74" text-anchor="middle" font-size="22" font-weight="800" fill="${b.d}">${b.icon}</text></svg>`;
+  }
+  function solidHTML(id, color, cls) {
+    const dk = '<path d="D" fill="#000" opacity=".22"/>', lt = '<path d="D" fill="#fff" opacity=".3"/>';
+    const face = (d, shade) => `<path d="${d}" fill="${color}"/>` + (shade === 'dk' ? dk.replace('D', d) : shade === 'lt' ? lt.replace('D', d) : '');
+    const g = {
+      sphere: `<ellipse cx="50" cy="92" rx="30" ry="5" fill="#000" opacity=".12"/><circle cx="50" cy="50" r="38" fill="${color}"/><path d="M50 12a38 38 0 0 1 0 76a38 38 0 0 0 0-76" fill="#000" opacity=".12"/><ellipse cx="36" cy="34" rx="12" ry="8" fill="#fff" opacity=".45"/>`,
+      cube: face('M16 36L38 16H82L60 36Z', 'lt') + face('M16 36H60V82H16Z', '') + face('M60 36L82 16V62L60 82Z', 'dk'),
+      cuboid: face('M6 46L26 28H92L72 46Z', 'lt') + face('M6 46H72V80H6Z', '') + face('M72 46L92 28V62L72 80Z', 'dk'),
+      cylinder: `<path d="M22 24V76A28 9 0 0 0 78 76V24Z" fill="${color}"/><path d="M50 24H78V76A28 9 0 0 1 50 85Z" fill="#000" opacity=".16"/><ellipse cx="50" cy="24" rx="28" ry="9" fill="${color}"/><ellipse cx="50" cy="24" rx="28" ry="9" fill="#fff" opacity=".35"/>`,
+      cone: `<path d="M50 10L22 78A28 9 0 0 0 78 78Z" fill="${color}"/><path d="M50 10L78 78A28 9 0 0 1 50 87Z" fill="#000" opacity=".16"/>`,
+      pyramid: face('M50 10L14 74L52 88Z', '') + face('M50 10L52 88L86 70Z', 'dk')
+    }[id];
+    return `<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true">${g}</svg>`;
+  }
+  function coinHTML(v, cls) {
+    const r = { 1: 30, 5: 36, 10: 40, 50: 46 }[v];
+    const fill = { 1: '#C98A4B', 5: '#CDD2D9', 10: '#CDD2D9', 50: '#E5B93F' }[v];
+    const edge = { 1: '#9A6330', 5: '#8F96A1', 10: '#8F96A1', 50: '#B08720' }[v];
+    const ink = v === 1 ? '#3A1F08' : v === 50 ? '#3A2A10' : '#2B2F36';
+    return `<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="${r}" fill="${fill}" stroke="${edge}" stroke-width="4"/><circle cx="50" cy="50" r="${r - 7}" fill="none" stroke="${edge}" stroke-width="1.5" stroke-dasharray="2 3"/><text x="50" y="${(50 + r * .16).toFixed(1)}" text-anchor="middle" font-size="${(r * .72).toFixed(1)}" font-weight="800" font-family="'Baloo 2', system-ui, sans-serif" fill="${ink}">${v}</text><text x="50" y="${(50 + r * .6).toFixed(1)}" text-anchor="middle" font-size="${(r * .28).toFixed(1)}" font-weight="700" fill="${ink}">元</text></svg>`;
+  }
+  const arrowSVG = rot => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform:rotate(${rot}deg)"><path d="M12 20V4M5 11l7-7 7 7"/></svg>`;
+  const sideSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg>';
+  const PRAISE = ['答對了！', '好棒！', '太厲害了！', '你好聰明！', '完全正確！', '哇，答對了！'];
+
+  /* ---------- 畫面元件 ---------- */
+  const numHTML = k => `<span class="o-num">${k}</span>`;
+  const charHTML = c => `<span class="o-char">${c}</span>`;
+  const picHTML = e => `<span class="o-pic">${e}</span>`;
+  const swatchHTML = hex => `<span class="o-swatch" style="background:${hex}"></span>`;
+  const countHTML = (item, n) => `<div class="count">${Array(n).fill(`<span>${item.e}</span>`).join('')}</div>`;
+
+  function poly(n, r, cy) {
+    return Array.from({ length: n }, (_, i) => {
+      const a = (-90 + 360 * i / n) * Math.PI / 180;
+      return (50 + r * Math.cos(a)).toFixed(1) + ',' + (cy + r * Math.sin(a)).toFixed(1);
+    }).join(' ');
+  }
+  function starPts() {
+    return Array.from({ length: 10 }, (_, i) => {
+      const r = i % 2 ? 19 : 45, a = (-90 + 36 * i) * Math.PI / 180;
+      return (50 + r * Math.cos(a)).toFixed(1) + ',' + (54 + r * Math.sin(a)).toFixed(1);
+    }).join(' ');
+  }
+  function shapeHTML(id, color) {
+    const f = `fill="${color}" stroke="${color}" stroke-width="5" stroke-linejoin="round"`;
+    const inner = {
+      circle: `<circle cx="50" cy="50" r="40" ${f}/>`,
+      square: `<rect x="13" y="13" width="74" height="74" rx="4" ${f}/>`,
+      triangle: `<polygon points="50,10 91,86 9,86" ${f}/>`,
+      rectangle: `<rect x="6" y="28" width="88" height="44" rx="4" ${f}/>`,
+      star: `<polygon points="${starPts()}" ${f}/>`,
+      heart: `<path d="M50 87C20 65 6 48 13 31 21 14 42 14 50 31 58 14 79 14 87 31 94 48 80 65 50 87Z" ${f}/>`,
+      oval: `<ellipse cx="50" cy="50" rx="44" ry="27" ${f}/>`,
+      diamond: `<polygon points="50,6 83,50 50,94 17,50" ${f}/>`,
+      pentagon: `<polygon points="${poly(5, 42, 54)}" ${f}/>`,
+      hexagon: `<polygon points="${poly(6, 42, 50)}" ${f}/>`
+    }[id];
+    return `<svg class="o-shape" viewBox="0 0 100 100" aria-hidden="true">${inner}</svg>`;
+  }
+
+  /* ---------- 出題 ---------- */
+  const GEN = {
+    math() {
+      const item = pick(ITEMS);
+      if (age === 'small') {
+        const n = rand(1, 5);
+        return {
+          prompt: `數一數，有幾個${item.n}？`, speech: [[`數一數，有幾個${item.n}？`]],
+          stage: countHTML(item, n),
+          options: numberOptions(n, 3, 1, 5).map(k => ({ html: numHTML(k), label: String(k), correct: k === n })),
+          after: [[`${n}個${item.n}`]], key: 'c' + n + item.e
+        };
+      }
+      const t = pick(['count', 'add', 'add', 'next']);
+      if (t === 'count') {
+        const n = rand(5, 10);
+        return {
+          prompt: `數一數，有幾個${item.n}？`, speech: [[`數一數，有幾個${item.n}？`]],
+          stage: countHTML(item, n),
+          options: numberOptions(n, 4, 1, 10).map(k => ({ html: numHTML(k), label: String(k), correct: k === n })),
+          after: [[`${n}個${item.n}`]], key: 'c' + n
+        };
+      }
+      if (t === 'add') {
+        const a = rand(1, 5), b = rand(1, Math.min(5, 10 - a)), s = a + b;
+        return {
+          prompt: `${a} + ${b} = ?`, speech: [[`${a}加${b}等於多少？`]],
+          stage: `<div class="sum">${countHTML(item, a)}<span class="op">+</span>${countHTML(item, b)}</div>`,
+          options: numberOptions(s, 4, 1, 10).map(k => ({ html: numHTML(k), label: String(k), correct: k === s })),
+          after: [[`${a}加${b}等於${s}`]], key: 'a' + a + b
+        };
+      }
+      const st0 = rand(1, 6), ans = st0 + 3;
+      return {
+        prompt: '下一個數字是多少？', speech: [[`${st0}、${st0 + 1}、${st0 + 2}，下一個是多少？`]],
+        stage: `<div class="seq"><span>${st0}</span><span>${st0 + 1}</span><span>${st0 + 2}</span><span class="q">?</span></div>`,
+        options: numberOptions(ans, 4, 1, 10).map(k => ({ html: numHTML(k), label: String(k), correct: k === ans })),
+        after: [[`${ans}`]], key: 'n' + st0
+      };
+    },
+    cn() {
+      if (age === 'small' || Math.random() < .5) {
+        const pool = age === 'small' ? CN.filter(x => x.lv === 1) : CN;
+        const n = age === 'small' ? 2 : 3;
+        const t = pick(pool), opts = shuffle([t, ...others(pool, t, n, x => x.ch)]);
+        return {
+          prompt: '看圖片，找出對的字', speech: [[`${t.say}。哪一個是${t.ch}？`]],
+          stage: `<div class="pic">${t.e}</div>`,
+          options: opts.map(o => ({ html: charHTML(o.ch), label: o.ch, correct: o === t })),
+          after: [[t.say]], key: t.ch
+        };
+      }
+      const t = pick(CN), opts = shuffle([t, ...others(CN, t, 3, x => x.e)]);
+      return {
+        prompt: '這是什麼字？找出對的圖片', speech: [['這是什麼字？找出對的圖片']],
+        stage: `<div class="bigchar">${t.ch}</div>`,
+        options: opts.map(o => ({ html: picHTML(o.e), label: o.say, correct: o === t })),
+        after: [[t.say]], key: 'r' + t.ch
+      };
+    },
+    en() {
+      if (age === 'small') {
+        const pool = EN.filter(x => x.lv === 1), t = pick(pool), opts = shuffle([t, ...others(pool, t, 2, x => x.w)]);
+        return {
+          prompt: '聽英文，找出對的圖片', speech: [['哪一個是'], [t.w, 'en-US']],
+          stage: `<div class="word">${t.w}</div>`,
+          options: opts.map(o => ({ html: picHTML(o.e), label: o.zh, correct: o === t })),
+          after: [[t.w, 'en-US'], [t.zh]], key: t.w
+        };
+      }
+      const k = pick(['word', 'word', 'color', 'number']);
+      if (k === 'color') {
+        const t = pick(COLORS), opts = shuffle([t, ...others(COLORS, t, 3, x => x.w)]);
+        return {
+          prompt: '聽英文，找出對的顏色', speech: [['哪一個是'], [t.w, 'en-US']],
+          stage: `<div class="word">${t.w}</div>`,
+          options: opts.map(o => ({ html: swatchHTML(o.hex), label: o.zh, correct: o === t })),
+          after: [[t.w, 'en-US'], [t.zh]], key: t.w
+        };
+      }
+      if (k === 'number') {
+        const n = rand(1, 10), w = NUMS[n - 1];
+        return {
+          prompt: '聽英文，找出對的數字', speech: [['哪一個是'], [w, 'en-US']],
+          stage: `<div class="word">${w}</div>`,
+          options: numberOptions(n, 4, 1, 10).map(v => ({ html: numHTML(v), label: String(v), correct: v === n })),
+          after: [[w, 'en-US'], [String(n)]], key: w
+        };
+      }
+      const t = pick(EN), opts = shuffle([t, ...others(EN, t, 3, x => x.e)]);
+      return {
+        prompt: '聽英文，找出對的圖片', speech: [['哪一個是'], [t.w, 'en-US']],
+        stage: `<div class="word">${t.w}</div>`,
+        options: opts.map(o => ({ html: picHTML(o.e), label: o.zh, correct: o === t })),
+        after: [[t.w, 'en-US'], [t.zh]], key: t.w
+      };
+    },
+    geo() {
+      const colors = shuffle(SHAPE_COLORS);
+      if (Math.random() < (age === 'small' ? .35 : .2)) {
+        const pool = age === 'small' ? SHAPES.filter(s => s.lv === 1) : SHAPES;
+        const t = pick(pool), opts = shuffle([t, ...others(pool, t, age === 'small' ? 2 : 3, s => s.id)]);
+        return {
+          prompt: '找出一樣的形狀', speech: [['找一找，哪一個形狀跟它一樣？']],
+          stage: shapeHTML(t.id, colors[5]).replace('class="o-shape"', 'class="solid-big"'),
+          options: opts.map((o, i) => ({ html: shapeHTML(o.id, colors[i]), label: o.zh, correct: o === t })),
+          after: [[`一樣是${t.zh}`]], key: 'm' + t.id
+        };
+      }
+      if (age === 'small' || Math.random() < .55) {
+        const pool = age === 'small' ? SHAPES.filter(s => s.lv === 1) : SHAPES;
+        const n = age === 'small' ? 2 : 3;
+        const t = pick(pool), opts = shuffle([t, ...others(pool, t, n, s => s.id)]);
+        return {
+          prompt: `哪一個是${t.zh}？`, speech: [[`哪一個是${t.zh}？`]], stage: '',
+          options: opts.map((o, i) => ({ html: shapeHTML(o.id, colors[i]), label: o.zh, correct: o === t })),
+          after: [[`這是${t.zh}`]], key: t.id
+        };
+      }
+      const t = pick(SHAPES.filter(s => ['triangle', 'square', 'pentagon', 'hexagon'].includes(s.id)));
+      const pool = SHAPES.filter(s => s.sides !== t.sides && s.sides !== -1);
+      const opts = shuffle([t, ...shuffle(pool).slice(0, 3)]);
+      return {
+        prompt: `哪一個有 ${t.sides} 條邊？`, speech: [[`哪一個有${t.sides}條邊？`]], stage: '',
+        options: opts.map((o, i) => ({ html: shapeHTML(o.id, colors[i]), label: o.zh, correct: o === t })),
+        after: [[`${t.zh}有${t.sides}條邊`]], key: 's' + t.id
+      };
+    },
+    time() {
+      const label = (h, m) => m === 30 ? `${h} 點半` : `${h} 點`;
+      const spoken = (h, m) => m === 30 ? `${h}點半` : `${h}點`;
+      if (age === 'small') {
+        const h = rand(1, 12);
+        return {
+          prompt: '時鐘上是幾點？', speech: [['看看時鐘，現在是幾點？']],
+          stage: clockHTML(h, 0, 'clock-big'),
+          options: numberOptions(h, 3, 1, 12).map(k => ({ html: `<span class="o-time">${k} 點</span>`, label: `${k}點`, correct: k === h })),
+          after: [[`短針指著${h}，是${h}點`]], key: 't' + h
+        };
+      }
+      const h = rand(1, 12), m = pick([0, 30]);
+      const set = new Map([[h + ':' + m, [h, m]]]);
+      const near = [[h, 30 - m], [h % 12 + 1, m], [(h + 10) % 12 + 1, m], [rand(1, 12), pick([0, 30])], [rand(1, 12), pick([0, 30])]];
+      for (const c of shuffle(near)) { if (set.size >= 4) break; set.set(c[0] + ':' + c[1], c); }
+      while (set.size < 4) { const c = [rand(1, 12), pick([0, 30])]; set.set(c[0] + ':' + c[1], c); }
+      const opts = shuffle([...set.values()]);
+      if (Math.random() < .6) {
+        return {
+          prompt: '現在是幾點？', speech: [['看看時鐘，現在是幾點？']],
+          stage: clockHTML(h, m, 'clock-big'),
+          options: opts.map(([a, b]) => ({ html: `<span class="o-time">${label(a, b)}</span>`, label: spoken(a, b), correct: a === h && b === m })),
+          after: [[spoken(h, m)]], key: 'r' + h + m
+        };
+      }
+      return {
+        prompt: `哪一個是 ${label(h, m)}？`, speech: [[`哪一個時鐘是${spoken(h, m)}？`]], stage: '',
+        options: opts.map(([a, b]) => ({ html: clockHTML(a, b, 'o-clock'), label: spoken(a, b), correct: a === h && b === m })),
+        after: [[spoken(h, m)]], key: 'f' + h + m
+      };
+    },
+    color() {
+      const BASIC = COLORS.slice(0, 8);
+      const sw = c => ({ html: swatchHTML(c.hex), label: c.zh });
+      if (age === 'small' && Math.random() < .4) {
+        const t = pick(OBJS), col = COLORS.find(c => c.w === t.c);
+        const opts = shuffle([col, ...others(BASIC, col, 2, x => x.w)]);
+        return {
+          prompt: `${t.n}是什麼顏色？`, speech: [[`${t.n}是什麼顏色？`]],
+          stage: `<div class="pic">${t.e}</div>`,
+          options: opts.map(o => ({ ...sw(o), correct: o === col })),
+          after: [[`${t.n}是${col.zh}`]], key: t.e
+        };
+      }
+      if (age === 'small') {
+        const t = pick(BASIC), opts = shuffle([t, ...others(BASIC, t, 2, x => x.w)]);
+        return {
+          prompt: `哪一個是${t.zh}？`, speech: [[`哪一個是${t.zh}？`]], stage: '',
+          options: opts.map(o => ({ ...sw(o), correct: o === t })),
+          after: [[`這是${t.zh}`]], key: t.w
+        };
+      }
+      if (Math.random() < .65) {
+        const t = pick(OBJS), col = COLORS.find(c => c.w === t.c);
+        const opts = shuffle([col, ...others(COLORS.slice(0, 8), col, 3, x => x.w)]);
+        return {
+          prompt: `${t.n}是什麼顏色？`, speech: [[`${t.n}是什麼顏色？`]],
+          stage: `<div class="pic">${t.e}</div>`,
+          options: opts.map(o => ({ ...sw(o), correct: o === col })),
+          after: [[`${t.n}是${col.zh}`]], key: t.e
+        };
+      }
+      const [a, b, r] = pick(MIX).map(w => COLORS.find(c => c.w === w));
+      const opts = shuffle([r, ...others(COLORS.slice(0, 8).filter(c => c !== a && c !== b), r, 3, x => x.w)]);
+      return {
+        prompt: `${a.zh}加${b.zh}，會變成什麼顏色？`, speech: [[`${a.zh}加${b.zh}，會變成什麼顏色？`]],
+        stage: `<div class="mix"><span class="blob" style="background:${a.hex}"></span><span class="op">+</span><span class="blob" style="background:${b.hex}"></span><span class="op">=</span><span class="blob q">?</span></div>`,
+        options: opts.map(o => ({ ...sw(o), correct: o === r })),
+        after: [[`${a.zh}加${b.zh}，變成${r.zh}`]], key: 'm' + r.w
+      };
+    },
+    zhuyin() {
+      const pool = age === 'small' ? ZY.filter(x => x.lv === 1) : ZY;
+      const n = age === 'small' ? 2 : 3;
+      const t = pick(pool), opts = shuffle([t, ...others(pool, t, n, x => x.z)]);
+      if (age === 'small' || Math.random() < .6) {
+        return {
+          prompt: `「${t.w}」是哪一個注音開頭？`, speech: [[`${t.w}的${t.c}，是哪一個注音開頭？`]],
+          stage: `<div><div class="pic">${t.e}</div><div class="word-zh">${t.w}</div></div>`,
+          options: opts.map(o => ({ html: charHTML(o.z), label: o.z, correct: o === t })),
+          after: [[`${t.w}的${t.c}`]], key: t.z
+        };
+      }
+      return {
+        prompt: '哪一個是這個注音開頭的？', speech: [['看看注音，哪一個是它開頭的？']],
+        stage: `<div class="bigchar">${t.z}</div>`,
+        options: opts.map(o => ({ html: picHTML(o.e), label: o.w, correct: o === t })),
+        after: [[`${t.w}的${t.c}`]], key: 'r' + t.z
+      };
+    },
+    money() {
+      const coinOpt = v => ({ html: coinHTML(v, 'o-coin'), label: `${v}元` });
+      if (Math.random() < (age === 'small' ? .4 : .2)) {
+        const pair = shuffle([1, 5, 10, 50]).slice(0, 2), big = Math.max(...pair);
+        return {
+          prompt: '哪一個錢比較多？', speech: [['哪一個錢比較多？']], stage: '',
+          options: pair.map(v => ({ ...coinOpt(v), correct: v === big })),
+          after: [[`${big}元比較多`]], key: 'b' + pair.slice().sort((a, b) => a - b).join('-')
+        };
+      }
+      if (age === 'small' || Math.random() < .35) {
+        const all = [1, 5, 10, 50], t = pick(all), opts = shuffle([t, ...others(all, t, age === 'small' ? 2 : 3, x => x)]);
+        return {
+          prompt: `哪一個是 ${t} 元？`, speech: [[`哪一個是${t}元？`]], stage: '',
+          options: opts.map(v => ({ ...coinOpt(v), correct: v === t })),
+          after: [[`這是${t}元`]], key: 'c' + t
+        };
+      }
+      const k = rand(2, 3), coins = [];
+      for (let i = 0; i < k; i++) coins.push(pick([1, 1, 5, 5, 10, 10, 50]));
+      coins.sort((a, b) => b - a);
+      const sum = coins.reduce((a, b) => a + b, 0);
+      const set = new Set([sum]);
+      for (const d of shuffle([1, -1, 5, -5, 10, -10, 4, -4])) { if (set.size >= 4) break; if (sum + d > 0) set.add(sum + d); }
+      return {
+        prompt: '一共是幾元？', speech: [['數一數，一共是幾元？']],
+        stage: `<div class="coins">${coins.map(v => coinHTML(v, 'coin-s')).join('')}</div>`,
+        options: shuffle([...set]).map(v => ({ html: `<span class="o-time">${v} 元</span>`, label: `${v}元`, correct: v === sum })),
+        after: [[`${coins.join('加')}，一共${sum}元`]], key: 's' + coins.join('-')
+      };
+    },
+    compare() {
+      const item = pick(ITEMS);
+      const type = pick(age === 'small' ? ['more', 'more', 'size'] : ['more', 'size', 'num', 'num']);
+      if (type === 'more') {
+        const max = age === 'small' ? 5 : 9, gap = age === 'small' ? 2 : 1;
+        const a = rand(1, max); let b; do { b = rand(1, max); } while (Math.abs(a - b) < gap);
+        const want = age === 'small' || Math.random() < .5 ? 'more' : 'less';
+        const ans = want === 'more' ? Math.max(a, b) : Math.min(a, b), word = want === 'more' ? '比較多' : '比較少';
+        return {
+          prompt: `哪一邊的${item.n}${word}？`, speech: [[`哪一邊的${item.n}${word}？`]], stage: '',
+          options: [a, b].map(v => ({ html: `<span class="o-group">${Array(v).fill(item.e).join('')}</span>`, label: `${v}個`, correct: v === ans })),
+          after: [[`這邊有${ans}個，${word}`]], key: 'm' + a + b
+        };
+      }
+      if (type === 'size') {
+        const want = Math.random() < .5 ? '最大' : '最小';
+        const sizes = shuffle([.42, .72, 1.05]), target = want === '最大' ? 1.05 : .42;
+        return {
+          prompt: `哪一個${item.n}${want}？`, speech: [[`哪一個${item.n}${want}？`]], stage: '',
+          options: sizes.map(z => ({ html: `<span class="o-pic" style="transform:scale(${z})">${item.e}</span>`, label: z === target ? want : '', correct: z === target })),
+          after: [[`這個${want}`]], key: 'z' + want + item.e
+        };
+      }
+      const a = rand(1, 20); let b; do { b = rand(1, 20); } while (b === a);
+      const want = Math.random() < .5 ? '比較大' : '比較小', ans = want === '比較大' ? Math.max(a, b) : Math.min(a, b);
+      return {
+        prompt: `哪一個數字${want}？`, speech: [[`${a}和${b}，哪一個${want}？`]], stage: '',
+        options: [a, b].map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })),
+        after: [[`${ans}${want}`]], key: 'n' + a + b
+      };
+    },
+    position() {
+      const o = pick(POS_OBJ), a = pick(POS_ANI);
+      const keys = age === 'small' ? ['up', 'down', 'left', 'right'] : ['up', 'down', 'left', 'right'];
+      const d = pick(keys), dir = DIRS[d];
+      let options, after = [[`${a.n}在${o.n}的${dir.zh}`]];
+      if (age === 'small') {
+        const side = d === 'left' || d === 'right';
+        options = shuffle([
+          { html: `<span class="o-dir">${arrowSVG(0)}<span>上面</span></span>`, label: '上面', correct: d === 'up' },
+          { html: `<span class="o-dir">${arrowSVG(180)}<span>下面</span></span>`, label: '下面', correct: d === 'down' },
+          { html: `<span class="o-dir">${sideSVG}<span>旁邊</span></span>`, label: '旁邊', correct: side }
+        ]);
+        if (side) after = [[`${a.n}在${o.n}的旁邊`]];
+      } else {
+        options = shuffle(Object.entries(DIRS).map(([k, v]) => ({ html: `<span class="o-dir">${arrowSVG(v.rot)}<span>${v.zh}</span></span>`, label: v.zh, correct: k === d })));
+      }
+      return {
+        prompt: `${a.n}在${o.n}的哪裡？`, speech: [[`${a.n}在${o.n}的哪裡？`]],
+        stage: `<div class="pos"><span class="obj">${o.e}</span><span style="grid-area:${dir.area}">${a.e}</span></div>`,
+        options, after, key: d + o.e + a.e
+      };
+    },
+    odd() {
+      const [A, B] = shuffle(ODD), k = age === 'small' ? 2 : 3;
+      const same = shuffle(A.items).slice(0, k), odd = pick(B.items);
+      const opts = shuffle([...same.map(x => ({ x, odd: false })), { x: odd, odd: true }]);
+      return {
+        prompt: '哪一個跟別人不一樣？', speech: [['哪一個跟別人不一樣？']], stage: '',
+        options: opts.map(o => ({ html: picHTML(o.x[0]), label: o.x[1], correct: o.odd })),
+        after: [[`其他都是${A.name}，${odd[1]}不是`]], key: odd[0]
+      };
+    },
+    abc() {
+      const lo = L => L.toLowerCase();
+      const letterOpt = (txt, ok, label) => ({ html: `<span class="o-letter">${txt}</span>`, label, correct: ok });
+      const pairHTML = L => `${L}<span class="lo">${lo(L)}</span>`;
+      const type = pick(age === 'small' ? ['find', 'find', 'start'] : ['upper', 'lower', 'start', 'start', 'findlo']);
+      if (type === 'find' || type === 'findlo') {
+        const L = pick(LETTERS), opts = shuffle([L, ...others(LETTERS, L, age === 'small' ? 2 : 3, x => x)]);
+        const show = type === 'findlo' ? lo : (x => x);
+        return {
+          prompt: type === 'findlo' ? '聽一聽，找出小寫字母' : '聽一聽，找出這個字母', speech: [['哪一個是'], [`letter ${L}`, 'en-US']],
+          stage: '',
+          options: opts.map(x => letterOpt(show(x), x === L, x)),
+          after: [[`${L}, ${(AW[L] || ['x-ray'])[0]}`, 'en-US']], key: type + L
+        };
+      }
+      if (type === 'upper' || type === 'lower') {
+        const L = pick(LETTERS), l = lo(L);
+        const pool = (LOOKALIKE[l] || '').split('').filter(Boolean);
+        const set = new Set([l, ...pool.slice(0, 2)]);
+        while (set.size < 4) set.add(lo(pick(LETTERS)));
+        const opts = shuffle([...set].slice(0, 4));
+        if (type === 'upper') {
+          return {
+            prompt: `大寫 ${L} 的小寫是哪一個？`, speech: [['這個大寫字母，小寫是哪一個？'], [`letter ${L}`, 'en-US']],
+            stage: `<div class="bigletter">${L}</div>`,
+            options: opts.map(x => letterOpt(x, x === l, x)),
+            after: [[`big ${L}, little ${L}`, 'en-US']], key: 'u' + L
+          };
+        }
+        return {
+          prompt: `小寫 ${l} 的大寫是哪一個？`, speech: [['這個小寫字母，大寫是哪一個？'], [`letter ${L}`, 'en-US']],
+          stage: `<div class="bigletter">${l}</div>`,
+          options: opts.map(x => letterOpt(x.toUpperCase(), x === l, x.toUpperCase())),
+          after: [[`little ${L}, big ${L}`, 'en-US']], key: 'l' + L
+        };
+      }
+      const keys = Object.keys(AW), L = pick(keys), [w, e] = AW[L];
+      const opts = shuffle([L, ...others(keys, L, age === 'small' ? 2 : 3, x => x)]);
+      return {
+        prompt: `${w} 是哪個字母開頭？`, speech: [[w, 'en-US'], ['是哪一個字母開頭？']],
+        stage: `<div><div class="pic">${e}</div><div class="word">${w}</div></div>`,
+        options: opts.map(x => ({ html: `<span class="o-letter">${pairHTML(x)}</span>`, label: x, correct: x === L })),
+        after: [[`${L}, ${w}`, 'en-US']], key: 's' + L
+      };
+    },
+    addsub() {
+      const item = pick(ITEMS);
+      const cnt = (n, gone) => `<div class="count">${Array.from({ length: n }, (_, i) => (i >= n - gone ? `<span class="gone"><i>${item.e}</i></span>` : `<span>${item.e}</span>`)).join('')}</div>`;
+      if (age === 'small') {
+        const a = rand(1, 4), b = rand(1, 5 - a), s = a + b;
+        return {
+          prompt: `${a} + ${b} = ?`, speech: [[`${a}個${item.n}，再加${b}個，一共有幾個？`]],
+          stage: `<div class="sum">${countHTML(item, a)}<span class="op">+</span>${countHTML(item, b)}</div>`,
+          options: numberOptions(s, 3, 1, 6).map(k => ({ html: numHTML(k), label: String(k), correct: k === s })),
+          after: [[`${a}加${b}等於${s}`]], key: 'a' + a + b
+        };
+      }
+      const t = pick(['add', 'sub', 'sub', 'story', 'story', 'num']);
+      if (t === 'add') {
+        const a = rand(1, 6), b = rand(1, Math.min(5, 10 - a)), s = a + b;
+        return {
+          prompt: `${a} + ${b} = ?`, speech: [[`${a}加${b}等於多少？`]],
+          stage: `<div class="sum">${countHTML(item, a)}<span class="op">+</span>${countHTML(item, b)}</div>`,
+          options: numberOptions(s, 4, 0, 10).map(k => ({ html: numHTML(k), label: String(k), correct: k === s })),
+          after: [[`${a}加${b}等於${s}`]], key: 'a' + a + b
+        };
+      }
+      if (t === 'sub') {
+        const a = rand(3, 10), b = rand(1, a - 1), r = a - b;
+        return {
+          prompt: `${a} − ${b} = ?`, speech: [[`${a}減${b}等於多少？`]],
+          stage: cnt(a, b),
+          options: numberOptions(r, 4, 0, 10).map(k => ({ html: numHTML(k), label: String(k), correct: k === r })),
+          after: [[`${a}減${b}等於${r}`]], key: 's' + a + b
+        };
+      }
+      if (t === 'story') {
+        const S = [
+          { e: '🐦', n: '小鳥', add: false, f: (a, b) => `樹上有 ${a} 隻小鳥，飛走了 ${b} 隻，還剩幾隻？` },
+          { e: '🎈', n: '氣球', add: false, f: (a, b) => `有 ${a} 個氣球，破了 ${b} 個，還剩幾個？` },
+          { e: '🍪', n: '餅乾', add: false, f: (a, b) => `盤子裡有 ${a} 片餅乾，吃掉 ${b} 片，還剩幾片？` },
+          { e: '🍓', n: '草莓', add: true, f: (a, b) => `碗裡有 ${a} 顆草莓，媽媽又放了 ${b} 顆，現在有幾顆？` },
+          { e: '🐥', n: '小雞', add: true, f: (a, b) => `草地上有 ${a} 隻小雞，又跑來 ${b} 隻，一共有幾隻？` },
+          { e: '🚗', n: '車子', add: true, f: (a, b) => `停車場有 ${a} 台車，又開進來 ${b} 台，一共幾台？` }
+        ];
+        const st0 = pick(S), it = { e: st0.e, n: st0.n };
+        let a, b, r;
+        if (st0.add) { a = rand(1, 6); b = rand(1, Math.min(4, 10 - a)); r = a + b; } else { a = rand(3, 9); b = rand(1, a - 1); r = a - b; }
+        const q = st0.f(a, b);
+        const pics = st0.add
+          ? `<div class="sum">${countHTML(it, a)}<span class="op">+</span>${countHTML(it, b)}</div>`
+          : `<div class="count">${Array.from({ length: a }, (_, i) => (i >= a - b ? `<span class="gone"><i>${it.e}</i></span>` : `<span>${it.e}</span>`)).join('')}</div>`;
+        return {
+          prompt: '想一想，答案是多少？', speech: [[q]],
+          stage: `<div><div class="story">${q}</div>${pics}</div>`,
+          options: numberOptions(r, 4, 0, 10).map(k => ({ html: numHTML(k), label: String(k), correct: k === r })),
+          after: [[`答案是${r}`]], key: 'q' + st0.e + a + b
+        };
+      }
+      const plus = Math.random() < .5;
+      const a = plus ? rand(5, 15) : rand(8, 20), b = plus ? rand(1, 20 - a) : rand(1, Math.min(9, a - 1)), r = plus ? a + b : a - b;
+      return {
+        prompt: '算算看，答案是多少？', speech: [[`${a}${plus ? '加' : '減'}${b}等於多少？`]],
+        stage: `<div class="eq">${a} ${plus ? '+' : '−'} ${b} = <span class="q">?</span></div>`,
+        options: numberOptions(r, 4, 0, 20).map(k => ({ html: numHTML(k), label: String(k), correct: k === r })),
+        after: [[`${a}${plus ? '加' : '減'}${b}等於${r}`]], key: 'n' + a + (plus ? '+' : '-') + b
+      };
+    },
+    solid() {
+      const colors = shuffle(SHAPE_COLORS);
+      const pool = age === 'small' ? SOLIDS.filter(x => x.lv === 1) : SOLIDS;
+      const objs = OBJ3D.filter(o => pool.some(p => p.id === o[2]) && (age === 'big' || o[3] === 1));
+      const n = age === 'small' ? 2 : 3;
+      const type = pick(age === 'small' ? ['name', 'obj'] : ['name', 'obj', 'find']);
+      if (type === 'name') {
+        const t = pick(pool), opts = shuffle([t, ...others(pool, t, n, x => x.id)]);
+        return {
+          prompt: `哪一個是${t.zh}？`, speech: [[`哪一個是${t.zh}？`]], stage: '',
+          options: opts.map((o, i) => ({ html: solidHTML(o.id, colors[i], 'o-solid'), label: o.zh, correct: o === t })),
+          after: [[`這是${t.zh}`]], key: 'n' + t.id
+        };
+      }
+      if (type === 'obj') {
+        const o = pick(objs), t = SOLIDS.find(x => x.id === o[2]), opts = shuffle([t, ...others(pool, t, n, x => x.id)]);
+        return {
+          prompt: `${o[1]}像哪一個立體圖形？`, speech: [[`${o[1]}，像哪一個立體圖形？`]],
+          stage: `<div class="pic">${o[0]}</div>`,
+          options: opts.map((x, i) => ({ html: solidHTML(x.id, colors[i], 'o-solid'), label: x.zh, correct: x === t })),
+          after: [[`${o[1]}是${t.zh}`]], key: 'o' + o[0]
+        };
+      }
+      const t = pick(pool.filter(p => objs.some(o => o[2] === p.id)));
+      const right = pick(objs.filter(o => o[2] === t.id));
+      const wrong = shuffle(objs.filter(o => o[2] !== t.id));
+      const picked = [];
+      for (const w of wrong) { if (picked.length >= n) break; if (!picked.some(x => x[2] === w[2])) picked.push(w); }
+      const opts = shuffle([right, ...picked]);
+      return {
+        prompt: `哪一個東西是${t.zh}？`, speech: [[`哪一個東西的形狀是${t.zh}？`]],
+        stage: solidHTML(t.id, colors[0], 'solid-big'),
+        options: opts.map(o => ({ html: picHTML(o[0]), label: o[1], correct: o === right })),
+        after: [[`${right[1]}是${t.zh}`]], key: 'f' + t.id + right[0]
+      };
+    },
+    hide() {
+      const t = pick(FACES), ck = pick(Object.keys(COVERS)), cv = COVERS[ck];
+      const n = age === 'small' ? 2 : 3;
+      const opts = shuffle([t, ...others(FACES, t, n, x => x[0])]);
+      const show = age === 'small' ? rand(50, 60) : rand(32, 42);
+      const x = 140 + pick([-50, 0, 50]) * (age === 'small' ? .5 : 1);
+      return {
+        prompt: `誰躲在${cv.n}後面？`, speech: [[`猜猜看，誰躲在${cv.n}後面？`]],
+        stage: `<div class="hide"><span class="ani" style="left:${x}px;top:${95 - show}px">${t[0]}</span><svg class="cover" viewBox="0 0 280 155" preserveAspectRatio="none" aria-hidden="true">${cv.svg}</svg></div>`,
+        options: opts.map(o => ({ html: picHTML(o[0]), label: o[1], correct: o === t })),
+        after: [[`原來是${t[1]}！`]], key: t[0] + ck, reveal: true
+      };
+    },
+    logic() {
+      if (Math.random() < .45) {
+        const t = pick(SHADOW), opts = shuffle([t, ...others(SHADOW, t, age === 'small' ? 2 : 3, x => x[0])]);
+        return {
+          prompt: '這是誰的影子？', speech: [['看看影子，猜猜這是誰？']],
+          stage: `<div class="shadowcard"><span class="sil">${t[0]}</span></div>`,
+          options: opts.map(o => ({ html: picHTML(o[0]), label: o[1], correct: o === t })),
+          after: [[`是${t[1]}的影子`]], key: 'h' + t[0], reveal: true
+        };
+      }
+      const kinds = age === 'small' ? ['AB'] : ['AB', 'AAB', 'ABB', 'ABC', 'AABB'];
+      const kind = pick(kinds), syms = shuffle(PAT).slice(0, 4);
+      const unit = kind.split('').map(ch => syms['ABC'.indexOf(ch)]);
+      const len = age === 'small' ? 5 : rand(6, 8);
+      const seq = Array.from({ length: len + 1 }, (_, i) => unit[i % unit.length]);
+      const ans = seq.pop();
+      const pool = [...new Set([...unit, syms[3]])];
+      const opts = shuffle(pool.slice(0, age === 'small' ? 3 : 4).includes(ans) ? pool.slice(0, age === 'small' ? 3 : 4) : [ans, ...pool.filter(x => x !== ans).slice(0, age === 'small' ? 2 : 3)]);
+      return {
+        prompt: '下一個應該是什麼？', speech: [['找找規律，下一個應該是什麼？']],
+        stage: `<div class="pattern">${seq.map(x => `<span>${x}</span>`).join('')}<span class="q">?</span></div>`,
+        options: opts.map(o => ({ html: picHTML(o), label: o, correct: o === ans })),
+        after: [['答對了，規律是' + unit.length + '個一組']], key: 'p' + kind + unit.join('')
+      };
+    },
+    riddle() {
+      const pool = age === 'small' ? RIDDLES.filter(r => r.lv === 1) : RIDDLES;
+      const t = pick(pool), opts = shuffle([t, ...others(RIDDLES, t, age === 'small' ? 2 : 3, x => x.e)]);
+      return {
+        prompt: '猜猜看，是什麼？', speech: [[`${t.q}猜猜看，是什麼？`]],
+        stage: `<div class="riddle">${t.q}</div>`,
+        options: opts.map(o => ({ html: picHTML(o.e), label: o.n, correct: o === t })),
+        after: [[`答案是${t.n}`]], key: t.e
+      };
+    },
+    manners() {
+      const pool = age === 'small' ? MANNERS.filter(x => x.lv === 1) : MANNERS;
+      const t = pick(pool);
+      return {
+        prompt: t.q, speech: [[t.q]], stage: `<div class="pic">${t.e}</div>`,
+        options: shuffle(t.a.map((x, i) => ({ html: `<span class="o-life"><span class="e">${x[0]}</span><span class="t">${x[1]}</span></span>`, label: x[1], correct: i === 0 }))),
+        after: [[t.why]], key: t.q
+      };
+    },
+    trash() {
+      const opt = k => ({ html: `<span class="o-life">${binHTML(k)}<span class="t">${BINS[k].n}</span></span>`, label: BINS[k].n });
+      const subQ = age === 'big' && Math.random() < .4;
+      if (subQ) {
+        const t = pick(TRASH.filter(x => x.sub && x.sub !== 'battery'));
+        const kinds = shuffle(['paper', 'plastic', 'metal', 'glass']);
+        return {
+          prompt: `${t.n}要放進哪一個回收箱？`, speech: [[`${t.n}是資源回收，要放進哪一個回收箱？`]],
+          stage: `<div><div class="pic">${t.e}</div><div class="word-zh">${t.n}</div></div>`,
+          options: kinds.map(k => ({ ...opt(k), correct: k === t.sub })),
+          after: [[`${t.n}要放${BINS[t.sub].n}${t.e === '🥤' ? '，記得先沖乾淨' : ''}`]], key: 's' + t.e
+        };
+      }
+      const pool = age === 'small' ? TRASH.filter(x => x.lv === 1) : TRASH;
+      const t = pick(pool);
+      const why = t.sub === 'battery' ? '電池有毒，要拿去回收，不能丟垃圾桶' : t.e === '🥤' ? '塑膠杯沖乾淨後可以回收' : `${t.n}要丟${BINS[t.bin].n}`;
+      return {
+        prompt: `${t.n}要丟哪裡？`, speech: [[`${t.n}要丟到哪一個垃圾桶？`]],
+        stage: `<div><div class="pic">${t.e}</div><div class="word-zh">${t.n}</div></div>`,
+        options: shuffle(['general', 'recycle', 'food']).map(k => ({ ...opt(k), correct: k === t.bin })),
+        after: [[why]], key: t.e
+      };
+    },
+    life() {
+      const pool = age === 'small' ? LIFE.filter(x => x.lv === 1) : LIFE;
+      const t = pick(pool);
+      return {
+        prompt: t.q, speech: [[t.q]], stage: `<div class="pic">${t.e}</div>`,
+        options: shuffle(t.a.map((x, i) => ({ html: `<span class="o-life"><span class="e">${x[0]}</span><span class="t${t.num ? ' big' : ''}">${x[1]}</span></span>`, label: x[1], correct: i === 0 }))),
+        after: [[t.why]], key: t.q
+      };
+    }
+  };
+
+  /* ---------- 聲音 ---------- */
+  let voices = [];
+  const loadVoices = () => { try { voices = speechSynthesis.getVoices(); } catch (e) {} };
+  loadVoices();
+  try { speechSynthesis.onvoiceschanged = loadVoices; } catch (e) {}
+  function voiceFor(lang) {
+    const norm = v => v.lang.replace('_', '-');
+    return voices.find(v => norm(v) === lang) || voices.find(v => norm(v).startsWith(lang.slice(0, 2)));
+  }
+  function say(parts) {
+    return new Promise(resolve => {
+      if (!soundOn || !('speechSynthesis' in window)) return resolve();
+      try {
+        speechSynthesis.cancel();
+        const timer = setTimeout(resolve, 4000);
+        parts.forEach(([text, lang = 'zh-TW'], i) => {
+          const u = new SpeechSynthesisUtterance(text);
+          u.lang = lang; u.rate = lang.startsWith('en') ? .8 : .9; u.pitch = 1.15;
+          const v = voiceFor(lang); if (v) u.voice = v;
+          if (i === parts.length - 1) u.onend = u.onerror = () => { clearTimeout(timer); resolve(); };
+          speechSynthesis.speak(u);
+        });
+      } catch (e) { resolve(); }
+    });
+  }
+  let ac;
+  function tone(freqs, dur, type) {
+    if (!soundOn) return;
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      freqs.forEach((f, k) => {
+        const o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime + k * dur;
+        o.type = type; o.frequency.value = f;
+        g.gain.setValueAtTime(.0001, t);
+        g.gain.exponentialRampToValueAtTime(.16, t + .02);
+        g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+        o.connect(g).connect(ac.destination); o.start(t); o.stop(t + dur + .03);
+      });
+    } catch (e) {}
+  }
+  const chime = () => tone([523, 659, 784], .11, 'sine');
+  const buzz = () => tone([220, 175], .14, 'triangle');
+
+  /* ---------- 彩帶 ---------- */
+  const CONF_COLORS = ['--math', '--cn', '--en', '--geo', '--sun', '--grape'];
+  function burst(el, count) {
+    if (reduced) return;
+    const r = el.getBoundingClientRect(), box = $('confetti');
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('i');
+      p.style.left = cx + 'px'; p.style.top = cy + 'px';
+      p.style.background = `var(${pick(CONF_COLORS)})`;
+      if (i % 3 === 0) p.style.borderRadius = '50%';
+      box.appendChild(p);
+      const ang = Math.random() * Math.PI * 2, dist = 70 + Math.random() * 130;
+      const dx = Math.cos(ang) * dist, dy = Math.sin(ang) * dist - 60;
+      p.animate([
+        { transform: 'translate(-50%,-50%) scale(1) rotate(0)', opacity: 1 },
+        { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy + 140}px)) scale(.7) rotate(${rand(-540, 540)}deg)`, opacity: 0 }
+      ], { duration: 900 + Math.random() * 400, easing: 'cubic-bezier(.2,.7,.4,1)' }).onfinish = () => p.remove();
+    }
+  }
+
+  /* ---------- 流程 ---------- */
+  const ROUND = 10;
+  let st = null;
+  const mascot = $('gameMascot');
+  function mood(m) {
+    mascot.classList.remove('is-happy', 'is-think');
+    if (m) { void mascot.getBoundingClientRect(); mascot.classList.add(m); }
+  }
+
+  function show(id) { ['home', 'game', 'done', 'gate', 'report'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); }
+
+  function addStar() {
+    st.stars++; total++; subStars[st.sub] = (subStars[st.sub] || 0) + 1;
+    store.set('stars', total); store.set('subStars', subStars);
+    $('totalStars').textContent = total;
+  }
+
+  function startRound(sub) {
+    const recent = store.get('recent', {});
+    st = { sub, i: 0, stars: 0, total: ROUND, results: [], q: null, first: true, locked: false, used: new Set(recent[sub] || []) };
+    $('game').dataset.sub = sub; $('done').dataset.sub = sub;
+    show('game');
+    if (sub === 'memory') startMemory(); else nextQ();
+  }
+
+  function nextQ() {
+    if (st.i >= st.total) return finish();
+    let q, n = 0;
+    do { q = GEN[st.sub](); n++; } while (st.used.has(q.key) && n < 12);
+    st.used.add(q.key);
+    const recent = store.get('recent', {});
+    recent[st.sub] = [...(recent[st.sub] || []).filter(k => k !== q.key), q.key].slice(-25);
+    store.set('recent', recent);
+    st.q = q; st.first = true; st.locked = false;
+    mood('');
+    $('prompt').textContent = q.prompt;
+    $('stage').className = 'stage';
+    $('stage').innerHTML = q.stage; $('stage').hidden = !q.stage;
+    const box = $('options');
+    const len = q.options.length;
+    box.className = 'options ' + (len === 4 ? 'cols-4' : len === 2 ? 'cols-2' : 'cols-3');
+    box.innerHTML = '';
+    q.options.forEach((o, i) => {
+      const b = document.createElement('button');
+      b.className = 'opt chunky'; b.id = 'opt' + i; b.innerHTML = o.html; b.setAttribute('aria-label', o.label || '選項');
+      b.addEventListener('click', () => choose(b, o));
+      box.appendChild(b);
+    });
+    drawTrack();
+    say(q.speech);
+  }
+
+  function choose(b, o) {
+    if (st.locked || b.disabled) return;
+    if (o.correct) {
+      st.locked = true; b.classList.add('right');
+      if (st.q.reveal) $('stage').classList.add('solved');
+      st.results[st.i] = st.first ? 'star' : 'done';
+      if (st.first) addStar();
+      $('prompt').textContent = pick(PRAISE);
+      mood('is-happy'); chime(); burst(b, st.first ? 22 : 10); drawTrack();
+      [...$('options').children].forEach(x => { x.disabled = true; });
+      const cur = st;
+      Promise.all([delay(300).then(() => say(cur.q.after)), delay(1300)]).then(() => { if (st !== cur || $('game').hidden) return; st.i++; nextQ(); });
+    } else {
+      st.first = false; b.classList.add('wrong'); b.disabled = true;
+      $('prompt').textContent = '嗯……再試試看！';
+      mood('is-think'); buzz(); say([['再試試看']]);
+      const cur = st, q = st.q;
+      setTimeout(() => { if (st === cur && st.q === q && !st.locked) $('prompt').textContent = q.prompt; }, 1600);
+    }
+  }
+
+  /* 記憶翻牌 */
+  function startMemory() {
+    const pairs = age === 'small' ? 3 : 6;
+    const icons = shuffle(MEM_ICONS).slice(0, pairs);
+    const cards = shuffle([...icons, ...icons]);
+    st.total = pairs; st.mem = { open: [], matched: 0, busy: false, tries: 0 };
+    st.q = { prompt: '翻翻看，找出一樣的兩張', speech: [['翻翻看，找出一樣的兩張牌']] };
+    mood('');
+    $('prompt').textContent = '翻翻看，找出一樣的兩張';
+    $('options').className = 'options'; $('options').innerHTML = '';
+    const stage = $('stage');
+    stage.hidden = false; stage.className = 'stage mem-stage';
+    stage.innerHTML = `<div class="mem mem-${pairs}">${cards.map((e, i) => `<button class="card" id="card${i}" data-e="${e}" aria-label="翻牌"><span class="back">?</span><span class="front">${e}</span></button>`).join('')}</div>`;
+    stage.querySelectorAll('.card').forEach(c => c.addEventListener('click', () => flipCard(c)));
+    drawTrack();
+    say(st.q.speech);
+  }
+  function flipCard(c) {
+    const m = st.mem;
+    if (m.busy || c.classList.contains('open') || c.classList.contains('matched')) return;
+    c.classList.add('open'); c.setAttribute('aria-label', '已翻開');
+    tone([660], .06, 'sine');
+    m.open.push(c);
+    if (m.open.length < 2) return;
+    m.busy = true; m.tries++;
+    const [a, b] = m.open;
+    if (a.dataset.e === b.dataset.e) {
+      setTimeout(() => {
+        a.classList.replace('open', 'matched'); b.classList.replace('open', 'matched');
+        st.results[m.matched] = 'star'; m.matched++; st.i = m.matched; addStar();
+        $('prompt').textContent = pick(PRAISE);
+        mood('is-happy'); chime(); burst(b, 18); drawTrack();
+        m.open = []; m.busy = false;
+        const cur = st;
+        if (m.matched === st.total) setTimeout(() => { if (st === cur && !$('game').hidden) finish(); }, 1000);
+        else setTimeout(() => { if (st === cur) $('prompt').textContent = '翻翻看，找出一樣的兩張'; }, 1200);
+      }, 350);
+    } else {
+      mood('is-think');
+      setTimeout(() => {
+        a.classList.remove('open'); b.classList.remove('open');
+        a.setAttribute('aria-label', '翻牌'); b.setAttribute('aria-label', '翻牌');
+        m.open = []; m.busy = false; mood('');
+      }, 950);
+    }
+  }
+
+  function slotSVG(state) {
+    if (state === 'star') return '<svg fill="var(--sun)"><use href="#star"/></svg>';
+    if (state === 'done') return '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="var(--muted)"/><path d="M8.5 12.3l2.4 2.3 4.6-4.8" fill="none" stroke="var(--surface)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    if (state === 'now') return '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="var(--c)"/></svg>';
+    return '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="none" stroke="var(--line-deep)" stroke-width="2.5"/></svg>';
+  }
+  function drawTrack() {
+    $('track').innerHTML = Array.from({ length: st.total }, (_, k) => {
+      const r = st.results[k] || (k === st.i ? 'now' : '');
+      return `<span class="slot ${r === 'now' ? 'is-now' : ''}">${slotSVG(r)}</span>`;
+    }).join('');
+  }
+
+  function finish() {
+    const s = st.stars, n = st.total, ratio = s / n;
+    const hist = store.get('history', []);
+    hist.push({ sub: st.sub, age, s, n: st.sub === 'memory' ? Math.max(st.mem.tries, s) : n, t: Date.now() });
+    store.set('history', hist.slice(-400));
+    $('doneScore').textContent = `${s} / ${n}`;
+    $('doneStars').innerHTML = Array.from({ length: n }, (_, k) =>
+      `<svg class="${k < s ? 'on' : ''}" style="animation-delay:${k * .08}s" fill="${k < s ? 'var(--sun)' : 'var(--line)'}"><use href="#star"/></svg>`).join('');
+    const msg = st.sub === 'memory' ? '全部配對成功！記憶力真好。'
+      : ratio >= .9 ? '太厲害了！可以試試大班的題目。' : ratio >= .6 ? '很棒！再玩一次會更好。' : '慢慢來，多玩幾次就會了。';
+    $('doneTitle').textContent = ratio >= .9 ? '全部都會了！' : '完成了！';
+    $('doneMsg').textContent = msg;
+    show('done'); refreshGot();
+    const m = $('doneMascot'); m.classList.remove('is-happy'); void m.getBoundingClientRect(); m.classList.add('is-happy');
+    tone([523, 659, 784, 1046], .13, 'sine');
+    setTimeout(() => burst($('doneScore'), 40), 150);
+    say([[`拿到${s}顆星星。${msg}`]]);
+  }
+
+  /* ---------- 家長專區 ---------- */
+  const SUBNAME = { cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌', trash: '垃圾分類' };
+  const TIPS = {
+    math: '吃點心時一起數一數有幾個。', compare: '分東西時問孩子「哪一邊比較多？」', money: '買東西時讓孩子幫忙拿硬幣付錢。',
+    time: '用家裡的時鐘說「8 點要刷牙睡覺」。', cn: '看繪本時，指著簡單的字唸給孩子聽。', zhuyin: '從孩子名字的注音開始，一天認一個。',
+    en: '在家裡的物品貼上英文單字卡。', abc: '一起唱 ABC 歌，找找看招牌上的英文字母。', geo: '出門找找看路上的圓形和三角形。',
+    color: '穿衣服時讓孩子說出衣服的顏色。', position: '收玩具時說「把熊熊放在箱子上面」。', odd: '整理玩具時，請孩子把同一類的放在一起。',
+    memory: '玩翻牌，或「少了哪一個」的遊戲。', life: '出門時一起看紅綠燈，回家練習垃圾分類。',
+    addsub: '用餅乾或積木玩「多 1 個、少 1 個」。', solid: '找找家裡哪些東西是圓柱體、正方體，像罐頭和骰子。',
+    hide: '玩躲貓貓，或用毛巾蓋住玩具只露出一點點讓孩子猜。', logic: '用積木排出「紅藍紅藍」，讓孩子接下去。',
+    riddle: '睡前互相出謎語，也讓孩子出題給你猜。',
+    manners: '大人以身作則，常說請、謝謝、對不起，孩子做到時馬上稱讚。', trash: '倒垃圾時讓孩子幫忙分類；各縣市規定略有不同，以居住地的規定為準。'
+  };
+  // 綠界「實況主收款」的贊助網址，例如 https://p.ecpay.com.tw/XXXXXXX；留空就不會顯示贊助區
+  const DONATE_URL = '';
+  let gateAns = 0;
+  function openGate() {
+    const a = rand(11, 19), b = rand(11, 19); gateAns = a + b;
+    $('gateQ').textContent = `${a} + ${b} = ?`;
+    const set = new Set([gateAns]); while (set.size < 3) set.add(gateAns + pick([-10, -2, -1, 1, 2, 10]));
+    const box = $('gateOpts'); box.innerHTML = '';
+    shuffle([...set]).forEach((v, i) => {
+      const btn = document.createElement('button'); btn.className = 'opt chunky'; btn.id = 'gate' + i;
+      btn.innerHTML = `<span class="o-num" style="font-size:2rem">${v}</span>`;
+      btn.addEventListener('click', () => { if (v === gateAns) { renderReport(); show('report'); } else { btn.classList.add('wrong'); btn.disabled = true; } });
+      box.appendChild(btn);
+    });
+    try { speechSynthesis.cancel(); } catch (e) {}
+    show('gate');
+  }
+  const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+  const DAY = 864e5;
+  function renderReport() {
+    const hist = store.get('history', []), now = Date.now();
+    const weekStars = hist.filter(h => now - h.t < 7 * DAY).reduce((a, h) => a + h.s, 0);
+    const lastStars = hist.filter(h => now - h.t >= 7 * DAY && now - h.t < 14 * DAY).reduce((a, h) => a + h.s, 0);
+    if (!hist.length) { $('kidLine').textContent = '玩完一回合，這裡就會記錄你的星星！'; $('kidSub').textContent = ''; }
+    else {
+      $('kidLine').textContent = `這星期拿到 ${weekStars} 顆星！`;
+      const d = weekStars - lastStars;
+      $('kidSub').textContent = lastStars === 0 ? '每天玩一點點，星星會越來越多。' : d > 0 ? `比上星期多 ${d} 顆，越來越厲害了！` : d === 0 ? '跟上星期一樣多，繼續加油！' : '再玩幾回合，就能追上上星期囉！';
+    }
+    const quiz = hist.filter(h => h.sub !== 'memory');
+    const acc = pct(quiz.reduce((a, h) => a + h.s, 0), quiz.reduce((a, h) => a + h.n, 0));
+    const days = new Set(hist.filter(h => now - h.t < 7 * DAY).map(h => new Date(h.t).toDateString())).size;
+    $('kpis').innerHTML = [
+      [hist.length, '回', '玩過的回合'], [quiz.length ? acc : '–', quiz.length ? '%' : '', '第一次就答對'],
+      [days, '天', '最近 7 天有練習'], [total, '顆', '累積星星']
+    ].map(([v, u, k]) => `<div class="kpi"><span class="v">${v}<small>${u}</small></span><span class="k">${k}</span></div>`).join('');
+
+    const by = {};
+    hist.forEach(h => { (by[h.sub] = by[h.sub] || []).push(h); });
+    const rows = Object.keys(by).map(sub => {
+      const list = by[sub], a = pct(list.reduce((x, h) => x + h.s, 0), list.reduce((x, h) => x + h.n, 0));
+      let trend = '';
+      if (list.length >= 4) {
+        const recent = list.slice(-3), before = list.slice(0, -3);
+        const d = pct(recent.reduce((x, h) => x + h.s, 0), recent.reduce((x, h) => x + h.n, 0)) - pct(before.reduce((x, h) => x + h.s, 0), before.reduce((x, h) => x + h.n, 0));
+        trend = d >= 5 ? `<span class="trend up">最近進步 ${d}%</span>` : d <= -5 ? `<span class="trend down">最近退步 ${-d}%</span>` : '<span>最近持平</span>';
+      }
+      return { sub, a, n: list.length, trend };
+    }).sort((x, y) => x.a - y.a);
+    $('subRows').innerHTML = rows.length ? rows.map(r => {
+      const tag = r.a < 60 ? '<span class="tag bad">需要加強</span>' : r.a < 85 ? '<span class="tag mid">還不錯</span>' : '<span class="tag good">很熟練</span>';
+      return `<div class="srow" data-sub="${r.sub}"><span class="sname"><i></i>${SUBNAME[r.sub]}</span><span class="sbar"><span style="width:${Math.max(r.a, 3)}%"></span></span><span class="spct">${r.a}%</span><span class="smeta">${tag}<span>玩了 ${r.n} 回</span>${r.trend}</span></div>`;
+    }).join('') : '<p class="empty">還沒有紀錄。玩完一回合，這裡就會出現各科的答對率。</p>';
+    const un = Object.keys(SUBNAME).filter(k => !by[k]).map(k => SUBNAME[k]);
+    $('unplayed').textContent = un.length && rows.length ? `還沒玩過：${un.join('、')}` : '';
+
+    const pts = quiz.slice(-20);
+    if (pts.length < 2) { $('chart').innerHTML = '<p class="empty">玩滿 2 回合，就會畫出成長曲線。</p>'; }
+    else {
+      const W = 360, H = 200, L = 38, R = 10, T = 16, B = 30;
+      const X = i => L + (pts.length === 1 ? 0 : i * (W - L - R) / (pts.length - 1));
+      const Y = v => T + (100 - v) * (H - T - B) / 100;
+      const vals = pts.map(h => pct(h.s, h.n)), avg = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
+      const grid = [0, 50, 100].map(v => `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${L - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="12" fill="var(--muted)">${v}%</text>`).join('');
+      const path = vals.map((v, i) => `${i ? 'L' : 'M'}${X(i).toFixed(1)} ${Y(v).toFixed(1)}`).join('');
+      const area = `${path}L${X(vals.length - 1).toFixed(1)} ${Y(0)}L${X(0)} ${Y(0)}Z`;
+      const dots = pts.map((h, i) => `<circle cx="${X(i).toFixed(1)}" cy="${Y(vals[i]).toFixed(1)}" r="${i === pts.length - 1 ? 6 : 4.5}" fill="var(--surface)" stroke="var(--en)" stroke-width="3"><title>${SUBNAME[h.sub]}：${vals[i]}%（${new Date(h.t).getMonth() + 1}/${new Date(h.t).getDate()}）</title></circle>`).join('');
+      const first = new Date(pts[0].t), last = new Date(pts.at(-1).t);
+      $('chart').innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="最近 ${pts.length} 回合答對率，平均 ${avg}%">${grid}<path d="${area}" fill="var(--en)" opacity=".1"/><line x1="${L}" x2="${W - R}" y1="${Y(avg)}" y2="${Y(avg)}" stroke="var(--en)" stroke-dasharray="5 5" stroke-width="1.5"/><text x="${W - R}" y="${Y(avg) - 6}" text-anchor="end" font-size="12" font-weight="700" fill="var(--en)">平均 ${avg}%</text><path d="${path}" fill="none" stroke="var(--en)" stroke-width="3" stroke-linejoin="round"/>${dots}<text x="${L}" y="${H - 10}" font-size="12" fill="var(--muted)">${first.getMonth() + 1}/${first.getDate()}</text><text x="${W - R}" y="${H - 10}" text-anchor="end" font-size="12" fill="var(--muted)">${last.getMonth() + 1}/${last.getDate()}</text></svg>`;
+    }
+    const weak = rows.filter(r => r.a < 85).slice(0, 2);
+    const tipSubs = weak.length ? weak.map(r => r.sub) : rows.slice(0, 2).map(r => r.sub);
+    $('tips').innerHTML = tipSubs.length
+      ? `<ul>${tipSubs.map(k => { const r = rows.find(x => x.sub === k); return `<li><b>${SUBNAME[k]}</b>（答對率 ${r.a}%）：${TIPS[k]}</li>`; }).join('')}<li>每天玩 1～2 回合就好，短時間、常常玩，比一次玩很久更有效。</li></ul>`
+      : '<p class="empty">玩過幾回合後，這裡會依孩子的表現給練習建議。</p>';
+    if (/^https:\/\/p\.ecpay\.com\.tw\//.test(DONATE_URL)) { $('donateBtn').href = DONATE_URL; $('support').hidden = false; }
+    $('resetRow').innerHTML = '<button id="resetBtn" class="link-btn">清除所有紀錄</button>';
+    $('resetBtn').addEventListener('click', askReset);
+    refreshGot();
+  }
+  function askReset() {
+    $('resetRow').innerHTML = '<span class="note">確定要清除所有紀錄和星星嗎？</span><button id="resetYes" class="btn small danger">清除</button><button id="resetNo" class="btn ghost small">取消</button>';
+    $('resetYes').addEventListener('click', () => {
+      store.set('history', []); store.set('subStars', {}); store.set('recent', {}); store.set('stars', 0);
+      subStars = {}; total = 0; $('totalStars').textContent = 0; renderReport();
+    });
+    $('resetNo').addEventListener('click', renderReport);
+  }
+
+  /* ---------- 首頁 ---------- */
+  const MASCOT = `<ellipse cx="60" cy="112" rx="34" ry="5" fill="#000" opacity=".1"/> <circle cx="34" cy="30" r="12" fill="var(--mascot)"/> <circle cx="86" cy="30" r="12" fill="var(--mascot)"/> <circle cx="34" cy="30" r="6" fill="var(--cheek)" opacity=".8"/> <circle cx="86" cy="30" r="6" fill="var(--cheek)" opacity=".8"/> <ellipse cx="60" cy="66" rx="48" ry="44" fill="var(--mascot)"/> <ellipse cx="60" cy="82" rx="28" ry="22" fill="#FFE59A"/> <ellipse cx="38" cy="106" rx="11" ry="6" fill="var(--mascot-deep)"/> <ellipse cx="82" cy="106" rx="11" ry="6" fill="var(--mascot-deep)"/> <circle cx="32" cy="74" r="7" fill="var(--cheek)" opacity=".75"/> <circle cx="88" cy="74" r="7" fill="var(--cheek)" opacity=".75"/> <g class="normal"> <circle cx="44" cy="60" r="7" fill="var(--mascot-ink)"/><circle cx="46.5" cy="57.5" r="2.4" fill="#fff"/> <circle cx="76" cy="60" r="7" fill="var(--mascot-ink)"/><circle cx="78.5" cy="57.5" r="2.4" fill="#fff"/> <path d="M52 73q8 7 16 0" fill="none" stroke="var(--mascot-ink)" stroke-width="3.5" stroke-linecap="round"/> </g> <g class="happy"> <path d="M36 62q8-10 16 0M68 62q8-10 16 0" fill="none" stroke="var(--mascot-ink)" stroke-width="4" stroke-linecap="round"/> <path d="M49 71q11 18 22 0z" fill="var(--mascot-ink)"/><path d="M54 77q6 5 12 0" fill="#FF7A8A"/> </g> <g class="think"> <circle cx="44" cy="60" r="6" fill="var(--mascot-ink)"/><circle cx="76" cy="60" r="6" fill="var(--mascot-ink)"/> <path d="M53 76h14" stroke="var(--mascot-ink)" stroke-width="3.5" stroke-linecap="round"/> <path d="M38 48l10 3M82 48l-10 3" stroke="var(--mascot-ink)" stroke-width="3" stroke-linecap="round"/> </g>`;
+  document.querySelectorAll('svg.mascot').forEach(el => { el.innerHTML = MASCOT; });
+  function refreshGot() { document.querySelectorAll('[data-got]').forEach(el => { el.textContent = subStars[el.dataset.got] || 0; }); }
+  function setAge(a) {
+    age = a; store.set('age', a);
+    $('ageSmall').setAttribute('aria-checked', a === 'small');
+    $('ageBig').setAttribute('aria-checked', a === 'big');
+    document.querySelectorAll('.subject .what').forEach(el => { el.textContent = el.dataset[a]; });
+  }
+  const SOUND_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>';
+  const SOUND_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>';
+  function setSound(on) {
+    soundOn = on; store.set('sound', on);
+    $('soundBtn').innerHTML = on ? SOUND_ON : SOUND_OFF;
+    $('soundBtn').setAttribute('aria-pressed', on);
+    if (!on) { try { speechSynthesis.cancel(); } catch (e) {} }
+  }
+
+  $('ageSmall').addEventListener('click', () => setAge('small'));
+  $('ageBig').addEventListener('click', () => setAge('big'));
+  $('soundBtn').addEventListener('click', () => setSound(!soundOn));
+  document.querySelectorAll('.subject').forEach(b => b.addEventListener('click', () => startRound(b.dataset.sub)));
+  $('speakBtn').addEventListener('click', () => st && say(st.q.speech));
+  $('backBtn').addEventListener('click', () => { try { speechSynthesis.cancel(); } catch (e) {} refreshGot(); show('home'); });
+  $('homeBtn').addEventListener('click', () => show('home'));
+  $('againBtn').addEventListener('click', () => startRound(st.sub));
+  $('reportBtn').addEventListener('click', openGate);
+  $('reportBtn2').addEventListener('click', openGate);
+  $('gateBack').addEventListener('click', () => show('home'));
+  $('repBack').addEventListener('click', () => show('home'));
+
+  $('totalStars').textContent = total;
+  refreshGot(); setAge(age); setSound(soundOn);
+})();
+</script>
+
+</body>
+</html>
