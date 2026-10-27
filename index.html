@@ -921,7 +921,7 @@ body.is-full .promo { display: none; }
     </div>
 
     <div class="promo" id="promoCard">
-      <div class="promo-text"><b>⭐ 想玩更多？</b><span>標準版開放 45 個主題，完整版開放全部 61 個主題，再加上四種朗讀聲音和每週學習報告。</span></div>
+      <div class="promo-text"><b>⭐ 想玩更多？</b><span>標準版開放 45 個主題，完整版開放全部 61 個主題，再加上 4 位朗讀小夥伴和每週學習報告。</span></div>
       <button id="promoBtn" class="btn small">家長看這裡</button>
     </div>
 
@@ -1006,7 +1006,7 @@ body.is-full .promo { display: none; }
     </div>
     <div class="block" id="voiceBlock">
       <h3>朗讀聲音 <small class="note">⭐ 完整版</small></h3>
-      <p class="note">選一個孩子喜歡的聲音。聲音是用裝置內建語音調整的，每台手機聽起來會有一點不同。</p>
+      <p class="note">選一個孩子喜歡的朗讀小夥伴，點一下可以試聽。每個角色說話的快慢和高低不一樣；聲音來自裝置內建語音，電腦上差別最明顯，手機上主要是快慢和高低不同。</p>
       <div class="voice-row" id="voiceRow"></div>
       <p class="note" id="voiceMsg"></p>
     </div>
@@ -2927,13 +2927,13 @@ body.is-full .promo { display: none; }
   const loadVoices = () => { try { voices = speechSynthesis.getVoices(); } catch (e) {} };
   loadVoices();
   try { speechSynthesis.onvoiceschanged = loadVoices; } catch (e) {}
-  // 朗讀聲音（進階版）：用裝置內建語音，調整音調和速度；有男聲語音時，爸爸、哥哥會改用男聲
+  // 朗讀聲音（完整版）：用裝置內建語音，調整音調和速度；裝置有多種語音時，各角色會用不同語音
   const VOICES = {
-    yuan: { n: '圓圓', e: '🐻', pitch: 1.15, rate: 1, g: '' },
-    dad: { n: '爸爸', e: '👨', pitch: .7, rate: .88, g: 'm', pref: /zhiwei|yunjhe|yun-jhe|david|guy|daniel/i },
-    mom: { n: '媽媽', e: '👩', pitch: .95, rate: .92, g: 'f', pref: /yating|meijia|mei-jia|hsiaochen|zira|samantha|karen/i },
-    bro: { n: '哥哥', e: '👦', pitch: 1.3, rate: 1.1, g: 'm', pref: /zhiwei|yunjhe|yun-jhe|mark|alex|aaron/i },
-    sis: { n: '妹妹', e: '👧', pitch: 1.7, rate: 1.08, g: 'f', pref: /hanhan|hsiaoyu|zira|victoria|google/i }
+    yuan: { n: '圓圓', e: '🐻', d: '預設', pitch: 1.15, rate: 1, g: '' },
+    tiao: { n: '跳跳', e: '🐰', d: '高高的、輕快', pitch: 1.7, rate: 1.1, g: 'f', pref: /hanhan|hsiaoyu|zira|victoria|google/i },
+    tuan: { n: '團團', e: '🐼', d: '低低的、穩穩說', pitch: .7, rate: .88, g: 'm', pref: /zhiwei|yunjhe|yun-jhe|david|guy|daniel/i },
+    man: { n: '慢慢', e: '🐢', d: '說得很慢，適合小小孩', pitch: 1, rate: .7, g: 'f', pref: /yating|meijia|mei-jia|hsiaochen|zira|samantha|karen/i },
+    mimi: { n: '咪咪', e: '🐱', d: '溫柔、甜甜的', pitch: 1.35, rate: .92, g: 'f', pref: /yating|meijia|mei-jia|hsiaochen|samantha|karen|zira/i }
   };
   const MALE = /zhiwei|yunjhe|yun-jhe|male|男|kangkang|yunxi|yunyang|daniel|alex|fred|aaron|guy|david|mark/i;
   const FEMALE = /hanhan|yating|meijia|mei-jia|female|女|xiaoxiao|huihui|samantha|victoria|karen|zira|google/i;
@@ -2959,7 +2959,7 @@ body.is-full .promo { display: none; }
           const v = voiceFor(lang, vp.g, vp.pref);
           const maleVoice = v && MALE.test(v.name);
           u.lang = lang; u.rate = (lang.startsWith('en') ? .8 : .9) * vp.rate;
-          // 沒有男聲語音時，爸爸用更低的音調來模擬
+          // 沒有男聲語音時，團團用更低的音調來模擬
           u.pitch = vp.g === 'm' && !maleVoice && vp.pitch < 1 ? .5 : vp.pitch;
           if (v) u.voice = v;
           if (i === parts.length - 1) u.onend = u.onerror = () => { clearTimeout(timer); resolve(); };
@@ -3610,11 +3610,11 @@ body.is-full .promo { display: none; }
       <p class="note" id="codeMsg" aria-live="polite"></p>`;
     const buy = BUY_URL ? `<a class="btn small" id="buyBtn" href="${BUY_URL}" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:none;display:inline-block;background:#EE4D2D;box-shadow:0 5px 0 #B8341A">到蝦皮購買解鎖碼</a>` : '<p class="note">購買連結即將推出。</p>';
     if (lv === 2) { el.innerHTML = '<p class="pro-ok">✅ 已經開啟完整版，全部功能都可以使用，謝謝你的支持！</p><p class="note">開啟紀錄存在這台裝置；換手機時，用同一組解鎖碼再輸入一次就好。</p>'; return; }
-    el.innerHTML = (lv === 1 ? '<p class="pro-ok">✅ 已經開啟標準版（45 個主題）。</p><p class="note">升級完整版，再多 16 個主題（含綜合大考驗、英文拼字、買東西找錢等），加上四種朗讀聲音和每週學習報告。</p>' : '<p class="note">免費版的 30 個主題都可以一直玩。想玩更多，有兩種方案：</p>') + `
+    el.innerHTML = (lv === 1 ? '<p class="pro-ok">✅ 已經開啟標準版（45 個主題）。</p><p class="note">升級完整版，再多 16 個主題（含綜合大考驗、英文拼字、買東西找錢等），加上 4 位朗讀小夥伴和每週學習報告。</p>' : '<p class="note">免費版的 30 個主題都可以一直玩。想玩更多，有兩種方案：</p>') + `
       <table class="plans"><thead><tr><th></th><th>免費</th><th>標準版<br>NT$299</th><th>完整版<br>NT$399</th></tr></thead><tbody>
         <tr><td>學習主題</td><td>30 個</td><td>45 個</td><td>全部 61 個</td></tr>
         <tr><td>綜合大考驗</td><td>–</td><td>–</td><td>✓</td></tr>
-        <tr><td>四種朗讀聲音</td><td>–</td><td>–</td><td>✓</td></tr>
+        <tr><td>4 位朗讀小夥伴（團團、跳跳、慢慢、咪咪）</td><td>–</td><td>–</td><td>✓</td></tr>
         <tr><td>每週學習報告</td><td>–</td><td>–</td><td>✓</td></tr>
         <tr><td>3–4／5–6 歲兩種難度</td><td>✓</td><td>✓</td><td>✓</td></tr></tbody></table>
       <p class="note">一次買斷，不用月費。每個鎖住的主題都可以先免費試玩 1 次。</p>
@@ -3648,7 +3648,7 @@ body.is-full .promo { display: none; }
   }
   function renderVoices() {
     const cur = isFull() ? store.get('voice', 'yuan') : 'yuan';
-    $('voiceRow').innerHTML = Object.entries(VOICES).map(([k, v]) => `<button class="voice-btn" role="radio" aria-checked="${k === cur}" data-v="${k}"><span class="e">${v.e}</span>${v.n}<span class="sub">${k === 'yuan' ? '預設' : isFull() ? '點一下試聽' : '可以試聽'}</span></button>`).join('');
+    $('voiceRow').innerHTML = Object.entries(VOICES).map(([k, v]) => `<button class="voice-btn" role="radio" aria-checked="${k === cur}" data-v="${k}"><span class="e">${v.e}</span>${v.n}<span class="sub">${v.d}</span></button>`).join('');
     $('voiceRow').querySelectorAll('.voice-btn').forEach(b => b.addEventListener('click', () => {
       const k = b.dataset.v, wasOn = soundOn;
       soundOn = true; sayProfile = VOICES[k];
