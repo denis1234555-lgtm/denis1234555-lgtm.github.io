@@ -2930,17 +2930,18 @@ body.is-full .promo { display: none; }
   // 朗讀聲音（進階版）：用裝置內建語音，調整音調和速度；有男聲語音時，爸爸、哥哥會改用男聲
   const VOICES = {
     yuan: { n: '圓圓', e: '🐻', pitch: 1.15, rate: 1, g: '' },
-    dad: { n: '爸爸', e: '👨', pitch: .75, rate: .92, g: 'm' },
-    mom: { n: '媽媽', e: '👩', pitch: 1.0, rate: .95, g: 'f' },
-    bro: { n: '哥哥', e: '👦', pitch: 1.05, rate: 1.05, g: 'm' },
-    sis: { n: '妹妹', e: '👧', pitch: 1.55, rate: 1.05, g: 'f' }
+    dad: { n: '爸爸', e: '👨', pitch: .7, rate: .88, g: 'm', pref: /zhiwei|yunjhe|yun-jhe|david|guy|daniel/i },
+    mom: { n: '媽媽', e: '👩', pitch: .95, rate: .92, g: 'f', pref: /yating|meijia|mei-jia|hsiaochen|zira|samantha|karen/i },
+    bro: { n: '哥哥', e: '👦', pitch: 1.3, rate: 1.1, g: 'm', pref: /zhiwei|yunjhe|yun-jhe|mark|alex|aaron/i },
+    sis: { n: '妹妹', e: '👧', pitch: 1.7, rate: 1.08, g: 'f', pref: /hanhan|hsiaoyu|zira|victoria|google/i }
   };
   const MALE = /zhiwei|yunjhe|yun-jhe|male|男|kangkang|yunxi|yunyang|daniel|alex|fred|aaron|guy|david|mark/i;
   const FEMALE = /hanhan|yating|meijia|mei-jia|female|女|xiaoxiao|huihui|samantha|victoria|karen|zira|google/i;
   function voiceProfile() { const k = isFull() ? store.get('voice', 'yuan') : 'yuan'; return VOICES[k] || VOICES.yuan; }
-  function voiceFor(lang, g) {
+  function voiceFor(lang, g, pref) {
     const norm = v => v.lang.replace('_', '-');
     const list = voices.filter(v => norm(v) === lang).concat(voices.filter(v => norm(v) !== lang && norm(v).startsWith(lang.slice(0, 2))));
+    const pv = pref && list.find(v => pref.test(v.name)); if (pv) return pv;
     if (g === 'm') return list.find(v => MALE.test(v.name)) || list[0];
     if (g === 'f') return list.find(v => FEMALE.test(v.name) && !MALE.test(v.name)) || list[0];
     return list[0];
@@ -2955,10 +2956,11 @@ body.is-full .promo { display: none; }
         parts.forEach(([text, lang], i) => { lang = lang || 'zh-TW';
           const u = new SpeechSynthesisUtterance(text);
           const vp = sayProfile || voiceProfile();
-          const v = voiceFor(lang, vp.g);
+          const v = voiceFor(lang, vp.g, vp.pref);
           const maleVoice = v && MALE.test(v.name);
           u.lang = lang; u.rate = (lang.startsWith('en') ? .8 : .9) * vp.rate;
-          u.pitch = vp.g === 'm' && maleVoice ? Math.min(1, vp.pitch + .2) : vp.pitch;
+          // 沒有男聲語音時，爸爸用更低的音調來模擬
+          u.pitch = vp.g === 'm' && !maleVoice && vp.pitch < 1 ? .5 : vp.pitch;
           if (v) u.voice = v;
           if (i === parts.length - 1) u.onend = u.onerror = () => { clearTimeout(timer); resolve(); };
           speechSynthesis.speak(u);
