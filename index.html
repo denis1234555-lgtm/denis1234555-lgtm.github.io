@@ -2338,12 +2338,13 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     box.classList.toggle('waiting', reading);
     await say(q.speech);
     if (!reading) return;
+    await delay(1000);
     for (let i = 0; i < btns.length; i++) {
       if (st !== cur || st.q !== q || $('game').hidden) return;
       btns[i].classList.add('reading');
       await say([[q.options[i].label]]);
       btns[i].classList.remove('reading');
-      await delay(120);
+      await delay(450);
     }
     if (st !== cur || st.q !== q) return;
     box.classList.remove('waiting');
@@ -2362,7 +2363,8 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
       [...$('options').children].forEach(x => { x.disabled = true; });
       const cur = st, pr = st.q.practice;
       const talk = pr ? [...cur.q.after, ['跟著圓圓說一次'], [pr]] : cur.q.after;
-      Promise.all([delay(300).then(() => say(talk)), delay(pr ? 3200 : 1300)]).then(() => { if (st !== cur || $('game').hidden) return; st.i++; nextQ(); });
+      // 唸完解說後再停一下，才進下一題
+      Promise.all([delay(300).then(() => say(talk)).then(() => delay(soundOn ? 1500 : 0)), delay(pr ? 3200 : 1500)]).then(() => { if (st !== cur || $('game').hidden) return; st.i++; nextQ(); });
     } else {
       st.first = false; b.classList.add('wrong'); b.disabled = true;
       $('prompt').textContent = '嗯……再試試看！';
@@ -2457,8 +2459,8 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
     if (ok) addStar();
     $('prompt').textContent = pick(PRAISE);
     mood('is-happy'); chime(); burst($('stage'), ok ? 26 : 12); drawTrack();
-    say([[ok ? pick(['好棒！', '太厲害了！', '完成了！']) : '完成了，下次會更好！']]);
-    setTimeout(() => { if (st !== cur || $('game').hidden) return; st.i++; nextItem(); }, 1600);
+    Promise.all([say([[ok ? pick(['好棒！', '太厲害了！', '完成了！']) : '完成了，下次會更好！']]).then(() => delay(soundOn ? 1500 : 0)), delay(1600)])
+      .then(() => { if (st !== cur || $('game').hidden) return; st.i++; nextItem(); });
   }
   function nextItem() {
     if (st.i >= st.total) return finish();
