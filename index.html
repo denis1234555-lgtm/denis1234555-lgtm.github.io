@@ -3772,6 +3772,8 @@ body.is-yx .promo { display: none; }
     const list = raw.filter(v => HQ.test(v.name)).concat(raw.filter(v => !HQ.test(v.name)));
     const mine = lang.startsWith('zh') && store.get('sysVoice', '');
     if (mine) { const mv = voices.find(v => v.name === mine); if (mv) return mv; }
+    // iPhone 有下載「黎瀛」語音時，中文一律優先用它
+    if (lang.startsWith('zh')) { const ly = raw.find(v => /黎瀛|li[-\s]?ying|lìyíng/i.test(v.name)); if (ly) return ly; }
     const pv = pref && list.find(v => pref.test(v.name)); if (pv) return pv;
     if (g === 'm') return list.find(v => MALE.test(v.name)) || list[0];
     if (g === 'f') return list.find(v => FEMALE.test(v.name) && !MALE.test(v.name)) || list[0];
