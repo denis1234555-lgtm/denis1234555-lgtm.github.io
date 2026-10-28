@@ -538,6 +538,87 @@ body.is-full .promo { display: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+.sys-voice { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.sys-voice label { font-weight: 900; }
+.sys-voice select { font: inherit; font-weight: 700; padding: 10px 12px; border-radius: 14px; border: 2px solid var(--line-deep); background: #fff; color: var(--ink); max-width: 100%; }
+/* ---------- 幼小銜接專區 ---------- */
+body.is-full .promo { display: flex; }
+body.is-yx .promo { display: none; }
+.plans.p4 { font-size: .8rem; }
+.plans.p4 th, .plans.p4 td { padding: 6px 2px; }
+.plans.p4 th:last-child, .plans.p4 td:last-child { background: #E2F4EC; }
+.plans.p4 th:nth-last-child(2), .plans.p4 td:nth-last-child(2) { background: var(--sun-soft); }
+.yx-enter { width: 100%; margin: 6px 0 18px; border: 0; border-radius: 30px; padding: 18px 16px 18px 22px; display: flex; align-items: center; gap: 12px; text-align: left; color: #fff;
+  background: radial-gradient(120% 140% at 0% 0%, #3E9C7B 0%, #2F7D62 55%, #22604B 100%); box-shadow: 0 8px 0 #184A39; position: relative; overflow: hidden; }
+.yx-enter::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.12) 2px, transparent 2.5px); background-size: 18px 18px; pointer-events: none; }
+.yx-enter:active { transform: translateY(5px); box-shadow: 0 3px 0 #184A39; }
+.yx-enter-text { display: flex; flex-direction: column; gap: 4px; flex: 1; position: relative; }
+.yx-enter-text b { font-size: 1.7rem; font-weight: 900; line-height: 1.2; letter-spacing: .02em; }
+.yx-enter-text > span { font-weight: 700; opacity: .95; }
+.yx-pill { width: fit-content; background: #FFC93C; color: #3A2A00; border-radius: 999px; padding: 2px 12px; font-size: .85rem; font-weight: 900 !important; opacity: 1 !important; }
+.yx-go { width: fit-content; margin-top: 6px; background: #fff; color: #22604B; border-radius: 999px; padding: 4px 14px; font-weight: 900 !important; box-shadow: 0 3px 0 rgba(0,0,0,.18); }
+.yx-enter-art { width: 128px; height: auto; flex: none; border-radius: 18px; position: relative; box-shadow: 0 4px 0 rgba(0,0,0,.15); }
+.zone-top { display: flex; align-items: center; gap: 12px; margin: 4px 0 14px; }
+.zone-top h2 { font-size: 1.6rem; font-weight: 900; }
+.zone-hero { display: flex; gap: 14px; align-items: center; background: #fff; border-radius: 28px; padding: 14px; box-shadow: 0 6px 0 var(--line-deep); margin-bottom: 14px; }
+.zone-hero svg { width: 140px; height: auto; flex: none; border-radius: 20px; }
+.zone-hero b { font-size: 1.25rem; font-weight: 900; color: #22604B; }
+.zone-hero p { font-size: .92rem; color: var(--muted); line-height: 1.55; margin-top: 4px; }
+@media (max-width: 420px) { .zone-hero { flex-direction: column; text-align: center; } .zone-hero svg { width: 100%; max-width: 260px; } .yx-enter-art { width: 104px; } }
+.zone-lock { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: space-between; background: #E2F4EC; color: #184A39; border-radius: 22px; padding: 12px 16px; font-weight: 900; margin-bottom: 16px; }
+.zone-lock[hidden] { display: none !important; }
+.zone-lock .btn { background: #2F7D62; box-shadow: 0 5px 0 #184A39; }
+.subject.yx { background: linear-gradient(160deg, var(--c) 0%, var(--c-deep) 120%); }
+.subject.yx .art { position: relative; background-color: #FFFDF7; background-image: linear-gradient(#EAF0F5 1px, transparent 1px), linear-gradient(90deg, #EAF0F5 1px, transparent 1px); background-size: 14px 14px; }
+.subject.yx .art::after { content: ""; position: absolute; left: 14px; top: 0; bottom: 0; border-left: 2px solid #F4A9AE; }
+.yx-art { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0%, #FFF3CC 70%, #FFE59A 100%); box-shadow: 0 4px 0 rgba(0,0,0,.08), inset 0 0 0 3px rgba(255,255,255,.8); position: relative; z-index: 1; }
+.yx-glyph { font-family: var(--f-kai); font-weight: 700; font-size: 2.1rem; line-height: 1; color: var(--c-deep); white-space: nowrap; letter-spacing: -.02em; }
+.yx-glyph.zy { font-family: var(--f-body); font-weight: 900; font-size: 1.55rem; }
+.yx-glyph.num { font-family: var(--f-display); font-weight: 800; font-size: 1.9rem; }
+.yx-emo { font-size: 2.7rem; line-height: 1; }
+.yx-mini-stroke { width: 58px !important; height: 58px !important; }
+.yx-badge { position: absolute; left: 24px; top: 24px; z-index: 2; background: #fff; color: var(--c-deep); font-weight: 900; font-size: .72rem; padding: 1px 9px; border-radius: 999px; box-shadow: 0 2px 0 rgba(0,0,0,.12); }
+.subject.yx.locked .lock-chip { background: #184A39; }
+/* 遊戲畫面 */
+.yx-card { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: min(100%, 300px); max-width: 100%; padding: 16px 18px 16px 34px; border-radius: 26px; background-color: #FFFDF7;
+  background-image: repeating-linear-gradient(transparent 0 33px, #E4ECF3 33px 35px); box-shadow: 0 6px 0 var(--line-deep); }
+.yx-card::before { content: ""; position: absolute; left: 20px; top: 0; bottom: 0; border-left: 2px solid #F4A9AE; }
+.yx-card.wide { width: 100%; }
+.yx-card .pic { font-size: clamp(5.4rem, 27vw, 8.4rem); }
+.yx-card .bigchar { box-shadow: none; }
+.o-life .t.solo.sm { font-size: clamp(1.05rem, 4.5vw, 1.4rem); line-height: 1.4; }
+.yx-zy { font-family: var(--f-body) !important; font-weight: 900 !important; font-size: clamp(2.2rem, 10vw, 3.1rem) !important; }
+.yx-tones { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.yx-tones span { display: flex; flex-direction: column; align-items: center; min-width: 62px; padding: 8px 6px; border-radius: 16px; background: #fff; box-shadow: 0 3px 0 var(--line-deep); font-size: 1.8rem; font-weight: 900; line-height: 1.1; }
+.yx-tones span b { font-size: .85rem; color: var(--muted); }
+.yx-tones span.on { background: var(--c); color: #fff; box-shadow: 0 3px 0 var(--c-deep); }
+.yx-tones span.on b { color: #fff; }
+.yx-scene { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.yx-scene span { display: flex; flex-direction: column; align-items: center; gap: 2px; background: #fff; border-radius: 20px; padding: 10px 12px; box-shadow: 0 4px 0 var(--line-deep); }
+.yx-scene i { font-style: normal; font-size: clamp(2.8rem, 14vw, 4rem); line-height: 1.1; }
+.yx-scene small { font-weight: 900; font-size: .8rem; color: var(--muted); }
+.yx-stroke-row { display: flex; gap: 14px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.yx-stroke-big { width: clamp(130px, 40vw, 190px); height: auto; }
+.yx-stroke-opt { width: clamp(92px, 27vw, 132px); height: auto; display: block; }
+.yx-rods { max-height: 230px; height: auto; }
+.yx-ruler { width: 100%; height: auto; }
+.yx-line { display: flex; align-items: center; justify-content: center; position: relative; padding: 18px 4px 6px; width: 100%; }
+.yx-line::before { content: ""; position: absolute; left: 0; right: 0; top: 30px; height: 4px; border-radius: 2px; background: var(--ink); }
+.yx-line span { flex: 1; display: flex; justify-content: center; position: relative; }
+.yx-line b { position: relative; z-index: 1; min-width: 44px; padding: 4px 6px; border-radius: 12px; background: #fff; border: 3px solid var(--ink); font-family: var(--f-display); font-weight: 800; font-size: clamp(1.1rem, 5vw, 1.5rem); text-align: center; }
+.yx-line span.q b { background: var(--c); color: #fff; border-color: var(--c-deep); }
+.yx-chart { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.yx-chart > div { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 16px; padding: 6px 10px; box-shadow: 0 3px 0 var(--line-deep); }
+.yx-chart b { font-size: 1.9rem; width: 2.2rem; text-align: center; border-right: 2px dashed var(--line); padding-right: 6px; }
+.yx-chart span { display: flex; flex-wrap: wrap; gap: 2px; }
+.yx-chart i { font-style: normal; font-size: clamp(1.3rem, 6vw, 1.8rem); line-height: 1.1; }
+.yx-paper { background: transparent; box-shadow: none; }
+[data-sub^="yx"] .blank { color: var(--c); }
+.yx-mark { font-size: clamp(3rem, 14vw, 4.4rem) !important; font-weight: 900; line-height: 1; min-width: 1.2em; text-align: center; }
+#game[data-sub="yxzy"], #done[data-sub="yxzy"], #game[data-sub="yxtone"], #done[data-sub="yxtone"], #game[data-sub="yxspell"], #done[data-sub="yxspell"], #game[data-sub="yxchar"], #done[data-sub="yxchar"], #game[data-sub="yxsimilar"], #done[data-sub="yxsimilar"], #game[data-sub="yxsent"], #done[data-sub="yxsent"], #game[data-sub="yxpunct"], #done[data-sub="yxpunct"], #game[data-sub="yxlook"], #done[data-sub="yxlook"], #game[data-sub="yxstory"], #done[data-sub="yxstory"] { --c: var(--cn); --c-soft: var(--cn-soft); --c-deep: var(--cn-deep); }
+#game[data-sub="yxstroke"], #done[data-sub="yxstroke"], #game[data-sub="yxtrace"], #done[data-sub="yxtrace"] { --c: var(--color); --c-soft: var(--color-soft); --c-deep: var(--color-deep); }
+#game[data-sub="yxnum"], #done[data-sub="yxnum"], #game[data-sub="yxcalc"], #done[data-sub="yxcalc"], #game[data-sub="yxword"], #done[data-sub="yxword"], #game[data-sub="yxtime"], #done[data-sub="yxtime"], #game[data-sub="yxmoney"], #done[data-sub="yxmoney"], #game[data-sub="yxmeasure"], #done[data-sub="yxmeasure"], #game[data-sub="yxstat"], #done[data-sub="yxstat"], #game[data-sub="yxcal"], #done[data-sub="yxcal"] { --c: var(--math); --c-soft: var(--math-soft); --c-deep: var(--math-deep); }
+#game[data-sub="yxschool"], #done[data-sub="yxschool"] { --c: var(--life); --c-soft: var(--life-soft); --c-deep: var(--life-deep); }
 </style>
 </head>
 <body>
@@ -546,6 +627,31 @@ body.is-full .promo { display: none; }
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     
+    <symbol id="yx-school" viewBox="0 0 200 160">
+      <defs><linearGradient id="yxSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFE3FF"/><stop offset="1" stop-color="#EAF6FF"/></linearGradient></defs>
+      <rect x="0" y="0" width="200" height="160" rx="22" fill="url(#yxSky)"/>
+      <g fill="#FFC93C"><circle cx="168" cy="30" r="13"/><path d="M168 8v6M168 46v6M146 30h6M184 30h6M152 14l4 4M180 42l4 4M184 14l-4 4M152 46l4-4" stroke="#FFC93C" stroke-width="3" stroke-linecap="round"/></g>
+      <g fill="#fff"><ellipse cx="34" cy="30" rx="18" ry="8"/><ellipse cx="46" cy="25" rx="12" ry="8"/><ellipse cx="128" cy="18" rx="13" ry="6"/></g>
+      <path d="M0 126Q50 112 100 120T200 116V138a22 22 0 0 1-22 22H22A22 22 0 0 1 0 138Z" fill="#8FD47C"/>
+      <path d="M86 132h28l14 28H72Z" fill="#F3E2C0"/>
+      <rect x="44" y="66" width="112" height="66" rx="4" fill="#FFF4DD" stroke="#E3C79A" stroke-width="2"/>
+      <path d="M36 68L100 38l64 30Z" fill="#E5484D"/><path d="M36 68L100 38l64 30" fill="none" stroke="#B8323A" stroke-width="2.5" stroke-linejoin="round"/>
+      <rect x="86" y="22" width="28" height="26" fill="#FFF4DD" stroke="#E3C79A" stroke-width="2"/><path d="M82 24L100 9l18 15Z" fill="#E5484D"/>
+      <circle cx="100" cy="37" r="8" fill="#fff" stroke="#34424F" stroke-width="2"/><path d="M100 37v-5M100 37l4 2" stroke="#34424F" stroke-width="2" stroke-linecap="round"/>
+      <g fill="#7CC4F5" stroke="#fff" stroke-width="2"><rect x="54" y="78" width="18" height="16" rx="3"/><rect x="128" y="78" width="18" height="16" rx="3"/><rect x="54" y="104" width="18" height="16" rx="3"/><rect x="128" y="104" width="18" height="16" rx="3"/></g>
+      <rect x="88" y="98" width="24" height="34" rx="12" fill="#C98A4B"/><circle cx="106" cy="116" r="2" fill="#FFE59A"/>
+      <path d="M78 82h44" stroke="#E8A50E" stroke-width="10" stroke-linecap="round"/><text x="100" y="86" text-anchor="middle" font-size="9" font-weight="900" fill="#5A3A00">小學</text>
+      <path d="M172 132V58" stroke="#8F96A1" stroke-width="3"/><path d="M172 58l20 7-20 7Z" fill="#FFC93C"/>
+      <g fill="#3FA35B"><circle cx="186" cy="118" r="10"/><circle cx="16" cy="116" r="9"/></g>
+      <g transform="translate(14 104) scale(.42)">
+        <rect x="70" y="40" width="44" height="54" rx="12" fill="#2C7BCB"/><rect x="78" y="52" width="28" height="18" rx="6" fill="#5CA2E6"/>
+        <circle cx="34" cy="30" r="12" fill="#FFC93C"/><circle cx="86" cy="30" r="12" fill="#FFC93C"/><circle cx="34" cy="30" r="6" fill="#FF9DAA" opacity=".8"/><circle cx="86" cy="30" r="6" fill="#FF9DAA" opacity=".8"/>
+        <ellipse cx="60" cy="66" rx="48" ry="44" fill="#FFC93C"/><ellipse cx="60" cy="82" rx="28" ry="22" fill="#FFE59A"/>
+        <path d="M24 60q10 30 2 46M96 60q-10 30-2 46" stroke="#1B5C9E" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <path d="M36 62q8-10 16 0M68 62q8-10 16 0" fill="none" stroke="#2B2633" stroke-width="4" stroke-linecap="round"/><path d="M49 71q11 18 22 0z" fill="#2B2633"/>
+        <circle cx="32" cy="76" r="7" fill="#FF9DAA" opacity=".75"/><circle cx="88" cy="76" r="7" fill="#FF9DAA" opacity=".75"/>
+      </g>
+    </symbol>
     <symbol id="star" viewBox="0 0 24 24"><path d="M12 2.2l2.95 6 6.6.85-4.85 4.6 1.25 6.55L12 17.05l-5.95 3.15 1.25-6.55-4.85-4.6 6.6-.85z"/></symbol>
   </defs>
 </svg>
@@ -586,7 +692,12 @@ body.is-full .promo { display: none; }
       </div>
     </div>
 
-    <nav class="jump" aria-label="主題分類"><a href="#g-0" class="jump-chip" style="--g: var(--cn)">語文</a><a href="#g-1" class="jump-chip" style="--g: var(--math)">數學</a><a href="#g-2" class="jump-chip" style="--g: var(--geo)">觀察</a><a href="#g-3" class="jump-chip" style="--g: var(--time)">思考</a><a href="#g-4" class="jump-chip" style="--g: var(--color)">動手玩</a><a href="#g-5" class="jump-chip" style="--g: var(--life)">生活</a><a href="#g-6" class="jump-chip" style="--g: var(--sun)">⭐ 進階版</a></nav>
+    <nav class="jump" aria-label="主題分類"><a href="#g-0" class="jump-chip" style="--g: var(--cn)">語文</a><a href="#g-1" class="jump-chip" style="--g: var(--math)">數學</a><a href="#g-2" class="jump-chip" style="--g: var(--geo)">觀察</a><a href="#g-3" class="jump-chip" style="--g: var(--time)">思考</a><a href="#g-4" class="jump-chip" style="--g: var(--color)">動手玩</a><a href="#g-5" class="jump-chip" style="--g: var(--life)">生活</a><a href="#g-6" class="jump-chip" style="--g: var(--sun)">⭐ 進階版</a><a href="#zone" id="yxChip" class="jump-chip" style="--g: #2F7D62">🎒 幼小銜接</a></nav>
+    <button class="yx-enter" id="yxEnter" aria-label="進入幼小銜接專區">
+      <span class="yx-enter-text"><span class="yx-pill">🎒 升小一前先準備</span><b>幼小銜接專區</b><span>20 個主題，每個 50 題以上</span><span class="yx-go">進去看看 →</span></span>
+      <svg class="yx-enter-art" viewBox="0 0 200 160" aria-hidden="true"><use href="#yx-school"/></svg>
+    </button>
+
 
     <div class="groups">
       <h3 class="group-title" id="g-0" style="--g: var(--cn)">語文 <small>中文、注音、英文、詞語、故事</small></h3>
@@ -921,7 +1032,7 @@ body.is-full .promo { display: none; }
     </div>
 
     <div class="promo" id="promoCard">
-      <div class="promo-text"><b>⭐ 想玩更多？</b><span>標準版開放 45 個主題，完整版開放全部 61 個主題，再加上 4 位朗讀小夥伴和每週學習報告。</span></div>
+      <div class="promo-text"><b>⭐ 想玩更多？</b><span>標準版開放 45 個主題，完整版 61 個主題加上朗讀小夥伴和每週學習報告；幼小銜接版再多 20 個升小一主題。</span></div>
       <button id="promoBtn" class="btn small">家長看這裡</button>
     </div>
 
@@ -932,6 +1043,133 @@ body.is-full .promo { display: none; }
 
   </section>
 
+  <section id="zone" class="screen" hidden>
+    <div class="zone-top">
+      <button id="zoneBack" class="chunky back" aria-label="回首頁">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <h2>🎒 幼小銜接專區</h2>
+    </div>
+    <div class="zone-hero">
+      <svg viewBox="0 0 200 160" aria-hidden="true"><use href="#yx-school"/></svg>
+      <div><b>升小一前，先準備好！</b><p>照小一上學期常見的學習內容設計：注音拼讀和聲調、國字筆順、100 以內的數、時間和錢，還有校園生活。每個主題 50 題以上，常常玩也不容易重複。</p></div>
+    </div>
+    <div class="zone-lock" id="zoneLock"><span>🔒 這是「幼小銜接版」的內容。每個主題都可以先免費試玩 3 題。</span><button id="zoneBuy" class="btn small">家長看這裡</button></div>
+    <div class="groups">
+      <h3 class="group-title" style="--g: var(--cn)">語文 <small>注音、聲調、拼讀、國字、句子</small></h3>
+      <div class="subjects">
+      <button class="subject premium yx" data-sub="yxzy" id="sub-yxzy" style="--c: var(--cn); --c-deep: var(--cn-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxzy">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-glyph zy">ㄅㄆㄇ</span></span></span>
+        <span class="name">注音符號</span><span class="what" data-small="聽聲音找注音開頭" data-big="聽聲音找注音開頭">聽聲音找注音開頭</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxtone" id="sub-yxtone" style="--c: var(--cn); --c-deep: var(--cn-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxtone">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">🎶</span></span></span>
+        <span class="name">四聲聲調</span><span class="what" data-small="一聲到四聲、輕聲" data-big="一聲到四聲、輕聲">一聲到四聲、輕聲</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxspell" id="sub-yxspell" style="--c: var(--cn); --c-deep: var(--cn-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxspell">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-glyph zy">ㄇㄚˇ</span></span></span>
+        <span class="name">注音拼讀</span><span class="what" data-small="拼音加上聲調" data-big="拼音加上聲調">拼音加上聲調</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxchar" id="sub-yxchar" style="--c: var(--cn); --c-deep: var(--cn-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxchar">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-glyph">山水</span></span></span>
+        <span class="name">認國字</span><span class="what" data-small="看圖認字、看字找圖" data-big="看圖認字、看字找圖">看圖認字、看字找圖</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxsimilar" id="sub-yxsimilar" style="--c: var(--cn); --c-deep: var(--cn-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxsimilar">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-glyph">大太</span></span></span>
+        <span class="name">分辨相似字</span><span class="what" data-small="大太天、日目白" data-big="大太天、日目白">大太天、日目白</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxsent" id="sub-yxsent" style="--c: var(--cn); --c-deep: var(--cn-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxsent">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">📝</span></span></span>
+        <span class="name">句子填空</span><span class="what" data-small="選對的詞填句子" data-big="選對的詞填句子">選對的詞填句子</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxpunct" id="sub-yxpunct" style="--c: var(--cn); --c-deep: var(--cn-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxpunct">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-glyph zy">，。？！</span></span></span>
+        <span class="name">標點符號</span><span class="what" data-small="，。？！放哪裡" data-big="，。？！放哪裡">，。？！放哪裡</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxlook" id="sub-yxlook" style="--c: var(--cn); --c-deep: var(--cn-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxlook">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">🖼️</span></span></span>
+        <span class="name">看圖說話</span><span class="what" data-small="誰、在哪裡、做什麼" data-big="誰、在哪裡、做什麼">誰、在哪裡、做什麼</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxstory" id="sub-yxstory" style="--c: var(--cn); --c-deep: var(--cn-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxstory">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">📖</span></span></span>
+        <span class="name">聽故事回答</span><span class="what" data-small="專心聽、記重點" data-big="專心聽、記重點">專心聽、記重點</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      </div>
+      <h3 class="group-title" style="--g: var(--color)">寫字 <small>筆順、國字描寫</small></h3>
+      <div class="subjects">
+      <button class="subject premium yx" data-sub="yxstroke" id="sub-yxstroke" style="--c: var(--color); --c-deep: var(--color-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxstroke">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><svg viewBox="0 0 100 100" class="yx-mini-stroke"><path d="M22 34h56" stroke="#34424F" stroke-width="9" stroke-linecap="round"/><path d="M50 14v72" stroke="#E5484D" stroke-width="9" stroke-linecap="round"/><circle cx="50" cy="14" r="9" fill="#E5484D"/><text x="78" y="30" font-size="18" font-weight="900" fill="#E5484D">2</text><text x="12" y="30" font-size="18" font-weight="900" fill="#34424F">1</text></svg></span></span>
+        <span class="name">國字筆順</span><span class="what" data-small="先寫哪一筆？" data-big="先寫哪一筆？">先寫哪一筆？</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxtrace" id="sub-yxtrace" style="--c: var(--color); --c-deep: var(--color-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxtrace">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-glyph">我你</span></span></span>
+        <span class="name">國字描寫</span><span class="what" data-small="一年級常見國字" data-big="一年級常見國字">一年級常見國字</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      </div>
+      <h3 class="group-title" style="--g: var(--math)">數學 <small>100 以內的數、加減、時間、錢、統計</small></h3>
+      <div class="subjects">
+      <button class="subject premium yx" data-sub="yxnum" id="sub-yxnum" style="--c: var(--math); --c-deep: var(--math-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxnum">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-glyph num">100</span></span></span>
+        <span class="name">100 以內的數</span><span class="what" data-small="十位、個位、數線" data-big="十位、個位、數線">十位、個位、數線</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxcalc" id="sub-yxcalc" style="--c: var(--math); --c-deep: var(--math-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxcalc">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-glyph num">9+6</span></span></span>
+        <span class="name">20 以內加減</span><span class="what" data-small="進位、退位、填空" data-big="進位、退位、填空">進位、退位、填空</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxword" id="sub-yxword" style="--c: var(--math); --c-deep: var(--math-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxword">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">🧮</span></span></span>
+        <span class="name">應用題</span><span class="what" data-small="看題目想算式" data-big="看題目想算式">看題目想算式</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxtime" id="sub-yxtime" style="--c: var(--math); --c-deep: var(--math-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxtime">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">⏰</span></span></span>
+        <span class="name">認識時間</span><span class="what" data-small="整點、半點、幾分" data-big="整點、半點、幾分">整點、半點、幾分</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxmoney" id="sub-yxmoney" style="--c: var(--math); --c-deep: var(--math-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxmoney">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">🪙</span></span></span>
+        <span class="name">錢幣和買東西</span><span class="what" data-small="付錢、找錢" data-big="付錢、找錢">付錢、找錢</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxmeasure" id="sub-yxmeasure" style="--c: var(--math); --c-deep: var(--math-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxmeasure">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">📏</span></span></span>
+        <span class="name">長度比一比</span><span class="what" data-small="數格子量長度" data-big="數格子量長度">數格子量長度</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxstat" id="sub-yxstat" style="--c: var(--math); --c-deep: var(--math-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxstat">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">📊</span></span></span>
+        <span class="name">統計圖表</span><span class="what" data-small="看圖表數一數" data-big="看圖表數一數">看圖表數一數</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="yxcal" id="sub-yxcal" style="--c: var(--math); --c-deep: var(--math-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxcal">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">🗓️</span></span></span>
+        <span class="name">星期和月份</span><span class="what" data-small="幾天後、幾個月後" data-big="幾天後、幾個月後">幾天後、幾個月後</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      </div>
+      <h3 class="group-title" style="--g: var(--life)">校園生活 <small>上課、下課、放學</small></h3>
+      <div class="subjects">
+      <button class="subject premium yx" data-sub="yxschool" id="sub-yxschool" style="--c: var(--life); --c-deep: var(--life-deep)">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="yxschool">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">🏫</span></span></span>
+        <span class="name">校園生活</span><span class="what" data-small="舉手、聯絡簿、排路隊" data-big="舉手、聯絡簿、排路隊">舉手、聯絡簿、排路隊</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      </div>
+    </div>
+  </section>
   <section id="game" class="screen" hidden>
     <div class="game-top">
       <button id="backBtn" class="chunky back" aria-label="回首頁">
@@ -1008,6 +1246,8 @@ body.is-full .promo { display: none; }
       <h3>朗讀聲音 <small class="note">⭐ 完整版</small></h3>
       <p class="note">選一個孩子喜歡的朗讀小夥伴，點一下可以試聽。每個角色說話的快慢和高低不一樣；聲音來自裝置內建語音，電腦上差別最明顯，手機上主要是快慢和高低不同。</p>
       <div class="voice-row" id="voiceRow"></div>
+      <div class="sys-voice"><label for="sysVoice">這台裝置的中文語音</label><select id="sysVoice"><option value="">自動選擇（建議）</option></select>
+        <p class="note">手機有下載其他中文語音（例如 iPhone「設定 → 輔助使用 → 朗讀內容 → 聲音」裡的高音質語音），可以在這裡選。清單裡沒有的語音，代表瀏覽器不開放使用。</p></div>
       <p class="note" id="voiceMsg"></p>
     </div>
     <div class="block pro-box" id="proBox">
@@ -1887,6 +2127,209 @@ body.is-full .promo { display: none; }
   }
 
   /* ---------- 出題 ---------- */
+  /* ---------- 幼小銜接專區（升小一，NT$499 方案） ---------- */
+  // 每個主題至少 50 題不重複，難度固定為大班／升小一
+  const YX_ZY = [
+    ['ㄅ', '杯子', '杯', '🥤'], ['ㄅ', '包子', '包', '🥟'], ['ㄅ', '鼻子', '鼻', '👃'], ['ㄅ', '冰淇淋', '冰', '🍦'],
+    ['ㄆ', '葡萄', '葡', '🍇'], ['ㄆ', '蘋果', '蘋', '🍎'], ['ㄆ', '螃蟹', '螃', '🦀'],
+    ['ㄇ', '貓咪', '貓', '🐱'], ['ㄇ', '帽子', '帽', '🧢'], ['ㄇ', '麵包', '麵', '🍞'], ['ㄇ', '蜜蜂', '蜜', '🐝'],
+    ['ㄈ', '飛機', '飛', '✈️'], ['ㄈ', '房子', '房', '🏠'], ['ㄈ', '蜂蜜', '蜂', '🍯'],
+    ['ㄉ', '蛋糕', '蛋', '🍰'], ['ㄉ', '大象', '大', '🐘'], ['ㄉ', '電視', '電', '📺'],
+    ['ㄊ', '兔子', '兔', '🐰'], ['ㄊ', '太陽', '太', '☀️'], ['ㄊ', '糖果', '糖', '🍬'],
+    ['ㄋ', '牛奶', '牛', '🥛'], ['ㄋ', '奶瓶', '奶', '🍼'], ['ㄋ', '小鳥', '鳥', '🐦'],
+    ['ㄌ', '老虎', '老', '🐯'], ['ㄌ', '籃球', '籃', '🏀'], ['ㄌ', '龍蝦', '龍', '🦞'],
+    ['ㄍ', '小狗', '狗', '🐶'], ['ㄍ', '鴿子', '鴿', '🕊️'], ['ㄍ', '果汁', '果', '🧃'],
+    ['ㄎ', '恐龍', '恐', '🦖'], ['ㄎ', '褲子', '褲', '👖'], ['ㄎ', '筷子', '筷', '🥢'],
+    ['ㄏ', '花朵', '花', '🌸'], ['ㄏ', '猴子', '猴', '🐵'], ['ㄏ', '河馬', '河', '🦛'], ['ㄏ', '火車', '火', '🚂'],
+    ['ㄐ', '小雞', '雞', '🐔'], ['ㄐ', '橘子', '橘', '🍊'], ['ㄐ', '鯨魚', '鯨', '🐳'],
+    ['ㄑ', '企鵝', '企', '🐧'], ['ㄑ', '汽車', '汽', '🚗'], ['ㄑ', '青蛙', '青', '🐸'], ['ㄑ', '氣球', '氣', '🎈'],
+    ['ㄒ', '西瓜', '西', '🍉'], ['ㄒ', '星星', '星', '⭐'], ['ㄒ', '熊貓', '熊', '🐼'], ['ㄒ', '鞋子', '鞋', '👟'],
+    ['ㄓ', '小豬', '豬', '🐷'], ['ㄓ', '蜘蛛', '蜘', '🕷️'], ['ㄓ', '竹子', '竹', '🎋'],
+    ['ㄔ', '輪船', '船', '🚢'], ['ㄔ', '毛毛蟲', '蟲', '🐛'], ['ㄔ', '牙齒', '齒', '🦷'],
+    ['ㄕ', '書本', '書', '📖'], ['ㄕ', '獅子', '獅', '🦁'], ['ㄕ', '小手', '手', '✋'], ['ㄕ', '高山', '山', '⛰️'],
+    ['ㄖ', '熱狗', '熱', '🌭'], ['ㄖ', '吃肉', '肉', '🍖'],
+    ['ㄗ', '嘴巴', '嘴', '👄'], ['ㄗ', '足球', '足', '⚽'],
+    ['ㄘ', '草莓', '草', '🍓'], ['ㄘ', '刺蝟', '刺', '🦔'], ['ㄘ', '青菜', '菜', '🥬'],
+    ['ㄙ', '雨傘', '傘', '☂️'], ['ㄙ', '松鼠', '松', '🐿️'], ['ㄙ', '三角形', '三', '🔺'],
+    ['ㄧ', '衣服', '衣', '👕'], ['ㄧ', '鴨子', '鴨', '🦆'], ['ㄧ', '眼睛', '眼', '👀'],
+    ['ㄨ', '烏龜', '烏', '🐢'], ['ㄨ', '襪子', '襪', '🧦'], ['ㄨ', '碗', '碗', '🥣'],
+    ['ㄩ', '小魚', '魚', '🐟'], ['ㄩ', '下雨', '雨', '🌧️'], ['ㄩ', '月亮', '月', '🌙'],
+    ['ㄜ', '白鵝', '鵝', '🦢'], ['ㄞ', '愛心', '愛', '❤️'], ['ㄢ', '安全帽', '安', '⛑️'], ['ㄦ', '耳朵', '耳', '👂']
+  ];
+  // [字, 詞, 注音（不含聲調）, 聲調 1–4、5=輕聲, 圖]
+  const YX_TONE = [
+    ['媽', '媽媽', 'ㄇㄚ', 1, '👩'], ['花', '花朵', 'ㄏㄨㄚ', 1, '🌸'], ['書', '書本', 'ㄕㄨ', 1, '📖'], ['貓', '貓咪', 'ㄇㄠ', 1, '🐱'],
+    ['雞', '小雞', 'ㄐㄧ', 1, '🐔'], ['豬', '小豬', 'ㄓㄨ', 1, '🐷'], ['星', '星星', 'ㄒㄧㄥ', 1, '⭐'], ['飛', '飛機', 'ㄈㄟ', 1, '✈️'],
+    ['杯', '杯子', 'ㄅㄟ', 1, '🥤'], ['山', '高山', 'ㄕㄢ', 1, '⛰️'], ['冰', '冰塊', 'ㄅㄧㄥ', 1, '🧊'], ['鴨', '鴨子', 'ㄧㄚ', 1, '🦆'],
+    ['西', '西瓜', 'ㄒㄧ', 1, '🍉'], ['車', '車子', 'ㄔㄜ', 1, '🚗'], ['衣', '衣服', 'ㄧ', 1, '👕'], ['包', '包子', 'ㄅㄠ', 1, '🥟'],
+    ['牛', '小牛', 'ㄋㄧㄡ', 2, '🐮'], ['魚', '小魚', 'ㄩ', 2, '🐟'], ['羊', '小羊', 'ㄧㄤ', 2, '🐑'], ['熊', '熊貓', 'ㄒㄩㄥ', 2, '🐼'],
+    ['鞋', '鞋子', 'ㄒㄧㄝ', 2, '👟'], ['糖', '糖果', 'ㄊㄤ', 2, '🍬'], ['船', '輪船', 'ㄔㄨㄢ', 2, '🚢'], ['球', '皮球', 'ㄑㄧㄡ', 2, '⚽'],
+    ['猴', '猴子', 'ㄏㄡ', 2, '🐵'], ['床', '小床', 'ㄔㄨㄤ', 2, '🛏️'], ['鵝', '白鵝', 'ㄜ', 2, '🦢'], ['鼻', '鼻子', 'ㄅㄧ', 2, '👃'],
+    ['蛇', '小蛇', 'ㄕㄜ', 2, '🐍'], ['門', '大門', 'ㄇㄣ', 2, '🚪'], ['茶', '喝茶', 'ㄔㄚ', 2, '🍵'], ['桃', '桃子', 'ㄊㄠ', 2, '🍑'],
+    ['馬', '小馬', 'ㄇㄚ', 3, '🐴'], ['狗', '小狗', 'ㄍㄡ', 3, '🐶'], ['鳥', '小鳥', 'ㄋㄧㄠ', 3, '🐦'], ['傘', '雨傘', 'ㄙㄢ', 3, '☂️'],
+    ['手', '小手', 'ㄕㄡ', 3, '✋'], ['雨', '下雨', 'ㄩ', 3, '🌧️'], ['草', '小草', 'ㄘㄠ', 3, '🌿'], ['水', '喝水', 'ㄕㄨㄟ', 3, '💧'],
+    ['火', '火車', 'ㄏㄨㄛ', 3, '🚂'], ['米', '白米', 'ㄇㄧ', 3, '🍚'], ['碗', '飯碗', 'ㄨㄢ', 3, '🥣'], ['耳', '耳朵', 'ㄦ', 3, '👂'],
+    ['鼠', '老鼠', 'ㄕㄨ', 3, '🐭'], ['虎', '老虎', 'ㄏㄨ', 3, '🐯'], ['嘴', '嘴巴', 'ㄗㄨㄟ', 3, '👄'], ['九', '數字九', 'ㄐㄧㄡ', 3, '9️⃣'],
+    ['象', '大象', 'ㄒㄧㄤ', 4, '🐘'], ['兔', '兔子', 'ㄊㄨ', 4, '🐰'], ['蛋', '雞蛋', 'ㄉㄢ', 4, '🥚'], ['樹', '大樹', 'ㄕㄨ', 4, '🌳'],
+    ['帽', '帽子', 'ㄇㄠ', 4, '🧢'], ['月', '月亮', 'ㄩㄝ', 4, '🌙'], ['肉', '吃肉', 'ㄖㄡ', 4, '🍖'], ['菜', '青菜', 'ㄘㄞ', 4, '🥬'],
+    ['襪', '襪子', 'ㄨㄚ', 4, '🧦'], ['褲', '褲子', 'ㄎㄨ', 4, '👖'], ['畫', '畫畫', 'ㄏㄨㄚ', 4, '🎨'], ['筷', '筷子', 'ㄎㄨㄞ', 4, '🥢'],
+    ['蛋', '蛋糕', 'ㄉㄢ', 4, '🍰'], ['四', '數字四', 'ㄙ', 4, '4️⃣'], ['六', '數字六', 'ㄌㄧㄡ', 4, '6️⃣'], ['電', '電視', 'ㄉㄧㄢ', 4, '📺'],
+    ['子', '桌子', 'ㄗ', 5, '🪑'], ['子', '鞋子', 'ㄗ', 5, '👟'], ['子', '杯子', 'ㄗ', 5, '🥤'], ['子', '兔子', 'ㄗ', 5, '🐰'],
+    ['媽', '媽媽', 'ㄇㄚ', 5, '👩'], ['哥', '哥哥', 'ㄍㄜ', 5, '👦']
+  ];
+  const YX_TONE_MARK = ['', '', 'ˊ', 'ˇ', 'ˋ', '˙'];
+  const YX_TONE_NAME = ['', '一聲', '二聲', '三聲', '四聲', '輕聲'];
+  const yxTone = (base, t) => t === 5 ? '˙' + base : base + YX_TONE_MARK[t];
+  const YX_SIMILAR_MORE = [
+    [['未', '未來的未'], ['末', '週末的末'], ['米', '白米的米'], ['本', '書本的本']], [['問', '問問題的問'], ['間', '時間的間'], ['門', '開門的門'], ['開', '開心的開']],
+    [['兄', '兄弟的兄'], ['兒', '兒子的兒'], ['先', '先後的先']], [['玉', '玉米的玉'], ['主', '主人的主'], ['王', '國王的王']],
+    [['犬', '小犬的犬'], ['太', '太陽的太'], ['大', '大小的大'], ['夫', '農夫的夫']], [['白', '白色的白'], ['百', '一百的百'], ['自', '自己的自'], ['目', '眼睛，目']],
+    [['兩', '兩個的兩'], ['雨', '下雨的雨'], ['肉', '吃肉的肉']], [['士', '護士的士'], ['土', '泥土的土'], ['工', '工人的工']],
+    [['見', '看見的見'], ['貝', '寶貝的貝'], ['具', '玩具的具']], [['休', '休息的休'], ['林', '樹林的林'], ['木', '樹木的木']],
+    [['住', '住家的住'], ['往', '往前的往'], ['主', '主人的主']], [['今', '今天的今'], ['令', '命令的令'], ['冷', '寒冷的冷']],
+    [['己', '自己的己'], ['已', '已經的已'], ['巴', '嘴巴的巴']], [['牛', '小牛的牛'], ['年', '過年的年'], ['午', '中午的午']]
+  ];
+  const YX_SENT_MORE = [
+    { e: '🌧️', q: '下雨了，出門要帶＿＿。', a: [['☂️', '雨傘'], ['🕶️', '墨鏡'], ['🏖️', '泳圈']] },
+    { e: '🦷', q: '睡覺前要記得＿＿。', a: [['🪥', '刷牙'], ['🍬', '吃糖'], ['📺', '看電視']] },
+    { e: '🏫', q: '我背著＿＿去上學。', a: [['🎒', '書包'], ['🛏️', '床'], ['🧺', '洗衣籃']] },
+    { e: '🍚', q: '我用＿＿吃飯。', a: [['🥢', '筷子'], ['✏️', '鉛筆'], ['🪮', '梳子']] },
+    { e: '🐟', q: '魚在水裡＿＿。', a: [['🏊', '游來游去'], ['🦘', '跳來跳去'], ['🕊️', '飛來飛去']] },
+    { e: '🐦', q: '小鳥在天上＿＿。', a: [['🕊️', '飛'], ['🏊', '游泳'], ['🚲', '騎車']] },
+    { e: '🌞', q: '夏天很＿＿，要多喝水。', a: [['🥵', '熱'], ['🥶', '冷'], ['🌙', '黑']] },
+    { e: '❄️', q: '冬天很＿＿，要穿外套。', a: [['🥶', '冷'], ['🥵', '熱'], ['🌈', '漂亮']] },
+    { e: '🍎', q: '蘋果是＿＿的。', a: [['🔴', '紅色'], ['🔵', '藍色'], ['⚫', '黑色']] },
+    { e: '🍌', q: '香蕉是＿＿的。', a: [['🟡', '黃色'], ['🟣', '紫色'], ['🔵', '藍色']] },
+    { e: '🐘', q: '大象的鼻子很＿＿。', a: [['📏', '長'], ['🤏', '短'], ['🪶', '輕']] },
+    { e: '🐢', q: '烏龜走路很＿＿。', a: [['🐌', '慢'], ['⚡', '快'], ['🦘', '高']] },
+    { e: '🐇', q: '小兔子跑得很＿＿。', a: [['⚡', '快'], ['🐌', '慢'], ['😴', '睏']] },
+    { e: '📚', q: '我在圖書館＿＿。', a: [['📖', '看書'], ['⚽', '踢球'], ['🍜', '煮麵']] },
+    { e: '🏥', q: '生病了，要去看＿＿。', a: [['🧑‍⚕️', '醫生'], ['👮', '警察'], ['🧑‍🍳', '廚師']] },
+    { e: '🚒', q: '失火了，要打電話給＿＿。', a: [['🧑‍🚒', '消防員'], ['🧑‍🌾', '農夫'], ['🧑‍🎨', '畫家']] },
+    { e: '👋', q: '早上見到老師，要說＿＿。', a: [['🌅', '老師早'], ['🌙', '晚安'], ['👋', '再見']] },
+    { e: '🎁', q: '收到禮物，要說＿＿。', a: [['🙏', '謝謝'], ['🙇', '對不起'], ['🌙', '晚安']] },
+    { e: '🧹', q: '吃完飯，我幫忙＿＿。', a: [['🍽️', '收碗'], ['🙈', '躲起來'], ['📺', '看電視']] },
+    { e: '🐄', q: '牛會給我們＿＿。', a: [['🥛', '牛奶'], ['🥚', '雞蛋'], ['🍯', '蜂蜜']] },
+    { e: '🐔', q: '母雞會生＿＿。', a: [['🥚', '蛋'], ['🥛', '牛奶'], ['🍎', '蘋果']] },
+    { e: '🐝', q: '蜜蜂會做＿＿。', a: [['🍯', '蜂蜜'], ['🧀', '起司'], ['🍞', '麵包']] },
+    { e: '🌙', q: '晚上天空有＿＿和星星。', a: [['🌙', '月亮'], ['☀️', '太陽'], ['🌈', '彩虹']] },
+    { e: '🌈', q: '雨停了，天上出現＿＿。', a: [['🌈', '彩虹'], ['🌙', '月亮'], ['⛄', '雪人']] },
+    { e: '🚦', q: '紅燈的時候要＿＿。', a: [['🛑', '停下來'], ['🏃', '快跑過去'], ['💃', '跳舞']] },
+    { e: '🧼', q: '吃飯前要先＿＿。', a: [['🧼', '洗手'], ['👟', '穿鞋'], ['🛏️', '睡覺']] },
+    { e: '🎂', q: '今天是我的＿＿，大家幫我唱歌。', a: [['🎂', '生日'], ['📅', '星期'], ['🌧️', '雨天']] },
+    { e: '🐶', q: '小狗會＿＿叫。', a: [['🐶', '汪汪'], ['🐱', '喵喵'], ['🐮', '哞哞']] },
+    { e: '🐱', q: '小貓會＿＿叫。', a: [['🐱', '喵喵'], ['🐶', '汪汪'], ['🐔', '咕咕']] },
+    { e: '👓', q: '我用＿＿看東西。', a: [['👀', '眼睛'], ['👂', '耳朵'], ['👃', '鼻子']] },
+    { e: '🎵', q: '我用＿＿聽音樂。', a: [['👂', '耳朵'], ['👀', '眼睛'], ['🦶', '腳']] },
+    { e: '🌻', q: '花要曬＿＿才會長大。', a: [['☀️', '太陽'], ['🌙', '月亮'], ['⭐', '星星']] }
+  ];
+  const YX_PUNCT = [
+    ['你吃飽了嗎', '？'], ['今天星期幾', '？'], ['你叫什麼名字', '？'], ['廁所在哪裡', '？'], ['這是誰的書包', '？'], ['你要不要一起玩', '？'],
+    ['現在幾點了', '？'], ['媽媽什麼時候回來', '？'], ['你喜歡吃蘋果嗎', '？'], ['老師，我可以去喝水嗎', '？'], ['為什麼天空是藍色的', '？'], ['你家住在哪裡', '？'],
+    ['小狗在哪裡呢', '？'], ['我們明天去公園好不好', '？'],
+    ['哇，好漂亮的彩虹', '！'], ['小心，車子來了', '！'], ['太好了，我們贏了', '！'], ['好痛', '！'], ['加油', '！'], ['生日快樂', '！'],
+    ['救命啊', '！'], ['哇，下雪了', '！'], ['你好棒', '！'], ['快跑', '！'], ['好香的蛋糕啊', '！'], ['新年快樂', '！'],
+    ['我今天很開心', '。'], ['小貓在睡覺', '。'], ['我喜歡畫畫', '。'], ['天上有很多星星', '。'], ['我每天早上刷牙', '。'], ['哥哥在看書', '。'],
+    ['妹妹在玩積木', '。'], ['爸爸開車去上班', '。'], ['我們一起去公園', '。'], ['這是我的鉛筆', '。'], ['今天天氣很好', '。'], ['小鳥在樹上唱歌', '。'],
+    ['我有一個紅色的氣球', '。'], ['老師在教我們寫字', '。'],
+    ['我穿好鞋子＿就出門了', '，'], ['下課了＿我們去玩', '，'], ['天黑了＿小明回家了', '，'], ['我洗好手＿就去吃飯', '，'], ['雨停了＿天上有彩虹', '，'],
+    ['小狗跑過來＿搖搖尾巴', '，'], ['早上起床＿我先刷牙', '，'], ['我肚子餓了＿想吃麵包', '，'], ['外面下雨了＿要帶雨傘', '，'], ['天氣很冷＿要穿外套', '，'],
+    ['吃完點心＿我們去盪鞦韆', '，'], ['放學了＿爺爺來接我', '，'], ['吃完飯＿我幫忙收碗', '，'], ['春天到了＿花都開了', '，']
+  ];
+  const YX_PUNCT_NAME = { '，': '逗號', '。': '句號', '？': '問號', '！': '驚嘆號' };
+  const YX_STORY_MORE = [
+    { t: '小華早上七點起床，穿好制服，吃了一個饅頭，然後和媽媽一起走路去學校。', q: '小華早餐吃了什麼？', a: [['🥟', '饅頭'], ['🍕', '披薩'], ['🍜', '麵']] },
+    { t: '小華早上七點起床，穿好制服，吃了一個饅頭，然後和媽媽一起走路去學校。', q: '小華怎麼去學校？', a: [['🚶', '走路'], ['🚌', '坐公車'], ['🚲', '騎腳踏車']] },
+    { t: '下課鐘響了，小美和好朋友去溜滑梯，玩完以後趕快去洗手，再回教室上課。', q: '小美下課去玩什麼？', a: [['🛝', '溜滑梯'], ['🏀', '打籃球'], ['🪁', '放風箏']] },
+    { t: '下課鐘響了，小美和好朋友去溜滑梯，玩完以後趕快去洗手，再回教室上課。', q: '玩完以後小美先做什麼？', a: [['🧼', '洗手'], ['🍦', '吃冰淇淋'], ['😴', '睡覺']] },
+    { t: '星期六，爸爸帶小明去動物園，他們看到長頸鹿在吃樹葉，還有猴子在樹上跳來跳去。', q: '他們去了哪裡？', a: [['🦒', '動物園'], ['🏫', '學校'], ['🏥', '醫院']] },
+    { t: '星期六，爸爸帶小明去動物園，他們看到長頸鹿在吃樹葉，還有猴子在樹上跳來跳去。', q: '長頸鹿在做什麼？', a: [['🍃', '吃樹葉'], ['🏊', '游泳'], ['😴', '睡覺']] },
+    { t: '小兔子種了三顆紅蘿蔔，每天都去澆水。過了好多天，紅蘿蔔長大了，小兔子好開心。', q: '小兔子種了幾顆紅蘿蔔？', a: [['3️⃣', '三顆'], ['5️⃣', '五顆'], ['🔟', '十顆']] },
+    { t: '小兔子種了三顆紅蘿蔔，每天都去澆水。過了好多天，紅蘿蔔長大了，小兔子好開心。', q: '小兔子每天做什麼？', a: [['🚿', '澆水'], ['🎤', '唱歌'], ['🧹', '掃地']] },
+    { t: '阿明的鉛筆掉在地上，坐在旁邊的小芳幫他撿起來。阿明說：「謝謝你！」', q: '誰幫阿明撿鉛筆？', a: [['👧', '小芳'], ['👨‍🏫', '老師'], ['👩', '媽媽']] },
+    { t: '阿明的鉛筆掉在地上，坐在旁邊的小芳幫他撿起來。阿明說：「謝謝你！」', q: '阿明跟小芳說了什麼？', a: [['🙏', '謝謝你'], ['👋', '再見'], ['🙇', '對不起']] },
+    { t: '天氣好冷，奶奶幫小寶織了一條藍色的圍巾，小寶戴上以後覺得好溫暖。', q: '奶奶織了什麼？', a: [['🧣', '圍巾'], ['🧤', '手套'], ['🧢', '帽子']] },
+    { t: '天氣好冷，奶奶幫小寶織了一條藍色的圍巾，小寶戴上以後覺得好溫暖。', q: '圍巾是什麼顏色？', a: [['🔵', '藍色'], ['🔴', '紅色'], ['🟢', '綠色']] },
+    { t: '小青蛙想過河，可是河水太深了。烏龜伯伯說：「坐到我的背上吧！」就把小青蛙載過河。', q: '誰幫小青蛙過河？', a: [['🐢', '烏龜伯伯'], ['🐟', '小魚'], ['🦆', '鴨子']] },
+    { t: '小青蛙想過河，可是河水太深了。烏龜伯伯說：「坐到我的背上吧！」就把小青蛙載過河。', q: '小青蛙為什麼不能自己過河？', a: [['🌊', '河水太深'], ['🌙', '天太黑'], ['🥶', '天氣太冷']] },
+    { t: '今天是運動會，小強跑步得了第二名，雖然沒有第一名，他還是很開心，因為他盡力了。', q: '小強跑步得了第幾名？', a: [['🥈', '第二名'], ['🥇', '第一名'], ['🥉', '第三名']] },
+    { t: '今天是運動會，小強跑步得了第二名，雖然沒有第一名，他還是很開心，因為他盡力了。', q: '小強為什麼很開心？', a: [['💪', '他盡力了'], ['🍰', '吃到蛋糕'], ['🎁', '拿到禮物']] },
+    { t: '小貓咪肚子餓了，喵喵叫。小妹妹拿了一碗魚給牠吃，小貓咪吃完就在沙發上睡著了。', q: '小妹妹給小貓吃什麼？', a: [['🐟', '魚'], ['🦴', '骨頭'], ['🥕', '紅蘿蔔']] },
+    { t: '小貓咪肚子餓了，喵喵叫。小妹妹拿了一碗魚給牠吃，小貓咪吃完就在沙發上睡著了。', q: '小貓咪最後在哪裡睡著？', a: [['🛋️', '沙發上'], ['🛏️', '床上'], ['🌳', '樹上']] },
+    { t: '上課的時候，小傑想上廁所，他先舉手跟老師說，老師點點頭，他就去上廁所了。', q: '小傑想做什麼？', a: [['🚽', '上廁所'], ['🍪', '吃點心'], ['🏃', '去玩']] },
+    { t: '上課的時候，小傑想上廁所，他先舉手跟老師說，老師點點頭，他就去上廁所了。', q: '小傑先做了什麼？', a: [['🙋', '舉手跟老師說'], ['🏃', '直接跑出去'], ['😭', '大哭']] },
+    { t: '媽媽買了六顆橘子，小明吃了兩顆，妹妹吃了一顆。', q: '媽媽買了什麼水果？', a: [['🍊', '橘子'], ['🍎', '蘋果'], ['🍌', '香蕉']] },
+    { t: '媽媽買了六顆橘子，小明吃了兩顆，妹妹吃了一顆。', q: '小明吃了幾顆？', a: [['2️⃣', '兩顆'], ['1️⃣', '一顆'], ['6️⃣', '六顆']] }
+  ];
+  const YX_PEOPLE = [['👦', '哥哥'], ['👧', '妹妹'], ['👨', '爸爸'], ['👩', '媽媽'], ['👴', '爺爺'], ['👵', '奶奶'], ['🧒', '小明'], ['👱‍♀️', '小美']];
+  // [地點圖, 地點, 動作圖, 動作]
+  const YX_ACTS = [
+    ['🏞️', '公園', '🛝', '溜滑梯'], ['🏞️', '公園', '🪁', '放風箏'], ['🍳', '廚房', '🥘', '煮飯'], ['📚', '圖書館', '📖', '看書'],
+    ['🏖️', '海邊', '🏰', '堆沙堡'], ['🏊', '游泳池', '🏊', '游泳'], ['🛁', '浴室', '🪥', '刷牙'], ['🛏️', '房間', '😴', '睡覺'],
+    ['🏫', '教室', '✏️', '寫字'], ['🎨', '教室', '🎨', '畫畫'], ['🌳', '院子', '🌱', '種花'], ['🛒', '超市', '🛒', '買菜'],
+    ['🏀', '球場', '🏀', '打籃球'], ['⚽', '操場', '⚽', '踢足球'], ['🛋️', '客廳', '🧩', '拼拼圖'], ['🍽️', '餐廳', '🍜', '吃麵'],
+    ['🚌', '公車上', '💺', '坐好'], ['🏔️', '山上', '🥾', '爬山'], ['🎡', '遊樂園', '🎠', '坐旋轉木馬'], ['🧺', '陽台', '👕', '曬衣服']
+  ];
+  const YX_SCHOOL = [
+    { e: '🙋', q: '上課時想說話，要先做什麼？', a: [['🙋', '舉手'], ['🗣️', '大聲喊'], ['🚶', '走到老師旁邊']], why: '上課想發言，先舉手，等老師叫到你再說' },
+    { e: '🚽', q: '上課時想上廁所，怎麼辦？', a: [['🙋', '舉手跟老師說'], ['🏃', '直接跑出去'], ['🤐', '一直忍著']], why: '先跟老師說，老師知道你去哪裡才放心' },
+    { e: '🔔', q: '上課鐘響了，要做什麼？', a: [['🪑', '回教室坐好'], ['🛝', '繼續溜滑梯'], ['🙈', '躲起來']], why: '聽到上課鐘聲，要趕快回到教室坐好' },
+    { e: '🎒', q: '書包要什麼時候整理？', a: [['🌙', '前一天晚上'], ['🏃', '出門前一分鐘'], ['🙅', '都不用整理']], why: '前一天晚上照著課表整理好，早上就不會忘東忘西' },
+    { e: '📅', q: '要怎麼知道明天要帶哪些課本？', a: [['📋', '看課表'], ['🎲', '隨便猜'], ['📺', '看電視']], why: '課表會寫每天上什麼課，照著帶課本就對了' },
+    { e: '🚶', q: '放學排路隊，要怎麼走？', a: [['🚶', '跟著隊伍慢慢走'], ['🏃', '自己先跑走'], ['🤸', '邊走邊翻跟斗']], why: '跟著隊伍走，老師才能照顧到每一個人' },
+    { e: '🧑‍🏫', q: '老師在說話的時候，要怎麼做？', a: [['👂', '安靜聽'], ['🗣️', '跟同學聊天'], ['🎮', '玩玩具']], why: '專心聽老師說話，才知道要做什麼' },
+    { e: '✏️', q: '鉛筆斷了，可以怎麼做？', a: [['✏️', '用削鉛筆機削好'], ['😭', '大哭'], ['🙅', '不寫了']], why: '自己削好鉛筆，或是請同學借你一枝' },
+    { e: '🤝', q: '想跟同學借橡皮擦，要怎麼說？', a: [['🙏', '可以借我嗎？'], ['✊', '直接搶過來'], ['🙈', '偷偷拿']], why: '用「請」和「可以借我嗎」，用完記得還和說謝謝' },
+    { e: '🍱', q: '午餐時間要怎麼吃飯？', a: [['🪑', '坐在位子上吃'], ['🏃', '邊跑邊吃'], ['🗑️', '不吃倒掉']], why: '坐好慢慢吃，吃不完再跟老師說' },
+    { e: '🧹', q: '打掃時間要做什麼？', a: [['🧹', '做好自己的工作'], ['🏃', '跑去玩'], ['😴', '趴著睡覺']], why: '每個人都有自己的打掃工作，做好教室就乾淨了' },
+    { e: '😴', q: '午休時間要做什麼？', a: [['😴', '安靜休息'], ['🗣️', '大聲聊天'], ['🏃', '在教室跑']], why: '午休要安靜，下午才有精神' },
+    { e: '🏥', q: '在學校跌倒受傷了，要去哪裡？', a: [['🏥', '健康中心'], ['🛝', '遊樂場'], ['🍱', '福利社']], why: '健康中心的阿姨會幫你擦藥' },
+    { e: '🤒', q: '在學校覺得不舒服，要先告訴誰？', a: [['🧑‍🏫', '老師'], ['🐦', '小鳥'], ['🙅', '誰都不說']], why: '跟老師說，老師會幫你聯絡家人或帶你去健康中心' },
+    { e: '🧃', q: '水壺的水喝完了，可以去哪裡裝？', a: [['🚰', '飲水機'], ['🚽', '廁所馬桶'], ['🌧️', '外面的雨']], why: '飲水機的水是乾淨的，可以安全的喝' },
+    { e: '📝', q: '老師出了回家功課，要記在哪裡？', a: [['📒', '聯絡簿'], ['🖐️', '手上'], ['🧠', '不用記']], why: '寫在聯絡簿上，回家給爸媽看，就不會忘記' },
+    { e: '📒', q: '聯絡簿寫好了，回家要給誰看？', a: [['👨‍👩‍👧', '爸爸媽媽'], ['🐶', '小狗'], ['🙈', '藏起來']], why: '爸媽看了聯絡簿，才知道你在學校的事' },
+    { e: '🏷️', q: '自己的東西要怎麼做，比較不會弄丟？', a: [['🏷️', '寫上名字'], ['🎨', '畫滿圖案'], ['🙅', '什麼都不做']], why: '寫上名字，掉了別人才知道是你的' },
+    { e: '🔍', q: '撿到別人的東西，要怎麼做？', a: [['🧑‍🏫', '交給老師'], ['🎒', '放進自己書包'], ['🗑️', '丟掉']], why: '交給老師，老師會幫忙找到主人' },
+    { e: '😢', q: '同學一個人在哭，你可以怎麼做？', a: [['🤗', '問他怎麼了'], ['😂', '笑他'], ['🙉', '假裝沒看到']], why: '關心一下，或是告訴老師' },
+    { e: '🙅', q: '有同學一直弄你，叫他不要也不停，怎麼辦？', a: [['🧑‍🏫', '告訴老師'], ['👊', '打他'], ['🤐', '一直忍著']], why: '說不要，他還是不停，就要告訴老師' },
+    { e: '🛝', q: '下課玩溜滑梯，要怎麼玩？', a: [['⏳', '排隊一個一個溜'], ['🧗', '從下面爬上去'], ['👐', '推前面的人']], why: '排隊、坐著往下溜，才不會受傷' },
+    { e: '🏃', q: '在走廊上要怎麼走？', a: [['🚶', '靠右慢慢走'], ['🏃', '用力跑'], ['🤸', '翻跟斗']], why: '走廊人多，用跑的很容易撞到人' },
+    { e: '🚸', q: '上學過馬路要走哪裡？', a: [['🦓', '斑馬線'], ['🚗', '車子中間'], ['🌳', '隨便穿過去']], why: '走斑馬線，看清楚紅綠燈和車子' },
+    { e: '🚦', q: '小綠人在閃，要怎麼做？', a: [['🚶', '還沒過就等下一次'], ['🏃', '用力衝過去'], ['💃', '在馬路中間跳舞']], why: '小綠人閃了，代表快變紅燈，等下一次比較安全' },
+    { e: '🧍', q: '放學了，家人還沒來接，要怎麼做？', a: [['🏫', '在學校等，告訴老師'], ['🚶', '跟陌生人走'], ['🏃', '自己跑出去找']], why: '待在學校，請老師幫忙聯絡家人' },
+    { e: '🍬', q: '陌生人在校門口說要給你糖果，要怎麼做？', a: [['🙅', '說不要，趕快走開'], ['🍬', '拿了跟他走'], ['🤝', '把名字告訴他']], why: '不拿陌生人的東西，告訴老師或家人' },
+    { e: '📖', q: '上國語課時，桌上要放什麼？', a: [['📕', '國語課本'], ['🧸', '玩具熊'], ['🍪', '餅乾']], why: '上什麼課就拿什麼課本出來' },
+    { e: '🧮', q: '上數學課時，要拿出什麼？', a: [['🔢', '數學課本'], ['🎨', '水彩'], ['⚽', '足球']], why: '照課表拿出要上的課本' },
+    { e: '🖍️', q: '用完蠟筆，要怎麼做？', a: [['📦', '收回盒子裡'], ['🏝️', '丟在地上'], ['🗑️', '丟進垃圾桶']], why: '用完收好，下次才找得到' },
+    { e: '🗑️', q: '吃完的餅乾袋子要丟去哪裡？', a: [['🗑️', '垃圾桶'], ['🪟', '窗戶外面'], ['🪑', '抽屜裡']], why: '垃圾要丟進垃圾桶，教室才會乾淨' },
+    { e: '🥤', q: '喝完的鋁箔包要怎麼處理？', a: [['♻️', '壓扁放資源回收'], ['🪑', '塞在抽屜'], ['🌳', '丟到花園']], why: '鋁箔包可以回收，壓扁放進回收桶' },
+    { e: '👟', q: '上體育課要穿什麼鞋子？', a: [['👟', '運動鞋'], ['🩴', '拖鞋'], ['👠', '高跟鞋']], why: '運動鞋跑跳比較安全' },
+    { e: '🧢', q: '去操場曬太陽，可以戴什麼？', a: [['🧢', '帽子'], ['🧤', '手套'], ['🥽', '泳鏡']], why: '戴帽子可以擋太陽' },
+    { e: '🎵', q: '音樂課老師請大家一起唱歌，要怎麼做？', a: [['🎤', '跟著大家一起唱'], ['🙉', '摀住耳朵'], ['🗣️', '亂叫']], why: '一起唱歌，大家都很開心' },
+    { e: '🙋', q: '老師問問題，你知道答案，要怎麼做？', a: [['🙋', '舉手等老師點名'], ['🗣️', '馬上大聲搶答'], ['🤐', '都不說']], why: '舉手等老師叫你，大家輪流說' },
+    { e: '❓', q: '老師說的話聽不懂，要怎麼辦？', a: [['🙋', '舉手問老師'], ['😶', '假裝聽懂'], ['😭', '大哭']], why: '聽不懂就問，問問題是很棒的事' },
+    { e: '📏', q: '要畫直直的線，可以用什麼？', a: [['📏', '尺'], ['🥄', '湯匙'], ['🧦', '襪子']], why: '用尺畫線，線會又直又好看' },
+    { e: '✂️', q: '用剪刀的時候要注意什麼？', a: [['✂️', '小心，不拿著跑'], ['🤺', '拿著剪刀玩打架'], ['🏃', '拿著跑來跑去']], why: '剪刀很利，要小心用，不可以拿著跑' },
+    { e: '🪑', q: '下課離開座位，椅子要怎麼放？', a: [['🪑', '靠進桌子下面'], ['🛝', '翻倒在地上'], ['🚪', '放在門口']], why: '椅子靠好，大家走路才不會絆倒' },
+    { e: '🔕', q: '考試的時候要怎麼做？', a: [['🤫', '安靜自己寫'], ['👀', '看隔壁的答案'], ['🗣️', '問同學答案']], why: '考試要自己寫，才知道自己會不會' },
+    { e: '🧑‍🤝‍🧑', q: '新同學沒有朋友一起玩，你可以怎麼做？', a: [['👋', '邀請他一起玩'], ['🙅', '不讓他玩'], ['😂', '笑他']], why: '一句「要不要一起玩」，就能交到新朋友' },
+    { e: '🍱', q: '不喜歡吃的菜，可以怎麼做？', a: [['🤏', '先吃一點點試試看'], ['🗑️', '全部倒掉'], ['🤮', '吐在桌上']], why: '每種菜都試一口，身體才會健康' },
+    { e: '🧻', q: '上完廁所要記得做什麼？', a: [['🚽', '沖水和洗手'], ['🏃', '馬上跑走'], ['🧻', '把衛生紙丟地上']], why: '沖水、洗手，乾淨又衛生' },
+    { e: '😷', q: '咳嗽或打噴嚏的時候，要怎麼做？', a: [['💪', '用手肘遮住'], ['😮', '對著同學'], ['🍱', '對著便當']], why: '遮住口鼻，才不會把細菌傳給別人' },
+    { e: '🏆', q: '比賽輸了，要怎麼做？', a: [['👏', '幫贏的人拍手'], ['💥', '生氣摔東西'], ['😤', '說他作弊']], why: '輸了也可以有風度，下次再加油' },
+    { e: '🚪', q: '進老師辦公室前要先做什麼？', a: [['✊', '敲門說報告'], ['💥', '用力推門'], ['🏃', '直接跑進去']], why: '先敲門說「報告」，是有禮貌的做法' },
+    { e: '🔢', q: '學校的座號是做什麼用的？', a: [['🔢', '幫大家排順序'], ['🎁', '換禮物'], ['🍬', '買糖果']], why: '座號是你在班上的號碼，排隊、發作業都會用到' },
+    { e: '🧥', q: '外套脫下來要放哪裡？', a: [['🪝', '掛在椅背或掛勾'], ['🏞️', '丟在操場'], ['🗑️', '放進垃圾桶']], why: '放好自己的東西，回家才不會忘記帶' },
+    { e: '⏰', q: '早上要幾點出門才不會遲到？', a: [['⏰', '照家人說的時間'], ['😴', '睡飽才起來'], ['🎮', '玩完遊戲再說']], why: '前一天早點睡，早上準時出門' },
+    { e: '🍎', q: '下課肚子餓了，可以吃什麼？', a: [['🍎', '帶來的水果點心'], ['🍭', '一大包糖果'], ['🌿', '花園的葉子']], why: '健康的點心比較好，也要記得收好垃圾' },
+    { e: '📚', q: '在圖書室借書，要注意什麼？', a: [['📅', '準時還書'], ['✂️', '把書剪下來'], ['🎒', '帶回家不還']], why: '書是大家的，看完要準時還' },
+    { e: '🤫', q: '在圖書室說話要怎麼樣？', a: [['🤫', '小小聲'], ['📢', '很大聲'], ['🎤', '唱歌']], why: '圖書室要安靜，大家才能專心看書' },
+    { e: '🧑‍🤝‍🧑', q: '分組活動時，同學意見跟你不一樣，要怎麼做？', a: [['🗣️', '輪流說，一起決定'], ['😤', '只聽我的'], ['🚶', '生氣走掉']], why: '聽聽別人的想法，大家一起決定' },
+    { e: '👋', q: '放學回家，見到家人可以說什麼？', a: [['🏠', '我回來了'], ['🙅', '什麼都不說'], ['😤', '走開']], why: '說「我回來了」，再分享今天學校的事' }
+  ];
+  const YX_TRACE = '一二三十人大小口日月山上下中土王工木本天手牛田白目子女心水石早生立五六七八九千文左右力入出入玉禾竹米田耳花草雨雲星我你他'.split('').filter((c, i, a) => a.indexOf(c) === i).map(c => [c, c, 'k']);
+  // 筆順資料：Make Me a Hanzi／hanzi-writer-data（Arphic Public License）
+  const YX_STROKES = {"一":["M 518 382 Q 572 385 623 389 Q 758 399 900 383 Q 928 379 935 390 Q 944 405 930 419 Q 896 452 845 475 Q 829 482 798 473 Q 723 460 480 434 Q 180 409 137 408 Q 130 408 124 408 Q 108 408 106 395 Q 105 380 127 363 Q 146 348 183 334 Q 195 330 216 338 Q 232 344 306 354 Q 400 373 518 382 Z"],"二":["M 308 603 Q 260 597 293 574 Q 339 544 436 558 Q 551 576 673 596 Q 731 608 741 615 Q 753 625 747 636 Q 738 652 702 663 Q 669 672 559 641 Q 424 610 308 603 Z","M 517 212 Q 569 213 620 219 Q 756 229 896 214 Q 921 210 929 220 Q 938 235 924 248 Q 891 279 842 302 Q 826 309 797 301 Q 728 286 481 261 Q 172 236 155 234 Q 142 234 128 234 Q 113 234 111 221 Q 110 208 131 191 Q 150 176 185 163 Q 197 159 217 167 Q 233 173 306 183 Q 400 202 517 212 Z"],"三":["M 326 667 Q 283 663 312 640 Q 369 610 428 623 Q 543 641 665 661 Q 720 671 729 678 Q 739 688 735 698 Q 728 711 693 722 Q 660 731 561 701 Q 420 673 326 667 Z","M 329 421 Q 304 417 332 392 Q 348 379 385 383 Q 557 405 685 416 Q 721 420 709 440 Q 694 462 657 472 Q 621 479 558 466 Q 435 441 329 421 Z","M 130 165 Q 102 162 122 139 Q 140 120 163 113 Q 191 104 212 110 Q 515 179 929 157 Q 930 158 933 157 Q 960 156 967 167 Q 974 183 953 201 Q 884 255 835 246 Q 643 210 130 165 Z"],"十":["M 541 450 Q 754 474 901 462 Q 935 462 940 467 Q 949 482 935 494 Q 862 560 793 538 Q 745 529 542 499 L 482 492 Q 355 479 290 469 Q 218 457 112 455 Q 97 455 96 443 Q 95 430 116 414 Q 134 401 168 388 Q 180 384 199 393 Q 215 399 292 413 Q 377 434 482 444 L 541 450 Z","M 482 444 Q 482 240 478 171 Q 475 -6 495 -40 Q 511 -56 521 -34 Q 539 21 540 425 Q 540 438 541 450 L 542 499 Q 543 722 569 763 Q 576 781 555 798 Q 528 819 482 830 Q 461 836 447 821 Q 437 812 450 799 Q 480 774 482 739 Q 482 651 482 492 L 482 444 Z"],"人":["M 475 485 Q 547 653 563 683 Q 573 695 565 708 Q 558 721 519 742 Q 491 757 480 754 Q 462 750 465 730 Q 484 537 292 308 Q 280 296 269 284 Q 212 217 68 102 Q 58 92 66 89 Q 76 86 90 92 Q 190 138 274 210 Q 380 294 462 456 L 475 485 Z","M 462 456 Q 480 423 575 292 Q 666 171 733 101 Q 764 67 793 69 Q 881 75 958 79 Q 991 80 992 89 Q 993 98 956 112 Q 772 178 740 205 Q 617 304 490 466 Q 481 476 475 485 C 457 509 447 482 462 456 Z"],"大":["M 494 476 Q 542 485 795 501 Q 817 502 822 512 Q 826 525 808 540 Q 750 580 707 569 Q 631 550 500 522 L 436 509 Q 331 490 213 469 Q 189 465 208 447 Q 241 420 294 432 Q 357 453 431 465 L 494 476 Z","M 487 437 Q 491 456 494 476 L 500 522 Q 510 711 528 763 Q 534 776 523 786 Q 501 805 459 822 Q 434 832 414 825 Q 390 816 410 796 Q 444 762 444 726 Q 445 602 436 509 L 431 465 Q 398 275 310 179 Q 303 173 297 166 Q 251 118 148 55 Q 133 48 130 43 Q 124 36 144 34 Q 195 34 300 104 Q 385 173 414 218 Q 444 266 480 396 L 487 437 Z","M 480 396 Q 501 357 575 245 Q 657 124 718 56 Q 746 22 774 22 Q 856 28 928 32 Q 959 33 959 41 Q 960 50 927 66 Q 753 144 719 174 Q 614 267 500 419 Q 493 429 487 437 C 469 461 465 422 480 396 Z"],"小":["M 499 695 Q 503 661 501 132 Q 500 110 488 101 Q 478 92 448 100 Q 414 107 383 113 Q 347 123 351 112 Q 352 105 375 91 Q 456 42 479 10 Q 504 -26 523 -25 Q 538 -26 552 11 Q 568 57 564 133 Q 531 583 572 723 Q 590 754 532 778 Q 498 797 477 789 Q 459 782 475 759 Q 497 731 499 695 Z","M 266 475 Q 223 408 170 349 Q 160 339 155 320 Q 148 292 154 273 Q 158 251 185 261 Q 213 274 237 308 Q 273 357 284 404 Q 297 441 293 470 Q 289 480 283 484 Q 273 484 266 475 Z","M 706 472 Q 769 411 842 323 Q 860 299 878 293 Q 888 292 897 303 Q 913 318 900 370 Q 887 431 709 508 Q 699 515 696 500 Q 695 484 706 472 Z"],"口":["M 295 571 Q 267 590 236 597 Q 227 600 221 594 Q 211 587 223 573 Q 281 477 292 248 Q 293 176 338 142 Q 339 141 343 139 Q 365 133 365 170 Q 365 174 365 177 L 360 223 Q 327 406 322 528 C 321 555 320 555 295 571 Z","M 719 261 Q 755 472 821 538 Q 845 563 824 589 Q 802 607 729 642 Q 704 652 674 641 Q 515 587 295 571 C 265 569 293 522 322 528 Q 331 529 345 533 Q 493 555 634 577 Q 671 584 685 568 Q 707 549 703 505 Q 684 372 654 268 C 646 239 714 231 719 261 Z","M 365 177 Q 372 177 383 178 Q 495 200 738 212 Q 751 213 754 224 Q 755 234 719 261 C 698 277 683 274 654 268 Q 491 235 360 223 C 330 220 335 176 365 177 Z"],"日":["M 349 664 Q 348 665 347 666 Q 322 687 292 696 Q 282 697 274 689 Q 270 682 279 670 Q 331 531 294 261 Q 287 216 271 169 Q 262 141 267 118 Q 277 81 291 65 Q 304 50 314 66 Q 324 79 332 102 L 339 137 Q 349 186 350 238 Q 350 316 351 391 L 352 420 Q 353 576 361 626 C 364 652 364 652 349 664 Z","M 608 120 Q 641 78 665 39 Q 675 18 688 19 Q 707 20 724 59 Q 745 104 740 157 Q 728 310 721 593 Q 720 629 738 654 Q 748 669 738 681 Q 716 703 656 730 Q 635 740 617 729 Q 512 684 349 664 C 319 660 332 620 361 626 Q 410 635 590 672 Q 624 679 640 666 Q 691 615 658 164 Q 657 163 657 159 Q 653 143 640 144 C 621 121 602 128 608 120 Z","M 351 391 Q 390 378 433 387 Q 493 399 554 411 Q 582 417 587 421 Q 596 428 591 437 Q 584 447 556 455 Q 531 461 450 435 Q 375 423 352 420 C 322 416 322 400 351 391 Z","M 332 102 Q 345 98 361 100 Q 440 115 608 120 C 638 121 661 122 640 144 Q 633 153 614 166 Q 596 178 561 170 Q 438 146 339 137 C 309 134 303 108 332 102 Z"],"月":["M 398 390 Q 410 502 412 535 L 414 566 Q 417 717 420 735 C 422 758 422 758 405 766 Q 405 767 404 767 Q 353 791 337 787 Q 316 783 334 760 Q 373 697 357 455 Q 353 356 304 239 Q 271 154 155 37 Q 140 24 137 16 Q 136 9 148 10 Q 164 11 186 26 Q 246 69 281 112 Q 333 173 363 244 Q 382 296 394 361 L 398 390 Z","M 420 735 Q 429 735 609 769 Q 631 773 637 762 Q 656 713 657 390 Q 657 128 640 101 Q 634 94 612 99 Q 581 105 549 111 Q 527 117 528 107 Q 595 55 633 16 Q 649 -3 665 -9 Q 675 -13 685 -2 Q 730 53 725 113 Q 712 321 709 657 Q 708 721 723 750 Q 736 772 723 783 Q 698 804 658 820 Q 639 827 621 820 Q 569 793 536 785 Q 493 773 405 766 C 375 763 390 730 420 735 Z","M 412 535 Q 442 529 533 542 Q 587 551 594 554 Q 603 561 599 569 Q 592 579 566 587 Q 538 594 511 583 Q 487 576 462 572 Q 440 568 414 566 C 384 564 382 540 412 535 Z","M 394 361 Q 428 351 561 374 Q 564 375 568 375 Q 590 379 594 382 Q 603 389 599 397 Q 592 407 566 415 Q 538 421 511 411 Q 484 404 456 397 Q 428 393 398 390 C 368 387 365 368 394 361 Z"],"山":["M 536 209 Q 546 407 552 587 Q 556 633 562 664 Q 569 691 574 710 Q 578 723 554 740 Q 512 762 484 767 Q 465 771 456 760 Q 447 751 457 734 Q 488 688 489 655 Q 499 444 488 200 C 487 170 534 179 536 209 Z","M 796 244 Q 657 232 536 209 L 488 200 Q 379 182 284 155 Q 256 148 263 180 Q 267 253 272 329 Q 275 357 263 373 Q 220 416 190 409 Q 178 403 188 382 Q 224 309 215 236 Q 211 166 182 133 Q 161 112 170 96 Q 183 78 203 66 Q 219 57 230 67 Q 243 83 283 99 Q 440 151 606 182 Q 757 210 789 197 C 819 193 826 247 796 244 Z","M 789 197 Q 783 166 774 145 Q 756 118 785 55 Q 795 36 809 49 Q 837 73 846 173 Q 868 386 890 427 Q 900 443 889 460 Q 867 479 831 501 Q 816 510 802 503 Q 793 499 796 484 Q 823 435 796 244 L 789 197 Z"],"上":["M 520 133 Q 523 296 525 442 L 525 479 Q 525 654 543 722 Q 556 746 540 761 Q 498 792 465 802 Q 449 805 432 791 Q 425 782 432 770 Q 462 727 462 629 Q 462 394 466 128 C 466 98 519 103 520 133 Z","M 525 442 Q 573 436 682 459 Q 769 477 776 484 Q 786 493 780 503 Q 771 516 738 523 Q 704 529 670 514 Q 637 502 601 493 Q 564 484 525 479 C 495 475 495 445 525 442 Z","M 528 82 Q 582 83 633 88 Q 781 100 911 81 Q 938 78 945 88 Q 954 103 940 116 Q 907 147 859 171 Q 843 178 813 169 Q 707 150 520 133 L 466 128 Q 363 121 309 114 Q 239 104 137 106 Q 121 106 120 93 Q 119 80 139 63 Q 184 30 234 41 Q 289 56 416 71 Q 468 78 528 82 Z"],"下":["M 520 688 Q 758 710 827 705 Q 920 702 927 705 Q 927 706 929 707 Q 936 722 923 735 Q 848 801 781 778 Q 673 757 477 733 Q 173 697 130 695 Q 123 696 116 695 Q 101 695 100 683 Q 99 670 120 654 Q 138 641 172 629 Q 184 625 203 633 Q 219 640 294 653 Q 376 674 478 684 L 520 688 Z","M 544 524 Q 544 642 547 654 Q 551 667 541 675 Q 534 682 520 688 C 494 703 470 713 478 684 Q 499 648 485 268 Q 473 39 480 22 Q 486 6 498 -8 Q 511 -24 523 -5 Q 553 53 546 104 Q 540 161 544 492 L 544 524 Z","M 544 492 Q 620 446 712 378 Q 733 360 749 359 Q 759 359 765 371 Q 775 387 753 430 Q 723 493 544 524 C 514 529 518 508 544 492 Z"],"中":["M 254 596 Q 244 603 202 608 Q 189 611 185 605 Q 178 598 189 580 Q 228 507 254 384 Q 260 347 282 324 Q 303 300 307 318 Q 310 328 310 343 L 306 381 Q 305 390 303 399 Q 276 513 267 556 C 261 585 259 594 254 596 Z","M 752 425 Q 765 462 777 498 Q 793 546 828 578 Q 853 603 821 624 Q 793 648 762 666 Q 743 679 717 668 Q 677 655 615 646 Q 575 642 535 636 L 476 628 Q 427 622 380 613 Q 307 603 254 596 C 224 592 237 551 267 556 Q 274 556 286 559 Q 400 587 476 593 L 534 600 Q 604 609 698 615 Q 717 616 724 607 Q 739 583 693 435 C 684 406 742 397 752 425 Z","M 530 370 Q 630 380 764 386 Q 776 387 778 397 Q 779 406 752 425 C 730 441 723 440 693 435 Q 606 420 530 407 L 475 399 Q 385 389 306 381 C 276 378 280 341 310 343 Q 314 343 321 343 Q 382 356 475 365 L 530 370 Z","M 475 365 Q 472 17 485 -11 Q 486 -12 488 -16 Q 503 -32 512 -10 Q 530 32 530 370 L 530 407 Q 531 519 534 600 L 535 636 Q 538 742 559 778 Q 566 794 545 811 Q 520 830 475 843 Q 454 847 441 833 Q 431 826 444 812 Q 472 787 475 753 Q 475 704 476 628 L 476 593 Q 476 517 476 419 Q 475 409 475 399 L 475 365 Z"],"土":["M 535 428 Q 602 441 673 451 Q 739 464 749 472 Q 759 481 755 490 Q 748 505 715 514 Q 681 523 647 511 Q 592 495 537 481 L 483 470 Q 395 454 293 449 Q 251 445 280 424 Q 320 397 409 409 Q 445 415 483 420 L 535 428 Z","M 521 151 Q 528 293 535 428 L 537 481 Q 538 595 566 720 Q 570 733 546 751 Q 504 773 475 779 Q 456 783 446 773 Q 436 763 447 746 Q 481 694 481 658 Q 484 567 483 470 L 483 420 Q 480 290 471 145 C 469 115 520 121 521 151 Z","M 471 145 Q 314 130 132 111 Q 107 110 125 87 Q 162 50 211 60 Q 452 121 842 114 Q 875 113 903 112 Q 928 111 935 122 Q 942 137 922 154 Q 847 212 795 192 Q 689 176 521 151 L 471 145 Z"],"王":["M 528 646 Q 601 659 678 670 Q 739 680 749 689 Q 761 698 755 709 Q 748 725 711 735 Q 672 745 579 716 Q 444 685 307 677 Q 261 673 293 649 Q 341 621 432 632 Q 450 635 472 638 L 528 646 Z","M 539 380 Q 707 411 713 416 Q 723 425 719 434 Q 712 447 679 458 Q 645 465 610 453 Q 576 443 541 434 L 490 423 Q 421 410 341 405 Q 299 401 328 380 Q 373 355 455 367 Q 471 370 489 372 L 539 380 Z","M 533 159 Q 536 277 539 380 L 541 434 Q 542 548 548 600 Q 557 627 529 645 L 528 646 C 505 665 463 666 472 638 Q 487 602 491 498 Q 490 468 490 423 L 489 372 Q 488 285 485 154 C 484 124 532 129 533 159 Z","M 520 106 Q 574 107 626 112 Q 776 124 907 105 Q 934 102 940 111 Q 950 127 936 140 Q 903 171 855 195 Q 839 202 810 193 Q 740 180 668 171 Q 587 165 533 159 L 485 154 Q 361 145 299 138 Q 229 128 125 130 Q 109 130 108 117 Q 107 104 127 87 Q 146 72 181 58 Q 193 54 213 62 Q 231 68 304 78 Q 401 97 520 106 Z"],"工":["M 538 620 Q 614 633 697 643 Q 766 656 777 664 Q 787 673 783 682 Q 776 697 743 706 Q 709 716 675 704 Q 596 682 510 665 Q 416 649 306 645 Q 264 641 293 620 Q 336 589 402 601 Q 439 607 477 611 L 538 620 Z","M 535 216 Q 562 534 573 562 Q 586 581 572 596 Q 554 611 538 620 C 512 636 463 637 477 611 Q 496 580 495 539 Q 491 385 487 212 C 486 182 532 186 535 216 Z","M 521 162 Q 578 163 632 168 Q 779 178 927 159 Q 955 155 962 165 Q 972 180 958 194 Q 924 228 873 252 Q 857 259 827 250 Q 754 237 678 228 Q 593 222 535 216 L 487 212 Q 357 202 291 195 Q 218 186 109 188 Q 93 188 91 175 Q 90 160 111 143 Q 130 128 166 113 Q 179 109 200 117 Q 218 123 295 134 Q 397 153 521 162 Z"],"木":["M 524 533 Q 537 536 755 560 Q 768 557 779 573 Q 780 586 754 600 Q 709 627 634 603 Q 526 582 524 580 L 479 572 Q 404 563 234 546 Q 200 542 226 521 Q 265 491 291 494 Q 309 503 446 521 L 524 533 Z","M 524 580 Q 524 682 544 758 Q 559 783 532 802 Q 516 814 485 833 Q 460 851 439 834 Q 433 828 440 813 Q 474 762 476 711 Q 477 647 479 572 L 477 458 Q 474 208 466 155 Q 442 46 456 5 Q 460 -7 466 -21 Q 473 -40 481 -43 Q 488 -50 495 -41 Q 504 -37 514 -15 Q 524 10 523 44 Q 522 90 523 480 L 524 580 Z","M 446 521 Q 368 337 127 132 Q 114 119 124 117 Q 134 113 146 119 Q 276 176 403 344 Q 472 450 477 458 C 528 538 464 563 446 521 Z","M 523 480 Q 607 338 716 186 Q 737 159 774 157 Q 901 147 942 150 Q 954 151 957 157 Q 957 164 941 173 Q 773 251 721 302 Q 628 398 523 532 Q 523 533 524 533 L 524 533 C 506 558 508 506 523 480 Z"],"本":["M 525 577 Q 589 589 780 608 Q 792 605 803 621 Q 804 634 778 648 Q 736 672 653 650 Q 541 629 526 623 L 477 614 Q 468 614 218 586 Q 184 582 210 561 Q 249 531 275 534 Q 293 543 452 566 L 525 577 Z","M 524 548 Q 524 563 525 577 L 526 623 Q 529 699 545 755 Q 555 771 551 786 Q 544 796 484 833 Q 459 851 437 834 Q 431 828 438 812 Q 474 760 475 708 Q 476 663 477 614 L 478 496 Q 474 280 473 209 L 468 165 Q 462 114 448 64 Q 438 22 465 -45 Q 472 -64 481 -67 Q 488 -74 495 -65 Q 504 -61 515 -38 Q 525 -11 524 22 Q 523 47 523 172 L 523 218 Q 523 330 524 502 L 524 548 Z","M 452 566 Q 359 353 75 124 Q 62 111 72 109 Q 82 105 94 111 Q 256 181 402 383 Q 421 413 446 447 Q 465 477 478 496 C 536 582 467 599 452 566 Z","M 524 502 Q 624 358 753 207 Q 775 182 814 181 Q 944 182 986 188 Q 998 191 1001 197 Q 1001 204 983 212 Q 803 279 749 326 Q 646 417 524 548 C 504 570 507 527 524 502 Z","M 473 209 Q 427 202 386 198 Q 352 197 313 192 Q 285 191 306 172 Q 327 151 372 151 Q 415 160 468 165 L 523 172 Q 538 175 640 183 Q 650 182 660 194 Q 661 206 639 217 Q 609 239 531 220 Q 527 220 523 218 L 473 209 Z"],"天":["M 499 681 Q 581 697 671 713 Q 726 725 734 732 Q 744 741 739 750 Q 732 763 699 773 Q 666 780 562 747 Q 439 719 336 709 Q 294 703 324 684 Q 369 659 430 668 L 499 681 Z","M 509 439 Q 615 454 771 455 Q 843 455 848 465 Q 854 478 836 493 Q 781 532 739 524 Q 652 505 506 478 L 447 470 Q 323 452 181 432 Q 159 429 175 411 Q 208 381 250 391 Q 340 416 442 430 L 509 439 Z","M 506 478 Q 512 583 534 637 Q 540 650 530 658 Q 518 670 499 681 C 474 698 413 693 430 668 Q 455 637 455 606 Q 454 531 447 470 L 442 430 Q 412 253 320 176 Q 232 113 145 75 Q 130 71 127 66 Q 121 60 138 57 Q 214 51 362 143 Q 390 167 413 194 Q 470 267 494 405 L 506 478 Z","M 494 405 Q 629 144 722 51 Q 740 33 762 31 Q 847 30 920 27 Q 951 26 952 33 Q 953 42 920 59 Q 752 134 710 180 Q 601 294 515 430 Q 511 434 509 439 C 493 464 473 446 494 405 Z"],"手":["M 502 718 Q 550 731 590 746 Q 641 759 683 764 Q 701 763 706 771 Q 710 781 700 795 Q 679 814 634 837 Q 619 847 605 847 Q 596 844 594 832 Q 591 802 411 730 Q 365 714 310 696 Q 303 687 310 684 Q 328 678 449 707 Q 458 708 468 711 L 502 718 Z","M 555 563 Q 697 591 706 599 Q 716 606 711 616 Q 704 628 674 636 Q 644 643 547 611 L 506 600 Q 496 599 486 596 Q 413 580 327 574 Q 290 568 315 550 Q 358 528 428 540 Q 468 549 513 554 L 555 563 Z","M 575 389 Q 687 398 843 397 Q 927 394 935 406 Q 942 419 923 436 Q 863 479 820 471 Q 723 452 571 429 L 525 422 Q 513 422 503 420 Q 325 398 115 373 Q 90 372 108 351 Q 124 335 145 329 Q 169 322 187 328 Q 352 373 527 385 L 575 389 Z","M 527 385 Q 536 154 492 78 Q 488 69 479 66 Q 467 62 376 87 Q 369 88 366 85 Q 365 81 373 73 Q 437 19 470 -22 Q 482 -35 489 -33 Q 505 -32 532 -3 Q 590 57 589 171 Q 590 237 575 389 L 571 429 Q 562 519 555 563 L 547 611 Q 541 650 540 680 Q 540 699 528 706 Q 515 713 502 718 C 475 730 454 737 468 711 Q 486 687 506 600 L 513 554 Q 520 493 525 422 L 527 385 Z"],"牛":["M 343 575 Q 344 576 345 577 Q 369 617 390 649 Q 400 662 385 678 Q 337 711 311 706 Q 299 703 303 688 Q 321 615 236 498 Q 227 494 197 449 Q 188 433 204 438 Q 220 441 242 458 Q 297 501 331 554 L 343 575 Z","M 559 559 Q 736 596 742 601 Q 752 610 747 619 Q 740 632 708 640 Q 677 647 643 635 Q 601 622 561 610 L 504 597 Q 431 582 347 576 Q 343 576 343 575 C 313 571 310 571 331 554 Q 364 521 441 537 Q 471 543 503 548 L 559 559 Z","M 556 343 Q 676 356 843 356 Q 877 356 906 357 Q 931 357 936 368 Q 943 381 923 399 Q 853 451 786 429 Q 692 411 556 387 L 501 379 Q 326 354 119 327 Q 94 324 113 303 Q 129 287 152 281 Q 177 274 197 280 Q 318 314 455 331 Q 476 335 501 337 L 556 343 Z","M 501 337 Q 491 -35 512 -68 Q 527 -84 536 -62 Q 557 -14 556 343 L 556 387 Q 557 486 559 559 L 561 610 Q 564 746 584 778 Q 593 799 573 815 Q 548 834 503 847 Q 482 853 469 838 Q 459 829 472 817 Q 503 790 505 753 Q 505 692 504 597 L 503 548 Q 502 458 501 379 L 501 337 Z"],"田":["M 225 620 Q 201 636 175 642 Q 168 646 161 639 Q 151 632 163 619 Q 163 616 169 607 Q 230 487 231 222 Q 234 140 277 112 L 279 111 Q 300 104 302 142 Q 302 152 301 164 L 297 200 Q 296 213 292 227 Q 264 473 260 573 Q 260 574 261 574 C 261 598 251 605 225 620 Z","M 669 194 Q 679 166 703 111 Q 712 92 723 92 Q 741 93 753 123 Q 805 217 816 348 Q 829 430 840 523 Q 847 581 873 615 Q 894 639 879 655 Q 854 680 798 705 Q 776 717 738 703 Q 626 666 496 644 Q 385 629 225 620 C 195 618 232 568 261 574 Q 348 592 461 609 L 513 617 Q 600 632 701 646 Q 750 655 768 632 Q 778 610 779 586 Q 769 414 727 248 Q 723 218 710 216 C 695 190 658 222 669 194 Z","M 529 394 Q 598 404 660 411 Q 685 414 677 428 Q 667 444 640 450 Q 613 454 530 436 L 478 426 Q 408 413 345 402 Q 326 398 347 382 Q 363 370 394 375 Q 436 382 478 387 L 529 394 Z","M 530 436 Q 533 598 534 598 Q 522 610 513 617 C 490 636 446 635 461 609 Q 465 602 470 594 Q 477 575 478 426 L 478 387 Q 478 320 478 219 C 478 189 524 196 524 226 Q 525 316 529 394 L 530 436 Z","M 301 164 Q 419 185 669 194 C 699 195 737 203 710 216 Q 707 216 675 236 Q 653 251 524 226 L 478 219 Q 381 207 297 200 C 267 197 271 159 301 164 Z"],"白":["M 330 536 Q 397 597 434 638 Q 518 732 544 746 Q 569 764 552 783 Q 531 802 496 815 Q 463 828 448 821 Q 432 817 440 801 Q 452 762 384 658 Q 306 538 305 535 C 289 509 308 516 330 536 Z","M 227 531 Q 209 541 190 547 Q 183 550 176 543 Q 167 537 178 524 Q 236 419 241 179 Q 242 113 281 79 Q 282 78 287 75 Q 306 69 309 104 Q 309 111 309 117 L 304 156 Q 303 169 298 184 Q 292 239 283 310 Q 282 311 282 312 L 279 342 Q 272 421 270 485 C 269 510 254 517 227 531 Z","M 640 134 Q 650 106 675 51 Q 684 32 695 32 Q 713 35 724 63 Q 772 150 780 268 Q 792 341 801 428 Q 808 483 834 518 Q 855 540 840 556 Q 815 581 761 606 Q 740 618 702 605 Q 555 557 330 536 L 305 535 Q 268 535 227 531 C 197 529 241 478 270 485 Q 303 497 669 549 Q 712 556 729 536 Q 739 515 739 494 Q 732 337 696 185 Q 692 158 681 156 Q 677 155 664 160 C 635 153 633 152 640 134 Z","M 282 312 Q 297 305 324 308 Q 490 330 613 342 Q 643 345 633 362 Q 620 381 588 389 Q 558 396 505 384 Q 382 360 279 342 C 249 337 253 321 282 312 Z","M 309 117 Q 315 116 324 117 Q 426 133 640 134 C 670 134 685 139 664 160 Q 655 170 643 179 Q 625 192 590 186 Q 431 162 304 156 C 274 154 279 118 309 117 Z"],"目":["M 329 714 Q 320 723 298 731 Q 286 737 273 732 Q 266 726 272 712 Q 275 699 281 685 Q 309 624 291 287 Q 285 239 271 184 Q 256 121 295 70 Q 308 54 320 69 Q 335 87 334 115 L 338 152 Q 339 180 340 216 Q 341 280 342 336 L 342 369 Q 343 439 345 493 L 346 525 Q 349 646 351 660 Q 352 670 352 677 C 353 698 353 698 329 714 Z","M 597 135 Q 637 86 665 43 Q 675 22 688 23 Q 707 24 724 63 Q 743 108 739 161 Q 726 329 717 637 Q 716 674 735 699 Q 745 714 735 725 Q 713 747 653 775 Q 632 785 614 775 Q 494 727 329 714 C 299 711 322 673 352 677 Q 361 677 586 717 Q 620 723 636 710 Q 676 667 660 203 Q 657 181 656 163 Q 652 144 633 149 C 608 132 591 142 597 135 Z","M 345 493 Q 369 486 539 511 Q 542 512 548 512 Q 581 518 586 522 Q 593 529 590 537 Q 584 549 558 556 Q 530 563 503 553 Q 466 543 426 535 Q 389 529 346 525 C 316 522 315 498 345 493 Z","M 342 336 Q 382 329 540 348 Q 544 349 550 349 Q 584 353 589 358 Q 598 365 594 373 Q 588 385 562 393 Q 535 400 507 392 Q 470 382 428 376 Q 388 370 342 369 C 312 368 312 340 342 336 Z","M 334 115 Q 376 130 597 135 C 627 136 641 136 633 149 Q 630 159 604 178 Q 588 188 554 183 Q 436 161 338 152 C 308 149 305 107 334 115 Z"],"子":["M 544 561 Q 575 580 648 638 Q 679 666 700 671 Q 737 683 739 698 Q 740 708 705 746 Q 672 782 661 780 Q 657 783 644 778 Q 575 748 344 719 Q 323 720 309 722 Q 290 726 283 715 Q 280 708 288 697 Q 298 684 322 666 Q 343 650 354 650 Q 364 649 384 662 Q 420 690 607 732 Q 632 738 637 735 Q 643 731 642 723 Q 642 714 543 589 Q 534 580 529 573 C 509 550 519 545 544 561 Z","M 529 573 Q 505 588 486 592 Q 474 596 466 591 Q 462 587 474 574 Q 495 544 508 451 L 513 407 Q 541 169 492 90 Q 489 83 482 81 Q 467 77 356 100 Q 349 100 346 97 Q 345 93 354 85 Q 429 30 470 -13 Q 483 -26 492 -24 Q 505 -23 527 -1 Q 575 44 576 136 Q 583 239 562 411 L 557 457 Q 551 505 549 542 Q 549 554 544 561 L 529 573 Z","M 508 451 Q 499 452 299 429 Q 227 419 121 418 Q 108 418 106 406 Q 105 393 124 378 Q 142 365 174 353 Q 186 349 204 357 Q 222 363 297 375 Q 393 397 513 407 L 562 411 Q 769 430 888 417 Q 937 417 940 418 Q 940 421 942 421 Q 949 434 937 447 Q 864 513 800 491 Q 739 479 675 469 Q 605 463 557 457 L 508 451 Z"],"女":["M 445 467 Q 485 576 514 665 Q 526 705 540 732 Q 562 757 524 789 Q 478 825 449 826 Q 433 827 429 815 Q 425 806 434 798 Q 455 774 453 731 Q 441 625 390 461 L 375 416 Q 348 338 337 327 Q 313 309 331 280 Q 340 270 356 274 Q 393 283 491 221 L 535 192 Q 637 132 757 11 Q 776 -8 789 -7 Q 805 -6 805 17 Q 804 54 773 100 Q 755 127 701 153 Q 599 213 569 230 L 519 256 Q 395 320 393 327 Q 393 333 427 423 L 445 467 Z","M 695 496 Q 656 544 628 541 Q 612 540 614 522 Q 618 504 617 486 L 606 440 Q 566 319 519 256 L 491 221 Q 406 128 277 81 Q 256 74 237 65 Q 221 59 233 53 Q 248 49 289 53 Q 356 63 413 95 Q 473 122 535 192 L 569 230 Q 600 275 659 395 Q 669 423 688 447 C 705 472 710 479 695 496 Z","M 688 447 Q 757 456 931 443 Q 956 440 962 449 Q 969 462 957 475 Q 926 503 881 524 Q 866 531 839 522 Q 767 507 695 496 L 617 486 Q 461 471 445 467 L 390 461 Q 314 454 268 447 Q 189 435 73 434 Q 60 434 57 422 Q 57 409 76 394 Q 94 381 126 369 Q 138 365 156 373 Q 205 392 375 416 L 427 423 Q 448 426 606 440 L 688 447 Z"],"心":["M 171 459 Q 147 381 112 311 Q 91 269 117 230 Q 129 209 152 227 Q 177 249 190 289 Q 211 344 208 392 Q 211 432 199 462 Q 192 472 185 472 Q 175 469 171 459 Z","M 863 228 Q 859 243 834 262 Q 797 290 698 391 Q 691 398 685 398 Q 682 397 684 389 Q 708 338 732 281 Q 742 257 728 241 Q 689 208 550 226 Q 441 244 397 323 Q 370 377 355 435 Q 348 463 324 476 Q 306 486 299 478 Q 295 474 302 454 Q 312 429 335 363 Q 372 224 476 178 Q 495 171 521 163 Q 710 115 851 212 Q 866 221 863 228 Z","M 441 617 Q 475 578 511 531 Q 524 515 541 513 Q 553 512 561 525 Q 568 541 564 574 Q 560 619 444 670 Q 428 677 420 675 Q 414 672 414 658 Q 415 645 441 617 Z","M 760 585 Q 814 536 877 465 Q 896 441 914 437 Q 924 436 933 447 Q 948 463 932 514 Q 922 563 840 592 Q 789 613 761 621 Q 751 627 748 612 Q 747 596 760 585 Z"],"水":["M 535 506 Q 538 699 560 762 Q 578 793 520 817 Q 486 836 465 830 Q 447 823 463 799 Q 485 771 486 736 Q 490 697 478 121 Q 477 97 463 88 Q 454 81 432 88 Q 407 94 382 99 Q 348 111 351 100 Q 352 93 373 78 Q 440 24 457 -5 Q 476 -41 493 -42 Q 508 -43 524 -7 Q 543 41 541 117 Q 531 294 534 470 L 535 506 Z","M 154 501 Q 141 501 139 492 Q 138 485 153 477 Q 199 452 227 461 Q 333 489 343 489 Q 359 486 347 456 Q 296 326 249 262 Q 201 190 114 119 Q 99 106 110 103 Q 120 102 141 113 Q 217 153 281 224 Q 342 288 419 454 Q 429 478 441 489 Q 456 501 447 511 Q 437 524 399 537 Q 378 549 336 530 Q 270 509 154 501 Z","M 590 446 Q 630 476 766 584 Q 787 603 814 615 Q 838 627 825 647 Q 809 666 779 681 Q 752 696 738 692 Q 723 691 729 675 Q 735 639 659 553 Q 620 508 577 459 C 557 436 566 428 590 446 Z","M 577 459 Q 555 484 535 506 C 515 528 516 494 534 470 Q 756 161 817 160 Q 898 169 967 175 Q 995 178 996 185 Q 997 192 964 205 Q 810 253 753 295 Q 690 346 590 446 L 577 459 Z"],"石":["M 491 646 Q 602 662 721 677 Q 803 690 816 700 Q 826 707 822 718 Q 815 733 783 743 Q 749 753 715 742 Q 499 685 275 676 Q 232 673 261 651 Q 310 620 370 631 Q 401 635 436 639 L 491 646 Z","M 371 369 Q 425 442 500 565 Q 527 608 527 609 Q 524 631 491 646 C 465 661 435 669 436 639 Q 448 528 275 324 Q 268 318 261 309 Q 207 251 73 136 Q 64 132 76 128 Q 136 135 279 263 Q 309 294 341 331 L 371 369 Z","M 399 360 Q 390 364 371 369 C 342 377 330 359 341 331 Q 371 255 387 138 Q 388 99 410 73 Q 429 48 436 66 Q 440 79 441 100 L 439 137 Q 421 228 411 322 C 408 352 407 357 399 360 Z","M 735 170 Q 765 299 810 335 Q 831 357 812 379 Q 791 395 728 426 Q 706 435 680 424 Q 554 376 399 360 C 369 357 381 317 411 322 Q 423 323 438 327 Q 549 348 654 368 Q 681 374 692 362 Q 705 350 703 323 Q 690 241 673 176 C 666 147 728 141 735 170 Z","M 441 100 Q 448 99 461 100 Q 552 119 749 130 Q 761 131 763 141 Q 763 150 735 170 C 715 185 702 182 673 176 Q 543 149 439 137 C 409 133 411 101 441 100 Z"],"早":["M 341 752 Q 319 764 295 768 Q 288 769 283 764 Q 276 757 286 747 Q 328 690 345 560 Q 354 490 395 471 Q 411 468 412 493 L 410 518 Q 406 540 389 602 L 384 628 Q 384 631 384 632 Q 375 678 371 716 C 369 738 368 739 341 752 Z","M 610 518 Q 611 514 613 509 Q 619 491 632 493 Q 647 494 655 510 Q 670 531 696 628 Q 714 683 753 715 Q 774 733 756 749 Q 737 768 684 796 Q 671 805 595 791 Q 571 791 438 767 Q 380 757 341 752 C 311 748 343 706 371 716 Q 404 734 608 754 Q 636 755 647 750 Q 659 743 652 707 Q 627 580 616 548 C 608 522 608 522 610 518 Z","M 389 602 Q 393 602 401 603 Q 501 622 575 633 Q 597 637 589 649 Q 579 662 555 667 Q 537 670 384 628 C 355 620 359 600 389 602 Z","M 510 505 Q 562 514 610 518 C 640 521 645 539 616 548 Q 612 549 607 551 Q 591 554 410 518 C 381 512 382 493 412 493 Q 416 493 424 493 Q 439 496 455 497 L 510 505 Z","M 538 341 Q 728 365 910 345 Q 934 342 939 351 Q 948 364 935 376 Q 907 404 863 424 Q 848 430 823 422 Q 750 407 674 397 Q 595 390 539 383 L 479 377 Q 352 367 288 359 Q 215 349 106 348 Q 93 349 91 337 Q 90 325 109 310 Q 125 297 156 285 Q 166 281 185 289 Q 203 295 280 307 Q 370 326 479 337 L 538 341 Z","M 482 6 Q 486 -19 494 -29 Q 500 -36 507 -34 Q 534 -13 536 153 Q 535 196 538 341 L 539 383 Q 539 416 549 461 Q 552 480 538 489 Q 522 499 510 505 C 484 519 441 524 455 497 Q 456 496 458 491 Q 477 458 478 393 Q 478 386 479 377 L 479 337 Q 479 31 482 6 Z"],"生":["M 324 495 Q 328 502 332 509 Q 357 558 382 599 Q 392 615 375 630 Q 318 663 296 657 Q 283 654 287 638 Q 308 536 204 397 Q 200 396 160 342 Q 153 324 169 330 Q 188 334 213 357 Q 273 409 311 471 L 324 495 Z","M 556 479 Q 748 518 754 521 Q 764 530 759 539 Q 752 552 721 561 Q 688 568 656 557 Q 607 544 558 529 L 500 516 Q 418 501 324 495 C 294 493 284 484 311 471 L 312 471 Q 351 447 432 459 Q 463 465 499 469 L 556 479 Z","M 549 276 Q 702 307 710 313 Q 720 322 715 331 Q 708 344 676 353 Q 649 359 551 329 L 495 315 Q 428 303 347 295 Q 308 291 336 271 Q 378 244 484 265 Q 488 266 495 267 L 549 276 Z","M 543 92 Q 546 186 549 276 L 551 329 Q 552 405 556 479 L 558 529 Q 567 718 580 760 Q 593 782 578 797 Q 538 828 506 838 Q 490 842 473 829 Q 467 820 474 808 Q 507 751 504 688 Q 503 604 500 516 L 499 469 Q 498 394 495 315 L 495 267 Q 492 179 492 86 C 492 56 542 62 543 92 Z","M 492 86 Q 330 70 144 51 Q 119 48 137 27 Q 173 -9 220 1 Q 520 73 900 54 Q 901 54 904 54 Q 929 53 935 63 Q 942 78 922 95 Q 856 144 785 129 Q 688 113 543 92 L 492 86 Z"],"立":["M 440 735 Q 513 672 557 663 Q 576 662 586 680 Q 590 696 585 718 Q 561 772 453 785 Q 450 786 449 786 Q 427 789 416 782 Q 409 779 414 765 Q 418 750 440 735 Z","M 284 510 Q 242 503 272 484 Q 321 456 382 470 Q 527 498 679 527 Q 748 543 758 552 Q 768 561 763 570 Q 756 583 723 593 Q 687 600 601 570 Q 442 524 284 510 Z","M 327 337 Q 351 297 375 251 Q 385 235 400 229 Q 410 226 421 237 Q 431 250 432 283 Q 433 322 338 387 Q 325 396 317 395 Q 310 394 308 379 Q 307 367 327 337 Z","M 567 156 Q 597 205 645 320 Q 658 354 686 398 Q 702 414 691 427 Q 678 448 638 470 Q 619 482 598 472 Q 586 465 595 452 Q 605 421 599 384 Q 581 299 534 180 Q 528 167 527 153 C 523 123 552 130 567 156 Z","M 527 153 Q 464 150 231 113 Q 174 106 123 108 Q 113 108 104 101 Q 97 94 103 83 Q 115 65 174 35 Q 189 28 212 38 Q 368 98 536 113 Q 678 126 910 82 Q 931 79 938 89 Q 947 102 925 119 Q 840 188 796 175 Q 772 171 567 156 L 527 153 Z"],"五":["M 499 673 Q 590 688 686 701 Q 750 711 761 720 Q 771 729 767 738 Q 760 753 727 762 Q 693 772 598 744 Q 453 713 314 705 Q 272 701 301 680 Q 340 653 430 664 Q 440 665 452 667 L 499 673 Z","M 482 468 Q 494 520 507 568 Q 525 635 524 641 Q 512 660 499 673 C 479 695 448 697 452 667 Q 461 625 443 526 Q 436 499 428 460 L 419 421 Q 395 322 357 159 C 350 130 401 136 408 165 Q 442 307 472 429 L 482 468 Z","M 641 177 Q 678 360 738 416 Q 759 438 741 459 Q 722 475 661 505 Q 640 514 614 505 Q 545 481 482 468 L 428 460 Q 355 450 280 446 Q 261 446 262 434 Q 265 424 286 416 Q 314 401 357 413 Q 388 417 419 421 L 472 429 Q 527 439 584 446 Q 614 452 625 440 Q 643 421 637 384 Q 615 266 585 174 C 576 145 635 148 641 177 Z","M 357 159 Q 329 158 301 152 Q 159 130 72 134 Q 62 135 53 128 Q 46 121 52 110 Q 64 94 119 62 Q 134 55 156 64 Q 339 130 526 140 Q 670 152 937 99 Q 943 99 949 97 Q 970 93 977 103 Q 984 115 964 132 Q 883 199 844 191 Q 840 191 837 189 Q 807 183 641 177 L 585 174 Q 521 178 408 165 L 357 159 Z"],"六":["M 472 702 Q 502 677 534 645 Q 552 629 572 630 Q 585 631 592 649 Q 598 668 585 705 Q 578 727 541 744 Q 447 771 436 764 Q 429 758 432 742 Q 436 729 472 702 Z","M 128 467 Q 103 464 121 443 Q 137 427 159 419 Q 184 412 205 418 Q 427 478 848 478 Q 875 478 901 477 Q 925 477 931 487 Q 938 502 918 519 Q 846 571 778 551 Q 514 509 128 467 Z","M 346 344 Q 342 241 202 138 Q 169 116 152 101 Q 139 86 157 88 Q 220 85 332 184 Q 405 257 428 279 Q 443 291 430 311 Q 391 359 360 361 Q 347 361 346 344 Z","M 611 302 Q 675 223 752 114 Q 767 86 785 79 Q 795 76 806 87 Q 822 100 815 155 Q 811 224 623 335 Q 620 338 618 338 Q 608 347 603 332 Q 600 316 611 302 Z"],"七":["M 433 375 Q 649 436 864 443 Q 889 443 895 453 Q 901 469 887 480 Q 812 531 750 510 Q 698 494 450 429 Q 441 428 434 424 L 387 414 Q 314 398 270 386 Q 204 367 103 353 Q 88 352 88 339 Q 89 326 111 313 Q 130 303 166 293 Q 179 290 196 301 Q 253 328 386 363 L 433 375 Z","M 386 363 Q 386 159 409 117 Q 445 69 575 64 Q 719 58 792 93 Q 805 102 804 113 Q 800 132 779 142 Q 749 157 729 154 Q 716 154 707 147 Q 680 125 543 118 Q 473 118 450 150 Q 426 189 433 375 L 434 424 Q 437 644 465 686 Q 481 714 452 734 Q 416 759 394 765 Q 363 772 354 758 Q 347 748 357 739 Q 391 705 388 630 Q 391 551 387 414 L 386 363 Z"],"八":["M 317 465 Q 318 338 155 190 Q 136 178 79 126 Q 67 110 85 113 Q 110 114 146 137 Q 258 209 325 305 Q 368 363 406 409 Q 419 422 404 441 Q 355 486 329 484 Q 316 483 317 465 Z","M 446 687 Q 507 636 530 577 Q 608 343 711 190 Q 732 163 846 151 Q 892 147 958 141 Q 983 140 984 146 Q 984 152 963 163 Q 756 269 675 396 Q 621 480 551 644 Q 530 690 483 702 Q 449 709 445 702 Q 438 692 446 687 Z"],"九":["M 388 486 Q 319 225 74 56 Q 59 44 74 41 Q 92 42 133 60 Q 217 103 278 166 Q 348 230 380 303 Q 438 441 451 505 L 456 539 Q 456 593 481 702 Q 487 733 500 762 Q 510 784 490 795 Q 430 835 398 823 Q 382 817 390 799 Q 411 762 412 689 Q 402 550 396 523 L 388 486 Z","M 451 505 Q 520 527 570 535 Q 592 539 598 534 Q 602 527 598 511 Q 490 112 639 36 Q 676 18 741 10 Q 877 -3 968 54 Q 989 66 980 90 Q 961 156 954 255 Q 953 274 946 273 Q 940 273 935 254 Q 925 212 913 164 Q 903 127 879 104 Q 860 86 800 80 Q 733 70 679 89 Q 631 104 616 136 Q 594 173 602 259 Q 612 350 654 464 Q 673 512 702 538 Q 718 551 717 564 Q 716 576 646 607 Q 631 617 613 602 Q 568 572 456 539 L 396 523 Q 335 510 278 493 Q 232 483 156 482 Q 141 483 144 467 Q 147 455 174 439 Q 205 421 243 437 Q 321 465 388 486 L 451 505 Z"],"千":["M 510 708 Q 627 756 678 763 Q 697 763 701 771 Q 705 783 693 795 Q 671 813 625 833 Q 609 843 595 841 Q 586 838 586 826 Q 585 810 570 800 Q 542 778 480 747 Q 401 705 282 661 Q 275 651 282 648 Q 298 644 433 685 Q 445 689 460 692 L 510 708 Z","M 545 441 Q 734 459 839 451 Q 912 448 918 453 Q 925 466 913 479 Q 882 507 837 528 Q 825 534 722 512 Q 719 512 545 489 L 489 482 Q 485 483 301 461 Q 234 451 133 450 Q 118 450 117 438 Q 117 425 136 410 Q 175 380 225 392 Q 270 405 392 424 Q 437 431 489 436 L 545 441 Z","M 488 9 Q 494 -19 501 -29 Q 507 -36 515 -34 Q 531 -25 538 40 Q 548 125 546 211 Q 542 266 545 441 L 545 489 Q 545 597 559 658 Q 563 677 547 687 Q 526 702 510 708 C 483 721 444 718 460 692 Q 461 691 463 689 Q 467 679 475 668 Q 488 643 489 606 Q 490 551 489 482 L 489 436 Q 483 49 488 9 Z"],"文":["M 420 777 Q 448 753 480 724 Q 498 708 517 710 Q 530 711 536 728 Q 540 747 528 783 Q 521 805 485 819 Q 400 846 384 836 Q 378 830 380 815 Q 386 802 420 777 Z","M 528 568 Q 553 574 753 603 Q 766 602 776 616 Q 777 631 751 643 Q 709 670 625 641 Q 424 593 256 571 Q 225 568 193 562 Q 159 558 185 537 Q 224 507 258 515 Q 364 539 496 563 L 528 568 Z","M 507 261 Q 553 339 576 447 Q 582 480 591 501 Q 598 514 588 525 Q 558 561 528 568 C 500 579 493 582 496 563 Q 495 560 496 555 Q 526 444 468 318 Q 464 311 461 302 L 442 267 Q 385 183 252 131 Q 204 115 137 95 Q 125 94 120 90 Q 113 86 123 79 Q 130 76 146 78 Q 261 85 347 123 Q 414 150 482 225 L 507 261 Z","M 482 225 Q 525 164 676 38 Q 698 16 734 16 Q 842 17 928 32 Q 974 39 970 51 Q 969 58 922 69 Q 732 114 678 141 Q 612 172 507 261 L 461 302 Q 415 345 368 394 Q 326 437 288 437 Q 269 437 265 432 Q 264 425 280 412 Q 331 384 442 267 L 482 225 Z"]};
   const GEN = {
     math() {
       const item = pick(ITEMS);
@@ -2922,9 +3365,393 @@ body.is-full .promo { display: none; }
     }
   };
 
+  /* ---------- 幼小銜接專區：出題 ---------- */
+  const optText = (t, sm) => `<span class="o-life"><span class="t solo${sm ? ' sm' : ''}">${t}</span></span>`;
+  const yxCard = (inner, cls) => `<div class="yx-card${cls ? ' ' + cls : ''}">${inner}</div>`;
+  const hlWord = (w, c, last) => { const i = last ? w.lastIndexOf(c) : w.indexOf(c); return i < 0 ? w : w.slice(0, i) + `<b class="hl">${c}</b>` + w.slice(i + 1); };
+  const strokeSVG = (ch, done, hi, cls) => `<svg class="${cls}" viewBox="0 0 1024 1024" aria-hidden="true"><rect x="12" y="12" width="1000" height="1000" rx="60" fill="#fff" stroke="#D3DEE8" stroke-width="10"/><path d="M512 40V984M40 512H984" stroke="#E3EAF0" stroke-width="8" stroke-dasharray="30 26"/><g transform="translate(0,900) scale(1,-1)">${YX_STROKES[ch].map((d, i) => `<path d="${d}" fill="${i < done ? '#34424F' : i === hi ? '#E5484D' : '#E2E8EE'}"/>`).join('')}</g></svg>`;
+  const rodsSVG = (t, o) => {
+    const W = t * 34 + (o ? 46 : 0) + 10, H = 10 * 26 + 14;
+    let s = '';
+    for (let i = 0; i < t; i++) for (let k = 0; k < 10; k++) s += `<rect x="${8 + i * 34}" y="${8 + k * 26}" width="26" height="24" rx="4" fill="#2C7BCB" stroke="#1B5C9E" stroke-width="2"/>`;
+    for (let k = 0; k < o; k++) s += `<rect x="${8 + t * 34 + 12}" y="${8 + (9 - k) * 26}" width="26" height="24" rx="4" fill="#EE7424" stroke="#BF5612" stroke-width="2"/>`;
+    return `<svg class="yx-rods" viewBox="0 0 ${W} ${H}" style="width:min(100%,${W * 1.1}px)" aria-hidden="true">${s}</svg>`;
+  };
+  const rulerSVG = (bars, units) => {
+    const U = 26, X0 = 14, w = units * U + X0 * 2, rowH = 52, H = bars.length * rowH + 40;
+    let s = '';
+    for (let i = 0; i <= units; i++) s += `<line x1="${X0 + i * U}" y1="${H - 32}" x2="${X0 + i * U}" y2="${H - 20}" stroke="#5B6B7C" stroke-width="2"/>`;
+    s += `<rect x="${X0}" y="${H - 20}" width="${units * U}" height="10" rx="3" fill="#FFE59A" stroke="#E8A50E" stroke-width="2"/>`;
+    for (let i = 0; i < units; i++) s += `<rect x="${X0 + i * U}" y="8" width="${U}" height="${H - 40}" fill="${i % 2 ? '#F4F8FB' : '#FFFFFF'}"/>`;
+    bars.forEach((b, r) => {
+      const y = 16 + r * rowH, x = X0 + b.s * U, L = b.l * U;
+      s += `<rect x="${x}" y="${y}" width="${L - 14}" height="30" rx="5" fill="${b.c}"/><polygon points="${x + L - 14},${y} ${x + L},${y + 15} ${x + L - 14},${y + 30}" fill="#F3D2A2"/><polygon points="${x + L - 5},${y + 12.5} ${x + L},${y + 15} ${x + L - 5},${y + 17.5}" fill="#34424F"/><rect x="${x}" y="${y}" width="10" height="30" rx="3" fill="#F7A8B8"/>`;
+      if (b.n) s += `<text x="${x - 2}" y="${y + 19}" text-anchor="end" font-size="16" font-weight="900" fill="#34424F">${b.n}</text>`;
+    });
+    return `<svg class="yx-ruler" viewBox="-20 0 ${w + 20} ${H}" aria-hidden="true"><rect x="-20" y="0" width="${w + 20}" height="${H}" rx="14" fill="#FFFFFF"/>${s}</svg>`;
+  };
+  const YX_WORD_T = [
+    () => { const a = rand(6, 15), b = rand(2, a - 2); return [`教室裡有 ${a} 個小朋友，${b} 個去上廁所，教室裡還有幾個人？`, a - b, '🏫']; },
+    () => { const a = rand(5, 12), b = rand(3, 8); return [`小明有 ${a} 張貼紙，老師又給他 ${b} 張，現在有幾張？`, a + b, '⭐']; },
+    () => { const a = rand(8, 18), b = rand(2, 7); return [`一盒蠟筆有 ${a} 枝，用斷了 ${b} 枝，還有幾枝是好的？`, a - b, '🖍️']; },
+    () => { const a = rand(3, 9), b = rand(3, 9); return [`第一排有 ${a} 個人，第二排有 ${b} 個人，一共有幾個人？`, a + b, '🧑‍🤝‍🧑']; },
+    () => { const a = rand(10, 19), b = rand(2, 9); return [`公車上有 ${a} 個人，到站下車 ${b} 個人，車上還有幾個人？`, a - b, '🚌']; },
+    () => { const a = rand(4, 10), b = rand(2, 8); return [`哥哥摺了 ${a} 隻紙鶴，妹妹摺了 ${b} 隻，兩個人一共摺了幾隻？`, a + b, '🕊️']; },
+    () => { const a = rand(9, 17), b = rand(2, a - 3); return [`樹上有 ${a} 顆蘋果，掉下來 ${b} 顆，樹上還有幾顆？`, a - b, '🍎']; },
+    () => { const a = rand(6, 14), b = rand(2, a - 1); return [`姊姊有 ${a} 顆彈珠，弟弟有 ${b} 顆，姊姊比弟弟多幾顆？`, a - b, '🔵']; },
+    () => { const p = rand(2, 5), n = rand(2, 4); return [`一枝鉛筆 ${p} 元，買 ${n} 枝要幾元？`, p * n, '✏️']; },
+    () => { const a = rand(2, 4), b = rand(2, 5); return [`有 ${a} 個盤子，每盤放 ${b} 顆草莓，一共有幾顆？`, a * b, '🍓']; },
+    () => { const a = rand(3, 8), b = rand(1, a - 1), c = rand(1, 6); return [`魚缸裡有 ${a} 條魚，撈走 ${b} 條，又放進 ${c} 條，現在有幾條？`, a - b + c, '🐟']; },
+    () => { const a = rand(7, 15), b = rand(1, 6); return [`小美今年 ${a} 歲，妹妹比她小 ${b} 歲，妹妹幾歲？`, a - b, '🎂']; },
+    () => { const a = rand(5, 10), b = rand(2, 9); return [`跳繩比賽，小華跳了 ${a} 下，小強比小華多跳 ${b} 下，小強跳了幾下？`, a + b, '🤸']; },
+    () => { const a = rand(2, 9), b = rand(2, 9); return [`停車場有 ${a} 台紅色的車和 ${b} 台白色的車，一共幾台車？`, a + b, '🚗']; },
+    () => { const a = rand(8, 16), b = rand(2, 7); return [`媽媽買了 ${a} 顆雞蛋，煎蛋用掉 ${b} 顆，還剩幾顆？`, a - b, '🥚']; },
+    () => { const a = rand(11, 19), b = rand(2, 8); return [`圖書室有 ${a} 張椅子，坐了 ${b} 個小朋友，還有幾張空椅子？`, a - b, '🪑']; },
+    () => { const a = rand(4, 9), b = rand(4, 9); return [`早上收到 ${a} 封信，下午收到 ${b} 封信，今天一共收到幾封？`, a + b, '✉️']; },
+    () => { const a = rand(12, 20), b = rand(3, 9); return [`氣球有 ${a} 個，飛走了 ${b} 個，還剩幾個？`, a - b, '🎈']; },
+    () => { const n = rand(2, 4); return [`一隻手有 5 根手指，${n} 隻手一共有幾根手指？`, 5 * n, '🖐️']; },
+    () => { const a = rand(6, 12), b = rand(2, 5); return [`小朋友排成一排，小明前面有 ${a} 個人，後面有 ${b} 個人，這一排一共有幾個人？`, a + b + 1, '🚶']; }
+  ];
+  const YX_STAT_SETS = [[['🍎', '蘋果'], ['🍌', '香蕉'], ['🍇', '葡萄'], ['🍊', '橘子'], ['🍓', '草莓']], [['🐶', '小狗'], ['🐱', '小貓'], ['🐰', '兔子'], ['🐦', '小鳥'], ['🐟', '小魚']], [['🚗', '汽車'], ['🚌', '公車'], ['🚲', '腳踏車'], ['🛵', '機車'], ['🚕', '計程車']], [['☀️', '晴天'], ['☁️', '陰天'], ['🌧️', '雨天'], ['⛈️', '雷雨']]];
+  const YX_CAL_FACTS = [
+    ['一個星期有幾天？', '7 天', ['5 天', '6 天', '8 天']], ['一年有幾個月？', '12 個月', ['10 個月', '7 個月', '24 個月']], ['星期六和星期日叫做什麼？', '週末', ['上學日', '生日', '晚上']],
+    ['一年的第一個月是？', '一月', ['五月', '十月', '十二月']], ['一年的最後一個月是？', '十二月', ['一月', '六月', '九月']], ['一天有幾個小時？', '24 小時', ['12 小時', '10 小時', '60 小時']],
+    ['一個小時有幾分鐘？', '60 分鐘', ['10 分鐘', '30 分鐘', '100 分鐘']], ['過年是在哪個季節？', '冬天', ['夏天', '秋天', '春天']], ['一年有幾個季節？', '4 個', ['2 個', '3 個', '12 個']],
+    ['星期日的下一天是？', '星期一', ['星期六', '星期三', '星期五']], ['二月通常有幾天？', '28 天', ['31 天', '7 天', '15 天']], ['上學日是星期一到星期幾？', '星期五', ['星期三', '星期六', '星期日']]
+  ];
+  const YX_GEN = {
+    yxzy() {
+      const t = pick(YX_ZY), syms = [...new Set(YX_ZY.map(x => x[0]))];
+      if (Math.random() < .55) {
+        const opts = shuffle([t[0], ...shuffle(syms.filter(z => z !== t[0])).slice(0, 3)]);
+        return {
+          prompt: `「${t[2]}」是哪一個注音開頭？`, speech: [[`${t[1]}的${t[2]}，是哪一個注音開頭？`]],
+          stage: yxCard(`<div class="pic">${t[3]}</div><div class="word-zh">${hlWord(t[1], t[2])}</div>`),
+          options: opts.map(z => ({ html: charHTML(z), label: z, correct: z === t[0] })), after: [[`${t[1]}的${t[2]}`]], key: 'w' + t[1]
+        };
+      }
+      const seen = new Set([t[0]]), ds = [];
+      for (const x of shuffle(YX_ZY)) { if (ds.length >= 3) break; if (!seen.has(x[0])) { seen.add(x[0]); ds.push(x); } }
+      return {
+        prompt: `哪一個字是「${t[0]}」開頭的？`, speech: [['看看括號裡的字，哪一個是這個注音開頭的？']],
+        stage: yxCard(`<div class="bigchar">${t[0]}</div>`),
+        options: shuffle([t, ...ds]).map(o => ({ html: optLife([o[3], o[1] === o[2] ? o[1] : o[1].replace(o[2], `「${o[2]}」`)]), label: `${o[1]}的${o[2]}`, correct: o === t })), after: [[`${t[1]}的${t[2]}`]], key: 'r' + t[1]
+      };
+    },
+    yxtone() {
+      if (Math.random() < .68) {
+        const t = pick(YX_TONE), last = t[3] === 5;
+        const pool = last ? [1, 2, 3, 4, 5] : [1, 2, 3, 4], opts = t[3] === 5 ? shuffle([5, ...shuffle([1, 2, 3, 4]).slice(0, 3)]) : shuffle(pool);
+        return {
+          prompt: last ? `「${t[1]}」的最後一個字念第幾聲？` : `「${t[1]}」的「${t[0]}」念第幾聲？`, speech: [[`${t[1]}。${t[1]}的${t[0]}，念第幾聲？`]],
+          stage: yxCard(`<div class="pic">${t[4]}</div><div class="word-zh">${hlWord(t[1], t[0], last)}</div>`),
+          options: opts.map(k => ({ html: `<span class="o-life"><span class="t big yx-zy">${yxTone(t[2], k)}</span><span class="t">${YX_TONE_NAME[k]}</span></span>`, label: YX_TONE_NAME[k], correct: k === t[3] })),
+          after: [[`${t[1]}的${t[0]}，念${YX_TONE_NAME[t[3]]}`]], key: 't' + t[1] + t[0] + t[3]
+        };
+      }
+      const tone = rand(1, 4), right = pick(YX_TONE.filter(x => x[3] === tone)), wrong = shuffle(YX_TONE.filter(x => x[3] !== tone && x[3] !== 5)).filter((x, i, a) => a.findIndex(y => y[3] === x[3]) === i).slice(0, 2);
+      const opts = shuffle([right, ...wrong]);
+      return {
+        prompt: `哪一個字念${YX_TONE_NAME[tone]}？`, speech: [[`聽一聽，哪一個字念${YX_TONE_NAME[tone]}？`]], stage: yxCard(`<div class="yx-tones">${['', 'ˊ', 'ˇ', 'ˋ'].map((m, i) => `<span class="${i + 1 === tone ? 'on' : ''}"><b>${YX_TONE_NAME[i + 1]}</b>${m || '－'}</span>`).join('')}</div>`),
+        options: opts.map(o => ({ html: optLife([o[4], o[1].replace(o[0], `「${o[0]}」`)]), label: `${o[1]}的${o[0]}`, correct: o === right })),
+        after: [[`${right[1]}的${right[0]}，念${YX_TONE_NAME[tone]}`]], key: 'p' + tone + opts.map(o => o[1]).sort().join('')
+      };
+    },
+    yxspell() {
+      const pool = YX_TONE.filter(x => x[3] !== 5), t = pick(pool), full = yxTone(t[2], t[3]);
+      const set = new Set([full]);
+      for (let k = 0; k < 60 && set.size < 4; k++) {
+        const ch = [...t[2]], r = Math.random();
+        if (r < .4) set.add(yxTone(t[2], pick([1, 2, 3, 4].filter(x => x !== t[3]))));
+        else { const i = rand(0, ch.length - 1), sw = ZY_SWAP[ch[i]]; if (sw) { ch[i] = pick(sw.split('')); set.add(yxTone(ch.join(''), t[3])); } }
+      }
+      while (set.size < 4) set.add(yxTone(pick(pool)[2], rand(1, 4)));
+      const opts = shuffle([...set]).map(z => ({ html: `<span class="o-zy">${z}</span>`, label: z, correct: z === full }));
+      if (Math.random() < .5) {
+        const parts = [...t[2]].concat(t[3] > 1 ? [YX_TONE_MARK[t[3]]] : []);
+        return {
+          prompt: `${parts.join(' + ')} 會拼成哪一個？`, speech: [[`${t[1]}的${t[0]}，是哪一個拼音？`]],
+          stage: yxCard(`<div class="pic">${t[4]}</div><div class="o-zy" style="font-size:2.4rem">${parts.join(' ＋ ')} ＝ ？</div>`),
+          options: opts, after: [[`${t[1]}的${t[0]}`]], key: 'a' + t[1] + t[0]
+        };
+      }
+      return {
+        prompt: `「${t[0]}」的注音怎麼拼？`, speech: [[`${t[1]}的${t[0]}，注音怎麼拼？`]],
+        stage: yxCard(`<div class="pic">${t[4]}</div><div class="word-zh">${hlWord(t[1], t[0])}</div>`), options: opts, after: [[`${t[1]}的${t[0]}`]], key: 'b' + t[1] + t[0]
+      };
+    },
+    yxchar() {
+      const t = pick(CN);
+      if (Math.random() < .5) {
+        const opts = shuffle([t, ...others(CN, t, 3, x => x.ch)]);
+        return {
+          prompt: '看圖片，找出對的字', speech: [[`${t.say}。哪一個是${t.ch}？`]], stage: yxCard(`<div class="pic">${t.e}</div>`),
+          options: opts.map(o => ({ html: charHTML(o.ch), label: o.ch, correct: o === t })), after: [[t.say]], key: 'a' + t.ch
+        };
+      }
+      const opts = shuffle([t, ...others(CN, t, 3, x => x.e)]);
+      return {
+        prompt: '這是什麼字？找出對的圖片', speech: [['這是什麼字？找出對的圖片']], stage: yxCard(`<div class="bigchar">${t.ch}</div>`),
+        options: opts.map(o => ({ html: picHTML(o.e), label: o.say, correct: o === t })), after: [[t.say]], key: 'b' + t.ch
+      };
+    },
+    yxsimilar() {
+      const groups = SIMILAR.concat(YX_SIMILAR_MORE), g = pick(groups), t = pick(g);
+      let opts = g.slice();
+      if (opts.length < 4) opts = opts.concat(shuffle(groups.flat().filter(x => !opts.some(y => y[0] === x[0]))).slice(0, 4 - opts.length));
+      opts = shuffle(opts.slice(0, 4)); if (!opts.includes(t)) opts[0] = t;
+      return {
+        prompt: '聽一聽，找出對的字', speech: [[`${t[1]}。哪一個是${t[0]}？`]], stage: yxCard('<div class="pic">👂</div>'),
+        options: shuffle(opts).map(o => ({ html: charHTML(o[0]), label: o[0], correct: o === t })), after: [[t[1]]], key: t[0] + g[0][0]
+      };
+    },
+    yxsent() {
+      const t = pick(SENT.concat(YX_SENT_MORE)), q = bankQ(SENT, t);
+      q.stage = yxCard(`<div class="pic">${t.e}</div><div class="phrase" style="margin-top:8px">${t.q.replace('＿＿', '<span class="blank">？</span>')}</div>`);
+      q.prompt = '選出對的詞，把句子填好'; q.speech = [[t.q.replace('＿＿', '什麼') + '選出對的詞']];
+      q.after = [[t.q.replace('＿＿', t.a[0][1])]]; q.key = 's' + t.q;
+      return q;
+    },
+    yxpunct() {
+      const t = pick(YX_PUNCT), text = t[0].includes('＿') ? t[0] : t[0] + '＿';
+      const WHY = { '？': '這是問問題的句子，後面用問號', '！': '很驚訝、很開心或很著急的時候，用驚嘆號', '。': '一句話說完了，用句號', '，': '話還沒說完，中間停一下，用逗號' };
+      return {
+        prompt: '空格要填哪一個標點符號？', speech: [[text.replace('＿', '，')], ['空格要填哪一個標點符號？']],
+        stage: yxCard(`<div class="phrase yx-paper">${text.replace('＿', '<span class="blank">？</span>')}</div>`),
+        options: shuffle(['，', '。', '？', '！']).map(m => ({ html: `<span class="o-life"><span class="t yx-mark">${m}</span><span class="t">${YX_PUNCT_NAME[m]}</span></span>`, label: YX_PUNCT_NAME[m], correct: m === t[1] })),
+        after: [[WHY[t[1]]]], key: 'p' + t[0]
+      };
+    },
+    yxlook() {
+      const p = pick(YX_PEOPLE), a = pick(YX_ACTS), o = pick(YX_PEOPLE.filter(x => x[0] !== p[0]));
+      const right = `${p[1]}在${a[1]}${a[3]}。`;
+      const wrong = shuffle([`${o[1]}在${a[1]}${a[3]}。`, Math.random() < .5 ? `在${a[1]}${a[3]}。` : `${p[1]}在${a[1]}。`, `${p[1]}${a[3]}。`]).slice(0, 2);
+      return {
+        prompt: '看圖說話：哪一句說得又完整又正確？', speech: [['看看圖，哪一句話說得又完整又正確？要說出誰、在哪裡、做什麼。']],
+        stage: yxCard(`<div class="yx-scene"><span><i>${p[0]}</i><small>誰</small></span><span><i>${a[0]}</i><small>在哪裡</small></span><span><i>${a[2]}</i><small>做什麼</small></span></div>`),
+        options: shuffle([right, ...wrong]).map(s => ({ html: optText(s, true), label: s, correct: s === right })),
+        after: [[right]], key: 'l' + p[1] + a[1] + a[3]
+      };
+    },
+    yxstory() {
+      const t = pick(STORIES.concat(YX_STORY_MORE));
+      return {
+        prompt: t.q, speech: [[t.t], [t.q]], stage: `<div class="riddle story-card">${t.t}</div>`,
+        options: shuffle(t.a.map((x, i) => ({ html: optLife(x), label: x[1], correct: i === 0 }))), after: [[`答案是${t.a[0][1]}`]], key: 'q' + t.q
+      };
+    },
+    yxstroke() {
+      const chars = Object.keys(YX_STROKES), ch = pick(chars), n = YX_STROKES[ch].length;
+      if (n < 2 || Math.random() < .25) {
+        return {
+          prompt: `「${ch}」一共有幾畫？`, speech: [[`${ch}這個字，一共有幾畫？`]], stage: yxCard(strokeSVG(ch, n, -1, 'yx-stroke-big')),
+          options: numberOptions(n, 4, 1, 12).map(k => ({ html: numHTML(k), label: String(k), correct: k === n })), after: [[`${ch}一共有${n}畫`]], key: 'c' + ch
+        };
+      }
+      const done = rand(0, n - 2), cand = shuffle([done, ...shuffle(Array.from({ length: n - done - 1 }, (_, i) => done + 1 + i)).slice(0, 2)]);
+      return {
+        prompt: done === 0 ? `「${ch}」的第一筆是哪一筆？` : `「${ch}」寫了 ${done} 筆，下一筆寫哪裡？`,
+        speech: [[done === 0 ? `${ch}這個字，第一筆要寫哪一筆？紅色的是你要選的筆畫` : `${ch}已經寫了${done}筆，下一筆要寫哪裡？`]],
+        stage: yxCard(`<div class="yx-stroke-row">${strokeSVG(ch, done, -1, 'yx-stroke-big')}<div class="bigchar" style="font-size:clamp(4rem,20vw,6rem)">${ch}</div></div>`),
+        options: cand.map(c => ({ html: strokeSVG(ch, done, c, 'yx-stroke-opt'), label: `第${c + 1}筆`, correct: c === done })),
+        after: [[`${ch}的第${done + 1}筆寫這裡`]], key: 's' + ch + done
+      };
+    },
+    yxnum() {
+      const type = pick(['tens', 'tens', 'line', 'cmp', 'digit', 'more']);
+      if (type === 'tens') {
+        const t = rand(1, 9), o = rand(0, 9), N = t * 10 + o;
+        return {
+          prompt: '一條是 10 個，這裡一共有多少？', speech: [['藍色一條是十個，橘色一個是一個，一共有多少？']], stage: yxCard(rodsSVG(t, o)),
+          options: shuffle([...new Set([N, o * 10 + t, N + 10 > 99 ? N - 10 : N + 10, N + 1 > 99 ? N - 1 : N + 1])].filter(v => v > 0 && v < 100)).slice(0, 4).map(v => ({ html: numHTML(v), label: String(v), correct: v === N })),
+          after: [[`${t}個十和${o}個一，是${N}`]], key: 'n' + N
+        };
+      }
+      if (type === 'line') {
+        const step = pick([1, 1, 2, 5, 10]), start = step === 10 ? rand(0, 5) * 10 : rand(1, 99 - step * 5), miss = rand(1, 4), seq = Array.from({ length: 6 }, (_, i) => start + i * step);
+        const ans = seq[miss];
+        return {
+          prompt: '數線上少了哪一個數？', speech: [[`${step === 1 ? '一個一個' : step + '個' + step + '個'}數，少了哪一個數？`]],
+          stage: yxCard(`<div class="yx-line">${seq.map((v, i) => `<span class="${i === miss ? 'q' : ''}"><b>${i === miss ? '?' : v}</b></span>`).join('')}</div>`),
+          options: numberOptions(ans, 4, 0, 100).map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })), after: [[`答案是${ans}`]], key: 'l' + start + '-' + step + '-' + miss
+        };
+      }
+      if (type === 'cmp') {
+        let a = rand(10, 99), b = rand(10, 99); while (b === a) b = rand(10, 99);
+        const want = Math.random() < .5 ? 'big' : 'small', ans = want === 'big' ? Math.max(a, b) : Math.min(a, b);
+        return {
+          prompt: `哪一個數比較${want === 'big' ? '大' : '小'}？`, speech: [[`${a}和${b}，哪一個比較${want === 'big' ? '大' : '小'}？`]], stage: yxCard('<div class="pic">⚖️</div>'),
+          options: [a, b].map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })), after: [[`${ans}比較${want === 'big' ? '大' : '小'}`]], key: 'c' + Math.min(a, b) + '-' + Math.max(a, b) + want
+        };
+      }
+      if (type === 'digit') {
+        const N = rand(11, 99), pos = Math.random() < .5 ? 'ten' : 'one', ans = pos === 'ten' ? Math.floor(N / 10) : N % 10;
+        return {
+          prompt: `${N} 的${pos === 'ten' ? '十位' : '個位'}是幾？`, speech: [[`${N}的${pos === 'ten' ? '十位' : '個位'}數字是幾？`]], stage: yxCard(`<div class="eq">${N}</div>`),
+          options: numberOptions(ans, 4, 0, 9).map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })), after: [[`${N}是${Math.floor(N / 10)}個十和${N % 10}個一`]], key: 'd' + N + pos
+        };
+      }
+      const N = rand(10, 89), d = pick([1, 10]), up = Math.random() < .5, ans = up ? N + d : N - d;
+      return {
+        prompt: `比 ${N} ${up ? '多' : '少'} ${d} 是多少？`, speech: [[`比${N}${up ? '多' : '少'}${d}，是多少？`]], stage: yxCard(`<div class="eq">${N} ${up ? '+' : '−'} ${d}</div>`),
+        options: numberOptions(ans, 4, 0, 100).map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })), after: [[`答案是${ans}`]], key: 'm' + N + (up ? '+' : '-') + d
+      };
+    },
+    yxcalc() {
+      const type = pick(['add', 'sub', 'miss', 'add', 'sub']);
+      let a, b, r, show, say, key;
+      if (type === 'add') { a = rand(2, 12); b = rand(2, 20 - a); r = a + b; show = `${a} + ${b}`; say = `${a}加${b}`; key = 'a' + a + '+' + b; }
+      else if (type === 'sub') { a = rand(8, 20); b = rand(2, Math.min(9, a - 1)); r = a - b; show = `${a} − ${b}`; say = `${a}減${b}`; key = 's' + a + '-' + b; }
+      else { a = rand(2, 10); r = rand(1, 9); b = a + r; show = `${a} + ? = ${b}`; say = `${a}加多少等於${b}`; key = 'm' + a + '+' + b; }
+      return {
+        prompt: '算算看，答案是多少？', speech: [[`${say}${type === 'miss' ? '？' : '等於多少？'}`]],
+        stage: yxCard(`<div class="eq">${type === 'miss' ? show.replace('?', '<span class="q">?</span>') : show + ' = <span class="q">?</span>'}</div>`),
+        options: numberOptions(r, 4, 0, 20).map(k => ({ html: numHTML(k), label: String(k), correct: k === r })), after: [[type === 'miss' ? `${a}加${r}等於${b}` : `${say}等於${r}`]], key
+      };
+    },
+    yxword() {
+      const [q, ans, e] = pick(YX_WORD_T)();
+      return {
+        prompt: '想一想，答案是多少？', speech: [[q]], stage: yxCard(`<div class="story">${q}</div><div class="pic" style="font-size:4rem">${e}</div>`),
+        options: numberOptions(ans, 4, 0, 30).map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })), after: [[`答案是${ans}`]], key: q
+      };
+    },
+    yxtime() {
+      const lab = (h, m) => m === 0 ? `${h} 點` : m === 30 ? `${h} 點半` : `${h} 點 ${m} 分`, sp = (h, m) => lab(h, m).replace(/ /g, '');
+      const type = pick(['read', 'read', 'find', 'after']);
+      const h = rand(1, 12), m = type === 'after' ? pick([0, 30]) : pick([0, 30, 0, 30, 5, 10, 15, 20, 25, 35, 40, 45, 50, 55]);
+      if (type === 'after') {
+        const d = pick([['1 小時', 60], ['半小時', 30], ['2 小時', 120]]), tot = (h % 12) * 60 + m + d[1], h2 = Math.floor(tot / 60) % 12 || 12, m2 = tot % 60;
+        const set = new Map([[h2 + ':' + m2, [h2, m2]]]);
+        for (const c of shuffle([[h, m], [h2 % 12 + 1, m2], [h2, (m2 + 30) % 60], [(h2 + 10) % 12 + 1, m2]])) { if (set.size >= 4) break; set.set(c[0] + ':' + c[1], c); }
+        return {
+          prompt: `現在 ${lab(h, m)}，再過 ${d[0]} 是幾點？`, speech: [[`現在是${sp(h, m)}，再過${d[0].replace(/ /g, '')}，是幾點？`]], stage: yxCard(clockHTML(h, m, 'clock-big')),
+          options: shuffle([...set.values()]).map(([a, b]) => ({ html: `<span class="o-time">${lab(a, b)}</span>`, label: sp(a, b), correct: a === h2 && b === m2 })),
+          after: [[`再過${d[0].replace(/ /g, '')}是${sp(h2, m2)}`]], key: 'a' + h + ':' + m + d[1]
+        };
+      }
+      const set = new Map([[h + ':' + m, [h, m]]]);
+      for (const c of shuffle([[h % 12 + 1, m], [h, (m + 30) % 60], [(h + 10) % 12 + 1, m], [m / 5 || 12, (h % 12) * 5], [h, (m + 5) % 60]])) { if (set.size >= 4) break; if (c[0] >= 1 && c[0] <= 12) set.set(c[0] + ':' + c[1], c); }
+      while (set.size < 4) { const c = [rand(1, 12), pick([0, 30])]; set.set(c[0] + ':' + c[1], c); }
+      const opts = shuffle([...set.values()]);
+      if (type === 'read') return {
+        prompt: '現在是幾點幾分？', speech: [['看看時鐘，現在是幾點幾分？']], stage: yxCard(clockHTML(h, m, 'clock-big')),
+        options: opts.map(([a, b]) => ({ html: `<span class="o-time">${lab(a, b)}</span>`, label: sp(a, b), correct: a === h && b === m })),
+        after: [[m && m !== 30 ? `長針指著${m / 5}，是${m}分，現在是${sp(h, m)}` : sp(h, m)]], key: 'r' + h + ':' + m
+      };
+      return {
+        prompt: `哪一個是 ${lab(h, m)}？`, speech: [[`哪一個時鐘是${sp(h, m)}？`]], stage: '',
+        options: opts.map(([a, b]) => ({ html: clockHTML(a, b, 'o-clock'), label: sp(a, b), correct: a === h && b === m })), after: [[sp(h, m)]], key: 'f' + h + ':' + m
+      };
+    },
+    yxmoney() {
+      const type = pick(['sum', 'sum', 'pay', 'change', 'cmp']);
+      const make = v => { const c = []; let r = v; for (const d of [50, 10, 5, 1]) while (r >= d) { c.push(d); r -= d; } return c; };
+      if (type === 'sum') {
+        const coins = Array.from({ length: rand(2, 5) }, () => pick([1, 1, 5, 5, 10, 10, 50])).sort((a, b) => b - a), sum = coins.reduce((a, b) => a + b, 0);
+        const set = new Set([sum]); for (const d of shuffle([1, -1, 5, -5, 10, -10, 4])) { if (set.size >= 4) break; if (sum + d > 0) set.add(sum + d); }
+        return {
+          prompt: '一共是幾元？', speech: [['數一數，一共是幾元？']], stage: yxCard(`<div class="coins">${coins.map(v => coinHTML(v, 'coin-s')).join('')}</div>`),
+          options: shuffle([...set]).map(v => ({ html: `<span class="o-time">${v} 元</span>`, label: `${v}元`, correct: v === sum })), after: [[`${coins.join('加')}，一共${sum}元`]], key: 's' + coins.join('-')
+        };
+      }
+      if (type === 'pay') {
+        const target = rand(6, 69), vals = shuffle([target, ...shuffle([target + 1, target - 1, target + 5, target - 5, target + 10].filter(v => v > 0)).slice(0, 2)]);
+        return {
+          prompt: `要付 ${target} 元，哪一組錢剛剛好？`, speech: [[`要付${target}元，哪一組錢剛剛好？`]], stage: yxCard('<div class="pic">🛒</div>'),
+          options: vals.map(v => ({ html: `<span class="coins">${make(v).map(c => coinHTML(c, 'coin-mini')).join('')}</span>`, label: `${v}元`, correct: v === target })), after: [[`${make(target).join('加')}，剛好${target}元`]], key: 'p' + target
+        };
+      }
+      if (type === 'change') {
+        const item = pick([['✏️', '鉛筆'], ['🍬', '糖果'], ['🧃', '果汁'], ['🍞', '麵包'], ['🎈', '氣球'], ['📒', '筆記本'], ['🧽', '橡皮擦'], ['📏', '尺']]);
+        const pay = pick([10, 50]), price = rand(pay === 10 ? 1 : 11, pay - 1), ch = pay - price;
+        return {
+          prompt: `${item[1]} ${price} 元，付 ${pay} 元，要找回幾元？`, speech: [[`${item[1]}${price}元，付了${pay}元，要找回幾元？`]],
+          stage: yxCard(`<div class="pic" style="font-size:4.5rem">${item[0]}</div><div class="coins">${coinHTML(pay, 'coin-s')}</div>`),
+          options: numberOptions(ch, 4, 0, 49).map(v => ({ html: `<span class="o-time">${v} 元</span>`, label: `${v}元`, correct: v === ch })), after: [[`${pay}減${price}，找回${ch}元`]], key: 'c' + item[1] + price + '/' + pay
+        };
+      }
+      let a = rand(5, 60), b = rand(5, 60); while (a === b) b = rand(5, 60);
+      return {
+        prompt: '哪一邊的錢比較多？', speech: [['數一數，哪一邊的錢比較多？']], stage: '',
+        options: [a, b].map(v => ({ html: `<span class="coins">${make(v).map(c => coinHTML(c, 'coin-mini')).join('')}</span>`, label: `${v}元`, correct: v === Math.max(a, b) })), after: [[`${Math.max(a, b)}元比較多`]], key: 'm' + Math.min(a, b) + '-' + Math.max(a, b)
+      };
+    },
+    yxmeasure() {
+      const colors = shuffle(['#EE7424', '#2C7BCB', '#1F9365', '#D93F48', '#7C4DD0']);
+      if (Math.random() < .5) {
+        const L = rand(2, 11), s = rand(0, 12 - L);
+        return {
+          prompt: '這支鉛筆有幾格長？', speech: [['數一數，這支鉛筆有幾格長？要從鉛筆的頭開始數喔']], stage: yxCard(rulerSVG([{ s, l: L, c: colors[0] }], 12), 'wide'),
+          options: numberOptions(L, 4, 1, 12).map(v => ({ html: numHTML(v), label: String(v), correct: v === L })), after: [[`從頭數到尾，有${L}格長`]], key: 'u' + L + '@' + s
+        };
+      }
+      let a = rand(2, 11), b = rand(2, 11); while (a === b) b = rand(2, 11);
+      const sa = rand(0, 12 - a), sb = rand(0, 12 - b), diff = Math.random() < .5;
+      const stage = yxCard(rulerSVG([{ s: sa, l: a, c: colors[0], n: 'A' }, { s: sb, l: b, c: colors[1], n: 'B' }], 12), 'wide');
+      if (diff) return {
+        prompt: '長的鉛筆比短的長幾格？', speech: [['數一數，長的鉛筆比短的長幾格？']], stage,
+        options: numberOptions(Math.abs(a - b), 4, 1, 10).map(v => ({ html: numHTML(v), label: String(v), correct: v === Math.abs(a - b) })), after: [[`${Math.max(a, b)}減${Math.min(a, b)}，長${Math.abs(a - b)}格`]], key: 'd' + a + '-' + b + '@' + sa + sb
+      };
+      return {
+        prompt: '哪一支鉛筆比較長？', speech: [['不要只看哪一支比較靠右，數一數格子，哪一支比較長？']], stage,
+        options: [['A', a], ['B', b]].map(([n, L]) => ({ html: `<span class="o-time">${n}</span>`, label: n, correct: L === Math.max(a, b) })), after: [[`${a > b ? 'A' : 'B'}比較長`]], key: 'c' + a + '-' + b + '@' + sa + sb
+      };
+    },
+    yxstat() {
+      const set = pick(YX_STAT_SETS), cats = shuffle(set).slice(0, 3), counts = shuffle([1, 2, 3, 4, 5, 6, 7, 8]).slice(0, 3);
+      const stage = yxCard(`<div class="yx-chart">${cats.map((c, i) => `<div><b>${c[0]}</b><span>${Array(counts[i]).fill(`<i>${c[0]}</i>`).join('')}</span></div>`).join('')}</div>`, 'wide');
+      const type = pick(['max', 'min', 'count', 'diff', 'total']), base = 'm' + cats.map(c => c[1]).join('') + counts.join('') + type;
+      if (type === 'max' || type === 'min') {
+        const k = counts.indexOf(type === 'max' ? Math.max(...counts) : Math.min(...counts)), w = type === 'max' ? '最多' : '最少';
+        return { prompt: `哪一種${w}？`, speech: [[`看看統計圖，哪一種${w}？`]], stage, options: cats.map((c, i) => ({ html: optLife(c), label: c[1], correct: i === k })), after: [[`${cats[k][1]}${w}，有${counts[k]}個`]], key: base };
+      }
+      if (type === 'count') {
+        const k = rand(0, 2);
+        return { prompt: `${cats[k][1]}有幾個？`, speech: [[`看看統計圖，${cats[k][1]}有幾個？`]], stage, options: numberOptions(counts[k], 4, 0, 10).map(v => ({ html: numHTML(v), label: String(v), correct: v === counts[k] })), after: [[`${cats[k][1]}有${counts[k]}個`]], key: base + k };
+      }
+      if (type === 'diff') {
+        const [i, j] = shuffle([0, 1, 2]).slice(0, 2), hi = counts[i] > counts[j] ? i : j, lo = hi === i ? j : i, d = counts[hi] - counts[lo];
+        return { prompt: `${cats[hi][1]}比${cats[lo][1]}多幾個？`, speech: [[`${cats[hi][1]}比${cats[lo][1]}多幾個？`]], stage, options: numberOptions(d, 4, 0, 8).map(v => ({ html: numHTML(v), label: String(v), correct: v === d })), after: [[`${counts[hi]}減${counts[lo]}，多${d}個`]], key: base + hi + lo };
+      }
+      const tot = counts.reduce((a, b) => a + b, 0);
+      return { prompt: '三種加起來一共有幾個？', speech: [['三種加起來，一共有幾個？']], stage, options: numberOptions(tot, 4, 1, 24).map(v => ({ html: numHTML(v), label: String(v), correct: v === tot })), after: [[`${counts.join('加')}，一共${tot}個`]], key: base };
+    },
+    yxcal() {
+      const type = pick(['week', 'week', 'month', 'fact']);
+      const textOpts = (list, ans) => shuffle([ans, ...shuffle(list.filter(x => x !== ans)).slice(0, 3)]).map(x => ({ html: `<span class="o-time">${x}</span>`, label: x, correct: x === ans }));
+      if (type === 'week') {
+        const i = rand(0, 6), d = rand(1, 6), back = Math.random() < .3, ans = WEEK[(i + (back ? 7 - d : d)) % 7], w = back ? `${d} 天前` : `${d} 天後`;
+        return {
+          prompt: `今天${WEEK[i]}，${w}是星期幾？`, speech: [[`今天是${WEEK[i]}，${w.replace(/ /g, '')}是星期幾？`]],
+          stage: yxCard(`<div class="week">${WEEK.map((x, k) => `<span class="${k === i ? 'today' : ''}">${x.slice(2)}</span>`).join('')}</div>`, 'wide'),
+          options: textOpts(WEEK, ans), after: [[`${w.replace(/ /g, '')}是${ans}`]], key: 'w' + i + (back ? '-' : '+') + d
+        };
+      }
+      if (type === 'month') {
+        const i = rand(0, 11), d = pick([1, 1, 2, 3]), back = Math.random() < .3, ans = MONTHS[(i + (back ? 12 - d : d)) % 12], w = back ? (d === 1 ? '上個月' : `${d} 個月前`) : (d === 1 ? '下個月' : `${d} 個月後`);
+        return {
+          prompt: `這個月是${MONTHS[i]}，${w}是幾月？`, speech: [[`這個月是${MONTHS[i]}，${w.replace(/ /g, '')}是幾月？`]], stage: yxCard('<div class="pic">🗓️</div>'),
+          options: textOpts(MONTHS, ans), after: [[`${w.replace(/ /g, '')}是${ans}`]], key: 'm' + i + (back ? '-' : '+') + d
+        };
+      }
+      const f = pick(YX_CAL_FACTS);
+      return {
+        prompt: f[0], speech: [[f[0]]], stage: yxCard('<div class="pic">📅</div>'),
+        options: shuffle([f[1], ...f[2]]).map(x => ({ html: `<span class="o-time">${x}</span>`, label: x, correct: x === f[1] })), after: [[`答案是${f[1]}`]], key: 'f' + f[0]
+      };
+    },
+    yxschool() {
+      const t = pick(YX_SCHOOL), q = bankQ(YX_SCHOOL, t);
+      q.stage = yxCard(`<div class="pic">${t.e}</div>`); q.key = 'k' + t.q;
+      return q;
+    }
+  };
+  Object.assign(GEN, YX_GEN);
+
   /* ---------- 聲音 ---------- */
   let voices = [];
-  const loadVoices = () => { try { voices = speechSynthesis.getVoices(); } catch (e) {} };
+  const loadVoices = () => { try { voices = speechSynthesis.getVoices(); } catch (e) {} try { if (typeof renderSysVoices === 'function') renderSysVoices(); } catch (e) {} };
   loadVoices();
   try { speechSynthesis.onvoiceschanged = loadVoices; } catch (e) {}
   // 朗讀聲音（完整版）：用裝置內建語音，調整音調和速度；裝置有多種語音時，各角色會用不同語音
@@ -2940,7 +3767,11 @@ body.is-full .promo { display: none; }
   function voiceProfile() { const k = isFull() ? store.get('voice', 'yuan') : 'yuan'; return VOICES[k] || VOICES.yuan; }
   function voiceFor(lang, g, pref) {
     const norm = v => v.lang.replace('_', '-');
-    const list = voices.filter(v => norm(v) === lang).concat(voices.filter(v => norm(v) !== lang && norm(v).startsWith(lang.slice(0, 2))));
+    const HQ = /高音質|增強|premium|enhanced|neural|natural/i;
+    const raw = voices.filter(v => norm(v) === lang).concat(voices.filter(v => norm(v) !== lang && norm(v).startsWith(lang.slice(0, 2))));
+    const list = raw.filter(v => HQ.test(v.name)).concat(raw.filter(v => !HQ.test(v.name)));
+    const mine = lang.startsWith('zh') && store.get('sysVoice', '');
+    if (mine) { const mv = voices.find(v => v.name === mine); if (mv) return mv; }
     const pv = pref && list.find(v => pref.test(v.name)); if (pv) return pv;
     if (g === 'm') return list.find(v => MALE.test(v.name)) || list[0];
     if (g === 'f') return list.find(v => FEMALE.test(v.name) && !MALE.test(v.name)) || list[0];
@@ -3017,7 +3848,7 @@ body.is-full .promo { display: none; }
     if (m) { void mascot.getBoundingClientRect(); mascot.classList.add(m); }
   }
 
-  function show(id) { ['home', 'game', 'done', 'gate', 'report', 'rest'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); }
+  function show(id) { ['home', 'zone', 'game', 'done', 'gate', 'report', 'rest'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); }
 
   function addStar() {
     const pt = playToday(); pt.stars++; store.set('playToday', pt);
@@ -3070,10 +3901,10 @@ body.is-full .promo { display: none; }
   function nextQ() {
     if (st.i >= st.total) return finish();
     let q, n = 0;
-    do { q = GEN[st.sub](); n++; } while (st.used.has(q.key) && n < 12);
+    do { q = GEN[st.sub](); n++; } while (st.used.has(q.key) && n < (st.sub.startsWith('yx') ? 60 : 12));
     st.used.add(q.key);
     const recent = store.get('recent', {});
-    recent[st.sub] = [...(recent[st.sub] || []).filter(k => k !== q.key), q.key].slice(-25);
+    recent[st.sub] = [...(recent[st.sub] || []).filter(k => k !== q.key), q.key].slice(st.sub.startsWith('yx') ? -45 : -25);
     store.set('recent', recent);
     st.q = q; st.first = true; st.locked = false;
     mood('');
@@ -3305,6 +4136,10 @@ body.is-full .promo { display: none; }
     tracepro: {
       total: () => 5,
       render() { st.tracePool = age === 'small' ? TRACE_PRO_SMALL : TRACE_PRO_BIG; ENG.trace.render(); }
+    },
+    yxtrace: {
+      total: () => 5,
+      render() { st.tracePool = YX_TRACE; ENG.trace.render(); }
     },
     sequence: {
       total: () => 5,
@@ -3584,19 +4419,23 @@ body.is-full .promo { display: none; }
   const PREMIUM = new Set(['solid', 'riddle', 'body', 'jobs', 'food', 'spell', 'words', 'story', 'measure', 'share', 'ordinal', 'calendar', 'seasons', 'spotdiff', 'maze', 'puzzle', 'challenge', 'cnword', 'mathpro', 'enspell', 'clockpro', 'tracepro', 'zhuyinpro', 'enphrase', 'enverb', 'wordpro', 'patternpro', 'deduce', 'moneypro', 'cnsimilar', 'sentence', 'storyseq', 'safety', 'science', 'festival', 'animals']);
   const PRO_HASHES = new Set(["7e5903dc82a73c41e5a6", "b0dd6f755dadda28b23e", "f69a9c9c2308a32204a4", "5b7d9d1dc88ecdd74656", "542cf72a3e277f9708d4", "b1ec26798b86f8373429", "2ae3a1145a16728f6f73", "a71df925da9b9076a5e3", "265a4c4c741bda122042", "3160a51142deb0334392", "2c4ccf60a799e3efaf39", "3d8ba88f543c0899d37d", "027c8de191a0827d04cc", "2047fbee22eac4676ad6", "972f92cbd4fd1f74fef1", "75abc652561b1cb35eb4", "0ae5c80b586e21d52986", "8fea70c0f05f00b0072b", "2290455697c971eb8bdf", "c74498222de3471ce058", "436aa0dfc9412e51b6c6", "e19bfddf6c22efe37d29", "d679ffe7a91106c890c4", "e91e9816ef178e7bb4b2", "3c93bc82ca8eecbd430a", "325e758cf9de8525f8db", "977d8bf9e7f91e21f803", "121e94a09859114de801", "5916576e42e050ec1a7d", "4a6799b2edaead3fc324", "db89648171b730b1bedb", "43583943369447b244b4", "e3e6be8188b04f1af348", "68692d4f3d8d440b0c91", "9aea044cc60341d8d839", "498565ae1492aed078a5", "171c84fa089ebdfcbbe0", "27b7c09f55c8e405dfd4", "833e22d86d5746e87c1d", "51e7bf9f271e82cfe511", "f9c0f25b5f9a5cf8d3a5", "45c536a56e4b7c81ee72", "a49f2ee0d254ebbc79e1", "0549f0e5efdb3280338f", "d8b38a4271ef9818653b", "fc63b08c781a0da0b3ca", "7a09249c3b67655d26e4", "1cab37bee8e50c8c06e0", "4f8740a47558a7c0ed39", "af9b8b10a78d451af0cf", "639ecc9cc60f128c1cae", "75454720e84a1181367e", "002b97385a38f792272a", "e7a3df28a3b37e0c6499", "80e9bacc4c396bbe8b6b", "75f7cd70a09d907b1e97", "53d8b19780aa7142891b", "6cb1c36a1b370dfcbf69", "23818ae0f307a6488e79", "65eb6c77048a076b3c2d", "4fe59a81aa80ce5af124", "575a81d95fdceb5f8f52", "7dfcea412d081a36099c", "32320beca3be5740c2a1", "685b6d2adae99502e5da", "a8a9294888701496fce0", "93fb683302b6920d1e70", "c9083f18071cdf424e72", "2f2326280b714bde0610", "2fc1f35d78cc023ec5ec", "744cc5a3f19276b51807", "cc8708e87d723e214546", "0aa937a7981cf0c50744", "3a2d0cdac60276428bb1", "7a6ccda1b4e5f6c33466", "c9bd17f02b190b3ea424", "dbc9026a1f59a2062d5c", "101028fbbca60952a092", "9157831181c2ab3c3259", "5f9b95bcb7bd278fa3d0", "51d98529a90e1da24ccf", "0239ec8a5197b258200e", "d338c77db19c0a15860e", "ec96c0d93903051ca667", "1892f14fbb0643dc82ad", "d08f5ec97b6e6a7f3743", "ce5713937003eb4f9368", "4512dc0ce5d01491f6f9", "7529b08e9dcdd664d540", "bf69fac517162b1bde92", "f4657e6e0cf1a143b5fd", "9c75618eae4fc05ecfb6", "39e33c0b836e7e0d555f", "df42ae25c62fc6725e59", "ea6a6fd2ed1c42aef2ff", "07dac94ea6a1ce15adf5", "edc262ec3cf456026e1f", "95b5c22386a7da3ac9c3", "4349f832cde523a1e327", "bc32e3851c4474d1fb2b", "b787898d7068322bdb00", "2c952cfc01a45f555304", "c7e6ab59c6f66d31fbd5", "27553a2f753d680d8a6f", "bb61f55309418dce1608", "6f3b5e4a0eec86e28e75", "1c7f9a9bca93b720099c", "2515a8232049034d8bad", "a90619983d862d74e43c", "d2155d7cf0caab1b9c5a", "da505fad31d728f1b5a6", "751b4fec01f7c48ab195", "dde16653ca5df0b7438c", "68ef9a426c4364189306", "df18995c27061efad502", "c7a81c48056a74010bc7", "0e6948f73c0b0ed79a6f", "e94c7809668316ea0ea1", "414609f923da273cc8b6", "bce95645cf340c67a97e", "2dbcaa30f24b29bdf511", "2856a6e63147c29afdd3", "76ae508ac90635390364", "1ea1e11dac123bf6945e", "61fc9012148da5d0bb10", "c043561919acb499e581", "1a8462d44af1ad9dcc32", "2fab3e5d807d0605f136", "71f93df3b1e335c616c5", "28154f231692041bb1bd", "ffb3a6448bda65a26e71", "c4445142f91865eeceb1", "f04060481052dd495b21", "8697f2f38d5091d694f7", "8731464204dae70c0cc2", "25494cfecbc52717afd1", "01180078580703ee8bab", "bf6a6a954597a5abb0eb", "78dca60801921f8abc18", "a08eaa9e826387c354fc", "1c7ea1934a71378e8525", "e511d6585c6ae4ac8faf", "128ff32f530461d20683", "93bdd65768c7b9e9b718", "b1616c7fc5eac19105cf", "b804f6db5612ad478346", "b2ab123da58b0a55a9f2", "21a7d7b0256a12d9408f", "2c4a3298fce67f0e5fc9", "55ff47dff11b0c9b1af1", "893f372d0db19de2a250", "c32bc42135a7c963e431", "5c206b4675aaf9455ff4", "85e56110f75b3375b947", "1ab2b03b26a4a1dc6057", "78b6cdc741a0f679efec", "2b2b04d3b5b3a440cdb6", "aeba0ed072c4bb29030c", "a9465361f3ca80ec9e9b", "847e9b04ab2216371492", "db88c9003f95db8ad37a", "619421d943cc246a2b08", "8cd5fd136a00ee787ed7", "e82db9e1e4dd0e23d3ba", "0b634e8b0c47fbf6ceeb", "7ef8a1ffe3a16d1dd5a2", "c6ec03db4d88d404f9a8", "10e6d8addb8968e28d93", "ee297ae9854670355398", "5cb0be80fa862c8dea19", "6049defc437f89a2dd1a", "04d281090c3463b023f7", "f94347ec231a767a3f32", "6df9b86ea151ff2c1376", "ee978661faf000cefae6", "90f983970662b15a41f7", "6b9cd7724983baa9f8a0", "88c5f0fbf450c43996bd", "831f9d687fbc059c96a9", "4eda36c821a9ffec47bc", "b3f523be17dce9aad2a4", "4a7f306f83f64b51886f", "518146a1acd0cdf03531", "031077cd7987733be680", "6291c13f51ef599e2b63", "b0ed3136004731aa9046", "b994aaea6ac4434b361a", "4bcf38821185db7117e4", "b5a13cb27e5b09dca99f", "96d9f28e2d45fe317a05", "2440058e22a595ccef06", "241b8cfc801290790475", "f2acbaa8683f604a1586", "e85fd79d189ce5318d27", "6294b28f215b32e666bb", "c7c9c3991d7f881dbeb8", "0010f13bcf614afc737b", "ce5965d8bdd9a4c6b8b4", "cc45a54ff0672e8b9136", "ca69d9469ef30c77e558", "08d7183e384c985ca497", "f58b6178d32e903b7548", "a803bc5a51d977b6b94d", "b1d1b23c112b65a7364c", "ea86cb7d27a4168ffbc6", "76510dcbb5bb6fce2daa", "93731512385b3c3fd896", "162d3c44bf41056aeea6", "271a7f997f768d43d9e5", "7d4f09c53d416957e799", "0a13382e5164c6e5bf5a", "18a5afb06170944a335c", "4e428c986bbe8479f0c3", "d7231a92c18ed5a25a99", "c35d224f8c55e39fca0f", "85c398b8907b4c6170e5", "c76f1b639e86a34d3fd1", "78302490918406001057", "9b4450e637239f6d0e91", "fd9f1cfbd833ccad8741", "22898b94de4ef0fa942e", "92c5237cd05f76ed8bc7", "1518f6ccd04de297c1a2", "1a9b4d07226fcb3d49a0", "6dd8348ebbad179e5ff9", "0e56a7a5be5db956e73f", "2783f68941fc3cd1efda", "97811d20f5a869907ab9", "5a2bb82457a6e358c0ad", "cb23164f324615ab7246", "c9c3aa7907fb94e6041e", "ccc4da733c1ea211f505", "b8ef56aceaa2cbcb2970", "40649cbc63ff14c67141", "017b3d35f4c179b5ac84", "b02cd9b64650b6cb18b8", "b52d2b67f5ff8cc20421", "10c6ad10660d412cce16", "837fa948ac2aa8d8236d", "2eaea4f36f9414f91279", "52b012ec2cd280c9cba1", "526c130010b892cbe4d8", "4fe10426c7ce48780052", "f5e1106be122d635d66d", "2ab513ccdded0111fe51", "75be7ef737f2aed21bf1", "7232bac855836cbd2a9f", "d041708a0040e1910b83", "0b871c838a053bb1026b", "3d5202fef0c7c1b06610", "1733c9a2d187b218a50c", "a18066220e353d6eeb7f", "ca0d3bade477c4492774", "2d396e3de8f4aff64a36", "815dfe0c927c088c34e8", "9a4cc5794bf8d8112f31", "bb56ee62bd5783c15331", "319c5fb9ac603935811f", "0a5613c00d425855b12f", "e719ec7656a6c01c9c9b", "ce43870cf3ba9699bf92", "4dd2ccd238b1d113e46d", "51529350898e6fc60857", "3b15836e442673b5f6a9", "c7189844b64c9a0f7c05", "abb4249ef6ca88ae4ecd", "d60724fd7cb20902c7f5", "0bc54808f3db9cb03d00", "f3b33f6efaff59b28112", "46b70603022ae48fbcb3", "263390451a2535f3aced", "8e052db68ff44a6ece4f", "5dbd197a663f8bc4a9a3", "bd6034db162bb8ff85e4", "14a9c445f137c3a4bb78", "a70acf6b39ec2ee0e833", "77bf552bb5d42cd58bb7", "748fadcc8ad174aff4bd", "acc9d75fd5f5f21192bf", "460b0db54f46fd51fa7d", "403f5246a0d104313d9e", "651c86f23da950c17cdf", "5c1d96b680cc1b387655", "b602db296460feb50c97", "772aa87ea9ce28dea8c1", "d3d22c9598a3ed61b54a", "25b76bb6deb5c43e381f", "b8ade15dba64adfa7c17", "179dabf6ccb8bf0831e8", "990ebee676bcf8c1f8dd", "856d496219e6b5b26a7d", "8bdc6385b47b16d0c172", "e90b34a377f2e72c2677", "3cbb3bf550fcdfa01a8d", "d43af345785c356026b4", "42908d66c3fd84286077", "1e16ce822115e21cca20", "c0b7566bb57789eff65c", "94e092288e890d508d11", "fd5104d1d78823cfc780"]);
   const STD_HASHES = new Set(["e42c9f670150e1462b8e", "12aae8e27f9adf37abf8", "81182e59b1b66187852a", "5ec0dd13a376126b51b0", "de9d15c9de98a340baab", "165225d327d0f75af756", "58bf0b5c2f9e0cc28242", "401f6e0ba4d58b33842b", "0528dd582bffae4cddc2", "4d2c6d6e1ecd015affa0", "c2e8b8663f4abfb6b37a", "33542e95b60d2a4d381f", "785f9567711dd696e236", "c1194eb1d4fd60de5714", "7c45bae94a99393225ef", "dcc10f787fec13d5c6ba", "4a57d1cb09aaed88b8c2", "71d121b18f386529749d", "2ae4c7e41dca7ecaa8ac", "57dc18cdcb31418e23e2", "1dfc6c6dc2507db40834", "40a115991c582833309a", "7afcb7356b3c319284b1", "5c614fd0569ed7df5302", "b9bb3c98fb318b795a9f", "1844fe3b48613dc977f5", "f9fa6b95d228e3e23c4c", "c6bcac520b4c1582cff3", "8c1b3dde403b37c1ad06", "17f579e9ea1b30070149", "1875b36ab1bb329743e4", "7acd086071c9a905d076", "a65a56d6ec83a9964eee", "84e75bb96564a5c7de99", "951d5184f4a40e636bc9", "f8503306f204e815279f", "8eafb0a9c18afc58e413", "f7cc4df22ef30980e5ab", "2541dcd6385d9e5d7a6b", "dc63a88791d639fdbd8f", "ad4068cb6077f3fb722a", "e9e0ecde17e73a9207e2", "e2753e985e4dd5453d14", "ba8b50c82a41a199b079", "14c034cfe62483cf55bb", "7349b5b2f68745863dd4", "0784b86573e48baac554", "54784f5b53063fe75ee1", "1c58962d7c2916c7ece8", "8f7458a0bb8b123b89f6", "933868acaf57ce940ea3", "49f96c758d3b1840801b", "cb959523efaa19417794", "2e9444cad1db7d8bf3d2", "4df075e59d4d608f0ae9", "dd5db6cef3cd66c5d17e", "4fb24e1182cc6d78ecae", "cffe2ef7062e946875a8", "9718be61618116b19191", "86e6120ea6a7edb26622", "0d6140e830ae092da190", "7b7255685be3bd49afee", "ab742041520f493c0ca9", "c8b9bb242e23a354fc85", "ed85ed7130e61d4d09ef", "b2befad51c501097ae6d", "805f615acf73b472fbe3", "a8008ca1ba0ee912acaf", "5a52cf59c75407ffa440", "941d7c3707ddfaf8d88c", "e7439c8f7ba779c4d4c3", "00fb1bbc52c8aeceec12", "4aefa365fe90ba85f82d", "7de736b2e92b19064467", "c3717f0592ed00dbcb40", "f30a84086f18ab995e15", "31629d9dd8e2d4a28110", "28325e9d530972b66895", "205cdfbdc5e006600844", "bbe94a5f8f9eb1efbbf5", "9246ed3d141a12ba2bc5", "d3d515ae5c6b9dc3aa69", "0eb1dbcf1caf1db3836a", "deae140531c1c561bb34", "215a2fdd9ca2d2796ba3", "d45cf813e3039dd8342d", "5749c7af8d6f8f8d8f69", "af8750d33b467a602de4", "db4fc63dbf13b7999d79", "acf78d129e350d6cd01a", "ee15842bba9efc450b52", "bc4b85d2c1a3732751d7", "a92813ed5fa0edb05759", "9c5f7113cf2ef55b61ca", "2ffb61ae231f15cad51d", "f10de1bc4147d040190c", "af35e7eac9a2e86cd617", "497ce8fe44a9bbf84304", "060746e047a9d980cabd", "77342376a41bb97f00a2", "9cb0706b8aad99b5c6b3", "31deae3079e96bdba41c", "90209413dd0f1c365785", "e633e93583edec52ac2f", "592c97df2a96200977d0", "d08fa4face5718185d00", "a8f724754d0b18124f50", "0899267229b339de5aa7", "07c9b84bd7d52916d313", "924235828e70393d03d8", "fb2d2b4d830a96db3bfc", "3cd902e1b17f07566506", "a64d4a457ce89d4d749c", "212d8037267cd9786c2b", "da59f1e63d1c401880a1", "2699f278d8ce2d779705", "2bfa2f6d554cf2e8e1bc", "fee18a237b9736a63fdc", "8331d043baf377897837", "24bd819d4ce480b14197", "778c19bd128e115ab8aa", "752a7ca1659ce8fa6418", "a2845b6a8c2f634f6b4b", "8a69594034f0799b8c8e", "2ffbfb2e19943bfb214e", "4cc758a3c09ab905bbd0", "a24e791f55952c44e0d6", "061d14aa5952b41e0d67", "78e26f8d31428a66626d", "7bf27144dd1ee6b1e040", "8ed71ba16076963a48bc", "8ed6d423b0a6fa56f18a", "94d59a2317b4fdb95b3a", "167e471ee20f04fc735f", "28a416a81caecbd55fd4", "a812e949ae17a240b891", "5bc1801db8bae71b73a7", "b0a001dbb2f5083cfacb", "0d8ae9a9220d1f3ee513", "f8e2463363edf073d5eb", "6f74c922debb8cc68e4d", "1606588cfb0c14d70bb2", "d0e85a95cafbb5fe5bc0", "8ddfb2bb9a73bdc32428", "d1296bfafaff0f668f08", "1e8af3e40af68355483a", "c9b36e8737f0a51d9e42", "3dfca88b7375fadf5c0c", "654b0cda4e75ac5ba6e3", "7cb568203d4d6830997e", "9a1dddebc2cc59a6be52", "420eafdd2c98fa054249", "fa83d5ddada6b8b8fcd4", "26145f47f408c9c8176a", "fe7bb2f65d4fd212a010", "99b257882b2d6d86cbab", "5f34838841a03d65ac72", "b5ec8904dbdf9a06fa07", "180f110e96b7786009f5", "79eb2290c0222fa41fed", "fdcfeaf0b49a64072463", "e50658f770c0bedc7d73", "b54eec403451e9e3c4bc", "e602dffa306c5d959014", "3c735b010096d1a287b3", "11d4a87b5d82cf8a39a2", "c2f459ebf8f3731111ea", "c00b95abc7d9d98fc12a", "ed86f62100787140c5f9", "164e93c9cf115363533e", "19904597b62b0f91a863", "c164090bd600ce25a4aa", "2156c092ef088f631bf0", "c24e2ade2caedfc1c8f6", "383f5f9e62adcce4b530", "1b8cbe3a5682d30b4f9e", "e23c66903aa94d2f9b1b", "e86f474cfb211e9f7fa1", "046b2903bcb34dbb9f63", "dcd78e345be718eb7a61", "3ac9e1a19ca23e90369b", "e207b11d50dab292c9a2", "92ca4b63218ac33afadb", "5dc25819a32f48330ded", "90a241228b71c1d0af76", "3ea8ee7935864794d8b3", "c740d468484037acd29d", "def11b8c91cdd7988091", "98b0e5fe535ebb3395bf", "d366d3ff482e61a2bd4c", "6deac8f4bdd321f20710", "bb621d178d72bbb518cf", "e24b37bfd0f28ccb0a86", "ac28592803710e58e411", "7fd72e56385731ca0770", "9483d83ef8ba20cc8737", "279afa89b99c0de42bcf", "273a5b849517dbd97ba2", "3234b6f0f5b835ecd14b", "7b6ce5a5f1de7c410612", "95101d0b54d4e0fc44c5", "b7039cadace5a23c0abd", "89b561c6731021f65ee8", "c1099f94884210d5da9d", "9ba93df3cf851edf08c2", "ba3e28e60b33862d024e", "711be195cc8aabd6850c", "c7d16c8963ddcf6f0c68", "ceb54230d8ec115e9e84", "fe822410b122e9e1c677", "20d2888a4edd410a5b14", "2a24037253d238a56aaf", "0f8812f65a124ba91bee", "11f3c1237e1ae3b1624e", "a0a1a77cb3aef5599bc3", "e070943622e08f0ce5e9", "5f28ecee0dc084287230", "8ce16c86a7170f474749", "ad63f3a41e65066a0981", "6e4a25341f61fabf8b68", "9a20b0546f58c88b840d", "307b7025ee9528e8bfc8", "666139de09427a5e2eee", "54993811d11fdccd65df", "ac545a4753a3c54dbb82", "162be4e53cd3f9de201b", "92e134573844b0536450", "f75c7e456ac0d1746c22", "721f8bf37bfdd5332ac7", "e0b01ba3def9fb1c1ee5", "bb1cd9a771fe43eb2a0a", "dceba1f7297dcfdfff6d", "6c944b5eb5961c7c6e20", "000b00b7c3aa03d6b09c", "06b816064cda55205f5e", "f05b5649a8c26ff750ed", "7d28a2e8c0800ddad496", "60fa94cfab1182910c81", "8ac04c71b110a4fa4a3d", "5e16b968c051b4cad93b", "f4833264c1acde21c463", "46584a308fafeaba97be", "f2b5663897142dba9374", "0c8e017918b0ef690066", "cabd9ac25abb3c67a51f", "fc977e4473f16cf0ffb1", "82e5caa7e3d4eab58b63", "70c96c45f6320a6b8b24", "d8d1ac8d70a36ed789de", "8647b49aaebe52e53072", "f5e6d7a4263a75b1caad", "73000d054f8bddc79efc", "82c302adaf78b52313b6", "1ce06a8274ce5c7f8b2a", "dac863cf18f511f98a95", "a5aea8d2217eef3eef47", "582a43b78b79a8f44a54", "fe1c676718a45d5d4305", "f7fd37c746b7758c9203", "9ff3319e3883932a1e17", "a76e2ca429b883c0a5bc", "25dc6c090ebfa08c105b", "8632829f5aedf9cf3e7c", "a1b022d45880e5cc4b1b", "bd3f70b97adc5f81662b", "d6d890d92aff30807877", "0237a3a1663b3cde4904", "ab3403b8c15521e859ab", "55ffa5febf8735ec9d03", "e78636e910dc9c0a8d40", "04347a3187a6f367abe8", "40e8d9b830ce342e0e85", "5fefe58e316376fd782b", "ad4ec311cfccb8a5ae2d", "31dcafd66b6477145881", "7b92a10d665aae57f46d", "aa2126ea9b96fa1de0fd", "360df7a25890d0a2a6f7", "634eb94cdef54609dc56", "8d7a38b3a59bf91fae34", "6a19d6d78285212ba635", "4f81d2c6d7c4d2f9c4a8", "9d9adc905ae4e896d8db", "5bc1a0e989e3696bdafd", "3d39f3658b25060c4142", "0561717cf7f1728851ec", "a787710a3dd2a81a0f8c", "7070751f0ddbffae2896", "1f0ac2020fbb5d4f2619", "61f825e57dd03fae8af0", "09505f489db43f21bb9e", "7355a033f3332898c717", "c382f5f194eb09c14e42", "4d1a50871a6d0ea8a562", "5cda23ccf2ac75fb2de3", "b59b3aec0b749c3eb95f", "d1fc4fabb6027cc27dbf", "1f07826440bcf5e787cb", "d42bb284f77b9d5199af", "b7f6ce54390ada0d801d"]);
-  // 0 免費、1 標準版（NT$299，45 個主題）、2 完整版（NT$399，全部功能）
-  function proLevel() { const v = store.get('proLevel', 0); return v === 1 || v === 2 ? v : 0; }
+  // 0 免費、1 標準版（NT$299，45 個主題）、2 完整版（NT$399，61 個主題＋全部功能）、3 幼小銜接版（NT$499，完整版＋幼小銜接專區）
+  const YX = new Set(["yxzy", "yxtone", "yxspell", "yxchar", "yxsimilar", "yxsent", "yxpunct", "yxlook", "yxstory", "yxstroke", "yxtrace", "yxnum", "yxcalc", "yxword", "yxtime", "yxmoney", "yxmeasure", "yxstat", "yxcal", "yxschool"]);
+  YX.forEach(k => PREMIUM.add(k));
+  const YX_HASHES = new Set(["a656ef9963edc55a612e", "87cf20c046b2e67f6bdb", "e21a08f3843ccfe3273f", "51eaf5fd77c8e9af64ea", "a58a210156f2d1291f36", "b2083ad1028e641635b6", "607cf1bd9974e666c656", "468e558b5d0634a4725e", "271f088816c2dce0e134", "541c75f5c79006ab04f5", "9875df048d6aa974081a", "3f6b1c29a99808226eba", "c3e031f4928aafa7bd37", "312590bf37d40b768f16", "a408110dd5e3e86dfac1", "10e2d8fdc79b765a18ee", "0d61217c1a42a5743294", "84f4526cd68f90785d6b", "f3331516bb0e4e3db6b5", "3fce7b8186b3ed7b6faf", "ce99f2b42e02068c4768", "03264f2c4e3815b9c28c", "3e90fbecf1b4765fa61e", "220164a6c3b78859676c", "1507b6beb696ed59252f", "e1bd8a9a329d74d70a54", "814291456acf49961fa1", "ab6d9230d0454c10db01", "57b27b91b7b41d072500", "fc60266136fba291bdea", "b006178a94dc1d2ab487", "ca7de293331b94a6d1e0", "cf2dd301a82a4b9fe4fe", "998551956b868c3664a9", "447222a4a0e74613cb3a", "11cabcff89a2151227e5", "1a685c6a14e207447308", "1aeae2c25b8524cf9844", "cad538e5eba62ec12e08", "9998f4da27b4e5d99e35", "1e576f6a6c5b5ea7cf69", "925d675b18531036b13e", "35fc8b981077632a16ad", "37c86c6c4fb7d54e1212", "84de697edabbea7037da", "f1f255dded26e2fbd04f", "4bc8bb62675e9a376bdd", "cf904d7ff8482d814ef4", "4faad5a5d831c4f09e74", "9653aa5a9d909a856363", "9c65b00f90af04ed8bf0", "f27e0649bb2f3f94e208", "47c926cc63375fe43aab", "23b9423b81b55fd3f1f2", "eb1e08c2d138b8f725ba", "7e2b9099851d506cbe27", "8fd0fa68d6e10e78f4e5", "0fa855411492d951bc93", "a1e0c0d75291fe29af8d", "6010e3832984e23c7c74", "2364a8d2b5bdeb81d857", "b504f50bd73ec4cbd607", "90d40866d4c79b9d12e0", "dda0b088ee9a9474789a", "a50318e596a20c7487c8", "119cd27b1790ed62a5f6", "d79e69ca0e615314e840", "ed05a9ed0c63c9126afd", "ecade70a59315220cea5", "0af2d3a6574f115a3feb", "7927675695f3d7023969", "5966d2e42d0e50a9d4b4", "09e839b19813523b5df9", "910ea3f8fca78a55ec06", "29f1146f1bdf9e0b7294", "f5695a99347883076bad", "391f8ce2037ef8cec4e8", "f1788ab5d18f11fa3767", "e7d1c51881445af5c809", "d4fef7fb10c0dcd60c30", "b24d409c11b305c6cb30", "1c719e9723c7ceeebeb6", "f132958f054852fb277c", "8eaab11b9e3261a5e9fa", "9aa63c244d61e67124c7", "0f8cea6c3f3ebbca5389", "cf4ac4fa2e7266256eb9", "1bbfccbd020cf497672f", "a20fa8226c085f40fdd3", "78f0d7d63d9d7035b84a", "8adcb3bb3ec0393ece68", "34371b079dc488715264", "a0e1d83c4d4d5f15f351", "86e4f06f5d3f2067aa6e", "fc921085942a672eff49", "da23cfe129a43f5a77b5", "9209fe9f1f8e7e8b7cdf", "71620502b99e3f2b3a75", "05c8abf425719a701c2f", "ba5e19ff2621c891365c", "d7ce348b9f6bde119c7d", "f17f3fc1d991929037f8", "6d8e630b9ea695f56126", "b9c03c96f8fecf1ceb89", "d6b20b93f7eba5c0ad31", "4507651e5055dccbf401", "7667728792f553ea160e", "ae4cebd202cc80f9c7f1", "714561c3df31e64c3593", "f9259bdc8532220cbdf8", "1eaaf140f2e9fcb7b942", "2ea59e2fbb5c464b680c", "968a8b8241e0e144136b", "70fdb7cb407eb9b5af1c", "fd1eaf6475c4b7b29afb", "26635cd9541aec8429aa", "8439c0e7b5d8a7bbfed1", "7d76f8d3001510c07240", "b118d91eff2ff085c046", "65292a0abf584f14b072", "61044a4e22888fde88b6", "ac79922a941f9539af21", "eb789131ee760b61e555", "a3adcdc57880eb2b8397", "6f2af3b0317e11cffcb1", "b6baf69faf078396fbc7", "96d8791a726ccb26bc1a", "ee624ef1f3eb33ca5450", "d521466c938140d43efe", "cfd2111846643c847551", "1324769fbcf6d4559882", "87745e30d324d1788a01", "5ae4c44d9b279786628e", "be10e1a7c8512480cd77", "45f4a1baf8e34aed55c4", "21ce6d5872070d164963", "ba244162ba6a3f0711a3", "c9573ab18a65c8c01756", "6c1be73db2aab4e58eca", "f5b1119907eacfc12400", "c72136f1c4b91f68ef35", "0c973fbd5d350d6e19a7", "42ffae599752e7e68656", "2169b961fe1dc0f933fe", "8546d056cdfd4f135ba0", "9f842b0ec6902225e169", "f24a0b60951a7f82413d", "f110c6887228ac6678f5", "6058c1f4415fff8f0264", "4c6df127653e7c0dd58b", "8747d2e05bc9fa9ae884", "8e7b11c0b374cfc9170a", "92cd52e4ac51ee21ab04", "b76177a8583b0bcba617", "1b21ad291c7509502948", "72944de77abf74ebfaf4", "dd65dceca1982d736fb8", "46b141aa21b53707aff5", "9286e988dca08adcc903", "d455cc0b2d0bcda8f1f6", "302eea61b938f9c000b4", "cdb07c4af2ada0c53cdf", "fbdb09dfd6c5c30da567", "ce20c1294873ca5254c8", "d8374eea3d7a09ca0001", "b165b0fbbb9cbc4cfb01", "e198a82342e7e74f7f13", "1d15556ce93949f110e2", "f179ae35b50a0ac15823", "18cd59b3e7e53feee944", "c20be758de927c5c5dc0", "1c42c283a6bcf910589d", "dad7e84250542e989ea0", "b046fab802640eb3793e", "58540a0fc49cfbc174cb", "c16111dd402284996340", "18e79c5e10e8c3289f8c", "09a6d5c22d59d40fd7ca", "5f40a52a7de31fcc3fd3", "fe6e2f9544f532064fef", "932d1efab3f10edefd43", "1f628936debb084001fb", "60877e307d9fc1817b13", "8d1d17b45cf75e925cab", "e2ff3d593dc85c449daa", "b018748f000cd7695c4d", "72ef7e1f45dbd30c90e1", "f1460d02fd1164e83756", "56769b747322e93d593e", "a04cae0aea575385ee2d", "4d922358023c47d8fb2c", "826930d56ab15b66566c", "d54cd2b2faf04befc2b1", "2e01581f61c196afdab1", "b52db357c5c57355c5c3", "7a53efbf488f0fcc992d", "ff2711df53efc488632f", "8a327bc16347e11f6f5c", "a377a7b4294d9b57eabb", "bf0b0dea89d7dcc9d450", "d8de5f031137facd5645", "d99bb14a4a1e9e27b5b1", "bf2c5fa16c8c741559e8", "b1f5147bdf7e4cd3bad6", "83c707438df02ac985dc", "4420fb55c1aa70322d3e", "c9c395b1054d66871ed4", "ab9e9f7a10c7e327f55d", "e608f2b6d4193065d4b1", "4da500f1f69c9c258778", "19e534858b903ab5f8fa", "d63111b4433dd51fa72e", "ee1cb70b351c624eb1df", "9e79d97dfeeae46ec896", "9fe26c108a55a5be5a6e", "c2ffe788efa8f17ab08a", "917b87a241218d5a67f0", "850dd4a45b516d73e0d8", "521b41866804485aece2", "91ea04319b3258ad2b07", "86bc436ff87fd18c3c12", "7b6f543b172cba719879", "b81e31a6da54fe4826fc", "e5fbae25c25ecdda25f2", "d901ac12d99d71c876b3", "b733c67ab4f0a5d0cf8c", "0b426fb13ff56993847e", "b4812666ccc12eaf7061", "306d95e4d983b1014d07", "65937d380afec41a175b", "df54b79aa26cf6016f9a", "f8be20bb8cf52c434ec5", "7ec26ee1a8192a9c8329", "4fe6e60f54626456f7ed", "8faf890e571dfd200e75", "a989707b6c9d014522f3", "5bc31869f3b4a6f890e2", "2705fe38a6396d3bd2b0", "0e95ea84d100320bb347", "b6ed94fd703473c78c4b", "255a4a57979b8e73de8c", "e55c1e45240b6dc5fca3", "18b51a9e5028df0fd694", "23435ff17846123274a2", "67978d00785bdb65c048", "757a846215316aff7db6", "337fa27abaaa7f460f72", "cfc07d01e48241a448e4", "9a178f0b8ea4bddfdfd8", "d1462d99772da5028341", "1e2449f764b77a3dfb24", "f1a388a38965f553902e", "c169d32faa9d8828b4a4", "38734de8c00fd3ef9c31", "67c486726ea261631f99", "dcc0435d519083579005", "fbe0de7dd4b63a2d4766", "fbe4dd800e9ed68c83ce", "e7d41c578c2d51c4e694", "758480a4a27fa9b84cee", "5bb59780e3bac046cc2e", "5597125eba957d17ae62", "547eab6c86b4a4193df1", "cc5379930193db0b4fa6", "c729a532d7abf53f6b85", "bd632ce6ea65d908960b", "d08d092032abb728ce86", "a08529caffd2a07bf55c", "a0ea791e893335107de6", "ce1bd46ff2cb2dd2cfbd", "db4ca862f3eab71af37b", "88897eee9e4a348549e0", "0bd0e1c486c4cdc0a8f3", "4aa3d06ddf0d7eea6885", "30ada5ba52c8df36f7eb", "8048e24aaaeeb0401819", "a1662ef01f9f0ea89c11", "f4f2212b6420f2b775b1", "60283f2c45e0948bb614", "c4452db907c0e9a50017", "0245d5cd2881e571c4a4", "6cdc836001eca44be758", "50af0ff3cebf23893c7b", "3665163ecf5ce79c6c76", "3065621057f7cc94dadc", "703816273fe31af54823", "b60e5272a49a4f361b33", "9e206aaf4657b62829b3", "2f910d2cacd1d156ece6", "57a3300c4b385cd179d3", "08e36d4b0307e9dcf558", "571612e12335a6e6e438", "5e2c10247b53a669fcd9", "4960ef9af67a5c0f679d", "1cb460656bebd6d3cff0", "b3925e411848a1c28984", "448184abdb88cc909e48", "6935d370d29cf007368b", "05f717d4356dfc4f98ff", "5a8d5dc001274984981a"]);
+  function proLevel() { const v = store.get('proLevel', 0); return v === 1 || v === 2 || v === 3 ? v : 0; }
   const isPro = () => proLevel() >= 1;
   const isFull = () => proLevel() >= 2;
-  const canPlay = sub => !PREMIUM.has(sub) || proLevel() >= (FULL_ONLY.has(sub) ? 2 : 1);
+  const isYX = () => proLevel() >= 3;
+  const canPlay = sub => !PREMIUM.has(sub) || proLevel() >= (YX.has(sub) ? 3 : FULL_ONLY.has(sub) ? 2 : 1);
   function trials() { return store.get('trials', {}); }
   function drawPro() {
-    document.body.classList.toggle('is-pro', isPro()); document.body.classList.toggle('is-full', isFull());
+    document.body.classList.toggle('is-pro', isPro()); document.body.classList.toggle('is-full', isFull()); document.body.classList.toggle('is-yx', isYX());
     const tr = trials();
     document.querySelectorAll('.subject.premium').forEach(b => {
       const lock = !canPlay(b.dataset.sub);
       b.classList.toggle('locked', lock); b.classList.toggle('can-try', lock && !tr[b.dataset.sub]);
-      const chip = b.querySelector('.lock-chip'); if (chip) chip.textContent = FULL_ONLY.has(b.dataset.sub) ? '🔒 完整版' : '🔒 進階';
+      const chip = b.querySelector('.lock-chip'); if (chip) chip.textContent = YX.has(b.dataset.sub) ? '🔒 幼小銜接' : FULL_ONLY.has(b.dataset.sub) ? '🔒 完整版' : '🔒 進階';
     });
   }
   async function sha(text) {
@@ -3606,7 +4445,7 @@ body.is-full .promo { display: none; }
   async function tryCode(raw) {
     const norm = String(raw || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
     if (norm.length < 11) return 0;
-    try { const h = await sha(norm); return PRO_HASHES.has(h) ? 2 : STD_HASHES.has(h) ? 1 : 0; } catch (e) { return 0; }
+    try { const h = await sha(norm); return YX_HASHES.has(h) ? 3 : PRO_HASHES.has(h) ? 2 : STD_HASHES.has(h) ? 1 : 0; } catch (e) { return 0; }
   }
   function renderProBox() {
     const el = $('proBody'), lv = proLevel();
@@ -3614,23 +4453,23 @@ body.is-full .promo { display: none; }
       <div class="code-row"><input id="codeInput" placeholder="例如 DDS-XXXX-XXXX" autocomplete="off" autocapitalize="characters"><button id="codeBtn" class="btn small" style="background:var(--good);box-shadow:0 5px 0 var(--good-deep)">開啟</button></div>
       <p class="note" id="codeMsg" aria-live="polite"></p>`;
     const buy = BUY_URL ? `<a class="btn small" id="buyBtn" href="${BUY_URL}" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:none;display:inline-block;background:#EE4D2D;box-shadow:0 5px 0 #B8341A">到蝦皮購買解鎖碼</a>` : '<p class="note">購買連結即將推出。</p>';
-    if (lv === 2) { el.innerHTML = '<p class="pro-ok">✅ 已經開啟完整版，全部功能都可以使用，謝謝你的支持！</p><p class="note">開啟紀錄存在這台裝置；換手機時，用同一組解鎖碼再輸入一次就好。</p>'; return; }
-    el.innerHTML = (lv === 1 ? '<p class="pro-ok">✅ 已經開啟標準版（45 個主題）。</p><p class="note">升級完整版，再多 16 個主題（含綜合大考驗、英文拼字、買東西找錢等），加上 4 位朗讀小夥伴和每週學習報告。</p>' : '<p class="note">免費版的 25 個主題都可以一直玩。想玩更多，有兩種方案：</p>') + `
-      <table class="plans"><thead><tr><th></th><th>免費</th><th>標準版<br>NT$299</th><th>完整版<br>NT$399</th></tr></thead><tbody>
-        <tr><td>學習主題</td><td>25 個</td><td>45 個</td><td>全部 61 個</td></tr>
-        <tr><td>綜合大考驗</td><td>–</td><td>–</td><td>✓</td></tr>
-        <tr><td>4 位朗讀小夥伴（團團、跳跳、慢慢、咪咪）</td><td>–</td><td>–</td><td>✓</td></tr>
-        <tr><td>每週學習報告</td><td>–</td><td>–</td><td>✓</td></tr>
-        <tr><td>3–4／5–6 歲兩種難度</td><td>✓</td><td>✓</td><td>✓</td></tr></tbody></table>
+    if (lv === 3) { el.innerHTML = '<p class="pro-ok">✅ 已經開啟幼小銜接版，全部 81 個主題和所有功能都可以使用，謝謝你的支持！</p><p class="note">開啟紀錄存在這台裝置；換手機時，用同一組解鎖碼再輸入一次就好。</p>'; return; }
+    el.innerHTML = (lv === 2 ? '<p class="pro-ok">✅ 已經開啟完整版（61 個主題）。</p><p class="note">升級幼小銜接版，再多一個「幼小銜接專區」：20 個升小一主題，每個 50 題以上。</p>' : lv === 1 ? '<p class="pro-ok">✅ 已經開啟標準版（45 個主題）。</p><p class="note">升級完整版，再多 16 個主題、4 位朗讀小夥伴和每週學習報告；幼小銜接版再加上幼小銜接專區。</p>' : '<p class="note">免費版的 25 個主題都可以一直玩。想玩更多，有三種方案：</p>') + `
+      <table class="plans p4"><thead><tr><th></th><th>免費</th><th>標準版<br>NT$299</th><th>完整版<br>NT$399</th><th class="yx-col">幼小銜接版<br>NT$499</th></tr></thead><tbody>
+        <tr><td>學習主題</td><td>25 個</td><td>45 個</td><td>61 個</td><td class="yx-col">81 個</td></tr>
+        <tr><td>🎒 幼小銜接專區（20 個主題，每個 50 題以上）</td><td>–</td><td>–</td><td>–</td><td class="yx-col">✓</td></tr>
+        <tr><td>綜合大考驗</td><td>–</td><td>–</td><td>✓</td><td class="yx-col">✓</td></tr>
+        <tr><td>4 位朗讀小夥伴</td><td>–</td><td>–</td><td>✓</td><td class="yx-col">✓</td></tr>
+        <tr><td>每週學習報告</td><td>–</td><td>–</td><td>✓</td><td class="yx-col">✓</td></tr></tbody></table>
       <p class="note">一次買斷，不用月費。每個鎖住的主題都可以先免費試玩 3 題。</p>
-      <ol class="buy-steps"><li>在蝦皮下單，選「標準版」或「完整版」</li><li>下單後，在蝦皮聊聊收到解鎖碼</li><li>回到這裡輸入解鎖碼，馬上開放</li></ol>
+      <ol class="buy-steps"><li>在蝦皮下單，選「標準版」、「完整版」或「幼小銜接版」</li><li>下單後，在蝦皮聊聊收到解鎖碼</li><li>回到這裡輸入解鎖碼，馬上開放</li></ol>
       ${buy}${codeForm}`;
     $('codeBtn').addEventListener('click', async () => {
       const got = await tryCode($('codeInput').value);
       if (!got) { $('codeMsg').textContent = '解鎖碼不對，請檢查有沒有打錯（英文字母和數字）。'; return; }
       if (got <= proLevel()) { $('codeMsg').textContent = '這台裝置已經開啟這個方案了。'; return; }
-      store.set('proLevel', got); track(got === 2 ? 'unlock-full' : 'unlock-std', got === 2 ? '開啟完整版' : '開啟標準版');
-      drawPro(); renderProBox(); renderWeekly(); renderVoices(); tone([523, 659, 784, 1046], .12, 'sine');
+      store.set('proLevel', got); track(['', 'unlock-std', 'unlock-full', 'unlock-yx'][got], ['', '開啟標準版', '開啟完整版', '開啟幼小銜接版'][got]);
+      drawPro(); renderProBox(); renderWeekly(); renderVoices(); renderZone(); tone([523, 659, 784, 1046], .12, 'sine');
     });
   }
   function renderWeekly() {
@@ -3651,7 +4490,13 @@ body.is-full .promo { display: none; }
       ${best ? `<p>這週表現最好：<b>${SUBNAME[best.k]}</b>（${best.a}%）</p>` : '<p class="note">這週還沒有紀錄。</p>'}
       ${focus ? `<p>下週建議多練習：<b>${SUBNAME[focus.k]}</b>（${focus.a}%）。${TIPS[focus.k] || ''}</p>` : ''}`;
   }
+  function renderSysVoices() {
+    const sel = $('sysVoice'); if (!sel) return;
+    const cur = store.get('sysVoice', ''), zh = voices.filter(v => /^zh/i.test(v.lang));
+    sel.innerHTML = '<option value="">自動選擇（建議）</option>' + zh.map(v => `<option value="${v.name.replace(/"/g, '&quot;')}"${v.name === cur ? ' selected' : ''}>${v.name}（${v.lang}）</option>`).join('');
+  }
   function renderVoices() {
+    renderSysVoices();
     const cur = isFull() ? store.get('voice', 'yuan') : 'yuan';
     $('voiceRow').innerHTML = Object.entries(VOICES).map(([k, v]) => `<button class="voice-btn" role="radio" aria-checked="${k === cur}" data-v="${k}"><span class="e">${v.e}</span>${v.n}<span class="sub">${v.d}</span></button>`).join('');
     $('voiceRow').querySelectorAll('.voice-btn').forEach(b => b.addEventListener('click', () => {
@@ -3665,7 +4510,7 @@ body.is-full .promo { display: none; }
   function showLock(justEnded) { if (!justEnded) track('premium-locked', '進階主題試玩用完'); $('lockMsg').textContent = justEnded ? '試玩 3 題結束囉！想繼續玩，請爸爸媽媽到家長專區看看怎麼開啟。' : '試玩已經用完囉！請爸爸媽媽到家長專區看看怎麼開啟。'; $('lockSheet').hidden = false; }
 
   /* ---------- 家長專區 ---------- */
-  const SUBNAME = { cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識' };
+  const SUBNAME = { yxzy: '幼小・注音符號', yxtone: '幼小・四聲聲調', yxspell: '幼小・注音拼讀', yxchar: '幼小・認國字', yxsimilar: '幼小・相似字', yxsent: '幼小・句子填空', yxpunct: '幼小・標點符號', yxlook: '幼小・看圖說話', yxstory: '幼小・聽故事', yxstroke: '幼小・國字筆順', yxtrace: '幼小・國字描寫', yxnum: '幼小・100 以內的數', yxcalc: '幼小・20 以內加減', yxword: '幼小・應用題', yxtime: '幼小・認識時間', yxmoney: '幼小・錢幣和買東西', yxmeasure: '幼小・長度比一比', yxstat: '幼小・統計圖表', yxcal: '幼小・星期和月份', yxschool: '幼小・校園生活', cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識' };
   const TIPS = {
     math: '吃點心時一起數一數有幾個。', compare: '分東西時問孩子「哪一邊比較多？」', money: '買東西時讓孩子幫忙拿硬幣付錢。',
     time: '用家裡的時鐘說「8 點要刷牙睡覺」。', cn: '看繪本時，指著簡單的字唸給孩子聽。', zhuyin: '從孩子名字的注音開始，一天認一個。',
@@ -3807,8 +4652,15 @@ body.is-full .promo { display: none; }
   $('soundBtn').addEventListener('click', () => setSound(!soundOn));
   document.querySelectorAll('.subject').forEach(b => b.addEventListener('click', () => startRound(b.dataset.sub)));
   $('speakBtn').addEventListener('click', () => { if (!st || !st.q) return; if (st.sub === 'memory' || st.locked || !st.q.options) say(st.q.speech); else readQuestion(st.q); });
-  $('backBtn').addEventListener('click', () => { try { speechSynthesis.cancel(); } catch (e) {} refreshGot(); show('home'); });
-  $('homeBtn').addEventListener('click', () => show('home'));
+  const backTo = () => (st && st.sub && st.sub.startsWith('yx') ? 'zone' : 'home');
+  $('sysVoice').addEventListener('change', e => { store.set('sysVoice', e.target.value); track('sysvoice', '選擇裝置語音'); const was = soundOn; soundOn = true; say([['你好，我是圓圓，我們一起動動腦！']]).then(() => { soundOn = was; }); });
+  $('backBtn').addEventListener('click', () => { try { speechSynthesis.cancel(); } catch (e) {} refreshGot(); show(backTo()); });
+  $('homeBtn').addEventListener('click', () => show(backTo()));
+  function renderZone() { $('zoneLock').hidden = isYX(); }
+  const openZone = () => { renderZone(); show('zone'); track('zone-open', '進入幼小銜接專區'); };
+  $('yxEnter').addEventListener('click', openZone); $('yxChip').addEventListener('click', e => { e.preventDefault(); openZone(); });
+  $('zoneBack').addEventListener('click', () => show('home'));
+  $('zoneBuy').addEventListener('click', () => { track('zone-buy', '幼小銜接專區購買說明'); openGate(() => { renderReport(); show('report'); setTimeout(() => $('proBox').scrollIntoView({ behavior: 'smooth' }), 100); }); });
   $('againBtn').addEventListener('click', () => startRound(st.sub));
   $('reportBtn').addEventListener('click', () => openGate());
   $('lockClose').addEventListener('click', () => { $('lockSheet').hidden = true; });
