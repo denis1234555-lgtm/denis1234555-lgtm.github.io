@@ -562,6 +562,8 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .pr-form .pr-check { flex-direction: row; align-items: center; gap: 8px; font-weight: 700; }
 .pr-form .pr-check input { width: 20px; height: 20px; }
 .pr-form .btn { align-self: flex-start; }
+.btn.pr-btn { background: var(--good); box-shadow: 0 5px 0 var(--good-deep); color: #fff; }
+#printView .btn.ghost { color: var(--ink); }
 #printView { position: fixed; inset: 0; z-index: 200; background: #5B6B7C; display: flex; flex-direction: column; }
 #printView[hidden] { display: none; }
 .pv-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 10px 14px; background: var(--surface); box-shadow: 0 3px 0 var(--line-deep); }
@@ -1489,9 +1491,9 @@ body.is-yx.is-print .promo { display: none; }
           <label>難度<select id="prAge"><option value="small">3–4 歲</option><option value="big" selected>5–6 歲</option></select></label>
           <label>一張幾題<select id="prPer"><option value="12">12 題（字和圖比較大）</option><option value="20">20 題（最省紙）</option></select></label>
           <label class="pr-check"><input type="checkbox" id="prBW"> 黑白省墨（圖案變灰階，不印底色）</label>
-          <button id="prMake" class="btn small">產生學習單</button>
+          <button id="prMake" class="btn small pr-btn">🖨️ 產生學習單</button>
         </div>
-        <p class="note">寫字類會印成田字格，每張 8 個字；連點成圖、對稱畫、時間表每張 4–6 題。幼小銜接的主題難度固定為升小一。</p>
+        <p class="note">寫字類會印成田字格，每張 8 個字；連點成圖、對稱畫、時間表每張 6 題。幼小銜接的主題難度固定為升小一。</p>
       </div>
       <div class="lock-over">🔒 開啟「完整版＋列印學習單」或「幼小銜接版＋列印學習單」，就能列印學習單</div>
     </div>
@@ -1591,7 +1593,7 @@ body.is-yx.is-print .promo { display: none; }
   </section>
 </main>
 <div id="printView" hidden>
-  <div class="pv-bar"><b>學習單預覽</b><button id="pvPrint" class="btn small">🖨️ 列印／存成 PDF</button><button id="pvAgain" class="btn ghost small">換一張</button><button id="pvClose" class="btn ghost small">關閉</button></div>
+  <div class="pv-bar"><b>學習單預覽</b><button id="pvPrint" class="btn small pr-btn">🖨️ 列印／存成 PDF</button><button id="pvAgain" class="btn ghost small">換一張</button><button id="pvClose" class="btn ghost small">關閉</button></div>
   <div class="pv-scroll"><div id="printSheet" class="psheet"></div></div>
 </div>
 
