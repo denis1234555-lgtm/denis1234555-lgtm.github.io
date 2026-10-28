@@ -1,5 +1,5 @@
 // 動動腦小學堂 離線快取。遊戲更新時，把版本號加 1。
-const CACHE = 'ddn-v16';
+const CACHE = 'ddn-v19';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
@@ -19,7 +19,7 @@ self.addEventListener('fetch', e => {
     return;
   }
   // 圖示、字型等：先用快取，背景更新
-  if (url.origin === location.origin || /fonts\.(googleapis|gstatic)\.com$/.test(url.hostname)) {
+  if (url.origin === location.origin || /fonts\.(googleapis|gstatic)\.com$/.test(url.hostname) || (url.hostname === 'cdn.jsdelivr.net' && url.pathname.includes('fluent-emoji'))) {
     e.respondWith(caches.match(req).then(hit => {
       const net = fetch(req).then(res => { if (res && (res.ok || res.type === 'opaque')) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); } return res; }).catch(() => hit);
       return hit || net;

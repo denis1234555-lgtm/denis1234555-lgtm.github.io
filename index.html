@@ -543,11 +543,203 @@ body.is-full .promo { display: none; }
 .sys-voice { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
 .sys-voice label { font-weight: 900; }
 .sys-voice select { font: inherit; font-weight: 700; padding: 10px 12px; border-radius: 14px; border: 2px solid var(--line-deep); background: #fff; color: var(--ink); max-width: 100%; }
+
+/* 3D 立體圖案 */
+img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: contain; display: inline-block; }
+.fe-on .pic img.fe, .fe-on .o-life .e img.fe, .fe-on .o-pic img.fe, .fe-on .subject .art img.fe, .fe-on .yx-scene img.fe, .fe-on .yx-emo img.fe { width: 1em; height: 1em; filter: drop-shadow(0 6px 8px rgba(27, 42, 58, .16)); }
+.fe-on .pic img.fe { vertical-align: middle; }
+.fe-on .count img.fe, .fe-on .yx-chart img.fe { width: 1em; height: 1em; }
+/* 行為小場景 */
+.o-life .e.scene { display: flex; align-items: flex-end; justify-content: center; gap: 0; font-size: clamp(2.3rem, 11vw, 3.4rem); line-height: 1; padding-top: .15em; }
+.o-life .e.scene i:first-child { margin-right: -.2em; }
+.o-life .e.scene i:last-child { margin-left: -.2em; font-size: .86em; }
+.o-life .e.scene i { font-style: normal; display: inline-flex; }
+.o-life .e.scene i.act { font-size: .62em; margin: 0; transform: translateY(-.55em) rotate(-8deg); position: relative; z-index: 1; padding: .12em; border-radius: 50%; background: radial-gradient(circle, #FFF3CC 0%, rgba(255, 243, 204, 0) 72%); }
+/* ---------- 列印學習單 ---------- */
+.pr-form { display: flex; flex-direction: column; gap: 10px; }
+.pr-form label { display: flex; flex-direction: column; gap: 4px; font-weight: 900; font-size: .95rem; }
+.pr-form select { font: inherit; font-weight: 700; padding: 10px 12px; border-radius: 14px; border: 2px solid var(--line-deep); background: #fff; color: var(--ink); }
+.pr-form .pr-check { flex-direction: row; align-items: center; gap: 8px; font-weight: 700; }
+.pr-form .pr-check input { width: 20px; height: 20px; }
+.pr-form .btn { align-self: flex-start; }
+#printView { position: fixed; inset: 0; z-index: 200; background: #5B6B7C; display: flex; flex-direction: column; }
+#printView[hidden] { display: none; }
+.pv-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 10px 14px; background: var(--surface); box-shadow: 0 3px 0 var(--line-deep); }
+.pv-bar b { margin-right: auto; font-weight: 900; }
+.pv-scroll { flex: 1; overflow: auto; padding: 14px; }
+.psheet { --u: 1; width: 194mm; height: 276mm; margin: 0 auto; background: #fff; color: #1B2A3A; padding: 0; display: flex; flex-direction: column; box-shadow: 0 6px 24px rgba(0,0,0,.25); font-size: calc(3.3mm * var(--u)); overflow: hidden; }
+.psheet.c4 { --u: .8; }
+.ps-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 4mm; padding: 2mm 1mm 2mm; border-bottom: .5mm solid #1B2A3A; }
+.ps-head b { display: block; font-size: 5.2mm; font-weight: 900; }
+.ps-head small { font-size: 3mm; color: #5B6B7C; font-weight: 700; }
+.ps-name { font-size: 3.4mm; font-weight: 700; white-space: nowrap; }
+.ps-body { flex: 1; display: grid; gap: 2.2mm; padding: 2.5mm 0; min-height: 0; grid-auto-rows: minmax(0, 1fr); }
+.psheet.c3 .ps-body { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, minmax(0, 1fr)); }
+.psheet.c4 .ps-body { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, minmax(0, 1fr)); }
+.psheet.c1 .ps-body { grid-template-columns: repeat(2, 1fr); }
+.psheet.c2 .ps-body { grid-template-columns: repeat(2, 1fr); }
+.psheet.trace .ps-body { display: block; }
+.ps-ans { border-top: .3mm dashed #9AA9B8; padding-top: 1.5mm; font-size: 2.7mm; color: #5B6B7C; line-height: 1.5; }
+.pq { border: .35mm solid #C9D4DE; border-radius: 3mm; padding: 1.6mm 2mm; display: flex; flex-direction: column; gap: 1.2mm; overflow: hidden; min-height: 0; break-inside: avoid; }
+.pq-h { display: flex; gap: 1.5mm; align-items: flex-start; font-weight: 900; line-height: 1.3; }
+.pq-h b { flex: none; width: 1.55em; height: 1.55em; border-radius: 50%; background: #1B2A3A; color: #fff; display: grid; place-items: center; font-size: .85em; }
+.pq-say { font-size: .82em; color: #5B6B7C; font-weight: 700; }
+.pq-stage { flex: 1; min-height: 0; display: grid; place-items: center; overflow: hidden; }
+.pq-stage > * { max-width: 100%; max-height: 100%; }
+.pq-opts { display: grid; gap: 1.2mm; }
+.pq-opts.n2 { grid-template-columns: repeat(2, 1fr); }
+.pq-opts.n3 { grid-template-columns: repeat(3, 1fr); }
+.pq-opts.n4 { grid-template-columns: repeat(4, 1fr); }
+.c3 .pq-opts.n4 { grid-template-columns: repeat(2, 1fr); }
+.pq-o { position: relative; border: .3mm solid #C9D4DE; border-radius: 2mm; padding: 1mm .6mm .6mm; display: grid; place-items: center; text-align: center; min-height: 0; }
+.pq-o i { position: absolute; left: .8mm; top: .4mm; font-style: normal; font-size: .72em; font-weight: 900; color: #9AA9B8; }
+.psheet .pic { font-size: calc(13mm * var(--u)); line-height: 1; animation: none; }
+.psheet .yx-card, .psheet .riddle, .psheet .phrase { box-shadow: none; padding: 1mm 2mm; background: transparent; border-radius: 0; }
+.psheet .yx-card::before, .psheet .riddle::before { display: none; }
+.psheet .yx-card .pic { font-size: calc(11mm * var(--u)); }
+.psheet .riddle, .psheet .story { font-size: .92em; font-weight: 700; line-height: 1.4; margin: 0; }
+.psheet .phrase { font-size: 1.15em; }
+.psheet .word-zh { font-size: 1.3em; }
+.psheet .bigchar { font-size: calc(12mm * var(--u)); box-shadow: none; border: .3mm solid #C9D4DE; }
+.psheet .eq { font-size: calc(8mm * var(--u)); }
+.psheet .o-life .e { font-size: calc(7.5mm * var(--u)); }
+.psheet .o-life .t { font-size: .9em; }
+.psheet .o-life .t.solo { font-size: 1em; }
+.psheet .o-life .e.scene { font-size: calc(6mm * var(--u)); }
+.psheet .o-num { font-size: calc(7mm * var(--u)); }
+.psheet .o-char { font-size: calc(8mm * var(--u)); }
+.psheet .o-time, .psheet .o-zy { font-size: calc(4.2mm * var(--u)); }
+.psheet .o-pic { font-size: calc(8mm * var(--u)); }
+.psheet .clock-big { width: calc(24mm * var(--u)); height: auto; }
+.psheet .o-clock { width: calc(14mm * var(--u)); height: auto; }
+.psheet .count span, .psheet .sum span { font-size: calc(4.6mm * var(--u)); }
+.psheet .coin-s { width: calc(9mm * var(--u)); height: auto; }
+.psheet .coin-mini { width: calc(6mm * var(--u)); height: auto; }
+.psheet svg { max-width: 100%; }
+.psheet .yx-stroke-big { width: calc(22mm * var(--u)); }
+.psheet .yx-stroke-opt { width: calc(13mm * var(--u)); }
+.psheet .yx-rods, .psheet .yx-ruler { max-height: calc(26mm * var(--u)); width: auto; }
+.psheet .yx-chart i { font-size: calc(4mm * var(--u)); }
+.psheet .yx-chart b { font-size: calc(5mm * var(--u)); }
+.psheet .yx-line b { font-size: .95em; min-width: 7mm; padding: .5mm 1mm; }
+.psheet .yx-scene i { font-size: calc(8mm * var(--u)); }
+.psheet .week span { font-size: .85em; padding: .5mm 1mm; }
+.psheet .word, .psheet .bigletter { font-size: calc(9mm * var(--u)); }
+.psheet .pq-stage .seq, .psheet .pq-stage .pattern, .psheet .pq-stage .pos, .psheet .pq-stage .opp, .psheet .pq-stage .mix, .psheet .pq-stage .hide, .psheet .pq-stage .shadowcard, .psheet .pq-stage .sum, .psheet .pq-stage .week, .psheet .pq-stage .coins, .psheet .pq-stage .count { zoom: calc(.42 * var(--u)); }
+.psheet .pq-stage .sum span, .psheet .pq-stage .count span { font-size: inherit; }
+.px-row { display: flex; flex-wrap: wrap; gap: 1.5mm; justify-content: center; align-content: center; flex: 1; }
+.px-row svg { width: calc(11mm * var(--u)); height: calc(11mm * var(--u)); }
+.px-mirror { display: grid; gap: .8mm; width: 70%; margin: 0 auto; }
+.px-mirror span { aspect-ratio: 1; border: .3mm solid #9AA9B8; }
+.px-mirror span.on { background: #34424F; }
+.px-mirror span.edge { border-right: .8mm solid #E5484D; }
+.px-dots { width: 86%; height: auto; margin: 0 auto; display: block; }
+.px-dots circle { fill: #1B2A3A; }
+.px-dots text { font-size: 15px; font-weight: 800; fill: #1B2A3A; }
+.px-day { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2mm; flex: 1; }
+.px-day > div { position: relative; border: .3mm solid #C9D4DE; border-radius: 2mm; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1mm; }
+.px-day .box { position: absolute; left: 1.5mm; top: 1.5mm; width: 8mm; height: 8mm; border: .4mm solid #1B2A3A; border-radius: 1.5mm; }
+.px-clock { width: 20mm; height: 20mm; }
+.px-day small { font-weight: 900; font-size: 1em; }
+.pt { display: flex; flex-direction: column; gap: 2mm; height: 100%; justify-content: space-between; }
+.pt-row { display: flex; gap: 1.2mm; }
+.pt-cell { flex: none; width: 26.5mm; height: 26.5mm; border: .45mm solid #E5484D; position: relative; display: grid; place-items: center; font-family: var(--f-kai); font-weight: 700; font-size: 20mm; line-height: 1; color: transparent;
+  background-image: linear-gradient(#F4B4B7, #F4B4B7), linear-gradient(#F4B4B7, #F4B4B7); background-size: 100% .25mm, .25mm 100%; background-position: center; background-repeat: no-repeat; }
+.pt-cell.model { color: #1B2A3A; }
+.pt-cell.guide { color: #D6DDE4; }
+.psheet.bw img, .psheet.bw svg { filter: grayscale(1) contrast(1.1); }
+.psheet.bw .pt-cell { border-color: #555; background-image: linear-gradient(#bbb, #bbb), linear-gradient(#bbb, #bbb); }
+.psheet.bw .pq-h b { background: #333; }
+@media print {
+  @page { size: A4; margin: 8mm; }
+  body.printing { background: #fff !important; }
+  body.printing > *:not(#printView) { display: none !important; }
+  body.printing #printView { position: static; background: #fff; display: block; height: 276mm; overflow: hidden; }
+  body.printing { margin: 0 !important; padding: 0 !important; overflow: hidden; }
+  body.printing .psheet { break-after: avoid; page-break-after: avoid; }
+  html, body.printing { height: auto !important; min-height: 0 !important; }
+  body.printing .pv-bar { display: none; }
+  body.printing .pv-scroll { overflow: visible; padding: 0; }
+  body.printing .psheet { box-shadow: none; zoom: 1 !important; margin: 0; }
+}
+/* ---------- 跨能力挑戰 ---------- */
+#game[data-sub="xmcolor"], #done[data-sub="xmcolor"], #game[data-sub="xmpattern"], #done[data-sub="xmpattern"] { --c: var(--color); --c-soft: var(--color-soft); --c-deep: var(--color-deep); }
+#game[data-sub="xmshape"], #done[data-sub="xmshape"], #game[data-sub="xmmirror"], #done[data-sub="xmmirror"] { --c: var(--geo); --c-soft: var(--geo-soft); --c-deep: var(--geo-deep); }
+#game[data-sub="xmplace"], #done[data-sub="xmplace"], #game[data-sub="xmshop"], #done[data-sub="xmshop"] { --c: var(--math); --c-soft: var(--math-soft); --c-deep: var(--math-deep); }
+#game[data-sub="xmday"], #done[data-sub="xmday"] { --c: var(--time); --c-soft: var(--time-soft); --c-deep: var(--time-deep); }
+#game[data-sub="xmemo"], #done[data-sub="xmemo"] { --c: var(--life); --c-soft: var(--life-soft); --c-deep: var(--life-deep); }
+#game[data-sub="xmdots"], #done[data-sub="xmdots"], #game[data-sub="xmengcolor"], #done[data-sub="xmengcolor"] { --c: var(--en); --c-soft: var(--en-soft); --c-deep: var(--en-deep); }
+
+.xm-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; }
+.xm-instr { position: relative; width: 100%; background: #FFFDF7; border-radius: 22px; padding: 12px 14px; box-shadow: 0 5px 0 var(--line-deep); text-align: center; overflow: hidden; }
+.xm-instr-body { transition: filter .3s, opacity .3s; }
+.xm-instr.covered .xm-instr-body { filter: blur(14px); opacity: .35; }
+.xm-instr.covered::after { content: "🤫 記在心裡了嗎？"; position: absolute; inset: 0; display: grid; place-items: center; font-weight: 900; font-size: 1.2rem; color: var(--ink); }
+.xm-peek { position: absolute; right: 10px; bottom: 8px; z-index: 2; border: 0; border-radius: 999px; padding: 4px 12px; background: var(--ink); color: #fff; font-weight: 900; font-size: .85rem; }
+.xm-specs { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.xm-spec { display: flex; align-items: center; gap: 4px; background: #fff; border-radius: 16px; padding: 6px 10px; box-shadow: 0 3px 0 var(--line-deep); }
+.xm-spec b { font-family: var(--f-display); font-weight: 800; font-size: 1.9rem; line-height: 1; }
+.xm-spec-ic { width: 38px; height: 38px; }
+.xm-spec small { font-weight: 900; font-size: .85rem; color: var(--muted); }
+.xm-txt { font-weight: 900; font-size: 1.15rem; margin-top: 6px; }
+.xm-txt.sm { font-size: .95rem; color: var(--muted); }
+.xm-en { font-family: var(--f-display); font-weight: 800; font-size: 1.6rem; line-height: 1.2; }
+.xm-en b { color: var(--c); }
+.xm-pal { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.xm-color { border: 0; background: #fff; border-radius: 16px; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; box-shadow: 0 3px 0 var(--line-deep); font-weight: 900; font-size: .78rem; min-width: 54px; }
+.xm-color i { width: 30px; height: 30px; border-radius: 50%; background: var(--cc); box-shadow: inset 0 -3px 0 rgba(0,0,0,.18); }
+.xm-color.on { outline: 4px solid var(--cc); outline-offset: 1px; transform: translateY(-2px); }
+.xm-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; width: 100%; }
+.xm-grid.shapes { grid-template-columns: repeat(4, 1fr); }
+.xm-grid.shapes.g3 { grid-template-columns: repeat(3, 1fr); }
+.xm-cell { border: 0; background: #fff; border-radius: 14px; padding: 4px; aspect-ratio: 1; box-shadow: 0 3px 0 var(--line-deep); display: grid; place-items: center; }
+.xm-cell svg { width: 100%; height: 100%; }
+.xm-cell.picked { outline: 4px solid var(--c); outline-offset: 1px; background: var(--c-soft); }
+.xm-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.xm-row .xm-cell { width: clamp(38px, 10.5vw, 56px); }
+.xm-row .xm-cell.blank { box-shadow: 0 3px 0 var(--c-deep); outline: 3px dashed var(--c); outline-offset: -3px; }
+.xm-tools { display: flex; gap: 10px; justify-content: center; }
+.xm-mirror { display: grid; gap: 4px; width: min(100%, 340px); background: #fff; padding: 8px; border-radius: 18px; box-shadow: 0 4px 0 var(--line-deep); }
+.xm-mirror .mc { aspect-ratio: 1; border: 2px solid var(--line); border-radius: 6px; background: #fff; padding: 0; }
+.xm-mirror .mc.left { background: #F4F7FA; }
+.xm-mirror .mc.edge { box-shadow: 4px 0 0 -1px #E5484D; }
+.xm-mirror .mc.on { background: var(--mc); border-color: var(--mc); }
+.xm-dots-box { position: relative; width: min(100%, 340px); background: #fff; border-radius: 22px; box-shadow: 0 5px 0 var(--line-deep); }
+.xm-dots { width: 100%; height: auto; display: block; }
+.xm-dots .dot { cursor: pointer; }
+.xm-dots .dd { fill: var(--ink); }
+.xm-dots .dot.hit .dd { fill: var(--c); }
+.xm-dots text { font-family: var(--f-display); font-weight: 800; font-size: 15px; fill: var(--ink); }
+.xm-dots .dot.shake { animation: shake .35s; }
+.xm-reveal { position: absolute; right: 10px; top: 8px; font-size: 3rem; animation: drop .4s ease; }
+.xm-list { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; font-weight: 900; font-size: 1.25rem; text-align: left; padding: 4px 8px; }
+.xm-list b { font-size: .95rem; color: var(--muted); }
+.xm-list i { font-style: normal; color: var(--cn); }
+.xm-shelf { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; }
+.xm-shelf.done { opacity: .5; pointer-events: none; }
+.xm-item { border: 0; background: #fff; border-radius: 16px; padding: 8px 4px; box-shadow: 0 3px 0 var(--line-deep); display: flex; flex-direction: column; align-items: center; gap: 2px; font-weight: 900; }
+.xm-item span { font-size: 2.2rem; line-height: 1.1; }
+.xm-item small { font-size: .8rem; }
+.xm-item.picked { outline: 4px solid var(--c); outline-offset: 1px; background: var(--c-soft); }
+.xm-pay { width: 100%; text-align: center; }
+.xm-pay-opts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px; }
+.xm-boxes { display: flex; gap: 10px; justify-content: center; width: 100%; }
+.xm-box { flex: 1; max-width: 200px; border: 0; background: #fff; border-radius: 20px; padding: 8px; box-shadow: 0 4px 0 var(--line-deep); display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 150px; }
+.xm-box.on { outline: 4px solid var(--c); outline-offset: 1px; }
+.xm-box .bx { font-size: 2.8rem; line-height: 1; }
+.xm-box small { font-weight: 900; }
+.xm-box .in { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; }
+.xm-pile { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; min-height: 52px; }
+.xm-obj { border: 0; background: transparent; font-size: 2.1rem; line-height: 1; padding: 2px; }
+.xm-box .xm-obj { font-size: 1.5rem; }
+.xm-clock { width: 66px; height: 66px; display: block; margin: 0 auto 2px; }
+.xm-day-e { font-size: 1.6rem; }
 /* ---------- 幼小銜接專區 ---------- */
 body.is-full .promo { display: flex; }
 body.is-yx .promo { display: none; }
 .plans.p4 { font-size: .8rem; }
 .plans.p4 th, .plans.p4 td { padding: 6px 2px; }
+.plans.p4 th:not(:first-child), .plans.p4 td:not(:first-child) { white-space: nowrap; }
 .plans.p4 th:last-child, .plans.p4 td:last-child { background: #E2F4EC; }
 .plans.p4 th:nth-last-child(2), .plans.p4 td:nth-last-child(2) { background: var(--sun-soft); }
 .yx-enter { width: 100%; margin: 6px 0 18px; border: 0; border-radius: 30px; padding: 18px 16px 18px 22px; display: flex; align-items: center; gap: 12px; text-align: left; color: #fff;
@@ -694,9 +886,9 @@ body.is-yx .promo { display: none; }
       </div>
     </div>
 
-    <nav class="jump" aria-label="主題分類"><a href="#g-0" class="jump-chip" style="--g: var(--cn)">語文</a><a href="#g-1" class="jump-chip" style="--g: var(--math)">數學</a><a href="#g-2" class="jump-chip" style="--g: var(--geo)">觀察</a><a href="#g-3" class="jump-chip" style="--g: var(--time)">思考</a><a href="#g-4" class="jump-chip" style="--g: var(--color)">動手玩</a><a href="#g-5" class="jump-chip" style="--g: var(--life)">生活</a><a href="#g-6" class="jump-chip" style="--g: var(--sun)">⭐ 進階版</a><a href="#zone" id="yxChip" class="jump-chip" style="--g: #2F7D62">🎒 幼小銜接</a></nav>
+    <nav class="jump" aria-label="主題分類"><a href="#g-0" class="jump-chip" style="--g: var(--cn)">語文</a><a href="#g-1" class="jump-chip" style="--g: var(--math)">數學</a><a href="#g-2" class="jump-chip" style="--g: var(--geo)">觀察</a><a href="#g-3" class="jump-chip" style="--g: var(--time)">思考</a><a href="#g-4" class="jump-chip" style="--g: var(--color)">動手玩</a><a href="#g-5" class="jump-chip" style="--g: var(--life)">生活</a><a href="#g-6" class="jump-chip" style="--g: var(--sun)">⭐ 進階版</a><a href="#g-8" class="jump-chip" style="--g: var(--sun)">⭐ 跨能力</a><a href="#zone" id="yxChip" class="jump-chip" style="--g: #2F7D62">🎒 幼小銜接</a></nav>
     <button class="yx-enter" id="yxEnter" aria-label="進入幼小銜接專區">
-      <span class="yx-enter-text"><span class="yx-pill">🎒 升小一前先準備</span><b>幼小銜接專區</b><span>20 個主題，每個 50 題以上</span><span class="yx-go">進去看看 →</span></span>
+      <span class="yx-enter-text"><span class="yx-pill">🎒 升小一前先準備</span><b>幼小銜接專區</b><span>22 個主題，每個 50 題以上</span><span class="yx-go">進去看看 →</span></span>
       <svg class="yx-enter-art" viewBox="0 0 200 160" aria-hidden="true"><use href="#yx-school"/></svg>
     </button>
 
@@ -1031,10 +1223,53 @@ body.is-yx .promo { display: none; }
         <span class="name">動物知識</span><span class="what" data-small="會飛、住哪、吃什麼" data-big="幾隻腳、怎麼呼吸">會飛、住哪、吃什麼</span><span class="trial-note">可以免費試玩 3 題</span>
       </button>
       </div>
+      <h3 class="group-title" id="g-8" style="--g: var(--sun)">⭐ 跨能力挑戰 <small>一題練兩三種能力：記憶、顏色、數量、時間、情緒</small></h3>
+      <div class="subjects">
+      <button class="subject premium gold" data-sub="xmcolor" id="sub-xmcolor">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="xmcolor">0</span></span><span class="lock-chip" aria-hidden="true">🔒 完整版</span>
+        <span class="art"><span class="emo">🎨</span></span>
+        <span class="name">顏色數數記憶</span><span class="what" data-small="記住幾個紅、幾個藍再塗" data-big="記住三種顏色和數量">記住幾個紅、幾個藍再塗</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium gold" data-sub="xmshape" id="sub-xmshape">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="xmshape">0</span></span><span class="lock-chip" aria-hidden="true">🔒 完整版</span>
+        <span class="art"><span class="emo">🔺</span></span>
+        <span class="name">形狀顏色找找看</span><span class="what" data-small="找出藍色的三角形" data-big="形狀、顏色加數量">找出藍色的三角形</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium gold" data-sub="xmplace" id="sub-xmplace">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="xmplace">0</span></span><span class="lock-chip" aria-hidden="true">🔒 完整版</span>
+        <span class="art"><span class="emo">🧺</span></span>
+        <span class="name">聽指令擺放</span><span class="what" data-small="把蘋果放進籃子" data-big="聽兩個指令再擺放">把蘋果放進籃子</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium gold" data-sub="xmday" id="sub-xmday">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="xmday">0</span></span><span class="lock-chip" aria-hidden="true">🔒 完整版</span>
+        <span class="art"><span class="emo">⏰</span></span>
+        <span class="name">一天的時間表</span><span class="what" data-small="照時鐘排順序" data-big="看時鐘排一天的事">照時鐘排順序</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium gold" data-sub="xmpattern" id="sub-xmpattern">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="xmpattern">0</span></span><span class="lock-chip" aria-hidden="true">🔒 完整版</span>
+        <span class="art"><span class="emo">🔁</span></span>
+        <span class="name">規律塗色</span><span class="what" data-small="紅藍紅藍，接下去" data-big="三種顏色的規律">紅藍紅藍，接下去</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium gold" data-sub="xmemo" id="sub-xmemo">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="xmemo">0</span></span><span class="lock-chip" aria-hidden="true">🔒 完整版</span>
+        <span class="art"><span class="emo">🕵️</span></span>
+        <span class="name">情緒小偵探</span><span class="what" data-small="猜感覺，再想做法" data-big="猜感覺，再想做法">猜感覺，再想做法</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium gold" data-sub="xmdots" id="sub-xmdots">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="xmdots">0</span></span><span class="lock-chip" aria-hidden="true">🔒 完整版</span>
+        <span class="art"><span class="emo">✏️</span></span>
+        <span class="name">連點成圖</span><span class="what" data-small="1 連到 10" data-big="1 到 20、跳著數">1 連到 10</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium gold" data-sub="xmmirror" id="sub-xmmirror">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="xmmirror">0</span></span><span class="lock-chip" aria-hidden="true">🔒 完整版</span>
+        <span class="art"><span class="emo">🦋</span></span>
+        <span class="name">對稱畫一半</span><span class="what" data-small="照左邊畫右邊" data-big="更大的格子">照左邊畫右邊</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      </div>
     </div>
 
     <div class="promo" id="promoCard">
-      <div class="promo-text"><b>⭐ 想玩更多？</b><span>標準版開放 45 個主題，完整版 61 個主題加上朗讀小夥伴和每週學習報告；幼小銜接版再多 20 個升小一主題。</span></div>
+      <div class="promo-text"><b>⭐ 想玩更多？</b><span>標準版開放 45 個主題，完整版 69 個主題加上跨能力挑戰、朗讀小夥伴和每週學習報告；幼小銜接版再多 22 個升小一主題。</span></div>
       <button id="promoBtn" class="btn small">家長看這裡</button>
     </div>
 
@@ -1162,6 +1397,19 @@ body.is-yx .promo { display: none; }
         <span class="name">星期和月份</span><span class="what" data-small="幾天後、幾個月後" data-big="幾天後、幾個月後">幾天後、幾個月後</span><span class="trial-note">可以免費試玩 3 題</span>
       </button>
       </div>
+      <h3 class="group-title" style="--g: #2F7D62">跨能力 <small>記憶、錢、英文一起練</small></h3>
+      <div class="subjects">
+      <button class="subject premium yx" data-sub="xmshop" id="sub-xmshop" style="--c: #2F7D62; --c-deep: #184A39">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="xmshop">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">🛒</span></span></span>
+        <span class="name">購物清單記憶</span><span class="what" data-small="記清單、拿東西、付錢" data-big="記清單、拿東西、付錢">記清單、拿東西、付錢</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      <button class="subject premium yx" data-sub="xmengcolor" id="sub-xmengcolor" style="--c: #2F7D62; --c-deep: #184A39">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="xmengcolor">0</span></span><span class="lock-chip" aria-hidden="true">🔒 幼小銜接</span><span class="yx-badge">50+ 題</span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">🖍️</span></span></span>
+        <span class="name">英文顏色數數</span><span class="what" data-small="Color three red apples" data-big="Color three red apples">Color three red apples</span><span class="trial-note">可以免費試玩 3 題</span>
+      </button>
+      </div>
       <h3 class="group-title" style="--g: var(--life)">校園生活 <small>上課、下課、放學</small></h3>
       <div class="subjects">
       <button class="subject premium yx" data-sub="yxschool" id="sub-yxschool" style="--c: var(--life); --c-deep: var(--life-deep)">
@@ -1222,6 +1470,21 @@ body.is-yx .promo { display: none; }
       <h3>成長曲線</h3>
       <p class="note">最近 20 回合的答對率，虛線是平均。</p>
       <div class="chart" id="chart"></div>
+    </div>
+    <div class="block weekly print-blk" id="printBlock">
+      <h3>🖨️ 列印學習單 <small class="note">⭐ 完整版</small></h3>
+      <div class="weekly-body">
+        <p class="note">不想讓孩子一直看螢幕時，可以印成紙本練習。一張 A4 放 12 或 20 題，答案印在同一頁最下面，不用多印一張；每次印都是新的題目。</p>
+        <div class="pr-form">
+          <label>主題<select id="prTopic"></select></label>
+          <label>難度<select id="prAge"><option value="small">3–4 歲</option><option value="big" selected>5–6 歲</option></select></label>
+          <label>一張幾題<select id="prPer"><option value="12">12 題（字和圖比較大）</option><option value="20">20 題（最省紙）</option></select></label>
+          <label class="pr-check"><input type="checkbox" id="prBW"> 黑白省墨（圖案變灰階，不印底色）</label>
+          <button id="prMake" class="btn small">產生學習單</button>
+        </div>
+        <p class="note">寫字類會印成田字格，每張 8 個字；連點成圖、對稱畫、時間表每張 4–6 題。幼小銜接的主題難度固定為升小一。</p>
+      </div>
+      <div class="lock-over">🔒 開啟完整版後，就能列印學習單</div>
     </div>
     <div class="block weekly" id="weeklyBlock">
       <h3>本週學習報告 <small class="note">⭐ 完整版</small></h3>
@@ -1318,6 +1581,11 @@ body.is-yx .promo { display: none; }
     </div>
   </section>
 </main>
+<div id="printView" hidden>
+  <div class="pv-bar"><b>學習單預覽</b><button id="pvPrint" class="btn small">🖨️ 列印／存成 PDF</button><button id="pvAgain" class="btn ghost small">換一張</button><button id="pvClose" class="btn ghost small">關閉</button></div>
+  <div class="pv-scroll"><div id="printSheet" class="psheet"></div></div>
+</div>
+
 <div id="confetti" class="confetti" aria-hidden="true"></div>
 
 <script>
@@ -1777,7 +2045,39 @@ body.is-yx .promo { display: none; }
     { e: '🛌', q: '晚上睡覺前，可以吃什麼？', a: [['🥛', '一杯牛奶'], ['🍭', '一大堆糖果'], ['🥤', '汽水']], lv: 2 }
   ];
   const ORD_FACES = ['🐶', '🐱', '🐰', '🐻', '🐼', '🐸', '🐵', '🐷', '🦁', '🐯', '🐮', '🐔'];
-  const optLife = x => `<span class="o-life">${x[0] ? `<span class="e">${x[0]}</span>` : ''}<span class="t${x[0] ? '' : ' solo'}">${x[1]}</span></span>`;
+  // 行為小場景：把「打人、推人、搶玩具…」畫成「誰＋動作＋對象」
+  const SCENES = [
+    [/打開|打鼓|打籃球|打掃|打電話|打給|打噴嚏|推推車|踢球|踢足球/, null],
+    [/發財|抱抱娃娃/, null],
+    [/不跟爸媽說|不跟大人說|不敢說|誰都不說|都不說|什麼都不說/, ['🧒', '🤐', '👩']], [/你好笨|你好醜|你是壞人/, ['🧒', '🤬', '🧑']], [/大聲搶答/, ['🧒', '📢', '🧑‍🏫']],
+    [/打妹妹|打她|她一碰就打她/, ['🧒', '👊', '👧']], [/打爸爸/, ['🧒', '👊', '👨']], [/打東西/, ['🧒', '👊', '📦']], [/打贏的人/, ['🧒', '👊', '🥇']],
+    [/數完就打人|打一架|打回去|先打|打他|打人|揍/, ['🧒', '👊', '🧑']],
+    [/推翻/, ['🧒', '💥', '🎲']], [/推門/, ['🧒', '🤚', '🚪']], [/推倒他的/, ['🧒', '🤚', '🏗️']], [/推別人下水/, ['🧒', '🤚', '🏊']],
+    [/推開她|推她/, ['🧒', '🤚', '👧']], [/推/, ['🧒', '🤚', '🧑']],
+    [/搶回來/, ['🧒', '✊', '🧸']], [/搶/, ['🧒', '✊', '🧸']],
+    [/踢牠/, ['🧒', '🦶', '🐶']], [/踢門/, ['🧒', '🦶', '🚪']], [/踢/, ['🧒', '🦶', '📦']],
+    [/咬人/, ['🧒', '😬', '🧑']],
+    [/摔碗/, ['🧒', '💥', '🥣']], [/丟東西|摔東西|摔/, ['🧒', '💥', '🧸']],
+    [/罵/, ['🧒', '🤬', '🧑']], [/大叫|大吼|亂叫/, ['🧒', '📢', '😖']],
+    [/笑他|笑她|笑他愛哭/, ['🧒', '😂', '😢']], [/不理/, ['🧒', '🙄', '😢']],
+    // 好的行為
+    [/對不起/, ['🧒', '🙇', '🧑']], [/謝謝/, ['🧒', '🙏', '🧑']],
+    [/告訴老師|請老師|問老師|跟老師說|老師幫忙/, ['🧒', '🗣️', '🧑‍🏫']], [/告訴爸媽|找爸媽|跟爸媽說|請爸媽|告訴大人|問大人|找大人/, ['🧒', '🗣️', '👩']],
+    [/舉手/, ['🧒', '🙋', '🧑‍🏫']], [/抱抱|安慰|陪你|陪她|陪他|問他怎麼了|關心/, ['🧒', '🤗', '😢']],
+    [/輪流|換我|換你|等一下|排隊|等他|等她/, ['🧒', '⏳', '🧑']], [/分享|一起玩|給你玩|借他|借她|分給|一人一半/, ['🧒', '🧸', '🧑']],
+    [/拍手|你好棒|鼓掌|恭喜/, ['🧒', '👏', '🧑']], [/早安|午安|晚安|你好|老師早|打招呼|說再見/, ['🧒', '👋', '🧑']],
+    [/可以借我|可以還我|可以.*嗎|請你|請問|請給/, ['🧒', '💬', '🧑']], [/深呼吸|數到|冷靜/, ['🧒', '🌬️', '😌']],
+    [/幫忙|幫他|幫她|撿起來/, ['🧒', '🤝', '🧑']]
+  ];
+  function sceneFor(t) {
+    for (const [re, sc] of SCENES) if (re.test(t)) return sc;
+    return null;
+  }
+  const optLife = x => {
+    const sc = x[0] && sceneFor(x[1]);
+    const art = sc ? `<span class="e scene"><i>${sc[0]}</i><i class="act">${sc[1]}</i><i>${sc[2]}</i></span>` : x[0] ? `<span class="e">${x[0]}</span>` : '';
+    return `<span class="o-life">${art}<span class="t${x[0] ? '' : ' solo'}">${x[1]}</span></span>`;
+  };
   function bankQ(bank, t, extra) {
     return Object.assign({
       prompt: t.q, speech: [[t.q]], stage: `<div class="pic">${t.e}</div>`,
@@ -3331,7 +3631,7 @@ body.is-yx .promo { display: none; }
       return {
         practice: t.say,
         prompt: t.q, speech: [[t.q]], stage: `<div class="pic">${t.e}</div>`,
-        options: shuffle(t.a.map((x, i) => ({ html: `<span class="o-life"><span class="e">${x[0]}</span><span class="t">${x[1]}</span></span>`, label: x[1], correct: i === 0 }))),
+        options: shuffle(t.a.map((x, i) => ({ html: optLife(x), label: x[1], correct: i === 0 }))),
         after: [[t.why]], key: t.q
       };
     },
@@ -3363,7 +3663,7 @@ body.is-yx .promo { display: none; }
       const t = pick(pool);
       return {
         prompt: t.q, speech: [[t.q]], stage: `<div class="pic">${t.e}</div>`,
-        options: shuffle(t.a.map((x, i) => ({ html: `<span class="o-life"><span class="e">${x[0]}</span><span class="t${t.num ? ' big' : ''}">${x[1]}</span></span>`, label: x[1], correct: i === 0 }))),
+        options: shuffle(t.a.map((x, i) => ({ html: t.num ? `<span class="o-life"><span class="e">${x[0]}</span><span class="t big">${x[1]}</span></span>` : optLife(x), label: x[1], correct: i === 0 }))),
         after: [[t.why]], key: t.q
       };
     }
@@ -3763,11 +4063,11 @@ body.is-yx .promo { display: none; }
     yuan: { n: '圓圓', e: '🐻', d: '預設', pitch: 1.15, rate: 1, g: '' },
     tiao: { n: '跳跳', e: '🐰', d: '高高的、輕快', pitch: 1.7, rate: 1.1, g: 'f', pref: /hanhan|hsiaoyu|zira|victoria|google/i },
     tuan: { n: '團團', e: '🐼', d: '低低的、穩穩說', pitch: .7, rate: .88, g: 'm', pref: /zhiwei|yunjhe|yun-jhe|david|guy|daniel/i },
-    man: { n: '慢慢', e: '🐢', d: '說得很慢，適合小小孩', pitch: 1, rate: .7, g: 'f', pref: /yating|meijia|mei-jia|hsiaochen|zira|samantha|karen/i },
-    mimi: { n: '咪咪', e: '🐱', d: '溫柔、甜甜的', pitch: 1.35, rate: .92, g: 'f', pref: /yating|meijia|mei-jia|hsiaochen|samantha|karen|zira/i }
+    man: { n: '慢慢', e: '🐢', d: '說得很慢，適合小小孩', pitch: 1, rate: .7, g: 'f', pref: /yating|meijia|mei-jia|美佳|hsiaochen|zira|samantha|karen/i },
+    mimi: { n: '咪咪', e: '🐱', d: '溫柔、甜甜的', pitch: 1.35, rate: .92, g: 'f', pref: /yating|meijia|mei-jia|美佳|hsiaochen|samantha|karen|zira/i }
   };
   const MALE = /zhiwei|yunjhe|yun-jhe|male|男|kangkang|yunxi|yunyang|daniel|alex|fred|aaron|guy|david|mark/i;
-  const FEMALE = /hanhan|yating|meijia|mei-jia|female|女|xiaoxiao|huihui|samantha|victoria|karen|zira|google/i;
+  const FEMALE = /hanhan|yating|meijia|美佳|婷婷|mei-jia|female|女|xiaoxiao|huihui|samantha|victoria|karen|zira|google/i;
   function voiceProfile() { const k = isFull() ? store.get('voice', 'yuan') : 'yuan'; return VOICES[k] || VOICES.yuan; }
   function voiceFor(lang, g, pref) {
     const norm = v => v.lang.replace('_', '-');
@@ -3895,7 +4195,7 @@ body.is-yx .promo { display: none; }
     }
     const trial = !canPlay(sub);
     const recent = store.get('recent', {});
-    st = { sub, i: 0, stars: 0, total: ROUND, results: [], q: null, first: true, locked: false, used: new Set(recent[sub] || []) };
+    st = { sub, emoNext: null, i: 0, stars: 0, total: ROUND, results: [], q: null, first: true, locked: false, used: new Set(recent[sub] || []) };
     $('game').dataset.sub = sub; $('done').dataset.sub = sub;
     track(`play-${sub}-${age}`, `開始玩：${sub}（${age === 'small' ? '3–4 歲' : '5–6 歲'}）`);
     show('game');
@@ -4285,6 +4585,350 @@ body.is-yx .promo { display: none; }
   }
   function mtRedraw() { const mt = st && st.mt; if (!mt || !$('mtLines')) return; $('mtLines').innerHTML = mt.lines.map(([a, b]) => mtLine(a, b)).join(''); }
   window.addEventListener('resize', mtRedraw);
+  /* ---------- 跨能力挑戰（完整版以上） ---------- */
+  const XM_COLORS = [['red', '紅色', '#E5484D'], ['blue', '藍色', '#2C7BCB'], ['yellow', '黃色', '#F5C518'], ['green', '綠色', '#2FA84F'], ['orange', '橘色', '#F28C28'], ['purple', '紫色', '#8757CC'], ['pink', '粉紅色', '#F48FB1'], ['brown', '咖啡色', '#8B5A2B']];
+  const XM_EN = { red: 'red', blue: 'blue', yellow: 'yellow', green: 'green', orange: 'orange', purple: 'purple', pink: 'pink', brown: 'brown' };
+  const EN_NUM = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+  const ZH_NUM = ['零', '一', '兩', '三', '四', '五', '六', '七', '八', '九', '十'];
+  // 不重複：每個模組記住最近 45 題
+  function xmFresh(make, keyOf) {
+    const recent = store.get('recent', {}), used = recent[st.sub] || [];
+    let t, k, n = 0;
+    do { t = make(); k = keyOf(t); n++; } while ((used.includes(k) || st.used.has(k)) && n < 80);
+    st.used.add(k); recent[st.sub] = [...used.filter(x => x !== k), k].slice(-45); store.set('recent', recent);
+    return t;
+  }
+  const XM_SHAPE = {
+    circle: ['圓形', c => `<circle cx="50" cy="50" r="38" fill="${c}"/>`],
+    square: ['正方形', c => `<rect x="14" y="14" width="72" height="72" rx="8" fill="${c}"/>`],
+    triangle: ['三角形', c => `<path d="M50 10L90 86H10Z" fill="${c}" stroke-linejoin="round"/>`],
+    star: ['星星', c => `<path d="M50 8l11.8 25.6 27.9 3.3-20.6 19 5.6 27.5L50 69.6 25.3 83.4l5.6-27.5-20.6-19 27.9-3.3z" fill="${c}"/>`],
+    heart: ['愛心', c => `<path d="M50 86C20 64 8 48 8 32 8 18 19 9 31 9c8 0 15 4 19 11 4-7 11-11 19-11 12 0 23 9 23 23 0 16-12 32-42 54z" fill="${c}"/>`],
+    diamond: ['菱形', c => `<path d="M50 6L90 50 50 94 10 50Z" fill="${c}"/>`]
+  };
+  const XM_OBJ = {
+    balloon: ['氣球', 'balloons', c => `<ellipse cx="50" cy="40" rx="28" ry="33" fill="${c}"/><path d="M46 72h8l-4 7z" fill="${c}"/><path d="M50 79q-6 8 2 16" stroke="#5B6B7C" stroke-width="2.5" fill="none"/>`],
+    apple: ['蘋果', 'apples', c => `<path d="M50 30c-10-8-34-6-34 20 0 22 16 40 26 40 4 0 6-2 8-2s4 2 8 2c10 0 26-18 26-40 0-26-24-28-34-20z" fill="${c}"/><path d="M50 30q0-14 8-20" stroke="#6B4423" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M54 18q12-8 20 0-10 8-20 0z" fill="#2FA84F"/>`],
+    fish: ['魚', 'fish', c => `<path d="M16 50c10-20 40-28 60-12l14-12v48l-14-12c-20 16-50 8-60-12z" fill="${c}"/><circle cx="30" cy="46" r="4" fill="#fff"/>`],
+    flower: ['花', 'flowers', c => `${[0, 72, 144, 216, 288].map(a => `<circle cx="${50 + 22 * Math.cos(a * Math.PI / 180)}" cy="${48 + 22 * Math.sin(a * Math.PI / 180)}" r="15" fill="${c}"/>`).join('')}<circle cx="50" cy="48" r="11" fill="#FFE59A"/>`],
+    star: ['星星', 'stars', c => XM_SHAPE.star[1](c)],
+    heart: ['愛心', 'hearts', c => XM_SHAPE.heart[1](c)]
+  };
+  const xmSVG = (inner, cls) => `<svg viewBox="0 0 100 100" class="${cls || ''}" aria-hidden="true">${inner}</svg>`;
+  const BLANK = '#FFFFFF';
+  const outline = svg => svg.replace(/fill="#FFFFFF"/g, 'fill="#FFFFFF" stroke="#9AA9B8" stroke-width="3" stroke-dasharray="6 5"');
+  function xmPalette(cols, onPick) {
+    const el = document.createElement('div'); el.className = 'xm-pal';
+    el.innerHTML = cols.map((c, i) => `<button class="xm-color${i === 0 ? ' on' : ''}" data-c="${c[0]}" style="--cc:${c[2]}" aria-label="${c[1]}"><i></i><span>${c[1]}</span></button>`).join('');
+    el.querySelectorAll('.xm-color').forEach(b => b.addEventListener('click', () => { el.querySelectorAll('.xm-color').forEach(x => x.classList.remove('on')); b.classList.add('on'); onPick(b.dataset.c); say([[XM_COLORS.find(x => x[0] === b.dataset.c)[1]]]); }));
+    return el;
+  }
+  const colorOf = k => (XM_COLORS.find(x => x[0] === k) || [0, 0, BLANK])[2];
+  function xmFail(msg) { st.first = false; $('prompt').textContent = msg; mood('is-think'); say([[msg]]); }
+  function xmDoneRow(label, onDone, extra) {
+    const row = document.createElement('div'); row.className = 'xm-tools';
+    row.innerHTML = `${extra || ''}<button class="btn small xm-done">${label || '好了'}</button>`;
+    row.querySelector('.xm-done').addEventListener('click', onDone);
+    return row;
+  }
+  // 指令卡：記憶題會在唸完後蓋起來
+  function xmInstr(html, speech, memory) {
+    const card = document.createElement('div'); card.className = 'xm-instr' + (memory ? ' memory' : '');
+    card.innerHTML = `<div class="xm-instr-body">${html}</div>` + (memory ? '<button class="xm-peek" hidden>👀 再看一次</button>' : '');
+    if (memory) {
+      const cur = st, hide = () => { if (st === cur && !$('game').hidden) card.classList.add('covered'); card.querySelector('.xm-peek').hidden = false; };
+      const ms = age === 'small' ? 5500 : 4500;
+      setTimeout(hide, ms + 1500);
+      card.querySelector('.xm-peek').addEventListener('click', () => { st.first = false; card.classList.remove('covered'); card.querySelector('.xm-peek').hidden = true; say(speech); setTimeout(hide, ms); });
+    }
+    return card;
+  }
+  const specText = spec => spec.map(([c, n]) => `${n} 個${XM_COLORS.find(x => x[0] === c)[1]}`).join('、');
+  const specHTML = (spec, obj) => spec.map(([c, n]) => `<span class="xm-spec"><b>${n}</b>${xmSVG((obj ? XM_OBJ[obj][2] : XM_SHAPE.circle[1])(colorOf(c)), 'xm-spec-ic')}<small>${XM_COLORS.find(x => x[0] === c)[1]}</small></span>`).join('');
+  function xmColorTask(spec, opts) {
+    // spec: [[color, n]]，在一排空白圖形裡塗對數量
+    const total = spec.reduce((a, s) => a + s[1], 0), N = Math.min(18, total + (age === 'small' ? 2 : 4));
+    const obj = opts.obj || null, draw = obj ? XM_OBJ[obj][2] : XM_SHAPE.circle[1];
+    const fills = Array(N).fill(BLANK); let cur = null;
+    const wrap = document.createElement('div'); wrap.className = 'xm-wrap';
+    wrap.appendChild(xmInstr(opts.instrHTML, opts.speech, opts.memory));
+    const grid = document.createElement('div'); grid.className = 'xm-grid';
+    const paint = i => { grid.children[i].innerHTML = outline(xmSVG(draw(fills[i] === BLANK ? BLANK : colorOf(fills[i])))); };
+    for (let i = 0; i < N; i++) { const b = document.createElement('button'); b.className = 'xm-cell'; b.setAttribute('aria-label', '第' + (i + 1) + '個'); b.addEventListener('click', () => { if (!cur) return; fills[i] = fills[i] === cur ? BLANK : cur; paint(i); tone([520 + i * 12], .05, 'sine'); }); grid.appendChild(b); }
+    const cols = shuffle([...spec.map(s => XM_COLORS.find(c => c[0] === s[0])), ...shuffle(XM_COLORS.filter(c => !spec.some(s => s[0] === c[0]))).slice(0, age === 'small' ? 1 : 2)]);
+    cur = cols[0][0];
+    wrap.appendChild(xmPalette(cols, c => { cur = c; }));
+    wrap.appendChild(grid);
+    wrap.appendChild(xmDoneRow('塗好了', () => {
+      const cnt = {}; fills.forEach(f => { if (f !== BLANK) cnt[f] = (cnt[f] || 0) + 1; });
+      const ok = spec.every(([c, n]) => cnt[c] === n) && Object.keys(cnt).every(c => spec.some(s => s[0] === c));
+      if (ok) { itemDone(st.first); return; }
+      const wrong = spec.find(([c, n]) => (cnt[c] || 0) !== n);
+      xmFail(wrong ? `${XM_COLORS.find(x => x[0] === wrong[0])[1]}要塗 ${wrong[1]} 個，再數一數` : '有塗到不需要的顏色喔，再看一看');
+    }));
+    $('stage').innerHTML = ''; $('stage').appendChild(wrap);
+    for (let i = 0; i < N; i++) paint(i);
+  }
+  // 連點成圖的圖形（0–100 座標的外框）
+  const XM_DOTS = [
+    ['星星', '⭐', [[50, 6], [62, 38], [96, 38], [68, 58], [80, 92], [50, 72], [20, 92], [32, 58], [4, 38], [38, 38]]],
+    ['房子', '🏠', [[50, 8], [92, 44], [80, 44], [80, 92], [20, 92], [20, 44], [8, 44]]],
+    ['魚', '🐟', [[8, 50], [30, 28], [60, 26], [80, 44], [96, 26], [96, 74], [80, 56], [60, 74], [30, 72]]],
+    ['愛心', '❤️', [[50, 28], [62, 12], [82, 10], [94, 28], [88, 52], [50, 90], [12, 52], [6, 28], [18, 10], [38, 12]]],
+    ['帆船', '⛵', [[50, 6], [82, 62], [52, 62], [52, 70], [92, 70], [78, 90], [22, 90], [8, 70], [48, 70], [48, 10]]],
+    ['樹', '🌲', [[50, 4], [76, 36], [64, 36], [86, 64], [56, 64], [56, 94], [44, 94], [44, 64], [14, 64], [36, 36], [24, 36]]],
+    ['風箏', '🪁', [[50, 4], [86, 40], [50, 96], [14, 40]]],
+    ['火箭', '🚀', [[50, 4], [66, 26], [66, 66], [82, 86], [62, 80], [50, 94], [38, 80], [18, 86], [34, 66], [34, 26]]],
+    ['杯子', '☕', [[14, 22], [74, 22], [74, 36], [90, 40], [90, 62], [74, 66], [70, 90], [18, 90]]],
+    ['皇冠', '👑', [[8, 30], [30, 56], [50, 14], [70, 56], [92, 30], [84, 86], [16, 86]]],
+    ['雨傘', '☂️', [[50, 8], [80, 18], [96, 46], [54, 46], [54, 84], [44, 92], [36, 84], [44, 80], [46, 46], [4, 46], [20, 18]]],
+    ['蝴蝶', '🦋', [[50, 30], [76, 8], [96, 24], [84, 50], [96, 76], [72, 92], [50, 66], [28, 92], [4, 76], [16, 50], [4, 24], [24, 8]]],
+    ['冰淇淋', '🍦', [[50, 4], [74, 18], [82, 42], [66, 50], [50, 96], [34, 50], [18, 42], [26, 18]]],
+    ['房子和煙囪', '🏡', [[8, 46], [50, 10], [64, 22], [64, 10], [76, 10], [76, 32], [92, 46], [80, 46], [80, 92], [20, 92], [20, 46]]],
+    ['烏龜', '🐢', [[20, 60], [28, 34], [50, 24], [72, 34], [80, 50], [96, 46], [94, 60], [80, 62], [80, 80], [68, 70], [36, 70], [24, 80], [20, 66], [6, 62]]]
+  ];
+  function resample(pts, n) {
+    const P = pts.concat([pts[0]]), seg = P.slice(1).map((p, i) => Math.hypot(p[0] - P[i][0], p[1] - P[i][1])), L = seg.reduce((a, b) => a + b, 0);
+    if (n <= pts.length) { const step = pts.length / n; return Array.from({ length: n }, (_, i) => pts[Math.floor(i * step)]); }
+    const out = []; for (let k = 0; k < n; k++) { let d = L * k / n, i = 0; while (d > seg[i]) { d -= seg[i]; i++; } const t = d / seg[i]; out.push([P[i][0] + (P[i + 1][0] - P[i][0]) * t, P[i][1] + (P[i + 1][1] - P[i][1]) * t]); }
+    return out;
+  }
+  const XM_EMO = [['😄', '開心'], ['😢', '難過'], ['😠', '生氣'], ['😨', '害怕'], ['😲', '驚訝'], ['😟', '擔心'], ['😞', '失望'], ['😳', '害羞']];
+  const XM_EMO_SC = [
+    { e: '🎂', s: '今天是小明的生日，大家幫他唱生日快樂歌。', f: '開心', a: [['🙏', '跟大家說謝謝'], ['🙈', '躲起來'], ['😤', '說不好聽']] },
+    { e: '🎈', s: '妹妹的氣球飛走了，追不回來。', f: '難過', a: [['🤗', '抱抱她、陪她'], ['😂', '笑她'], ['🙉', '不理她']] },
+    { e: '🧱', s: '弟弟把小美蓋好的積木弄倒了。', f: '生氣', a: [['🗣️', '說：我很生氣，請你小心'], ['👊', '打弟弟'], ['💥', '把積木丟掉']] },
+    { e: '⛈️', s: '晚上打雷好大聲，小華睡不著。', f: '害怕', a: [['👩', '去找爸媽抱抱'], ['📢', '一直大叫'], ['🏃', '跑到外面']] },
+    { e: '🎁', s: '小傑打開盒子，跳出一隻玩具青蛙！', f: '驚訝', a: [['😆', '哈哈笑，再玩一次'], ['👊', '把盒子打壞'], ['😭', '一直哭']] },
+    { e: '🏥', s: '奶奶生病住院了，小芳很想她。', f: '擔心', a: [['📞', '打電話關心奶奶'], ['🎮', '假裝沒事一直玩'], ['😤', '發脾氣']] },
+    { e: '🌧️', s: '下雨了，本來要去公園玩，不能去了。', f: '失望', a: [['🧩', '在家玩拼圖'], ['💥', '摔東西'], ['😭', '躺在地上哭']] },
+    { e: '🎤', s: '老師請小安上台唱歌，大家都看著她。', f: '害羞', a: [['🌬️', '深呼吸，試試看'], ['🏃', '跑出教室'], ['😠', '對老師生氣']] },
+    { e: '🏆', s: '跑步比賽，小強得到第一名！', f: '開心', a: [['👏', '謝謝大家，也幫別人拍手'], ['😝', '笑別人很慢'], ['📢', '說我最厲害你們都很爛']] },
+    { e: '🧸', s: '小美最喜歡的熊熊不見了，找了好久都找不到。', f: '難過', a: [['🗣️', '請爸媽幫忙找'], ['💥', '亂丟東西'], ['👊', '打妹妹']] },
+    { e: '🚗', s: '小明正在玩的車子，被同學搶走了。', f: '生氣', a: [['🗣️', '說：這是我的，請還給我'], ['👊', '搶回來打他'], ['😭', '大哭大叫']] },
+    { e: '🐕', s: '一隻大狗突然對著小華汪汪叫。', f: '害怕', a: [['🧍', '站好不要跑，找大人'], ['🦶', '用腳踢牠'], ['🏃', '尖叫亂跑']] },
+    { e: '🎉', s: '小傑一進門，大家突然一起喊：驚喜！', f: '驚訝', a: [['😆', '開心的說謝謝'], ['🙈', '生氣躲起來'], ['🚪', '轉身跑走']] },
+    { e: '🏫', s: '明天第一天上小學，小芳睡前一直想學校的事。', f: '擔心', a: [['🗣️', '跟爸媽說說心裡的感覺'], ['🙅', '說明天不要去'], ['😭', '一直哭不睡覺']] },
+    { e: '🍦', s: '冰淇淋賣完了，小安沒買到。', f: '失望', a: [['🍎', '改吃別的點心'], ['😤', '在店裡大吵'], ['💥', '踢椅子']] },
+    { e: '👋', s: '新同學跟小明打招呼，小明臉紅紅的不好意思。', f: '害羞', a: [['👋', '小聲說你好'], ['😠', '對他生氣'], ['🙉', '假裝沒聽到']] },
+    { e: '🐶', s: '爸爸帶回來一隻小狗，說以後是家裡的一份子。', f: '開心', a: [['🤗', '輕輕摸摸小狗'], ['🦶', '拉小狗的尾巴'], ['📢', '對小狗大叫']] },
+    { e: '🍪', s: '小華做的餅乾烤焦了。', f: '失望', a: [['🔁', '下次再試一次'], ['💥', '把餅乾丟掉生氣'], ['😭', '說我什麼都做不好']] },
+    { e: '🧑‍🤝‍🧑', s: '好朋友說今天不想跟小美玩。', f: '難過', a: [['🗣️', '問他：那等一下可以一起玩嗎'], ['🤬', '罵他'], ['👊', '推他']] },
+    { e: '🎲', s: '玩遊戲一直輸，小傑覺得很不公平。', f: '生氣', a: [['🌬️', '深呼吸，再玩一次'], ['💥', '把遊戲推翻'], ['😤', '說你作弊']] },
+    { e: '🌙', s: '半夜醒來，房間好黑，小芳看不到東西。', f: '害怕', a: [['💡', '開小夜燈或叫爸媽'], ['📢', '一直尖叫'], ['🙈', '躲在被子裡一直哭']] },
+    { e: '🦋', s: '一隻好大的蝴蝶飛到小明的手上！', f: '驚訝', a: [['🤫', '輕輕看，不抓牠'], ['✊', '用力抓住牠'], ['👋', '用力打牠']] },
+    { e: '🧪', s: '明天要考試，小安還有很多不會。', f: '擔心', a: [['📖', '請爸媽陪我練習'], ['🎮', '先玩遊戲不管它'], ['😭', '說我不要上學']] },
+    { e: '🎨', s: '小美畫了一張圖，老師說：畫得真好！', f: '開心', a: [['🙏', '說謝謝老師'], ['😝', '笑別人畫得醜'], ['🙄', '不理老師']] },
+    { e: '🍰', s: '蛋糕只剩最後一塊，被哥哥吃掉了。', f: '失望', a: [['🗣️', '說：下次可以留給我嗎'], ['👊', '打哥哥'], ['😭', '哭著搶盤子']] },
+    { e: '🩹', s: '小華跌倒了，膝蓋流血，好痛。', f: '難過', a: [['🧑‍🏫', '請大人幫忙擦藥'], ['🙈', '躲起來不說'], ['😤', '踢地板']] },
+    { e: '🎭', s: '表演時忘了台詞，大家都在看小傑。', f: '害羞', a: [['🙋', '請老師提醒我'], ['🏃', '跑下台'], ['😠', '生氣不演了']] },
+    { e: '📦', s: '收到一個好大的包裹，上面寫著小明的名字！', f: '驚訝', a: [['👩', '找爸媽一起打開'], ['✂️', '自己拿剪刀亂剪'], ['🏃', '抱著跑走']] }
+  ];
+  const XM_DAY = [['⏰', '起床'], ['🪥', '刷牙洗臉'], ['🥣', '吃早餐'], ['🎒', '上學'], ['📖', '上課'], ['🍱', '吃午餐'], ['😴', '午睡'], ['🍪', '吃點心'], ['🏠', '放學回家'], ['🛁', '洗澡'], ['🍽️', '吃晚餐'], ['📚', '看故事書'], ['🛏️', '上床睡覺']];
+  const XM_DAY_T = [[7, 0], [7, 15], [7, 30], [8, 0], [9, 0], [12, 0], [13, 0], [15, 0], [16, 0], [18, 0], [18, 30], [20, 0], [21, 0]];
+  const XM_SHOP = [['🥛', '牛奶'], ['🍞', '麵包'], ['🍎', '蘋果'], ['🍌', '香蕉'], ['🥚', '雞蛋'], ['🧃', '果汁'], ['🍪', '餅乾'], ['🧀', '起司'], ['🍚', '白米'], ['🥕', '紅蘿蔔'], ['🍇', '葡萄'], ['🍉', '西瓜']];
+  const XM_PLACE_OBJ = [['🍎', '蘋果', '顆'], ['🍊', '橘子', '顆'], ['🍓', '草莓', '顆'], ['⚽', '球', '顆'], ['🧸', '熊熊', '隻'], ['🚗', '小汽車', '台'], ['🥚', '雞蛋', '顆'], ['🍪', '餅乾', '片'], ['🖍️', '蠟筆', '枝'], ['📕', '書', '本']];
+  const XM_BOX = [['🧺', '籃子'], ['📦', '盒子'], ['🍽️', '盤子'], ['🛒', '推車'], ['🎒', '書包']];
+  const XM_ENG = {
+    xmcolor: {
+      total: () => 5,
+      render() {
+        const spec = xmFresh(() => { const k = age === 'small' ? 2 : 3, max = age === 'small' ? 5 : 9; return shuffle(XM_COLORS.slice(0, 6)).slice(0, k).map(c => [c[0], rand(1, max)]); }, s => s.map(x => x.join('')).sort().join());
+        const txt = specText(spec), speech = [[`記住喔！要塗${spec.map(([c, n]) => `${ZH_NUM[n]}個${XM_COLORS.find(x => x[0] === c)[1]}`).join('，')}`]];
+        setQ('記住顏色和數量，再塗上去', speech);
+        xmColorTask(spec, { memory: true, speech, instrHTML: `<div class="xm-specs">${specHTML(spec)}</div><p class="xm-txt">塗 ${txt}</p>` });
+      }
+    },
+    xmengcolor: {
+      total: () => 5,
+      render() {
+        const t = xmFresh(() => { const obj = pick(Object.keys(XM_OBJ)), k = age === 'small' ? 1 : 2; return { obj, spec: shuffle(XM_COLORS.slice(0, 6)).slice(0, k).map(c => [c[0], rand(1, age === 'small' ? 5 : 7)]) }; }, t => t.obj + t.spec.map(x => x.join('')).sort().join());
+        const noun = XM_OBJ[t.obj][0], en = XM_OBJ[t.obj][1];
+        const sent = t.spec.map(([c, n]) => `${EN_NUM[n]} ${XM_EN[c]}`).join(' and ');
+        const speech = [['聽英文，把東西塗上顏色'], [`Color ${sent} ${en}.`, 'en-US']];
+        setQ(`Color ${sent} ${en}.`, speech);
+        xmColorTask(t.spec, { obj: t.obj, memory: false, speech, instrHTML: `<p class="xm-en">Color <b>${sent}</b> ${en}.</p><p class="xm-txt sm">（${t.spec.map(([c, n]) => `${n} 個${XM_COLORS.find(x => x[0] === c)[1]}的${noun}`).join('、')}）</p>` });
+      }
+    },
+    xmshape: {
+      total: () => 5,
+      render() {
+        const shapes = Object.keys(XM_SHAPE), cols = XM_COLORS.slice(0, age === 'small' ? 4 : 6);
+        const t = xmFresh(() => ({ s: pick(shapes), c: pick(cols)[0], n: rand(1, age === 'small' ? 3 : 5) }), t => t.s + t.c + t.n);
+        const N = age === 'small' ? 9 : 16, items = [];
+        for (let i = 0; i < t.n; i++) items.push([t.s, t.c]);
+        // 干擾：同形狀不同色、同色不同形狀、其他
+        while (items.length < N) { const r = Math.random(), s = r < .35 ? t.s : pick(shapes), c = r >= .35 && r < .7 ? t.c : pick(cols)[0]; if (!(s === t.s && c === t.c)) items.push([s, c]); }
+        const list = shuffle(items), sel = new Set();
+        const cname = XM_COLORS.find(x => x[0] === t.c)[1], sname = XM_SHAPE[t.s][0];
+        setQ(`找出 ${t.n} 個${cname}的${sname}`, [[`找一找，點出${ZH_NUM[t.n]}個${cname}的${sname}`]]);
+        const wrap = document.createElement('div'); wrap.className = 'xm-wrap';
+        wrap.innerHTML = `<div class="xm-instr"><div class="xm-instr-body"><div class="xm-specs"><span class="xm-spec"><b>${t.n}</b>${xmSVG(XM_SHAPE[t.s][1](colorOf(t.c)), 'xm-spec-ic')}<small>${cname}${sname}</small></span></div></div></div>`;
+        const grid = document.createElement('div'); grid.className = 'xm-grid shapes' + (age === 'small' ? ' g3' : '');
+        list.forEach(([s, c], i) => { const b = document.createElement('button'); b.className = 'xm-cell'; b.innerHTML = xmSVG(XM_SHAPE[s][1](colorOf(c))); b.addEventListener('click', () => { if (sel.has(i)) sel.delete(i); else sel.add(i); b.classList.toggle('picked', sel.has(i)); tone([600], .05, 'sine'); }); grid.appendChild(b); });
+        wrap.appendChild(grid);
+        wrap.appendChild(xmDoneRow('找好了', () => {
+          const right = [...sel].filter(i => list[i][0] === t.s && list[i][1] === t.c).length, wrong = sel.size - right;
+          if (right === t.n && !wrong) return itemDone(st.first);
+          xmFail(wrong ? `有選到不是${cname}${sname}的喔，再看一看` : `還差 ${t.n - right} 個，再找一找`);
+        }));
+        $('stage').innerHTML = ''; $('stage').appendChild(wrap);
+      }
+    },
+    xmpattern: {
+      total: () => 5,
+      render() {
+        const units = age === 'small' ? ['AB', 'AAB', 'ABB'] : ['AB', 'AAB', 'ABB', 'ABC', 'AABB', 'ABCC', 'ABAC'];
+        const t = xmFresh(() => { const u = pick(units), letters = [...new Set(u)], cs = shuffle(XM_COLORS.slice(0, 6)).slice(0, letters.length).map(c => c[0]), shape = pick(['circle', 'star', 'heart', 'square']); return { u, map: Object.fromEntries(letters.map((l, i) => [l, cs[i]])), shape }; }, t => t.u + Object.values(t.map).join('') + t.shape);
+        const len = t.u.length, total = len * (len <= 2 ? 4 : len === 3 ? 3 : 2) + (len <= 2 ? 0 : 0), blanks = 3;
+        const seq = Array.from({ length: Math.max(total, len * 2 + blanks) }, (_, i) => t.map[t.u[i % len]]), shown = seq.length - blanks;
+        const fills = seq.map((c, i) => i < shown ? c : BLANK); let cur;
+        setQ('找出規律，把後面塗上顏色', [['看看顏色的規律，把後面三個空格塗上對的顏色']]);
+        const wrap = document.createElement('div'); wrap.className = 'xm-wrap';
+        const row = document.createElement('div'); row.className = 'xm-row';
+        const draw = XM_SHAPE[t.shape][1];
+        const paint = i => { row.children[i].innerHTML = outline(xmSVG(draw(fills[i] === BLANK ? BLANK : colorOf(fills[i])))); };
+        seq.forEach((c, i) => { const b = document.createElement(i < shown ? 'span' : 'button'); b.className = 'xm-cell' + (i < shown ? ' given' : ' blank'); if (i >= shown) b.addEventListener('click', () => { fills[i] = cur; paint(i); tone([660], .05, 'sine'); }); row.appendChild(b); });
+        const pcs = shuffle([...new Set(Object.values(t.map))].map(k => XM_COLORS.find(c => c[0] === k)).concat(shuffle(XM_COLORS.slice(0, 6).filter(c => !Object.values(t.map).includes(c[0]))).slice(0, 1)));
+        cur = pcs[0][0];
+        wrap.appendChild(row); wrap.appendChild(xmPalette(pcs, c => { cur = c; }));
+        wrap.appendChild(xmDoneRow('塗好了', () => { const ok = seq.every((c, i) => fills[i] === c); if (ok) return itemDone(st.first); xmFail('有一個顏色不對喔，從頭唸唸看規律'); }));
+        $('stage').innerHTML = ''; $('stage').appendChild(wrap); seq.forEach((_, i) => paint(i));
+      }
+    },
+    xmmirror: {
+      total: () => 5,
+      render() {
+        const R = age === 'small' ? 4 : 6, H = age === 'small' ? 2 : 3, C = H * 2;
+        const t = xmFresh(() => { const cells = []; for (let r = 0; r < R; r++) for (let c = 0; c < H; c++) if (Math.random() < .42) cells.push(r * H + c); if (cells.length < 2) cells.push(0, H * R - 1); return { cells: [...new Set(cells)], color: pick(XM_COLORS.slice(0, 6))[2] }; }, t => t.cells.join('.'));
+        const want = new Set(t.cells.map(k => { const r = Math.floor(k / H), c = k % H; return r * C + (C - 1 - c); })), on = new Set();
+        setQ('照著左邊，把右邊塗成一樣的', [['左右要一模一樣，像照鏡子一樣，把右邊的格子塗好']]);
+        const wrap = document.createElement('div'); wrap.className = 'xm-wrap';
+        const g = document.createElement('div'); g.className = 'xm-mirror'; g.style.gridTemplateColumns = `repeat(${C}, 1fr)`; g.style.setProperty('--mc', t.color);
+        for (let r = 0; r < R; r++) for (let c = 0; c < C; c++) {
+          const k = r * C + c, left = c < H, el = document.createElement(left ? 'span' : 'button');
+          el.className = 'mc' + (left ? ' left' : '') + (c === H - 1 ? ' edge' : '');
+          if (left && t.cells.includes(r * H + c)) el.classList.add('on');
+          if (!left) el.addEventListener('click', () => { if (on.has(k)) on.delete(k); else on.add(k); el.classList.toggle('on', on.has(k)); tone([560], .04, 'sine'); });
+          g.appendChild(el);
+        }
+        wrap.appendChild(g);
+        wrap.appendChild(xmDoneRow('塗好了', () => { const ok = on.size === want.size && [...want].every(k => on.has(k)); if (ok) return itemDone(st.first); xmFail('還有地方不一樣，從中間的線往外對對看'); }));
+        $('stage').innerHTML = ''; $('stage').appendChild(wrap);
+      }
+    },
+    xmdots: {
+      total: () => 4,
+      render() {
+        const modes = age === 'small' ? [['n', 1, 1, 8], ['n', 1, 1, 10], ['m', 1, 1, 8], ['m', 1, 1, 10]] : [['n', 1, 1, 20], ['n', 2, 2, 12], ['n', 11, 1, 15], ['m', 5, 5, 10], ['m', 1, 1, 15], ['n', 10, 10, 10]];
+        const t = xmFresh(() => ({ p: rand(0, XM_DOTS.length - 1), m: rand(0, modes.length - 1) }), t => t.p + '-' + t.m);
+        const [flip, start, step, count] = modes[t.m], shape = XM_DOTS[t.p];
+        let pts = resample(shape[2], count); if (flip === 'm') pts = pts.map(([x, y]) => [100 - x, y]);
+        const nums = pts.map((_, i) => start + i * step); let next = 0;
+        const label = step === 1 ? `從 ${nums[0]} 連到 ${nums[nums.length - 1]}` : `${step} 個 ${step} 個數，從 ${nums[0]} 連到 ${nums[nums.length - 1]}`;
+        setQ(`連連看：${label}`, [[`照數字順序點一點，${label.replace(/ /g, '')}，看看會變成什麼`]]);
+        const S = 300, sc = v => 18 + v * (S - 36) / 100;
+        const svg = `<svg viewBox="0 0 ${S} ${S}" class="xm-dots"><path id="xmPath" d="" fill="none" stroke="var(--c)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>${pts.map(([x, y], i) => `<g class="dot" data-i="${i}"><circle cx="${sc(x)}" cy="${sc(y)}" r="15" fill="transparent"/><circle class="dd" cx="${sc(x)}" cy="${sc(y)}" r="7"/><text x="${sc(x) + (x > 50 ? 11 : -11)}" y="${sc(y) - 9}" text-anchor="${x > 50 ? 'start' : 'end'}">${nums[i]}</text></g>`).join('')}</svg>`;
+        const wrap = document.createElement('div'); wrap.className = 'xm-wrap'; wrap.innerHTML = `<div class="xm-dots-box">${svg}<div class="xm-reveal" hidden></div></div><p class="note" id="xmDotMsg">從 ${nums[0]} 開始點</p>`;
+        $('stage').innerHTML = ''; $('stage').appendChild(wrap);
+        const path = wrap.querySelector('#xmPath'), d = [];
+        wrap.querySelectorAll('.dot').forEach(g => g.addEventListener('click', () => {
+          const i = +g.dataset.i;
+          if (i !== next) { st.first = false; $('xmDotMsg').textContent = `下一個是 ${nums[next]}`; say([[`下一個是${nums[next]}`]]); g.classList.add('shake'); setTimeout(() => g.classList.remove('shake'), 400); return; }
+          g.classList.add('hit'); d.push(`${d.length ? 'L' : 'M'}${sc(pts[i][0])} ${sc(pts[i][1])}`); path.setAttribute('d', d.join(' ')); tone([440 + next * 20], .06, 'sine'); next++;
+          if (next < nums.length) { $('xmDotMsg').textContent = `下一個是 ${nums[next]}`; return; }
+          path.setAttribute('d', d.join(' ') + 'Z'); path.setAttribute('fill', 'var(--c-soft)');
+          const rv = wrap.querySelector('.xm-reveal'); rv.hidden = false; rv.textContent = shape[1];
+          $('xmDotMsg').textContent = `是${shape[0]}！`; say([[`是${shape[0]}！`]]); setTimeout(() => itemDone(st.first), 900);
+        }));
+      }
+    },
+    xmday: {
+      total: () => 5,
+      render() {
+        const k = age === 'small' ? 3 : 4;
+        const t = xmFresh(() => { const idx = shuffle(XM_DAY.map((_, i) => i)).slice(0, k).sort((a, b) => a - b); return idx; }, t => t.join('.'));
+        const name = pick(['小明', '小美', '哥哥', '妹妹', '小華', '小安']);
+        const steps = t.map(i => { const [h, m] = XM_DAY_T[i], hh = h > 12 ? h - 12 : h, part = h >= 18 ? '晚上' : h > 12 ? '下午' : h === 12 ? '中午' : '早上', lab = `${part} ${hh} 點${m === 0 ? '' : m === 30 ? '半' : ' ' + m + ' 分'}`; return [`${clockHTML(hh, m, 'xm-clock')}<b class="xm-day-e">${XM_DAY[i][0]}</b>`, `${lab} ${XM_DAY[i][1]}`]; });
+        st.seqPool = [{ n: `${name}的一天`, s: steps }];
+        ENG.sequence.render();
+        setQ(`${name}的一天：照時間排排看`, [[`看看時鐘，${name}的一天，先做的事放第一個，照時間排好`]]);
+      }
+    },
+    xmshop: {
+      total: () => 5,
+      render() {
+        const big = age === 'big', k = big ? 3 : 2;
+        const t = xmFresh(() => shuffle(XM_SHOP.map((_, i) => i)).slice(0, k).map(i => [i, rand(big ? 5 : 1, big ? 20 : 5)]), t => t.map(x => x.join(':')).sort().join());
+        const list = t.map(([i, p]) => ({ e: XM_SHOP[i][0], n: XM_SHOP[i][1], p })), sum = list.reduce((a, x) => a + x.p, 0);
+        const speech = [[`記住購物清單：${list.map(x => big ? `${x.n}${x.p}元` : x.n).join('，')}`]];
+        setQ('記住購物清單，再去架上拿', speech);
+        const wrap = document.createElement('div'); wrap.className = 'xm-wrap';
+        wrap.appendChild(xmInstr(`<div class="xm-list"><b>📝 購物清單</b>${list.map(x => `<span>${x.e} ${x.n}${big ? `　<i>${x.p} 元</i>` : ''}</span>`).join('')}</div>`, speech, true));
+        const shelf = shuffle([...t.map(x => x[0]), ...shuffle(XM_SHOP.map((_, i) => i).filter(i => !t.some(x => x[0] === i))).slice(0, big ? 5 : 4)]), sel = new Set();
+        const g = document.createElement('div'); g.className = 'xm-shelf';
+        shelf.forEach(i => { const b = document.createElement('button'); b.className = 'xm-item'; b.innerHTML = `<span>${XM_SHOP[i][0]}</span><small>${XM_SHOP[i][1]}</small>`; b.addEventListener('click', () => { sel.has(i) ? sel.delete(i) : sel.add(i); b.classList.toggle('picked', sel.has(i)); tone([620], .05, 'sine'); }); g.appendChild(b); });
+        wrap.appendChild(g);
+        const tools = xmDoneRow('放進購物車', () => {
+          const ok = sel.size === k && t.every(x => sel.has(x[0]));
+          if (!ok) return xmFail(sel.size > k ? '拿太多了，清單上只有 ' + k + ' 樣' : '有東西拿錯或還沒拿，想一想清單上有什麼');
+          if (!big) return itemDone(st.first);
+          tools.remove(); g.classList.add('done');
+          const pay = document.createElement('div'); pay.className = 'xm-pay';
+          pay.innerHTML = `<p class="xm-txt">${list.map(x => `${x.n} ${x.p} 元`).join('＋')}，一共要付幾元？</p><div class="xm-pay-opts">${numberOptions(sum, 4, 2, 60).map(v => `<button class="opt chunky" data-v="${v}"><span class="o-num">${v}</span></button>`).join('')}</div>`;
+          pay.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { if (+b.dataset.v === sum) { b.classList.add('right'); itemDone(st.first); } else { b.classList.add('wrong'); xmFail('再算一算，把價錢加起來'); } }));
+          wrap.appendChild(pay); wrap.querySelector('.xm-instr').classList.remove('covered'); say([['一共要付幾元？']]);
+        });
+        wrap.appendChild(tools);
+        $('stage').innerHTML = ''; $('stage').appendChild(wrap);
+      }
+    },
+    xmplace: {
+      total: () => 5,
+      render() {
+        const big = age === 'big';
+        const t = xmFresh(() => { const o = rand(0, XM_PLACE_OBJ.length - 1), bx = shuffle(XM_BOX.map((_, i) => i)).slice(0, 2); return { o, bx, n: big ? [rand(1, 5), rand(1, 5)] : [rand(1, 4)] }; }, t => t.o + '/' + t.bx.slice(0, t.n.length).join('') + '/' + t.n.join(''));
+        const ob = XM_PLACE_OBJ[t.o], boxes = t.bx.slice(0, big ? 2 : 1).map(i => XM_BOX[i]), total = t.n.reduce((a, b) => a + b, 0), N = total + (big ? 2 : 2);
+        const txt = boxes.map((b, i) => `${t.n[i]} ${ob[2]}${ob[1]}放進${b[1]}`).join('，');
+        const speech = [[`仔細聽：把${boxes.map((b, i) => `${ZH_NUM[t.n[i]]}${ob[2]}${ob[1]}放進${b[1]}`).join('，')}`]];
+        setQ(`把 ${txt}`, speech);
+        const where = Array(N).fill(-1); let target = 0;
+        const wrap = document.createElement('div'); wrap.className = 'xm-wrap';
+        wrap.innerHTML = `<div class="xm-boxes">${boxes.map((b, i) => `<button class="xm-box${i === 0 ? ' on' : ''}" data-b="${i}"><span class="bx">${b[0]}</span><small>${b[1]}</small><span class="in"></span></button>`).join('')}</div><div class="xm-pile"></div><p class="note">${big ? '先點要放的地方，' : ''}再點${ob[1]}放進去；點放進去的可以拿出來</p>`;
+        const pile = wrap.querySelector('.xm-pile'), boxEls = [...wrap.querySelectorAll('.xm-box')];
+        const draw = () => { pile.innerHTML = ''; boxEls.forEach(b => b.querySelector('.in').innerHTML = ''); where.forEach((w, i) => { const s = document.createElement('button'); s.className = 'xm-obj'; s.textContent = ob[0]; s.addEventListener('click', e => { e.stopPropagation(); where[i] = where[i] === -1 ? target : -1; tone([600], .05, 'sine'); draw(); }); (w === -1 ? pile : boxEls[w].querySelector('.in')).appendChild(s); }); };
+        boxEls.forEach(b => b.addEventListener('click', () => { target = +b.dataset.b; boxEls.forEach(x => x.classList.toggle('on', x === b)); }));
+        wrap.appendChild(xmDoneRow('放好了', () => {
+          const cnt = boxes.map((_, i) => where.filter(w => w === i).length), ok = cnt.every((c, i) => c === t.n[i]);
+          if (ok) return itemDone(st.first);
+          const k = cnt.findIndex((c, i) => c !== t.n[i]);
+          xmFail(`${boxes[k][1]}要放 ${t.n[k]} ${ob[2]}，現在是 ${cnt[k]} ${ob[2]}`);
+        }));
+        $('stage').innerHTML = ''; $('stage').appendChild(wrap); draw();
+      }
+    }
+  };
+  Object.assign(ENG, XM_ENG);
+  const XM_GEN = {
+    xmemo() {
+      if (st.emoNext) {
+        const t = st.emoNext; st.emoNext = null;
+        return {
+          prompt: '那你可以怎麼做？', speech: [[`${t.s}你可以怎麼做？`]], stage: `<div class="riddle story-card">${t.s}</div>`,
+          options: shuffle(t.a.map((x, i) => ({ html: optLife(x), label: x[1], correct: i === 0 }))), after: [[`可以${t.a[0][1]}`]], key: 'b' + t.s + Date.now()
+        };
+      }
+      const rec = (store.get('recent', {})[st.sub] || []), fresh = XM_EMO_SC.filter(x => !st.used.has('a' + x.s) && !rec.includes('a' + x.s)), t = pick(fresh.length ? fresh : XM_EMO_SC.filter(x => !st.used.has('a' + x.s)).length ? XM_EMO_SC.filter(x => !st.used.has('a' + x.s)) : XM_EMO_SC);
+      st.emoNext = t;
+      const right = XM_EMO.find(x => x[1] === t.f), wrong = shuffle(XM_EMO.filter(x => x[1] !== t.f)).slice(0, age === 'small' ? 2 : 3);
+      return {
+        prompt: '他現在是什麼感覺？', speech: [[t.s], ['他現在是什麼感覺？']], stage: `<div><div class="pic" style="font-size:4.5rem">${t.e}</div><div class="riddle story-card" style="margin-top:6px">${t.s}</div></div>`,
+        options: shuffle([right, ...wrong]).map(x => ({ html: optLife(x), label: x[1], correct: x === right })), after: [[`他覺得${t.f}`]], key: 'a' + t.s
+      };
+    }
+  };
+  Object.assign(GEN, XM_GEN);
+
   function mtTap(b) {
     const mt = st.mt; if (b.classList.contains('done') || st.locked) return;
     if (b.dataset.side === 'L') { document.querySelectorAll('.mt-item[data-side="L"]').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); mt.sel = b; tone([660], .05, 'sine'); return; }
@@ -4426,7 +5070,8 @@ body.is-yx .promo { display: none; }
   const PRO_HASHES = new Set(["7e5903dc82a73c41e5a6", "b0dd6f755dadda28b23e", "f69a9c9c2308a32204a4", "5b7d9d1dc88ecdd74656", "542cf72a3e277f9708d4", "b1ec26798b86f8373429", "2ae3a1145a16728f6f73", "a71df925da9b9076a5e3", "265a4c4c741bda122042", "3160a51142deb0334392", "2c4ccf60a799e3efaf39", "3d8ba88f543c0899d37d", "027c8de191a0827d04cc", "2047fbee22eac4676ad6", "972f92cbd4fd1f74fef1", "75abc652561b1cb35eb4", "0ae5c80b586e21d52986", "8fea70c0f05f00b0072b", "2290455697c971eb8bdf", "c74498222de3471ce058", "436aa0dfc9412e51b6c6", "e19bfddf6c22efe37d29", "d679ffe7a91106c890c4", "e91e9816ef178e7bb4b2", "3c93bc82ca8eecbd430a", "325e758cf9de8525f8db", "977d8bf9e7f91e21f803", "121e94a09859114de801", "5916576e42e050ec1a7d", "4a6799b2edaead3fc324", "db89648171b730b1bedb", "43583943369447b244b4", "e3e6be8188b04f1af348", "68692d4f3d8d440b0c91", "9aea044cc60341d8d839", "498565ae1492aed078a5", "171c84fa089ebdfcbbe0", "27b7c09f55c8e405dfd4", "833e22d86d5746e87c1d", "51e7bf9f271e82cfe511", "f9c0f25b5f9a5cf8d3a5", "45c536a56e4b7c81ee72", "a49f2ee0d254ebbc79e1", "0549f0e5efdb3280338f", "d8b38a4271ef9818653b", "fc63b08c781a0da0b3ca", "7a09249c3b67655d26e4", "1cab37bee8e50c8c06e0", "4f8740a47558a7c0ed39", "af9b8b10a78d451af0cf", "639ecc9cc60f128c1cae", "75454720e84a1181367e", "002b97385a38f792272a", "e7a3df28a3b37e0c6499", "80e9bacc4c396bbe8b6b", "75f7cd70a09d907b1e97", "53d8b19780aa7142891b", "6cb1c36a1b370dfcbf69", "23818ae0f307a6488e79", "65eb6c77048a076b3c2d", "4fe59a81aa80ce5af124", "575a81d95fdceb5f8f52", "7dfcea412d081a36099c", "32320beca3be5740c2a1", "685b6d2adae99502e5da", "a8a9294888701496fce0", "93fb683302b6920d1e70", "c9083f18071cdf424e72", "2f2326280b714bde0610", "2fc1f35d78cc023ec5ec", "744cc5a3f19276b51807", "cc8708e87d723e214546", "0aa937a7981cf0c50744", "3a2d0cdac60276428bb1", "7a6ccda1b4e5f6c33466", "c9bd17f02b190b3ea424", "dbc9026a1f59a2062d5c", "101028fbbca60952a092", "9157831181c2ab3c3259", "5f9b95bcb7bd278fa3d0", "51d98529a90e1da24ccf", "0239ec8a5197b258200e", "d338c77db19c0a15860e", "ec96c0d93903051ca667", "1892f14fbb0643dc82ad", "d08f5ec97b6e6a7f3743", "ce5713937003eb4f9368", "4512dc0ce5d01491f6f9", "7529b08e9dcdd664d540", "bf69fac517162b1bde92", "f4657e6e0cf1a143b5fd", "9c75618eae4fc05ecfb6", "39e33c0b836e7e0d555f", "df42ae25c62fc6725e59", "ea6a6fd2ed1c42aef2ff", "07dac94ea6a1ce15adf5", "edc262ec3cf456026e1f", "95b5c22386a7da3ac9c3", "4349f832cde523a1e327", "bc32e3851c4474d1fb2b", "b787898d7068322bdb00", "2c952cfc01a45f555304", "c7e6ab59c6f66d31fbd5", "27553a2f753d680d8a6f", "bb61f55309418dce1608", "6f3b5e4a0eec86e28e75", "1c7f9a9bca93b720099c", "2515a8232049034d8bad", "a90619983d862d74e43c", "d2155d7cf0caab1b9c5a", "da505fad31d728f1b5a6", "751b4fec01f7c48ab195", "dde16653ca5df0b7438c", "68ef9a426c4364189306", "df18995c27061efad502", "c7a81c48056a74010bc7", "0e6948f73c0b0ed79a6f", "e94c7809668316ea0ea1", "414609f923da273cc8b6", "bce95645cf340c67a97e", "2dbcaa30f24b29bdf511", "2856a6e63147c29afdd3", "76ae508ac90635390364", "1ea1e11dac123bf6945e", "61fc9012148da5d0bb10", "c043561919acb499e581", "1a8462d44af1ad9dcc32", "2fab3e5d807d0605f136", "71f93df3b1e335c616c5", "28154f231692041bb1bd", "ffb3a6448bda65a26e71", "c4445142f91865eeceb1", "f04060481052dd495b21", "8697f2f38d5091d694f7", "8731464204dae70c0cc2", "25494cfecbc52717afd1", "01180078580703ee8bab", "bf6a6a954597a5abb0eb", "78dca60801921f8abc18", "a08eaa9e826387c354fc", "1c7ea1934a71378e8525", "e511d6585c6ae4ac8faf", "128ff32f530461d20683", "93bdd65768c7b9e9b718", "b1616c7fc5eac19105cf", "b804f6db5612ad478346", "b2ab123da58b0a55a9f2", "21a7d7b0256a12d9408f", "2c4a3298fce67f0e5fc9", "55ff47dff11b0c9b1af1", "893f372d0db19de2a250", "c32bc42135a7c963e431", "5c206b4675aaf9455ff4", "85e56110f75b3375b947", "1ab2b03b26a4a1dc6057", "78b6cdc741a0f679efec", "2b2b04d3b5b3a440cdb6", "aeba0ed072c4bb29030c", "a9465361f3ca80ec9e9b", "847e9b04ab2216371492", "db88c9003f95db8ad37a", "619421d943cc246a2b08", "8cd5fd136a00ee787ed7", "e82db9e1e4dd0e23d3ba", "0b634e8b0c47fbf6ceeb", "7ef8a1ffe3a16d1dd5a2", "c6ec03db4d88d404f9a8", "10e6d8addb8968e28d93", "ee297ae9854670355398", "5cb0be80fa862c8dea19", "6049defc437f89a2dd1a", "04d281090c3463b023f7", "f94347ec231a767a3f32", "6df9b86ea151ff2c1376", "ee978661faf000cefae6", "90f983970662b15a41f7", "6b9cd7724983baa9f8a0", "88c5f0fbf450c43996bd", "831f9d687fbc059c96a9", "4eda36c821a9ffec47bc", "b3f523be17dce9aad2a4", "4a7f306f83f64b51886f", "518146a1acd0cdf03531", "031077cd7987733be680", "6291c13f51ef599e2b63", "b0ed3136004731aa9046", "b994aaea6ac4434b361a", "4bcf38821185db7117e4", "b5a13cb27e5b09dca99f", "96d9f28e2d45fe317a05", "2440058e22a595ccef06", "241b8cfc801290790475", "f2acbaa8683f604a1586", "e85fd79d189ce5318d27", "6294b28f215b32e666bb", "c7c9c3991d7f881dbeb8", "0010f13bcf614afc737b", "ce5965d8bdd9a4c6b8b4", "cc45a54ff0672e8b9136", "ca69d9469ef30c77e558", "08d7183e384c985ca497", "f58b6178d32e903b7548", "a803bc5a51d977b6b94d", "b1d1b23c112b65a7364c", "ea86cb7d27a4168ffbc6", "76510dcbb5bb6fce2daa", "93731512385b3c3fd896", "162d3c44bf41056aeea6", "271a7f997f768d43d9e5", "7d4f09c53d416957e799", "0a13382e5164c6e5bf5a", "18a5afb06170944a335c", "4e428c986bbe8479f0c3", "d7231a92c18ed5a25a99", "c35d224f8c55e39fca0f", "85c398b8907b4c6170e5", "c76f1b639e86a34d3fd1", "78302490918406001057", "9b4450e637239f6d0e91", "fd9f1cfbd833ccad8741", "22898b94de4ef0fa942e", "92c5237cd05f76ed8bc7", "1518f6ccd04de297c1a2", "1a9b4d07226fcb3d49a0", "6dd8348ebbad179e5ff9", "0e56a7a5be5db956e73f", "2783f68941fc3cd1efda", "97811d20f5a869907ab9", "5a2bb82457a6e358c0ad", "cb23164f324615ab7246", "c9c3aa7907fb94e6041e", "ccc4da733c1ea211f505", "b8ef56aceaa2cbcb2970", "40649cbc63ff14c67141", "017b3d35f4c179b5ac84", "b02cd9b64650b6cb18b8", "b52d2b67f5ff8cc20421", "10c6ad10660d412cce16", "837fa948ac2aa8d8236d", "2eaea4f36f9414f91279", "52b012ec2cd280c9cba1", "526c130010b892cbe4d8", "4fe10426c7ce48780052", "f5e1106be122d635d66d", "2ab513ccdded0111fe51", "75be7ef737f2aed21bf1", "7232bac855836cbd2a9f", "d041708a0040e1910b83", "0b871c838a053bb1026b", "3d5202fef0c7c1b06610", "1733c9a2d187b218a50c", "a18066220e353d6eeb7f", "ca0d3bade477c4492774", "2d396e3de8f4aff64a36", "815dfe0c927c088c34e8", "9a4cc5794bf8d8112f31", "bb56ee62bd5783c15331", "319c5fb9ac603935811f", "0a5613c00d425855b12f", "e719ec7656a6c01c9c9b", "ce43870cf3ba9699bf92", "4dd2ccd238b1d113e46d", "51529350898e6fc60857", "3b15836e442673b5f6a9", "c7189844b64c9a0f7c05", "abb4249ef6ca88ae4ecd", "d60724fd7cb20902c7f5", "0bc54808f3db9cb03d00", "f3b33f6efaff59b28112", "46b70603022ae48fbcb3", "263390451a2535f3aced", "8e052db68ff44a6ece4f", "5dbd197a663f8bc4a9a3", "bd6034db162bb8ff85e4", "14a9c445f137c3a4bb78", "a70acf6b39ec2ee0e833", "77bf552bb5d42cd58bb7", "748fadcc8ad174aff4bd", "acc9d75fd5f5f21192bf", "460b0db54f46fd51fa7d", "403f5246a0d104313d9e", "651c86f23da950c17cdf", "5c1d96b680cc1b387655", "b602db296460feb50c97", "772aa87ea9ce28dea8c1", "d3d22c9598a3ed61b54a", "25b76bb6deb5c43e381f", "b8ade15dba64adfa7c17", "179dabf6ccb8bf0831e8", "990ebee676bcf8c1f8dd", "856d496219e6b5b26a7d", "8bdc6385b47b16d0c172", "e90b34a377f2e72c2677", "3cbb3bf550fcdfa01a8d", "d43af345785c356026b4", "42908d66c3fd84286077", "1e16ce822115e21cca20", "c0b7566bb57789eff65c", "94e092288e890d508d11", "fd5104d1d78823cfc780"]);
   const STD_HASHES = new Set(["e42c9f670150e1462b8e", "12aae8e27f9adf37abf8", "81182e59b1b66187852a", "5ec0dd13a376126b51b0", "de9d15c9de98a340baab", "165225d327d0f75af756", "58bf0b5c2f9e0cc28242", "401f6e0ba4d58b33842b", "0528dd582bffae4cddc2", "4d2c6d6e1ecd015affa0", "c2e8b8663f4abfb6b37a", "33542e95b60d2a4d381f", "785f9567711dd696e236", "c1194eb1d4fd60de5714", "7c45bae94a99393225ef", "dcc10f787fec13d5c6ba", "4a57d1cb09aaed88b8c2", "71d121b18f386529749d", "2ae4c7e41dca7ecaa8ac", "57dc18cdcb31418e23e2", "1dfc6c6dc2507db40834", "40a115991c582833309a", "7afcb7356b3c319284b1", "5c614fd0569ed7df5302", "b9bb3c98fb318b795a9f", "1844fe3b48613dc977f5", "f9fa6b95d228e3e23c4c", "c6bcac520b4c1582cff3", "8c1b3dde403b37c1ad06", "17f579e9ea1b30070149", "1875b36ab1bb329743e4", "7acd086071c9a905d076", "a65a56d6ec83a9964eee", "84e75bb96564a5c7de99", "951d5184f4a40e636bc9", "f8503306f204e815279f", "8eafb0a9c18afc58e413", "f7cc4df22ef30980e5ab", "2541dcd6385d9e5d7a6b", "dc63a88791d639fdbd8f", "ad4068cb6077f3fb722a", "e9e0ecde17e73a9207e2", "e2753e985e4dd5453d14", "ba8b50c82a41a199b079", "14c034cfe62483cf55bb", "7349b5b2f68745863dd4", "0784b86573e48baac554", "54784f5b53063fe75ee1", "1c58962d7c2916c7ece8", "8f7458a0bb8b123b89f6", "933868acaf57ce940ea3", "49f96c758d3b1840801b", "cb959523efaa19417794", "2e9444cad1db7d8bf3d2", "4df075e59d4d608f0ae9", "dd5db6cef3cd66c5d17e", "4fb24e1182cc6d78ecae", "cffe2ef7062e946875a8", "9718be61618116b19191", "86e6120ea6a7edb26622", "0d6140e830ae092da190", "7b7255685be3bd49afee", "ab742041520f493c0ca9", "c8b9bb242e23a354fc85", "ed85ed7130e61d4d09ef", "b2befad51c501097ae6d", "805f615acf73b472fbe3", "a8008ca1ba0ee912acaf", "5a52cf59c75407ffa440", "941d7c3707ddfaf8d88c", "e7439c8f7ba779c4d4c3", "00fb1bbc52c8aeceec12", "4aefa365fe90ba85f82d", "7de736b2e92b19064467", "c3717f0592ed00dbcb40", "f30a84086f18ab995e15", "31629d9dd8e2d4a28110", "28325e9d530972b66895", "205cdfbdc5e006600844", "bbe94a5f8f9eb1efbbf5", "9246ed3d141a12ba2bc5", "d3d515ae5c6b9dc3aa69", "0eb1dbcf1caf1db3836a", "deae140531c1c561bb34", "215a2fdd9ca2d2796ba3", "d45cf813e3039dd8342d", "5749c7af8d6f8f8d8f69", "af8750d33b467a602de4", "db4fc63dbf13b7999d79", "acf78d129e350d6cd01a", "ee15842bba9efc450b52", "bc4b85d2c1a3732751d7", "a92813ed5fa0edb05759", "9c5f7113cf2ef55b61ca", "2ffb61ae231f15cad51d", "f10de1bc4147d040190c", "af35e7eac9a2e86cd617", "497ce8fe44a9bbf84304", "060746e047a9d980cabd", "77342376a41bb97f00a2", "9cb0706b8aad99b5c6b3", "31deae3079e96bdba41c", "90209413dd0f1c365785", "e633e93583edec52ac2f", "592c97df2a96200977d0", "d08fa4face5718185d00", "a8f724754d0b18124f50", "0899267229b339de5aa7", "07c9b84bd7d52916d313", "924235828e70393d03d8", "fb2d2b4d830a96db3bfc", "3cd902e1b17f07566506", "a64d4a457ce89d4d749c", "212d8037267cd9786c2b", "da59f1e63d1c401880a1", "2699f278d8ce2d779705", "2bfa2f6d554cf2e8e1bc", "fee18a237b9736a63fdc", "8331d043baf377897837", "24bd819d4ce480b14197", "778c19bd128e115ab8aa", "752a7ca1659ce8fa6418", "a2845b6a8c2f634f6b4b", "8a69594034f0799b8c8e", "2ffbfb2e19943bfb214e", "4cc758a3c09ab905bbd0", "a24e791f55952c44e0d6", "061d14aa5952b41e0d67", "78e26f8d31428a66626d", "7bf27144dd1ee6b1e040", "8ed71ba16076963a48bc", "8ed6d423b0a6fa56f18a", "94d59a2317b4fdb95b3a", "167e471ee20f04fc735f", "28a416a81caecbd55fd4", "a812e949ae17a240b891", "5bc1801db8bae71b73a7", "b0a001dbb2f5083cfacb", "0d8ae9a9220d1f3ee513", "f8e2463363edf073d5eb", "6f74c922debb8cc68e4d", "1606588cfb0c14d70bb2", "d0e85a95cafbb5fe5bc0", "8ddfb2bb9a73bdc32428", "d1296bfafaff0f668f08", "1e8af3e40af68355483a", "c9b36e8737f0a51d9e42", "3dfca88b7375fadf5c0c", "654b0cda4e75ac5ba6e3", "7cb568203d4d6830997e", "9a1dddebc2cc59a6be52", "420eafdd2c98fa054249", "fa83d5ddada6b8b8fcd4", "26145f47f408c9c8176a", "fe7bb2f65d4fd212a010", "99b257882b2d6d86cbab", "5f34838841a03d65ac72", "b5ec8904dbdf9a06fa07", "180f110e96b7786009f5", "79eb2290c0222fa41fed", "fdcfeaf0b49a64072463", "e50658f770c0bedc7d73", "b54eec403451e9e3c4bc", "e602dffa306c5d959014", "3c735b010096d1a287b3", "11d4a87b5d82cf8a39a2", "c2f459ebf8f3731111ea", "c00b95abc7d9d98fc12a", "ed86f62100787140c5f9", "164e93c9cf115363533e", "19904597b62b0f91a863", "c164090bd600ce25a4aa", "2156c092ef088f631bf0", "c24e2ade2caedfc1c8f6", "383f5f9e62adcce4b530", "1b8cbe3a5682d30b4f9e", "e23c66903aa94d2f9b1b", "e86f474cfb211e9f7fa1", "046b2903bcb34dbb9f63", "dcd78e345be718eb7a61", "3ac9e1a19ca23e90369b", "e207b11d50dab292c9a2", "92ca4b63218ac33afadb", "5dc25819a32f48330ded", "90a241228b71c1d0af76", "3ea8ee7935864794d8b3", "c740d468484037acd29d", "def11b8c91cdd7988091", "98b0e5fe535ebb3395bf", "d366d3ff482e61a2bd4c", "6deac8f4bdd321f20710", "bb621d178d72bbb518cf", "e24b37bfd0f28ccb0a86", "ac28592803710e58e411", "7fd72e56385731ca0770", "9483d83ef8ba20cc8737", "279afa89b99c0de42bcf", "273a5b849517dbd97ba2", "3234b6f0f5b835ecd14b", "7b6ce5a5f1de7c410612", "95101d0b54d4e0fc44c5", "b7039cadace5a23c0abd", "89b561c6731021f65ee8", "c1099f94884210d5da9d", "9ba93df3cf851edf08c2", "ba3e28e60b33862d024e", "711be195cc8aabd6850c", "c7d16c8963ddcf6f0c68", "ceb54230d8ec115e9e84", "fe822410b122e9e1c677", "20d2888a4edd410a5b14", "2a24037253d238a56aaf", "0f8812f65a124ba91bee", "11f3c1237e1ae3b1624e", "a0a1a77cb3aef5599bc3", "e070943622e08f0ce5e9", "5f28ecee0dc084287230", "8ce16c86a7170f474749", "ad63f3a41e65066a0981", "6e4a25341f61fabf8b68", "9a20b0546f58c88b840d", "307b7025ee9528e8bfc8", "666139de09427a5e2eee", "54993811d11fdccd65df", "ac545a4753a3c54dbb82", "162be4e53cd3f9de201b", "92e134573844b0536450", "f75c7e456ac0d1746c22", "721f8bf37bfdd5332ac7", "e0b01ba3def9fb1c1ee5", "bb1cd9a771fe43eb2a0a", "dceba1f7297dcfdfff6d", "6c944b5eb5961c7c6e20", "000b00b7c3aa03d6b09c", "06b816064cda55205f5e", "f05b5649a8c26ff750ed", "7d28a2e8c0800ddad496", "60fa94cfab1182910c81", "8ac04c71b110a4fa4a3d", "5e16b968c051b4cad93b", "f4833264c1acde21c463", "46584a308fafeaba97be", "f2b5663897142dba9374", "0c8e017918b0ef690066", "cabd9ac25abb3c67a51f", "fc977e4473f16cf0ffb1", "82e5caa7e3d4eab58b63", "70c96c45f6320a6b8b24", "d8d1ac8d70a36ed789de", "8647b49aaebe52e53072", "f5e6d7a4263a75b1caad", "73000d054f8bddc79efc", "82c302adaf78b52313b6", "1ce06a8274ce5c7f8b2a", "dac863cf18f511f98a95", "a5aea8d2217eef3eef47", "582a43b78b79a8f44a54", "fe1c676718a45d5d4305", "f7fd37c746b7758c9203", "9ff3319e3883932a1e17", "a76e2ca429b883c0a5bc", "25dc6c090ebfa08c105b", "8632829f5aedf9cf3e7c", "a1b022d45880e5cc4b1b", "bd3f70b97adc5f81662b", "d6d890d92aff30807877", "0237a3a1663b3cde4904", "ab3403b8c15521e859ab", "55ffa5febf8735ec9d03", "e78636e910dc9c0a8d40", "04347a3187a6f367abe8", "40e8d9b830ce342e0e85", "5fefe58e316376fd782b", "ad4ec311cfccb8a5ae2d", "31dcafd66b6477145881", "7b92a10d665aae57f46d", "aa2126ea9b96fa1de0fd", "360df7a25890d0a2a6f7", "634eb94cdef54609dc56", "8d7a38b3a59bf91fae34", "6a19d6d78285212ba635", "4f81d2c6d7c4d2f9c4a8", "9d9adc905ae4e896d8db", "5bc1a0e989e3696bdafd", "3d39f3658b25060c4142", "0561717cf7f1728851ec", "a787710a3dd2a81a0f8c", "7070751f0ddbffae2896", "1f0ac2020fbb5d4f2619", "61f825e57dd03fae8af0", "09505f489db43f21bb9e", "7355a033f3332898c717", "c382f5f194eb09c14e42", "4d1a50871a6d0ea8a562", "5cda23ccf2ac75fb2de3", "b59b3aec0b749c3eb95f", "d1fc4fabb6027cc27dbf", "1f07826440bcf5e787cb", "d42bb284f77b9d5199af", "b7f6ce54390ada0d801d"]);
   // 0 免費、1 標準版（NT$299，45 個主題）、2 完整版（NT$399，61 個主題＋全部功能）、3 幼小銜接版（NT$499，完整版＋幼小銜接專區）
-  const YX = new Set(["yxzy", "yxtone", "yxspell", "yxchar", "yxsimilar", "yxsent", "yxpunct", "yxlook", "yxstory", "yxstroke", "yxtrace", "yxnum", "yxcalc", "yxword", "yxtime", "yxmoney", "yxmeasure", "yxstat", "yxcal", "yxschool"]);
+  ['xmcolor', 'xmshape', 'xmplace', 'xmday', 'xmpattern', 'xmemo', 'xmdots', 'xmmirror'].forEach(k => { FULL_ONLY.add(k); PREMIUM.add(k); });
+  const YX = new Set(['xmshop', 'xmengcolor'].concat(["yxzy", "yxtone", "yxspell", "yxchar", "yxsimilar", "yxsent", "yxpunct", "yxlook", "yxstory", "yxstroke", "yxtrace", "yxnum", "yxcalc", "yxword", "yxtime", "yxmoney", "yxmeasure", "yxstat", "yxcal", "yxschool"]));
   YX.forEach(k => PREMIUM.add(k));
   const YX_HASHES = new Set(["a656ef9963edc55a612e", "87cf20c046b2e67f6bdb", "e21a08f3843ccfe3273f", "51eaf5fd77c8e9af64ea", "a58a210156f2d1291f36", "b2083ad1028e641635b6", "607cf1bd9974e666c656", "468e558b5d0634a4725e", "271f088816c2dce0e134", "541c75f5c79006ab04f5", "9875df048d6aa974081a", "3f6b1c29a99808226eba", "c3e031f4928aafa7bd37", "312590bf37d40b768f16", "a408110dd5e3e86dfac1", "10e2d8fdc79b765a18ee", "0d61217c1a42a5743294", "84f4526cd68f90785d6b", "f3331516bb0e4e3db6b5", "3fce7b8186b3ed7b6faf", "ce99f2b42e02068c4768", "03264f2c4e3815b9c28c", "3e90fbecf1b4765fa61e", "220164a6c3b78859676c", "1507b6beb696ed59252f", "e1bd8a9a329d74d70a54", "814291456acf49961fa1", "ab6d9230d0454c10db01", "57b27b91b7b41d072500", "fc60266136fba291bdea", "b006178a94dc1d2ab487", "ca7de293331b94a6d1e0", "cf2dd301a82a4b9fe4fe", "998551956b868c3664a9", "447222a4a0e74613cb3a", "11cabcff89a2151227e5", "1a685c6a14e207447308", "1aeae2c25b8524cf9844", "cad538e5eba62ec12e08", "9998f4da27b4e5d99e35", "1e576f6a6c5b5ea7cf69", "925d675b18531036b13e", "35fc8b981077632a16ad", "37c86c6c4fb7d54e1212", "84de697edabbea7037da", "f1f255dded26e2fbd04f", "4bc8bb62675e9a376bdd", "cf904d7ff8482d814ef4", "4faad5a5d831c4f09e74", "9653aa5a9d909a856363", "9c65b00f90af04ed8bf0", "f27e0649bb2f3f94e208", "47c926cc63375fe43aab", "23b9423b81b55fd3f1f2", "eb1e08c2d138b8f725ba", "7e2b9099851d506cbe27", "8fd0fa68d6e10e78f4e5", "0fa855411492d951bc93", "a1e0c0d75291fe29af8d", "6010e3832984e23c7c74", "2364a8d2b5bdeb81d857", "b504f50bd73ec4cbd607", "90d40866d4c79b9d12e0", "dda0b088ee9a9474789a", "a50318e596a20c7487c8", "119cd27b1790ed62a5f6", "d79e69ca0e615314e840", "ed05a9ed0c63c9126afd", "ecade70a59315220cea5", "0af2d3a6574f115a3feb", "7927675695f3d7023969", "5966d2e42d0e50a9d4b4", "09e839b19813523b5df9", "910ea3f8fca78a55ec06", "29f1146f1bdf9e0b7294", "f5695a99347883076bad", "391f8ce2037ef8cec4e8", "f1788ab5d18f11fa3767", "e7d1c51881445af5c809", "d4fef7fb10c0dcd60c30", "b24d409c11b305c6cb30", "1c719e9723c7ceeebeb6", "f132958f054852fb277c", "8eaab11b9e3261a5e9fa", "9aa63c244d61e67124c7", "0f8cea6c3f3ebbca5389", "cf4ac4fa2e7266256eb9", "1bbfccbd020cf497672f", "a20fa8226c085f40fdd3", "78f0d7d63d9d7035b84a", "8adcb3bb3ec0393ece68", "34371b079dc488715264", "a0e1d83c4d4d5f15f351", "86e4f06f5d3f2067aa6e", "fc921085942a672eff49", "da23cfe129a43f5a77b5", "9209fe9f1f8e7e8b7cdf", "71620502b99e3f2b3a75", "05c8abf425719a701c2f", "ba5e19ff2621c891365c", "d7ce348b9f6bde119c7d", "f17f3fc1d991929037f8", "6d8e630b9ea695f56126", "b9c03c96f8fecf1ceb89", "d6b20b93f7eba5c0ad31", "4507651e5055dccbf401", "7667728792f553ea160e", "ae4cebd202cc80f9c7f1", "714561c3df31e64c3593", "f9259bdc8532220cbdf8", "1eaaf140f2e9fcb7b942", "2ea59e2fbb5c464b680c", "968a8b8241e0e144136b", "70fdb7cb407eb9b5af1c", "fd1eaf6475c4b7b29afb", "26635cd9541aec8429aa", "8439c0e7b5d8a7bbfed1", "7d76f8d3001510c07240", "b118d91eff2ff085c046", "65292a0abf584f14b072", "61044a4e22888fde88b6", "ac79922a941f9539af21", "eb789131ee760b61e555", "a3adcdc57880eb2b8397", "6f2af3b0317e11cffcb1", "b6baf69faf078396fbc7", "96d8791a726ccb26bc1a", "ee624ef1f3eb33ca5450", "d521466c938140d43efe", "cfd2111846643c847551", "1324769fbcf6d4559882", "87745e30d324d1788a01", "5ae4c44d9b279786628e", "be10e1a7c8512480cd77", "45f4a1baf8e34aed55c4", "21ce6d5872070d164963", "ba244162ba6a3f0711a3", "c9573ab18a65c8c01756", "6c1be73db2aab4e58eca", "f5b1119907eacfc12400", "c72136f1c4b91f68ef35", "0c973fbd5d350d6e19a7", "42ffae599752e7e68656", "2169b961fe1dc0f933fe", "8546d056cdfd4f135ba0", "9f842b0ec6902225e169", "f24a0b60951a7f82413d", "f110c6887228ac6678f5", "6058c1f4415fff8f0264", "4c6df127653e7c0dd58b", "8747d2e05bc9fa9ae884", "8e7b11c0b374cfc9170a", "92cd52e4ac51ee21ab04", "b76177a8583b0bcba617", "1b21ad291c7509502948", "72944de77abf74ebfaf4", "dd65dceca1982d736fb8", "46b141aa21b53707aff5", "9286e988dca08adcc903", "d455cc0b2d0bcda8f1f6", "302eea61b938f9c000b4", "cdb07c4af2ada0c53cdf", "fbdb09dfd6c5c30da567", "ce20c1294873ca5254c8", "d8374eea3d7a09ca0001", "b165b0fbbb9cbc4cfb01", "e198a82342e7e74f7f13", "1d15556ce93949f110e2", "f179ae35b50a0ac15823", "18cd59b3e7e53feee944", "c20be758de927c5c5dc0", "1c42c283a6bcf910589d", "dad7e84250542e989ea0", "b046fab802640eb3793e", "58540a0fc49cfbc174cb", "c16111dd402284996340", "18e79c5e10e8c3289f8c", "09a6d5c22d59d40fd7ca", "5f40a52a7de31fcc3fd3", "fe6e2f9544f532064fef", "932d1efab3f10edefd43", "1f628936debb084001fb", "60877e307d9fc1817b13", "8d1d17b45cf75e925cab", "e2ff3d593dc85c449daa", "b018748f000cd7695c4d", "72ef7e1f45dbd30c90e1", "f1460d02fd1164e83756", "56769b747322e93d593e", "a04cae0aea575385ee2d", "4d922358023c47d8fb2c", "826930d56ab15b66566c", "d54cd2b2faf04befc2b1", "2e01581f61c196afdab1", "b52db357c5c57355c5c3", "7a53efbf488f0fcc992d", "ff2711df53efc488632f", "8a327bc16347e11f6f5c", "a377a7b4294d9b57eabb", "bf0b0dea89d7dcc9d450", "d8de5f031137facd5645", "d99bb14a4a1e9e27b5b1", "bf2c5fa16c8c741559e8", "b1f5147bdf7e4cd3bad6", "83c707438df02ac985dc", "4420fb55c1aa70322d3e", "c9c395b1054d66871ed4", "ab9e9f7a10c7e327f55d", "e608f2b6d4193065d4b1", "4da500f1f69c9c258778", "19e534858b903ab5f8fa", "d63111b4433dd51fa72e", "ee1cb70b351c624eb1df", "9e79d97dfeeae46ec896", "9fe26c108a55a5be5a6e", "c2ffe788efa8f17ab08a", "917b87a241218d5a67f0", "850dd4a45b516d73e0d8", "521b41866804485aece2", "91ea04319b3258ad2b07", "86bc436ff87fd18c3c12", "7b6f543b172cba719879", "b81e31a6da54fe4826fc", "e5fbae25c25ecdda25f2", "d901ac12d99d71c876b3", "b733c67ab4f0a5d0cf8c", "0b426fb13ff56993847e", "b4812666ccc12eaf7061", "306d95e4d983b1014d07", "65937d380afec41a175b", "df54b79aa26cf6016f9a", "f8be20bb8cf52c434ec5", "7ec26ee1a8192a9c8329", "4fe6e60f54626456f7ed", "8faf890e571dfd200e75", "a989707b6c9d014522f3", "5bc31869f3b4a6f890e2", "2705fe38a6396d3bd2b0", "0e95ea84d100320bb347", "b6ed94fd703473c78c4b", "255a4a57979b8e73de8c", "e55c1e45240b6dc5fca3", "18b51a9e5028df0fd694", "23435ff17846123274a2", "67978d00785bdb65c048", "757a846215316aff7db6", "337fa27abaaa7f460f72", "cfc07d01e48241a448e4", "9a178f0b8ea4bddfdfd8", "d1462d99772da5028341", "1e2449f764b77a3dfb24", "f1a388a38965f553902e", "c169d32faa9d8828b4a4", "38734de8c00fd3ef9c31", "67c486726ea261631f99", "dcc0435d519083579005", "fbe0de7dd4b63a2d4766", "fbe4dd800e9ed68c83ce", "e7d41c578c2d51c4e694", "758480a4a27fa9b84cee", "5bb59780e3bac046cc2e", "5597125eba957d17ae62", "547eab6c86b4a4193df1", "cc5379930193db0b4fa6", "c729a532d7abf53f6b85", "bd632ce6ea65d908960b", "d08d092032abb728ce86", "a08529caffd2a07bf55c", "a0ea791e893335107de6", "ce1bd46ff2cb2dd2cfbd", "db4ca862f3eab71af37b", "88897eee9e4a348549e0", "0bd0e1c486c4cdc0a8f3", "4aa3d06ddf0d7eea6885", "30ada5ba52c8df36f7eb", "8048e24aaaeeb0401819", "a1662ef01f9f0ea89c11", "f4f2212b6420f2b775b1", "60283f2c45e0948bb614", "c4452db907c0e9a50017", "0245d5cd2881e571c4a4", "6cdc836001eca44be758", "50af0ff3cebf23893c7b", "3665163ecf5ce79c6c76", "3065621057f7cc94dadc", "703816273fe31af54823", "b60e5272a49a4f361b33", "9e206aaf4657b62829b3", "2f910d2cacd1d156ece6", "57a3300c4b385cd179d3", "08e36d4b0307e9dcf558", "571612e12335a6e6e438", "5e2c10247b53a669fcd9", "4960ef9af67a5c0f679d", "1cb460656bebd6d3cff0", "b3925e411848a1c28984", "448184abdb88cc909e48", "6935d370d29cf007368b", "05f717d4356dfc4f98ff", "5a8d5dc001274984981a"]);
   function proLevel() { const v = store.get('proLevel', 0); return v === 1 || v === 2 || v === 3 ? v : 0; }
@@ -4459,11 +5104,12 @@ body.is-yx .promo { display: none; }
       <div class="code-row"><input id="codeInput" placeholder="例如 DDS-XXXX-XXXX" autocomplete="off" autocapitalize="characters"><button id="codeBtn" class="btn small" style="background:var(--good);box-shadow:0 5px 0 var(--good-deep)">開啟</button></div>
       <p class="note" id="codeMsg" aria-live="polite"></p>`;
     const buy = BUY_URL ? `<a class="btn small" id="buyBtn" href="${BUY_URL}" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:none;display:inline-block;background:#EE4D2D;box-shadow:0 5px 0 #B8341A">到蝦皮購買解鎖碼</a>` : '<p class="note">購買連結即將推出。</p>';
-    if (lv === 3) { el.innerHTML = '<p class="pro-ok">✅ 已經開啟幼小銜接版，全部 81 個主題和所有功能都可以使用，謝謝你的支持！</p><p class="note">開啟紀錄存在這台裝置；換手機時，用同一組解鎖碼再輸入一次就好。</p>'; return; }
-    el.innerHTML = (lv === 2 ? '<p class="pro-ok">✅ 已經開啟完整版（61 個主題）。</p><p class="note">升級幼小銜接版，再多一個「幼小銜接專區」：20 個升小一主題，每個 50 題以上。</p>' : lv === 1 ? '<p class="pro-ok">✅ 已經開啟標準版（45 個主題）。</p><p class="note">升級完整版，再多 16 個主題、4 位朗讀小夥伴和每週學習報告；幼小銜接版再加上幼小銜接專區。</p>' : '<p class="note">免費版的 25 個主題都可以一直玩。想玩更多，有三種方案：</p>') + `
+    if (lv === 3) { el.innerHTML = '<p class="pro-ok">✅ 已經開啟幼小銜接版，全部 91 個主題和所有功能都可以使用，謝謝你的支持！</p><p class="note">開啟紀錄存在這台裝置；換手機時，用同一組解鎖碼再輸入一次就好。</p>'; return; }
+    el.innerHTML = (lv === 2 ? '<p class="pro-ok">✅ 已經開啟完整版（69 個主題）。</p><p class="note">升級幼小銜接版，再多一個「幼小銜接專區」：22 個升小一主題，每個 50 題以上。</p>' : lv === 1 ? '<p class="pro-ok">✅ 已經開啟標準版（45 個主題）。</p><p class="note">升級完整版，再多 24 個主題（含 8 個跨能力挑戰）、4 位朗讀小夥伴和每週學習報告；幼小銜接版再加上幼小銜接專區。</p>' : '<p class="note">免費版的 25 個主題都可以一直玩。想玩更多，有三種方案：</p>') + `
       <table class="plans p4"><thead><tr><th></th><th>免費</th><th>標準版<br>NT$299</th><th>完整版<br>NT$399</th><th class="yx-col">幼小銜接版<br>NT$499</th></tr></thead><tbody>
-        <tr><td>學習主題</td><td>25 個</td><td>45 個</td><td>61 個</td><td class="yx-col">81 個</td></tr>
-        <tr><td>🎒 幼小銜接專區（20 個主題，每個 50 題以上）</td><td>–</td><td>–</td><td>–</td><td class="yx-col">✓</td></tr>
+        <tr><td>學習主題</td><td>25 個</td><td>45 個</td><td>69 個</td><td class="yx-col">91 個</td></tr>
+        <tr><td>⭐ 跨能力挑戰（8 個）</td><td>–</td><td>–</td><td>✓</td><td class="yx-col">✓</td></tr>
+        <tr><td>🎒 幼小銜接專區（22 個主題，每個 50 題以上）</td><td>–</td><td>–</td><td>–</td><td class="yx-col">✓</td></tr>
         <tr><td>綜合大考驗</td><td>–</td><td>–</td><td>✓</td><td class="yx-col">✓</td></tr>
         <tr><td>4 位朗讀小夥伴</td><td>–</td><td>–</td><td>✓</td><td class="yx-col">✓</td></tr>
         <tr><td>每週學習報告</td><td>–</td><td>–</td><td>✓</td><td class="yx-col">✓</td></tr></tbody></table>
@@ -4475,7 +5121,7 @@ body.is-yx .promo { display: none; }
       if (!got) { $('codeMsg').textContent = '解鎖碼不對，請檢查有沒有打錯（英文字母和數字）。'; return; }
       if (got <= proLevel()) { $('codeMsg').textContent = '這台裝置已經開啟這個方案了。'; return; }
       store.set('proLevel', got); track(['', 'unlock-std', 'unlock-full', 'unlock-yx'][got], ['', '開啟標準版', '開啟完整版', '開啟幼小銜接版'][got]);
-      drawPro(); renderProBox(); renderWeekly(); renderVoices(); renderZone(); tone([523, 659, 784, 1046], .12, 'sine');
+      drawPro(); renderProBox(); renderWeekly(); renderVoices(); renderZone(); renderPrint(); tone([523, 659, 784, 1046], .12, 'sine');
     });
   }
   function renderWeekly() {
@@ -4501,6 +5147,111 @@ body.is-yx .promo { display: none; }
     const cur = store.get('sysVoice', ''), zh = voices.filter(v => /^zh/i.test(v.lang));
     sel.innerHTML = '<option value="">自動選擇（建議）</option>' + zh.map(v => `<option value="${v.name.replace(/"/g, '&quot;')}"${v.name === cur ? ' selected' : ''}>${v.name}（${v.lang}）</option>`).join('');
   }
+  /* ---------- 列印學習單（完整版以上） ---------- */
+  const PR_LISTEN = new Set(['en', 'abc', 'enspell', 'enphrase', 'enverb', 'cnsimilar', 'yxsimilar', 'story', 'yxstory', 'cnword', 'riddle']);
+  const PR_COLOR = new Set(['color', 'xmcolor', 'xmpattern', 'xmengcolor', 'xmshape']);
+  const PR_SKIP = new Set(['challenge']);
+  const PR_TRACE = { trace: () => (prAge === 'small' ? TRACE_SMALL : TRACE_BIG), tracepro: () => (prAge === 'small' ? TRACE_PRO_SMALL : TRACE_PRO_BIG), yxtrace: () => YX_TRACE };
+  const PR_XM = ['xmcolor', 'xmengcolor', 'xmshape', 'xmpattern', 'xmmirror', 'xmdots', 'xmday'];
+  let prAge = 'big';
+  function prTopics() {
+    const out = [];
+    const ok = k => !PREMIUM.has(k) || canPlay(k);
+    Object.keys(GEN).forEach(k => { if (!PR_SKIP.has(k) && SUBNAME[k] && ok(k)) out.push([k, SUBNAME[k], 'q']); });
+    Object.keys(PR_TRACE).forEach(k => { if (SUBNAME[k] && ok(k)) out.push([k, SUBNAME[k], 't']); });
+    PR_XM.forEach(k => { if (SUBNAME[k] && ok(k)) out.push([k, SUBNAME[k], 'x']); });
+    return out;
+  }
+  const prName = k => SUBNAME[k] || k;
+  function prQuiz(sub, n) {
+    const used = new Set(), qs = [];
+    const saved = st; st = { sub, used, i: 0, results: [], first: true, emoNext: null };
+    try {
+      for (let k = 0; k < n * 8 && qs.length < n; k++) {
+        const s0 = sub === 'mix' ? pick(prTopics().filter(t => t[2] === 'q' && !(prBW && PR_COLOR.has(t[0])) && !YX.has(t[0]) && t[0] !== 'xmemo')) [0] : sub;
+        st.sub = s0;
+        const q = GEN[s0](); if (!q || used.has(s0 + q.key)) continue; used.add(s0 + q.key);
+        if (q.options.length > 4 || q.options.length < 2) continue;
+        q.__sub = s0; qs.push(q);
+      }
+    } finally { st = saved; }
+    return qs;
+  }
+  let prBW = false;
+  const PR_MARK = ['ㄅ', 'ㄆ', 'ㄇ', 'ㄈ'];
+  function prQuizHTML(q, i) {
+    const say = (q.speech || []).map(x => x[0]).join(' ');
+    const listen = PR_LISTEN.has(q.__sub) || q.prompt.includes('聽');
+    return `<div class="pq"><div class="pq-h"><b>${i + 1}</b><span>${q.prompt}</span></div>${listen ? `<div class="pq-say">家長唸：${say}</div>` : ''}${q.stage ? `<div class="pq-stage">${q.stage}</div>` : ''}<div class="pq-opts n${q.options.length}">${q.options.map((o, k) => `<div class="pq-o"><i>${PR_MARK[k]}</i>${o.html}</div>`).join('')}</div></div>`;
+  }
+  function prTraceHTML(pool) {
+    const chars = shuffle(pool).slice(0, 8);
+    return `<div class="pt">${chars.map(c => `<div class="pt-row"><span class="pt-cell model">${c[0]}</span>${[0, 1].map(() => `<span class="pt-cell guide">${c[0]}</span>`).join('')}${[0, 1, 2, 3].map(() => '<span class="pt-cell"></span>').join('')}</div>`).join('')}</div>`;
+  }
+  function prXM(sub, n) {
+    const saved = st, sa = age; st = { sub, used: new Set(), i: 0, results: [], first: true }; age = prAge;
+    const out = [], ans = [];
+    try {
+      for (let k = 0; k < n; k++) {
+        if (sub === 'xmcolor' || sub === 'xmengcolor') {
+          const en = sub === 'xmengcolor', obj = en ? pick(Object.keys(XM_OBJ)) : 'balloon';
+          const spec = shuffle(XM_COLORS.slice(0, 6)).slice(0, prAge === 'small' ? (en ? 1 : 2) : (en ? 2 : 3)).map(c => [c[0], rand(1, prAge === 'small' ? 4 : 6)]);
+          const total = spec.reduce((a, s) => a + s[1], 0), N = total + 2;
+          const head = en ? `Color ${spec.map(([c, m]) => `${EN_NUM[m]} ${XM_EN[c]}`).join(' and ')} ${XM_OBJ[obj][1]}.` : `塗 ${specText(spec)}`;
+          out.push(`<div class="pq"><div class="pq-h"><b>${k + 1}</b><span>${head}</span></div>${en ? `<div class="pq-say">（${spec.map(([c, m]) => `${m} 個${XM_COLORS.find(x => x[0] === c)[1]}`).join('、')}的${XM_OBJ[obj][0]}）</div>` : ''}<div class="px-row">${Array(N).fill(outline(xmSVG(XM_OBJ[obj][2](BLANK)))).join('')}</div></div>`);
+          ans.push(`${k + 1}. 塗好就對`);
+        } else if (sub === 'xmshape') {
+          const shapes = Object.keys(XM_SHAPE), cols = XM_COLORS.slice(0, 5), s0 = pick(shapes), c0 = pick(cols)[0], m = rand(2, 4), items = [];
+          for (let i = 0; i < m; i++) items.push([s0, c0]);
+          while (items.length < 10) { const s = Math.random() < .4 ? s0 : pick(shapes), c = Math.random() < .4 ? c0 : pick(cols)[0]; if (!(s === s0 && c === c0)) items.push([s, c]); }
+          out.push(`<div class="pq"><div class="pq-h"><b>${k + 1}</b><span>圈出 ${m} 個${XM_COLORS.find(x => x[0] === c0)[1]}的${XM_SHAPE[s0][0]}</span></div><div class="px-row">${shuffle(items).map(([s, c]) => xmSVG(XM_SHAPE[s][1](colorOf(c)))).join('')}</div></div>`);
+          ans.push(`${k + 1}. ${m} 個`);
+        } else if (sub === 'xmpattern') {
+          const u = pick(prAge === 'small' ? ['AB', 'AAB', 'ABB'] : ['AB', 'AAB', 'ABB', 'ABC', 'AABB']), L = [...new Set(u)], cs = shuffle(XM_COLORS.slice(0, 6)).slice(0, L.length).map(c => c[0]), mp = Object.fromEntries(L.map((l, i) => [l, cs[i]])), shape = pick(['circle', 'star', 'heart']);
+          const seq = Array.from({ length: Math.max(u.length * 2 + 3, 8) }, (_, i) => mp[u[i % u.length]]), shown = seq.length - 3;
+          out.push(`<div class="pq"><div class="pq-h"><b>${k + 1}</b><span>找規律，把空白的塗上顏色</span></div><div class="px-row">${seq.map((c, i) => outline(xmSVG(XM_SHAPE[shape][1](i < shown ? colorOf(c) : BLANK)))).join('')}</div></div>`);
+          ans.push(`${k + 1}. ${seq.slice(shown).map(c => XM_COLORS.find(x => x[0] === c)[1]).join('、')}`);
+        } else if (sub === 'xmmirror') {
+          const R = prAge === 'small' ? 4 : 6, H = prAge === 'small' ? 2 : 3, C = H * 2, cells = new Set();
+          for (let r = 0; r < R; r++) for (let c = 0; c < H; c++) if (Math.random() < .42) cells.add(r * H + c);
+          let g = ''; for (let r = 0; r < R; r++) for (let c = 0; c < C; c++) g += `<span class="${c < H && cells.has(r * H + c) ? 'on' : ''}${c === H - 1 ? ' edge' : ''}"></span>`;
+          out.push(`<div class="pq big"><div class="pq-h"><b>${k + 1}</b><span>照著左邊，把右邊塗成一樣</span></div><div class="px-mirror" style="grid-template-columns:repeat(${C},1fr)">${g}</div></div>`);
+          ans.push(`${k + 1}. 左右對稱`);
+        } else if (sub === 'xmdots') {
+          const shape = pick(XM_DOTS), cnt = prAge === 'small' ? 10 : pick([15, 20]), step = prAge === 'small' ? 1 : pick([1, 1, 2, 5]), pts = resample(shape[2], step === 5 ? 10 : cnt), S = 300, sc = v => 18 + v * (S - 36) / 100;
+          out.push(`<div class="pq big"><div class="pq-h"><b>${k + 1}</b><span>${step === 1 ? `從 1 連到 ${pts.length}` : `${step} 個 ${step} 個數，從 ${step} 連到 ${step * pts.length}`}</span></div><svg viewBox="0 0 ${S} ${S}" class="px-dots">${pts.map(([x, y], i) => `<circle cx="${sc(x)}" cy="${sc(y)}" r="5"/><text x="${sc(x) + (x > 50 ? 9 : -9)}" y="${sc(y) - 7}" text-anchor="${x > 50 ? 'start' : 'end'}">${(i + 1) * step}</text>`).join('')}</svg></div>`);
+          ans.push(`${k + 1}. ${shape[0]}`);
+        } else if (sub === 'xmday') {
+          const m = prAge === 'small' ? 3 : 4, idx = shuffle(XM_DAY.map((_, i) => i)).slice(0, m).sort((a, b) => a - b), order = shuffle(idx);
+          out.push(`<div class="pq big"><div class="pq-h"><b>${k + 1}</b><span>照時間順序，在框裡寫 1、2、3${m > 3 ? '、4' : ''}</span></div><div class="px-day">${order.map(i => { const [h, mm] = XM_DAY_T[i], hh = h > 12 ? h - 12 : h; return `<div><span class="box"></span>${clockHTML(hh, mm, 'px-clock')}<small>${XM_DAY[i][0]} ${XM_DAY[i][1]}</small></div>`; }).join('')}</div></div>`);
+          ans.push(`${k + 1}. ${order.map(i => idx.indexOf(i) + 1).join('、')}`);
+        }
+      }
+    } finally { st = saved; age = sa; }
+    return { html: out.join(''), ans };
+  }
+  function buildSheet() {
+    const sub = $('prTopic').value, per = +$('prPer').value; prAge = $('prAge').value; prBW = $('prBW').checked;
+    const t = prTopics().find(x => x[0] === sub) || ['mix', '綜合練習', 'q'];
+    const sa = age; let body = '', ans = [], cls = '';
+    try {
+      age = prAge;
+      if (t[2] === 't') { body = prTraceHTML(PR_TRACE[sub]()); cls = 'trace'; ans = ['照著格子寫，字要寫在格子中間']; }
+      else if (t[2] === 'x') { const big = ['xmmirror', 'xmdots', 'xmday'].includes(sub), r = prXM(sub, big ? 6 : (per > 12 ? 10 : 8)); body = r.html; ans = r.ans; cls = big ? 'c2' : 'c1'; }
+      else { const qs = prQuiz(sub, per); body = qs.map(prQuizHTML).join(''); ans = qs.map((q, i) => `${i + 1}. ${PR_MARK[q.options.findIndex(o => o.correct)]}`); cls = per > 12 ? 'c4' : 'c3'; }
+    } finally { age = sa; }
+    const lv = YX.has(sub) ? '幼小銜接' : prAge === 'small' ? '3–4 歲' : '5–6 歲';
+    $('printSheet').className = 'psheet ' + cls + (prBW ? ' bw' : '');
+    $('printSheet').innerHTML = `<div class="ps-head"><div><b>動動腦小學堂・${t[1]}</b><small>${lv}・圈出對的答案</small></div><div class="ps-name">名字：＿＿＿＿＿　日期：＿＿＿＿　得到 ☆☆☆</div></div><div class="ps-body">${body}</div><div class="ps-ans">答案：${ans.join('　')}</div>`;
+    track('print-' + sub, '產生學習單：' + t[1]);
+  }
+  function renderPrint() {
+    const blk = $('printBlock'); if (!blk) return;
+    blk.classList.toggle('locked', !isFull());
+    if (!isFull()) return;
+    const cur = $('prTopic').value, list = prTopics();
+    $('prTopic').innerHTML = '<option value="mix">綜合練習（隨機混合）</option>' + list.map(([k, n, ty]) => `<option value="${k}"${k === cur ? ' selected' : ''}>${n}${ty === 't' ? '（寫字格）' : ''}</option>`).join('');
+  }
   function renderVoices() {
     renderSysVoices();
     const cur = isFull() ? store.get('voice', 'yuan') : 'yuan';
@@ -4516,7 +5267,7 @@ body.is-yx .promo { display: none; }
   function showLock(justEnded) { if (!justEnded) track('premium-locked', '進階主題試玩用完'); $('lockMsg').textContent = justEnded ? '試玩 3 題結束囉！想繼續玩，請爸爸媽媽到家長專區看看怎麼開啟。' : '試玩已經用完囉！請爸爸媽媽到家長專區看看怎麼開啟。'; $('lockSheet').hidden = false; }
 
   /* ---------- 家長專區 ---------- */
-  const SUBNAME = { yxzy: '幼小・注音符號', yxtone: '幼小・四聲聲調', yxspell: '幼小・注音拼讀', yxchar: '幼小・認國字', yxsimilar: '幼小・相似字', yxsent: '幼小・句子填空', yxpunct: '幼小・標點符號', yxlook: '幼小・看圖說話', yxstory: '幼小・聽故事', yxstroke: '幼小・國字筆順', yxtrace: '幼小・國字描寫', yxnum: '幼小・100 以內的數', yxcalc: '幼小・20 以內加減', yxword: '幼小・應用題', yxtime: '幼小・認識時間', yxmoney: '幼小・錢幣和買東西', yxmeasure: '幼小・長度比一比', yxstat: '幼小・統計圖表', yxcal: '幼小・星期和月份', yxschool: '幼小・校園生活', cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識' };
+  const SUBNAME = { xmcolor: '顏色數數記憶', xmshape: '形狀顏色找找看', xmplace: '聽指令擺放', xmday: '一天的時間表', xmpattern: '規律塗色', xmemo: '情緒小偵探', xmdots: '連點成圖', xmmirror: '對稱畫一半', xmshop: '幼小・購物清單記憶', xmengcolor: '幼小・英文顏色數數', yxzy: '幼小・注音符號', yxtone: '幼小・四聲聲調', yxspell: '幼小・注音拼讀', yxchar: '幼小・認國字', yxsimilar: '幼小・相似字', yxsent: '幼小・句子填空', yxpunct: '幼小・標點符號', yxlook: '幼小・看圖說話', yxstory: '幼小・聽故事', yxstroke: '幼小・國字筆順', yxtrace: '幼小・國字描寫', yxnum: '幼小・100 以內的數', yxcalc: '幼小・20 以內加減', yxword: '幼小・應用題', yxtime: '幼小・認識時間', yxmoney: '幼小・錢幣和買東西', yxmeasure: '幼小・長度比一比', yxstat: '幼小・統計圖表', yxcal: '幼小・星期和月份', yxschool: '幼小・校園生活', cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識' };
   const TIPS = {
     math: '吃點心時一起數一數有幾個。', compare: '分東西時問孩子「哪一邊比較多？」', money: '買東西時讓孩子幫忙拿硬幣付錢。',
     time: '用家裡的時鐘說「8 點要刷牙睡覺」。', cn: '看繪本時，指著簡單的字唸給孩子聽。', zhuyin: '從孩子名字的注音開始，一天認一個。',
@@ -4619,7 +5370,7 @@ body.is-yx .promo { display: none; }
     $('tips').innerHTML = tipSubs.length
       ? `<ul>${tipSubs.map(k => { const r = rows.find(x => x.sub === k); return `<li><b>${SUBNAME[k]}</b>（答對率 ${r.a}%）：${TIPS[k]}</li>`; }).join('')}<li>每天玩 1～2 回合就好，短時間、常常玩，比一次玩很久更有效。</li></ul>`
       : '<p class="empty">玩過幾回合後，這裡會依孩子的表現給練習建議。</p>';
-    drawLimit(); renderProBox(); renderWeekly(); renderVoices();
+    drawLimit(); renderProBox(); renderWeekly(); renderVoices(); renderPrint();
     if (/^https:\/\/p\.ecpay\.com\.tw\//.test(DONATE_URL)) { $('donateBtn').href = DONATE_URL; $('support').hidden = false; }
     $('resetRow').innerHTML = '<button id="resetBtn" class="link-btn">清除所有紀錄</button>';
     $('resetBtn').addEventListener('click', askReset);
@@ -4658,9 +5409,15 @@ body.is-yx .promo { display: none; }
   $('soundBtn').addEventListener('click', () => setSound(!soundOn));
   document.querySelectorAll('.subject').forEach(b => b.addEventListener('click', () => startRound(b.dataset.sub)));
   $('speakBtn').addEventListener('click', () => { if (!st || !st.q) return; if (st.sub === 'memory' || st.locked || !st.q.options) say(st.q.speech); else readQuestion(st.q); });
-  const backTo = () => (st && st.sub && st.sub.startsWith('yx') ? 'zone' : 'home');
+  const backTo = () => (st && st.sub && YX.has(st.sub) ? 'zone' : 'home');
   try { $('noStat').checked = localStorage.getItem('ddn-nostat') === '1'; } catch (e) {}
   $('noStat').addEventListener('change', e => { try { if (e.target.checked) localStorage.setItem('ddn-nostat', '1'); else localStorage.removeItem('ddn-nostat'); } catch (err) {} });
+  const pvFit = () => { $('printSheet').style.zoom = Math.min(1, (innerWidth - 28) / 734).toFixed(3); };
+  $('prMake').addEventListener('click', () => { buildSheet(); pvFit(); $('printView').hidden = false; document.body.classList.add('printing'); });
+  $('pvAgain').addEventListener('click', buildSheet);
+  $('pvClose').addEventListener('click', () => { $('printView').hidden = true; document.body.classList.remove('printing'); });
+  $('pvPrint').addEventListener('click', () => { track('print-go', '列印學習單'); const imgs = [...$('printSheet').querySelectorAll('img')]; Promise.all(imgs.map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; setTimeout(r, 2500); }))).then(() => window.print()); });
+  $('prAge').addEventListener('change', renderPrint);
   $('sysVoice').addEventListener('change', e => { store.set('sysVoice', e.target.value); track('sysvoice', '選擇裝置語音'); const was = soundOn; soundOn = true; say([['你好，我是圓圓，我們一起動動腦！']]).then(() => { soundOn = was; }); });
   $('backBtn').addEventListener('click', () => { try { speechSynthesis.cancel(); } catch (e) {} refreshGot(); show(backTo()); });
   $('homeBtn').addEventListener('click', () => show(backTo()));
@@ -4727,6 +5484,42 @@ body.is-yx .promo { display: none; }
   $('installSheet').addEventListener('click', e => { if (e.target === $('installSheet')) $('installSheet').hidden = true; });
 
   $('totalStars').textContent = total;
+
+  /* ---------- 3D 立體圖案 ---------- */
+  // 圖片：Microsoft Fluent Emoji 3D（MIT 授權），由 @lobehub/fluent-emoji-3d 套件透過 jsDelivr 提供
+  const FE_BASE = 'https://cdn.jsdelivr.net/npm/@lobehub/fluent-emoji-3d@1.1.0/assets/';
+  const FE_RE = /(\p{Extended_Pictographic}️?\p{Emoji_Modifier}?(?:‍\p{Extended_Pictographic}️?\p{Emoji_Modifier}?)*|[0-9#*]️?⃣)/gu;
+  function feImg(e) {
+    const cps = [...e].map(c => c.codePointAt(0).toString(16));
+    const img = document.createElement('img');
+    img.className = 'fe'; img.alt = e; img.draggable = false; img.decoding = 'async'; img.crossOrigin = 'anonymous';
+    img.src = FE_BASE + cps.join('-') + '.webp';
+    img.onerror = function () {
+      if (!this.dataset.t) { this.dataset.t = '1'; const alt = cps.filter(h => h !== 'fe0f').join('-'); if (alt !== cps.join('-')) { this.src = FE_BASE + alt + '.webp'; return; } }
+      const sp = document.createElement('span'); sp.className = 'no-fe'; sp.textContent = this.alt; this.replaceWith(sp);
+    };
+    return img;
+  }
+  function emojify(root) {
+    if (!root) return;
+    if (root.nodeType === 3) {
+      const t = root.nodeValue; FE_RE.lastIndex = 0; if (!t || !FE_RE.test(t)) return;
+      const p = root.parentNode; if (!p || p.closest && p.closest('svg, textarea, input, option, select, .no-fe')) return;
+      FE_RE.lastIndex = 0; const f = document.createDocumentFragment(); let last = 0, m;
+      while ((m = FE_RE.exec(t))) { if (m.index > last) f.appendChild(document.createTextNode(t.slice(last, m.index))); f.appendChild(feImg(m[0])); last = m.index + m[0].length; }
+      if (last < t.length) f.appendChild(document.createTextNode(t.slice(last)));
+      root.replaceWith(f); return;
+    }
+    if (root.nodeType !== 1 || root.namespaceURI === 'http://www.w3.org/2000/svg' || /^(SCRIPT|STYLE|TEXTAREA|INPUT|SELECT|OPTION|TITLE)$/.test(root.nodeName) || root.classList.contains('no-fe')) return;
+    [...root.childNodes].forEach(emojify);
+  }
+  let feOn = true;
+  try { feOn = localStorage.getItem('ddn-fe') !== '0'; } catch (e) {}
+  if (feOn) {
+    document.body.classList.add('fe-on');
+    emojify(document.body);
+    new MutationObserver(list => { for (const m of list) m.addedNodes.forEach(n => emojify(n)); }).observe(document.body, { childList: true, subtree: true });
+  }
   refreshGot(); setAge(age); setSound(soundOn); drawPro();
 })();
 </script>
