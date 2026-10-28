@@ -12,7 +12,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="動動腦">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<script data-goatcounter="https://denis1234555.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>(function(){try{var h=location.hash;if(h==='#dev'){localStorage.setItem('ddn-nostat','1');}else if(h==='#dev-off'){localStorage.removeItem('ddn-nostat');}if(localStorage.getItem('ddn-nostat')==='1')return;}catch(e){}var g=document.createElement('script');g.async=true;g.src='https://gc.zgo.at/count.js';g.setAttribute('data-goatcounter','https://denis1234555.goatcounter.com/count');document.head.appendChild(g);})();</script>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>動動腦小學堂</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -538,6 +538,8 @@ body.is-full .promo { display: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+.nostat { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 10px 0 4px; font-size: .85rem; color: var(--muted); font-weight: 700; }
+.nostat input { width: 18px; height: 18px; }
 .sys-voice { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
 .sys-voice label { font-weight: 900; }
 .sys-voice select { font: inherit; font-weight: 700; padding: 10px 12px; border-radius: 14px; border: 2px solid var(--line-deep); background: #fff; color: var(--ink); max-width: 100%; }
@@ -1269,6 +1271,7 @@ body.is-yx .promo { display: none; }
     <div class="confirm" id="resetRow">
       <button id="resetBtn" class="link-btn">清除所有紀錄</button>
     </div>
+    <label class="nostat"><input type="checkbox" id="noStat"> 這台裝置不列入使用人數統計（作者測試用）</label>
     <p class="note" style="text-align:center">紀錄只存在這台裝置的瀏覽器裡，換手機或清除瀏覽器資料就會不見。</p>
   </section>
 
@@ -1337,6 +1340,7 @@ body.is-yx .promo { display: none; }
   const delay = ms => new Promise(r => setTimeout(r, ms));
   // 使用統計（GoatCounter，不用 cookie、不記錄個人身分）；沒有載入統計時什麼都不做
   function track(path, title) {
+    try { if (localStorage.getItem('ddn-nostat') === '1') return; } catch (e) {}
     try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, title: title || path, event: true }); } catch (e) {}
   }
 
@@ -4655,6 +4659,8 @@ body.is-yx .promo { display: none; }
   document.querySelectorAll('.subject').forEach(b => b.addEventListener('click', () => startRound(b.dataset.sub)));
   $('speakBtn').addEventListener('click', () => { if (!st || !st.q) return; if (st.sub === 'memory' || st.locked || !st.q.options) say(st.q.speech); else readQuestion(st.q); });
   const backTo = () => (st && st.sub && st.sub.startsWith('yx') ? 'zone' : 'home');
+  try { $('noStat').checked = localStorage.getItem('ddn-nostat') === '1'; } catch (e) {}
+  $('noStat').addEventListener('change', e => { try { if (e.target.checked) localStorage.setItem('ddn-nostat', '1'); else localStorage.removeItem('ddn-nostat'); } catch (err) {} });
   $('sysVoice').addEventListener('change', e => { store.set('sysVoice', e.target.value); track('sysvoice', '選擇裝置語音'); const was = soundOn; soundOn = true; say([['你好，我是圓圓，我們一起動動腦！']]).then(() => { soundOn = was; }); });
   $('backBtn').addEventListener('click', () => { try { speechSynthesis.cancel(); } catch (e) {} refreshGot(); show(backTo()); });
   $('homeBtn').addEventListener('click', () => show(backTo()));
