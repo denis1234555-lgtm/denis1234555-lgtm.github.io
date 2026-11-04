@@ -833,6 +833,155 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .lc-en u { text-decoration-color: #E5484D; text-decoration-thickness: 3px; text-underline-offset: 3px; }
 .o-pic.scn-o { line-height: 0; }
 .ez-card .pic.scn-pic .scn { width: min(100%, 400px); }
+/* ---------- 🎡 星星樂園 ---------- */
+.yx-enter.park-enter { background: radial-gradient(120% 140% at 0% 0%, #FF9EC4 0%, #F06FAA 50%, #C94C8A 100%); box-shadow: 0 8px 0 #9C2F66; }
+.yx-enter.park-enter:active { box-shadow: 0 3px 0 #9C2F66; }
+.park-enter .yx-go { color: #C94C8A; }
+.park-enter .yx-pill { background: #FFE15C; color: #6B3A00; }
+.pk { position: fixed; inset: 0; z-index: 60; overflow: hidden; font-family: inherit; color: #2B2633; -webkit-user-select: none; user-select: none; touch-action: manipulation; }
+.pk[hidden] { display: none; }
+.fe-on .pk img.fe { width: 1em; height: 1em; vertical-align: middle; pointer-events: none; }
+.pk-ttl { font-weight: 900; color: #fff; -webkit-text-stroke: 2px #2B2633; paint-order: stroke fill; text-shadow: 0 4px 0 #2B2633; letter-spacing: .02em; }
+.pk-pill { display: inline-flex; align-items: center; gap: 6px; background: #fff; border-radius: 99px; padding: 6px 14px; font-weight: 900; font-size: 1.05rem; color: #2B2633; box-shadow: 0 4px 0 rgba(43, 38, 51, .25); border: 0; font-family: inherit; }
+.pk-hud { position: absolute; top: max(14px, env(safe-area-inset-top)); left: 14px; right: 14px; display: flex; justify-content: space-between; align-items: center; z-index: 8; gap: 8px; }
+.pk-back { width: 46px; height: 46px; border-radius: 50%; background: #fff; border: 0; display: grid; place-items: center; box-shadow: 0 4px 0 rgba(43, 38, 51, .25); flex: none; }
+.pk-back svg { width: 22px; height: 22px; }
+/* 入口 */
+.pk-hub { background: linear-gradient(#6EC6FF 0%, #A9E1FF 40%, #DFF5FF 62%); overflow-y: auto; }
+.pk-hub-in { position: relative; min-height: 100%; max-width: 520px; margin: 0 auto; padding: 0 16px 40px; }
+.pk-sky { position: absolute; left: 0; right: 0; top: 0; height: 360px; pointer-events: none; }
+.pk-grass { position: absolute; left: -40px; right: -40px; top: 300px; bottom: 0; background: #9BDB7E; border-radius: 50% 50% 0 0 / 50px 50px 0 0; }
+.pk-head { position: relative; padding-top: 84px; z-index: 2; }
+.pk-head .pk-ttl { font-size: clamp(2.4rem, 11vw, 3rem); line-height: 1.1; }
+.pk-sub { margin-top: 8px; font-weight: 900; color: #1C4E7A; font-size: 1rem; background: rgba(255, 255, 255, .75); display: inline-block; padding: 5px 12px; border-radius: 12px; }
+.pk-wheel { position: absolute; right: -6px; top: 70px; width: 190px; height: 230px; z-index: 1; }
+.pk-wheel .rot { transform-origin: 95px 95px; animation: pkSpin 30s linear infinite; }
+@keyframes pkSpin { to { transform: rotate(360deg); } }
+.pk-cards { position: relative; z-index: 3; margin-top: 120px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pk-card { background: #fff; border-radius: 22px; overflow: hidden; box-shadow: 0 6px 0 rgba(43, 38, 51, .22); position: relative; border: 0; padding: 0 0 12px; font-family: inherit; color: inherit; text-align: center; transition: transform .1s; }
+.pk-card:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(43, 38, 51, .22); }
+.pk-awn { height: 22px; background: repeating-linear-gradient(90deg, var(--a) 0 22px, #fff 22px 44px); position: relative; }
+.pk-awn::after { content: ''; position: absolute; left: 0; right: 0; bottom: -9px; height: 10px; background: radial-gradient(circle at 11px 0, var(--a) 10px, transparent 11px) 0 0 / 44px 10px repeat-x; }
+.pk-art { height: 96px; display: grid; place-items: center; font-size: 54px; margin: 8px auto 2px; width: 96px; border-radius: 50%; background: var(--s); }
+.pk-card b { display: block; font-size: 1.1rem; font-weight: 900; }
+.pk-price { margin: 6px auto 0; width: max-content; background: #FFF3C4; border: 2px solid #F2C94C; border-radius: 99px; padding: 1px 12px; font-weight: 900; font-size: .9rem; color: #8A6400; }
+.pk-card.wide { grid-column: span 2; display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: linear-gradient(110deg, #FFE3F0, #FFF6D8); text-align: left; }
+.pk-card.wide .pk-art { margin: 0; width: 70px; height: 70px; font-size: 44px; background: #fff; }
+.pk-card.wide small { display: block; color: #7A6A55; font-weight: 700; }
+.pk-card.wide .pk-price { margin: 0 0 0 auto; }
+.pk-card.off { filter: grayscale(.6); opacity: .7; }
+.pk-note { position: relative; z-index: 3; margin-top: 16px; background: rgba(255, 255, 255, .85); border-radius: 18px; padding: 12px 14px; font-weight: 700; color: #3F5B2F; font-size: .95rem; line-height: 1.6; }
+.pk-lock { position: absolute; inset: 0; z-index: 20; background: rgba(30, 50, 80, .45); display: grid; place-items: center; padding: 20px; }
+.pk-lock-card { background: #fff; border-radius: 28px; padding: 24px 20px; text-align: center; max-width: 340px; box-shadow: 0 10px 0 rgba(0, 0, 0, .15); }
+.pk-lock-card .big { font-size: 64px; }
+.pk-lock-card h3 { font-size: 1.4rem; font-weight: 900; margin: 6px 0; }
+.pk-lock-card p { color: #5B6B7C; font-weight: 700; line-height: 1.6; margin-bottom: 14px; }
+/* 確認視窗 */
+.pk-ask { position: absolute; inset: 0; z-index: 30; background: rgba(30, 50, 80, .45); display: grid; place-items: center; padding: 20px; }
+.pk-ask[hidden] { display: none; }
+.pk-ask-card { background: #fff; border-radius: 28px; padding: 22px 20px 18px; text-align: center; width: min(340px, 100%); box-shadow: 0 10px 0 rgba(0, 0, 0, .15); animation: pkPop .25s ease; }
+.pk-ask-card .big { font-size: 70px; line-height: 1; }
+.pk-ask-card h3 { font-size: 1.5rem; font-weight: 900; margin: 8px 0 4px; }
+.pk-ask-card p { color: #5B6B7C; font-weight: 700; margin-bottom: 16px; line-height: 1.6; }
+.pk-row { display: flex; gap: 10px; justify-content: center; }
+.pk-btn { border: 0; border-radius: 99px; padding: 12px 22px; font-weight: 900; font-size: 1.1rem; font-family: inherit; background: #3FA35B; color: #fff; box-shadow: 0 5px 0 #2A7A42; }
+.pk-btn.gray { background: #EEF2F6; color: #5B6B7C; box-shadow: 0 5px 0 #C9D2DC; }
+.pk-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #2A7A42; }
+@keyframes pkPop { from { transform: scale(.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+/* 遊戲共用 */
+.pk-play { touch-action: none; }
+.pk-field { position: absolute; inset: 0; overflow: hidden; }
+.pk-timer { width: 62px; height: 62px; border-radius: 50%; background: conic-gradient(#FFC93C calc(var(--p) * 1%), rgba(255, 255, 255, .4) 0); display: grid; place-items: center; box-shadow: 0 4px 0 rgba(43, 38, 51, .2); }
+.pk-timer span { width: 48px; height: 48px; border-radius: 50%; background: #fff; display: grid; place-items: center; font-weight: 900; font-size: .95rem; font-variant-numeric: tabular-nums; }
+.pk-tip { position: absolute; bottom: max(28px, env(safe-area-inset-bottom)); left: 0; right: 0; text-align: center; z-index: 6; pointer-events: none; }
+.pk-float { position: absolute; font-weight: 900; color: #FFE07A; -webkit-text-stroke: 2px #2B2633; paint-order: stroke fill; font-size: 30px; pointer-events: none; animation: pkUp .8s ease-out forwards; z-index: 7; }
+@keyframes pkUp { to { transform: translateY(-60px); opacity: 0; } }
+.pk-burst { position: absolute; width: 110px; height: 110px; margin: -55px 0 0 -55px; pointer-events: none; animation: pkBurst .45s ease-out forwards; z-index: 6; }
+@keyframes pkBurst { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.3); opacity: 0; } }
+.pk-combo { position: absolute; left: 0; right: 0; top: 38%; text-align: center; font-size: 2rem; pointer-events: none; z-index: 7; animation: pkCombo .9s ease-out forwards; }
+@keyframes pkCombo { 0% { transform: scale(.5) rotate(-6deg); opacity: 0; } 25% { transform: scale(1.15) rotate(-6deg); opacity: 1; } 100% { transform: scale(1) rotate(-6deg) translateY(-30px); opacity: 0; } }
+.pk-count { position: absolute; inset: 0; z-index: 9; display: grid; place-items: center; background: rgba(0, 0, 0, .12); pointer-events: none; }
+.pk-count b { font-size: 6rem; animation: pkPop .5s ease; }
+/* 結束 */
+.pk-end { position: absolute; inset: 0; z-index: 25; display: grid; place-items: center; background: rgba(30, 50, 80, .5); padding: 20px; }
+.pk-end-card { background: #fff; border-radius: 30px; padding: 26px 20px 20px; text-align: center; width: min(340px, 100%); animation: pkPop .3s ease; box-shadow: 0 10px 0 rgba(0, 0, 0, .15); }
+.pk-end-card .big { font-size: 80px; line-height: 1; }
+.pk-end-card .score { font-size: 2.1rem; font-weight: 900; color: #F06FAA; line-height: 1.2; }
+.pk-end-card p { color: #5B6B7C; font-weight: 700; margin: 6px 0 16px; }
+/* 泡泡 */
+.pk-sea { background: linear-gradient(#2FB6E9 0%, #1777C9 60%, #0F4E99 100%); }
+.pk-ray { position: absolute; top: -40px; width: 80px; height: 75%; background: linear-gradient(rgba(255, 255, 255, .22), rgba(255, 255, 255, 0)); transform-origin: top; filter: blur(2px); animation: pkRay 6s ease-in-out infinite alternate; }
+@keyframes pkRay { to { opacity: .4; } }
+.pk-bub { position: absolute; border-radius: 50%; background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, .95) 0 9%, rgba(255, 255, 255, .25) 10%, rgba(190, 240, 255, .18) 60%, rgba(255, 255, 255, .55) 100%); box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .7), 0 8px 18px rgba(0, 30, 80, .25); display: grid; place-items: center; will-change: transform; }
+.pk-bub.popped { animation: pkBubPop .25s ease-out forwards; }
+@keyframes pkBubPop { to { transform: scale(1.5); opacity: 0; } }
+/* 接水果 */
+.pk-orch { background: linear-gradient(#FFB27A 0%, #FFD69A 40%, #FFF0C8 65%); }
+.pk-fall { position: absolute; font-size: 48px; line-height: 1; filter: drop-shadow(0 6px 4px rgba(0, 0, 0, .18)); will-change: transform; }
+.pk-fall.bomb { filter: drop-shadow(0 0 12px rgba(255, 60, 60, .9)); }
+.pk-basket { position: absolute; bottom: 120px; width: 130px; margin-left: -65px; text-align: center; will-change: transform; z-index: 4; }
+.pk-basket .bun { font-size: 54px; line-height: 1; margin-bottom: -14px; display: block; }
+.pk-basket.dizzy { animation: pkShake .4s ease 2; }
+@keyframes pkShake { 25% { transform: translateX(-8px) rotate(-6deg); } 75% { transform: translateX(8px) rotate(6deg); } }
+.pk-arrows { position: absolute; bottom: max(26px, env(safe-area-inset-bottom)); left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 6; }
+.pk-arrows button { width: 70px; height: 56px; border-radius: 99px; border: 0; background: #fff; font-size: 1.6rem; box-shadow: 0 5px 0 rgba(43, 38, 51, .25); }
+/* 打地鼠 */
+.pk-mead { background: linear-gradient(#8FD6FF 0%, #C9EEFF 24%, #9EDC7A 24.2%, #7CC65C 100%); }
+.pk-holes { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); width: min(370px, 94vw); display: grid; grid-template-columns: repeat(3, 1fr); row-gap: 34px; }
+.pk-cell { position: relative; height: 120px; }
+.pk-hole { position: absolute; left: 6%; right: 6%; bottom: 0; height: 46px; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, #3B2A1E 0 55%, #6B4A30 56% 100%); box-shadow: 0 6px 0 #5A9F44; }
+.pk-mask { position: absolute; left: 0; right: 0; bottom: 22px; height: 110px; overflow: hidden; }
+.pk-mole { position: absolute; left: 0; right: 0; bottom: -80px; text-align: center; font-size: 62px; line-height: 1; transition: bottom .18s ease-out; }
+.pk-mole.up { bottom: 0; }
+.pk-mole.hit { transform: scale(.9) rotate(8deg); filter: brightness(1.1); }
+.pk-sign { position: absolute; left: 50%; top: -4px; transform: translate(-50%, 10px) scale(.6); opacity: 0; background: #FFF8E1; border: 3px solid #8B5A2B; border-radius: 10px; padding: 1px 8px; white-space: nowrap; line-height: 1.25; transition: .18s ease-out; pointer-events: none; z-index: 3; box-shadow: 0 3px 0 rgba(0,0,0,.15); }
+.pk-sign.up { opacity: 1; transform: translate(-50%, 0) scale(1); }
+.pk-lip { position: absolute; left: 6%; right: 6%; bottom: 0; height: 24px; border-radius: 0 0 50% 50% / 0 0 100% 100%; background: #7CC65C; }
+.pk-hammer { position: absolute; font-size: 56px; pointer-events: none; z-index: 7; transform-origin: 80% 80%; animation: pkHam .25s ease-out forwards; }
+@keyframes pkHam { from { transform: rotate(-60deg); } to { transform: rotate(-10deg); opacity: .2; } }
+/* 貼紙樂園 */
+.pk-stk { background: #EAF7FF; }
+.pk-canvas { position: absolute; left: 0; right: 0; top: 0; bottom: 250px; overflow: hidden; }
+.pk-canvas > svg.bg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pk-sticker { position: absolute; font-size: 54px; line-height: 1; touch-action: none; filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .12)); cursor: grab; }
+.pk-sticker.sel { outline: 3px dashed #3F6FD8; outline-offset: 6px; border-radius: 12px; }
+.pk-tools { position: absolute; z-index: 9; display: flex; gap: 6px; }
+.pk-tools button { border: 0; background: #fff; border-radius: 99px; padding: 5px 11px; font-weight: 900; box-shadow: 0 3px 0 rgba(43, 38, 51, .25); font-size: .95rem; }
+.pk-tray { position: absolute; left: 0; right: 0; bottom: 0; height: 250px; background: #fff; border-radius: 30px 30px 0 0; box-shadow: 0 -6px 20px rgba(0, 0, 0, .12); padding: 14px 14px max(12px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 10px; z-index: 8; }
+.pk-tabs { display: flex; gap: 8px; overflow-x: auto; flex: none; scrollbar-width: none; }
+.pk-tab { padding: 6px 14px; border-radius: 99px; background: #F1F4F8; font-weight: 900; font-size: .9rem; color: #5B6B7C; border: 0; white-space: nowrap; font-family: inherit; }
+.pk-tab.on { background: #3F6FD8; color: #fff; }
+.pk-sgrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px 8px; overflow-y: auto; padding: 2px 2px 10px; }
+.pk-s { height: 60px; border-radius: 16px; background: #F7F9FC; display: grid; place-items: center; font-size: 34px; position: relative; border: 0; }
+.pk-s i { position: absolute; bottom: -6px; font-style: normal; font-size: .7rem; font-weight: 900; background: #FFF3C4; border: 1.5px solid #F2C94C; border-radius: 99px; padding: 0 6px; color: #8A6400; line-height: 1.4; }
+.pk-s.own { background: #EAF7EC; }
+.pk-sfoot { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex: none; }
+.pk-sfoot select { border: 0; background: #F1F4F8; border-radius: 99px; padding: 7px 12px; font-weight: 900; font-family: inherit; color: #34424F; }
+@media (min-width: 700px) { .pk-hub-in { padding-top: 10px; } }
+.pk-rank { background: linear-gradient(#FFD36E 0%, #FFE9A8 30%, #FFF7E0 60%); overflow-y: auto; }
+.rk-in { max-width: 520px; margin: 0 auto; padding: 80px 16px 40px; }
+.rk-head { text-align: center; }
+.rk-cup { font-size: 72px; line-height: 1; animation: pkPop .5s ease; }
+.rk-tabs { display: flex; justify-content: center; gap: 8px; margin: 16px 0 10px; }
+.rk-me { background: #fff; border-radius: 18px; padding: 10px 14px; text-align: center; font-weight: 900; color: #C94C8A; box-shadow: 0 4px 0 rgba(0,0,0,.08); margin-bottom: 12px; }
+.rk-me b { font-size: 1.3em; }
+.rk-list { display: flex; flex-direction: column; gap: 8px; }
+.rk-row { display: grid; grid-template-columns: 44px 44px 1fr auto; align-items: center; gap: 6px; background: #fff; border-radius: 18px; padding: 8px 14px; box-shadow: 0 4px 0 rgba(0,0,0,.08); font-weight: 900; }
+.rk-row.me { background: #FFE3F0; box-shadow: 0 0 0 3px #F06FAA, 0 4px 0 rgba(0,0,0,.08); }
+.rk-no { font-size: 1.3rem; text-align: center; color: #8A6400; }
+.rk-ava { font-size: 32px; text-align: center; }
+.rk-nick small { color: #C94C8A; font-size: .8em; }
+.rk-s { color: #8A6400; }
+.rk-msg { background: #fff; border-radius: 18px; padding: 18px; text-align: center; font-weight: 800; color: #5B6B7C; line-height: 1.6; }
+.rk-foot { text-align: center; color: #8A7A5A; font-size: .85rem; margin-top: 14px; font-weight: 700; }
+.rk-check { display: flex; gap: 8px; align-items: flex-start; font-weight: 800; line-height: 1.5; }
+.rk-check input { width: 22px; height: 22px; flex: none; margin-top: 2px; }
+.rk-form { margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
+.rk-line { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.rk-line input { flex: 1; min-width: 140px; border: 2px solid var(--line-deep); border-radius: 14px; padding: 9px 12px; font: inherit; font-weight: 800; }
+.rk-avas { display: flex; flex-wrap: wrap; gap: 6px; }
+.rk-av { width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--bg); font-size: 26px; box-shadow: 0 3px 0 var(--line-deep); }
+.rk-av.on { box-shadow: 0 0 0 3px #F06FAA; background: #FFE3F0; }
 /* ---------- 跨能力挑戰 ---------- */
 #game[data-sub="xmcolor"], #done[data-sub="xmcolor"], #game[data-sub="xmpattern"], #done[data-sub="xmpattern"] { --c: var(--color); --c-soft: var(--color-soft); --c-deep: var(--color-deep); }
 #game[data-sub="xmshape"], #done[data-sub="xmshape"], #game[data-sub="xmmirror"], #done[data-sub="xmmirror"] { --c: var(--geo); --c-soft: var(--geo-soft); --c-deep: var(--geo-deep); }
@@ -1087,6 +1236,10 @@ body.is-yx.is-print .promo { display: none; }
     <button class="yx-enter ez-enter" id="ezEnter" aria-label="進入英語小學堂">
       <span class="yx-enter-text"><span class="yx-pill">🌍 英文從聽開始</span><b>英語小學堂</b><span>22 類單字卡＋19 個主題，全英文朗讀</span><span class="yx-go">進去看看 →</span></span>
       <svg class="yx-enter-art" viewBox="0 0 200 160" aria-hidden="true"><use href="#ez-globe"/></svg>
+    </button>
+    <button class="yx-enter park-enter" id="parkEnter" aria-label="進入星星樂園">
+      <span class="yx-enter-text"><span class="yx-pill">🎡 用星星換遊戲</span><b>星星樂園</b><span>泡泡、接水果、打地鼠、貼紙樂園</span><span class="yx-go">進去玩 →</span></span>
+      <span class="yx-enter-art" aria-hidden="true" style="font-size:72px;line-height:1;display:grid;place-items:center">🎡</span>
     </button>
 
 
@@ -1764,6 +1917,7 @@ body.is-yx.is-print .promo { display: none; }
       </div>
     </div>
   </section>
+  <section id="park" class="screen" hidden><div class="pk pk-hub" id="pkHub" hidden></div><div class="pk" id="pkPlay" hidden></div></section>
   <section id="game" class="screen" hidden>
     <div class="game-top">
       <button id="backBtn" class="chunky back" aria-label="回首頁">
@@ -1865,6 +2019,22 @@ body.is-yx.is-print .promo { display: none; }
         <button class="limit-btn" data-min="30" role="radio">30 分鐘</button>
       </div>
       <p class="note" id="limitToday"></p>
+    </div>
+    <div class="block">
+      <h3>🎡 星星樂園</h3>
+      <p class="note">孩子可以用學習拿到的星星換遊戲（每次 10 顆星、玩 3 分鐘）。闖關模式和貼紙不限次數。遊戲時間也會算進上面的每日時間。</p>
+      <div class="limit-row" role="radiogroup" aria-label="星星樂園每天可以換幾次">
+        <button class="limit-btn pk-max-btn" data-n="0" role="radio">關閉</button>
+        <button class="limit-btn pk-max-btn" data-n="1" role="radio">每天 1 次</button>
+        <button class="limit-btn pk-max-btn" data-n="2" role="radio">2 次</button>
+        <button class="limit-btn pk-max-btn" data-n="3" role="radio">3 次</button>
+        <button class="limit-btn pk-max-btn" data-n="5" role="radio">5 次</button>
+      </div>
+    </div>
+    <div class="block" id="rankBlock">
+      <h3>🏆 星星排行榜</h3>
+      <p class="note">所有付費方案的小朋友一起比星星（本週、全部）。只會上傳暱稱、頭像和星星數，不會上傳姓名或照片；隨時可以取消勾選退出。</p>
+      <div id="rankSet"></div>
     </div>
     <div class="block" id="voiceBlock">
       <h3>朗讀聲音 <small class="note">⭐ 完整版</small></h3>
@@ -4745,10 +4915,10 @@ body.is-yx.is-print .promo { display: none; }
     if (m) { void mascot.getBoundingClientRect(); mascot.classList.add(m); }
   }
 
-  function show(id) { ['home', 'zone', 'ezone', 'ezlearn', 'learn', 'game', 'done', 'gate', 'report', 'rest'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); }
+  function show(id) { if (id !== 'park') { const a = $('pkHub'), b = $('pkPlay'); if (a) a.hidden = true; if (b) b.hidden = true; } ['home', 'zone', 'ezone', 'ezlearn', 'learn', 'game', 'done', 'gate', 'report', 'rest', 'park'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); }
 
   function addStar() {
-    const pt = playToday(); pt.stars++; store.set('playToday', pt);
+    const pt = playToday(); pt.stars++; store.set('playToday', pt); wkAdd(1);
     st.stars++; total++; subStars[st.sub] = (subStars[st.sub] || 0) + 1;
     store.set('stars', total); store.set('subStars', subStars);
     $('totalStars').textContent = total;
@@ -6397,7 +6567,7 @@ body.is-yx.is-print .promo { display: none; }
     const s = st.stars, n = st.total, ratio = s / n;
     const hist = store.get('history', []);
     hist.push({ sub: st.sub, age, s, n: st.sub === 'memory' ? Math.max(st.mem.tries, s) : n, t: Date.now() });
-    store.set('history', hist.slice(-400));
+    store.set('history', hist.slice(-400)); rankMaybe();
     $('doneScore').textContent = `${s} / ${n}`;
     $('doneStars').innerHTML = Array.from({ length: n }, (_, k) =>
       `<svg class="${k < s ? 'on' : ''}" style="animation-delay:${k * .08}s" fill="${k < s ? 'var(--sun)' : 'var(--line)'}"><use href="#star"/></svg>`).join('');
@@ -6691,7 +6861,7 @@ body.is-yx.is-print .promo { display: none; }
   function showLock(justEnded) { if (!justEnded) track('premium-locked', '進階主題試玩用完'); $('lockMsg').textContent = justEnded ? '試玩 3 題結束囉！想繼續玩，請爸爸媽媽到家長專區看看怎麼開啟。' : '試玩已經用完囉！請爸爸媽媽到家長專區看看怎麼開啟。'; $('lockSheet').hidden = false; }
 
   /* ---------- 家長專區 ---------- */
-  const SUBNAME = { ezanimal: '英語・動物 Animals', ezfood: '英語・水果和食物 Food', ezcolor: '英語・顏色和形狀 Colors', eznum: '英語・數字 1–10 Numbers', ezbody: '英語・身體和衣服 Body', ezhello: '英語・打招呼和禮貌 Hello', ezcase: '英語・大寫小寫 Aa Bb', ezfirst: '英語・首音 First Sound', eznum2: '英語・數字 11–20', ezpeople: '英語・家人和職業 People', ezaction: '英語・動作和心情 Actions', ezsimon: '英語・聽指令 Simon Says', ezcvc: '英語・自然發音拼讀 Phonics', ezvowel: '英語・短母音 a e i o u', ezsight: '英語・常見字 Sight Words', ezsent: '英語・看圖選句子', ezqa: '英語・英文問答 Q&A', ezweek: '英語・星期月份天氣', ezstory: '英語・英文小故事 Story', xmcolor: '顏色數數記憶', xmshape: '形狀顏色找找看', xmplace: '聽指令擺放', xmday: '一天的時間表', xmpattern: '規律塗色', xmemo: '情緒小偵探', xmdots: '連點成圖', xmmirror: '對稱畫一半', xmshop: '幼小・購物清單記憶', xmengcolor: '幼小・英文顏色數數', yxzy: '幼小・注音符號', yxtone: '幼小・四聲聲調', yxspell: '幼小・注音拼讀', yxchar: '幼小・認國字', yxsimilar: '幼小・相似字', yxsent: '幼小・句子填空', yxpunct: '幼小・標點符號', yxlook: '幼小・看圖說話', yxstory: '幼小・聽故事', yxstroke: '幼小・國字筆順', yxtrace: '幼小・國字描寫', yxnum: '幼小・100 以內的數', yxcalc: '幼小・20 以內加減', yxword: '幼小・應用題', yxtime: '幼小・認識時間', yxmoney: '幼小・錢幣和買東西', yxmeasure: '幼小・長度比一比', yxstat: '幼小・統計圖表', yxcal: '幼小・星期和月份', yxschool: '幼小・校園生活', cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識' };
+  const SUBNAME = { pkmath: '星星樂園・數學闖關', pkcolor: '星星樂園・顏色分類', pkzy: '星星樂園・注音國字', pken: '星星樂園・英文', pklife: '星星樂園・生活和禮貌', pkemo: '星星樂園・情緒', pkpos: '星星樂園・方位', ezanimal: '英語・動物 Animals', ezfood: '英語・水果和食物 Food', ezcolor: '英語・顏色和形狀 Colors', eznum: '英語・數字 1–10 Numbers', ezbody: '英語・身體和衣服 Body', ezhello: '英語・打招呼和禮貌 Hello', ezcase: '英語・大寫小寫 Aa Bb', ezfirst: '英語・首音 First Sound', eznum2: '英語・數字 11–20', ezpeople: '英語・家人和職業 People', ezaction: '英語・動作和心情 Actions', ezsimon: '英語・聽指令 Simon Says', ezcvc: '英語・自然發音拼讀 Phonics', ezvowel: '英語・短母音 a e i o u', ezsight: '英語・常見字 Sight Words', ezsent: '英語・看圖選句子', ezqa: '英語・英文問答 Q&A', ezweek: '英語・星期月份天氣', ezstory: '英語・英文小故事 Story', xmcolor: '顏色數數記憶', xmshape: '形狀顏色找找看', xmplace: '聽指令擺放', xmday: '一天的時間表', xmpattern: '規律塗色', xmemo: '情緒小偵探', xmdots: '連點成圖', xmmirror: '對稱畫一半', xmshop: '幼小・購物清單記憶', xmengcolor: '幼小・英文顏色數數', yxzy: '幼小・注音符號', yxtone: '幼小・四聲聲調', yxspell: '幼小・注音拼讀', yxchar: '幼小・認國字', yxsimilar: '幼小・相似字', yxsent: '幼小・句子填空', yxpunct: '幼小・標點符號', yxlook: '幼小・看圖說話', yxstory: '幼小・聽故事', yxstroke: '幼小・國字筆順', yxtrace: '幼小・國字描寫', yxnum: '幼小・100 以內的數', yxcalc: '幼小・20 以內加減', yxword: '幼小・應用題', yxtime: '幼小・認識時間', yxmoney: '幼小・錢幣和買東西', yxmeasure: '幼小・長度比一比', yxstat: '幼小・統計圖表', yxcal: '幼小・星期和月份', yxschool: '幼小・校園生活', cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識' };
   EZL.forEach(c => { SUBNAME['ezl_' + c.id] = '英語單字・' + c.zh; });
   const TIPS = {
     math: '吃點心時一起數一數有幾個。', compare: '分東西時問孩子「哪一邊比較多？」', money: '買東西時讓孩子幫忙拿硬幣付錢。',
@@ -6743,10 +6913,10 @@ body.is-yx.is-print .promo { display: none; }
   const DOMAINS = ['認知', '語文', '社會', '情緒', '美感', '身體動作與健康'];
   const DOMAIN_ICON = { 認知: '🧩', 語文: '🗣️', 社會: '🤝', 情緒: '💗', 美感: '🎨', 身體動作與健康: '🏃' };
   const DOMAIN_SUBS = {
-    認知: 'math addsub compare measure share ordinal money time calendar geo solid position hide odd logic riddle sequence memory puzzle maze spotdiff match challenge mathpro wordpro moneypro clockpro patternpro deduce science animals seasons xmcolor xmshape xmplace xmday xmpattern xmdots xmmirror xmshop yxnum yxcalc yxword yxtime yxmoney yxmeasure yxstat yxcal eznum eznum2 ezweek',
-    語文: 'cn zhuyin spell en abc words story cnword cnsimilar sentence zhuyinpro enspell enphrase enverb storyseq riddle xmengcolor yxzy yxtone yxspell yxchar yxsimilar yxsent yxpunct yxlook yxstory yxstroke yxtrace',
-    社會: 'manners life jobs safety festival trash yxschool xmshop ezhello ezpeople',
-    情緒: 'emotion calm xmemo manners',
+    認知: 'pkmath pkcolor pkpos math addsub compare measure share ordinal money time calendar geo solid position hide odd logic riddle sequence memory puzzle maze spotdiff match challenge mathpro wordpro moneypro clockpro patternpro deduce science animals seasons xmcolor xmshape xmplace xmday xmpattern xmdots xmmirror xmshop yxnum yxcalc yxword yxtime yxmoney yxmeasure yxstat yxcal eznum eznum2 ezweek',
+    語文: 'pkzy pken cn zhuyin spell en abc words story cnword cnsimilar sentence zhuyinpro enspell enphrase enverb storyseq riddle xmengcolor yxzy yxtone yxspell yxchar yxsimilar yxsent yxpunct yxlook yxstory yxstroke yxtrace',
+    社會: 'pklife manners life jobs safety festival trash yxschool xmshop ezhello ezpeople',
+    情緒: 'pkemo emotion calm xmemo manners',
     美感: 'coloring color xmcolor xmpattern xmmirror xmshape geo',
     身體動作與健康: 'body food seasons safety trace tracepro yxtrace maze xmdots coloring puzzle ezbody ezsimon'
   };
@@ -6925,6 +7095,7 @@ body.is-yx.is-print .promo { display: none; }
     $('ezTip').textContent = low ? `比較需要加強：${low[0]}。${EZ_TIP[low[0]]}` : '';
   }
   function renderReport() {
+    drawRankSet();
     renderEzSkill(); renderDomains();
     const hist = store.get('history', []), now = Date.now();
     const weekStars = hist.filter(h => now - h.t < 7 * DAY).reduce((a, h) => a + h.s, 0);
@@ -6990,7 +7161,7 @@ body.is-yx.is-print .promo { display: none; }
   function askReset() {
     $('resetRow').innerHTML = '<span class="note">確定要清除所有紀錄和星星嗎？</span><button id="resetYes" class="btn small danger">清除</button><button id="resetNo" class="btn ghost small">取消</button>';
     $('resetYes').addEventListener('click', () => {
-      store.set('history', []); store.set('subStars', {}); store.set('recent', {}); store.set('stars', 0);
+      store.set('history', []); store.set('subStars', {}); store.set('recent', {}); store.set('stars', 0); store.set('pkSpent', 0); store.set('wkStars', {});
       subStars = {}; total = 0; $('totalStars').textContent = 0; renderReport();
     });
     $('resetNo').addEventListener('click', renderReport);
@@ -7182,6 +7353,435 @@ body.is-yx.is-print .promo { display: none; }
   $('reportBtn2').addEventListener('click', () => openGate());
   $('gateBack').addEventListener('click', () => show('home'));
   $('repBack').addEventListener('click', () => show('home'));
+
+  /* ---------- 🎡 星星樂園：闖關模式拿星星、純玩模式花星星（付費方案） ---------- */
+  const PK_COST = 10, PK_PLAY_MS = 180000;
+  const pkPaid = () => proLevel() > 0;
+  const pkSpent = () => store.get('pkSpent', 0);
+  const pkBal = () => Math.max(0, total - pkSpent());
+  const pkMax = () => store.get('pkMax', 3);
+  const pkDay = () => { const d = store.get('pkDay', {}); return d.d === today() ? d : { d: today(), n: 0 }; };
+  const pkLeft = () => Math.max(0, pkMax() - pkDay().n);
+  const pkGood = () => tone([660, 880], .07, 'sine'), pkBad = () => tone([220, 180], .1, 'triangle');
+  const pkBack = '<svg viewBox="0 0 24 24" fill="none" stroke="#2B2633" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>';
+  let pkRun = null, pkTick = null;
+  function pkEarn(n, sub, s, of) {
+    total += n; store.set('stars', total); $('totalStars').textContent = total;
+    const p = playToday(); p.stars += n; store.set('playToday', p);
+    const hist = store.get('history', []); hist.push({ sub, age, s, n: of, t: Date.now() }); store.set('history', hist.slice(-400));
+    wkAdd(n); rankMaybe();
+  }
+  // ---------- 闖關題目 ----------
+  const PK_RED = ['🍎', '🍓', '🍒', '🌹', '🚒', '🍅', '❤️', '🎈'], PK_YEL = ['🍌', '🌻', '🐥', '🌽', '🍋', '⭐', '🧀', '🌟'], PK_GRN = ['🥦', '🥒', '🍏', '🐸', '🌳', '🥬', '🍀', '🐢'], PK_BLU = ['🐳', '🫐', '💙', '🧢', '🐬', '💎', '👖', '🌀'];
+  const PK_VEG = ['🥕', '🥦', '🌽', '🥒', '🥔', '🧅', '🥬', '🍆'], PK_ANI = ['🐶', '🐱', '🐰', '🐻', '🐼', '🐸', '🐵', '🦁', '🐷', '🐮'], PK_THING = ['⚽', '🚗', '📚', '✏️', '🎒', '☂️', '⏰', '🪑'];
+  const PK_RECY = ['📰', '🥫', '🍾', '🥤', '📦', '🧴'], PK_NOT = ['🍌', '🧻', '🍂', '🦴', '😷', '🍚'];
+  const PK_KIND = ['謝謝', '請', '對不起', '早安', '沒關係', '你好棒'], PK_UNKIND = ['走開', '哼', '不要你管', '我不要', '快點給我'];
+  const pkSwatch = hex => `<span style="display:inline-block;width:1em;height:1em;border-radius:50%;background:${hex};box-shadow:inset 0 -4px 0 rgba(0,0,0,.15),0 0 0 3px #fff"></span>`;
+  const pkTxt = (t, c) => `<b style="font-family:var(--f-display),inherit;font-weight:900;color:${c || '#2B2633'};font-size:.8em">${t}</b>`;
+  // 每個題目：label（畫面）、speech（唸）、cat（記錄）、item() 產生一個物件 {h, ok}
+  function pkTask(game) {
+    const big = age === 'big', L = [];
+    const num = () => { const n = rand(1, big ? 20 : 9); L.push({ cat: 'pkmath', label: `點「${n}」`, say: [[`找出數字${n}`]], item: () => { const ok = Math.random() < .4, v = ok ? n : pick([...Array(big ? 20 : 9).keys()].map(x => x + 1).filter(x => x !== n)); return { h: pkTxt(v, '#3F6FD8'), ok }; } }); };
+    const color = () => { const c = pick(COLORS.slice(0, 6)); L.push({ cat: 'pkcolor', label: `${c.zh}的`, say: [[`找出${c.zh}的`]], item: () => { const ok = Math.random() < .42; return { h: pkSwatch(ok ? c.hex : pick(COLORS.slice(0, 6).filter(x => x !== c)).hex), ok }; } }); };
+    const zy = () => { const pool = ZY.filter(x => big || x.lv === 1), t = pick(pool); L.push({ cat: 'pkzy', label: `注音「${t.z}」`, say: [[`找出注音，${t.z}，${t.w}的${t.c}`]], item: () => { const ok = Math.random() < .4; return { h: pkTxt(ok ? t.z : pick(pool.filter(x => x !== t)).z, '#C2414B'), ok }; } }); };
+    const letter = () => { const Lt = pick(EZ_LETTERS); L.push({ cat: 'pken', label: big ? `小寫的「${Lt}」` : `字母「${Lt}」`, say: [[`Find the letter ${Lt}.`, 'en-US']], item: () => { const ok = Math.random() < .4, v = ok ? Lt : pick(EZ_LETTERS.filter(x => x !== Lt)); return { h: pkTxt(big ? v.toLowerCase() : v, '#3FA35B'), ok }; } }); };
+    const word = (pool) => { const t = pick(pool); L.push({ cat: 'pken', label: `英文：${t.w}`, say: [[`${t.w}. Find the ${t.w}.`, 'en-US']], item: () => { const ok = Math.random() < .4; return { h: ok ? t.e : pick(pool.filter(x => x !== t)).e, ok }; } }); };
+    const add = () => { const a = rand(1, 9), b = rand(1, 9 - Math.min(a, 8)) || 1, s = a + b; L.push({ cat: 'pkmath', label: `${a}＋${b}＝？`, say: [[`${a}加${b}等於多少？`]], item: () => { const ok = Math.random() < .4, v = ok ? s : pick([s - 2, s - 1, s + 1, s + 2].filter(x => x > 0)); return { h: pkTxt(v, '#3F6FD8'), ok }; } }); };
+    const count = () => { const n = rand(1, big ? 5 : 3), e = pick(['🐟', '⭐', '🍎', '🐤']); L.push({ cat: 'pkmath', label: `有 ${n} 個的`, say: [[`找出裡面有${n}個的`]], item: () => { const ok = Math.random() < .4, v = ok ? n : pick([1, 2, 3, 4, 5].slice(0, big ? 5 : 4).filter(x => x !== n)); return { h: `<span style="font-size:.42em;line-height:1.1;display:inline-block;max-width:2.6em">${e.repeat(v)}</span>`, ok }; } }); };
+    const set = (cat, label, sayT, good, bad, gr) => L.push({ cat, label, say: [[sayT]], item: () => { const ok = Math.random() < (gr || .55); return { h: pick(ok ? good : bad), ok }; } });
+    const colorObj = () => { const sets = [['紅色', PK_RED], ['黃色', PK_YEL], ['綠色', PK_GRN], ['藍色', PK_BLU]], [n, g] = pick(sets); set('pkcolor', `${n}的東西`, `只接${n}的東西`, g, sets.filter(x => x[0] !== n).flatMap(x => x[1])); };
+    const even = () => L.push({ cat: 'pkmath', label: '雙數 2、4、6…', say: [['只接雙數，二、四、六、八、十']], item: () => { const v = rand(1, 20); return { h: pkTxt(v, '#3F6FD8'), ok: v % 2 === 0 }; } });
+    const bigger = () => { const n = rand(3, 7); L.push({ cat: 'pkmath', label: `比 ${n} 大`, say: [[`打比${n}大的數字`]], item: () => { const v = rand(1, 10); return { h: pkTxt(v, '#3F6FD8'), ok: v > n }; } }); };
+    const cnChar = () => { const pool = CN.filter(x => x.ch.length === 1), t = pick(pool); L.push({ cat: 'pkzy', label: `「${t.ch}」`, say: [[`找出${t.say}`]], item: () => { const ok = Math.random() < .4; return { h: pkTxt(ok ? t.ch : pick(pool.filter(x => x !== t)).ch, '#C2414B'), ok }; } }); };
+    const feel = () => { const f = pick(FEEL.slice(0, 5)); L.push({ cat: 'pkemo', label: `${f[1]}的臉`, say: [[`找出${f[1]}的臉`]], item: () => { const ok = Math.random() < .42; return { h: ok ? f[0] : pick(FEEL.filter(x => x !== f))[0], ok }; } }); };
+    const kind = () => L.push({ cat: 'pklife', label: '說好聽的話', say: [['打說好聽話的小動物，不要打說不好聽話的']], item: () => { const ok = Math.random() < .55; return { h: pkTxt(pick(ok ? PK_KIND : PK_UNKIND), ok ? '#3FA35B' : '#C2414B'), ok, sign: 1 }; } });
+    const animals = EZ_ANIMAL.slice(0, big ? 24 : 12), foods = EZ_FOOD.filter(x => x.fruit);
+    if (game === 'bub') { num(); color(); count(); zy(); letter(); word(animals); if (big) add(); }
+    if (game === 'fruit') {
+      set('pkcolor', '只接水果', '只接水果，不要接蔬菜', foods.map(x => x.e), PK_VEG);
+      set('pklife', '健康的食物', '只接健康的食物，躲開糖果和汽水', HEALTHY.map(x => x[0]), JUNK.map(x => x[0]));
+      set('pklife', '可以回收的', '只接可以回收的垃圾', PK_RECY, PK_NOT);
+      set('pkcolor', '只接動物', '只接動物', PK_ANI, PK_THING); colorObj();
+      if (big) { even(); word(foods); }
+    }
+    if (game === 'mole') { zy(); letter(); word(animals); feel(); kind(); if (big) { cnChar(); bigger(); add(); } }
+    return pick(L);
+  }
+  // ---------- 入口 ----------
+  function pkHubHTML() {
+    const card = (id, emo, name, a, s) => `<button class="pk-card" data-g="${id}" style="--a:${a};--s:${s}"><div class="pk-awn"></div><div class="pk-art">${emo}</div><b>${name}</b><div class="pk-price">🧠 闖關・🎮 ⭐${PK_COST}</div></button>`;
+    const wheel = `<svg class="pk-wheel" viewBox="0 0 190 230" aria-hidden="true"><path d="M95 95l-38 130M95 95l38 130" stroke="#fff" stroke-width="8" stroke-linecap="round"/><g class="rot"><circle cx="95" cy="95" r="80" fill="none" stroke="#fff" stroke-width="7"/><circle cx="95" cy="95" r="80" fill="none" stroke="#F57E7E" stroke-width="3" stroke-dasharray="6 10"/><g stroke="#fff" stroke-width="4"><path d="M95 15v160M15 95h160M38 38l114 114M152 38L38 152"/></g>${[0, 45, 90, 135, 180, 225, 270, 315].map((d, i) => { const r = d * Math.PI / 180; return `<circle cx="${(95 + Math.sin(r) * 80).toFixed(1)}" cy="${(95 - Math.cos(r) * 80).toFixed(1)}" r="12" fill="${['#FFC93C', '#B9A2F0', '#7CC4F5', '#FFE07A', '#FF9DB8', '#F7A35C', '#8ED07A', '#F57E7E'][i]}" stroke="#2B2633" stroke-width="3"/>`; }).join('')}</g><circle cx="95" cy="95" r="13" fill="#FFC93C" stroke="#2B2633" stroke-width="3"/></svg>`;
+    const sky = `<svg class="pk-sky" viewBox="0 0 400 360" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><g fill="#fff" opacity=".95"><path d="M30 60a18 18 0 0 1 22-24a24 24 0 0 1 44 0a18 18 0 0 1 16 24z"/><path d="M170 40a14 14 0 0 1 18-18a19 19 0 0 1 34 0a14 14 0 0 1 12 18z"/></g><g transform="translate(60 280)"><path d="M-40 64V14h80v50z" fill="#fff" stroke="#2B2633" stroke-width="3"/><path d="M-50 16L0-30 50 16z" fill="#F57E7E" stroke="#2B2633" stroke-width="3" stroke-linejoin="round"/><path d="M-24 16L0-30 24 16" fill="#fff" stroke="#2B2633" stroke-width="2"/><path d="M0-30v-14" stroke="#2B2633" stroke-width="3"/><path d="M0-44l14 5-14 5z" fill="#FFC93C" stroke="#2B2633" stroke-width="2"/><path d="M-12 64V40a12 12 0 0 1 24 0v24z" fill="#7CC4F5" stroke="#2B2633" stroke-width="3"/></g></svg>`;
+    const lock = pkPaid() ? '' : `<div class="pk-lock"><div class="pk-lock-card"><div class="big">🎡</div><h3>星星樂園是付費方案的功能</h3><p>開通任一付費方案，就能用學習拿到的星星換遊戲玩，還有 4 個邊玩邊學的闖關遊戲。</p><div class="pk-row"><button class="pk-btn gray" id="pkLockBack">回首頁</button><button class="pk-btn" id="pkLockPlan">看方案</button></div></div></div>`;
+    return `<div class="pk-hub-in">${sky}<div class="pk-grass"></div>
+      <div class="pk-hud"><button class="pk-back" id="pkHome" aria-label="回首頁">${pkBack}</button><div style="display:flex;gap:8px"><span class="pk-pill">🎟️ 今天 ${pkLeft()} 次</span><span class="pk-pill">⭐ <span id="pkBal">${pkBal()}</span></span></div></div>
+      ${wheel}<div class="pk-head"><div class="pk-ttl">星星樂園</div><div class="pk-sub">闖關拿星星，星星可以換遊戲玩！</div></div>
+      <div class="pk-cards">${card('bub', '🫧', '泡泡戳戳', '#7CC4F5', '#DFF4FF')}${card('fruit', '🧺', '接水果', '#F7A35C', '#FFF0D8')}${card('mole', '🐹', '打地鼠', '#8ED07A', '#E5F7DC')}
+        <button class="pk-card" data-g="stk" style="--a:#B9A2F0;--s:#EFE9FF"><div class="pk-awn"></div><div class="pk-art">🎨</div><b>貼紙樂園</b><div class="pk-price">已收集 ${pkOwned().length} 張</div></button>
+        <button class="pk-card wide" data-g="rank" style="background:linear-gradient(110deg,#FFF1C2,#FFE0EE)"><div class="pk-art">🏆</div><div><b>星星排行榜</b><small>${(() => { const c = store.get('rankCache', null); return rkOn() && c && c.week && c.week.me ? `本週第 ${c.week.me} 名・⭐ ${wkNow()}` : '和全台灣的小朋友比星星'; })()}</small></div><div class="pk-price">看排名 →</div></button></div>
+      <div class="pk-note">🧠 <b>闖關模式</b>：照圓圓說的玩，過關拿 1～3 顆星星。<br>🎮 <b>純玩模式</b>：用 ${PK_COST} 顆星星換 3 分鐘，盡情玩！</div>
+      ${lock}<div class="pk-ask" id="pkAsk" hidden></div></div>`;
+  }
+  function openPark() {
+    if (overLimit()) { showRest(); return; }
+    const h = $('pkHub'); h.innerHTML = pkHubHTML(); h.hidden = false; $('pkPlay').hidden = true; show('park'); track('park-open', '進入星星樂園');
+    $('pkHome').onclick = () => { h.hidden = true; show('home'); };
+    if (!pkPaid()) {
+      $('pkLockBack').onclick = () => { h.hidden = true; show('home'); };
+      $('pkLockPlan').onclick = () => { h.hidden = true; openGate(() => { renderReport(); show('report'); setTimeout(() => $('proBox').scrollIntoView({ behavior: 'smooth' }), 100); }); };
+      return;
+    }
+    if (!pkMax()) { pkAsk('🔒', '家長已經關閉星星樂園', '可以到家長專區打開喔。', [['好', 'gray', () => {}]]); }
+    h.querySelectorAll('.pk-card').forEach(b => b.onclick = () => {
+      const g = b.dataset.g;
+      if (g === 'stk') return pkSticker();
+      if (g === 'rank') return openRank();
+      const nm = { bub: '泡泡戳戳', fruit: '接水果', mole: '打地鼠' }[g], em = { bub: '🫧', fruit: '🧺', mole: '🐹' }[g];
+      pkAsk(em, nm, '要怎麼玩？', [['🧠 闖關拿星星', '', () => pkStart(g, 'learn')], [`🎮 純玩（⭐${PK_COST}）`, 'gray', () => {
+        if (!pkLeft()) return pkAsk('🎟️', '今天的次數用完了', '明天再來玩，或先玩闖關拿星星！', [['好', 'gray', () => {}]]);
+        if (pkBal() < PK_COST) return pkAsk('⭐', `還差 ${PK_COST - pkBal()} 顆星星`, '先玩闖關模式或去學習，就能拿到星星喔！', [['去闖關', '', () => pkStart(g, 'learn')], ['好', 'gray', () => {}]]);
+        store.set('pkSpent', pkSpent() + PK_COST); const d = pkDay(); d.n++; store.set('pkDay', d); track('park-play-' + g, '星星樂園純玩');
+        pkStart(g, 'play');
+      }]]);
+    });
+  }
+  function pkAsk(big, title, msg, btns) {
+    const a = $('pkAsk'); if (!a) return;
+    a.innerHTML = `<div class="pk-ask-card"><div class="big">${big}</div><h3>${title}</h3><p>${msg}</p><div class="pk-row" style="flex-wrap:wrap">${btns.map((b, i) => `<button class="pk-btn ${b[1]}" data-i="${i}">${b[0]}</button>`).join('')}</div></div>`;
+    a.hidden = false; a.onclick = e => { if (e.target === a) a.hidden = true; };
+    a.querySelectorAll('button').forEach(b => b.onclick = () => { a.hidden = true; btns[+b.dataset.i][2](); });
+  }
+  // ---------- 遊戲共用 ----------
+  function pkStart(g, mode) {
+    pkStop();
+    const P = $('pkPlay'), learn = mode === 'learn';
+    const goal = age === 'big' ? 8 : 6, task = learn ? pkTask(g) : null;
+    const R = pkRun = { g, mode, learn, task, goal, got: 0, miss: 0, score: 0, combo: 0, t0: 0, left: learn ? 90000 : PK_PLAY_MS, items: [], last: 0, done: false };
+    const bg = { bub: 'pk-sea', fruit: 'pk-orch', mole: 'pk-mead' }[g], icon = { bub: '🫧', fruit: '🍓', mole: '🔨' }[g];
+    P.className = `pk pk-play ${bg}`; P.hidden = false; $('pkHub').hidden = true;
+    P.innerHTML = `<div class="pk-field" id="pkField">${pkScene(g)}</div>
+      <div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="離開">${pkBack}</button>
+      ${learn ? `<button class="pk-pill" id="pkSay" style="max-width:56vw;font-size:1rem">🔊 ${task.label}</button>` : `<div class="pk-timer" id="pkTimer" style="--p:100"><span>3:00</span></div>`}
+      <span class="pk-pill">${learn ? '🎯' : icon} <span id="pkScore">${learn ? `0/${goal}` : 0}</span></span></div>
+      <div class="pk-tip"><span class="pk-pill" style="font-size:.95rem">${learn ? { bub: '點破對的泡泡！', fruit: '移動籃子，接對的東西！', mole: '打舉著對的牌子的小動物！' }[g] : { bub: '點破泡泡，救出海底小動物！', fruit: '接水果，小心炸彈！', mole: '看到小動物就打牠！' }[g]}</span></div>
+      <div class="pk-count" id="pkCount"><b class="pk-ttl">3</b></div>`;
+    $('pkQuit').onclick = () => pkEnd(true);
+    if (learn) { $('pkSay').onclick = () => say(task.say); }
+    let c = 3; const cd = () => { const el = $('pkCount'); if (!el || pkRun !== R) return; if (c === 0) { el.remove(); R.t0 = performance.now(); R.prev = R.t0; pkLoop(); return; } el.innerHTML = `<b class="pk-ttl">${c}</b>`; tone([440 + (3 - c) * 120], .08, 'sine'); c--; setTimeout(cd, 650); };
+    if (learn) say(task.say); cd();
+    ({ bub: pkBubInit, fruit: pkFruitInit, mole: pkMoleInit })[g](R);
+    pkTick = setInterval(() => { if (document.hidden || pkRun !== R || !R.t0) return; const p = playToday(); p.ms += 1000; store.set('playToday', p); }, 1000);
+  }
+  function pkScene(g) {
+    if (g === 'bub') return `<div class="pk-ray" style="left:8%;transform:rotate(14deg)"></div><div class="pk-ray" style="left:44%;transform:rotate(4deg);width:60px;animation-delay:-2s"></div><div class="pk-ray" style="left:74%;transform:rotate(-10deg);animation-delay:-4s"></div>
+      <svg style="position:absolute;bottom:0;left:0;width:100%;height:260px" viewBox="0 0 390 260" preserveAspectRatio="none"><path d="M0 200q100-30 200 0t190-10V260H0z" fill="#F3D9A0"/><g fill="none" stroke-linecap="round" stroke-width="12"><path d="M40 230q-20-50 10-90t-5-90" stroke="#3FB37F"/><path d="M70 230q15-40-5-80" stroke="#5FCB94"/><path d="M340 230q20-60-10-110t10-80" stroke="#3FB37F"/><path d="M310 230q-12-30 6-60" stroke="#5FCB94"/></g></svg><div style="position:absolute;bottom:14px;left:38%;font-size:34px">🐚</div><div style="position:absolute;bottom:30px;left:62%;font-size:30px">🦀</div>`;
+    if (g === 'fruit') return `<svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 390 844" preserveAspectRatio="xMidYMax slice"><circle cx="300" cy="190" r="46" fill="#FFF3B0" opacity=".9"/><path d="M0 560q90-60 200-20t190-30V844H0z" fill="#B7DC86"/><path d="M0 640q120-50 230-10t160-10V844H0z" fill="#8FC96A"/><rect x="22" y="420" width="18" height="170" rx="6" fill="#9A6234"/><circle cx="31" cy="400" r="62" fill="#6DB85A"/><circle cx="-5" cy="450" r="40" fill="#6DB85A"/><circle cx="70" cy="445" r="40" fill="#5DAA4D"/><rect x="345" y="440" width="18" height="160" rx="6" fill="#9A6234"/><circle cx="354" cy="420" r="58" fill="#6DB85A"/><circle cx="320" cy="465" r="36" fill="#5DAA4D"/></svg>`;
+    return `<svg style="position:absolute;left:0;top:0;width:100%;height:30%" viewBox="0 0 390 230" preserveAspectRatio="none"><g fill="#fff"><path d="M30 120a14 14 0 0 1 18-18a19 19 0 0 1 34 0a14 14 0 0 1 12 18z"/><path d="M250 90a12 12 0 0 1 14-15a16 16 0 0 1 28 0a12 12 0 0 1 10 15z"/></g><path d="M0 220q60-40 130-10t130-15 130 10V230H0z" fill="#B5E59A"/></svg>`;
+  }
+  function pkLoop() {
+    const R = pkRun; if (!R || R.done) return;
+    const now = performance.now(), dt = Math.min(50, now - R.prev); R.prev = now;
+    if (!R.learn) { R.left = PK_PLAY_MS - (now - R.t0); const tm = $('pkTimer'); if (tm) { const s = Math.max(0, Math.ceil(R.left / 1000)); tm.style.setProperty('--p', (R.left / PK_PLAY_MS * 100).toFixed(1)); tm.firstElementChild.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; } if (R.left <= 0) return pkEnd(); }
+    R.step(dt, now - R.t0);
+    requestAnimationFrame(pkLoop);
+  }
+  function pkFx(x, y, txt) {
+    const f = $('pkField'); if (!f) return;
+    const b = document.createElement('div'); b.className = 'pk-burst'; b.style.left = x + 'px'; b.style.top = y + 'px';
+    b.innerHTML = '<svg viewBox="-55 -55 110 110"><g stroke="#FFE07A" stroke-width="6" stroke-linecap="round"><path d="M0-48v14M0 34v14M-48 0h14M34 0h14M-34-34l10 10M24 24l10 10M34-34l-10 10M-24 24l-10 10"/></g></svg>';
+    f.appendChild(b); setTimeout(() => b.remove(), 500);
+    if (txt) { const t = document.createElement('div'); t.className = 'pk-float'; t.textContent = txt; t.style.left = (x - 16) + 'px'; t.style.top = (y - 40) + 'px'; f.appendChild(t); setTimeout(() => t.remove(), 850); }
+  }
+  function pkHit(R, ok, x, y) {
+    if (ok) {
+      pkGood(); R.combo++; R.score++;
+      if (R.learn) { R.got++; $('pkScore').textContent = `${R.got}/${R.goal}`; pkFx(x, y, '✓'); if (R.got >= R.goal) return setTimeout(() => pkEnd(), 400); }
+      else { $('pkScore').textContent = R.score; pkFx(x, y, '+1'); }
+      if (R.combo > 0 && R.combo % 5 === 0) { const c = document.createElement('div'); c.className = 'pk-combo'; c.innerHTML = `<span class="pk-ttl" style="color:#FF6B6B">連續 ${R.combo} 個！</span>`; $('pkField').appendChild(c); setTimeout(() => c.remove(), 950); }
+    } else {
+      pkBad(); R.combo = 0; R.miss++;
+      if (R.learn && R.miss % 3 === 0) say([['再找找看！'], ...R.task.say]);
+    }
+  }
+  function pkEnd(quit) {
+    const R = pkRun; if (!R || R.done) return; R.done = true; clearInterval(pkTick);
+    const P = $('pkPlay');
+    if (quit && !(R.learn && R.got >= R.goal)) { pkStop(); openPark(); return; }
+    let msg, big, extra = '';
+    if (R.learn) {
+      const st3 = R.miss <= 1 ? 3 : R.miss <= 4 ? 2 : 1; pkEarn(st3, R.task.cat, R.got, R.got + R.miss);
+      big = '⭐'.repeat(st3); msg = `過關了！拿到 ${st3} 顆星星`; extra = `現在有 ⭐ ${pkBal()} 顆`;
+      say([[`過關了！拿到${st3}顆星星，你好棒！`]]); track('park-learn-' + R.g, '星星樂園闖關過關');
+    } else { big = '🏆'; msg = `你得到 ${R.score} 分！`; extra = '時間到囉，休息一下再玩吧'; say([[`時間到！你得到${R.score}分，好厲害！`]]); }
+    const e = document.createElement('div'); e.className = 'pk-end';
+    e.innerHTML = `<div class="pk-end-card"><div class="big">${big}</div><div class="score">${msg}</div><p>${extra}</p><div class="pk-row">${R.learn ? '<button class="pk-btn" id="pkAgain">再闖一關</button>' : ''}<button class="pk-btn gray" id="pkOut">回樂園</button></div></div>`;
+    P.appendChild(e);
+    $('pkOut').onclick = () => { pkStop(); openPark(); };
+    if (R.learn) $('pkAgain').onclick = () => { if (overLimit()) { pkStop(); showRest(); return; } pkStart(R.g, 'learn'); };
+  }
+  function pkStop() { if (pkRun) pkRun.done = true; pkRun = null; clearInterval(pkTick); const P = $('pkPlay'); if (P) { P.hidden = true; P.innerHTML = ''; } }
+  // ---------- 🫧 泡泡戳戳 ----------
+  const PK_SEA = ['🐠', '🐙', '🐢', '🐡', '🐬', '🦐', '🐳', '🦀', '🐟', '🦑'];
+  function pkBubInit(R) {
+    const F = $('pkField');
+    R.step = (dt, t) => {
+      const W = F.clientWidth, H = F.clientHeight, speedUp = Math.min(1.8, 1 + t / 120000);
+      if (t - R.last > (R.learn ? 900 : 650) / speedUp) {
+        R.last = t; const sz = rand(70, 112), it = R.learn ? R.task.item() : { h: pick(PK_SEA), ok: true };
+        const el = document.createElement('div'); el.className = 'pk-bub'; el.style.width = el.style.height = sz + 'px'; el.style.fontSize = (sz * .5) + 'px'; el.innerHTML = it.h;
+        const b = { el, x: rand(4, Math.max(5, W - sz - 4)), y: H + 10, v: (rand(55, 85) / 1000) * speedUp, w: Math.random() * 6, ok: it.ok, sz };
+        el.style.left = b.x + 'px';
+        el.addEventListener('pointerdown', ev => { ev.preventDefault(); if (b.dead) return; if (R.learn && !b.ok) { el.animate([{ transform: el.style.transform }, { transform: el.style.transform + ' translateX(8px)' }, { transform: el.style.transform }], { duration: 180 }); pkHit(R, false); return; } b.dead = 1; el.classList.add('popped'); setTimeout(() => el.remove(), 260); pkHit(R, true, b.x + sz / 2, b.y + sz / 2); });
+        F.appendChild(el); R.items.push(b);
+      }
+      R.items = R.items.filter(b => { if (b.dead) return false; b.y -= b.v * dt; b.w += dt / 600; b.el.style.transform = `translate(${Math.sin(b.w) * 10}px, ${b.y}px)`; b.el.style.top = '0'; if (b.y < -b.sz - 10) { b.el.remove(); return false; } return true; });
+    };
+  }
+  // ---------- 🧺 接水果 ----------
+  const PK_FRUITS = ['🍎', '🍓', '🍌', '🍉', '🍇', '🍑', '🍊', '🍒', '🍍', '🥝'];
+  function pkFruitInit(R) {
+    const F = $('pkField'), P = $('pkPlay');
+    const bk = document.createElement('div'); bk.className = 'pk-basket';
+    bk.innerHTML = `<span class="bun">🐰</span><svg width="130" height="74" viewBox="0 0 130 80"><path d="M8 18h114l-12 56H20z" fill="#E7A25A" stroke="#2B2633" stroke-width="4" stroke-linejoin="round"/><path d="M16 36h98M20 54h90M45 18l-4 56M85 18l4 56" stroke="#B9772F" stroke-width="3"/><path d="M4 18h122" stroke="#2B2633" stroke-width="8" stroke-linecap="round"/></svg>`;
+    F.appendChild(bk);
+    const ar = document.createElement('div'); ar.className = 'pk-arrows'; ar.innerHTML = '<button aria-label="往左">◀</button><button aria-label="往右">▶</button>'; P.appendChild(ar);
+    R.bx = F.clientWidth / 2; R.dir = 0; R.dizzy = 0;
+    const [lb, rb] = ar.querySelectorAll('button');
+    const hold = (b, d) => { b.addEventListener('pointerdown', e => { e.preventDefault(); R.dir = d; }); ['pointerup', 'pointerleave', 'pointercancel'].forEach(x => b.addEventListener(x, () => { if (R.dir === d) R.dir = 0; })); };
+    hold(lb, -1); hold(rb, 1);
+    const drag = e => { if (e.target.closest('.pk-arrows,.pk-hud')) return; R.bx = e.clientX - F.getBoundingClientRect().left; };
+    F.addEventListener('pointerdown', drag); F.addEventListener('pointermove', e => { if (e.buttons) drag(e); });
+    R.step = (dt, t) => {
+      const W = F.clientWidth, H = F.clientHeight, speedUp = Math.min(1.9, 1 + t / 100000);
+      R.bx = Math.max(55, Math.min(W - 55, R.bx + R.dir * dt * .45)); bk.style.transform = `translateX(${R.bx}px)`;
+      if (t - R.last > (R.learn ? 1000 : 780) / speedUp) {
+        R.last = t; let it;
+        if (R.learn) it = R.task.item(); else { const bomb = Math.random() < .18; it = { h: bomb ? '💣' : pick(PK_FRUITS), ok: !bomb }; }
+        const el = document.createElement('div'); el.className = 'pk-fall' + (!R.learn && !it.ok ? ' bomb' : ''); el.innerHTML = it.h;
+        const o = { el, x: rand(30, W - 60), y: -60, v: (rand(14, 20) / 100) * speedUp, ok: it.ok }; el.style.left = o.x + 'px'; el.style.top = '0';
+        F.appendChild(el); R.items.push(o);
+      }
+      const by = H - 120 - 60;
+      R.items = R.items.filter(o => {
+        o.y += o.v * dt; o.el.style.transform = `translateY(${o.y}px)`;
+        if (o.y > by - 20 && o.y < by + 30 && Math.abs(o.x + 24 - R.bx) < 62) {
+          o.el.remove();
+          if (o.ok) pkHit(R, true, R.bx, by); else { pkHit(R, false); bk.classList.remove('dizzy'); void bk.offsetWidth; bk.classList.add('dizzy'); }
+          return false;
+        }
+        if (o.y > H + 20) { o.el.remove(); return false; }
+        return true;
+      });
+    };
+  }
+  // ---------- 🐹 打地鼠 ----------
+  const PK_MOLES = ['🐹', '🐰', '🐻', '🐸', '🐼', '🐱', '🐶', '🐵'];
+  function pkMoleInit(R) {
+    const F = $('pkField');
+    const box = document.createElement('div'); box.className = 'pk-holes';
+    box.innerHTML = Array.from({ length: 9 }, (_, i) => `<div class="pk-cell" data-i="${i}"><div class="pk-hole"></div><div class="pk-mask"><div class="pk-mole"></div></div><div class="pk-lip"></div><div class="pk-sign"></div></div>`).join('');
+    F.appendChild(box);
+    const cells = [...box.children].map(c => ({ c, m: c.querySelector('.pk-mole'), sg: c.querySelector('.pk-sign'), up: 0, until: 0, ok: true }));
+    cells.forEach(o => o.c.addEventListener('pointerdown', e => {
+      e.preventDefault(); if (!o.up || o.hit) return;
+      const r = o.c.getBoundingClientRect(), fr = F.getBoundingClientRect(), x = r.left - fr.left + r.width / 2, y = r.top - fr.top + 30;
+      const h = document.createElement('div'); h.className = 'pk-hammer'; h.textContent = '🔨'; h.style.left = (x + 8) + 'px'; h.style.top = (y - 60) + 'px'; F.appendChild(h); setTimeout(() => h.remove(), 300);
+      if (R.learn && !o.ok) { pkHit(R, false); o.m.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(6px)' }, { transform: 'translateX(-6px)' }, { transform: 'translateX(0)' }], { duration: 200 }); return; }
+      o.hit = 1; o.m.classList.add('hit'); o.until = Math.min(o.until, R.tt + 260);
+      pkHit(R, true, x, y); if (!R.learn && o.gold) { R.score += 2; $('pkScore').textContent = R.score; pkFx(x, y - 30, '+3'); }
+    }));
+    R.step = (dt, t) => {
+      R.tt = t; const speedUp = Math.min(1.7, 1 + t / 110000), stay = (R.learn ? 1900 : 1300) / speedUp;
+      cells.forEach(o => { if (o.up && t > o.until) { o.up = 0; o.hit = 0; o.m.classList.remove('up', 'hit'); o.sg.classList.remove('up'); } });
+      const upN = cells.filter(o => o.up).length;
+      if (t - R.last > (R.learn ? 700 : 560) / speedUp && upN < (R.learn ? 3 : 3)) {
+        R.last = t; const free = cells.filter(o => !o.up && t > o.until + 200); if (!free.length) return;
+        const o = pick(free), ani = pick(PK_MOLES);
+        if (R.learn) { const it = R.task.item(); o.ok = it.ok; o.m.innerHTML = ani; o.sg.innerHTML = it.h; o.sg.style.fontSize = (it.sign ? 15 : 30) + 'px'; }
+        else { o.gold = Math.random() < .1; o.ok = true; o.m.innerHTML = o.gold ? '🌟' : ani; }
+        o.up = 1; o.until = t + stay; requestAnimationFrame(() => { o.m.classList.add('up'); if (R.learn) o.sg.classList.add('up'); });
+      }
+    };
+  }
+  // ---------- 🎨 貼紙樂園 ----------
+  const PK_STK = {
+    動物: [['🐶', 0], ['🐱', 0], ['🐰', 0], ['🐼', 5], ['🦁', 5], ['🐯', 5], ['🦒', 8], ['🐘', 8], ['🦩', 8], ['🦊', 8], ['🐨', 8], ['🦄', 10]],
+    恐龍: [['🦖', 8], ['🦕', 8], ['🐉', 10], ['🥚', 5], ['🌋', 10]],
+    海底: [['🐠', 5], ['🐙', 5], ['🐢', 5], ['🐬', 8], ['🦀', 5], ['🐚', 5], ['🐡', 5], ['🦈', 10], ['🐳', 10]],
+    太空: [['🚀', 8], ['🛸', 10], ['🪐', 8], ['🌙', 5], ['⭐', 5], ['👽', 10], ['☄️', 8], ['🛰️', 10]],
+    裝飾: [['🌸', 5], ['🌻', 5], ['🌈', 8], ['🎈', 5], ['🎀', 5], ['🍭', 5], ['🌳', 8], ['🦋', 5], ['🦆', 5], ['🐦', 5]]
+  };
+  const PK_SCN = {
+    park: ['🌳 公園', `<rect width="390" height="557" fill="#CDEBFF"/><circle cx="320" cy="90" r="34" fill="#FFE07A"/><path d="M40 120a14 14 0 0 1 18-18a19 19 0 0 1 34 0a14 14 0 0 1 12 18z" fill="#fff"/><path d="M0 330q100-30 200 0t190-10V557H0z" fill="#9CD77C"/><rect x="286" y="190" width="18" height="150" rx="6" fill="#9A6234"/><circle cx="295" cy="180" r="58" fill="#6DB85A"/><path d="M40 350V260h110v90z" fill="#FFF3E0" stroke="#2B2633" stroke-width="3"/><path d="M28 262l67-56 67 56z" fill="#F57E7E" stroke="#2B2633" stroke-width="3" stroke-linejoin="round"/><rect x="80" y="300" width="30" height="50" rx="4" fill="#7CC4F5" stroke="#2B2633" stroke-width="3"/><ellipse cx="220" cy="460" rx="110" ry="40" fill="#7FCBEF" stroke="#5AA9D6" stroke-width="3"/>`],
+    sea: ['🌊 海底', `<rect width="390" height="557" fill="#2FA6E0"/><path d="M0 0h390v200H0z" fill="#56BDF0" opacity=".5"/><path d="M0 470q100-30 200 0t190-10V557H0z" fill="#F3D9A0"/><g fill="none" stroke="#3FB37F" stroke-width="12" stroke-linecap="round"><path d="M40 500q-20-60 10-110t-5-80"/><path d="M350 500q20-60-10-110"/></g><ellipse cx="200" cy="490" rx="40" ry="16" fill="#9AA8B6"/>`],
+    space: ['🚀 太空', `<rect width="390" height="557" fill="#1C2347"/>${Array.from({ length: 30 }, (_, i) => `<circle cx="${(i * 97) % 390}" cy="${(i * 53) % 557}" r="${1 + i % 3}" fill="#fff" opacity=".8"/>`).join('')}<circle cx="80" cy="460" r="120" fill="#7C6BD8"/><circle cx="60" cy="430" r="20" fill="#6A59C4"/>`],
+    castle: ['🏰 城堡', `<rect width="390" height="557" fill="#FFE3F0"/><path d="M0 400q100-30 200 0t190-10V557H0z" fill="#B9E59A"/><g fill="#C9B6F2" stroke="#2B2633" stroke-width="3"><rect x="110" y="200" width="170" height="210"/><rect x="80" y="150" width="60" height="260"/><rect x="250" y="150" width="60" height="260"/></g><g fill="#F57E7E" stroke="#2B2633" stroke-width="3" stroke-linejoin="round"><path d="M74 152l36-60 36 60z"/><path d="M244 152l36-60 36 60z"/></g><path d="M175 410v-70a20 20 0 0 1 40 0v70z" fill="#9A6234" stroke="#2B2633" stroke-width="3"/>`]
+  };
+  // 闖關任務：在公園場景（x、y 是畫布的百分比）
+  const PK_STK_TASK = [
+    { say: '把小貓放在大樹的下面', e: '🐱', ok: s => s.x > 66 && s.x < 86 && s.y > 50 && s.y < 66, cat: 'pkpos' },
+    { say: '把小鳥放在房子的上面', e: '🐦', ok: s => s.x > 8 && s.x < 42 && s.y < 40, cat: 'pkpos' },
+    { say: '把鴨子放在池塘裡面', e: '🦆', ok: s => s.x > 30 && s.x < 84 && s.y > 76 && s.y < 90, cat: 'pkpos' },
+    { say: '把小狗放在房子的旁邊', e: '🐶', ok: s => s.x > 40 && s.x < 58 && s.y > 46 && s.y < 66, cat: 'pkpos' },
+    { say: '在池塘裡放三隻鴨子', e: '🦆', n: 3, ok: s => s.x > 30 && s.x < 84 && s.y > 76 && s.y < 90, cat: 'pkmath' },
+    { say: '在大樹的上面放兩隻蝴蝶', e: '🦋', n: 2, ok: s => s.x > 58 && s.x < 94 && s.y < 30, cat: 'pkmath' },
+    { say: 'Put the dog next to the house.', en: 1, e: '🐶', ok: s => s.x > 40 && s.x < 58 && s.y > 46 && s.y < 66, cat: 'pken' },
+    { say: 'Put the cat under the tree.', en: 1, e: '🐱', ok: s => s.x > 66 && s.x < 86 && s.y > 50 && s.y < 66, cat: 'pken' }
+  ];
+  const PK_EN_NAME = { '🐶': 'dog', '🐱': 'cat', '🐰': 'rabbit', '🐼': 'panda', '🦁': 'lion', '🐯': 'tiger', '🦒': 'giraffe', '🐘': 'elephant', '🦩': 'flamingo', '🦊': 'fox', '🐨': 'koala', '🦄': 'unicorn', '🦖': 'dinosaur', '🦕': 'dinosaur', '🐉': 'dragon', '🥚': 'egg', '🐠': 'fish', '🐙': 'octopus', '🐢': 'turtle', '🐬': 'dolphin', '🦀': 'crab', '🐚': 'shell', '🐡': 'blowfish', '🦈': 'shark', '🐳': 'whale', '🚀': 'rocket', '🛸': 'UFO', '🪐': 'planet', '🌙': 'moon', '⭐': 'star', '👽': 'alien', '☄️': 'comet', '🌸': 'flower', '🌻': 'sunflower', '🌈': 'rainbow', '🎈': 'balloon', '🎀': 'bow', '🍭': 'lollipop', '🌳': 'tree', '🦋': 'butterfly', '🦆': 'duck', '🐦': 'bird' };
+  function pkOwned() { return store.get('pkOwn', ['🐶', '🐱', '🐰']); }
+  function pkSticker() {
+    pkStop();
+    const P = $('pkPlay'); P.className = 'pk pk-stk'; P.hidden = false; $('pkHub').hidden = true;
+    let scene = store.get('pkScn', 'park'), cat = '動物', sel = null, task = null;
+    const all = store.get('pkScenes', {});
+    const save = () => { store.set('pkScenes', all); };
+    const draw = () => {
+      P.innerHTML = `<div class="pk-canvas" id="pkCv"><div id="pkBox" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);aspect-ratio:390/557;height:100%;max-width:100%;overflow:hidden"><svg class="bg" viewBox="0 0 390 557" preserveAspectRatio="xMidYMid slice">${PK_SCN[scene][1]}</svg></div></div>
+        <div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="回樂園">${pkBack}</button>${task ? `<button class="pk-pill" id="pkSay" style="max-width:58vw;font-size:.95rem">🔊 ${task.say}</button>` : `<button class="pk-pill" id="pkTaskBtn">🧠 闖關任務</button>`}<span class="pk-pill">⭐ <span id="pkBal">${pkBal()}</span></span></div>
+        <div class="pk-tray"><div class="pk-tabs">${Object.keys(PK_STK).map(k => `<button class="pk-tab${k === cat ? ' on' : ''}" data-c="${k}">${k}</button>`).join('')}</div>
+        <div class="pk-sgrid">${PK_STK[cat].map(([e, p]) => `<button class="pk-s${pkOwned().includes(e) ? ' own' : ''}" data-e="${e}" data-p="${p}">${e}${pkOwned().includes(e) ? '' : `<i>⭐${p}</i>`}</button>`).join('')}</div>
+        <div class="pk-sfoot"><select id="pkScnSel" aria-label="換場景">${Object.entries(PK_SCN).map(([k, v]) => `<option value="${k}"${k === scene ? ' selected' : ''}>${v[0]}</option>`).join('')}</select>${task ? '<button class="pk-btn" id="pkCheck" style="padding:8px 18px;font-size:1rem">✅ 完成了</button>' : '<button class="pk-btn gray" id="pkClear" style="padding:8px 16px;font-size:.95rem">🧽 清空</button>'}<button class="pk-btn" id="pkShot" style="padding:8px 16px;font-size:.95rem;background:#3F6FD8;box-shadow:0 5px 0 #2C52A8">📷 存圖</button></div></div>
+        <div class="pk-ask" id="pkAsk" hidden></div>`;
+      const box = $('pkBox');
+      (all[scene] || []).forEach((s, i) => box.appendChild(mk(s, i)));
+      $('pkQuit').onclick = () => { pkStop(); openPark(); };
+      P.querySelectorAll('.pk-tab').forEach(b => b.onclick = () => { cat = b.dataset.c; draw(); });
+      P.querySelectorAll('.pk-s').forEach(b => b.onclick = () => {
+        const e = b.dataset.e, p = +b.dataset.p;
+        if (!pkOwned().includes(e)) {
+          if (pkBal() < p) return pkAsk('⭐', `還差 ${p - pkBal()} 顆星星`, '去闖關或學習，就能拿到星星喔！', [['好', 'gray', () => {}]]);
+          return pkAsk(e, `用 ⭐${p} 買這張貼紙？`, `買了就可以一直用喔！`, [['買！', '', () => { store.set('pkSpent', pkSpent() + p); store.set('pkOwn', pkOwned().concat(e)); track('park-sticker', '買貼紙'); say([[PK_EN_NAME[e] || '', 'en-US']]); draw(); }], ['先不要', 'gray', () => {}]]);
+        }
+        add(e);
+      });
+      $('pkScnSel').onchange = e => { scene = e.target.value; store.set('pkScn', scene); sel = null; draw(); };
+      if ($('pkClear')) $('pkClear').onclick = () => pkAsk('🧽', '要把這張圖清空嗎？', '貼紙會回到貼紙櫃，不會不見。', [['清空', '', () => { all[scene] = []; save(); draw(); }], ['不要', 'gray', () => {}]]);
+      if ($('pkTaskBtn')) $('pkTaskBtn').onclick = () => { task = pick(PK_STK_TASK); scene = 'park'; all.park_task = []; sel = null; draw(); say(task.en ? [[task.say, 'en-US']] : [[task.say]]); };
+      if ($('pkSay')) $('pkSay').onclick = () => say(task.en ? [[task.say, 'en-US']] : [[task.say]]);
+      if ($('pkCheck')) $('pkCheck').onclick = check;
+      $('pkShot').onclick = shot;
+    };
+    const key = () => task ? 'park_task' : scene;
+    const add = e => { const L = all[key()] = all[key()] || []; L.push({ e, x: 40 + rand(0, 20), y: 30 + rand(0, 20), s: 1, r: 0 }); save(); say([[PK_EN_NAME[e] || '', 'en-US']]); sel = L.length - 1; draw(); };
+    const mk = (s, i) => {
+      const el = document.createElement('div'); el.className = 'pk-sticker' + (i === sel ? ' sel' : ''); el.textContent = s.e;
+      el.style.left = s.x + '%'; el.style.top = s.y + '%'; el.style.transform = `translate(-50%,-50%) rotate(${s.r}deg) scale(${s.s})`;
+      el.addEventListener('pointerdown', ev => {
+        ev.preventDefault(); el.setPointerCapture(ev.pointerId); const box = $('pkBox').getBoundingClientRect();
+        if (sel !== i) { sel = i; P.querySelectorAll('.pk-sticker').forEach(x => x.classList.remove('sel')); el.classList.add('sel'); tools(); }
+        const mv = e2 => { s.x = Math.max(2, Math.min(98, (e2.clientX - box.left) / box.width * 100)); s.y = Math.max(2, Math.min(98, (e2.clientY - box.top) / box.height * 100)); el.style.left = s.x + '%'; el.style.top = s.y + '%'; tools(); };
+        const up = () => { el.removeEventListener('pointermove', mv); el.removeEventListener('pointerup', up); save(); };
+        el.addEventListener('pointermove', mv); el.addEventListener('pointerup', up);
+      });
+      return el;
+    };
+    const tools = () => {
+      P.querySelectorAll('.pk-tools').forEach(x => x.remove());
+      const L = all[key()] || [], s = L[sel]; if (!s) return;
+      const t = document.createElement('div'); t.className = 'pk-tools'; t.innerHTML = '<button data-a="r">↻</button><button data-a="b">＋</button><button data-a="m">－</button><button data-a="d">🗑</button>';
+      t.style.left = `calc(${s.x}% - 70px)`; t.style.top = `calc(${s.y}% - ${44 + 30 * s.s}px)`; $('pkBox').appendChild(t);
+      t.querySelectorAll('button').forEach(b => b.onpointerdown = ev => { ev.stopPropagation(); ev.preventDefault(); const a = b.dataset.a; if (a === 'r') s.r = (s.r + 30) % 360; if (a === 'b') s.s = Math.min(2.4, s.s + .2); if (a === 'm') s.s = Math.max(.5, s.s - .2); if (a === 'd') { L.splice(sel, 1); sel = null; } save(); draw(); });
+    };
+    const check = () => {
+      const L = all.park_task || [], good = L.filter(s => s.e === task.e && task.ok(s)).length, need = task.n || 1;
+      if (good >= need && L.filter(s => s.e === task.e).length === need) {
+        pkEarn(2, task.cat, 1, 1); pkGood();
+        const gift = pick(Object.values(PK_STK).flat().filter(([e]) => !pkOwned().includes(e))); if (gift) store.set('pkOwn', pkOwned().concat(gift[0]));
+        say([['完成了！你好棒，送你兩顆星星' + (gift ? '和一張新貼紙' : '')]]); track('park-sticker-task', '貼紙任務完成');
+        pkAsk('🎉', '任務完成！', `拿到 ⭐2${gift ? `，還送你一張新貼紙 ${gift[0]}` : ''}`, [['再一個任務', '', () => { task = pick(PK_STK_TASK); all.park_task = []; draw(); say(task.en ? [[task.say, 'en-US']] : [[task.say]]); }], ['自由貼', 'gray', () => { task = null; draw(); }]]);
+      } else {
+        pkBad(); const cnt = L.filter(s => s.e === task.e).length;
+        say([[cnt === 0 ? `先在貼紙櫃找到${task.e === '🦆' ? '鴨子' : task.e === '🦋' ? '蝴蝶' : task.e === '🐦' ? '小鳥' : task.e === '🐱' ? '小貓' : '小狗'}，點一下放上去` : task.n && cnt !== need ? `要剛好${need}隻喔，數數看` : '位置再想想看'], ...(task.en ? [[task.say, 'en-US']] : [[task.say]])]);
+      }
+    };
+    const shot = async () => {
+      try {
+        await loadJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+        P.querySelectorAll('.pk-tools').forEach(x => x.remove()); P.querySelectorAll('.pk-sticker.sel').forEach(x => x.classList.remove('sel'));
+        const cv = await window.html2canvas($('pkBox'), { scale: 2, useCORS: true, backgroundColor: null, logging: false });
+        const a = document.createElement('a'); a.download = `ddn-sticker-${Date.now()}.png`; a.href = cv.toDataURL('image/png'); a.click(); say([['存好了！']]);
+      } catch (e) { pkAsk('📷', '現在沒辦法存圖', '請確認有連上網路，再試一次。', [['好', 'gray', () => {}]]); }
+    };
+    // 貼紙任務需要的貼紙先送給孩子
+    PK_STK_TASK.forEach(t => { if (!pkOwned().includes(t.e)) store.set('pkOwn', pkOwned().concat(t.e)); });
+    draw(); track('park-sticker-open', '貼紙樂園');
+  }
+  $('parkEnter').addEventListener('click', openPark);
+  function drawPkMax() { const m = pkMax(); document.querySelectorAll('.pk-max-btn').forEach(b => b.setAttribute('aria-checked', String(Number(b.dataset.n) === m))); }
+  document.querySelectorAll('.pk-max-btn').forEach(b => b.addEventListener('click', () => { store.set('pkMax', Number(b.dataset.n)); drawPkMax(); }));
+  drawPkMax();
+
+  /* ---------- 🏆 星星排行榜：所有付費玩家一起比，只顯示家長設定的暱稱 ---------- */
+  const RK_AVA = ['🐻', '🐰', '🐱', '🐶', '🐼', '🦁', '🐯', '🦊', '🐸', '🐧', '🦄', '🦖'];
+  const RK_ADJ = ['快樂', '勇敢', '聰明', '閃亮', '彩虹', '跳跳', '可愛', '飛天', '星星', '神奇'], RK_ANI = ['小熊', '兔兔', '小貓', '小狗', '熊貓', '獅子', '老虎', '狐狸', '青蛙', '企鵝', '恐龍', '海豚'];
+  const RK_BAD = ['幹', '靠北', '屎', '尿', '屁', '殺', '白癡', '智障', '垃圾', '去死', '色情', 'fuck', 'shit', 'sex'];
+  function weekKey() { const d = new Date(); const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())); const day = t.getUTCDay() || 7; t.setUTCDate(t.getUTCDate() + 4 - day); const y = t.getUTCFullYear(), w = Math.ceil(((t - Date.UTC(y, 0, 1)) / 864e5 + 1) / 7); return `${y}-W${String(w).padStart(2, '0')}`; }
+  function wkAdd(n) { const w = store.get('wkStars', {}), k = weekKey(); const v = w.k === k ? w : { k, n: 0 }; v.n += n; store.set('wkStars', v); }
+  const wkNow = () => { const w = store.get('wkStars', {}); return w.k === weekKey() ? w.n : 0; };
+  const rkOn = () => store.get('rankOn', false) && pkPaid() && store.get('codeIds', []).length > 0;
+  let rkLast = 0;
+  async function rankSync(extra) {
+    if (!ACT_URL || !store.get('codeIds', []).length) return { ok: false, reason: 'nocode' };
+    const q = new URLSearchParams(Object.assign({ act: 'rank', code: store.get('codeIds', [])[0], dev: devId(), nick: store.get('rankNick', ''), ava: store.get('rankAva', '🐻'), star: total, wks: wkNow(), wk: weekKey() }, extra || {}));
+    const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 15000);
+    try { const r = await fetch(ACT_URL + '?' + q, { signal: ctl.signal, cache: 'no-store' }); const j = await r.json(); if (j.ok && j.week) store.set('rankCache', j); rkLast = Date.now(); return j; }
+    catch (e) { return { ok: false, reason: 'net' }; } finally { clearTimeout(t); }
+  }
+  function rankMaybe() { if (rkOn() && Date.now() - rkLast > 180000) rankSync(); }
+  // 排行榜畫面
+  async function openRank() {
+    pkStop(); const P = $('pkPlay'); P.className = 'pk pk-rank'; P.hidden = false; $('pkHub').hidden = true;
+    let tab = 'week';
+    const draw = (j, msg) => {
+      const d = j && j[tab];
+      const rows = d ? d.top.map((x, i) => `<div class="rk-row${x.me ? ' me' : ''}"><span class="rk-no">${i < 3 ? ['🥇', '🥈', '🥉'][i] : i + 1}</span><span class="rk-ava">${x.a}</span><span class="rk-nick">${x.n}${x.me ? '<small>（我）</small>' : ''}</span><span class="rk-s">⭐ ${x.s}</span></div>`).join('') : '';
+      const meTxt = d && d.me ? (d.me === 1 ? `🎉 你是第 1 名！` : `你是第 ${d.me} 名，再 <b>${d.ahead}</b> 顆星就能往前一名！`) : '';
+      P.innerHTML = `<div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="回樂園">${pkBack}</button><span class="pk-pill">本週 ⭐ ${wkNow()}</span></div>
+        <div class="rk-in"><div class="rk-head"><div class="rk-cup">🏆</div><div class="pk-ttl" style="font-size:2.2rem">星星排行榜</div><div class="pk-sub">和全台灣的小朋友一起比星星！</div></div>
+        <div class="rk-tabs"><button class="pk-tab${tab === 'week' ? ' on' : ''}" data-t="week">本週</button><button class="pk-tab${tab === 'all' ? ' on' : ''}" data-t="all">全部</button></div>
+        ${meTxt ? `<div class="rk-me">${meTxt}</div>` : ''}
+        <div class="rk-list">${msg ? `<p class="rk-msg">${msg}</p>` : rows || '<p class="rk-msg">這週還沒有人上榜，快去拿星星當第一名！</p>'}</div>
+        <p class="rk-foot">${tab === 'week' ? '本週排行每週一重新開始。' : ''}只顯示暱稱，不會顯示真實姓名。</p></div>`;
+      $('pkQuit').onclick = () => { pkStop(); openPark(); };
+      P.querySelectorAll('.rk-tabs .pk-tab').forEach(b => b.onclick = () => { tab = b.dataset.t; draw(j, msg); });
+    };
+    if (!rkOn()) {
+      draw(null, '請爸爸媽媽到「家長專區」幫你取一個暱稱，就可以加入排行榜囉！');
+      const b = document.createElement('div'); b.style.cssText = 'text-align:center;margin-top:10px'; b.innerHTML = '<button class="pk-btn" id="rkParent">請家長設定</button>';
+      P.querySelector('.rk-list').appendChild(b); $('rkParent').onclick = () => { pkStop(); openGate(() => { renderReport(); show('report'); setTimeout(() => $('rankBlock').scrollIntoView({ behavior: 'smooth' }), 100); }); };
+      return;
+    }
+    const c = store.get('rankCache', null); draw(c, c ? '' : '讀取中…');
+    const j = await rankSync();
+    if (j.ok) draw(j); else if (!c) draw(null, j.reason === 'net' ? '現在連不上網路，等一下再看看。' : j.reason === 'nodev' ? '這台裝置的開通紀錄找不到，請家長重新輸入解鎖碼。' : '暫時看不到排行榜，等一下再試試。');
+    track('rank-open', '看排行榜');
+  }
+  // 家長專區設定
+  function drawRankSet() {
+    const box = $('rankSet'); if (!box) return;
+    if (!pkPaid() || !store.get('codeIds', []).length) { box.innerHTML = '<p class="note">開通付費方案後就能加入排行榜。</p>'; return; }
+    const on = store.get('rankOn', false), nick = store.get('rankNick', ''), ava = store.get('rankAva', '🐻');
+    box.innerHTML = `<label class="rk-check"><input type="checkbox" id="rkOn"${on ? ' checked' : ''}> 我同意讓孩子用暱稱加入排行榜（只上傳暱稱、頭像和星星數）</label>
+      <div class="rk-form"${on ? '' : ' hidden'}><div class="rk-line"><input id="rkNick" maxlength="8" placeholder="暱稱（最多 8 個字）" value="${nick.replace(/"/g, '')}"><button class="btn ghost small" id="rkRand">🎲 隨機</button></div>
+      <div class="rk-avas">${RK_AVA.map(a => `<button class="rk-av${a === ava ? ' on' : ''}" data-a="${a}">${a}</button>`).join('')}</div>
+      <div class="rk-line"><button class="btn small" id="rkSave">儲存</button><span class="note" id="rkMsg"></span></div>
+      <p class="note">請不要用孩子的真實姓名。不適當的暱稱會被隱藏。</p></div>`;
+    let sel = ava;
+    $('rkOn').onchange = async e => {
+      if (e.target.checked) { store.set('rankOn', true); box.querySelector('.rk-form').hidden = false; if (!nick) $('rkNick').value = pick(RK_ADJ) + pick(RK_ANI); }
+      else { store.set('rankOn', false); box.querySelector('.rk-form').hidden = true; rankSync({ leave: '1' }); store.set('rankCache', null); }
+    };
+    $('rkRand').onclick = () => { $('rkNick').value = pick(RK_ADJ) + pick(RK_ANI); };
+    box.querySelectorAll('.rk-av').forEach(b => b.onclick = () => { sel = b.dataset.a; box.querySelectorAll('.rk-av').forEach(x => x.classList.toggle('on', x === b)); });
+    $('rkSave').onclick = async () => {
+      const n = $('rkNick').value.replace(/[<>"'&\s]/g, '').slice(0, 8);
+      if (!n) { $('rkMsg').textContent = '請輸入暱稱'; return; }
+      if (RK_BAD.some(b => n.toLowerCase().includes(b))) { $('rkMsg').textContent = '這個暱稱不能用，換一個吧'; return; }
+      store.set('rankNick', n); store.set('rankAva', sel); store.set('rankOn', true); $('rkMsg').textContent = '儲存中…';
+      const j = await rankSync(); $('rkMsg').textContent = j.ok ? `✅ 已加入！本週第 ${j.week.me} 名` : j.reason === 'nick' ? '這個暱稱不能用，換一個吧' : j.reason === 'net' ? '連不上網路，連線後會自動上傳' : '暫時無法加入，請稍後再試';
+    };
+  }
 
   /* ---------- 安裝成 App（PWA） ---------- */
   const standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
