@@ -62,6 +62,8 @@
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
+html.no-zoom, html.no-zoom body, html.no-zoom .pk { touch-action: pan-y; }
+html.no-zoom .pk-play { touch-action: none; }
 body {
   background-color: var(--bg);
   background-image: radial-gradient(var(--dot) 2px, transparent 2.5px);
@@ -5107,7 +5109,7 @@ body.is-yx.is-print .promo { display: none; }
     if (m) { void mascot.getBoundingClientRect(); mascot.classList.add(m); }
   }
 
-  function show(id) { if (id !== 'park') { const a = $('pkHub'), b = $('pkPlay'); if (a) a.hidden = true; if (b) b.hidden = true; } ['home', 'zone', 'ezone', 'ezlearn', 'learn', 'game', 'done', 'gate', 'report', 'rest', 'park'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); }
+  function show(id) { pinchLock(['park', 'game', 'learn', 'ezlearn'].includes(id)); if (id !== 'park') { const a = $('pkHub'), b = $('pkPlay'); if (a) a.hidden = true; if (b) b.hidden = true; } ['home', 'zone', 'ezone', 'ezlearn', 'learn', 'game', 'done', 'gate', 'report', 'rest', 'park'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); }
 
   function addStar() {
     const pt = playToday(); pt.stars++; store.set('playToday', pt); wkAdd(1);
@@ -8504,6 +8506,18 @@ body.is-yx.is-print .promo { display: none; }
     };
   }
 
+  /* ---------- 玩遊戲時防止兩指縮放、連點放大（小朋友常不小心觸發） ---------- */
+  var pinchOn = false; // 用 var：show() 可能在這行之前就被呼叫
+  function pinchLock(on) {
+    pinchOn = on;
+    const m = document.querySelector('meta[name="viewport"]');
+    if (m) m.setAttribute('content', on ? 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover' : 'width=device-width, initial-scale=1, viewport-fit=cover');
+    document.documentElement.classList.toggle('no-zoom', on);
+  }
+  // iPhone／iPad 的 Safari 不理會 user-scalable=no，要另外擋手勢事件；Android 用上面的 viewport 設定
+  ['gesturestart', 'gesturechange', 'gestureend'].forEach(t => document.addEventListener(t, e => { if (pinchOn) e.preventDefault(); }, { passive: false }));
+  document.addEventListener('touchmove', e => { if (pinchOn && e.touches.length > 1) e.preventDefault(); }, { passive: false });
+  document.addEventListener('wheel', e => { if (pinchOn && e.ctrlKey) e.preventDefault(); }, { passive: false });
   /* ---------- 安裝成 App（PWA） ---------- */
   const standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
   const hasManifest = !!document.querySelector('link[rel="manifest"]');
