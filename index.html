@@ -149,6 +149,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
 [data-sub="trace"], [data-sub="sequence"], [data-sub="match"], [data-sub="maze"], [data-sub="puzzle"], [data-sub="coloring"] { --c: var(--color); --c-soft: var(--color-soft); --c-deep: var(--color-deep); }
 [data-sub="calm"], [data-sub="emotion"], [data-sub="body"], [data-sub="jobs"], [data-sub="seasons"], [data-sub="food"] { --c: var(--life); --c-soft: var(--life-soft); --c-deep: var(--life-deep); }
 [data-sub="manners"] { --c: var(--cn); --c-soft: var(--cn-soft); --c-deep: var(--cn-deep); }
+[data-sub="stranger"] { --c: #C2414B; --c-soft: #FDE6E6; --c-deep: #8A2A2A; }
 [data-sub="trash"] { --c: var(--geo); --c-soft: var(--geo-soft); --c-deep: var(--geo-deep); }
 .o-bin { width: clamp(46px, 15vw, 76px); height: auto; }
 .options.cols-4 .o-life .t { font-size: clamp(.9rem, 3.8vw, 1.15rem); }
@@ -1967,6 +1968,11 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
         <span class="art"><span class="emo">🙇🙏</span></span>
         <span class="name">禮貌和交朋友</span><span class="what" data-small="對不起、輪流、不搶玩具" data-big="吵架怎麼辦、勇敢道歉">對不起、輪流、不搶玩具</span>
       </button>
+      <button class="subject" data-sub="stranger" id="sub-stranger">
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="stranger">0</span></span>
+        <span class="art"><span class="emo">🙅🍬</span></span>
+        <span class="name">小心陌生人</span><span class="what" data-small="不拿糖果、不跟陌生人走" data-big="不開門、不說地址、大聲喊救命">不拿糖果、不跟陌生人走</span>
+      </button>
       <button class="subject" data-sub="emotion" id="sub-emotion">
         <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="emotion">0</span></span>
         <span class="art"><span class="emo">😄😢</span></span>
@@ -3443,8 +3449,18 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       after: [[t.why || `答案是${t.a[0][1]}`]], key: t.q
     }, extra || {});
   }
+  let STRANGER = null; const strangerBank = () => STRANGER || (STRANGER = STRANGER_X.concat(SAFETY.filter(x => /陌生|不認識的人|金阿姨|馬婆婆|牛叔叔/.test(x.q))));
   const lvPool = bank => age === 'small' ? bank.filter(x => x.lv === 1) : bank;
   /* ---------- 進階版題庫 ---------- */
+  const STRANGER_X = [
+    { sc: 'park|g3 100 stand plain|jin 214 reach smile f|e 🐱 170 80 26', e: '🐱', q: '金阿姨說：「我家有好可愛的小貓，跟我去看！」怎麼辦？', a: [['🙅', '說不要，回到爸媽身邊'], ['🐱', '跟她去看小貓'], ['🤫', '偷偷去一下就回來']], why: '不認識的人用小貓、小狗、玩具叫你跟他走，都是騙人的，一定要說不要。', lv: 1 },
+    { sc: 'street|b1 100 stand surprise|ma 214 reach sad f', e: '😟', q: '馬婆婆說：「你爸爸受傷了，快跟我走！」可是你不認識她，怎麼辦？', a: [['🏫', '不跟她走，去找老師'], ['🏃', '趕快跟她走'], ['😭', '站著哭不動']], why: '就算說家人出事了，也不能跟不認識的人走。要找老師或打電話給爸媽確認。', lv: 1 },
+    { sc: 'home|g1 110 stand plain|e 🚪 240 118 96|e 🔔 214 60 26', e: '🔔', q: '自己在家，有人按門鈴說是送貨的，要怎麼做？', a: [['🙅', '不開門，等爸媽回來'], ['🚪', '馬上開門'], ['🗣️', '告訴他家裡沒大人']], why: '自己在家不要開門，也不要說家裡沒有大人，可以打電話給爸媽。', lv: 1 },
+    { sc: 'park|b1 100 cower scared|niu 200 grab angry f', e: '📢', q: '牛叔叔突然拉住你的手，要把你帶走，怎麼辦？', a: [['📢', '大聲喊「我不認識你！救命！」'], ['🤐', '不敢出聲'], ['🚶', '乖乖跟他走']], why: '被不認識的人拉走，要大聲喊「我不認識你！」，讓旁邊的大人知道。', lv: 1 },
+    { sc: 'bedroom|g2 140 stand plain|e 📱 200 120 34|e 💬 230 70 26', e: '📱', q: '網路上不認識的人，要你傳照片給他，要怎麼做？', a: [['🙅', '不傳，告訴爸媽'], ['📷', '傳照片給他'], ['🏠', '告訴他住哪裡']], why: '網路上不認識的人也是陌生人，照片、名字、地址都不能給。' },
+    { sc: 'store|b2 110 cry cry|e 👮 240 110 60', e: '👮', q: '跟爸媽走散了，可以請誰幫忙？', a: [['👮', '警察或店裡穿制服的人'], ['🚗', '路邊車子裡的人'], ['🙋', '隨便一個叔叔']], why: '走散的時候，找警察、店員或帶著小孩的媽媽幫忙，不要跟人離開店裡。', lv: 1 },
+    { sc: 'park|g3 100 stand plain|niu 214 hand smile f|e 📷 168 70 26', e: '📷', q: '牛叔叔說要幫你拍照，問你叫什麼名字、讀哪個學校，要怎麼說？', a: [['🙅', '不告訴他，去找爸媽'], ['🏫', '告訴他學校名字'], ['📛', '告訴他全名']], why: '名字、學校、家裡地址，都不能告訴不認識的人。' }
+  ];
   const SAFETY = [
     { sc: 'street|b1 96 stand plain|jin 214 give smile f|e 🍬 162 106 24', e: '🍬', q: '不認識的人說要給你糖果，叫你跟他走，怎麼辦？', a: [['🙅', '說不要，去找爸媽'], ['🍬', '跟他走'], ['🤐', '不跟爸媽說']], lv: 1 },
     { sc: 'park|g1 100 stand plain|jin 214 give smile f|e 🧸 168 110 30', e: '🧸', q: '金阿姨是不認識的人，她說要帶你去買玩具，爸媽不知道，怎麼辦？', a: [['🙅', '說不要，馬上去找爸媽'], ['🧸', '跟她去買玩具'], ['🤫', '偷偷去，不告訴爸媽']], why: '不認識的人說要給你東西或帶你去哪裡，都要說不要，馬上告訴爸媽。', lv: 1 },
@@ -4511,6 +4527,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       };
     },
     safety() { return bankQ(SAFETY, pick(lvPool(SAFETY))); },
+    stranger() { const B = strangerBank(); return bankQ(B, pick(lvPool(B))); },
     science() { return bankQ(SCIENCE, pick(lvPool(SCIENCE))); },
     festival() { return bankQ(FESTIVAL, pick(lvPool(FESTIVAL))); },
     animals() { return bankQ(ANIMALS, pick(lvPool(ANIMALS))); },
@@ -7489,7 +7506,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     enspell: '看到英文招牌時，一起唸出字母。', zhuyinpro: '用注音卡把聲母、韻母拼在一起唸。', enphrase: '每天用一句英文打招呼，像 Good morning。',
     enverb: '玩「我說你做」：jump、run、clap。', wordpro: '買東西時讓孩子算算看要付多少。', patternpro: '用串珠或積木排規律讓孩子接下去。', deduce: '玩「猜猜我在哪」的小遊戲。',
     moneypro: '讓孩子拿零錢付款，再一起算找回多少。', cnsimilar: '把長得像的字寫在一起，比比看哪裡不一樣。', sentence: '說話時讓孩子接最後一個詞。',
-    storyseq: '看繪本後，請孩子說說先發生什麼、後發生什麼。', safety: '定期和孩子演練走失、地震時要怎麼做，並背熟爸媽電話。',
+    storyseq: '看繪本後，請孩子說說先發生什麼、後發生什麼。', stranger: '和孩子演練：陌生人給東西、叫你跟他走、問地址時，大聲說「不要」並馬上告訴大人。', safety: '定期和孩子演練走失、地震時要怎麼做，並背熟爸媽電話。',
     science: '在家做浮沉、磁鐵的小實驗。', festival: '過節時說說這個節日的故事和習俗。', animals: '去動物園或看動物影片時，一起聊聊牠們的特點。', clockpro: '出門前問孩子：「現在幾點幾分？」', tracepro: '描寫時注意坐姿和握筆，一天寫 3～5 個字就好。',
     calm: '孩子為玩具或食物生氣時，先抱住或靠近他，說出他的感覺（你很想要對不對），等冷靜了再教他一句可以說的話。要結束遊戲前 5 分鐘先預告，時間到用「說到做到」來稱讚他。孩子愛比第一名時，多稱讚他的努力（你一直練習），少說「你最棒、第一名」。可以在家設一個安靜角落，平時就練習小烏龜深呼吸。',
     manners: '孩子說屁股、大便或「揍扁你」這類話時，先不要大笑或大驚小怪，平靜地說「這句話會讓人不舒服，可以換成⋯⋯」，並給他一句可以替代的話。孩子不肯道歉時，先幫他說出感覺（你也嚇到了對不對？），再陪他一起說；不要逼或罰，說出口後立刻稱讚他很勇敢。大人也要以身作則，常說請、謝謝、對不起。', trash: '倒垃圾時讓孩子幫忙分類；各縣市規定略有不同，以居住地的規定為準。'
@@ -7521,7 +7538,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   const DOMAIN_SUBS = {
     認知: 'pkmath pkcolor pkpos math addsub compare measure share ordinal money time calendar geo solid position hide odd logic riddle sequence memory puzzle maze spotdiff match challenge mathpro wordpro moneypro clockpro patternpro deduce science animals seasons xmcolor xmshape xmplace xmday xmpattern xmdots xmmirror xmshop yxnum yxcalc yxword yxtime yxmoney yxmeasure yxstat yxcal eznum eznum2 ezweek',
     語文: 'pkzy pken cn zhuyin spell en abc words story cnword cnsimilar sentence zhuyinpro enspell enphrase enverb storyseq riddle xmengcolor yxzy yxtone yxspell yxchar yxsimilar yxsent yxpunct yxlook yxstory yxstroke yxtrace',
-    社會: 'pklife manners life jobs safety festival trash yxschool xmshop ezhello ezpeople',
+    社會: 'pklife manners stranger life jobs safety festival trash yxschool xmshop ezhello ezpeople',
     情緒: 'pkemo emotion calm xmemo manners',
     美感: 'coloring color xmcolor xmpattern xmmirror xmshape geo',
     身體動作與健康: 'body food seasons safety trace tracepro yxtrace maze xmdots coloring puzzle ezbody ezsimon'
@@ -7596,6 +7613,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     calm: () => qaCards(CALM, true).concat(KIND.map(k => ({ v: lcEmo('💬'), t: k, s: '好聽的話', say: [[k]] }))),
     manners: () => qaCards(MANNERS, true),
     safety: () => qaCards(SAFETY),
+    stranger: () => qaCards(strangerBank(), true),
     body: () => qaCards(BODY),
     jobs: () => qaCards(JOBS),
     seasons: () => qaCards(SEASONS),
