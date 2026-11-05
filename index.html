@@ -22,7 +22,7 @@
 <title>動動腦小學堂</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Fredoka:wght@500;600;700&family=Huninn&family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@500;700;900&display=swap">
 <style>
 /* 版面：像一盒積木。每個科目一個顏色，所有按鈕都有厚底陰影，按下去會「壓下」；小幫手「圓圓」陪著出題 */
 :root {
@@ -64,7 +64,7 @@
 [hidden] { display: none !important; }
 html, body, button, a, input, select, .opt { touch-action: manipulation; }
 html.no-zoom, html.no-zoom body, html.no-zoom .pk, html.no-zoom .pk *, html.no-zoom #game *, html.no-zoom #learn *, html.no-zoom #ezlearn * { touch-action: manipulation; }
-html.no-zoom .pk-play, html.no-zoom .pk-play .pk-field, html.no-zoom .pk-play .pk-m3board, html.no-zoom .pk-play .pk-snk { touch-action: none; }
+html.no-zoom .pk-canvas, html.no-zoom .pk-canvas *, html.no-zoom .pk-sticker, html.no-zoom .pet-deco, html.no-zoom .pet-deco *, html.no-zoom .pk-ammo, html.no-zoom .pk-ammo *, html.no-zoom .pk-play, html.no-zoom .pk-play .pk-field, html.no-zoom .pk-play .pk-m3board, html.no-zoom .pk-play .pk-snk { touch-action: none; }
 body {
   background-color: var(--bg);
   background-image: radial-gradient(var(--dot) 2px, transparent 2.5px);
@@ -1063,6 +1063,27 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .pk-sky2 { background: linear-gradient(#7FD0FF 0%, #C9EEFF 60%, #9BDB7E 60.2%); }
 .pk-sling { position: absolute; left: 44px; bottom: 120px; width: 60px; height: 100px; z-index: 3; }
 .pk-sling svg { width: 100%; height: 100%; }
+.pk-ball { width: 48px; height: 48px; font-size: 0; }
+.pk-ball .bv, .pk-ball .bs { width: 100%; height: 100%; }
+.pk-ball svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 3px 2px rgba(0,0,0,.25)); }
+.pk-bshadow { position: absolute; left: 0; top: 0; width: 40px; height: 12px; border-radius: 50%; background: rgba(0,0,0,.6); filter: blur(2px); z-index: 2; pointer-events: none; }
+.pk-btrail { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; filter: blur(1px); }
+.pk-spark { position: absolute; z-index: 7; font-size: 24px; pointer-events: none; }
+.pk-ammo { position: absolute; right: 10px; bottom: 14px; z-index: 8; display: flex; gap: 6px; background: rgba(255,255,255,.85); border-radius: 18px; padding: 6px; box-shadow: 0 4px 0 rgba(0,0,0,.12); }
+.pk-ammo button { border: 0; background: #F3F0FA; border-radius: 14px; padding: 4px 6px 2px; display: flex; flex-direction: column; align-items: center; cursor: pointer; touch-action: none; font: inherit; }
+.pk-ammo button.on { background: #FFE07A; box-shadow: inset 0 0 0 3px #F5A623; }
+.pk-ammo .ic { width: 38px; height: 38px; display: block; } .pk-ammo .ic svg { width: 100%; height: 100%; }
+.pk-ammo small { font-size: 12px; font-weight: 900; color: #5A4030; white-space: nowrap; }
+.pk-bigboom { position: absolute; z-index: 8; font-size: 40px; pointer-events: none; transform: translate(-50%,-50%); animation: pkBigBoom .65s ease-out forwards; }
+@keyframes pkBigBoom { 0% { scale: .3; opacity: 1; } 40% { scale: 3; opacity: 1; } 100% { scale: 3.6; opacity: 0; } }
+.pk-quake { animation: pkQuake .4s linear; }
+@keyframes pkQuake { 0%, 100% { translate: 0 0; } 20% { translate: -7px 3px; } 40% { translate: 6px -4px; } 60% { translate: -4px 2px; } 80% { translate: 3px -1px; } }
+.pk-yum { position: absolute; z-index: 8; translate: -50% -50%; font-weight: 900; font-size: 24px; color: #E8590C; background: #fff; border-radius: 14px; padding: 2px 10px; pointer-events: none; animation: petUp 1s ease-out both; }
+.pk-mon.pk-eat .m { display: inline-block; animation: pkEatMon .45s ease-in-out 2; }
+@keyframes pkEatMon { 50% { transform: scale(1.25, .8); } }
+.pk-sling.snap svg { animation: pkSnap .35s ease-out; transform-origin: 50% 100%; }
+@keyframes pkSnap { 25% { transform: rotate(-8deg); } 55% { transform: rotate(6deg); } 80% { transform: rotate(-3deg); } }
+
 .pk-ghost { position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: 50%; background: rgba(255,255,255,.85); pointer-events: none; z-index: 5; animation: pkFlash .45s ease-out forwards; }
 .pk-ball { position: absolute; left: 0; top: 0; font-size: 40px; z-index: 6; will-change: transform; pointer-events: none; }
 .pk-mon { position: absolute; transform: translate(-50%, -50%); text-align: center; z-index: 4; }
@@ -1226,6 +1247,92 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .pet-deco.drag { z-index: 7; cursor: grabbing; scale: 1.2; filter: drop-shadow(0 10px 6px rgba(0,0,0,.25)); }
 .pet-pick { display: inline-block; width: 52px; height: 56px; vertical-align: middle; } .pet-pick .pet-svg { width: 100%; height: 100%; } .pet-pick .pe-hap, .pet-pick .pe-mo { opacity: 0; } .pet-pick.big { width: 90px; height: 96px; }
 .pet-acts .pk-btn:disabled { opacity: .55; }
+/* 📒 收集貼紙相簿 */
+.pk-alb { background: radial-gradient(circle at 20% 10%, #FFF7D6 0, transparent 40%), radial-gradient(circle at 90% 30%, #E6F4FF 0, transparent 45%), #FFF3E6; overflow-y: auto; }
+.al-in { max-width: 560px; margin: 0 auto; padding: 78px 14px 40px; }
+.al-head { text-align: center; margin-bottom: 10px; }
+.al-tabs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 2px 2px 8px; }
+.al-page { background: #fff; border-radius: 26px; padding: 14px; box-shadow: 0 6px 0 rgba(176,122,74,.25), 0 0 0 4px #F4D6B0 inset; background-image: radial-gradient(#F3E6D6 1.2px, transparent 1.3px); background-size: 16px 16px; }
+.al-prog { display: flex; align-items: center; gap: 8px; font-weight: 900; color: #6B4A2E; margin-bottom: 12px; }
+.al-prog i { flex: 1; height: 12px; border-radius: 99px; background: #F1E4D4; overflow: hidden; } .al-prog b { display: block; height: 100%; background: linear-gradient(90deg, #FFB020, #FF6B6B); border-radius: 99px; transition: width .4s; }
+.al-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.al-card { position: relative; border: 0; border-radius: 18px; padding: 8px 6px 8px; background: #fff; box-shadow: 0 0 0 3px #E8E2F0, 0 4px 0 rgba(0,0,0,.08); display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; font: inherit; overflow: hidden; }
+.al-card .al-art { width: 100%; aspect-ratio: 1; }
+.al-card b { font-size: .9rem; color: #2B2633; } .al-card small { font-size: .72rem; font-weight: 900; color: #8A6400; }
+.al-card.own.r1 { box-shadow: 0 0 0 3px #B9A2F0, 0 4px 0 rgba(0,0,0,.08); background: linear-gradient(120deg, #FFF0F7, #EEF6FF, #F3FFEE, #FFF8E1); background-size: 300% 300%; animation: alHolo 4s ease-in-out infinite alternate; }
+.al-card.own.r2 { box-shadow: 0 0 0 3px #F5B700, 0 0 14px rgba(245,183,0,.55), 0 4px 0 rgba(0,0,0,.08); background: linear-gradient(160deg, #FFF8D6, #FFE79A); }
+.al-card.own.r1::after, .al-card.own.r2::after, .al-big.r1::after, .al-big.r2::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.75) 50%, transparent 65%); background-size: 250% 100%; animation: alShine 2.6s ease-in-out infinite; pointer-events: none; }
+@keyframes alHolo { to { background-position: 100% 100%; } }
+@keyframes alShine { from { background-position: 150% 0; } to { background-position: -100% 0; } }
+.al-card:not(.own) .al-svg { filter: brightness(0) opacity(.16); }
+.al-card:not(.own) .al-svg * { animation: none !important; }
+.al-card:not(.own) small { background: #FFF3C4; border: 1.5px solid #F2C94C; border-radius: 99px; padding: 0 8px; }
+.al-done { text-align: center; font-weight: 900; color: #E8590C; margin: 12px 0 0; }
+.al-mini { display: inline-block; width: 90px; height: 90px; } .al-mini .al-svg * { animation: none; }
+.al-show { position: fixed; inset: 0; z-index: 85; background: rgba(30,20,50,.72); display: grid; place-items: center; padding: 16px; }
+.al-big { position: relative; width: min(340px, 92vw); background: #fff; border-radius: 30px; padding: 18px 16px 18px; text-align: center; box-shadow: 0 0 0 5px #E8E2F0; overflow: hidden; animation: alPop .45s cubic-bezier(.3,1.6,.5,1); }
+.al-big.r1 { box-shadow: 0 0 0 5px #B9A2F0, 0 0 30px rgba(185,162,240,.8); } .al-big.r2 { box-shadow: 0 0 0 5px #F5B700, 0 0 40px rgba(245,183,0,.9); background: linear-gradient(160deg, #FFFDF0, #FFF1B8); }
+@keyframes alPop { from { transform: scale(.4) rotate(-8deg); opacity: 0; } }
+.al-big h3 { margin: 6px 0 0; font-size: 1.6rem; } .al-big p { margin: 2px 0 12px; color: #6B6577; font-weight: 700; }
+.al-new { font-weight: 900; color: #E8590C; font-size: 1.2rem; animation: alPulse .8s ease-in-out infinite alternate; }
+@keyframes alPulse { to { transform: scale(1.1); } }
+.al-stage { width: 230px; height: 230px; margin: 0 auto; overflow: hidden; border-radius: 22px; background: radial-gradient(circle, #FFFFFF 0, #F2F6FF 70%); }
+.al-svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.al-svg g { transform-box: fill-box; }
+.al-svg .fx { opacity: 0; transform-origin: 50% 50%; }
+.a-sway { transform-origin: 50% 0%; animation: alSway 1.4s ease-in-out infinite alternate; }
+@keyframes alSway { from { transform: skewX(-6deg); } to { transform: skewX(6deg); } }
+.a-blink { transform-origin: 50% 50%; animation: peBlink 3.8s infinite; }
+.a-wheel { transform-origin: 50% 50%; animation: alSpin 1.2s linear infinite; }
+@keyframes alSpin { to { transform: rotate(360deg); } }
+.a-flick { transform-origin: 50% 100%; animation: alFlick .25s ease-in-out infinite alternate; }
+@keyframes alFlick { from { transform: scale(.92, 1); } to { transform: scale(1.06, 1.12); } }
+.a-siren { animation: alOn .6s steps(1) infinite; } .a-siren2 { animation: alOn .6s steps(1) infinite reverse; }
+@keyframes alOn { 0% { opacity: 1; } 50% { opacity: .25; } }
+.a-bob { animation: alBob 1.6s ease-in-out infinite alternate; }
+@keyframes alBob { to { transform: translateY(-5px); } }
+.a-wing { transform-origin: 100% 60%; animation: alFlap .5s ease-in-out infinite alternate; } .a-wing2 { transform-origin: 0% 60%; animation: alFlap2 .5s ease-in-out infinite alternate; }
+@keyframes alFlap { to { transform: rotate(16deg); } } @keyframes alFlap2 { to { transform: rotate(-16deg); } }
+.a-wave { transform-origin: 20% 100%; animation: alWave .8s ease-in-out infinite alternate; }
+@keyframes alWave { from { transform: rotate(-10deg); } to { transform: rotate(18deg); } }
+.a-arm { transform-origin: 20% 100%; animation: alWave 1s ease-in-out infinite alternate; }
+.a-armL { transform-origin: 50% 0%; } .a-armR { transform-origin: 50% 0%; }
+.al-hop .mv, .al-roar .mv, .al-dance .mv { transform-origin: 50% 100%; animation: alBreath 1.5s ease-in-out infinite alternate; }
+@keyframes alBreath { to { transform: scale(1.03, .97); } }
+/* 點了之後的特效 */
+.go .fx { animation: alFx 1.8s ease-out; }
+@keyframes alFx { 0% { opacity: 0; transform: scale(.4); } 20% { opacity: 1; transform: scale(1.1); } 75% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.15); } }
+.go .al-fly .mv { animation: alFly 1.6s ease-in-out; }
+@keyframes alFly { 30% { transform: translateY(-26px) rotate(-6deg) scale(1.08); } 60% { transform: translateY(-20px) rotate(4deg) scale(1.08); } }
+.go .al-fly .a-arm { animation: alPunch .4s ease-in-out 3; }
+@keyframes alPunch { 50% { transform: rotate(-20deg) translateY(-4px); } }
+.go .al-hop .mv { animation: alHop .42s ease-in-out 4; }
+@keyframes alHop { 0%, 100% { transform: translateY(0) scale(1.06, .94); } 50% { transform: translateY(-24px) scale(.96, 1.05); } }
+.go .al-drive .car { animation: alDrive 1.8s ease-in-out; } .go .al-drive .a-wheel { animation-duration: .25s; }
+@keyframes alDrive { 0% { transform: translateX(0); } 12% { transform: translateX(-8px); } 45% { transform: translateX(150px); } 45.1% { transform: translateX(-150px); } 100% { transform: translateX(0); } }
+.go .al-drive .fx { animation: alFx 1s ease-out; }
+.go .al-roar .mv { animation: alShake .12s linear 8; }
+@keyframes alShake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-3px) rotate(-1deg); } 75% { transform: translateX(3px) rotate(1deg); } }
+.al-roar .jaw { transform-origin: 0% 0%; } .go .al-roar .jaw { animation: alJaw .5s ease-in-out 3; }
+@keyframes alJaw { 50% { transform: rotate(22deg); } }
+.go .al-roar .hd { animation: alHead .5s ease-in-out 3; transform-origin: 0% 100%; }
+@keyframes alHead { 50% { transform: rotate(-8deg); } }
+.go .al-blast .mv { animation: alBlast 2s ease-in; }
+@keyframes alBlast { 0% { transform: translateY(0); } 15% { transform: translateY(4px); } 20% { transform: translateY(2px) translateX(-2px); } 25% { transform: translateY(4px) translateX(2px); } 55% { transform: translateY(-170px); } 55.1% { transform: translateY(170px); } 100% { transform: translateY(0); } }
+.go .al-blast .fx { animation: alFx .7s ease-out; }
+.go .al-beam .mv { animation: alBob .3s ease-in-out 6 alternate; }
+.go .al-flip .mv { animation: alFlip 1.6s ease-in-out; transform-origin: 50% 50%; }
+@keyframes alFlip { 50% { transform: translateY(-20px) rotate(180deg); } 100% { transform: rotate(360deg); } }
+.go .al-spin .mv { animation: alSpinBig 1.6s ease-in-out; transform-origin: 50% 50%; }
+@keyframes alSpinBig { 50% { transform: rotate(200deg) scale(1.15); } 100% { transform: rotate(360deg); } }
+.go .al-wave .a-wave { animation: alWave .2s ease-in-out 8 alternate; } .go .al-wave .mv { animation: alHop .5s ease-in-out 2; }
+.go .al-dance .mv { animation: alDance .4s ease-in-out 4; }
+@keyframes alDance { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg) translateY(-6px); } }
+.go .al-dance .a-armL { animation: alArmL .4s ease-in-out 4; } .go .al-dance .a-armR { animation: alArmR .4s ease-in-out 4; }
+@keyframes alArmL { 50% { transform: rotate(140deg); } } @keyframes alArmR { 50% { transform: rotate(-140deg); } }
+.pk-art.al-hub { width: 64px; height: 64px; font-size: 0; } .pk-art.al-hub svg { width: 100%; height: 100%; } .pk-art.al-hub .pe-hap, .pk-art.al-hub .pe-mo { opacity: 0; }
+.pk-s .al-svg { width: 44px; height: 44px; } .pk-s.al { padding: 0; }
+.pk-sticker.al { width: 78px; height: 78px; font-size: 0; }
 .pet-bubble { position: absolute; left: 50%; top: 12%; transform: translateX(-50%); background: #fff; border-radius: 20px; padding: 8px 16px; font-weight: 900; box-shadow: 0 4px 0 rgba(0,0,0,.1); white-space: nowrap; max-width: 90%; overflow: hidden; text-overflow: ellipsis; }
 .pet-panel { padding: 14px 16px 30px; max-width: 520px; margin: 0 auto; }
 .pet-bars { display: flex; flex-direction: column; gap: 8px; background: #fff; border-radius: 20px; padding: 12px 14px; box-shadow: 0 4px 0 rgba(0,0,0,.08); }
@@ -1418,6 +1525,125 @@ body.is-yx.is-print .promo { display: none; }
 #game[data-sub="yxstroke"], #done[data-sub="yxstroke"], #game[data-sub="yxtrace"], #done[data-sub="yxtrace"] { --c: var(--color); --c-soft: var(--color-soft); --c-deep: var(--color-deep); }
 #game[data-sub="yxnum"], #done[data-sub="yxnum"], #game[data-sub="yxcalc"], #done[data-sub="yxcalc"], #game[data-sub="yxword"], #done[data-sub="yxword"], #game[data-sub="yxtime"], #done[data-sub="yxtime"], #game[data-sub="yxmoney"], #done[data-sub="yxmoney"], #game[data-sub="yxmeasure"], #done[data-sub="yxmeasure"], #game[data-sub="yxstat"], #done[data-sub="yxstat"], #game[data-sub="yxcal"], #done[data-sub="yxcal"] { --c: var(--math); --c-soft: var(--math-soft); --c-deep: var(--math-deep); }
 #game[data-sub="yxschool"], #done[data-sub="yxschool"] { --c: var(--life); --c-soft: var(--life-soft); --c-deep: var(--life-deep); }
+/* 大圖卡 */
+.wcard { position: fixed; inset: 0; z-index: 90; background: rgba(40,34,30,.55); display: grid; place-items: center; padding: 16px; }
+html.wc-open body { overflow: hidden; }
+.wc-card { position: relative; width: min(380px, 100%); max-height: calc(100dvh - 32px); overflow-y: auto; background: var(--surface); border-radius: 30px; box-shadow: 0 0 0 6px #E4DAF6, 0 18px 40px rgba(40,30,60,.3); animation: wcIn .35s cubic-bezier(.3,1.5,.5,1); }
+@keyframes wcIn { from { transform: scale(.7) translateY(30px); opacity: 0; } }
+.wc-x { position: absolute; right: 12px; top: 12px; z-index: 2; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,.92); font-size: 1.1rem; font-weight: 900; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.wc-pic { position: relative; min-height: 190px; display: grid; place-items: center; padding: 22px 16px 26px; background: radial-gradient(120% 90% at 50% 110%, #F7D3C4 0 38%, transparent 39%), #FDEBE3; border-radius: 30px 30px 0 0; }
+.wc-pic .ezl-big { display: grid; place-items: center; }
+.wc-pic .ezl-emo { font-size: 7rem; } .wc-pic .ezl-svg { width: 170px; height: 170px; } .wc-pic .lc-scn svg, .wc-pic .scn { width: 220px; height: auto; } .wc-pic .ezl-letter, .wc-pic .ezl-num { font-size: 5rem; }
+.wc-card.talk .wc-pic .ezl-big { animation: wcBounce .5s ease-in-out infinite alternate; }
+@keyframes wcBounce { to { transform: translateY(-8px) scale(1.04); } }
+.wc-tag { position: absolute; left: 14px; top: 14px; background: #fff; color: #A9483A; border-radius: 99px; padding: 3px 12px; font-size: .8rem; font-weight: 900; }
+.wc-body { padding: 16px 16px 10px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.wc-tiles { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.wc-t { width: 52px; height: 60px; border: 0; border-radius: 14px; font-family: "Fredoka", "Andika", var(--f-body); font-weight: 600; font-size: 2.4rem; line-height: 1; display: grid; place-items: center; box-shadow: 0 4px 0 rgba(0,0,0,.08); }
+.wc-tiles:has(.wc-t:nth-child(7)) .wc-t { width: 40px; height: 50px; font-size: 1.9rem; }
+.wc-t.pop { animation: wcPop .4s ease; } @keyframes wcPop { 40% { transform: scale(1.25) translateY(-6px); } }
+.wc-word { font-family: "Fredoka", var(--f-round); font-size: 1.9rem; line-height: 1.3; text-align: center; color: var(--ink); }
+.wc-word .lc-kai { font-size: 3.4rem; } .wc-word .lc-zy { font-size: 3rem; }
+.wc-sub { font-size: 1.05rem; font-weight: 700; color: var(--muted); text-align: center; }
+.wc-acts { display: flex; gap: 10px; align-items: center; }
+.wc-say { height: 54px; padding: 0 22px; border: 0; border-radius: 18px; background: #8A6BD6; color: #fff; font-weight: 900; font-size: 1.15rem; box-shadow: 0 5px 0 #6A4FB0; }
+.wc-say:active, .wc-ic:active { transform: translateY(4px); box-shadow: none; }
+.wc-ic { width: 54px; height: 54px; border: 0; border-radius: 18px; font-size: 1.6rem; display: grid; place-items: center; }
+.wc-ic.slow { background: #FFF1D9; box-shadow: 0 5px 0 #F0D3A2; } .wc-ic.rec { background: #FDE3EA; box-shadow: 0 5px 0 #F2BFCD; } .wc-ic.me { background: #E2F1EC; box-shadow: 0 5px 0 #BFE0D2; }
+.wc-ic.rec.on { background: #FF6B6B; animation: wcRec 1s ease-in-out infinite; } @keyframes wcRec { 50% { transform: scale(1.1); } }
+.wc-note { margin: 0; font-size: .85rem; color: var(--muted); text-align: center; }
+.wc-nav { display: flex; align-items: center; justify-content: space-between; padding: 0 16px 16px; font-weight: 900; color: var(--muted); }
+.wc-nav button { width: 48px; height: 44px; border: 0; border-radius: 14px; background: var(--bg); font-size: 1.1rem; box-shadow: 0 3px 0 var(--line-deep); }
+.wc-nav button:disabled { opacity: .35; }
+/* 單字卡格子：插畫卡 */
+.ezl-card { border: 0; border-radius: 22px; background: var(--surface); box-shadow: 0 6px 14px rgba(90,70,50,.12); padding: 0 0 10px; overflow: hidden; position: relative; }
+.ezl-card > :first-child { width: 100%; min-height: 96px; display: grid !important; place-items: center; background: var(--en-soft); margin-bottom: 4px; padding: 8px 0; }
+.ezl-card:nth-child(5n+2) > :first-child { background: #FDEBE3; } .ezl-card:nth-child(5n+3) > :first-child { background: #EEE8FA; } .ezl-card:nth-child(5n+4) > :first-child { background: #FFF3D1; } .ezl-card:nth-child(5n+5) > :first-child { background: #E2F1EC; }
+.ezl-card b { font-family: "Fredoka", "Andika", var(--f-round); font-weight: 600; color: var(--ink); padding: 0 6px; }
+.ezl-card .lc-en { font-family: "Fredoka", "Andika", var(--f-round); }
+.ezl-card.reading { box-shadow: 0 0 0 3px #F2B53A, 0 6px 14px rgba(90,70,50,.12); background: #FFFBEA; }
+/* 學習單新樣式 */
+.psheet { background-color: #fff; background-image: linear-gradient(rgba(120,150,170,.07) .25mm, transparent .25mm), linear-gradient(90deg, rgba(120,150,170,.07) .25mm, transparent .25mm); background-size: 5mm 5mm; }
+.ps-head { border-bottom: 0; background: #F4F8FB; border-radius: 4mm; padding: 2.5mm 3mm; margin-bottom: 2mm; align-items: center; box-shadow: inset 0 0 0 .3mm #D9E5EC; }
+.ps-tt { flex: 1; min-width: 0; }
+.ps-head b { font-family: var(--f-round); font-weight: 400; font-size: 5.6mm; color: #2F3B52; }
+.ps-head b span { color: #3E8E8B; }
+.ps-name { display: flex; flex-direction: column; gap: .6mm; font-size: 3.1mm; color: #2F3B52; }
+.ps-stamp { flex: none; width: 15mm; height: 15mm; border-radius: 50%; border: .5mm dashed #E09A92; display: grid; place-items: center; text-align: center; font-size: 2.5mm; font-weight: 900; color: #D9574A; line-height: 1.2; transform: rotate(-8deg); }
+.pq { border: 0; border-radius: 3.5mm; background: #fff; box-shadow: inset 0 0 0 .35mm #DDE6EC; }
+.pq-h b { background: #EAF2F8; color: #3E5C8A; }
+.pq-o { border: .3mm solid #DDE6EC; border-radius: 2.5mm; background: #FCFDFE; }
+.ps-ans { border-top: .3mm dashed #C9D4DE; }
+/* ===== v50 新版面：吉卜力水彩風（方格紙、雙色標題、書架卡片） ===== */
+:root:not([data-theme="dark"]) {
+  --bg: #F7F1E3; --dot: rgba(120,150,170,.10); --surface: #FFFDF8; --ink: #2F3B52; --muted: #56627A;
+  --line: #E7DECB; --line-deep: #D9CDB4;
+  --math: #E0793A; --cn: #D2564A; --en: #3F7FC4; --geo: #3E9A6A; --sun: #F2B53A; --grape: #8A6BD6;
+  --math-soft: #FCE7D8; --cn-soft: #FBE1DC; --en-soft: #E1EEF8; --geo-soft: #DDF0E3; --sun-soft: #FFF3D1;
+  --math-deep: #B85A22; --cn-deep: #A63D33; --en-deep: #2B5F99; --geo-deep: #2B7350;
+  --time: #7C5CC9; --time-soft: #ECE6F8; --time-deep: #5A3FA0; --life: #2E9AA3; --life-soft: #DAF0F1; --life-deep: #1F7178; --color: #D95B93; --color-soft: #FCE3EE; --color-deep: #A83E6E;
+  --good: #3E9A6A; --good-soft: #DDF0E3; --good-deep: #2B7350;
+  --wood: #D9A777; --wood-deep: #B98455;
+}
+:root { --f-display: "Fredoka", "Huninn", "Noto Sans TC", system-ui, sans-serif; --f-round: "Huninn", "Noto Sans TC", "PingFang TC", sans-serif; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --dot: rgba(160,190,210,.07); --wood: #6B4E36; --wood-deep: #4A3524; } }
+:root[data-theme="dark"] { --dot: rgba(160,190,210,.07); --wood: #6B4E36; --wood-deep: #4A3524; }
+body {
+  background-image: linear-gradient(var(--dot) 1px, transparent 1px), linear-gradient(90deg, var(--dot) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title { font-family: var(--f-round); font-weight: 400 !important; letter-spacing: .02em; }
+.chunky { border-radius: 22px; }
+/* 首頁：水彩天空 */
+.hero { position: relative; overflow: hidden; background: #CFE9F2; box-shadow: 0 10px 26px rgba(70,90,110,.14), inset 0 0 0 1.5px rgba(255,255,255,.6); min-height: 230px; align-items: flex-start; padding: 22px 18px 18px; flex-direction: row-reverse; justify-content: space-between; }
+.hero > .mascot { align-self: flex-end; width: 96px; height: 96px; }
+.hero-text h2 .tt, .hero-text h2 { font-size: clamp(1.9rem, 8vw, 2.4rem); line-height: 1.15; }
+.hero-text h2 small { display: inline-block; margin-top: 6px; line-height: 1.4; text-shadow: none; }
+.hero .hero-sky { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.hero > .mascot, .hero > .hero-text { position: relative; z-index: 1; }
+.hero-text h2 { font-family: var(--f-round); font-weight: 400; color: #2F3B52; text-shadow: 0 2px 0 rgba(255,255,255,.7); }
+.hero-text h2 .tt { color: #3E8E8B; }
+.age { background: rgba(255,253,248,.92); box-shadow: 0 3px 10px rgba(52,64,90,.12); }
+.age button[aria-checked="true"] { background: #3E8E8B; color: #fff; }
+/* 分類標題：雙色 */
+.group-title { font-size: 1.7rem; margin: 18px 0 2px; gap: 8px; align-items: baseline; flex-wrap: wrap; color: var(--g); }
+.group-title::before { display: none; }
+.group-title small { font-family: var(--f-body); font-size: .9rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+#home .group-title::after { content: "主題"; color: var(--ink); order: 0; }
+.group-title small { order: 1; flex-basis: 100%; margin-top: -4px; }
+.jump-chip { background: var(--surface); box-shadow: 0 3px 10px rgba(70,90,110,.10), inset 0 0 0 1.5px var(--line); }
+/* 書架卡片 */
+.subjects { row-gap: 34px; padding: 0 2px; }
+.subject { background: var(--surface); color: var(--ink); box-shadow: 0 6px 14px rgba(70,60,40,.12); border-radius: 22px; padding: 0 0 14px; overflow: visible; }
+.subject::after { content: ""; position: absolute; left: -10px; right: -10px; bottom: -20px; height: 16px; border-radius: 6px; background: var(--wood); box-shadow: 0 5px 0 var(--wood-deep), 0 10px 14px rgba(120,80,40,.16); z-index: -1; }
+.subjects { position: relative; z-index: 0; isolation: isolate; }
+.subject:hover { transform: translateY(-3px); box-shadow: 0 10px 18px rgba(70,60,40,.16); }
+.subject:active { transform: translateY(3px); box-shadow: 0 3px 8px rgba(70,60,40,.14); }
+.subject .art { height: 112px; margin: 0 0 10px; border-radius: 22px 22px 0 0; background: var(--c-soft); position: relative; overflow: hidden; }
+.subject .art::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: -18px; height: 40px; border-radius: 50%; background: var(--c); opacity: .16; }
+.subject .name { padding: 0 14px; color: var(--ink); font-size: 1.35rem; }
+.subject .what { padding: 0 14px; color: var(--muted); opacity: 1; }
+.subject .got { top: 10px; right: 10px; background: rgba(255,253,248,.95); color: #6B4A00; box-shadow: 0 2px 6px rgba(0,0,0,.08); }
+.subject.premium.locked .lock-chip { top: 10px; right: 10px; background: rgba(47,59,82,.88); color: #fff; }
+.subject.premium.locked.can-try .trial-note { padding: 0 14px; color: var(--c-deep); }
+.subject.premium.gold { background: linear-gradient(160deg, #FFFBEA, #FFF0BF); }
+/* 專區入口：柔和插畫卡 */
+.yx-enter { background: linear-gradient(120deg, #E3F2E6, #F6FBEF) !important; color: var(--ink) !important; box-shadow: 0 8px 20px rgba(60,90,60,.14), inset 0 0 0 1.5px #CFE5D2 !important; }
+.yx-enter.ez-enter { background: linear-gradient(120deg, #E6E0F8, #F4F0FD) !important; box-shadow: 0 8px 20px rgba(90,70,140,.14), inset 0 0 0 1.5px #DAD1F3 !important; }
+.yx-enter.park-enter { background: linear-gradient(120deg, #FCE1EA, #FFF3E4) !important; box-shadow: 0 8px 20px rgba(140,70,90,.14), inset 0 0 0 1.5px #F4CFDA !important; }
+.yx-enter::before { background-image: none; }
+.yx-enter-text b { color: #3E8A55; font-size: 1.8rem; } .ez-enter .yx-enter-text b { color: #6A4FB0; } .park-enter .yx-enter-text b { color: #C24E78; }
+.yx-enter-text > span { color: var(--muted); opacity: 1; }
+.yx-pill { background: rgba(255,255,255,.9) !important; color: var(--ink) !important; }
+.yx-go { color: var(--ink) !important; background: rgba(255,255,255,.85) !important; }
+.yx-enter-art { box-shadow: 0 4px 12px rgba(0,0,0,.10); }
+.subject.yx, .subject.ez { background: var(--surface); }
+.subject.yx .art, .subject.ez .art { background-color: var(--c-soft); background-image: linear-gradient(rgba(255,255,255,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.55) 1px, transparent 1px); background-size: 14px 14px; }
+.subject.yx .art::after, .subject.ez .art::after { display: block; content: ""; position: absolute; left: -10%; right: -10%; top: auto; bottom: -18px; height: 40px; border: 0; border-radius: 50%; background: var(--c); opacity: .16; }
+.yx-badge { left: 10px; top: 10px; }
+.subject.yx.locked .lock-chip { background: rgba(47,59,82,.88); }
+.pill { background: var(--surface); box-shadow: 0 3px 10px rgba(70,90,110,.12), inset 0 0 0 1.5px var(--line); }
+.icon-btn { box-shadow: 0 3px 10px rgba(70,90,110,.12), inset 0 0 0 1.5px var(--line); }
 </style>
 </head>
 <body>
@@ -1468,6 +1694,7 @@ body.is-yx.is-print .promo { display: none; }
   </defs>
 </svg>
 
+<svg id="scnDefs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="scnWob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="5"/><feDisplacementMap in="SourceGraphic" scale="4"/></filter><filter id="scnGrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="3" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 .55  0 0 0 0 .45  0 0 0 0 .35  0 0 0 -1.1 .62"/></filter><radialGradient id="scnVig" cx=".5" cy=".45" r=".75"><stop offset=".65" stop-color="#7A5A40" stop-opacity="0"/><stop offset="1" stop-color="#7A5A40" stop-opacity=".16"/></radialGradient></defs></svg>
 <main class="wrap">
   <header class="top">
     <div class="brand">
@@ -1488,9 +1715,10 @@ body.is-yx.is-print .promo { display: none; }
 
   <section id="home" class="screen">
     <div class="hero">
+      <svg class="hero-sky" viewBox="0 0 400 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><linearGradient id="hSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FD3EC"/><stop offset=".7" stop-color="#DDF0F2"/><stop offset="1" stop-color="#F3EEDB"/></linearGradient><filter id="hPaint" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="7"/><feDisplacementMap in="SourceGraphic" scale="7"/></filter><radialGradient id="hSun"><stop offset="0" stop-color="#FFF6D2"/><stop offset="1" stop-color="#FFF6D2" stop-opacity="0"/></radialGradient></defs><rect width="400" height="220" fill="url(#hSky)"/><circle cx="340" cy="40" r="60" fill="url(#hSun)"/><g filter="url(#hPaint)"><path d="M150 70 C170 40 210 40 222 56 C236 30 284 30 292 60 C320 52 348 66 344 88 L148 88 Z" fill="#fff" opacity=".95"/><path d="M148 88 C210 80 280 84 344 88 Z" fill="#DCE9F2"/><path d="M-10 50 C0 34 28 32 38 42 C50 28 80 30 84 50 L-10 50 Z" fill="#fff" opacity=".85"/></g><g filter="url(#hPaint)"><path d="M-10 160 C70 126 160 132 240 146 C310 158 360 140 410 128 L410 220 L-10 220 Z" fill="#A9D18E"/><path d="M-10 186 C90 166 190 172 270 184 C330 192 370 182 410 176 L410 220 L-10 220 Z" fill="#8CC07A"/><path d="M196 160 C196 134 210 120 224 120 C240 120 252 136 250 160 Z" fill="#5E9A57"/><rect x="220" y="158" width="6" height="18" fill="#8A6244"/><path d="M140 166 L140 146 L160 132 L180 146 L180 166 Z" fill="#F6EAD2"/><path d="M134 148 L160 124 L186 148 Z" fill="#D9695A"/><rect x="154" y="152" width="11" height="14" rx="2" fill="#6A8FB0"/></g><path d="M200 108 q5 -4 10 0 q5 -4 10 0" fill="none" stroke="#45526B" stroke-width="1.5" stroke-linecap="round" opacity=".7"/></svg>
       <svg viewBox="0 0 120 120" class="mascot" aria-hidden="true"></svg>
       <div class="hero-text">
-        <h2>嗨！我是圓圓，<br>今天想玩什麼？</h2>
+        <h2><span class="tt">動動腦</span>小學堂<br><small style="font-family:var(--f-body);font-size:.9rem;font-weight:700;color:#3F4D66">嗨！我是圓圓，今天想玩什麼？</small></h2>
         <div class="hero-row">
           <div class="age" role="radiogroup" aria-label="年齡">
             <button id="ageSmall" role="radio" data-age="small" aria-checked="true">3–4 歲</button>
@@ -2866,14 +3094,15 @@ body.is-yx.is-print .promo { display: none; }
   const ORD_FACES = ['🐶', '🐱', '🐰', '🐻', '🐼', '🐸', '🐵', '🐷', '🦁', '🐯', '🐮', '🐔'];
   /* ---------- 情境插圖：用小朋友、大人、道具組成一張圖（取代單一 emoji） ---------- */
   let SCN_FE = null; // 開啟 3D 圖示時，由下方 Fluent Emoji 區塊設定
-  const SCN_INK = '#2B2633', SCN_SKIN = '#FFD9B8';
+  const SCN_INK = '#4A3B36', SCN_SKIN = '#FFDCC4';
+  const scnMix = (a, b, t) => { const h = x => [1, 3, 5].map(i => parseInt(x.slice(i, i + 2), 16)); const A = h(a), B = h(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
   // [衣服, 頭髮, 髮型, 比例]  髮型：0 男孩 1 綁辮子女孩 2 長髮女生 3 短髮男生 4 爺爺 5 奶奶 6 陌生人 7 寶寶
   const SCN_LOOK = {
-    b1: ['#F57E7E', '#3A2A20', 0, 1], b2: ['#7CC4F5', '#2B2633', 0, 1], b3: ['#8ED07A', '#5A3A28', 0, 1],
-    g1: ['#B9A2F0', '#5A3A28', 1, 1], g2: ['#FFC93C', '#3A2A20', 1, 1], g3: ['#FF9DB8', '#2B2633', 1, 1],
-    sis: ['#FF9DB8', '#5A3A28', 1, .82], bro: ['#FFE59A', '#3A2A20', 0, .82],
-    mom: ['#F7A35C', '#3A2A20', 2, 1.32], dad: ['#5B8DEF', '#2B2633', 3, 1.38], tch: ['#7FD8C8', '#5A3A28', 2, 1.32],
-    gpa: ['#A8B5C2', '#D9D9D9', 4, 1.3], gma: ['#C99BE0', '#D9D9D9', 5, 1.28], man: ['#5E6670', '#2B2633', 6, 1.38], baby: ['#FFE59A', '#5A3A28', 7, .7]
+    b1: ['#E8857A', '#2E2622', 0, 1], b2: ['#F5DE9A', '#8A5A3A', 0, 1], b3: ['#8FC27E', '#2E2622', 0, 1],
+    g1: ['#B4A0E0', '#3A2A22', 1, 1], g2: ['#86C3E3', '#F2C04E', 1, 1], g3: ['#F3A3BC', '#7A4A30', 1, 1],
+    sis: ['#F3A3BC', '#6A4630', 1, .82], bro: ['#F5DE9A', '#4A3326', 0, .82],
+    mom: ['#E8768A', '#5A3424', 2, 1.32], dad: ['#6F94D6', '#3A3036', 3, 1.38], tch: ['#86BFB0', '#3A2A22', 2, 1.32],
+    gpa: ['#A9B5BF', '#DADADA', 4, 1.3], gma: ['#C3A2D8', '#DADADA', 5, 1.28], man: ['#6B7380', '#3A3036', 6, 1.38], baby: ['#F5DE9A', '#6A4630', 7, .7]
   };
   // 動作：a=兩隻手的手掌位置、l=兩隻腳、r=身體傾斜
   const SCN_POSE = {
@@ -2894,7 +3123,7 @@ body.is-yx.is-print .promo { display: none; }
     belly: { a: [[-6, -42], [6, -42]] }, run2: { a: [[-22, -30], [26, -66]], l: [[-2, 0], [24, -8]], r: 12 }, side: { a: [[-34, -48], [34, -48]] }
   };
   function scnFace(m) {
-    const I = SCN_INK, eye = (x, y) => `<circle cx="${x}" cy="${y}" r="2.8" fill="${I}"/>`;
+    const I = SCN_INK, eye = (x, y) => `<circle cx="${x}" cy="${y}" r="3" fill="${I}"/><circle cx="${x + 1}" cy="${y - 1.1}" r="1" fill="#fff"/>`;
     const arc = (d) => `<path d="${d}" fill="none" stroke="${I}" stroke-width="2.4" stroke-linecap="round"/>`;
     let eyes = eye(-8, -88) + eye(8, -88), mouth = arc('M-6 -77q6 5 12 0'), ex = '';
     if (m === 'plain') mouth = arc('M-5 -77h10');
@@ -2929,30 +3158,74 @@ body.is-yx.is-print .promo { display: none; }
   }
   const scnLimb = (x1, y1, x2, y2, col, w) => `<path d="M${x1} ${y1}L${x2} ${y2}" stroke="${SCN_INK}" stroke-width="${w + 5}" stroke-linecap="round"/><path d="M${x1} ${y1}L${x2} ${y2}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;
   const scnHand = (x, y) => `<circle cx="${x}" cy="${y}" r="5.5" fill="${SCN_SKIN}" stroke="${SCN_INK}" stroke-width="2.4"/>`;
+  // 🧒 固定角色：每個同學都有自己的樣子（康康、樂樂、小安、米米、阿哲、朵朵，還有漂亮媽媽和有氣質的老師）
+  const SCN_CHAR = {
+    b1: { n: '康康', hair: 'kang', fit: 'stripe', skin: '#FFDCC4', legs: '#4A6FA5' },
+    g1: { n: '樂樂', hair: 'lele', fit: 'collar', skin: '#FFE0CC', legs: '#FFE0CC', sock: '#fff' },
+    b2: { n: '小安', hair: 'an', fit: 'overall', skin: '#FFDCC4', legs: '#5C7FB8' },
+    g2: { n: '米米', hair: 'mimi', fit: 'pinafore', skin: '#FFE3D0', legs: '#FFE3D0', sock: '#FF9DB8' },
+    b3: { n: '阿哲', hair: 'zhe', fit: 'hoodie', skin: '#D9A57A', legs: '#3F5A7A' },
+    g3: { n: '朵朵', hair: 'duo', fit: 'bow', skin: '#FFE0CC', legs: '#FFE0CC', sock: '#fff' },
+    mom: { n: '媽媽', hair: 'mom', fit: 'momdress', skin: '#FFE0CC', legs: '#FFE0CC', heel: '#C2414B' },
+    tch: { n: '林老師', hair: 'tch', fit: 'cardigan', skin: '#FFDCC4', legs: '#5B6475' },
+    dad: { n: '爸爸', hair: 'dad', fit: 'tie', skin: '#F6CFAE', legs: '#3D4652' }
+  };
+  const scnFitBody = (C, shirt, dress) => {
+    const I = SCN_INK, st = `stroke="${I}" stroke-width="2.6" stroke-linejoin="round"`, f = C.fit;
+    const tee = `<rect x="-16" y="-63" width="32" height="38" rx="10" fill="${shirt}" ${st}/>`, frock = c => `<path d="M-15 -62h30l9 37h-48z" fill="${c}" ${st}/>`;
+    if (f === 'stripe') return tee + `<g stroke="#fff" stroke-width="3.2" opacity=".75"><path d="M-14 -52h28M-15 -43h30M-15 -34h30"/></g><path d="M-6 -62q6 6 12 0" fill="none" stroke="${I}" stroke-width="2"/><path d="M9 -55l2 4 4 .5-3 2.6.8 4-3.6-2-3.6 2 .8-4-3-2.6 4-.5z" fill="#FFE07A" stroke="${I}" stroke-width="1"/>`;
+    if (f === 'collar') return frock(shirt) + `<path d="M-10 -62q4 9 10 2q6 7 10-2z" fill="#fff" stroke="${I}" stroke-width="1.8"/><path d="M-19 -34h38" stroke="#fff" stroke-width="2.4" opacity=".7"/><circle cx="0" cy="-48" r="1.8" fill="#fff"/><circle cx="0" cy="-41" r="1.8" fill="#fff"/>`;
+    if (f === 'overall') return tee + `<path d="M-11 -48h22v23h-22z" fill="#5C7FB8" ${st}/><path d="M-11 -48l-3-14M11 -48l3-14" stroke="#5C7FB8" stroke-width="4"/><circle cx="-7" cy="-45" r="2" fill="#FFD43B" stroke="${I}" stroke-width="1"/><circle cx="7" cy="-45" r="2" fill="#FFD43B" stroke="${I}" stroke-width="1"/><rect x="-5" y="-40" width="10" height="7" rx="2" fill="none" stroke="#3E5C8A" stroke-width="1.6"/>`;
+    if (f === 'pinafore') return `<rect x="-15" y="-63" width="30" height="20" rx="8" fill="#fff" ${st}/>` + frock(shirt).replace('M-15 -62', 'M-12 -54') + `<path d="M-9 -54l-3-8M9 -54l3-8" stroke="${shirt}" stroke-width="4"/><path d="M-2 -40c-3-4-8 0-4 4l4 3 4-3c4-4-1-8-4-4z" fill="#FF8FA8"/>`;
+    if (f === 'hoodie') return `<path d="M-14 -64q14 12 28 0q2 8-4 10h-20q-6-2-4-10z" fill="${scnMix(shirt, '#3F7A4A', .2)}" ${st}/>` + tee + `<rect x="-10" y="-40" width="20" height="10" rx="4" fill="${scnMix(shirt, '#3F7A4A', .18)}" stroke="${I}" stroke-width="1.6"/><path d="M-4 -60v8M4 -60v8" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>`;
+    if (f === 'bow') return frock(shirt) + `<path d="M0 -60l-8-5v10zM0 -60l8-5v10z" fill="#E8577A" stroke="${I}" stroke-width="1.6"/><circle cx="0" cy="-60" r="2.4" fill="#E8577A" stroke="${I}" stroke-width="1.4"/><path d="M-20 -30h40" stroke="#fff" stroke-width="2.4" stroke-dasharray="3 3" opacity=".8"/>`;
+    if (f === 'momdress') return `<path d="M-14 -62h28l12 37h-52z" fill="${shirt}" ${st}/><path d="M-13 -46h26" stroke="${scnMix(shirt, '#7A2E2E', .3)}" stroke-width="3.4"/><g fill="#FFF3C4" stroke="${I}" stroke-width=".8">${[-7, -3.5, 0, 3.5, 7].map((x, i) => `<circle cx="${x}" cy="${-60 + Math.abs(i - 2) * -1.2 + 3}" r="1.7"/>`).join('')}</g><path d="M-14 -34q24 6 38 9" stroke="#fff" stroke-width="2" opacity=".5" fill="none"/>`;
+    if (f === 'cardigan') return `<rect x="-16" y="-63" width="32" height="38" rx="10" fill="#FFFDF5" ${st}/><path d="M-6 -63h-8q-2 0-2 4v30q0 4 4 4h6zM6 -63h8q2 0 2 4v30q0 4-4 4h-6z" fill="${shirt}" stroke="${I}" stroke-width="2.2" stroke-linejoin="round"/><circle cx="-8" cy="-50" r="1.4" fill="${I}"/><circle cx="-8" cy="-40" r="1.4" fill="${I}"/><rect x="5" y="-54" width="10" height="6" rx="1.5" fill="#fff" stroke="${I}" stroke-width="1.2"/><path d="M-4 -60q4 4 8 0" fill="none" stroke="#C7A6F5" stroke-width="2"/>`;
+    if (f === 'tie') return tee + `<path d="M-8 -63l8 8 8-8" fill="#fff" stroke="${I}" stroke-width="2"/><path d="M0 -56l-3 4 3 14 3-14z" fill="#D9574A" stroke="${I}" stroke-width="1.4"/>`;
+    return dress ? frock(shirt) : tee;
+  };
+  function scnHead2(C, hair, m) {
+    const I = SCN_INK, st = `stroke="${I}" stroke-width="2.6" stroke-linejoin="round"`, h = C.hair;
+    let back = '', front = '', extra = '';
+    if (h === 'kang') { front = `<path d="M-22 -86q-3-20 8-25l1-6 5 5 4-8 4 8 6-5 0 7q11 6 9 24q-8-12-22-12q-8 0-15 12z" fill="${hair}" ${st}/><path d="M1 -111q5-9-2-14" fill="none" stroke="${hair}" stroke-width="3" stroke-linecap="round"/>`; extra = `<rect x="11" y="-80" width="8" height="4" rx="2" fill="#F6D2A8" stroke="${I}" stroke-width="1" transform="rotate(-20 15 -78)"/>`; }
+    if (h === 'lele') { back = `<path d="M-24 -92q-3 26 -1 38h50q2-12-1-38z" fill="${hair}" ${st}/>`; front = `<path d="M-22 -84q0-28 22-28t22 28q-3-9-8-12h-28q-5 3-8 12z" fill="${hair}" ${st}/><path d="M-21 -97q21-20 42 0" fill="none" stroke="#9B7BE6" stroke-width="4.5" stroke-linecap="round"/>`; extra = `<path d="M-12 -92l-2-2M12 -92l2-2" stroke="${I}" stroke-width="1.4"/>`; }
+    if (h === 'an') { front = [[-17, -99, 9], [-6, -107, 10], [8, -107, 10], [18, -98, 8.5], [-21, -89, 6], [21, -88, 6]].map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${hair}" ${st}/>`).join('') + `<path d="M-16 -100q16-10 32 0" fill="${hair}"/>`; extra = `<g fill="rgba(255,255,255,.25)" stroke="${I}" stroke-width="2"><circle cx="-8" cy="-88" r="6.5"/><circle cx="8" cy="-88" r="6.5"/></g><path d="M-1.5 -88h3M-14.5 -89l-7-2M14.5 -89l7-2" stroke="${I}" stroke-width="2"/>`; }
+    if (h === 'mimi') { back = `<g><ellipse cx="-30" cy="-86" rx="8" ry="17" fill="${hair}" ${st} transform="rotate(20 -30 -86)"/><ellipse cx="30" cy="-86" rx="8" ry="17" fill="${hair}" ${st} transform="rotate(-20 30 -86)"/></g>`; front = `<path d="M-22 -86q0-26 22-26t22 26q-6-10-12-11q-4 6-10 4q-6 3-10-3q-8 2-12 10z" fill="${hair}" ${st}/><circle cx="-23" cy="-100" r="4" fill="#FF8FA8" stroke="${I}" stroke-width="1.6"/><circle cx="23" cy="-100" r="4" fill="#FF8FA8" stroke="${I}" stroke-width="1.6"/>`; extra = `<g fill="#D98A5A"><circle cx="-15" cy="-83" r="1"/><circle cx="-12" cy="-81" r="1"/><circle cx="-16" cy="-79.5" r="1"/><circle cx="15" cy="-83" r="1"/><circle cx="12" cy="-81" r="1"/><circle cx="16" cy="-79.5" r="1"/></g>`; }
+    if (h === 'zhe') { front = `<path d="M-21 -92q2-20 21-20t21 20q-21-9-42 0z" fill="${hair}" ${st}/><path d="M-22 -96q22-11 44 0" fill="none" stroke="#5DBB4E" stroke-width="5.5" stroke-linecap="round"/><path d="M-22 -96q22-11 44 0" fill="none" stroke="#fff" stroke-width="1.4" stroke-dasharray="3 4"/>`; }
+    if (h === 'duo') { back = `<path d="M-25 -94q-4 24 1 32h48q5-8 1-32z" fill="${hair}" ${st}/>`; front = `<path d="M-23 -84q0-28 23-28t23 28q-3-8-5-12q-18 3-36 0q-2 4-5 12z" fill="${hair}" ${st}/><g transform="translate(15 -108) rotate(15)"><path d="M0 0l-12-7v14zM0 0l12-7v14z" fill="#FF7FA6" stroke="${I}" stroke-width="1.8" stroke-linejoin="round"/><circle r="3" fill="#FF7FA6" stroke="${I}" stroke-width="1.6"/></g>`; }
+    if (h === 'mom') { back = `<path d="M-24 -92c-7 14-4 22-11 34c8 5 15 2 19-3h32c4 5 11 8 19 3c-7-12-4-20-11-34z" fill="${hair}" ${st}/>`; front = `<path d="M-23 -82q-1-30 25-30q21 2 20 26q-10-15-27-12q-10 3-18 16z" fill="${hair}" ${st}/><path d="M6 -110q-6 8-4 16" fill="none" stroke="${scnMix(hair, '#FFFFFF', .25)}" stroke-width="2" stroke-linecap="round"/>`; extra = `<circle cx="-22" cy="-76" r="2.6" fill="#F5C542" stroke="${I}" stroke-width="1"/><circle cx="22" cy="-76" r="2.6" fill="#F5C542" stroke="${I}" stroke-width="1"/><path d="M-13 -92l-3-2.5M-11 -93.5l-1.5-3M13 -92l3-2.5M11 -93.5l1.5-3" stroke="${I}" stroke-width="1.4" stroke-linecap="round"/>`; }
+    if (h === 'tch') { back = `<circle cx="-15" cy="-70" r="9" fill="${hair}" ${st}/>`; front = `<path d="M-22 -86q0-26 22-26t22 26q-6-14-20-14q-10 0-12 6q-6-2-12 8z" fill="${hair}" ${st}/>`; extra = `<g fill="none" stroke="${I}" stroke-width="1.6"><rect x="-14.5" y="-92" width="11" height="8" rx="3"/><rect x="3.5" y="-92" width="11" height="8" rx="3"/><path d="M-3.5 -88h7"/></g><circle cx="-22" cy="-77" r="2" fill="#fff" stroke="${I}" stroke-width="1"/><circle cx="22" cy="-77" r="2" fill="#fff" stroke="${I}" stroke-width="1"/>`; }
+    if (h === 'dad') { front = `<path d="M-22 -88q2-24 24-24q20 0 20 22q-6-10-18-12q-4 6-14 6q-8 0-12 8z" fill="${hair}" ${st}/>`; extra = `<path d="M-6 -71q6 3 12 0" stroke="${scnMix(hair, '#FFDCC4', .45)}" stroke-width="3" stroke-linecap="round" opacity=".5"/>`; }
+    let face = scnFace(m);
+    if (h === 'mom') face = face.replace(/fill="#C2414B"/g, 'fill="#E0525E"').replace('M-6 -77q6 5 12 0"', 'M-6 -77q6 5 12 0" ').replace(/<path d="M-6 -77q6 5 12 0" fill="none" stroke="[^"]+"/, '<path d="M-6 -77q6 5 12 0" fill="none" stroke="#D9485A"');
+    return back + `<circle cx="0" cy="-86" r="22" fill="${C.skin}" ${st}/>` + face + front + extra;
+  }
   function scnPerson(look, x, y, pose, mood, flip) {
-    const [shirt, hair, type, k] = SCN_LOOK[look] || SCN_LOOK.b1, P = SCN_POSE[pose] || SCN_POSE.stand, I = SCN_INK;
-    const dress = type === 1 || type === 2 || type === 5, pants = type === 4 ? '#6B7785' : type === 6 ? '#3D4652' : '#4A6FA5';
+    const [shirt, hair, type, k] = SCN_LOOK[look] || SCN_LOOK.b1, P = SCN_POSE[pose] || SCN_POSE.stand, I = SCN_INK, C = SCN_CHAR[look];
+    const dress = type === 1 || type === 2 || type === 5, pants = C ? C.legs : type === 4 ? '#6B7785' : type === 6 ? '#3D4652' : '#4A6FA5';
+    const head = mm => C ? scnHead2(C, hair, mm) : scnHead(hair, type, mm), shoe = C && (C.sock || C.heel) ? (C.heel || '#5A4A44') : I, hand = (hx, hy) => C ? `<circle cx="${hx}" cy="${hy}" r="5.5" fill="${C.skin}" stroke="${SCN_INK}" stroke-width="2.4"/>` : scnHand(hx, hy);
+    const sleeve = C && C.fit === 'cardigan' ? shirt : C && C.fit === 'pinafore' ? '#fff' : shirt;
     let s = '';
     if (P.lie) {
-      return `<g transform="translate(${x} ${y}) scale(${flip ? -k : k} ${k})"><rect x="-58" y="-26" width="104" height="26" rx="12" fill="#9FD3F5" stroke="${I}" stroke-width="2.6"/><g transform="translate(46 -8) rotate(-90)">${scnHead(hair, type, 'sleepy')}</g></g>`;
+      return `<g transform="translate(${x} ${y}) scale(${flip ? -k : k} ${k})"><rect x="-58" y="-26" width="104" height="26" rx="12" fill="#9FD3F5" stroke="${I}" stroke-width="2.6"/><g transform="translate(46 -8) rotate(-90)">${head('sleepy')}</g></g>`;
     }
-    const body = dress ? `<path d="M-15 -62h30l9 37h-48z" fill="${shirt}" stroke="${I}" stroke-width="2.6" stroke-linejoin="round"/>` : `<rect x="-16" y="-63" width="32" height="38" rx="10" fill="${shirt}" stroke="${I}" stroke-width="2.6"/>`;
+    const body = C ? scnFitBody(C, shirt, dress) : dress ? `<path d="M-15 -62h30l9 37h-48z" fill="${shirt}" stroke="${I}" stroke-width="2.6" stroke-linejoin="round"/>` : `<rect x="-16" y="-63" width="32" height="38" rx="10" fill="${shirt}" stroke="${I}" stroke-width="2.6"/>`;
     if (P.sit === 2) {
       s += scnLimb(-4, -12, 22, -12, pants, 10) + scnLimb(4, -10, 26, -10, pants, 10) + scnLimb(22, -12, 22, 6, pants, 10) + scnLimb(26, -10, 28, 6, pants, 10) + `<ellipse cx="27" cy="8" rx="8" ry="5" fill="${I}"/><ellipse cx="33" cy="8" rx="8" ry="5" fill="${I}"/>`;
       s += `<g transform="translate(0 14)">`;
-      P.a.forEach(([ax, ay]) => { s += scnLimb(ax < 0 ? -13 : 13, -56, ax, ay, shirt, 8) + scnHand(ax, ay); });
-      s += body + scnHead(hair, type, mood) + '</g>';
+      P.a.forEach(([ax, ay]) => { s += scnLimb(ax < 0 ? -13 : 13, -56, ax, ay, sleeve, 8) + hand(ax, ay); });
+      s += body + head(mood) + '</g>';
     } else if (P.sit) {
       s += scnLimb(-4, -2, 34, 4, pants, 10) + scnLimb(4, -2, 40, -4, pants, 10) + `<ellipse cx="40" cy="4" rx="5" ry="8" fill="${I}"/><ellipse cx="46" cy="-4" rx="5" ry="8" fill="${I}"/>`;
       s += `<g transform="translate(0 14)">`;
-      P.a.forEach(([ax, ay]) => { s += scnLimb(ax < 0 ? -13 : 13, -56, ax, ay - 14, shirt, 8) + scnHand(ax, ay - 14); });
-      s += body + scnHead(hair, type, mood) + '</g>';
+      P.a.forEach(([ax, ay]) => { s += scnLimb(ax < 0 ? -13 : 13, -56, ax, ay - 14, sleeve, 8) + hand(ax, ay - 14); });
+      s += body + head(mood) + '</g>';
     } else {
-      (P.l || [[-8, 0], [8, 0]]).forEach(([lx, ly]) => { s += scnLimb(lx < 0 ? -7 : 7, -26, lx, ly - 4, pants, 10) + `<ellipse cx="${lx}" cy="${ly}" rx="8" ry="5" fill="${I}"/>`; });
+      (P.l || [[-8, 0], [8, 0]]).forEach(([lx, ly]) => { s += scnLimb(lx < 0 ? -7 : 7, -26, lx, ly - 4, pants, 10) + `${C && C.sock ? `<path d="M${lx - 4} ${ly - 9}h8" stroke="${C.sock}" stroke-width="6" stroke-linecap="round"/>` : ''}<ellipse cx="${lx}" cy="${ly}" rx="8" ry="5" fill="${shoe}"/>`; });
       if (P.ru) s += `<g transform="rotate(${P.ru} 0 -26)">`;
-      P.a.forEach(([ax, ay]) => { s += scnLimb(ax < 0 ? -13 : 13, -56, ax, ay, shirt, 8) + scnHand(ax, ay); });
+      P.a.forEach(([ax, ay]) => { s += scnLimb(ax < 0 ? -13 : 13, -56, ax, ay, sleeve, 8) + hand(ax, ay); });
       if (P.cane) s += `<path d="M26 -30V0" stroke="#8B5A2B" stroke-width="4" stroke-linecap="round"/><path d="M26 -30q0-8 -8-8" fill="none" stroke="#8B5A2B" stroke-width="4" stroke-linecap="round"/>`;
-      s += body + scnHead(hair, type, mood) + (P.ru ? '</g>' : '');
+      s += body + head(mood) + (P.ru ? '</g>' : '');
     }
     return `<g transform="translate(${x} ${y + (P.dy || 0) * k}) scale(${flip ? -k : k} ${k}) rotate(${P.r || 0})">${P.dy ? `<ellipse cx="0" cy="${-P.dy + 2}" rx="20" ry="4" fill="#000" opacity=".12"/>` : ''}${s}</g>`;
   }
@@ -2963,13 +3236,16 @@ body.is-yx.is-print .promo { display: none; }
     return t + `<image href="${src}" x="${x - h / 2}" y="${y - h / 2}" width="${h}" height="${h}"${rot ? ` transform="rotate(${rot} ${x} ${y})"` : ''}/>`;
   }
   // 背景（320×220，地面約在 y=180）。同一種場所有好幾種樣子，依題目自動挑，避免一直重複
-  const SCN_CLOUD = (x, y, k) => `<path transform="translate(${x} ${y}) scale(${k})" d="M0 16a12 12 0 0 1 14-16a16 16 0 0 1 28 0a12 12 0 0 1 10 16z" fill="#fff"/>`;
-  const SCN_SKYC = (sky, sun) => `<rect width="320" height="220" fill="${sky}"/>${sun ? `<circle cx="${sun}" cy="34" r="17" fill="#FFE07A"/>` : ''}`;
-  const SCN_SKY = SCN_SKYC('#DFF1FF', 278) + SCN_CLOUD(36, 32, 1) + SCN_CLOUD(178, 27, .8);
-  const SCN_GRASS = (c) => `<path d="M0 168q80-12 160 0t160 0V220H0z" fill="${c || '#BFE6A8'}"/>`;
-  const SCN_ROOM = (wall, floor) => `<rect width="320" height="220" fill="${wall}"/><rect y="168" width="320" height="52" fill="${floor}"/><path d="M0 168h320" stroke="#D9BC94" stroke-width="3"/>`;
-  const SCN_WIN = (x, y, sky) => `<rect x="${x}" y="${y}" width="58" height="48" rx="6" fill="${sky || '#CFEAFF'}" stroke="#B9A07E" stroke-width="4"/><path d="M${x + 29} ${y}v48M${x} ${y + 24}h58" stroke="#B9A07E" stroke-width="3"/>`;
-  const SCN_TREE = (x, k, c) => `<g transform="translate(${x} 176) scale(${k || 1})"><rect x="-6" y="-72" width="12" height="72" rx="5" fill="#B07A4A"/><circle cx="0" cy="-82" r="26" fill="${c || '#8ED07A'}"/><circle cx="-14" cy="-66" r="16" fill="${c || '#8ED07A'}"/><circle cx="16" cy="-66" r="16" fill="${c || '#8ED07A'}"/></g>`;
+  const SCN_CLOUD = (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k * 1.25})"><path d="M-4 18c-8 0-10-10-2-12c0-9 12-12 17-6c4-10 20-11 25-1c8-3 16 3 14 10c7 1 7 9 0 9z" fill="#fff"/><path d="M-4 18h54c4 0 6-3 4-5c-14 3-40 3-58 0c-2 2-2 5 0 5z" fill="#DCE7F1"/></g>`;
+  const SCN_SKYC = (sky, sun) => { const blue = parseInt(sky.slice(5, 7), 16) >= parseInt(sky.slice(1, 3), 16), top = scnMix(sky, blue ? '#8EC7E6' : '#F2C3A2', blue ? .5 : .35), bot = scnMix(sky, '#FFFFFF', .45), id = 'sk' + sky.slice(1);
+    return `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${top}"/><stop offset=".75" stop-color="${bot}"/></linearGradient><radialGradient id="sunG"><stop offset="0" stop-color="#FFF6CF"/><stop offset=".45" stop-color="#FFF1B8" stop-opacity=".8"/><stop offset="1" stop-color="#FFF1B8" stop-opacity="0"/></radialGradient></defs><rect width="320" height="220" fill="url(#${id})"/>${sun ? `<circle cx="${sun}" cy="34" r="40" fill="url(#sunG)"/><circle cx="${sun}" cy="34" r="14" fill="#FFEFA8"/>` : ''}`; };
+  const SCN_SKY = SCN_SKYC('#DFF1FF', 278) + SCN_CLOUD(30, 26, 1) + SCN_CLOUD(170, 20, .8);
+  const SCN_GRASS = (c) => { c = c || '#BFE6A8'; const far = scnMix(c, '#E6F2DE', .45), dk = scnMix(c, '#4E8A4A', .35);
+    return `<path d="M0 160q50-22 110-10t120-6 90 8V220H0z" fill="${far}"/><path d="M0 170q80-14 160-2t160-2V220H0z" fill="${c}"/><path d="M0 182q90-8 170 0t150-2V220H0z" fill="${scnMix(c, '#4E8A4A', .12)}"/><g stroke="${dk}" stroke-width="1.6" stroke-linecap="round" opacity=".55"><path d="M24 196l-2-6M28 196l1-7M140 204l-2-6M144 204l1-7M268 198l-2-6M272 198l1-7"/></g>`; };
+  const SCN_ROOM = (wall, floor) => `<defs><radialGradient id="rmL${wall.slice(1)}" cx=".2" cy=".1" r="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".45"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient></defs><rect width="320" height="220" fill="${wall}"/><rect width="320" height="168" fill="url(#rmL${wall.slice(1)})"/><rect y="168" width="320" height="52" fill="${floor}"/><g stroke="${scnMix(floor, '#8A6244', .25)}" stroke-width="1.4" opacity=".5"><path d="M0 186h320M0 204h320M60 168v18M180 186v18M250 168v18M110 204v16"/></g><path d="M0 168h320" stroke="${scnMix(floor, '#8A6244', .35)}" stroke-width="3"/>`;
+  const SCN_WIN = (x, y, sky) => `<rect x="${x}" y="${y}" width="58" height="48" rx="6" fill="${sky || '#CFEAFF'}" stroke="#B9A07E" stroke-width="4"/><path d="M${x + 8} ${y + 30}c4-6 12-6 14-2c4-4 12-2 12 3z" fill="#fff" opacity=".9"/><path d="M${x + 29} ${y}v48M${x} ${y + 24}h58" stroke="#B9A07E" stroke-width="3"/><path d="M${x - 4} ${y + 50}h66" stroke="#C9AE86" stroke-width="5" stroke-linecap="round"/>`;
+  const SCN_TREE = (x, k, c) => { c = c || '#8ED07A'; const dk = scnMix(c, '#3F7A4A', .4), hi = scnMix(c, '#FFFFFF', .35);
+    return `<g transform="translate(${x} 176) scale(${k || 1})"><path d="M-7 0q2-36 3-70h8q1 34 3 70z" fill="#9A6A48"/><path d="M-2 -40q-8-6-12-14M2 -48q8-4 12-12" stroke="#9A6A48" stroke-width="4" stroke-linecap="round"/><circle cx="-16" cy="-60" r="18" fill="${dk}"/><circle cx="18" cy="-62" r="18" fill="${dk}"/><circle cx="0" cy="-84" r="28" fill="${c}"/><circle cx="-18" cy="-70" r="17" fill="${c}"/><circle cx="18" cy="-72" r="17" fill="${c}"/><circle cx="-8" cy="-94" r="11" fill="${hi}" opacity=".8"/><circle cx="-22" cy="-76" r="6" fill="${hi}" opacity=".7"/></g>`; };
   const SCN_FLOWER = (x, y, c) => `<g transform="translate(${x} ${y})"><path d="M0 0v14" stroke="#5DAA55" stroke-width="3"/><circle cx="-4" cy="-3" r="4" fill="${c}"/><circle cx="4" cy="-3" r="4" fill="${c}"/><circle cx="0" cy="-7" r="4" fill="${c}"/><circle cx="0" cy="1" r="4" fill="${c}"/><circle cx="0" cy="-3" r="3" fill="#FFE07A"/></g>`;
   const SCN_SHELF = (x, y, w) => { let b = `<rect x="${x}" y="${y}" width="${w}" height="70" rx="4" fill="#C98B55" stroke="#9A6436" stroke-width="3"/>`; const cols = ['#F57E7E', '#7CC4F5', '#FFC93C', '#8ED07A', '#B9A2F0', '#FF9DB8']; for (let r = 0; r < 2; r++) for (let i = 0; i * 9 + 6 < w - 4; i++) b += `<rect x="${x + 4 + i * 9}" y="${y + 6 + r * 34}" width="7" height="${24 - (i % 3) * 3}" transform="translate(0 ${(i % 3) * 3})" fill="${cols[(i + r * 2) % 6]}"/>`; return b + `<path d="M${x} ${y + 35}h${w}" stroke="#9A6436" stroke-width="3"/>`; };
   const SCN_CLOCK = (x, y) => `<circle cx="${x}" cy="${y}" r="15" fill="#fff" stroke="#9AA8B6" stroke-width="4"/><path d="M${x} ${y}v-9M${x} ${y}h7" stroke="#2B2633" stroke-width="2.5" stroke-linecap="round"/>`;
@@ -3035,7 +3311,7 @@ body.is-yx.is-print .promo { display: none; }
   // 規格："背景[.樣式]|人 x 動作 表情 [f=面向左] [y]|e 🍪 x y 大小 [轉角]|w x1 x2 y（水面）|l x1 y1 x2 y2（線）"
   function scnSVG(spec, cls, vb) {
     const parts = spec.split('|'), [bg, vi] = parts.shift().split('.'), V = SCN_BGV[bg] || [''];
-    let out = V[vi !== undefined ? +vi % V.length : scnHash(spec) % V.length], ground = 186;
+    let out = `<g filter="url(#scnWob)">${V[vi !== undefined ? +vi % V.length : scnHash(spec) % V.length]}</g>`, ground = 186;
     const fg = bg === 'table' ? '<rect x="24" y="138" width="272" height="16" rx="5" fill="#C98B55" stroke="#9A6436" stroke-width="3"/><path d="M48 154v30M272 154v30" stroke="#9A6436" stroke-width="9"/>' : '';
     const later = [];
     parts.forEach(p => {
@@ -3048,7 +3324,7 @@ body.is-yx.is-print .promo { display: none; }
       else if (t[0] === 'l') out += `<path d="M${t[1]} ${t[2]}Q${(+t[1] + +t[3]) / 2} ${Math.max(+t[2], +t[4]) + 20} ${t[3]} ${t[4]}" fill="none" stroke="#5E6670" stroke-width="2"/>`;
       else out += scnPerson(t[0], +t[1], t[5] ? +t[5] : ground, t[2] || 'stand', t[3] || 'smile', t[4] === 'f');
     });
-    out += fg + later.join('');
+    out += fg + later.join('') + (!SCN_BGV[bg] || !SCN_BGV[bg].join('') ? '' : '<rect width="320" height="220" fill="url(#scnVig)" pointer-events="none"/><rect width="320" height="220" filter="url(#scnGrain)" opacity=".3" pointer-events="none"/>');
     return `<svg class="${cls || 'scn'}" viewBox="${vb || '0 0 320 220'}" role="img" aria-hidden="true">${out}</svg>`;
   }
   // 行為小場景：把「打人、推人、搶玩具…」畫成兩個人的小插圖
@@ -5121,6 +5397,7 @@ body.is-yx.is-print .promo { display: none; }
   let sayProfile = null;
   // 英文一律用同一個女聲（例如 iPhone 的 Samantha），不跟著中文朗讀小夥伴換聲音
   const EN_VOICE = { g: 'f', pitch: 1, rate: 1, pref: /Samantha|Ava|Allison|Susan|Karen|Aria|Jenny|Zira|Google US English/i };
+  let sayRateMul = 1;
   function say(parts) {
     return new Promise(resolve => {
       if (!soundOn || !('speechSynthesis' in window)) return resolve();
@@ -5132,7 +5409,7 @@ body.is-yx.is-print .promo { display: none; }
           const vp = lang.startsWith('en') ? EN_VOICE : (sayProfile || voiceProfile());
           const v = voiceFor(lang, vp.g, vp.pref);
           const maleVoice = v && MALE.test(v.name);
-          u.lang = lang; u.rate = (lang.startsWith('en') ? .8 : .9) * vp.rate;
+          u.lang = lang; u.rate = (lang.startsWith('en') ? .8 : .9) * vp.rate * sayRateMul;
           // 沒有男聲語音時，團團用更低的音調來模擬
           u.pitch = vp.g === 'm' && !maleVoice && vp.pitch < 1 ? .5 : vp.pitch;
           if (v) u.voice = v;
@@ -7112,7 +7389,7 @@ body.is-yx.is-print .promo { display: none; }
     } finally { age = sa; }
     const lv = /^ez/.test(sub) ? '英語小學堂' : YX.has(sub) ? '幼小銜接' : prAge === 'small' ? '3–4 歲' : '5–6 歲';
     el.className = 'psheet ' + cls + (prBW ? ' bw' : '');
-    el.innerHTML = `<div class="ps-head"><div><b>動動腦小學堂・${t[1]}</b><small>${lv}・圈出對的答案</small></div><div class="ps-name">名字：＿＿＿＿＿　日期：＿＿＿＿　得到 ☆☆☆</div></div><div class="ps-body">${body}</div><div class="ps-ans">答案：${ans.join('　')}</div><div class="ps-foot"><span>動動腦小學堂・更多學習單和遊戲：denis1234555-lgtm.github.io</span><span>© 2026 動動腦小學堂 版權所有</span></div>`;
+    el.innerHTML = `<div class="ps-head"><div class="ps-tt"><b><span>動動腦</span>小學堂・${t[1]}</b><small>${lv}・圈出對的答案，寫完自己檢查一次</small></div><div class="ps-name"><span>名字：＿＿＿＿＿</span><span>日期：＿＿＿＿</span><span>得到 ☆☆☆</span></div><div class="ps-stamp"><span>家長<br>蓋章</span></div></div><div class="ps-body">${body}</div><div class="ps-ans">答案：${ans.join('　')}</div><div class="ps-foot"><span>動動腦小學堂・更多學習單和遊戲：denis1234555-lgtm.github.io</span><span>© 2026 動動腦小學堂 版權所有</span></div>`;
     track('print-' + sub, '產生學習單：' + t[1]);
   }
   function renderPrint() {
@@ -7340,7 +7617,8 @@ body.is-yx.is-print .promo { display: none; }
   function lnRender() {
     const done = new Set(lnSeen()[lnSub] || []), pages = Math.ceil(lnCards.length / LN_PAGE), a = lnPage * LN_PAGE;
     $('lnGrid').innerHTML = lnCards.slice(a, a + LN_PAGE).map((c, k) => { const i = a + k; return `<button class="ezl-card${c.wide ? ' wide' : ''}${done.has(i) ? ' done' : ''}" data-i="${i}">${c.v}<b>${c.t}</b>${c.s ? `<small>${c.s}</small>` : ''}</button>`; }).join('');
-    $('lnGrid').querySelectorAll('.ezl-card').forEach(b => b.addEventListener('click', () => { lnPlaying = false; lnTap(+b.dataset.i, b); }));
+    $('lnGrid').querySelectorAll('.ezl-card').forEach(b => b.addEventListener('click', () => { lnPlaying = false; const plain = h => { const d = document.createElement('div'); d.innerHTML = h; return d.textContent.trim(); };
+      wcOpen(lnCards.map((c, i) => ({ vis: `<div class="ezl-big">${c.v}</div>`, word: plain(c.t), text: c.t, sub: c.s, tag: LEARN_NAME(lnSub), say: c.say, onSay: () => { const seen = lnSeen(), set = new Set(seen[lnSub] || []); set.add(i); seen[lnSub] = [...set]; store.set('learnSeen', seen); const bb = $('lnGrid').querySelector(`[data-i="${i}"]`); bb && bb.classList.add('done'); lnProgress(); } })), +b.dataset.i); }));
     $('lnPager').hidden = pages < 2;
     $('lnPageTxt').textContent = `第 ${lnPage + 1} 組／共 ${pages} 組`;
     $('lnPrev').disabled = lnPage === 0; $('lnNext').disabled = lnPage >= pages - 1;
@@ -7569,6 +7847,50 @@ body.is-yx.is-print .promo { display: none; }
     if (ezTier() < c.t) { track('ezl-locked-' + id, '英語單字卡鎖住'); $('lockMsg').textContent = `「${c.zh}」單字卡是「${EZL_TIER_NAME[c.t]}」以上的內容，請爸爸媽媽到家長專區看看怎麼開啟。`; $('lockSheet').hidden = false; return; }
     ezlCur = id; renderEzl(); show('ezlearn'); track('ezl-open-' + id, '英語單字卡：' + c.zh);
   }
+  /* ---------- 🔤 大圖卡：點點看一起念（字母方塊、慢慢念、錄自己的聲音） ---------- */
+  const WC_TILE = [['#FDEBE3', '#D9574A'], ['#EEE8FA', '#6A4FB0'], ['#E2F1EC', '#3E8E7A'], ['#FFF3D1', '#B07A12'], ['#E1EEF8', '#2B5F99']];
+  let wcList = [], wcI = 0, wcRec = null, wcUrl = '';
+  function wcOpen(list, i) {
+    wcList = list; wcI = i; let box = $('wcard');
+    if (!box) { box = document.createElement('div'); box.id = 'wcard'; box.className = 'wcard'; document.body.appendChild(box); box.addEventListener('click', e => { if (e.target === box) wcClose(); }); }
+    box.hidden = false; document.documentElement.classList.add('wc-open'); wcDraw(true);
+  }
+  function wcClose() { const b = $('wcard'); if (b) { b.hidden = true; b.innerHTML = ''; } document.documentElement.classList.remove('wc-open'); wcStopRec(); if (wcUrl) { URL.revokeObjectURL(wcUrl); wcUrl = ''; } }
+  function wcStopRec() { try { if (wcRec && wcRec.state === 'recording') wcRec.stop(); } catch (e) {} }
+  function wcDraw(speak) {
+    const x = wcList[wcI], box = $('wcard'); if (!x || !box) return;
+    const w = (x.word || '').trim(), tiles = /^[A-Za-z]{1,12}$/.test(w);
+    if (wcUrl) { URL.revokeObjectURL(wcUrl); wcUrl = ''; }
+    box.innerHTML = `<div class="wc-card" role="dialog" aria-label="大圖卡">
+      <button class="wc-x" id="wcX" aria-label="關閉">✕</button>
+      <div class="wc-pic">${x.vis}${x.tag ? `<span class="wc-tag">${x.tag}</span>` : ''}</div>
+      <div class="wc-body">
+        ${tiles ? `<div class="wc-tiles">${[...w].map((ch, k) => { const [bg, fg] = WC_TILE[k % WC_TILE.length]; return `<button class="wc-t" data-ch="${ch}" style="background:${bg};color:${fg}">${ch}</button>`; }).join('')}</div>` : `<div class="wc-word">${x.text || w}</div>`}
+        ${x.sub ? `<div class="wc-sub">${x.sub}</div>` : ''}
+        <div class="wc-acts"><button class="wc-say" id="wcSay"><span aria-hidden="true">🔊</span> 點我念</button><button class="wc-ic slow" id="wcSlow" aria-label="慢慢念">🐢</button><button class="wc-ic rec" id="wcRecB" aria-label="錄下我的聲音">🎤</button><button class="wc-ic me" id="wcMe" aria-label="聽我的聲音" hidden>▶️</button></div>
+        <p class="wc-note" id="wcNote">${tiles ? '點字母可以聽一個一個的字母' : '跟著念念看'}</p>
+      </div>
+      <div class="wc-nav"><button id="wcPrev" aria-label="上一張"${wcI ? '' : ' disabled'}>◀</button><span>${wcI + 1} / ${wcList.length}</span><button id="wcNext" aria-label="下一張"${wcI < wcList.length - 1 ? '' : ' disabled'}>▶</button></div>
+    </div>`;
+    const play = async slow => { const c = box.querySelector('.wc-card'); c.classList.add('talk'); sayRateMul = slow ? .6 : 1; x.onSay && x.onSay(); await say(x.say); sayRateMul = 1; c.classList.remove('talk'); };
+    $('wcX').onclick = wcClose; $('wcSay').onclick = () => play(false); $('wcSlow').onclick = () => play(true);
+    $('wcPrev').onclick = () => { if (wcI > 0) { wcI--; wcDraw(true); } };
+    $('wcNext').onclick = () => { if (wcI < wcList.length - 1) { wcI++; wcDraw(true); } };
+    box.querySelectorAll('.wc-t').forEach(b => b.onclick = () => { b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); say([[b.dataset.ch.toUpperCase() + '.', 'en-US']]); });
+    $('wcRecB').onclick = async () => {
+      const note = $('wcNote');
+      if (wcRec && wcRec.state === 'recording') { wcStopRec(); return; }
+      if (!navigator.mediaDevices || !window.MediaRecorder) { note.textContent = '這台裝置不能錄音，跟著大聲念就可以囉！'; return; }
+      try {
+        const st = await navigator.mediaDevices.getUserMedia({ audio: true }), ch = [];
+        wcRec = new MediaRecorder(st); wcRec.ondataavailable = e => ch.push(e.data);
+        wcRec.onstop = () => { st.getTracks().forEach(t => t.stop()); $('wcRecB') && $('wcRecB').classList.remove('on'); if (!$('wcMe')) return; if (wcUrl) URL.revokeObjectURL(wcUrl); wcUrl = URL.createObjectURL(new Blob(ch, { type: wcRec.mimeType || 'audio/webm' })); $('wcMe').hidden = false; note.textContent = '錄好了！按 ▶️ 聽聽看自己念得像不像'; const a = new Audio(wcUrl); a.play().catch(() => {}); };
+        wcRec.start(); $('wcRecB').classList.add('on'); note.textContent = '🎤 錄音中…念完再按一次（最多 4 秒）'; setTimeout(wcStopRec, 4000); track('wcard-rec', '大圖卡錄音');
+      } catch (e) { note.textContent = '要先允許使用麥克風，才能錄音喔！'; }
+    };
+    $('wcMe').onclick = () => { if (wcUrl) new Audio(wcUrl).play().catch(() => {}); };
+    if (speak) play(false);
+  }
   function ezlProgress() {
     const c = EZL_BY[ezlCur], n = ezlLearned(c.id).size, N = c.items.length, done = n >= N;
     $('ezlProg').textContent = `已學 ${Math.min(n, N)} / ${N}`;
@@ -7579,7 +7901,7 @@ body.is-yx.is-print .promo { display: none; }
     const c = EZL_BY[ezlCur], L = ezlLearned(c.id);
     $('ezlTitle').textContent = `${c.icon} ${c.zh} ${c.en}`;
     $('ezlGrid').innerHTML = c.items.map((x, i) => `<button class="ezl-card${L.has(x.w) ? ' done' : ''}" data-i="${i}" aria-label="${x.w}">${ezlVis(c, x)}<b>${c.type === 'letter' ? x.word : x.w}</b><small>${x.zh}</small></button>`).join('');
-    $('ezlGrid').querySelectorAll('.ezl-card').forEach(b => b.addEventListener('click', () => { ezlPlaying = false; ezlTap(c, c.items[+b.dataset.i], b); }));
+    $('ezlGrid').querySelectorAll('.ezl-card').forEach(b => b.addEventListener('click', () => { ezlPlaying = false; const L = c.items.map((x, k) => ({ vis: `<div class="ezl-big">${ezlVis(c, x)}</div>`, word: c.type === 'letter' ? x.word : x.w, text: c.type === 'letter' ? x.word : x.w, sub: x.zh, tag: c.zh, say: [[x.say || x.w, EZ_EN]], onSay: () => { const bb = $('ezlGrid').children[k]; ezlMark(c, x); bb && bb.classList.add('done'); ezlProgress(); } })); wcOpen(L, +b.dataset.i); }));
     ezlProgress();
   }
   async function ezlTap(c, x, b) {
@@ -7695,7 +8017,8 @@ body.is-yx.is-print .promo { display: none; }
       ${wheel}<div class="pk-head"><div class="pk-ttl">星星樂園</div><div class="pk-sub">闖關拿星星，星星可以換遊戲玩！</div>
         <div class="pk-lvl" role="radiogroup" aria-label="闖關題目難度"><span>闖關題目：</span><button class="pk-tab${pkLvl() === 'k' ? ' on' : ''}" data-l="k">🧸 幼兒園</button><button class="pk-tab${pkLvl() === 'e' ? ' on' : ''}" data-l="e">🎒 小學</button></div></div>
       <div class="pk-cards">${card('bub', '🫧', '泡泡戳戳', '#7CC4F5', '#DFF4FF')}${card('fruit', '🧺', '接水果', '#F7A35C', '#FFF0D8')}${card('mole', '🐹', '打地鼠', '#8ED07A', '#E5F7DC')}${card('slice', '🍉', '算式切切', '#F57E7E', '#FFE4E4')}${card('match', '🍬', '星星消消樂', '#B9A2F0', '#EFE9FF')}${card('run', '🏃', '校園跑跑', '#5B8DEF', '#E2ECFF')}${card('sling', '🎯', '彈弓打怪', '#F7A35C', '#FFF0D8')}${card('snake', '🐍', '字母貪食蛇', '#8ED07A', '#E5F7DC')}${card('block', '🧮', '湊十方塊', '#FFC93C', '#FFF6D0')}${card('g2048', '🔢', '數字合合樂', '#FF9DB8', '#FFE7F0')}${card('castle', '🏰', '守護城堡', '#7FD8C8', '#E0F7F2')}${card('race', '🏎️', '答題賽車', '#F57E7E', '#FFE4E4')}
-        <button class="pk-card wide" data-g="pet" style="background:linear-gradient(110deg,#E6F7FF,#FFF0F6)"><div class="pk-art">${RK_AVA[(store.get('pkPetData', null) || {}).a || 0]}</div><div><b>我的小寵物</b><small>${(store.get('pkPetData', null) || {}).name ? '餵食、玩耍、佈置房間' : '養一隻自己的小寵物！'}</small></div><div class="pk-price">去看看 →</div></button>
+        <button class="pk-card wide" data-g="pet" style="background:linear-gradient(110deg,#E6F7FF,#FFF0F6)"><div class="pk-art al-hub">${petSVG((store.get('pkPetData', null) || {}).a || 0)}</div><div><b>我的小寵物</b><small>${(store.get('pkPetData', null) || {}).name ? '餵食、玩耍、佈置房間' : '養一隻自己的小寵物！'}</small></div><div class="pk-price">去看看 →</div></button>
+        <button class="pk-card wide" data-g="alb" style="background:linear-gradient(110deg,#FFF4D6,#E9F1FF)"><div class="pk-art al-hub">${alSVG('h1')}</div><div><b>收集貼紙相簿</b><small>已收集 ${alOwn().length}/${AL.length} 張・點了會動！</small></div></button>
         <button class="pk-card" data-g="stk" style="--a:#B9A2F0;--s:#EFE9FF"><div class="pk-awn"></div><div class="pk-art">🎨</div><b>貼紙樂園</b><div class="pk-price">已收集 ${pkOwned().length} 張</div></button>
         <button class="pk-card wide" data-g="rank" style="background:linear-gradient(110deg,#FFF1C2,#FFE0EE)"><div class="pk-art">🏆</div><div><b>星星排行榜</b><small>${(() => { const c = store.get('rankCache', null); return rkOn() && c && c.week && c.week.me ? `本週第 ${c.week.me} 名・⭐ ${wkNow()}` : '和全台灣的小朋友比星星'; })()}</small></div><div class="pk-price">看排名 →</div></button></div>
       <div class="pk-note">🧠 <b>闖關模式</b>：照圓圓說的玩，過關拿 1～3 顆星星。<br>🎮 <b>純玩模式</b>：用 ${PK_COST} 顆星星換 3 分鐘，盡情玩！</div>
@@ -7715,6 +8038,7 @@ body.is-yx.is-print .promo { display: none; }
     h.querySelectorAll('.pk-card').forEach(b => b.onclick = () => {
       const g = b.dataset.g;
       if (g === 'stk') return pkSticker();
+      if (g === 'alb') return pkAlbum();
       if (g === 'rank') return openRank();
       if (g === 'pet') return pkPet();
       const nm = { bub: '泡泡戳戳', fruit: '接水果', mole: '打地鼠', slice: '算式切切', match: '星星消消樂', run: '校園跑跑', sling: '彈弓打怪', snake: '字母貪食蛇', block: '湊十方塊', g2048: '數字合合樂', castle: '守護城堡', race: '答題賽車' }[g], em = { bub: '🫧', fruit: '🧺', mole: '🐹', slice: '🍉', match: '🍬', run: '🏃', sling: '🎯', snake: '🐍', block: '🧮', g2048: '🔢', castle: '🏰', race: '🏎️' }[g];
@@ -7934,8 +8258,8 @@ body.is-yx.is-print .promo { display: none; }
     const draw = () => {
       P.innerHTML = `<div class="pk-canvas" id="pkCv"><div id="pkBox" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);aspect-ratio:390/557;height:100%;max-width:100%;overflow:hidden"><svg class="bg" viewBox="0 0 390 557" preserveAspectRatio="xMidYMid slice">${PK_SCN[scene][1]}</svg></div></div>
         <div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="回樂園">${pkBack}</button>${task ? `<button class="pk-pill" id="pkSay" style="max-width:58vw;font-size:.95rem">🔊 ${task.say}</button>` : `<button class="pk-pill" id="pkTaskBtn">🧠 闖關任務</button>`}<span class="pk-pill">⭐ <span id="pkBal">${pkBal()}</span></span></div>
-        <div class="pk-tray"><div class="pk-tabs">${Object.keys(PK_STK).map(k => `<button class="pk-tab${k === cat ? ' on' : ''}" data-c="${k}">${k}</button>`).join('')}</div>
-        <div class="pk-sgrid">${PK_STK[cat].map(([e, p]) => `<button class="pk-s${pkOwned().includes(e) ? ' own' : ''}" data-e="${e}" data-p="${p}">${e}${pkOwned().includes(e) ? '' : `<i>⭐${p}</i>`}</button>`).join('')}</div>
+        <div class="pk-tray"><div class="pk-tabs"><button class="pk-tab${cat === '收藏' ? ' on' : ''}" data-c="收藏">📒 我的收藏</button>${Object.keys(PK_STK).map(k => `<button class="pk-tab${k === cat ? ' on' : ''}" data-c="${k}">${k}</button>`).join('')}</div>
+        <div class="pk-sgrid">${cat === '收藏' ? (alOwn().length ? alOwn().map(id => `<button class="pk-s al own" data-e="al:${id}" data-p="0">${alSVG(id)}</button>`).join('') : '<p class="note" style="grid-column:1/-1">還沒有收藏貼紙，去「收集貼紙相簿」用星星換吧！</p>') : PK_STK[cat].map(([e, p]) => `<button class="pk-s${pkOwned().includes(e) ? ' own' : ''}" data-e="${e}" data-p="${p}">${e}${pkOwned().includes(e) ? '' : `<i>⭐${p}</i>`}</button>`).join('')}</div>
         <div class="pk-sfoot"><select id="pkScnSel" aria-label="換場景">${Object.entries(PK_SCN).map(([k, v]) => `<option value="${k}"${k === scene ? ' selected' : ''}>${v[0]}</option>`).join('')}</select>${task ? '<button class="pk-btn" id="pkCheck" style="padding:8px 18px;font-size:1rem">✅ 完成了</button>' : '<button class="pk-btn gray" id="pkClear" style="padding:8px 16px;font-size:.95rem">🧽 清空</button>'}<button class="pk-btn" id="pkShot" style="padding:8px 16px;font-size:.95rem;background:#3F6FD8;box-shadow:0 5px 0 #2C52A8">📷 存圖</button></div></div>
         <div class="pk-ask" id="pkAsk" hidden></div>`;
       const box = $('pkBox');
@@ -7944,7 +8268,7 @@ body.is-yx.is-print .promo { display: none; }
       P.querySelectorAll('.pk-tab').forEach(b => b.onclick = () => { cat = b.dataset.c; draw(); });
       P.querySelectorAll('.pk-s').forEach(b => b.onclick = () => {
         const e = b.dataset.e, p = +b.dataset.p;
-        if (!pkOwned().includes(e)) {
+        if (!e.startsWith('al:') && !pkOwned().includes(e)) {
           if (pkBal() < p) return pkAsk('⭐', `還差 ${p - pkBal()} 顆星星`, '去闖關或學習，就能拿到星星喔！', [['好', 'gray', () => {}]]);
           return pkAsk(e, `用 ⭐${p} 買這張貼紙？`, `買了就可以一直用喔！`, [['買！', '', () => { store.set('pkSpent', pkSpent() + p); store.set('pkOwn', pkOwned().concat(e)); track('park-sticker', '買貼紙'); say([[PK_EN_NAME[e] || '', 'en-US']]); draw(); }], ['先不要', 'gray', () => {}]]);
         }
@@ -7958,16 +8282,16 @@ body.is-yx.is-print .promo { display: none; }
       $('pkShot').onclick = shot;
     };
     const key = () => task ? 'park_task' : scene;
-    const add = e => { const L = all[key()] = all[key()] || []; L.push({ e, x: 40 + rand(0, 20), y: 30 + rand(0, 20), s: 1, r: 0 }); save(); say([[PK_EN_NAME[e] || '', 'en-US']]); sel = L.length - 1; draw(); };
+    const add = e => { const L = all[key()] = all[key()] || []; L.push({ e, x: 40 + rand(0, 20), y: 30 + rand(0, 20), s: 1, r: 0 }); save(); say([[e.startsWith('al:') ? (alInfo(e.slice(3)) || {}).en || '' : PK_EN_NAME[e] || '', 'en-US']]); sel = L.length - 1; draw(); };
     const mk = (s, i) => {
-      const el = document.createElement('div'); el.className = 'pk-sticker' + (i === sel ? ' sel' : ''); el.textContent = s.e;
+      const el = document.createElement('div'); el.className = 'pk-sticker' + (i === sel ? ' sel' : '') + (s.e.startsWith('al:') ? ' al' : ''); if (s.e.startsWith('al:')) el.innerHTML = alSVG(s.e.slice(3)); else el.textContent = s.e;
       el.style.left = s.x + '%'; el.style.top = s.y + '%'; el.style.transform = `translate(-50%,-50%) rotate(${s.r}deg) scale(${s.s})`;
       el.addEventListener('pointerdown', ev => {
         ev.preventDefault(); el.setPointerCapture(ev.pointerId); const box = $('pkBox').getBoundingClientRect();
         if (sel !== i) { sel = i; P.querySelectorAll('.pk-sticker').forEach(x => x.classList.remove('sel')); el.classList.add('sel'); tools(); }
         const mv = e2 => { s.x = Math.max(2, Math.min(98, (e2.clientX - box.left) / box.width * 100)); s.y = Math.max(2, Math.min(98, (e2.clientY - box.top) / box.height * 100)); el.style.left = s.x + '%'; el.style.top = s.y + '%'; tools(); };
-        const up = () => { el.removeEventListener('pointermove', mv); el.removeEventListener('pointerup', up); save(); };
-        el.addEventListener('pointermove', mv); el.addEventListener('pointerup', up);
+        const up = () => { el.removeEventListener('pointermove', mv); el.removeEventListener('pointerup', up); el.removeEventListener('pointercancel', up); save(); };
+        el.addEventListener('pointermove', mv); el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
       });
       return el;
     };
@@ -8219,9 +8543,31 @@ body.is-yx.is-print .promo { display: none; }
     const F = $('pkField'), W = () => F.clientWidth, H = () => F.clientHeight;
     const sl = document.createElement('div'); sl.className = 'pk-sling'; sl.innerHTML = '<svg viewBox="0 0 80 120"><path d="M40 118V60M40 60L14 10M40 60L66 10" stroke="#8B5A2B" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M40 118V60M40 60L14 10M40 60L66 10" stroke="#B07A4A" stroke-width="6" stroke-linecap="round" fill="none"/></svg>'; F.appendChild(sl);
     const band = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); band.setAttribute('class', 'pk-trail'); F.appendChild(band);
-    const ball = document.createElement('div'); ball.className = 'pk-ball'; ball.textContent = '🥎'; F.appendChild(ball);
+    const AM = {
+      ball: { n: '彩虹球', svg: `<svg viewBox="0 0 60 60"><defs><radialGradient id="sbG" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#FFE08A"/><stop offset=".45" stop-color="#FF8A3D"/><stop offset="1" stop-color="#D9452B"/></radialGradient><clipPath id="sbC"><circle cx="30" cy="30" r="26"/></clipPath></defs><circle cx="30" cy="30" r="27" fill="#7A2A1A"/><circle cx="30" cy="30" r="26" fill="url(#sbG)"/><g clip-path="url(#sbC)"><path d="M-4 22 C14 30 46 14 64 24 L64 32 C46 22 14 38 -4 30 Z" fill="#FFF3C4" opacity=".9"/><path d="M30 34 l3.2 6.4 7 1-5.1 5 1.2 7-6.3-3.3-6.3 3.3 1.2-7-5.1-5 7-1z" fill="#FFD43B" stroke="#C9741E" stroke-width="1.4" stroke-linejoin="round"/></g><ellipse cx="21" cy="17" rx="8" ry="5" fill="#fff" opacity=".75" transform="rotate(-25 21 17)"/><circle cx="40" cy="14" r="2.2" fill="#fff" opacity=".7"/></svg>`, spin: .45, tc: k => `rgba(255,${190 + k * 50 | 0},${90 + k * 100 | 0},${(k * .85).toFixed(2)})`, fx: ['✨', '⭐'], hit: ['⭐', '✨', '💥', '🌟'], snd: [520, 780] },
+      tennis: { n: '網球', svg: `<svg viewBox="0 0 60 60"><defs><radialGradient id="stG" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#F4FF9A"/><stop offset=".6" stop-color="#C8E62E"/><stop offset="1" stop-color="#8FB31A"/></radialGradient></defs><circle cx="30" cy="30" r="26" fill="url(#stG)" stroke="#5E7A10" stroke-width="2"/><path d="M8 16 C22 24 22 36 8 44" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M52 16 C38 24 38 36 52 44" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/><ellipse cx="22" cy="16" rx="7" ry="4" fill="#fff" opacity=".6" transform="rotate(-25 22 16)"/></svg>`, spin: 1.1, tc: k => `rgba(${200 + k * 40 | 0},255,${120 + k * 60 | 0},${(k * .8).toFixed(2)})`, fx: ['💨'], hit: ['💥', '✨', '🎾'], snd: [700, 980], bounce: 1 },
+      missile: { n: '飛彈', svg: `<svg viewBox="0 0 60 60"><path d="M8 30 L-4 21 L-1 30 L-4 39 Z" fill="#FFB020"/><path d="M10 30 L2 25 L4 30 L2 35 Z" fill="#FFF3A0"/><path d="M12 22 L4 12 L18 20 Z M12 38 L4 48 L18 40 Z" fill="#E04848" stroke="#7A1E1E" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 22 H40 C50 22 58 26 60 30 C58 34 50 38 40 38 H10 Z" fill="#E9EEF5" stroke="#3B4A5E" stroke-width="2"/><path d="M44 22.6 C52 24 58 27 60 30 C58 33 52 36 44 37.4 Z" fill="#E04848"/><rect x="18" y="22" width="6" height="16" fill="#E04848"/><circle cx="34" cy="30" r="4" fill="#7CC4F5" stroke="#3B4A5E" stroke-width="1.6"/><path d="M14 25 H38" stroke="#fff" stroke-width="2" opacity=".8"/></svg>`, spin: 0, tc: k => k > .6 ? `rgba(255,${140 + (k - .6) * 250 | 0},40,${k.toFixed(2)})` : `rgba(150,150,160,${(k * .9).toFixed(2)})`, fx: ['🔥', '💨'], hit: ['💥', '🔥', '💥', '⭐'], snd: [160, 90], boom: 1 },
+      bun: { n: '肉包子', svg: `<svg viewBox="0 0 60 60"><defs><radialGradient id="sbuG" cx="40%" cy="30%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".7" stop-color="#FBF1DE"/><stop offset="1" stop-color="#E7D3AE"/></radialGradient></defs><path d="M4 40 C4 22 16 10 30 10 C44 10 56 22 56 40 C56 48 46 52 30 52 C14 52 4 48 4 40 Z" fill="url(#sbuG)" stroke="#B89B6A" stroke-width="2.2"/><path d="M30 12 C27 18 22 21 18 22 M30 12 C33 18 38 21 42 22 M30 12 C29 19 30 22 30 24" fill="none" stroke="#C9AE7E" stroke-width="2" stroke-linecap="round"/><circle cx="30" cy="12" r="3" fill="#E8D5B0"/><ellipse cx="22" cy="40" rx="3.5" ry="2.2" fill="#FFB3B3" opacity=".8"/><ellipse cx="38" cy="40" rx="3.5" ry="2.2" fill="#FFB3B3" opacity=".8"/><path d="M24 34 q2 -2 4 0 M32 34 q2 -2 4 0" fill="none" stroke="#5A4030" stroke-width="2" stroke-linecap="round"/><path d="M27 40 q3 3 6 0" fill="none" stroke="#5A4030" stroke-width="2" stroke-linecap="round"/></svg>`, spin: .25, tc: k => `rgba(255,255,255,${(k * .9).toFixed(2)})`, fx: ['♨️'], hit: ['😋', '💕', '♨️', '✨'], snd: [660, 880], yum: 1 }
+    };
+    let am = store.get('slAmmo', 'ball'); if (!AM[am]) am = 'ball';
+    const ball = document.createElement('div'); ball.className = 'pk-ball'; ball.innerHTML = `<div class="bv"><div class="bs">${AM[am].svg}</div></div>`; F.appendChild(ball);
+    const bv = ball.firstChild, bs = bv.firstChild;
+    const shd = document.createElement('div'); shd.className = 'pk-bshadow'; F.appendChild(shd);
+    const tr = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); tr.setAttribute('class', 'pk-btrail'); F.appendChild(tr); let trail = [];
+    const drawTrail = () => { const n = trail.length; tr.innerHTML = n < 2 ? '' : trail.slice(1).map((p, i) => { const q = trail[i], k = (i + 1) / n; return `<line x1="${q[0]}" y1="${q[1]}" x2="${p[0]}" y2="${p[1]}" stroke="${AM[am].tc(k)}" stroke-width="${(4 + k * 18).toFixed(1)}" stroke-linecap="round"/>`; }).join(''); };
+    const fade = () => { const f = () => { if (!trail.length || shot) return; trail.shift(); drawTrail(); requestAnimationFrame(f); }; requestAnimationFrame(f); };
+    const bar = document.createElement('div'); bar.className = 'pk-ammo';
+    const drawBar = () => { bar.innerHTML = Object.keys(AM).map(k => `<button data-k="${k}" class="${k === am ? 'on' : ''}" aria-label="${AM[k].n}"><span class="ic">${AM[k].svg}</span><small>${AM[k].n}</small></button>`).join(''); bar.querySelectorAll('button').forEach(b => b.onpointerdown = e => { e.stopPropagation(); e.preventDefault(); if (shot) return; am = b.dataset.k; store.set('slAmmo', am); bs.innerHTML = AM[am].svg; drawBar(); tone([440, 660], .06, 'triangle'); }); };
+    drawBar(); F.appendChild(bar);
+    const hitFx = (A, sh, t) => {
+      tone(A.snd, .12, A.boom ? 'sawtooth' : 'triangle');
+      if (A.boom) { const b = document.createElement('div'); b.className = 'pk-bigboom'; b.textContent = '💥'; b.style.left = t.x + 'px'; b.style.top = t.y + 'px'; F.appendChild(b); setTimeout(() => b.remove(), 650); F.classList.remove('pk-quake'); void F.offsetWidth; F.classList.add('pk-quake'); }
+      if (A.bounce) { const c = document.createElement('div'); c.className = 'pk-ball'; c.innerHTML = A.svg; c.style.width = c.style.height = '48px'; F.appendChild(c); c.animate([{ transform: `translate(${sh.x - 24}px,${sh.y - 24}px) rotate(0)` }, { transform: `translate(${sh.x - 90}px,${sh.y - 110}px) rotate(-300deg)`, offset: .45 }, { transform: `translate(${sh.x - 150}px,${H() - 140}px) rotate(-600deg)`, opacity: .9, offset: .8 }, { transform: `translate(${sh.x - 180}px,${H() - 190}px) rotate(-720deg)`, opacity: 0 }], { duration: 1000, easing: 'ease-out' }).onfinish = () => c.remove(); }
+      if (A.yum) { const y = document.createElement('div'); y.className = 'pk-yum'; y.textContent = '好吃！'; y.style.left = t.x + 'px'; y.style.top = (t.y - 50) + 'px'; F.appendChild(y); setTimeout(() => y.remove(), 900); t.el.classList.add('pk-eat'); }
+    };
+    const sparks = (x, y, n, list) => { for (let i = 0; i < n; i++) { const e = document.createElement('div'); e.className = 'pk-spark'; e.textContent = list[i % list.length]; const a = Math.random() * 6.28, d = 40 + Math.random() * 50; e.style.left = x + 'px'; e.style.top = y + 'px'; F.appendChild(e); e.animate([{ transform: 'translate(-50%,-50%) scale(.4)', opacity: 1 }, { transform: `translate(calc(-50% + ${Math.cos(a) * d}px), calc(-50% + ${Math.sin(a) * d}px)) scale(1.1)`, opacity: 0 }], { duration: 600, easing: 'ease-out' }).onfinish = () => e.remove(); } };
     let T = [], shot = null, drag = null;
-    const SK = .55, SV = .055 * SK, SG = .0009 * SK * SK;  // 速度與重力一起縮放，飛得慢但路線一樣
+    const SK = .32, SV = .055 * SK, SG = .0009 * SK * SK;  // 速度與重力一起縮放，飛得慢但路線一樣
     const home = () => ({ x: 74, y: H() - 205 });
     const setTargets = () => {
       T.forEach(t => t.el.remove()); T = [];
@@ -8233,26 +8579,30 @@ body.is-yx.is-print .promo { display: none; }
         el.style.left = x + 'px'; el.style.top = y + 'px'; F.appendChild(el); T.push({ el, x, y, ok: o.ok, r: 38 });
       });
     };
-    const pos = (x, y) => { ball.style.transform = `translate(${x - 22}px, ${y - 22}px)`; };
+    const pos = (x, y) => { ball.style.transform = `translate(${x - 24}px, ${y - 24}px)`; const gy = H() - 112, hgt = Math.max(0, gy - y), k = Math.max(.25, 1 - hgt / 500); shd.style.transform = `translate(${x - 20}px, ${gy}px) scale(${k.toFixed(2)})`; shd.style.opacity = (k * .5).toFixed(2); };
     // 球後面的殘影，讓飛行看得更清楚
     const ghost = (x, y) => { const g = document.createElement('div'); g.className = 'pk-ghost'; g.style.transform = `translate(${x - 8}px, ${y - 8}px)`; F.appendChild(g); setTimeout(() => g.remove(), 450); };
     const drawBand = (x, y) => { const h = home(); band.innerHTML = drag ? `<path d="M${h.x - 26} ${h.y - 6}L${x} ${y}L${h.x + 26} ${h.y - 6}" stroke="#5A3A28" stroke-width="5" fill="none" stroke-linecap="round"/>` + Array.from({ length: 10 }, (_, i) => { const t = (i + 1) * 38 / SK, vx = (h.x - x) * SV, vy = (h.y - y) * SV; return `<circle cx="${x + vx * t}" cy="${y + vy * t + .5 * SG * t * t}" r="${5.5 - i * .35}" fill="#fff" opacity="${.95 - i * .07}"/>`; }).join('') : ''; };
-    F.addEventListener('pointerdown', e => { if (shot || !R.t0 || e.target.closest('.pk-hud')) return; const r = F.getBoundingClientRect(), h = home(), x = e.clientX - r.left, y = e.clientY - r.top; if (Math.hypot(x - h.x, y - h.y) > 90) return; drag = { x, y }; F.setPointerCapture(e.pointerId); });
+    F.addEventListener('pointerdown', e => { if (shot || !R.t0 || e.target.closest('.pk-hud,.pk-ammo')) return; const r = F.getBoundingClientRect(), h = home(), x = e.clientX - r.left, y = e.clientY - r.top; if (Math.hypot(x - h.x, y - h.y) > 90) return; drag = { x, y }; F.setPointerCapture(e.pointerId); });
     F.addEventListener('pointermove', e => { if (!drag) return; const r = F.getBoundingClientRect(), h = home(); let x = e.clientX - r.left, y = e.clientY - r.top; const d = Math.hypot(x - h.x, y - h.y); if (d > 110) { x = h.x + (x - h.x) / d * 110; y = h.y + (y - h.y) / d * 110; } drag = { x, y }; pos(x, y); drawBand(x, y); });
-    F.addEventListener('pointerup', () => { if (!drag) return; const h = home(); shot = { x: drag.x, y: drag.y, vx: (h.x - drag.x) * SV, vy: (h.y - drag.y) * SV, rot: 0 }; drag = null; drawBand(); tone([300, 520], .08, 'triangle'); });
+    F.addEventListener('pointerup', () => { if (!drag) return; const h = home(); shot = { x: drag.x, y: drag.y, vx: (h.x - drag.x) * SV, vy: (h.y - drag.y) * SV, rot: 0 }; drag = null; drawBand(); tone([300, 520], .08, 'triangle'); trail = [[shot.x, shot.y]]; sparks(h.x, h.y - 10, 5, ['💨', '✨']); sl.classList.remove('snap'); void sl.offsetWidth; sl.classList.add('snap'); });
     setTargets(); const h0 = home(); pos(h0.x, h0.y);
     R.step = dt => {
-      if (!shot) { if (!drag) { const h = home(); pos(h.x, h.y); } return; }
-      if ((shot.k = (shot.k || 0) + dt) > 60) { shot.k = 0; ghost(shot.x, shot.y); }
-      shot.vy += SG * dt; shot.x += shot.vx * dt; shot.y += shot.vy * dt; shot.rot += dt * .5; pos(shot.x, shot.y); ball.style.rotate = shot.rot + 'deg';
+      if (!shot) { if (!drag) { const h = home(); pos(h.x, h.y); bv.style.transform = ''; } return; }
+      shot.vy += SG * dt; shot.x += shot.vx * dt; shot.y += shot.vy * dt; shot.rot += dt * AM[am].spin; pos(shot.x, shot.y);
+      const sp = Math.hypot(shot.vx, shot.vy), ang = Math.atan2(shot.vy, shot.vx) * 57.3, st = Math.min(.22, sp * 4);
+      bv.style.transform = `rotate(${ang.toFixed(1)}deg) scale(${(1 + (AM[am].spin ? st : 0)).toFixed(3)}, ${(1 - (AM[am].spin ? st * .7 : 0)).toFixed(3)})`; bs.style.transform = AM[am].spin ? `rotate(${(shot.rot - ang).toFixed(1)}deg)` : '';
+      trail.push([shot.x, shot.y]); if (trail.length > 18) trail.shift(); drawTrail();
+      if ((shot.k = (shot.k || 0) + dt) > (AM[am].boom ? 70 : 110)) { shot.k = 0; sparks(shot.x, shot.y, 1, AM[am].fx); }
       for (const t of T) {
         if (t.dead || Math.hypot(shot.x - t.x, shot.y - t.y) > t.r + 14) continue;
+        const good = t.ok || !R.learn, A = AM[am]; sparks(shot.x, shot.y, good ? (A.boom ? 12 : 8) : 4, good ? A.hit : ['💫']); fade(); if (good) hitFx(A, shot, t);
         if (R.learn && !t.ok) { pkHit(R, false); t.el.classList.add('pk-thud'); setTimeout(() => t.el.classList.remove('pk-thud'), 400); shot = null; return; }
         t.dead = 1; t.el.classList.add('pk-boom'); pkHit(R, true, t.x, t.y); shot = null;
         if (R.learn) { setTimeout(() => { if (!R.done) setTargets(); }, 600); } else setTimeout(() => { if (!R.done && T.every(x => x.dead)) setTargets(); }, 500);
         return;
       }
-      if (shot.y > H() + 40 || shot.x > W() + 40 || shot.x < -40) shot = null;
+      if (shot.y > H() + 40 || shot.x > W() + 40 || shot.x < -40) { shot = null; fade(); }
     };
     if (R.learn) R.task = Object.assign(R.task, { label: R.q.label, say: R.q.say });
   }
@@ -8564,6 +8914,153 @@ body.is-yx.is-print .promo { display: none; }
       return end(3800);
     }
     done && done();
+  }
+  // ---------- 📒 收集貼紙相簿：原創動畫貼紙（點了會播特效） ----------
+  const AL_INK = '#2B2233';
+  const alWrap = (id, t, body, fx) => `<svg class="al-svg al-${t}" data-id="${id}" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><ellipse class="al-sh" cx="60" cy="112" rx="30" ry="5" fill="rgba(0,0,0,.15)"/><g class="mv">${body}</g><g class="fx">${fx || ''}</g></svg>`;
+  const ln = (w = 2.5) => `stroke="${AL_INK}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"`;
+  // 超級英雄隊
+  function alHero(o) {
+    const { suit, suit2, cape, mask, hair, skin = '#FFD9B8', emb, girl, fx } = o;
+    const pony = girl ? `<path d="M72 22 C88 20 92 38 84 50 C82 40 78 32 70 30 Z" fill="${hair}" ${ln()}/>` : '';
+    return `<path class="a-sway" d="M44 46 Q28 78 32 104 L88 104 Q92 78 76 46 Z" fill="${cape}" ${ln()}/>
+      <rect x="47" y="80" width="11" height="20" rx="4" fill="${suit2}" ${ln()}/><rect x="62" y="80" width="11" height="20" rx="4" fill="${suit2}" ${ln()}/>
+      <path d="M45 96 h14 v8 h-16 z M61 96 h14 l2 8 h-16 z" fill="${mask}" ${ln()}/>
+      <rect x="42" y="46" width="36" height="38" rx="11" fill="${suit}" ${ln()}/><rect x="42" y="73" width="36" height="6" fill="#FFD43B" ${ln(2)}/>
+      <circle cx="60" cy="60" r="8.5" fill="#fff" ${ln(2)}/><g transform="translate(60 60)">${emb}</g>
+      <rect x="31" y="50" width="10" height="26" rx="5" fill="${suit}" ${ln()} transform="rotate(12 36 52)"/><circle cx="33" cy="77" r="5.5" fill="${mask}" ${ln(2)}/>
+      <g class="a-arm"><rect x="78" y="24" width="10" height="28" rx="5" fill="${suit}" ${ln()} transform="rotate(14 83 50)"/><circle cx="88" cy="24" r="6.5" fill="${mask}" ${ln(2)}/></g>
+      ${pony}<circle cx="60" cy="32" r="15" fill="${skin}" ${ln()}/>
+      <path d="M45 30 C44 16 56 12 62 14 C72 14 78 22 75 30 C70 24 60 22 52 26 Z" fill="${hair}" ${ln()}/>
+      <rect x="46" y="28" width="28" height="9" rx="4.5" fill="${mask}" ${ln(2)}/><ellipse class="a-blink" cx="54" cy="32.5" rx="3" ry="3.2" fill="#fff"/><ellipse class="a-blink" cx="66" cy="32.5" rx="3" ry="3.2" fill="#fff"/>
+      <circle cx="54.5" cy="33" r="1.6" fill="${AL_INK}"/><circle cx="66.5" cy="33" r="1.6" fill="${AL_INK}"/>
+      <path d="M55 40 Q60 44 65 40" fill="none" ${ln(2)}/><circle cx="50" cy="39" r="2" fill="#FF9AA8" opacity=".7"/><circle cx="70" cy="39" r="2" fill="#FF9AA8" opacity=".7"/>`;
+  }
+  const EMB = {
+    bolt: '<path d="M1 -6 L-4 1 L0 1 L-2 6 L4 -1 L0 -1 Z" fill="#F5B700" stroke="#2B2233" stroke-width="1"/>',
+    fire: '<path d="M0 -6 C4 -2 5 2 2 5 C1 3 0 2 -1 1 C-1 3 -2 5 -3 5 C-5 2 -4 -2 0 -6 Z" fill="#FF6B3D" stroke="#2B2233" stroke-width="1"/>',
+    ice: '<path d="M0 -6 V6 M-5 -3 L5 3 M-5 3 L5 -3" stroke="#4FC3F7" stroke-width="2" stroke-linecap="round"/>',
+    beam: '<circle r="4" fill="#3DDC84" stroke="#2B2233" stroke-width="1"/><circle r="1.6" fill="#fff"/>',
+    wind: '<path d="M-5 -2 H3 A2.5 2.5 0 1 0 1 -5 M-5 2 H5 A2.5 2.5 0 1 1 3 5" fill="none" stroke="#9B6BFF" stroke-width="1.8" stroke-linecap="round"/>',
+    star: '<path d="M0 -6 L1.8 -1.8 L6 -1.6 L2.7 1.2 L3.8 5.6 L0 3.2 L-3.8 5.6 L-2.7 1.2 L-6 -1.6 L-1.8 -1.8 Z" fill="#FFD43B" stroke="#2B2233" stroke-width="1"/>'
+  };
+  const HFX = {
+    bolt: '<path d="M94 18 L84 36 L92 36 L82 56 L104 30 L96 30 L106 12 Z" fill="#FFE14D" stroke="#F5A300" stroke-width="2"/><path d="M14 40 l6 -6 M10 60 l8 0 M104 66 l8 -4" stroke="#FFD43B" stroke-width="4" stroke-linecap="round"/>',
+    fire: '<path d="M88 22 C104 6 112 22 104 30 C116 26 114 46 100 46 C106 54 90 60 86 48 C76 50 78 32 88 22 Z" fill="#FF8A3D" stroke="#E8590C" stroke-width="2"/><path d="M92 32 C98 26 104 32 98 40 C94 42 90 38 92 32 Z" fill="#FFE14D"/>',
+    ice: '<g stroke="#4FC3F7" stroke-width="3" stroke-linecap="round"><path d="M98 8 v24 M86 20 h24 M90 12 l16 16 M106 12 l-16 16"/><path d="M18 30 v14 M11 37 h14" /><path d="M100 70 v12 M94 76 h12"/></g>',
+    beam: '<rect x="86" y="-4" width="14" height="34" rx="7" fill="#7CF5A8" opacity=".85" transform="rotate(20 93 26)"/><circle cx="96" cy="8" r="9" fill="#C9FFD9" stroke="#3DDC84" stroke-width="2"/>',
+    wind: '<g fill="none" stroke="#B08CFF" stroke-width="4" stroke-linecap="round"><path d="M80 20 H104 A7 7 0 1 0 98 10"/><path d="M76 34 H110 A8 8 0 1 1 102 46"/><path d="M10 50 H30 A6 6 0 1 0 25 41"/></g>',
+    star: '<g fill="#FFD43B" stroke="#F5A300" stroke-width="1.5"><path d="M96 4 l3 8 8 0 -6 5 2 8 -7 -5 -7 5 2 -8 -6 -5 8 0z"/><path d="M16 26 l2 5 5 0 -4 3 1 5 -4 -3 -4 3 1 -5 -4 -3 5 0z"/><path d="M104 54 l2 5 5 0 -4 3 1 5 -4 -3 -4 3 1 -5 -4 -3 5 0z"/></g>'
+  };
+  // 魔法小精靈（原創）
+  function alCrit(o) {
+    const { c, b, top, ear, fx } = o;
+    return `${ear || ''}<path d="M30 74 C30 46 44 34 60 34 C76 34 90 46 90 74 C90 96 78 104 60 104 C42 104 30 96 30 74 Z" fill="${c}" ${ln()}/>
+      <ellipse cx="60" cy="84" rx="18" ry="14" fill="${b}"/>${top || ''}
+      <ellipse cx="46" cy="104" rx="9" ry="5" fill="${c}" ${ln(2)}/><ellipse cx="74" cy="104" rx="9" ry="5" fill="${c}" ${ln(2)}/>
+      <g class="a-blink"><ellipse cx="49" cy="64" rx="7" ry="8.5" fill="${AL_INK}"/><ellipse cx="71" cy="64" rx="7" ry="8.5" fill="${AL_INK}"/><circle cx="51.5" cy="60.5" r="3" fill="#fff"/><circle cx="73.5" cy="60.5" r="3" fill="#fff"/><circle cx="47" cy="67" r="1.4" fill="#fff"/><circle cx="69" cy="67" r="1.4" fill="#fff"/></g>
+      <ellipse cx="40" cy="74" rx="5" ry="3" fill="#FF8FA8" opacity=".7"/><ellipse cx="80" cy="74" rx="5" ry="3" fill="#FF8FA8" opacity=".7"/>
+      <path d="M55 74 Q60 79 65 74" fill="none" ${ln(2)}/>
+      <ellipse cx="32" cy="80" rx="5" ry="8" fill="${c}" ${ln(2)} transform="rotate(25 32 80)"/><ellipse cx="88" cy="80" rx="5" ry="8" fill="${c}" ${ln(2)} transform="rotate(-25 88 80)"/>`;
+  }
+  // 酷炫車車（側面）
+  function alCar(o) {
+    const { c, c2, body, top, extra, big, fx } = o, wy = big ? 92 : 94, wr = big ? 15 : 11;
+    const wheel = x => `<g transform="translate(${x} ${wy})"><g class="a-wheel"><circle r="${wr}" fill="#3A3A44" ${ln()}/><circle r="${wr * .45}" fill="#D7DCE3" ${ln(1.5)}/><path d="M0 -${wr * .45} V${wr * .45} M-${wr * .45} 0 H${wr * .45}" stroke="${AL_INK}" stroke-width="1.5"/></g></g>`;
+    return `<g class="car">${top || ''}<path d="${body}" fill="${c}" ${ln()}/>${extra || ''}${wheel(big ? 34 : 32)}${wheel(big ? 86 : 88)}</g>`;
+  }
+  // 恐龍王國（側面，面向右）
+  function alDino(o) {
+    const { c, b, back, head, legs, fx } = o;
+    return `${back || ''}<path d="M10 70 C20 66 30 60 44 58 L44 74 C30 78 18 78 10 70 Z" fill="${c}" ${ln()}/>
+      <ellipse cx="58" cy="72" rx="24" ry="20" fill="${c}" ${ln()}/><ellipse cx="62" cy="78" rx="14" ry="11" fill="${b}"/>
+      ${legs || `<rect x="46" y="84" width="10" height="20" rx="4" fill="${c}" ${ln()}/><rect x="64" y="84" width="10" height="20" rx="4" fill="${c}" ${ln()}/>`}
+      <g class="hd">${head}</g>`;
+  }
+  const dinoHead = (c, x = 82, y = 46, jawC) => `<path d="M${x - 12} ${y + 22} C${x - 14} ${y + 8} ${x - 8} ${y - 6} ${x + 6} ${y - 6} C${x + 20} ${y - 6} ${x + 28} ${y + 2} ${x + 28} ${y + 10} L${x + 4} ${y + 14} Z" fill="${c}" ${ln()}/>
+      <g class="jaw"><path d="M${x - 10} ${y + 18} L${x + 4} ${y + 14} L${x + 26} ${y + 14} C${x + 26} ${y + 22} ${x + 12} ${y + 26} ${x - 4} ${y + 26} Z" fill="${jawC || c}" ${ln()}/></g>
+      <circle class="a-blink" cx="${x + 6}" cy="${y + 2}" r="4" fill="${AL_INK}"/><circle cx="${x + 7.5}" cy="${y + 0.5}" r="1.4" fill="#fff"/><circle cx="${x + 22}" cy="${y + 4}" r="1.2" fill="${AL_INK}"/>`;
+  const ROAR = '<g><path d="M96 6 h20 v14 h-12 l-4 5 -1 -5 h-3 z" fill="#fff" stroke="#2B2233" stroke-width="2"/><text x="106" y="17" font-size="9" font-weight="900" text-anchor="middle" fill="#E8590C">吼～</text><path d="M100 34 l10 -4 M102 42 l12 0 M100 50 l10 4" stroke="#FFB020" stroke-width="3" stroke-linecap="round"/></g>';
+  const AL_SERIES = [['hero', '🦸 超級英雄隊'], ['crit', '✨ 魔法小精靈'], ['car', '🚗 酷炫車車'], ['dino', '🦖 恐龍王國'], ['space', '🚀 太空冒險']];
+  const AL = [
+    // 超級英雄隊
+    ['h1', 'hero', '閃電俠客', 'Thunder Kid', 'fly', alHero({ suit: '#3F6FD8', suit2: '#2D4FA8', cape: '#FFD43B', mask: '#E04848', hair: '#3B2A22', emb: EMB.bolt }), HFX.bolt],
+    ['h2', 'hero', '火焰隊長', 'Fire Captain', 'fly', alHero({ suit: '#E04848', suit2: '#A92E2E', cape: '#FF9F43', mask: '#2B2233', hair: '#5A3320', emb: EMB.fire }), HFX.fire],
+    ['h3', 'hero', '冰晶公主', 'Ice Princess', 'fly', alHero({ suit: '#7FD6F5', suit2: '#4FAFD8', cape: '#C7A6F5', mask: '#5B8DEF', hair: '#F4D06F', emb: EMB.ice, girl: 1 }), HFX.ice],
+    ['h4', 'hero', '光速少年', 'Light Boy', 'fly', alHero({ suit: '#3DBE6E', suit2: '#2A8F50', cape: '#2B2233', mask: '#FFD43B', hair: '#2B2233', emb: EMB.beam }), HFX.beam],
+    ['h5', 'hero', '旋風女孩', 'Wind Girl', 'fly', alHero({ suit: '#9B6BFF', suit2: '#7146D8', cape: '#FF8FB1', mask: '#2B2233', hair: '#C9742C', emb: EMB.wind, girl: 1 }), HFX.wind],
+    ['h6', 'hero', '星星超人', 'Star Hero', 'fly', alHero({ suit: '#2D3E8C', suit2: '#1E2A63', cape: '#E04848', mask: '#FFD43B', hair: '#F4D06F', emb: EMB.star }), HFX.star],
+    // 魔法小精靈
+    ['c1', 'crit', '葉芽寶', 'Leafy', 'hop', alCrit({ c: '#8ED07A', b: '#DDF5CF', top: `<path d="M60 36 C58 26 60 20 62 16" fill="none" ${ln()}/><path d="M62 18 C70 6 84 10 82 18 C76 24 66 24 62 18 Z" fill="#5DBB4E" ${ln(2)}/><path d="M60 22 C52 12 40 16 42 22 C48 28 56 26 60 22 Z" fill="#7ED36A" ${ln(2)}/>` }), '<g fill="#7ED36A" stroke="#3F8F3A" stroke-width="1.5"><path d="M14 30 c6 -8 14 -6 12 0 c-4 6 -10 4 -12 0z"/><path d="M98 22 c6 -8 14 -6 12 0 c-4 6 -10 4 -12 0z"/><path d="M100 70 c6 -8 14 -6 12 0 c-4 6 -10 4 -12 0z"/><path d="M8 72 c6 -8 14 -6 12 0 c-4 6 -10 4 -12 0z"/></g>'],
+    ['c2', 'crit', '小火團', 'Flamy', 'hop', alCrit({ c: '#FF9F5A', b: '#FFE2C4', top: `<path class="a-flick" d="M48 40 C44 26 52 18 56 10 C58 20 64 18 66 8 C74 18 78 30 72 40 Z" fill="#FF6B3D" ${ln(2)}/><path class="a-flick" d="M54 38 C52 30 56 26 58 22 C60 28 64 28 66 24 C68 30 68 36 66 38 Z" fill="#FFD43B"/>` }), '<g><circle cx="16" cy="30" r="6" fill="#FFB020"/><circle cx="104" cy="24" r="7" fill="#FF6B3D"/><circle cx="102" cy="70" r="5" fill="#FFD43B"/><circle cx="14" cy="70" r="5" fill="#FF8A3D"/></g>'],
+    ['c3', 'crit', '水滴丸', 'Droppy', 'hop', alCrit({ c: '#6FC3F5', b: '#D6F0FF', top: `<path d="M60 12 C66 22 70 28 70 34 C70 40 50 40 50 34 C50 28 54 22 60 12 Z" fill="#A8E0FF" ${ln(2)}/><ellipse cx="57" cy="28" rx="2" ry="4" fill="#fff"/>` }), '<g fill="#A8E0FF" stroke="#4FAFD8" stroke-width="1.5"><path d="M16 22 c4 6 6 9 6 12 a6 6 0 0 1 -12 0 c0 -3 2 -6 6 -12z"/><path d="M104 18 c4 6 6 9 6 12 a6 6 0 0 1 -12 0 c0 -3 2 -6 6 -12z"/><path d="M106 64 c3 5 5 7 5 10 a5 5 0 0 1 -10 0 c0 -3 2 -5 5 -10z"/></g>'],
+    ['c4', 'crit', '雷雷球', 'Zappy', 'hop', alCrit({ c: '#B79CFF', b: '#ECE3FF', top: `<path d="M50 38 L44 18 M70 38 L76 18" ${ln()}/><path d="M44 18 l-5 -2 5 -6 0 4 5 2 -5 6z M76 18 l5 -2 -5 -6 0 4 -5 2 5 6z" fill="#FFE14D" ${ln(1.5)}/>` }), '<g fill="#FFE14D" stroke="#F5A300" stroke-width="1.5"><path d="M14 20 l-6 12 6 0 -4 12 12 -16 -6 0 4 -8z"/><path d="M100 14 l-6 12 6 0 -4 12 12 -16 -6 0 4 -8z"/><path d="M104 60 l-4 8 4 0 -3 8 8 -11 -4 0 3 -5z"/></g>'],
+    ['c5', 'crit', '雪糰糰', 'Snowy', 'hop', alCrit({ c: '#F4F8FF', b: '#FFFFFF', top: `<path d="M44 40 L48 26 L54 36 L60 22 L66 36 L72 26 L76 40 Z" fill="#A8E0FF" ${ln(2)}/><circle cx="60" cy="22" r="3" fill="#fff" ${ln(1.5)}/>` }), '<g stroke="#7FD6F5" stroke-width="2.5" stroke-linecap="round"><path d="M16 18 v16 M8 26 h16 M10 20 l12 12 M22 20 l-12 12"/><path d="M104 22 v14 M97 29 h14"/><path d="M100 66 v10 M95 71 h10"/></g>'],
+    ['c6', 'crit', '彩虹咩', 'Rainbow Puff', 'hop', alCrit({ c: '#FFFFFF', b: '#FFF3FA', ear: `<g>${[[34, 52], [42, 40], [56, 34], [70, 36], [82, 44], [88, 58]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="11" fill="#fff" ${ln(2)}/>`).join('')}</g>`, top: `<path d="M34 34 A28 28 0 0 1 86 34" fill="none" stroke="#FF6B6B" stroke-width="4"/><path d="M38 36 A23 23 0 0 1 82 36" fill="none" stroke="#FFD43B" stroke-width="4"/><path d="M42 38 A18 18 0 0 1 78 38" fill="none" stroke="#5DBB4E" stroke-width="4"/><path d="M46 40 A13 13 0 0 1 74 40" fill="none" stroke="#5B8DEF" stroke-width="4"/>` }), '<g><path d="M8 36 A14 14 0 0 1 36 36" fill="none" stroke="#FF6B6B" stroke-width="4"/><path d="M12 36 A10 10 0 0 1 32 36" fill="none" stroke="#FFD43B" stroke-width="4"/><path d="M86 20 A14 14 0 0 1 114 20" fill="none" stroke="#5DBB4E" stroke-width="4"/><path d="M90 20 A10 10 0 0 1 110 20" fill="none" stroke="#5B8DEF" stroke-width="4"/></g>'],
+    // 酷炫車車
+    ['v1', 'car', '閃電賽車', 'Race Car', 'drive', alCar({ c: '#E04848', body: 'M8 88 C10 76 24 72 40 70 L54 58 L74 58 L84 70 C100 72 112 76 114 88 Z', top: `<path d="M100 70 L104 56 L116 56 L114 64 Z" fill="#2B2233" ${ln(2)}/>`, extra: `<path d="M56 61 L72 61 L80 70 L50 70 Z" fill="#BFE6FF" ${ln(2)}/><circle cx="62" cy="80" r="7" fill="#fff" ${ln(2)}/><text x="62" y="83.5" font-size="9" font-weight="900" text-anchor="middle" fill="#2B2233">7</text><path d="M14 80 H40" stroke="#FFD43B" stroke-width="4"/>` }), '<g fill="#D7DCE3"><circle cx="0" cy="88" r="6"/><circle cx="-8" cy="82" r="4"/><path d="M-6 70 h-14 M-2 62 h-10" stroke="#9AA5B1" stroke-width="3" stroke-linecap="round"/></g>'],
+    ['v2', 'car', '消防車', 'Fire Truck', 'drive', alCar({ c: '#E8413C', body: 'M6 92 V58 C6 54 8 52 12 52 H78 V58 H96 L112 74 V92 Z', top: `<rect x="14" y="40" width="58" height="6" rx="2" fill="#D7DCE3" ${ln(2)}/><path d="M20 40 v6 M30 40 v6 M40 40 v6 M50 40 v6 M60 40 v6" stroke="${AL_INK}" stroke-width="1.5"/><rect class="a-siren" x="84" y="48" width="10" height="7" rx="3" fill="#3F9BFF" ${ln(1.5)}/>`, extra: `<path d="M82 60 H96 L108 74 H82 Z" fill="#BFE6FF" ${ln(2)}/><rect x="12" y="62" width="60" height="6" fill="#FFD43B"/><circle cx="40" cy="80" r="5" fill="#FFD43B" ${ln(1.5)}/>` }), '<g><path d="M118 44 c-6 -2 -10 2 -8 6 M118 30 c-8 -2 -14 4 -10 10" fill="none" stroke="#5DC1FF" stroke-width="4" stroke-linecap="round"/></g>'],
+    ['v3', 'car', '巡邏警車', 'Police Car', 'drive', alCar({ c: '#FFFFFF', body: 'M8 90 C8 78 16 74 28 72 L42 58 H82 L96 72 C108 74 114 78 114 90 Z', top: `<rect x="54" y="50" width="8" height="8" rx="2" fill="#E04848" class="a-siren" ${ln(1.5)}/><rect x="62" y="50" width="8" height="8" rx="2" fill="#3F6FD8" class="a-siren2" ${ln(1.5)}/>`, extra: `<path d="M46 61 H60 V72 H34 Z M64 61 H80 L90 72 H64 Z" fill="#BFE6FF" ${ln(2)}/><rect x="10" y="78" width="102" height="6" fill="#3F6FD8"/><text x="60" y="90" font-size="6" font-weight="900" text-anchor="middle" fill="#3F6FD8">POLICE</text>` }), '<g><circle cx="58" cy="44" r="14" fill="#FF6B6B" opacity=".35"/><circle cx="66" cy="44" r="14" fill="#5B8DEF" opacity=".35"/></g>'],
+    ['v4', 'car', '快樂校車', 'School Bus', 'drive', alCar({ c: '#FFC93C', body: 'M6 92 V50 C6 44 10 42 16 42 H96 C104 42 108 46 110 54 L114 70 V92 Z', extra: `${[14, 34, 54, 74].map(x => `<rect x="${x}" y="50" width="16" height="14" rx="3" fill="#BFE6FF" ${ln(2)}/>`).join('')}<path d="M94 50 H104 L110 66 H94 Z" fill="#BFE6FF" ${ln(2)}/><rect x="6" y="72" width="108" height="4" fill="${AL_INK}"/><circle cx="22" cy="57" r="3" fill="#FFD9B8"/><circle cx="42" cy="57" r="3" fill="#C98A5A"/><circle cx="62" cy="57" r="3" fill="#FFD9B8"/>` }), '<g><text x="60" y="30" font-size="12" font-weight="900" text-anchor="middle" fill="#FF6B6B">叭叭！</text></g>'],
+    ['v5', 'car', '怪獸卡車', 'Monster Truck', 'drive', alCar({ c: '#5DBB4E', big: 1, body: 'M14 78 V60 C14 56 16 54 20 54 H58 L70 40 H92 L102 54 C108 54 110 58 110 62 V78 Z', extra: `<path d="M72 44 H90 L98 54 H66 Z" fill="#BFE6FF" ${ln(2)}/><path d="M20 66 l10 -6 10 6 10 -6 10 6" fill="none" stroke="#FFD43B" stroke-width="3"/><circle cx="104" cy="62" r="3" fill="#FFE14D" ${ln(1.5)}/>` }), '<g fill="#B08A5A"><circle cx="20" cy="104" r="5"/><circle cx="10" cy="98" r="4"/><circle cx="104" cy="104" r="5"/><circle cx="114" cy="98" r="3"/></g>'],
+    ['v6', 'car', '冰淇淋車', 'Ice Cream Truck', 'drive', alCar({ c: '#FF9FC6', body: 'M6 92 V54 C6 50 8 48 12 48 H82 V56 H96 L112 72 V92 Z', top: `<path d="M38 48 L46 22 L54 48 Z" fill="#F4C27A" ${ln(2)}/><circle cx="46" cy="22" r="9" fill="#FFF3FA" ${ln(2)}/><circle cx="42" cy="16" r="6" fill="#8FD3FF" ${ln(1.5)}/><circle cx="50" cy="15" r="5" fill="#FFD43B" ${ln(1.5)}/>`, extra: `<rect x="14" y="56" width="56" height="16" rx="3" fill="#FFF3FA" ${ln(2)}/><path d="M14 56 l7 6 7 -6 7 6 7 -6 7 6 7 -6 7 6" fill="none" stroke="#FF6B9D" stroke-width="2"/><path d="M84 58 H96 L106 72 H84 Z" fill="#BFE6FF" ${ln(2)}/>` }), '<g><text x="18" y="40" font-size="10">🎵</text><text x="96" y="34" font-size="10">🎶</text></g>'],
+    // 恐龍王國
+    ['d1', 'dino', '小暴龍', 'T-Rex', 'roar', alDino({ c: '#6CC35A', b: '#D8F3C9', head: dinoHead('#6CC35A', 80, 34), legs: `<rect x="44" y="84" width="12" height="20" rx="5" fill="#6CC35A" ${ln()}/><rect x="62" y="84" width="12" height="20" rx="5" fill="#6CC35A" ${ln()}/><path d="M76 66 l8 4 M76 72 l7 5" ${ln(3)}/>` }), ROAR],
+    ['d2', 'dino', '劍龍', 'Stegosaurus', 'roar', alDino({ c: '#F59E3B', b: '#FFE2B8', back: `${[[36, 52], [48, 44], [60, 42], [72, 46]].map(([x, y]) => `<path d="M${x - 7} ${y + 12} L${x} ${y - 6} L${x + 7} ${y + 12} Z" fill="#E04848" ${ln(2)}/>`).join('')}`, head: dinoHead('#F59E3B', 84, 54) }), ROAR],
+    ['d3', 'dino', '三角龍', 'Triceratops', 'roar', alDino({ c: '#5B9BEF', b: '#D6E8FF', head: `<path d="M74 40 C66 30 70 18 84 18 C96 18 100 30 94 40 Z" fill="#F7C873" ${ln()}/>${dinoHead('#5B9BEF', 84, 48)}<path d="M96 48 L110 38 L100 50 Z M86 40 L92 26 L92 42 Z" fill="#FFF3E0" ${ln(2)}/>` }), ROAR],
+    ['d4', 'dino', '長頸龍', 'Brachiosaurus', 'roar', alDino({ c: '#B79CFF', b: '#ECE3FF', head: `<path d="M68 62 C70 40 74 24 84 14 L94 18 C86 30 82 44 80 66 Z" fill="#B79CFF" ${ln()}/>${dinoHead('#B79CFF', 90, 6)}` }), ROAR],
+    ['d5', 'dino', '翼龍', 'Pterosaur', 'roar', `<g class="a-wing"><path d="M58 60 L8 40 L26 66 L58 70 Z" fill="#FF9FC6" ${ln()}/></g><g class="a-wing2"><path d="M62 60 L112 36 L96 66 L62 70 Z" fill="#FF9FC6" ${ln()}/></g><ellipse cx="60" cy="66" rx="12" ry="16" fill="#F781B4" ${ln()}/><ellipse cx="60" cy="72" rx="7" ry="9" fill="#FFE1EF"/><path d="M52 82 l-4 8 M68 82 l4 8" ${ln(3)}/><g class="hd"><path d="M52 50 C50 38 56 34 62 34 C68 34 72 40 70 50 Z" fill="#F781B4" ${ln()}/><path d="M60 34 L44 28 L58 40 Z" fill="#F781B4" ${ln(2)}/><g class="jaw"><path d="M64 44 L92 42 L66 50 Z" fill="#FFD43B" ${ln(2)}/></g><circle class="a-blink" cx="64" cy="40" r="3" fill="${AL_INK}"/></g>`, ROAR],
+    ['d6', 'dino', '恐龍寶寶', 'Baby Dino', 'roar', `<g class="hd"><circle cx="60" cy="54" r="20" fill="#6CC35A" ${ln()}/><circle class="a-blink" cx="53" cy="52" r="4" fill="${AL_INK}"/><circle class="a-blink" cx="67" cy="52" r="4" fill="${AL_INK}"/><circle cx="54.5" cy="50.5" r="1.4" fill="#fff"/><circle cx="68.5" cy="50.5" r="1.4" fill="#fff"/><g class="jaw"><path d="M54 62 Q60 68 66 62" fill="#E04848" ${ln(2)}/></g><path d="M52 34 L56 26 L60 34 L64 26 L68 34" fill="#FFD43B" ${ln(2)}/><path d="M38 36 l-6 -8 10 2 z" fill="#FFF8E6" ${ln(2)}/></g><path d="M30 70 L38 62 L46 72 L54 62 L62 72 L70 62 L78 72 L86 62 L92 70 C94 96 80 106 60 106 C40 106 26 96 30 70 Z" fill="#FFF8E6" ${ln()}/><path d="M44 86 l6 -4 M70 92 l6 -4" stroke="#E8D8B8" stroke-width="3" stroke-linecap="round"/>`, ROAR],
+    // 太空冒險
+    ['s1', 'space', '星星火箭', 'Rocket', 'blast', `<g class="a-flick"><path d="M50 92 C50 104 60 114 60 114 C60 114 70 104 70 92 Z" fill="#FF8A3D"/><path d="M54 92 C54 100 60 106 60 106 C60 106 66 100 66 92 Z" fill="#FFE14D"/></g><path d="M44 74 L30 92 L46 90 Z M76 74 L90 92 L74 90 Z" fill="#E04848" ${ln()}/><path d="M60 10 C76 24 80 50 76 92 H44 C40 50 44 24 60 10 Z" fill="#F4F6FA" ${ln()}/><path d="M60 10 C68 17 72 26 74 34 H46 C48 26 52 17 60 10 Z" fill="#E04848" ${ln()}/><circle cx="60" cy="54" r="9" fill="#7FD6F5" ${ln()}/><circle cx="57" cy="51" r="3" fill="#fff" opacity=".8"/><rect x="54" y="88" width="12" height="6" fill="#9AA5B1" ${ln(2)}/>`, '<g fill="#D7DCE3"><circle cx="44" cy="112" r="7"/><circle cx="76" cy="112" r="7"/><circle cx="34" cy="106" r="5"/><circle cx="86" cy="106" r="5"/></g>'],
+    ['s2', 'space', '飛碟', 'UFO', 'beam', `<g class="a-bob"><path d="M40 52 C40 36 50 28 60 28 C70 28 80 36 80 52 Z" fill="#BFE6FF" ${ln()}/><circle cx="60" cy="44" r="7" fill="#8ED07A" ${ln(2)}/><circle cx="57.5" cy="43" r="1.6" fill="${AL_INK}"/><circle cx="62.5" cy="43" r="1.6" fill="${AL_INK}"/><ellipse cx="60" cy="56" rx="40" ry="11" fill="#9AA5B1" ${ln()}/><ellipse cx="60" cy="53" rx="30" ry="6" fill="#C7CED8"/>${[32, 46, 60, 74, 88].map((x, i) => `<circle class="a-siren${i % 2 ? '2' : ''}" cx="${x}" cy="58" r="3.2" fill="${['#FFD43B', '#FF6B6B', '#5DBB4E'][i % 3]}" ${ln(1.2)}/>`).join('')}</g>`, '<path d="M46 66 L28 110 H92 L74 66 Z" fill="#FFF7A8" opacity=".7"/><text x="60" y="100" font-size="14" text-anchor="middle">🐄</text>'],
+    ['s3', 'space', '太空人', 'Astronaut', 'flip', `<g class="a-bob"><rect x="36" y="52" width="10" height="28" rx="5" fill="#F4F6FA" ${ln()} transform="rotate(20 41 54)"/><rect x="74" y="52" width="10" height="28" rx="5" fill="#F4F6FA" ${ln()} transform="rotate(-30 79 54)"/><rect x="42" y="48" width="36" height="40" rx="12" fill="#F4F6FA" ${ln()}/><rect x="50" y="60" width="20" height="12" rx="3" fill="#5B8DEF" ${ln(2)}/><circle cx="55" cy="66" r="2" fill="#FF6B6B"/><circle cx="65" cy="66" r="2" fill="#FFD43B"/><rect x="46" y="84" width="12" height="18" rx="5" fill="#F4F6FA" ${ln()}/><rect x="62" y="84" width="12" height="18" rx="5" fill="#F4F6FA" ${ln()}/><circle cx="60" cy="32" r="20" fill="#F4F6FA" ${ln()}/><rect x="45" y="22" width="30" height="20" rx="10" fill="#3A4A6E" ${ln(2)}/><path d="M50 27 C54 24 58 24 60 26" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".7"/></g>`, '<g fill="#FFD43B"><path d="M16 20 l2 5 5 0 -4 3 1 5 -4 -3 -4 3 1 -5 -4 -3 5 0z"/><path d="M102 16 l2 5 5 0 -4 3 1 5 -4 -3 -4 3 1 -5 -4 -3 5 0z"/><circle cx="104" cy="80" r="3"/><circle cx="14" cy="76" r="2.5"/></g>'],
+    ['s4', 'space', '彩環星球', 'Ringed Planet', 'spin', `<circle cx="60" cy="58" r="30" fill="#FFB86B" ${ln()}/><path d="M34 48 C46 52 74 44 86 50 M32 64 C48 68 72 60 88 66" fill="none" stroke="#F08A3C" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="48" r="3" fill="#F08A3C"/><g class="a-blink"><circle cx="52" cy="58" r="3" fill="${AL_INK}"/><circle cx="68" cy="58" r="3" fill="${AL_INK}"/></g><path d="M56 66 Q60 70 64 66" fill="none" ${ln(2)}/><ellipse cx="60" cy="62" rx="52" ry="12" fill="none" stroke="#9B6BFF" stroke-width="5" transform="rotate(-14 60 62)"/><path d="M12 72 C30 80 90 70 108 50" fill="none" stroke="#C7A6F5" stroke-width="2" transform="rotate(-2 60 62)"/>`, '<g fill="#FFE14D"><circle cx="14" cy="18" r="3"/><circle cx="108" cy="20" r="2.5"/><circle cx="102" cy="100" r="3"/><circle cx="18" cy="96" r="2"/><path d="M96 34 l2 5 5 0 -4 3 1 5 -4 -3 -4 3 1 -5 -4 -3 5 0z"/></g>'],
+    ['s5', 'space', '外星寶寶', 'Alien Baby', 'wave', `<path d="M60 20 V10 M48 24 L42 14 M72 24 L78 14" ${ln()}/><circle class="a-siren" cx="60" cy="8" r="4" fill="#FFD43B" ${ln(1.5)}/><circle cx="42" cy="12" r="3.5" fill="#FF6B6B" ${ln(1.5)}/><circle cx="78" cy="12" r="3.5" fill="#5DBB4E" ${ln(1.5)}/><ellipse cx="60" cy="44" rx="26" ry="22" fill="#8ED07A" ${ln()}/><g class="a-blink"><circle cx="48" cy="42" r="6" fill="#fff" ${ln(1.5)}/><circle cx="60" cy="36" r="6" fill="#fff" ${ln(1.5)}/><circle cx="72" cy="42" r="6" fill="#fff" ${ln(1.5)}/><circle cx="48" cy="43" r="3" fill="${AL_INK}"/><circle cx="60" cy="37" r="3" fill="${AL_INK}"/><circle cx="72" cy="43" r="3" fill="${AL_INK}"/></g><path d="M52 54 Q60 60 68 54" fill="none" ${ln(2)}/><path d="M44 66 C44 62 50 62 60 62 C70 62 76 62 76 66 L80 96 C80 102 40 102 40 96 Z" fill="#8ED07A" ${ln()}/><ellipse cx="60" cy="82" rx="10" ry="9" fill="#C9F0B5"/><rect x="28" y="66" width="9" height="22" rx="4.5" fill="#8ED07A" ${ln()} transform="rotate(20 32 68)"/><g class="a-wave"><rect x="83" y="50" width="9" height="22" rx="4.5" fill="#8ED07A" ${ln()} transform="rotate(-30 87 70)"/></g><ellipse cx="50" cy="102" rx="8" ry="4" fill="#8ED07A" ${ln(2)}/><ellipse cx="70" cy="102" rx="8" ry="4" fill="#8ED07A" ${ln(2)}/>`, '<g><text x="98" y="30" font-size="14">👋</text><text x="14" y="34" font-size="12">💚</text></g>'],
+    ['s6', 'space', '跳舞機器人', 'Dance Robot', 'dance', `<path d="M60 12 V22" ${ln()}/><circle class="a-siren" cx="60" cy="10" r="4" fill="#FF6B6B" ${ln(1.5)}/><rect x="40" y="22" width="40" height="30" rx="8" fill="#9EC5E8" ${ln()}/><rect class="a-blink" x="47" y="31" width="9" height="9" rx="3" fill="#2B2233"/><rect class="a-blink" x="64" y="31" width="9" height="9" rx="3" fill="#2B2233"/><circle cx="50" cy="34" r="1.5" fill="#7CF5A8"/><circle cx="67" cy="34" r="1.5" fill="#7CF5A8"/><rect x="50" y="44" width="20" height="4" rx="2" fill="#fff" ${ln(1.5)}/><rect x="36" y="56" width="48" height="34" rx="8" fill="#C9DDF0" ${ln()}/><circle cx="52" cy="70" r="4" fill="#FFD43B" ${ln(1.5)}/><circle cx="68" cy="70" r="4" fill="#FF6B6B" ${ln(1.5)}/><rect x="48" y="78" width="24" height="5" rx="2" fill="#5B8DEF"/><g class="a-armL"><rect x="22" y="58" width="12" height="26" rx="6" fill="#9EC5E8" ${ln()}/></g><g class="a-armR"><rect x="86" y="58" width="12" height="26" rx="6" fill="#9EC5E8" ${ln()}/></g><rect x="42" y="90" width="12" height="14" rx="4" fill="#9EC5E8" ${ln()}/><rect x="66" y="90" width="12" height="14" rx="4" fill="#9EC5E8" ${ln()}/>`, '<g><text x="12" y="30" font-size="13">🎵</text><text x="96" y="26" font-size="13">🎶</text><text x="100" y="80" font-size="11">✨</text></g>']
+  ];
+  const AL_RARE = [0, 0, 0, 1, 1, 2]; // 每個系列：前 3 張普通、2 張閃亮、最後 1 張傳說
+  const AL_PRICE = [3, 6, 12], AL_RNAME = ['普通', '✨ 閃亮', '👑 傳說'];
+  const alInfo = id => { const i = AL.findIndex(a => a[0] === id); if (i < 0) return null; const a = AL[i], k = i % 6; return { id, s: a[1], n: a[2], en: a[3], t: a[4], r: AL_RARE[k], p: AL_PRICE[AL_RARE[k]] }; };
+  const alSVG = id => { const a = AL.find(x => x[0] === id); return a ? alWrap(a[0], a[4], a[5], a[6]) : ''; };
+  const alOwn = () => store.get('alOwn', []);
+  function pkAlbum(focus) {
+    pkStop();
+    const P = $('pkPlay'); P.className = 'pk pk-alb'; P.hidden = false; $('pkHub').hidden = true; $('pkHub').innerHTML = '';
+    let ser = focus || store.get('alSer', 'hero');
+    const draw = () => {
+      const own = alOwn(), list = AL.filter(a => a[1] === ser), got = list.filter(a => own.includes(a[0])).length;
+      P.innerHTML = `<div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="回樂園">${pkBack}</button><span class="pk-pill">📒 ${own.length}/${AL.length}</span><span class="pk-pill">⭐ <span id="pkBal">${pkBal()}</span></span></div>
+        <div class="al-in"><div class="al-head"><div class="pk-ttl" style="font-size:2rem">收集貼紙相簿</div><div class="pk-sub">用星星換貼紙，點一下貼紙會動起來！</div></div>
+        <div class="al-tabs">${AL_SERIES.map(([k, n]) => `<button class="pk-tab${k === ser ? ' on' : ''}" data-s="${k}">${n}</button>`).join('')}</div>
+        <div class="al-page"><div class="al-prog"><span>${AL_SERIES.find(x => x[0] === ser)[1]}</span><i><b style="width:${got / 6 * 100}%"></b></i><span>${got}/6${got === 6 ? ' 🏅' : ''}</span></div>
+        <div class="al-grid">${list.map(a => { const f = alInfo(a[0]), o = own.includes(a[0]); return `<button class="al-card r${f.r}${o ? ' own' : ''}" data-id="${a[0]}"><div class="al-art">${alSVG(a[0])}</div><b>${o ? f.n : '？？？'}</b><small>${o ? AL_RNAME[f.r] : `⭐ ${f.p}`}</small></button>`; }).join('')}</div>
+        ${got === 6 ? '<p class="al-done">🏅 這個系列集滿了！好厲害！</p>' : ''}</div>
+        <p class="rk-tip">收集到的貼紙，也可以到「貼紙樂園」的「我的收藏」拿去貼。</p></div>
+        <div class="al-show" id="alShow" hidden></div><div class="pk-ask" id="pkAsk" hidden></div>`;
+      $('pkQuit').onclick = () => { pkStop(); openPark(); };
+      P.querySelectorAll('.al-tabs .pk-tab').forEach(b => b.onclick = () => { ser = b.dataset.s; store.set('alSer', ser); draw(); });
+      P.querySelectorAll('.al-card').forEach(b => b.onclick = () => {
+        const f = alInfo(b.dataset.id);
+        if (alOwn().includes(f.id)) return showOne(f, false);
+        if (pkBal() < f.p) return pkAsk('⭐', `還差 ${f.p - pkBal()} 顆星星`, '去闖關或學習，就能拿到星星喔！', [['好', 'gray', () => {}]]);
+        pkAsk(`<span class="al-mini">${alSVG(f.id)}</span>`, `用 ⭐${f.p} 換這張貼紙？`, `${AL_RNAME[f.r]}貼紙`, [['換！', '', () => {
+          store.set('pkSpent', pkSpent() + f.p); store.set('alOwn', alOwn().concat(f.id)); track('park-album', '收集貼紙'); draw(); showOne(f, true);
+        }], ['先不要', 'gray', () => {}]]);
+      });
+    };
+    const showOne = (f, isNew) => {
+      const S = $('alShow');
+      S.innerHTML = `<div class="al-big r${f.r}">${isNew ? '<div class="al-new">🎉 新貼紙！</div>' : ''}<div class="al-stage">${alSVG(f.id)}</div><h3>${f.n}</h3><p>${f.en}・${AL_RNAME[f.r]}</p><div class="pk-row"><button class="pk-btn" id="alAgain">▶ 再看一次</button><button class="pk-btn gray" id="alClose">關閉</button></div></div>`;
+      S.hidden = false;
+      const play = () => { const st = S.querySelector('.al-stage'); st.classList.remove('go'); void st.offsetWidth; st.classList.add('go'); tone(f.s === 'dino' ? [180, 120] : f.s === 'car' ? [520, 660, 520] : f.s === 'space' ? [400, 700, 1000] : [600, 900], .12, 'triangle'); say([[f.n], [f.en, 'en-US']]); };
+      play(); if (isNew) pkGood();
+      $('alAgain').onclick = play; $('alClose').onclick = () => { S.hidden = true; S.innerHTML = ''; };
+      S.onclick = e => { if (e.target === S) { S.hidden = true; S.innerHTML = ''; } };
+      const own = alOwn(), done = AL.filter(a => a[1] === f.s).every(a => own.includes(a[0]));
+      if (isNew && done) setTimeout(() => { say([['恭喜你集滿這個系列！']]); }, 1600);
+    };
+    draw(); track('park-album-open', '收集貼紙相簿');
   }
   // ---------- 🐶 我的小寵物 ----------
   const PK_PET_SHOP = [['🍖', 2, '肉肉', 'food'], ['🍎', 1, '蘋果', 'food'], ['🥛', 1, '牛奶', 'food'], ['🎾', 3, '小球', 'toy'], ['🧸', 5, '玩偶', 'toy'], ['🛏️', 10, '小床', 'deco'], ['🪴', 6, '盆栽', 'deco'], ['🖼️', 8, '畫', 'deco'], ['🎈', 4, '氣球', 'deco'], ['⛲', 15, '噴水池', 'deco']];
