@@ -1063,6 +1063,7 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .pk-sky2 { background: linear-gradient(#7FD0FF 0%, #C9EEFF 60%, #9BDB7E 60.2%); }
 .pk-sling { position: absolute; left: 44px; bottom: 120px; width: 60px; height: 100px; z-index: 3; }
 .pk-sling svg { width: 100%; height: 100%; }
+.pk-ghost { position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: 50%; background: rgba(255,255,255,.85); pointer-events: none; z-index: 5; animation: pkFlash .45s ease-out forwards; }
 .pk-ball { position: absolute; left: 0; top: 0; font-size: 40px; z-index: 6; will-change: transform; pointer-events: none; }
 .pk-mon { position: absolute; transform: translate(-50%, -50%); text-align: center; z-index: 4; }
 .pk-mon .m { font-size: 62px; display: block; line-height: 1; animation: pkBob .8s ease-in-out infinite alternate; }
@@ -1074,15 +1075,21 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .pk-walk.pk-boom { animation: pkBoom2 .45s ease-out forwards; }
 @keyframes pkBoom2 { to { opacity: 0; filter: brightness(2); } }
 .pk-garden { background: radial-gradient(120% 80% at 50% 0%, #C9F2B0, #8ED07A); }
-.pk-snk { position: absolute; left: 50%; top: 47%; transform: translate(-50%, -50%); width: min(370px, 92vw); border-radius: 22px; overflow: hidden; background: repeating-conic-gradient(#A8E08C 0 25%, #9AD67E 0 50%) 0 0 / calc(200% / 11) calc(200% / 11); box-shadow: inset 0 0 0 4px rgba(255,255,255,.6), 0 10px 0 rgba(60,120,40,.35); }
+.pk-seq { position: absolute; left: 50%; top: 76px; transform: translateX(-50%); width: max-content; display: flex; gap: 6px; z-index: 6; background: rgba(255,255,255,.92); padding: 6px 10px; border-radius: 18px; box-shadow: 0 4px 0 rgba(0,0,0,.12); max-width: 94vw; flex-wrap: wrap; justify-content: center; }
+.pk-seq span { position: relative; min-width: 40px; height: 44px; padding: 0 6px; border-radius: 12px; display: grid; place-items: center; font-weight: 900; font-size: 1.5rem; background: #EEF1F5; color: #A7B2BE; }
+.pk-seq span.done { background: #3FA35B; color: #fff; }
+.pk-seq span.done i { position: absolute; right: -4px; top: -6px; font-style: normal; font-size: .8rem; background: #fff; color: #3FA35B; border-radius: 50%; width: 18px; height: 18px; display: grid; place-items: center; box-shadow: 0 1px 0 rgba(0,0,0,.2); }
+.pk-seq span.next { background: #FFE07A; color: #8A4B00; box-shadow: 0 0 0 3px #F2B90C; animation: pkItem .6s ease-in-out infinite alternate; }
+.pk-snk { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); width: min(370px, 92vw); border-radius: 22px; overflow: hidden; background: repeating-conic-gradient(#A8E08C 0 25%, #9AD67E 0 50%) 0 0 / calc(200% / 9) calc(200% / 9); box-shadow: inset 0 0 0 4px rgba(255,255,255,.6), 0 10px 0 rgba(60,120,40,.35); }
 .pk-snk .seg, .pk-snk .it { position: absolute; display: grid; place-items: center; }
 .pk-snk .seg::before { content: ''; position: absolute; inset: 8%; border-radius: 40%; background: radial-gradient(circle at 35% 30%, #CFF7A8, hsl(110 55% calc(30% + var(--k) * 25%))); box-shadow: 0 2px 0 rgba(0,0,0,.2); }
 .pk-snk .seg.head::before { inset: 2%; border-radius: 45%; background: radial-gradient(circle at 35% 30%, #E4FFC4, #3FA35B); }
 .pk-snk .seg.head i { position: relative; width: 22%; height: 22%; background: #fff; border-radius: 50%; margin: 0 6%; box-shadow: inset -2px -1px 0 3px #2B2633; display: inline-block; z-index: 1; }
 .pk-snk .seg.head { display: flex; align-items: center; justify-content: center; }
-.pk-snk .it { font-weight: 900; font-size: 20px; color: #3F6FD8; }
-.pk-snk .it::before { content: ''; position: absolute; inset: 6%; border-radius: 30%; background: #FFFDF5; box-shadow: 0 3px 0 rgba(0,0,0,.18); z-index: -1; }
-.pk-snk .it.fr { font-size: 24px; } .pk-snk .it.fr::before { display: none; }
+.pk-snk .it { font-weight: 900; font-size: clamp(24px, 7.5vw, 32px); color: #3F6FD8; z-index: 2; animation: pkItem 1s ease-in-out infinite alternate; }
+@keyframes pkItem { from { scale: 1; } to { scale: 1.12; } }
+.pk-snk .it::before { content: ''; position: absolute; inset: -6%; border-radius: 30%; background: #FFFDF5; border: 3px solid #3F6FD8; box-shadow: 0 4px 0 rgba(0,0,0,.2); z-index: -1; }
+.pk-snk .it.fr { font-size: clamp(28px, 8vw, 36px); } .pk-snk .it.fr::before { display: none; }
 .pk-pad { position: absolute; left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); transform: translateX(-50%); display: grid; grid-template-columns: repeat(3, 58px); grid-template-rows: repeat(2, 48px); gap: 6px; z-index: 6; }
 .pk-pad button { border: 0; border-radius: 16px; background: #fff; font-size: 1.3rem; box-shadow: 0 4px 0 rgba(43,38,51,.25); }
 .pk-pad button[data-d="0,-1"] { grid-column: 2; } .pk-pad button[data-d="-1,0"] { grid-column: 1; grid-row: 2; } .pk-pad button[data-d="1,0"] { grid-column: 3; grid-row: 2; } .pk-pad button[data-d="0,1"] { grid-column: 2; grid-row: 2; }
@@ -1112,6 +1119,24 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .pk-castle .hp { font-size: 15px; letter-spacing: -1px; }
 .pk-castle.hit { animation: pkShake .35s ease; }
 .pk-walk { position: absolute; left: 0; top: 0; font-size: 56px; line-height: 1; z-index: 4; will-change: transform; }
+.pk-sol { position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none; will-change: transform; }
+.pk-sol .sk { position: relative; width: 78px; height: 92px; animation: pkBob .3s ease-in-out infinite alternate; }
+.pk-sol .sk svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pk-sol .sk .f1 { animation: pkF1 .6s steps(1) infinite; }
+.pk-sol .sk .f2 { animation: pkF2 .6s steps(1) infinite; }
+.pk-sol .sw { position: absolute; right: -14px; top: 26px; font-size: 34px; transform-origin: 20% 80%; transform: rotate(-20deg); }
+.pk-sol .sh { position: absolute; left: -8px; top: 40px; font-size: 26px; }
+.pk-sol.atk .sk { animation: pkLunge .38s ease-in-out infinite alternate; }
+.pk-sol.atk .sk svg { animation: none; } .pk-sol.atk .sk .f2 { opacity: 0; }
+.pk-sol.atk .sw { animation: pkSwing .38s ease-in-out infinite alternate; }
+@keyframes pkLunge { from { transform: translateX(-6px); } to { transform: translateX(14px) rotate(6deg); } }
+@keyframes pkSwing { from { transform: rotate(-60deg); } to { transform: rotate(70deg); } }
+.pk-sol.win .sk { animation: pkCheer .3s ease-in-out infinite alternate; }
+.pk-sol.win .sw { transform: rotate(-80deg) translateY(-10px); }
+@keyframes pkCheer { from { transform: translateY(0); } to { transform: translateY(-16px); } }
+.pk-sol.pk-poof { animation: pkBoom2 .42s ease-out forwards; }
+.pk-slash { position: absolute; left: 0; top: 0; font-size: 46px; z-index: 7; pointer-events: none; animation: pkSlash .5s ease-out forwards; }
+@keyframes pkSlash { from { opacity: 0; scale: .4; } 30% { opacity: 1; scale: 1.25; } to { opacity: 0; scale: 1.5; } }
 .pk-cball { position: absolute; left: 0; top: 0; font-size: 40px; z-index: 6; pointer-events: none; }
 .pk-qpanel { position: absolute; left: 12px; right: 12px; bottom: max(16px, env(safe-area-inset-bottom)); background: #fff; border-radius: 26px; padding: 14px; text-align: center; box-shadow: 0 8px 0 rgba(0,0,0,.12); z-index: 7; }
 .pk-qpanel .q { font-size: 1.9rem; font-weight: 900; margin-bottom: 10px; }
@@ -1137,14 +1162,70 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .pet-floor { position: absolute; left: 0; right: 0; bottom: 0; height: 34%; background: repeating-linear-gradient(90deg, #E7C29A 0 60px, #DDB68C 60px 120px); box-shadow: inset 0 6px 0 #C99B6A; }
 .pet-deco { position: absolute; font-size: 44px; filter: drop-shadow(0 4px 0 rgba(0,0,0,.12)); }
 .pet-me { position: absolute; left: 50%; bottom: 12%; transform: translateX(-50%); border: 0; background: none; padding: 0; cursor: pointer; }
-.pet-body { display: block; font-size: 130px; line-height: 1; animation: pkBob 1.2s ease-in-out infinite alternate; }
 .pet-shadow { display: block; width: 110px; height: 16px; margin: -6px auto 0; border-radius: 50%; background: rgba(0,0,0,.12); }
 .pet-dirt { position: absolute; right: -10px; top: 10px; font-size: 40px; }
 .pet-me.jump .pet-body { animation: petJump .5s ease 2; }
-.pet-me.eat .pet-body { animation: petEat .3s ease 4; }
-.pet-me.bath::after { content: '🫧🫧🫧'; position: absolute; left: -10px; top: -20px; font-size: 32px; animation: pkUp 1.2s ease-out forwards; }
+.pet-me.oldbath::after { content: '🫧🫧🫧'; position: absolute; left: -10px; top: -20px; font-size: 32px; animation: pkUp 1.2s ease-out forwards; }
 @keyframes petJump { 50% { transform: translateY(-40px) scale(1.05); } }
 @keyframes petEat { 50% { transform: scale(1.08, .92); } }
+.pet-me { z-index: 3; touch-action: manipulation; }
+.pet-body { display: block; width: 190px; height: 203px; font-size: 0; animation: petBreath 1.6s ease-in-out infinite alternate; transform-origin: 50% 100%; }
+.pet-svg { width: 100%; height: 100%; overflow: visible; display: block; }
+.pet-svg g { transform-box: fill-box; }
+@keyframes petBreath { from { transform: scale(1, 1); } to { transform: scale(1.03, .97); } }
+.pet-shadow { position: absolute; left: 50%; bottom: -4px; width: 130px; height: 18px; margin: 0 0 0 -65px; }
+.pe-tail { transform-origin: 0% 80%; animation: peWag .5s ease-in-out infinite alternate; }
+@keyframes peWag { from { transform: rotate(-10deg); } to { transform: rotate(12deg); } }
+.pe-eye { transform-origin: 50% 50%; animation: peBlink 3.6s infinite; }
+@keyframes peBlink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+.pe-hap, .pe-mo { opacity: 0; }
+.pe-hd { transform-origin: 50% 100%; animation: peTilt 2.4s ease-in-out infinite alternate; }
+@keyframes peTilt { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+.pe-ai { transform-origin: 50% 10%; animation: peArm 1.6s ease-in-out infinite alternate; }
+@keyframes peArm { from { transform: rotate(-6deg); } to { transform: rotate(8deg); } }
+.pe-l { transform-origin: 50% 100%; animation: peEar 1.8s ease-in-out infinite alternate; } .pe-r { transform-origin: 50% 100%; animation: peEar 1.8s ease-in-out infinite alternate-reverse; }
+@keyframes peEar { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+.pet-me.happy .pe-eye { opacity: 0; } .pet-me.happy .pe-hap { opacity: 1; }
+.pet-me.happy .pe-tail { animation-duration: .18s; }
+.pet-me.look .pe-hd { animation: none; transform: rotate(6deg); }
+.pet-me.eat .pe-hd { animation: peNom .33s ease-in-out infinite; }
+@keyframes peNom { 50% { transform: translateY(6px) rotate(2deg); } }
+.pet-me.eat .pe-mo { animation: peChomp .33s steps(1) infinite; } .pet-me.eat .pe-mc { animation: peChomp .33s steps(1) infinite reverse; }
+@keyframes peChomp { 0% { opacity: 1; } 50% { opacity: 0; } }
+.pet-me.pat .pe-a1 .pe-ai, .pet-me.pat .pe-a2 .pe-ai { animation: peRub .3s ease-in-out infinite alternate; }
+@keyframes peRub { from { transform: rotate(-30deg); } to { transform: rotate(-60deg); } }
+.pet-me.play .pet-body { animation: petHop .32s ease-in-out infinite alternate; }
+@keyframes petHop { from { transform: translateY(0) scale(1.03, .97); } to { transform: translateY(-26px) scale(.98, 1.03); } }
+.pet-me.play .pe-f1 { animation: peStep .16s ease-in-out infinite alternate; } .pet-me.play .pe-f2 { animation: peStep .16s ease-in-out infinite alternate-reverse; }
+@keyframes peStep { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+.pet-me.play .pe-ai { animation: peWave .2s ease-in-out infinite alternate; }
+@keyframes peWave { from { transform: rotate(-50deg); } to { transform: rotate(40deg); } }
+.pet-me.play .pe-mo { opacity: 1; } .pet-me.play .pe-mc { opacity: 0; }
+.pet-me.catch .pet-body { animation: petSpin .6s ease-in-out; transform-origin: 50% 55%; }
+@keyframes petSpin { 50% { transform: translateY(-60px) rotate(180deg); } to { transform: translateY(0) rotate(360deg); } }
+.pet-me.bath .pet-body { animation: petScrub .25s ease-in-out infinite alternate; }
+@keyframes petScrub { from { transform: rotate(-5deg) scale(1.02, .98); } to { transform: rotate(5deg) scale(.98, 1.02); } }
+.pet-me.shake .pet-body { animation: petShake .12s linear 6; }
+@keyframes petShake { 0% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } 100% { transform: rotate(-10deg); } }
+.pet-me.dirty .pet-svg { filter: saturate(.6) brightness(.9); }
+.pet-mud { position: absolute; width: 22px; height: 16px; border-radius: 50%; background: #8B6A45; opacity: .75; }
+.pet-fx { position: absolute; z-index: 6; pointer-events: none; line-height: 1; }
+.pet-fx.up { animation: petUp 1.5s ease-out both; }
+@keyframes petUp { from { transform: translateY(0) scale(.5); opacity: 0; } 20% { opacity: 1; transform: translateY(-20px) scale(1.1); } to { transform: translateY(-140px) scale(1); opacity: 0; } }
+.pet-fx.crumb { color: #C98A4B; font-weight: 900; animation: petCrumb .7s ease-out forwards; }
+@keyframes petCrumb { to { transform: translate(var(--dx), 60px); opacity: 0; } }
+.pet-fx.drop { animation: petDrop .6s linear 3 both; }
+@keyframes petDrop { from { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } to { transform: translateY(150px); opacity: 0; } }
+.pet-fx.shower { transform: scaleX(-1); }
+.pet-tub { position: absolute; z-index: 4; width: 240px; height: 120px; pointer-events: none; animation: petTubIn .4s ease-out; }
+.pet-tub svg { width: 100%; height: 100%; }
+.pet-tub.out { animation: petTubOut .5s ease-in forwards; }
+@keyframes petTubIn { from { transform: translateY(80px); opacity: 0; } }
+@keyframes petTubOut { to { transform: translateY(90px); opacity: 0; } }
+.pet-deco { z-index: 2; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; padding: 4px; font-size: 50px; }
+.pet-deco.drag { z-index: 7; cursor: grabbing; scale: 1.2; filter: drop-shadow(0 10px 6px rgba(0,0,0,.25)); }
+.pet-pick { display: inline-block; width: 52px; height: 56px; vertical-align: middle; } .pet-pick .pet-svg { width: 100%; height: 100%; } .pet-pick .pe-hap, .pet-pick .pe-mo { opacity: 0; } .pet-pick.big { width: 90px; height: 96px; }
+.pet-acts .pk-btn:disabled { opacity: .55; }
 .pet-bubble { position: absolute; left: 50%; top: 12%; transform: translateX(-50%); background: #fff; border-radius: 20px; padding: 8px 16px; font-weight: 900; box-shadow: 0 4px 0 rgba(0,0,0,.1); white-space: nowrap; max-width: 90%; overflow: hidden; text-overflow: ellipsis; }
 .pet-panel { padding: 14px 16px 30px; max-width: 520px; margin: 0 auto; }
 .pet-bars { display: flex; flex-direction: column; gap: 8px; background: #fff; border-radius: 20px; padding: 12px 14px; box-shadow: 0 4px 0 rgba(0,0,0,.08); }
@@ -7805,7 +7886,7 @@ body.is-yx.is-print .promo { display: none; }
     R.step = (dt, t) => {
       R.tt = t; const speedUp = Math.min(1.7, 1 + t / 110000), stay = (R.learn ? 3900 : 3300) / speedUp;
       // 闖關模式：每 7 秒換一個題目，換題時先讓所有小動物躲回洞裡
-      if (R.learn) { if (!R.qAt) R.qAt = t + 7000; else if (t > R.qAt) { R.qAt = t + 7000; R.task = pkTask('mole'); $('pkSay').innerHTML = `🔊 ${R.task.label}`; say([['換題目囉！'], ...R.task.say]); cells.forEach(o => { o.up = 0; o.hit = 0; o.until = t; o.m.classList.remove('up', 'hit'); o.sg.classList.remove('up'); }); R.last = t + 600; } }
+      if (R.learn) { if (!R.qAt) R.qAt = t + 9000; else if (t > R.qAt) { R.qAt = t + 9000; R.task = pkTask('mole'); $('pkSay').innerHTML = `🔊 ${R.task.label}`; say([['換題目囉！'], ...R.task.say]); cells.forEach(o => { o.up = 0; o.hit = 0; o.until = t; o.m.classList.remove('up', 'hit'); o.sg.classList.remove('up'); }); R.last = t + 600; } }
       cells.forEach(o => { if (o.up && t > o.until) { o.up = 0; o.hit = 0; o.m.classList.remove('up', 'hit'); o.sg.classList.remove('up'); } });
       const upN = cells.filter(o => o.up).length;
       if (t - R.last > (R.learn ? 700 : 560) / speedUp && upN < (R.learn ? 3 : 3)) {
@@ -7995,7 +8076,7 @@ body.is-yx.is-print .promo { display: none; }
         }
       }
       const g = (R.learn ? .00055 : .0008) * sp;
-      if (R.learn) { if (!R.qAt) R.qAt = t + 7000; else if (t > R.qAt) { R.qAt = t + 7000; R.task = pkQ(); $('pkSay').innerHTML = `🔊 ${R.task.label}`; say([['換題目囉！'], ...R.task.say]); R.items.forEach(o => { o.dead = 1; o.el.style.transition = 'opacity .3s'; o.el.style.opacity = 0; setTimeout(() => o.el.remove(), 320); }); R.last = t; } }
+      if (R.learn) { if (!R.qAt) R.qAt = t + 9000; else if (t > R.qAt) { R.qAt = t + 9000; R.task = pkQ(); $('pkSay').innerHTML = `🔊 ${R.task.label}`; say([['換題目囉！'], ...R.task.say]); R.items.forEach(o => { o.dead = 1; o.el.style.transition = 'opacity .3s'; o.el.style.opacity = 0; setTimeout(() => o.el.remove(), 320); }); R.last = t; } }
       R.items = R.items.filter(o => { if (o.dead) return false; o.vy += g * dt; o.x += o.vx * dt; o.y += o.vy * dt; o.rot += o.vr * dt; o.el.style.transform = `translate(${o.x - o.r}px, ${o.y - o.r}px)`; o.el.querySelector('.f').style.transform = `rotate(${o.rot}deg)`; if (o.y > H + 80 && o.vy > 0) { o.el.remove(); return false; } return true; });
       const now = performance.now(); trail = trail.filter(p => now - p.t < 160);
       svg.innerHTML = trail.length > 1 ? `<polyline points="${trail.map(p => `${p.x.toFixed(0)},${p.y.toFixed(0)}`).join(' ')}" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/><polyline points="${trail.map(p => `${p.x.toFixed(0)},${p.y.toFixed(0)}`).join(' ')}" fill="none" stroke="#7CE0FF" stroke-width="3" stroke-linecap="round" opacity=".9"/>` : '';
@@ -8140,6 +8221,7 @@ body.is-yx.is-print .promo { display: none; }
     const band = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); band.setAttribute('class', 'pk-trail'); F.appendChild(band);
     const ball = document.createElement('div'); ball.className = 'pk-ball'; ball.textContent = '🥎'; F.appendChild(ball);
     let T = [], shot = null, drag = null;
+    const SK = .55, SV = .055 * SK, SG = .0009 * SK * SK;  // 速度與重力一起縮放，飛得慢但路線一樣
     const home = () => ({ x: 74, y: H() - 205 });
     const setTargets = () => {
       T.forEach(t => t.el.remove()); T = [];
@@ -8152,14 +8234,17 @@ body.is-yx.is-print .promo { display: none; }
       });
     };
     const pos = (x, y) => { ball.style.transform = `translate(${x - 22}px, ${y - 22}px)`; };
-    const drawBand = (x, y) => { const h = home(); band.innerHTML = drag ? `<path d="M${h.x - 26} ${h.y - 6}L${x} ${y}L${h.x + 26} ${h.y - 6}" stroke="#5A3A28" stroke-width="5" fill="none" stroke-linecap="round"/>` + Array.from({ length: 7 }, (_, i) => { const t = (i + 1) * 55, vx = (h.x - x) * .055, vy = (h.y - y) * .055; return `<circle cx="${x + vx * t}" cy="${y + vy * t + .0009 * t * t * 1.0}" r="${5 - i * .5}" fill="#fff" opacity="${.9 - i * .1}"/>`; }).join('') : ''; };
+    // 球後面的殘影，讓飛行看得更清楚
+    const ghost = (x, y) => { const g = document.createElement('div'); g.className = 'pk-ghost'; g.style.transform = `translate(${x - 8}px, ${y - 8}px)`; F.appendChild(g); setTimeout(() => g.remove(), 450); };
+    const drawBand = (x, y) => { const h = home(); band.innerHTML = drag ? `<path d="M${h.x - 26} ${h.y - 6}L${x} ${y}L${h.x + 26} ${h.y - 6}" stroke="#5A3A28" stroke-width="5" fill="none" stroke-linecap="round"/>` + Array.from({ length: 10 }, (_, i) => { const t = (i + 1) * 38 / SK, vx = (h.x - x) * SV, vy = (h.y - y) * SV; return `<circle cx="${x + vx * t}" cy="${y + vy * t + .5 * SG * t * t}" r="${5.5 - i * .35}" fill="#fff" opacity="${.95 - i * .07}"/>`; }).join('') : ''; };
     F.addEventListener('pointerdown', e => { if (shot || !R.t0 || e.target.closest('.pk-hud')) return; const r = F.getBoundingClientRect(), h = home(), x = e.clientX - r.left, y = e.clientY - r.top; if (Math.hypot(x - h.x, y - h.y) > 90) return; drag = { x, y }; F.setPointerCapture(e.pointerId); });
     F.addEventListener('pointermove', e => { if (!drag) return; const r = F.getBoundingClientRect(), h = home(); let x = e.clientX - r.left, y = e.clientY - r.top; const d = Math.hypot(x - h.x, y - h.y); if (d > 110) { x = h.x + (x - h.x) / d * 110; y = h.y + (y - h.y) / d * 110; } drag = { x, y }; pos(x, y); drawBand(x, y); });
-    F.addEventListener('pointerup', () => { if (!drag) return; const h = home(); shot = { x: drag.x, y: drag.y, vx: (h.x - drag.x) * .055, vy: (h.y - drag.y) * .055 }; drag = null; drawBand(); tone([300, 520], .08, 'triangle'); });
+    F.addEventListener('pointerup', () => { if (!drag) return; const h = home(); shot = { x: drag.x, y: drag.y, vx: (h.x - drag.x) * SV, vy: (h.y - drag.y) * SV, rot: 0 }; drag = null; drawBand(); tone([300, 520], .08, 'triangle'); });
     setTargets(); const h0 = home(); pos(h0.x, h0.y);
     R.step = dt => {
       if (!shot) { if (!drag) { const h = home(); pos(h.x, h.y); } return; }
-      shot.vy += .0009 * dt; shot.x += shot.vx * dt; shot.y += shot.vy * dt; pos(shot.x, shot.y);
+      if ((shot.k = (shot.k || 0) + dt) > 60) { shot.k = 0; ghost(shot.x, shot.y); }
+      shot.vy += SG * dt; shot.x += shot.vx * dt; shot.y += shot.vy * dt; shot.rot += dt * .5; pos(shot.x, shot.y); ball.style.rotate = shot.rot + 'deg';
       for (const t of T) {
         if (t.dead || Math.hypot(shot.x - t.x, shot.y - t.y) > t.r + 14) continue;
         if (R.learn && !t.ok) { pkHit(R, false); t.el.classList.add('pk-thud'); setTimeout(() => t.el.classList.remove('pk-thud'), 400); shot = null; return; }
@@ -8173,10 +8258,12 @@ body.is-yx.is-print .promo { display: none; }
   }
   // ---------- 🐍 字母貪食蛇 ----------
   function pkSnakeInit(R) {
-    const F = $('pkField'), P = $('pkPlay'), C = 11, Rw = 14;
+    const F = $('pkField'), P = $('pkPlay'), C = 9, Rw = 12;
+    const bar = document.createElement('div'); bar.className = 'pk-seq'; if (R.learn) F.appendChild(bar);
     const bd = document.createElement('div'); bd.className = 'pk-snk'; F.appendChild(bd);
+    const drawSeq = () => { bar.innerHTML = seq.map((v, i) => `<span class="${i < si ? 'done' : i === si ? 'next' : ''}">${v}${i < si ? '<i>✓</i>' : ''}</span>`).join(''); };
     const pad = document.createElement('div'); pad.className = 'pk-pad'; pad.innerHTML = '<button data-d="0,-1">▲</button><button data-d="-1,0">◀</button><button data-d="1,0">▶</button><button data-d="0,1">▼</button>'; P.appendChild(pad);
-    let sn = [[5, 9], [5, 10], [5, 11]], dir = [0, -1], nd = [0, -1], acc = 0, items = [], seq = [], si = 0;
+    let sn = [[4, 8], [4, 9], [4, 10]], dir = [0, -1], nd = [0, -1], acc = 0, items = [], seq = [], si = 0;
     const setDir = d => { if (d[0] === -dir[0] && d[1] === -dir[1]) return; nd = d; };
     pad.querySelectorAll('button').forEach(b => b.onpointerdown = e => { e.preventDefault(); setDir(b.dataset.d.split(',').map(Number)); });
     let sx = null; F.addEventListener('pointerdown', e => { if (e.target.closest('.pk-hud,.pk-pad')) return; sx = [e.clientX, e.clientY]; });
@@ -8185,7 +8272,7 @@ body.is-yx.is-print .promo { display: none; }
       if (pkLvl() === 'e') { if (Math.random() < .5) { const n = rand(2, 9); seq = [1, 2, 3, 4, 5].map(k => String(n * k)); R.task.label = `${n} 的倍數：${n}、${n * 2}…`; R.task.say = [[`依序吃${n}的倍數，${n}、${n * 2}、${n * 3}`]]; } else { const w = pick(EZ_ANIMAL.filter(x => x.w.length >= 4 && x.w.length <= 6)); seq = w.w.toUpperCase().split(''); R.task.label = `拼出 ${w.e} ${w.w}`; R.task.say = [['照順序吃字母，拼出'], [w.w, 'en-US']]; } }
       else if (age === 'small' || Math.random() < .5) { const N = age === 'small' ? 5 : 8; seq = Array.from({ length: N }, (_, i) => String(i + 1)); R.task.label = `從 1 吃到 ${N}`; R.task.say = [[`照順序吃數字，從一吃到${N}`]]; }
       else { const w = pick(EZ_CVC); seq = w.w.toUpperCase().split(''); R.task.label = `拼出 ${w.e} ${w.w}`; R.task.say = [['照順序吃字母，拼出'], [w.w, 'en-US']]; }
-      si = 0; if ($('pkSay')) $('pkSay').innerHTML = `🔊 ${R.task.label}`; say(R.task.say); place();
+      si = 0; if ($('pkSay')) $('pkSay').innerHTML = `🔊 ${R.task.label}`; say(R.task.say); place(); drawSeq();
     };
     const free = () => { let p, g = 0; do { p = [rand(0, C - 1), rand(0, Rw - 1)]; } while (g++ < 200 && (sn.some(s => s[0] === p[0] && s[1] === p[1]) || items.some(it => it.p[0] === p[0] && it.p[1] === p[1]))); return p; };
     const place = () => {
@@ -8212,7 +8299,7 @@ body.is-yx.is-print .promo { display: none; }
         const cw = bd.clientWidth / C, br = bd.getBoundingClientRect(), fr = F.getBoundingClientRect(), x = br.left - fr.left + (h[0] + .5) * cw, y = br.top - fr.top + (h[1] + .5) * cw;
         if (!R.learn) { grow = true; pkHit(R, true, x, y); it.p = free(); it.v = pick(PK_FRUITS); }
         else if (it.ok) {
-          grow = true; tone([520 + si * 60], .07, 'sine'); si++; pkFx(x, y, it.v);
+          grow = true; tone([520 + si * 60], .07, 'sine'); si++; drawSeq(); pkFx(x, y, it.v); say([[it.v, /[A-Z]/.test(it.v) ? 'en-US' : 'zh-TW']]);
           if (si >= seq.length) { pkHit(R, true, x, y); pkEarnQ(R.g === 'snake' && /拼/.test(R.task.label) ? 'pken' : 'pkmath', true); if (!R.done) setTimeout(() => { if (!R.done) { newSeq(); draw(); } }, 300); }
           else place();
         } else { pkHit(R, false); it.p = free(); }
@@ -8307,18 +8394,40 @@ body.is-yx.is-print .promo { display: none; }
     const lanY = () => F.clientHeight * .46;
     let mons = [];
     const spawn = () => { const el = document.createElement('div'); el.className = 'pk-walk'; el.innerHTML = `<span class="wd">${pick(PK_MON)}</span>`; F.appendChild(el); mons.push({ el, x: F.clientWidth + 30, v: (rand(20, 30) / 1000) * (R.learn ? .8 : 1.1) * Math.min(1.8, 1 + mons.length * .02 + R.score / 60) }); };
-    const shoot = (m, ok) => {
-      const b = document.createElement('div'); b.className = 'pk-cball'; b.textContent = '💥'; F.appendChild(b);
-      const sx = 90, sy = lanY() - 30; b.animate([{ transform: `translate(${sx}px,${sy}px) scale(.5)` }, { transform: `translate(${(sx + m.x) / 2}px,${sy - 90}px) scale(.9)` }, { transform: `translate(${m.x}px,${lanY()}px) scale(1.2)` }], { duration: 380, easing: 'ease-in' }).onfinish = () => b.remove();
-      setTimeout(() => { m.dead = 1; m.el.classList.add('pk-boom'); setTimeout(() => m.el.remove(), 450); }, 360);
+    // 🗡️ 派小兵：從城堡走出去，走到怪獸面前才攻擊
+    let sols = []; const SL = ['b1', 'g2', 'b2', 'g1'];
+    const solV = R.learn ? .085 : .13;
+    const send = (tg) => {
+      const lk = SL[sols.length % SL.length], el = document.createElement('div'); el.className = 'pk-sol';
+      el.innerHTML = `<div class="sk">${scnSVG(`none|${lk} 160 run happy - 200`, 'f1', '100 70 120 140')}${scnSVG(`none|${lk} 160 run2 happy - 200`, 'f2', '100 70 120 140')}<span class="sw">🗡️</span><span class="sh">🛡️</span></div>`;
+      F.appendChild(el); const s = { el, x: 70, st: 'walk', tg: tg || null }; if (s.tg) s.tg.res = s; sols.push(s); pkFx(110, lanY() - 20, '出發！');
+      el.style.transform = `translate(${s.x}px, ${lanY() - 50}px)`;
     };
-    if (R.learn) pkPanel(R, ok => { const m = mons.filter(x => !x.dead).sort((a, b) => a.x - b.x)[0]; if (ok) { if (m) shoot(m); pkHit(R, true, m ? m.x : 200, lanY()); } else { pkHit(R, false); mons.forEach(x => x.v *= 1.15); } });
-    else F.addEventListener('pointerdown', e => { const r = F.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top; const m = mons.find(k => !k.dead && Math.abs(k.x + 28 - x) < 40 && Math.abs(lanY() + 28 - y) < 50); if (m) { shoot(m); pkHit(R, true, m.x, lanY()); } });
+    const free = () => mons.filter(x => !x.dead && !x.res).sort((a, b) => a.x - b.x)[0];
+    const fight = (s) => {
+      const m = s.tg; s.st = 'fight'; m.stop = 1; s.el.classList.add('atk');
+      [0, 380].forEach(d => setTimeout(() => { if (!F.isConnected) return; const b = document.createElement('div'); b.className = 'pk-slash'; b.textContent = d ? '💥' : '⚔️'; b.style.transform = `translate(${m.x + 4}px, ${lanY() - 6}px)`; F.appendChild(b); setTimeout(() => b.remove(), 520); }, d));
+      setTimeout(() => {
+        m.dead = 1; m.el.classList.add('pk-boom'); setTimeout(() => m.el.remove(), 450); pkHit(R, true, m.x, lanY());
+        s.el.classList.remove('atk'); s.el.classList.add('win');
+        setTimeout(() => { s.el.classList.add('pk-poof'); setTimeout(() => s.el.remove(), 420); s.done = 1; }, 650);
+      }, 760);
+    };
+    if (R.learn) pkPanel(R, ok => { if (ok) send(free()); else { pkHit(R, false); mons.forEach(x => x.v *= 1.15); } });
+    else F.addEventListener('pointerdown', e => { const r = F.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top; const m = mons.find(k => !k.dead && !k.res && Math.abs(k.x + 28 - x) < 44 && Math.abs(lanY() + 28 - y) < 54); if (m) send(m); });
     R.step = (dt, t) => {
       if (t - R.last > (R.learn ? 5200 : 1800) * Math.max(.55, 1 - t / 200000)) { R.last = t; spawn(); }
       mons = mons.filter(m => {
-        if (m.dead) return false; m.x -= m.v * dt; m.el.style.transform = `translate(${m.x}px, ${lanY()}px)`;
-        if (m.x < 70) { m.el.remove(); R.hp--; hp(); pkBad(); cs.classList.remove('hit'); void cs.offsetWidth; cs.classList.add('hit'); if (R.hp <= 0) { if (R.learn) { R.fail = 1; R.got = R.goal; } pkEnd(); } return false; }
+        if (m.dead) return false; if (!m.stop) m.x -= m.v * dt; m.el.style.transform = `translate(${m.x}px, ${lanY()}px)`;
+        if (m.x < 70) { if (m.res) { m.res.tg = null; } m.el.remove(); R.hp--; hp(); pkBad(); cs.classList.remove('hit'); void cs.offsetWidth; cs.classList.add('hit'); if (R.hp <= 0) { if (R.learn) { R.fail = 1; R.got = R.goal; } pkEnd(); } return false; }
+        return true;
+      });
+      sols = sols.filter(s => {
+        if (s.done) return false; if (s.st !== 'walk') return true;
+        if (!s.tg || s.tg.dead) { s.tg = free() || null; if (s.tg) s.tg.res = s; }
+        s.x += solV * dt; s.el.style.transform = `translate(${s.x}px, ${lanY() - 50}px)`;
+        if (s.tg && s.x + 62 >= s.tg.x) fight(s);
+        else if (s.x > F.clientWidth + 20) { s.el.remove(); if (R.learn) pkHit(R, true, F.clientWidth - 60, lanY()); return false; }
         return true;
       });
     };
@@ -8347,6 +8456,115 @@ body.is-yx.is-print .promo { display: none; }
     };
     if (R.learn) R.task.label = R.q.label;
   }
+  // 全身小寵物 SVG（可動的部位：尾巴、手、腳、眼睛、嘴巴）
+  const PET_LOOK = [
+    { c: '#B07A4A', b: '#EBCFA8', d: '#7A4E2A', ear: 'round', tail: 'puff' },            // 熊
+    { c: '#F3EEEA', b: '#FFFFFF', d: '#F4A7B9', ear: 'long', tail: 'puffw' },             // 兔
+    { c: '#F7B267', b: '#FFE6C4', d: '#D9803A', ear: 'tri', tail: 'long', wh: 1 },         // 貓
+    { c: '#DDA76B', b: '#F8E5C8', d: '#8B5A2B', ear: 'flop', tail: 'wag' },               // 狗
+    { c: '#FFFFFF', b: '#FFFFFF', d: '#2D2D2D', ear: 'round', tail: 'puff', panda: 1 },    // 熊貓
+    { c: '#F4BE4C', b: '#FFE7A8', d: '#C46F2A', ear: 'round', tail: 'tuft', mane: 1 },      // 獅子
+    { c: '#F59E3B', b: '#FFF3E2', d: '#3A2A1E', ear: 'tri', tail: 'long', stripe: 1, wh: 1 }, // 老虎
+    { c: '#F07B3A', b: '#FFF3E8', d: '#5A3320', ear: 'tri', tail: 'fox', wh: 1 },          // 狐狸
+    { c: '#7CCB6E', b: '#D8F3C9', d: '#3F8F3A', ear: 'frog', tail: 'none' },               // 青蛙
+    { c: '#38495E', b: '#FFFFFF', d: '#F39C34', ear: 'none', tail: 'none', peng: 1 },      // 企鵝
+    { c: '#FFF4FA', b: '#FFFFFF', d: '#F7A1C4', ear: 'pony', tail: 'mane', uni: 1 },        // 獨角獸
+    { c: '#86CF74', b: '#E4F6C9', d: '#F6C344', ear: 'none', tail: 'dino', dino: 1 }        // 恐龍
+  ];
+  function petSVG(a) {
+    const L = PET_LOOK[a] || PET_LOOK[0], c = L.c, b = L.b, d = L.d, ink = '#3B2A22', ln = `stroke="${ink}" stroke-width="3" stroke-linejoin="round"`;
+    const dk = L.panda ? '#2D2D2D' : c;
+    let ears = '', tail = '', back = '', extra = '', body2 = '';
+    if (L.ear === 'round') ears = `<circle cx="60" cy="48" r="17" fill="${L.panda ? '#2D2D2D' : c}" ${ln}/><circle cx="140" cy="48" r="17" fill="${L.panda ? '#2D2D2D' : c}" ${ln}/><circle cx="61" cy="50" r="8" fill="${L.panda ? '#555' : b}"/><circle cx="139" cy="50" r="8" fill="${L.panda ? '#555' : b}"/>`;
+    if (L.ear === 'long') ears = `<g class="pe-l"><ellipse cx="80" cy="22" rx="12" ry="34" fill="${c}" ${ln} transform="rotate(-10 80 50)"/><ellipse cx="80" cy="24" rx="6" ry="24" fill="${d}" transform="rotate(-10 80 50)"/></g><g class="pe-r"><ellipse cx="120" cy="22" rx="12" ry="34" fill="${c}" ${ln} transform="rotate(10 120 50)"/><ellipse cx="120" cy="24" rx="6" ry="24" fill="${d}" transform="rotate(10 120 50)"/></g>`;
+    if (L.ear === 'tri') { const t = L.tail === 'fox' ? '#3A2A1E' : d; ears = `<path d="M54 66 L60 22 L92 46 Z" fill="${c}" ${ln}/><path d="M146 66 L140 22 L108 46 Z" fill="${c}" ${ln}/><path d="M62 54 L64 34 L80 46 Z" fill="${L.stripe ? '#FFF3E2' : '#FFC4C4'}"/><path d="M138 54 L136 34 L120 46 Z" fill="${L.stripe ? '#FFF3E2' : '#FFC4C4'}"/>${L.tail === 'fox' ? `<path d="M60 22 L58 34 L66 30 Z M140 22 L142 34 L134 30 Z" fill="${t}"/>` : ''}`; }
+    if (L.ear === 'flop') ears = `<g class="pe-l"><ellipse cx="52" cy="84" rx="15" ry="32" fill="${d}" ${ln} transform="rotate(18 52 60)"/></g><g class="pe-r"><ellipse cx="148" cy="84" rx="15" ry="32" fill="${d}" ${ln} transform="rotate(-18 148 60)"/></g>`;
+    if (L.ear === 'pony') ears = `<path d="M62 58 L66 26 L86 44 Z" fill="${c}" ${ln}/><path d="M138 58 L134 26 L114 44 Z" fill="${c}" ${ln}/>`;
+    if (L.ear === 'frog') ears = `<circle cx="72" cy="46" r="20" fill="${c}" ${ln}/><circle cx="128" cy="46" r="20" fill="${c}" ${ln}/>`;
+    if (L.mane) back += `<g class="pe-mane">${Array.from({ length: 14 }, (_, i) => { const t = i / 14 * Math.PI * 2; return `<circle cx="${100 + Math.cos(t) * 50}" cy="${84 + Math.sin(t) * 50}" r="20" fill="${d}"/>`; }).join('')}<circle cx="100" cy="84" r="58" fill="none" stroke="${ink}" stroke-width="3" stroke-dasharray="0" opacity=".0"/></g>`;
+    if (L.uni) back += `<circle cx="54" cy="74" r="16" fill="#C7A6F5" ${ln}/><circle cx="48" cy="100" r="15" fill="${d}" ${ln}/><circle cx="56" cy="124" r="13" fill="#9FD8F5" ${ln}/>`;
+    if (L.dino) back += `<path d="M84 40 L92 14 L106 36 L122 14 L128 42 L148 30 L146 58 L166 56 L150 84 Z" fill="${d}" ${ln}/>`;
+    // 尾巴
+    const tl = {
+      puff: `<circle cx="146" cy="176" r="13" fill="${dk}" ${ln}/>`,
+      puffw: `<circle cx="148" cy="178" r="15" fill="#fff" ${ln}/>`,
+      long: `<path d="M140 178 C176 182 182 150 168 126 C164 118 174 112 178 124 C192 152 184 196 142 190 Z" fill="${c}" ${ln}/>${L.stripe ? `<path d="M172 128 l12 -4 M178 150 l12 0 M172 174 l12 6" stroke="${d}" stroke-width="5" stroke-linecap="round"/>` : ''}`,
+      wag: `<path d="M140 176 C162 170 172 150 168 132 C178 136 184 160 168 182 C160 190 148 190 140 188 Z" fill="${c}" ${ln}/>`,
+      tuft: `<path d="M140 180 C170 184 176 160 172 140" fill="none" stroke="${ink}" stroke-width="9" stroke-linecap="round"/><path d="M140 180 C170 184 176 160 172 140" fill="none" stroke="${c}" stroke-width="5" stroke-linecap="round"/><circle cx="172" cy="136" r="10" fill="${d}" ${ln}/>`,
+      fox: `<path d="M136 182 C176 196 198 150 178 112 C172 140 160 156 136 164 Z" fill="${c}" ${ln}/><path d="M178 112 C190 132 190 148 184 158 C178 146 176 128 178 112 Z" fill="#fff"/>`,
+      mane: `<path d="M140 178 C176 186 184 150 170 130 C188 140 196 176 168 194 C156 200 144 194 140 188 Z" fill="${d}" ${ln}/>`,
+      dino: `<path d="M136 160 C170 168 196 186 206 206 C180 204 156 196 136 192 Z" fill="${c}" ${ln}/>`,
+      none: ''
+    }[L.tail];
+    tail = tl || '';
+    const arm = L.peng ? `<ellipse cx="0" cy="0" rx="12" ry="26" fill="${c}" ${ln}/>` : `<ellipse cx="0" cy="0" rx="12" ry="18" fill="${L.panda ? '#2D2D2D' : c}" ${ln}/>`;
+    const foot = L.peng ? '#F39C34' : L.panda ? '#2D2D2D' : c;
+    // 臉
+    const faceC = L.peng ? '#FFFFFF' : L.stripe || L.tail === 'fox' ? '#FFF3E8' : b;
+    let face = `<ellipse cx="100" cy="102" rx="${L.ear === 'frog' ? 30 : 22}" ry="15" fill="${faceC}"/>`;
+    if (L.peng) face = `<path d="M60 92 C60 62 80 56 100 72 C120 56 140 62 140 92 C140 120 120 130 100 130 C80 130 60 120 60 92 Z" fill="#fff"/>`;
+    if (L.panda) extra += `<ellipse cx="80" cy="86" rx="13" ry="16" fill="#2D2D2D" transform="rotate(-20 80 86)"/><ellipse cx="120" cy="86" rx="13" ry="16" fill="#2D2D2D" transform="rotate(20 120 86)"/>`;
+    if (L.stripe) extra += `<path d="M100 38 v14 M86 40 l4 12 M114 40 l-4 12 M54 80 h12 M54 92 h10 M146 80 h-12 M146 92 h-10" stroke="${d}" stroke-width="5" stroke-linecap="round"/>`;
+    if (L.uni) extra += `<path d="M106 38 C84 36 64 48 60 74 C72 62 86 56 110 54 Z" fill="${d}" ${ln}/><path d="M92 42 L100 4 L108 42 Z" fill="#F9D56E" ${ln}/><path d="M95 30 L105 26 M96 20 L104 16" stroke="${ink}" stroke-width="2"/>`;
+    const eyeY = L.ear === 'frog' ? 46 : 86, eyeX = L.ear === 'frog' ? 28 : 18;
+    const eyes = `<g class="pe-eye"><circle cx="${100 - eyeX}" cy="${eyeY}" r="7" fill="${ink}"/><circle cx="${100 + eyeX}" cy="${eyeY}" r="7" fill="${ink}"/><circle cx="${102 - eyeX}" cy="${eyeY - 3}" r="2.6" fill="#fff"/><circle cx="${102 + eyeX}" cy="${eyeY - 3}" r="2.6" fill="#fff"/></g>
+      <g class="pe-hap"><path d="M${92 - eyeX} ${eyeY + 2} Q${100 - eyeX} ${eyeY - 8} ${108 - eyeX} ${eyeY + 2} M${92 + eyeX} ${eyeY + 2} Q${100 + eyeX} ${eyeY - 8} ${108 + eyeX} ${eyeY + 2}" fill="none" stroke="${ink}" stroke-width="4" stroke-linecap="round"/></g>`;
+    const nose = L.peng ? `<path d="M90 100 L110 100 L100 112 Z" fill="#F39C34" ${ln}/>` : L.ear === 'frog' || L.dino ? `<circle cx="94" cy="96" r="2" fill="${ink}"/><circle cx="106" cy="96" r="2" fill="${ink}"/>` : `<ellipse cx="100" cy="96" rx="7" ry="5" fill="${ink}"/>`;
+    const mouth = `<g class="pe-mc"><path d="M${L.ear === 'frog' ? 80 : 90} 106 Q100 ${L.ear === 'frog' ? 120 : 114} ${L.ear === 'frog' ? 120 : 110} 106" fill="none" stroke="${ink}" stroke-width="3" stroke-linecap="round"/></g>
+      <g class="pe-mo"><ellipse cx="100" cy="112" rx="10" ry="9" fill="#7A2E2E" stroke="${ink}" stroke-width="2.5"/><ellipse cx="100" cy="117" rx="6" ry="3.5" fill="#FF8C9A"/></g>`;
+    const wh = L.wh ? `<path d="M74 102 l-20 -4 M74 108 l-20 4 M126 102 l20 -4 M126 108 l20 4" stroke="${ink}" stroke-width="2" stroke-linecap="round" opacity=".7"/>` : '';
+    const bellyC = L.peng ? '#fff' : b;
+    return `<svg class="pet-svg" viewBox="0 0 210 224" xmlns="http://www.w3.org/2000/svg">
+      <g class="pe-tail">${tail}</g>
+      <g class="pe-legs"><ellipse class="pe-f1" cx="78" cy="204" rx="17" ry="11" fill="${foot}" ${ln}/><ellipse class="pe-f2" cx="122" cy="204" rx="17" ry="11" fill="${foot}" ${ln}/></g>
+      <g class="pe-bd"><ellipse cx="100" cy="164" rx="46" ry="42" fill="${L.panda ? '#fff' : c}" ${ln}/>${L.panda ? `<path d="M56 150 C70 134 130 134 144 150 L144 160 C130 146 70 146 56 160 Z" fill="#2D2D2D"/>` : ''}<ellipse cx="100" cy="172" rx="29" ry="27" fill="${bellyC}"/>${L.stripe ? `<path d="M58 160 h12 M58 176 h10 M142 160 h-12 M142 176 h-10" stroke="${d}" stroke-width="5" stroke-linecap="round"/>` : ''}${L.dino ? `<path d="M86 160 h28 M86 172 h28 M88 184 h24" stroke="#BFE0A0" stroke-width="3"/>` : ''}</g>
+      <g class="pe-a1" transform="translate(58 158) rotate(24)"><g class="pe-ai">${arm}</g></g>
+      <g class="pe-a2" transform="translate(142 158) rotate(-24)"><g class="pe-ai">${arm}</g></g>
+      <g class="pe-hd">${back}${ears}<circle cx="100" cy="84" r="48" fill="${L.peng ? c : L.panda ? '#fff' : c}" ${ln}/>${face}${extra}<ellipse cx="72" cy="104" rx="8" ry="5" fill="#FF9AA8" opacity=".65"/><ellipse cx="128" cy="104" rx="8" ry="5" fill="#FF9AA8" opacity=".65"/>${eyes}${nose}${mouth}${wh}</g>
+    </svg>`;
+  }
+
+  // 寵物動畫：餵食 / 玩耍 / 洗澡
+  function petFx(P, kind, em, done) {
+    const room = P.querySelector('.pet-room'), me = $('petMe'); if (!room || !me) return done && done();
+    const R0 = room.getBoundingClientRect(), r = me.getBoundingClientRect();
+    const cx = r.left - R0.left + r.width * .476, top = r.top - R0.top, H = r.height;
+    const add = (txt, cls, x, y, fs) => { const e = document.createElement('span'); e.className = 'pet-fx ' + (cls || ''); e.textContent = txt; e.style.left = x + 'px'; e.style.top = y + 'px'; if (fs) e.style.fontSize = fs + 'px'; room.appendChild(e); return e; };
+    const later = (ms, f) => setTimeout(() => { if (room.isConnected) f(); }, ms);
+    const burst = (list, n, y) => { for (let i = 0; i < n; i++) { const e = add(list[i % list.length], 'up', cx - 20 + rand(-70, 70), y + rand(-20, 30), rand(26, 40)); e.style.animationDelay = (i * 90) + 'ms'; later(1600 + i * 90, () => e.remove()); } };
+    const end = (ms) => later(ms, () => { me.className = 'pet-me'; done && done(); });
+    if (kind === 'eat') {
+      const my = top + H * .5, f = add(em, '', R0.width - 70, top + 20, 54);
+      f.animate([{ transform: 'translate(0,0) rotate(0)' }, { transform: `translate(${(cx - R0.width + 70) / 2}px,-70px) rotate(-160deg)` }, { transform: `translate(${cx - R0.width + 46}px,${my - top - 44}px) rotate(-360deg)` }], { duration: 900, easing: 'ease-in-out', fill: 'forwards' });
+      later(250, () => me.classList.add('look'));
+      later(850, () => { me.classList.add('eat'); [1, .72, .45, .2].forEach((sc, i) => later(i * 330, () => { f.style.scale = sc; for (let k = 0; k < 3; k++) { const c = add('•', 'crumb', cx + rand(-18, 18), my + 4, 18); c.style.setProperty('--dx', rand(-40, 40) + 'px'); later(700, () => c.remove()); } })); });
+      later(2200, () => { f.remove(); me.classList.remove('eat', 'look'); me.classList.add('happy', 'pat'); burst(['💕', '❤️', '😋'], 6, top); });
+      return end(3400);
+    }
+    if (kind === 'toy') {
+      const b = add(em, 'toy', cx - 150, top + H * .62, 48), W = Math.min(150, R0.width / 2 - 50);
+      b.animate([{ transform: 'translate(0,0) rotate(0)' }, { transform: `translate(${75 + W / 2}px,-90px) rotate(180deg)` }, { transform: `translate(${150 + W}px,0) rotate(360deg)` }, { transform: `translate(${150 + W / 2}px,-110px) rotate(540deg)` }, { transform: `translate(150px,-150px) rotate(720deg)` }, { transform: `translate(150px,-40px) rotate(760deg)` }], { duration: 2600, easing: 'ease-in-out', fill: 'forwards' });
+      me.classList.add('play', 'happy');
+      me.animate([{ translate: '0 0' }, { translate: `${W * .6}px 0` }, { translate: `${W}px 0`, offset: .45 }, { translate: `${W * .3}px 0`, offset: .7 }, { translate: '0 0' }], { duration: 2600, easing: 'ease-in-out' });
+      later(2000, () => { me.classList.add('catch'); burst(['⭐', '🌟', '✨'], 7, top); });
+      later(2900, () => b.animate([{ opacity: 1 }, { opacity: 0, transform: `translate(150px,-40px) scale(.3)` }], { duration: 400, fill: 'forwards' }).onfinish = () => b.remove());
+      return end(3500);
+    }
+    if (kind === 'bath') {
+      const tub = document.createElement('div'); tub.className = 'pet-tub'; tub.style.left = (cx - 120) + 'px'; tub.style.top = (top + H * .5) + 'px';
+      tub.innerHTML = `<svg viewBox="0 0 240 120"><ellipse cx="120" cy="20" rx="112" ry="16" fill="#BFE6FF"/><path d="M8 20 H232 C232 80 196 104 120 104 C44 104 8 80 8 20 Z" fill="#FFFFFF" stroke="#3B2A22" stroke-width="4"/><path d="M20 30 H220" stroke="#9FD4F5" stroke-width="6" stroke-linecap="round"/><rect x="40" y="100" width="16" height="16" rx="6" fill="#F7C873" stroke="#3B2A22" stroke-width="3"/><rect x="184" y="100" width="16" height="16" rx="6" fill="#F7C873" stroke="#3B2A22" stroke-width="3"/>${[30, 60, 92, 124, 156, 188, 212].map((x, i) => `<circle cx="${x}" cy="${12 + (i % 2) * 6}" r="${14 + (i % 3) * 4}" fill="#fff" stroke="#BFE6FF" stroke-width="2"/>`).join('')}</svg>`;
+      room.appendChild(tub); me.classList.add('bath', 'happy');
+      const sh = add('🚿', 'shower', cx + 40, Math.max(4, top - 40), 54);
+      for (let i = 0; i < 16; i++) { const d = add('💧', 'drop', cx - 40 + rand(-30, 60), top - 10, 22); d.style.animationDelay = (i * 120) + 'ms'; later(2400, () => d.remove()); }
+      for (let i = 0; i < 14; i++) { const bb = add('🫧', 'up', cx - 20 + rand(-100, 100), top + H * .55, rand(24, 40)); bb.style.animationDelay = (300 + i * 140) + 'ms'; later(3600, () => bb.remove()); }
+      const sp = add('🧽', 'sponge', cx - 30, top + H * .25, 46);
+      sp.animate([{ transform: 'translate(-40px,0) rotate(-20deg)' }, { transform: 'translate(40px,10px) rotate(20deg)' }, { transform: 'translate(-30px,30px) rotate(-20deg)' }, { transform: 'translate(40px,-10px) rotate(20deg)' }, { transform: 'translate(-20px,10px) rotate(-10deg)' }], { duration: 2000, delay: 300, easing: 'ease-in-out' });
+      later(2400, () => { sh.remove(); sp.remove(); tub.classList.add('out'); me.classList.remove('bath'); me.classList.add('shake'); });
+      later(3000, () => { tub.remove(); burst(['✨', '🌟', '✨'], 8, top); });
+      return end(3800);
+    }
+    done && done();
+  }
   // ---------- 🐶 我的小寵物 ----------
   const PK_PET_SHOP = [['🍖', 2, '肉肉', 'food'], ['🍎', 1, '蘋果', 'food'], ['🥛', 1, '牛奶', 'food'], ['🎾', 3, '小球', 'toy'], ['🧸', 5, '玩偶', 'toy'], ['🛏️', 10, '小床', 'deco'], ['🪴', 6, '盆栽', 'deco'], ['🖼️', 8, '畫', 'deco'], ['🎈', 4, '氣球', 'deco'], ['⛲', 15, '噴水池', 'deco']];
   function pkPet() {
@@ -8364,34 +8582,44 @@ body.is-yx.is-print .promo { display: none; }
     const draw = (anim) => {
       const [face, word] = mood();
       P.innerHTML = `<div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="回樂園">${pkBack}</button><span class="pk-pill">${face} ${pet.name || '我的小寵物'}</span><span class="pk-pill">⭐ <span id="pkBal">${pkBal()}</span></span></div>
-        <div class="pet-room"><div class="pet-wall"></div><div class="pet-floor"></div>${pet.deco.map((d, i) => `<span class="pet-deco" style="left:${d.x}%;top:${d.y}%">${d.e}</span>`).join('')}
-          <button class="pet-me${anim ? ' ' + anim : ''}" id="petMe"><span class="pet-body">${RK_AVA[pet.a]}</span><span class="pet-shadow"></span>${pet.clean < 35 ? '<span class="pet-dirt">💨</span>' : ''}</button>
+        <div class="pet-room"><div class="pet-wall"></div><div class="pet-floor"></div>${pet.deco.map((d, i) => `<span class="pet-deco" data-i="${i}" style="left:${d.x}%;top:${d.y}%">${d.e}</span>`).join('')}
+          <button class="pet-me${anim === 'jump' ? ' jump' : ''}${pet.clean < 35 ? ' dirty' : ''}" id="petMe"><span class="pet-shadow"></span><span class="pet-body">${petSVG(pet.a)}</span>${pet.clean < 35 ? '<span class="pet-dirt">💨</span><span class="pet-mud" style="left:34%;top:62%"></span><span class="pet-mud" style="left:58%;top:74%"></span><span class="pet-mud" style="left:40%;top:30%"></span>' : ''}</button>
           <div class="pet-bubble" id="petBub">${pet.food < 35 ? '肚子好餓…' : pet.joy < 35 ? '陪我玩好不好？' : pet.clean < 35 ? '我想洗澡！' : `我${word}！點我問你一題喔`}</div></div>
         <div class="pet-panel"><div class="pet-bars">${bar('🍖', pet.food, '#F7A35C')}${bar('💗', pet.joy, '#FF8FB1')}${bar('🫧', pet.clean, '#7CC4F5')}</div>
           <div class="pet-acts"><button class="pk-btn" data-a="food">🍖 餵食</button><button class="pk-btn" data-a="toy" style="background:#FF8FB1;box-shadow:0 5px 0 #D9627F">🎾 玩耍</button><button class="pk-btn" data-a="bath" style="background:#5B8DEF;box-shadow:0 5px 0 #3F6FD8">🛁 洗澡</button><button class="pk-btn" data-a="deco" style="background:#B9A2F0;box-shadow:0 5px 0 #8C74C9">🏠 佈置</button></div>
-          <p class="rk-tip">每天學習，小寵物會更開心！點小寵物可以回答問題拿星星（每天 5 次）。</p></div><div class="pk-ask" id="pkAsk" hidden></div>`;
+          <p class="rk-tip">每天學習，小寵物會更開心！點小寵物可以回答問題拿星星（每天 5 次）。佈置的東西可以用手指拖到想放的地方。</p></div><div class="pk-ask" id="pkAsk" hidden></div>`;
       $('pkQuit').onclick = () => { save(); pkStop(); openPark(); };
-      $('petMe').onclick = ask;
-      P.querySelectorAll('.pet-acts button').forEach(b => b.onclick = () => act(b.dataset.a));
+      $('petMe').onclick = () => { if (!busy) ask(); };
+      P.querySelectorAll('.pet-acts button').forEach(b => b.onclick = () => { if (!busy) act(b.dataset.a); });
+      const room = P.querySelector('.pet-room');
+      room.querySelectorAll('.pet-deco').forEach(el => {
+        el.onpointerdown = e => {
+          e.preventDefault(); el.setPointerCapture(e.pointerId); el.classList.add('drag'); const rr = room.getBoundingClientRect(), er = el.getBoundingClientRect(), ox = e.clientX - er.left, oy = e.clientY - er.top;
+          el.onpointermove = ev => { const x = Math.max(0, Math.min(rr.width - er.width, ev.clientX - rr.left - ox)), y = Math.max(0, Math.min(rr.height - er.height, ev.clientY - rr.top - oy)); el.style.left = (x / rr.width * 100) + '%'; el.style.top = (y / rr.height * 100) + '%'; };
+          el.onpointerup = el.onpointercancel = () => { el.onpointermove = null; el.classList.remove('drag'); const d = pet.deco[+el.dataset.i]; if (d) { d.x = +parseFloat(el.style.left).toFixed(1); d.y = +parseFloat(el.style.top).toFixed(1); save(); } };
+        };
+      });
+      if (anim && anim !== 'jump') { busy = 1; P.querySelectorAll('.pet-acts button').forEach(b => b.disabled = true); petFx(P, anim, fxEm, () => { busy = 0; P.querySelectorAll('.pet-acts button').forEach(b => b.disabled = false); }); }
     };
+    let busy = 0, fxEm = '';
     const shop = (type, cb) => {
       const L = PK_PET_SHOP.filter(x => x[3] === type);
       pkAsk(type === 'food' ? '🍖' : type === 'toy' ? '🎾' : '🏠', type === 'food' ? '要餵什麼？' : type === 'toy' ? '要玩什麼？' : '買什麼佈置房間？', `現在有 ⭐ ${pkBal()} 顆`, L.map(x => [`${x[0]} ⭐${x[1]}`, '', () => { if (pkBal() < x[1]) return pkAsk('⭐', `還差 ${x[1] - pkBal()} 顆星星`, '去闖關或學習就能拿到星星喔！', [['好', 'gray', () => {}]]); store.set('pkSpent', pkSpent() + x[1]); cb(x); }]).concat([['不要', 'gray', () => {}]]));
     };
     const act = a => {
-      if (a === 'food') shop('food', x => { pet.food = Math.min(100, pet.food + (x[1] >= 2 ? 40 : 22)); save(); draw('eat'); say([['好好吃！謝謝你']]); pkGood(); });
-      if (a === 'toy') shop('toy', x => { pet.joy = Math.min(100, pet.joy + (x[1] >= 5 ? 40 : 25)); save(); draw('jump'); say([['好好玩！']]); pkGood(); });
+      if (a === 'food') shop('food', x => { pet.food = Math.min(100, pet.food + (x[1] >= 2 ? 40 : 22)); save(); fxEm = x[0]; draw('eat'); say([['好好吃！謝謝你']]); pkGood(); });
+      if (a === 'toy') shop('toy', x => { pet.joy = Math.min(100, pet.joy + (x[1] >= 5 ? 40 : 25)); save(); fxEm = x[0]; draw('toy'); say([['好好玩！']]); pkGood(); });
       if (a === 'bath') { pet.clean = 100; save(); draw('bath'); say([['洗得香香的！']]); pkGood(); }
       if (a === 'deco') shop('deco', x => { pet.deco.push({ e: x[0], x: rand(6, 82), y: rand(8, 46) }); if (pet.deco.length > 12) pet.deco.shift(); pet.joy = Math.min(100, pet.joy + 10); save(); draw('jump'); pkGood(); });
     };
     const ask = () => {
       if (pet.q.n >= 5) { $('petBub').textContent = '今天的問題都答完了，明天再問你！'; say([['今天的問題都答完了，明天再問你']]); $('petMe').classList.remove('jump'); void $('petMe').offsetWidth; $('petMe').classList.add('jump'); return; }
       const q = pkQ(), o = q.opts(3); say(q.say);
-      pkAsk(RK_AVA[pet.a], `小寵物想問你：${q.label}`, '答對送你 1 顆星星！', o.map(x => [x.h, '', () => { pkEarnQ(q.cat, x.ok); if (x.ok) { pet.q.n++; pet.joy = Math.min(100, pet.joy + 10); pkEarn(1, q.cat, 1, 1); save(); draw('jump'); say([['答對了！送你一顆星星']]); pkGood(); } else { save(); draw(); say([[`答案是${q.ans}，下次再試試`]]); pkBad(); } }]));
+      pkAsk(`<span class="pet-pick big">${petSVG(pet.a)}</span>`, `小寵物想問你：${q.label}`, '答對送你 1 顆星星！', o.map(x => [x.h, '', () => { pkEarnQ(q.cat, x.ok); if (x.ok) { pet.q.n++; pet.joy = Math.min(100, pet.joy + 10); pkEarn(1, q.cat, 1, 1); save(); draw('jump'); say([['答對了！送你一顆星星']]); pkGood(); } else { save(); draw(); say([[`答案是${q.ans}，下次再試試`]]); pkBad(); } }]));
     };
     if (!pet.name) {
       save(); draw();
-      pkAsk(RK_AVA[pet.a], '來養一隻小寵物吧！', '選一隻你喜歡的動物', RK_AVA.slice(0, 8).map((e, i) => [e, 'gray', () => { pet.a = i; pet.name = ['小熊', '兔兔', '喵喵', '汪汪', '圓仔', '獅獅', '虎虎', '狐狐'][i]; save(); draw('jump'); say([[`你好！我是${pet.name}，請好好照顧我喔`]]); }]));
+      pkAsk(RK_AVA[pet.a], '來養一隻小寵物吧！', '選一隻你喜歡的動物', RK_AVA.map((e, i) => [`<span class="pet-pick">${petSVG(i)}</span>`, 'gray', () => { pet.a = i; pet.name = ['小熊', '兔兔', '喵喵', '汪汪', '圓仔', '獅獅', '虎虎', '狐狐', '呱呱', '企企', '彩彩', '龍龍'][i]; save(); draw('jump'); say([[`你好！我是${pet.name}，請好好照顧我喔`]]); }]));
     } else { save(); draw('jump'); }
     track('park-pet', '我的小寵物');
   }
