@@ -1606,6 +1606,23 @@ html.wc-open body { overflow: hidden; }
 .fr-card.fr-bad { box-shadow: 0 6px 14px rgba(70,60,40,.12), inset 0 0 0 2px #F4C1C1; position: relative; }
 .fr-card.fr-bad small { background: #FDE6E6; color: #A63D33; }
 .fr-card.fr-bad.no::after { content: "🙅 不要！"; position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%) rotate(-8deg); background: #C2414B; color: #fff; font-weight: 900; font-size: 1.3rem; padding: 6px 14px; border-radius: 14px; box-shadow: 0 4px 0 #8A2A2A; animation: wcPop .4s ease; }
+/* 寵物：長大、任務、換裝、摸摸 */
+.pet-stage { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; background: rgba(255,253,248,.92); border-radius: 99px; padding: 5px 12px; box-shadow: 0 3px 10px rgba(0,0,0,.08); font-size: .85rem; pointer-events: none; }
+.pet-stage b { white-space: nowrap; } .pet-stage i { flex: 1; height: 8px; border-radius: 99px; background: #EEE4D2; overflow: hidden; } .pet-stage u { display: block; height: 100%; background: linear-gradient(90deg, #8ED07A, #3E9A6A); }
+.pet-stage small { white-space: nowrap; color: var(--muted); font-weight: 700; }
+.pet-task { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; background: #FFFBEA; border-radius: 18px; padding: 10px 12px; margin-bottom: 10px; box-shadow: inset 0 0 0 1.5px #F4E2A8; font-size: .85rem; font-weight: 700; }
+.pet-task b { width: 100%; font-size: .9rem; } .pet-task span { background: #fff; border-radius: 99px; padding: 3px 10px; } .pet-task span.ok { background: #E2F1EC; color: #2B7350; }
+.pet-task em { font-style: normal; color: #8A6400; } .pet-task .pk-btn { width: 100%; animation: wcRec 1.2s ease-in-out infinite; }
+.pet-acts .pk-btn.wide { grid-column: 1 / -1; }
+.pet-me { touch-action: none; } .pet-me.pat-ing .pet-body { animation: petScrub .3s ease-in-out infinite alternate; }
+.pet-wpic { display: block; width: 56px; height: 60px; margin: 0 auto; } .pet-wpic .pet-svg { width: 100%; height: 100%; } .pet-wpic .pe-hap, .pet-wpic .pe-mo { opacity: 0; }
+.pk-ask-card .pk-btn small { display: block; font-size: .75rem; }
+.pet-grow { position: absolute; left: 50%; top: 32%; transform: translate(-50%, -50%); z-index: 7; background: #fff; border-radius: 22px; padding: 10px 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.2); animation: wcIn .4s cubic-bezier(.3,1.5,.5,1); }
+.pet-grow b { display: block; font-family: var(--f-round); font-weight: 400; font-size: 1.6rem; color: #E8590C; } .pet-grow span { font-weight: 900; }
+.done-sc { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+.done-stamp { position: absolute; right: -104px; top: -34px; width: 96px; height: 96px; transform: rotate(-14deg); opacity: .92; }
+.done-stamp.go { animation: doneStamp .55s cubic-bezier(.3,1.6,.5,1) .4s both; }
+@keyframes doneStamp { from { transform: rotate(-30deg) scale(2.4); opacity: 0; } 60% { opacity: 1; } to { transform: rotate(-14deg) scale(1); opacity: .92; } }
 /* ===== v50 新版面：吉卜力水彩風（方格紙、雙色標題、書架卡片） ===== */
 :root:not([data-theme="dark"]) {
   --bg: #F7F1E3; --dot: rgba(120,150,170,.10); --surface: #FFFDF8; --ink: #2F3B52; --muted: #56627A;
@@ -2645,7 +2662,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   <section id="done" class="done" hidden>
     <svg id="doneMascot" viewBox="0 0 120 120" class="mascot is-happy" aria-hidden="true"></svg>
     <h2 id="doneTitle">完成了！</h2>
-    <div class="big-score" id="doneScore">0 / 10</div>
+    <div class="done-sc"><div class="big-score" id="doneScore">0 / 10</div><svg class="done-stamp" id="doneStamp" viewBox="0 0 120 120" aria-hidden="true" hidden><circle cx="60" cy="60" r="54" fill="none" stroke="#D9574A" stroke-width="5"/><circle cx="60" cy="60" r="44" fill="none" stroke="#D9574A" stroke-width="2" stroke-dasharray="3 4"/><text x="60" y="74" font-family="Gaegu, Fredoka, cursive" font-size="40" font-weight="700" text-anchor="middle" fill="#D9574A" id="doneStampTx">100</text><text x="60" y="34" font-size="11" font-weight="900" text-anchor="middle" fill="#D9574A" letter-spacing="2">動動腦</text><path d="M44 88l3 6 6 .8-4.5 4.2 1.1 6-5.6-3-5.6 3 1.1-6-4.5-4.2 6-.8zM76 88l3 6 6 .8-4.5 4.2 1.1 6-5.6-3-5.6 3 1.1-6-4.5-4.2 6-.8z" fill="#D9574A"/></svg></div>
     <div class="star-row" id="doneStars"></div>
     <p id="doneMsg"></p>
     <div class="fam-task" id="famTask" hidden><b>👨‍👩‍👧 親子任務・<span id="famDom"></span></b><p id="famText"></p><button id="famNext" class="btn ghost small">換一個任務</button></div>
@@ -7203,6 +7220,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     const showTask = () => { const ft = familyTask(st.sub); $('famDom').textContent = ft.d; $('famText').textContent = ft.t; $('famTask').hidden = false; };
     $('learnAgain').hidden = !LEARN[st.sub];
     showTask(); $('famNext').onclick = () => { showTask(); track('family-task-next', '換親子任務'); };
+    const stp = $('doneStamp'); stp.toggleAttribute('hidden', !(ratio >= .9 && !trialEnd)); $('doneStampTx').textContent = ratio >= 1 ? '100' : '棒'; stp.classList.remove('go'); void stp.getBoundingClientRect(); stp.classList.add('go');
     show('done'); refreshGot();
     const m = $('doneMascot'); m.classList.remove('is-happy'); void m.getBoundingClientRect(); m.classList.add('is-happy');
     tone([523, 659, 784, 1046], .13, 'sine');
@@ -8949,7 +8967,21 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     { c: '#FFF4FA', b: '#FFFFFF', d: '#F7A1C4', ear: 'pony', tail: 'mane', uni: 1 },        // 獨角獸
     { c: '#86CF74', b: '#E4F6C9', d: '#F6C344', ear: 'none', tail: 'dino', dino: 1 }        // 恐龍
   ];
-  function petSVG(a) {
+  const PET_WEAR = [
+    ['bow', '🎀 蝴蝶結', 3, 'h'], ['cap', '🧢 棒球帽', 4, 'h'], ['top', '🎩 紳士帽', 6, 'h'], ['crown', '👑 皇冠', 12, 'h'],
+    ['glass', '👓 眼鏡', 5, 'f'], ['scarf', '🧣 圍巾', 4, 'n'], ['tie', '🎗️ 領結', 3, 'n']
+  ];
+  const PET_WEAR_SVG = {
+    bow: '<g transform="translate(130 42) rotate(18)"><path d="M0 0l-20-11v22zM0 0l20-11v22z" fill="#FF7FA6" stroke="#3B2A22" stroke-width="3" stroke-linejoin="round"/><circle r="5.5" fill="#FF7FA6" stroke="#3B2A22" stroke-width="3"/></g>',
+    cap: '<path d="M56 62q44-52 88 0z" fill="#5B8DEF" stroke="#3B2A22" stroke-width="3" stroke-linejoin="round"/><path d="M126 58q30-4 42 8q-22 8-44 0z" fill="#3F6FD8" stroke="#3B2A22" stroke-width="3" stroke-linejoin="round"/><circle cx="100" cy="36" r="5" fill="#FFD43B" stroke="#3B2A22" stroke-width="2"/>',
+    top: '<ellipse cx="100" cy="44" rx="40" ry="8" fill="#2E2A2E" stroke="#3B2A22" stroke-width="3"/><rect x="74" y="4" width="52" height="40" rx="6" fill="#2E2A2E" stroke="#3B2A22" stroke-width="3"/><rect x="74" y="30" width="52" height="8" fill="#E04848"/>',
+    crown: '<path d="M68 46L72 16 86 32 100 8 114 32 128 16 132 46Z" fill="#F9D56E" stroke="#3B2A22" stroke-width="3" stroke-linejoin="round"/><circle cx="100" cy="34" r="5" fill="#E04848"/><circle cx="82" cy="40" r="3.5" fill="#5B8DEF"/><circle cx="118" cy="40" r="3.5" fill="#5DBB4E"/>',
+    glass: '<g fill="rgba(255,255,255,.25)" stroke="#3B2A22" stroke-width="3.2"><circle cx="81" cy="86" r="12"/><circle cx="119" cy="86" r="12"/></g><path d="M93 86h14M69 84l-14-4M131 84l14-4" stroke="#3B2A22" stroke-width="3"/>',
+    scarf: '<path d="M64 118q36 16 72 0l4 12q-40 18-80 0z" fill="#E04848" stroke="#3B2A22" stroke-width="3" stroke-linejoin="round"/><path d="M118 126l6 26 12-4-8-24z" fill="#E04848" stroke="#3B2A22" stroke-width="3" stroke-linejoin="round"/><path d="M70 124l60 0" stroke="#fff" stroke-width="3" stroke-dasharray="6 6" opacity=".7"/>',
+    tie: '<g transform="translate(100 124)"><path d="M0 0l-16-9v18zM0 0l16-9v18z" fill="#8A6BD6" stroke="#3B2A22" stroke-width="3" stroke-linejoin="round"/><circle r="5" fill="#8A6BD6" stroke="#3B2A22" stroke-width="3"/></g>'
+  };
+  function petSVG(a, wear) {
+    const W = wear || {}, hw = (W.h ? PET_WEAR_SVG[W.h] || '' : '') + (W.f ? PET_WEAR_SVG[W.f] || '' : ''), nw = W.n ? PET_WEAR_SVG[W.n] || '' : '';
     const L = PET_LOOK[a] || PET_LOOK[0], c = L.c, b = L.b, d = L.d, ink = '#3B2A22', ln = `stroke="${ink}" stroke-width="3" stroke-linejoin="round"`;
     const dk = L.panda ? '#2D2D2D' : c;
     let ears = '', tail = '', back = '', extra = '', body2 = '';
@@ -8998,7 +9030,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       <g class="pe-bd"><ellipse cx="100" cy="164" rx="46" ry="42" fill="${L.panda ? '#fff' : c}" ${ln}/>${L.panda ? `<path d="M56 150 C70 134 130 134 144 150 L144 160 C130 146 70 146 56 160 Z" fill="#2D2D2D"/>` : ''}<ellipse cx="100" cy="172" rx="29" ry="27" fill="${bellyC}"/>${L.stripe ? `<path d="M58 160 h12 M58 176 h10 M142 160 h-12 M142 176 h-10" stroke="${d}" stroke-width="5" stroke-linecap="round"/>` : ''}${L.dino ? `<path d="M86 160 h28 M86 172 h28 M88 184 h24" stroke="#BFE0A0" stroke-width="3"/>` : ''}</g>
       <g class="pe-a1" transform="translate(58 158) rotate(24)"><g class="pe-ai">${arm}</g></g>
       <g class="pe-a2" transform="translate(142 158) rotate(-24)"><g class="pe-ai">${arm}</g></g>
-      <g class="pe-hd">${back}${ears}<circle cx="100" cy="84" r="48" fill="${L.peng ? c : L.panda ? '#fff' : c}" ${ln}/>${face}${extra}<ellipse cx="72" cy="104" rx="8" ry="5" fill="#FF9AA8" opacity=".65"/><ellipse cx="128" cy="104" rx="8" ry="5" fill="#FF9AA8" opacity=".65"/>${eyes}${nose}${mouth}${wh}</g>
+      ${nw}<g class="pe-hd">${back}${ears}<circle cx="100" cy="84" r="48" fill="${L.peng ? c : L.panda ? '#fff' : c}" ${ln}/>${face}${extra}<ellipse cx="72" cy="104" rx="8" ry="5" fill="#FF9AA8" opacity=".65"/><ellipse cx="128" cy="104" rx="8" ry="5" fill="#FF9AA8" opacity=".65"/>${eyes}${nose}${mouth}${wh}${hw}</g>
     </svg>`;
   }
 
@@ -9201,20 +9233,36 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     const hrs = (now - pet.t) / 36e5; pet.food = Math.max(0, pet.food - hrs * 4); pet.joy = Math.max(0, pet.joy - hrs * 3); pet.clean = Math.max(0, pet.clean - hrs * 2); pet.t = now;
     if (playToday().stars > 0 && pet.learnBonus !== today()) { pet.learnBonus = today(); pet.joy = Math.min(100, pet.joy + 25); setTimeout(() => say([['你今天有學習，小寵物好開心！']]), 600); }
     if (pet.q.d !== today()) pet.q = { d: today(), n: 0 };
+    pet.xp = pet.xp || 0; pet.own = pet.own || []; pet.wear = pet.wear || {};
+    if (!pet.task || pet.task.d !== today()) pet.task = { d: today(), feed: 0, play: 0, pat: 0, ok: 0, got: 0 };
     const save = () => store.set('pkPetData', pet);
+    const STG = [[0, '🌱 寶寶', .78], [30, '🌼 小可愛', .9], [90, '⭐ 好夥伴', 1], [180, '👑 超級夥伴', 1.12]];
+    const stg = () => { let i = 0; STG.forEach((x, k) => { if (pet.xp >= x[0]) i = k; }); return i; };
+    const addXp = n => { const a = stg(); pet.xp += n; save(); const b = stg(); if (b > a) setTimeout(() => { petGrow(b); }, 900); };
+    const petGrow = b => { say([[`哇！${pet.name}長大了，變成${STG[b][1].slice(2)}了！`]]); pkGood(); draw('jump'); const room = P.querySelector('.pet-room'); if (room) { const e = document.createElement('div'); e.className = 'pet-grow'; e.innerHTML = `<b>長大了！</b><span>${STG[b][1]}</span>`; room.appendChild(e); setTimeout(() => e.remove(), 2600); } };
+    const TASKS = [['feed', '🍖 餵食', 1], ['play', '🎾 陪玩', 1], ['pat', '🤲 摸摸', 1], ['ok', '❓ 答對題目', 2]];
+    const tdone = () => TASKS.every(([k, , n]) => pet.task[k] >= n);
+    const tick = k => { pet.task[k] = (pet.task[k] || 0) + 1; save(); };
     const mood = () => { const m = (pet.food + pet.joy + pet.clean) / 3; return m > 70 ? ['😄', '超開心'] : m > 40 ? ['🙂', '還不錯'] : ['😢', '需要照顧']; };
     const bar = (ic, v, c) => `<div class="pbar"><span>${ic}</span><i><b style="width:${v.toFixed(0)}%;background:${c}"></b></i></div>`;
     const draw = (anim) => {
       const [face, word] = mood();
       P.innerHTML = `<div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="回樂園">${pkBack}</button><span class="pk-pill">${face} ${pet.name || '我的小寵物'}</span><span class="pk-pill">⭐ <span id="pkBal">${pkBal()}</span></span></div>
         <div class="pet-room"><div class="pet-wall"></div><div class="pet-floor"></div>${pet.deco.map((d, i) => `<span class="pet-deco" data-i="${i}" style="left:${d.x}%;top:${d.y}%">${d.e}</span>`).join('')}
-          <button class="pet-me${anim === 'jump' ? ' jump' : ''}${pet.clean < 35 ? ' dirty' : ''}" id="petMe"><span class="pet-shadow"></span><span class="pet-body">${petSVG(pet.a)}</span>${pet.clean < 35 ? '<span class="pet-dirt">💨</span><span class="pet-mud" style="left:34%;top:62%"></span><span class="pet-mud" style="left:58%;top:74%"></span><span class="pet-mud" style="left:40%;top:30%"></span>' : ''}</button>
+          <button class="pet-me${anim === 'jump' ? ' jump' : ''}${pet.clean < 35 ? ' dirty' : ''}" id="petMe"><span class="pet-shadow"></span><span class="pet-body" style="width:${190 * STG[stg()][2]}px;height:${203 * STG[stg()][2]}px">${petSVG(pet.a, pet.wear)}</span>${pet.clean < 35 ? '<span class="pet-dirt">💨</span><span class="pet-mud" style="left:34%;top:62%"></span><span class="pet-mud" style="left:58%;top:74%"></span><span class="pet-mud" style="left:40%;top:30%"></span>' : ''}</button>
           <div class="pet-bubble" id="petBub">${pet.food < 35 ? '肚子好餓…' : pet.joy < 35 ? '陪我玩好不好？' : pet.clean < 35 ? '我想洗澡！' : `我${word}！點我問你一題喔`}</div></div>
-        <div class="pet-panel"><div class="pet-bars">${bar('🍖', pet.food, '#F7A35C')}${bar('💗', pet.joy, '#FF8FB1')}${bar('🫧', pet.clean, '#7CC4F5')}</div>
-          <div class="pet-acts"><button class="pk-btn" data-a="food">🍖 餵食</button><button class="pk-btn" data-a="toy" style="background:#FF8FB1;box-shadow:0 5px 0 #D9627F">🎾 玩耍</button><button class="pk-btn" data-a="bath" style="background:#5B8DEF;box-shadow:0 5px 0 #3F6FD8">🛁 洗澡</button><button class="pk-btn" data-a="deco" style="background:#B9A2F0;box-shadow:0 5px 0 #8C74C9">🏠 佈置</button></div>
-          <p class="rk-tip">每天學習，小寵物會更開心！點小寵物可以回答問題拿星星（每天 5 次）。佈置的東西可以用手指拖到想放的地方。</p></div><div class="pk-ask" id="pkAsk" hidden></div>`;
+        <div class="pet-panel"><div class="pet-stage">${(() => { const i = stg(), nx = STG[i + 1]; return `<b>${STG[i][1]}</b>${nx ? `<i><u style="width:${Math.min(100, (pet.xp - STG[i][0]) / (nx[0] - STG[i][0]) * 100).toFixed(0)}%"></u></i><small>再 ${nx[0] - pet.xp} 點長大</small>` : '<small>已經是最大的了！</small>'}`; })()}</div><div class="pet-task"><b>今天的任務</b>${TASKS.map(([k, n, c]) => `<span class="${pet.task[k] >= c ? 'ok' : ''}">${pet.task[k] >= c ? '✅' : '⬜'} ${n}${c > 1 ? ` ${Math.min(pet.task[k], c)}/${c}` : ''}</span>`).join('')}${tdone() ? (pet.task.got ? '<em>🎁 寶箱打開了，明天再來！</em>' : '<button class="pk-btn" id="petBox">🎁 打開寶箱</button>') : ''}</div><div class="pet-bars">${bar('🍖', pet.food, '#F7A35C')}${bar('💗', pet.joy, '#FF8FB1')}${bar('🫧', pet.clean, '#7CC4F5')}</div>
+          <div class="pet-acts"><button class="pk-btn" data-a="food">🍖 餵食</button><button class="pk-btn" data-a="toy" style="background:#FF8FB1;box-shadow:0 5px 0 #D9627F">🎾 玩耍</button><button class="pk-btn" data-a="bath" style="background:#5B8DEF;box-shadow:0 5px 0 #3F6FD8">🛁 洗澡</button><button class="pk-btn" data-a="deco" style="background:#B9A2F0;box-shadow:0 5px 0 #8C74C9">🏠 佈置</button><button class="pk-btn wide" data-a="wear" style="background:#F2B53A;box-shadow:0 5px 0 #C98A1E">👒 換裝</button></div>
+          <p class="rk-tip">每天學習，小寵物會更開心！點小寵物可以回答問題拿星星（每天 5 次）。佈置的東西可以用手指拖到想放的地方。用手指在小寵物身上滑一滑，可以摸摸牠！</p></div><div class="pk-ask" id="pkAsk" hidden></div>`;
       $('pkQuit').onclick = () => { save(); pkStop(); openPark(); };
-      $('petMe').onclick = () => { if (!busy) ask(); };
+      $('petMe').onclick = () => { if (petted) { petted = 0; return; } if (!busy) ask(); };
+      { const me = $('petMe'); let d = null, dist = 0, hT = 0;
+        me.onpointerdown = e => { if (busy) return; d = [e.clientX, e.clientY]; dist = 0; };
+        me.onpointermove = e => { if (!d) return; dist += Math.hypot(e.clientX - d[0], e.clientY - d[1]); d = [e.clientX, e.clientY];
+          if (dist > 50) { me.classList.add('happy', 'pat-ing'); if (Date.now() - hT > 260) { hT = Date.now(); const room = P.querySelector('.pet-room'), r0 = room.getBoundingClientRect(), h = document.createElement('span'); h.className = 'pet-fx up'; h.textContent = ['💗', '💕', '✨'][rand(0, 2)]; h.style.left = (e.clientX - r0.left - 12) + 'px'; h.style.top = (e.clientY - r0.top - 30) + 'px'; h.style.fontSize = '28px'; room.appendChild(h); setTimeout(() => h.remove(), 1500); tone([220 + rand(0, 60)], .05, 'sine'); } } };
+        const up = () => { if (d && dist > 50) { petted = 1; me.classList.remove('pat-ing'); setTimeout(() => me.classList.remove('happy'), 800); if ((pet.patN = (pet.patD === today() ? pet.patN || 0 : 0) + 1) <= 8) { pet.patD = today(); pet.joy = Math.min(100, pet.joy + 4); addXp(1); } const first = pet.task.pat < 1; tick('pat'); say([[pick(['好舒服喔！', '再摸摸我！', '我好喜歡你！'])]]); if (first) setTimeout(draw, 900); } d = null; };
+        me.onpointerup = up; me.onpointercancel = up; me.onpointerleave = up; }
+      if ($('petBox')) $('petBox').onclick = () => { pet.task.got = 1; pkEarn(3, 'pet', 3, 3); addXp(10); save(); pkGood(); say([['打開寶箱！送你三顆星星！']]); draw('jump'); const room = P.querySelector('.pet-room'); for (let i = 0; i < 10; i++) { const h = document.createElement('span'); h.className = 'pet-fx up'; h.textContent = ['⭐', '🌟', '✨', '🎉'][i % 4]; h.style.left = (40 + Math.random() * 70) + '%'; h.style.top = '45%'; h.style.fontSize = '30px'; h.style.animationDelay = (i * 80) + 'ms'; room.appendChild(h); setTimeout(() => h.remove(), 2200); } };
       P.querySelectorAll('.pet-acts button').forEach(b => b.onclick = () => { if (!busy) act(b.dataset.a); });
       const room = P.querySelector('.pet-room');
       room.querySelectorAll('.pet-deco').forEach(el => {
@@ -9226,21 +9274,29 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       });
       if (anim && anim !== 'jump') { busy = 1; P.querySelectorAll('.pet-acts button').forEach(b => b.disabled = true); petFx(P, anim, fxEm, () => { busy = 0; P.querySelectorAll('.pet-acts button').forEach(b => b.disabled = false); }); }
     };
-    let busy = 0, fxEm = '';
+    let busy = 0, fxEm = '', petted = 0;
     const shop = (type, cb) => {
       const L = PK_PET_SHOP.filter(x => x[3] === type);
       pkAsk(type === 'food' ? '🍖' : type === 'toy' ? '🎾' : '🏠', type === 'food' ? '要餵什麼？' : type === 'toy' ? '要玩什麼？' : '買什麼佈置房間？', `現在有 ⭐ ${pkBal()} 顆`, L.map(x => [`${x[0]} ⭐${x[1]}`, '', () => { if (pkBal() < x[1]) return pkAsk('⭐', `還差 ${x[1] - pkBal()} 顆星星`, '去闖關或學習就能拿到星星喔！', [['好', 'gray', () => {}]]); store.set('pkSpent', pkSpent() + x[1]); cb(x); }]).concat([['不要', 'gray', () => {}]]));
     };
+    const wardrobe = () => {
+      const L = PET_WEAR.map(([id, n, p, slot]) => { const own = pet.own.includes(id), on = pet.wear[slot] === id; return [`<span class="pet-wpic">${petSVG(pet.a, { [slot]: id })}</span>${n}<small>${on ? '✅ 穿著' : own ? '換上' : '⭐' + p}</small>`, on ? '' : 'gray', () => {
+        if (on) { delete pet.wear[slot]; save(); draw('jump'); return; }
+        if (!own) { if (pkBal() < p) return pkAsk('⭐', `還差 ${p - pkBal()} 顆星星`, '去闖關或學習就能拿到星星喔！', [['好', 'gray', () => {}]]); store.set('pkSpent', pkSpent() + p); pet.own.push(id); track('pet-wear', '寵物換裝'); }
+        pet.wear[slot] = id; save(); draw('jump'); say([['好看嗎？謝謝你！']]); pkGood(); }]; });
+      pkAsk(`<span class="pet-pick big">${petSVG(pet.a, pet.wear)}</span>`, '幫小寵物換裝', `現在有 ⭐ ${pkBal()} 顆・點穿著的可以脫下來`, L.concat([['好了', '', () => {}]]));
+    };
     const act = a => {
-      if (a === 'food') shop('food', x => { pet.food = Math.min(100, pet.food + (x[1] >= 2 ? 40 : 22)); save(); fxEm = x[0]; draw('eat'); say([['好好吃！謝謝你']]); pkGood(); });
-      if (a === 'toy') shop('toy', x => { pet.joy = Math.min(100, pet.joy + (x[1] >= 5 ? 40 : 25)); save(); fxEm = x[0]; draw('toy'); say([['好好玩！']]); pkGood(); });
-      if (a === 'bath') { pet.clean = 100; save(); draw('bath'); say([['洗得香香的！']]); pkGood(); }
+      if (a === 'wear') return wardrobe();
+      if (a === 'food') shop('food', x => { pet.food = Math.min(100, pet.food + (x[1] >= 2 ? 40 : 22)); tick('feed'); addXp(3); save(); fxEm = x[0]; draw('eat'); say([['好好吃！謝謝你']]); pkGood(); });
+      if (a === 'toy') shop('toy', x => { pet.joy = Math.min(100, pet.joy + (x[1] >= 5 ? 40 : 25)); tick('play'); addXp(3); save(); fxEm = x[0]; draw('toy'); say([['好好玩！']]); pkGood(); });
+      if (a === 'bath') { pet.clean = 100; addXp(2); save(); draw('bath'); say([['洗得香香的！']]); pkGood(); }
       if (a === 'deco') shop('deco', x => { pet.deco.push({ e: x[0], x: rand(6, 82), y: rand(8, 46) }); if (pet.deco.length > 12) pet.deco.shift(); pet.joy = Math.min(100, pet.joy + 10); save(); draw('jump'); pkGood(); });
     };
     const ask = () => {
       if (pet.q.n >= 5) { $('petBub').textContent = '今天的問題都答完了，明天再問你！'; say([['今天的問題都答完了，明天再問你']]); $('petMe').classList.remove('jump'); void $('petMe').offsetWidth; $('petMe').classList.add('jump'); return; }
       const q = pkQ(), o = q.opts(3); say(q.say);
-      pkAsk(`<span class="pet-pick big">${petSVG(pet.a)}</span>`, `小寵物想問你：${q.label}`, '答對送你 1 顆星星！', o.map(x => [x.h, '', () => { pkEarnQ(q.cat, x.ok); if (x.ok) { pet.q.n++; pet.joy = Math.min(100, pet.joy + 10); pkEarn(1, q.cat, 1, 1); save(); draw('jump'); say([['答對了！送你一顆星星']]); pkGood(); } else { save(); draw(); say([[`答案是${q.ans}，下次再試試`]]); pkBad(); } }]));
+      pkAsk(`<span class="pet-pick big">${petSVG(pet.a)}</span>`, `小寵物想問你：${q.label}`, '答對送你 1 顆星星！', o.map(x => [x.h, '', () => { pkEarnQ(q.cat, x.ok); if (x.ok) { pet.q.n++; pet.joy = Math.min(100, pet.joy + 10); pkEarn(1, q.cat, 1, 1); tick('ok'); addXp(4); save(); draw('jump'); say([['答對了！送你一顆星星']]); pkGood(); } else { save(); draw(); say([[`答案是${q.ans}，下次再試試`]]); pkBad(); } }]));
     };
     if (!pet.name) {
       save(); draw();
