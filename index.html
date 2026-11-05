@@ -1574,6 +1574,37 @@ html.wc-open body { overflow: hidden; }
 .pq-h b { background: #EAF2F8; color: #3E5C8A; }
 .pq-o { border: .3mm solid #DDE6EC; border-radius: 2.5mm; background: #FCFDFE; }
 .ps-ans { border-top: .3mm dashed #C9D4DE; }
+/* 認識我的好朋友 */
+.fr-enter { width: 100%; margin: -4px 0 14px; border: 0; border-radius: 26px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; text-align: left; background: #FFFDF8; color: var(--ink); box-shadow: 0 6px 16px rgba(70,60,40,.12), inset 0 0 0 1.5px var(--line); }
+.fr-enter:active { transform: translateY(3px); }
+.fr-faces { display: flex; flex: none; } .fr-faces svg { width: 46px; height: 46px; margin-left: -14px; background: #FCE7D8; border-radius: 50%; box-shadow: 0 0 0 3px #FFFDF8; } .fr-faces svg:first-child { margin-left: 0; } .fr-faces svg:nth-child(2) { background: #ECE6F8; } .fr-faces svg:nth-child(3) { background: #FFF3D1; } .fr-faces svg:nth-child(4) { background: #E1EEF8; }
+.fr-et { flex: 1; min-width: 0; display: flex; flex-direction: column; } .fr-et b { font-family: var(--f-round); font-weight: 400; font-size: 1.3rem; color: #3E8E8B; } .fr-et span { font-size: .85rem; color: var(--muted); font-weight: 700; line-height: 1.4; }
+.fr-go { flex: none; width: 40px; height: 40px; border-radius: 50%; background: #E2F1EC; display: grid; place-items: center; font-weight: 900; color: #3E8E8B; }
+.friends { position: fixed; inset: 0; z-index: 88; overflow-y: auto; background-color: var(--bg); background-image: linear-gradient(var(--dot) 1px, transparent 1px), linear-gradient(90deg, var(--dot) 1px, transparent 1px); background-size: 18px 18px; }
+.fr-in { max-width: 760px; margin: 0 auto; padding: max(18px, env(safe-area-inset-top)) 16px 40px; }
+.fr-h { margin: 8px 0 0; text-align: center; font-family: var(--f-round); font-weight: 400; font-size: clamp(2rem, 9vw, 2.8rem); color: var(--ink); } .fr-h span { color: #3E8E8B; }
+.fr-sub { text-align: center; margin: 4px 0 18px; color: var(--muted); font-weight: 700; }
+.fr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+.fr-card { border: 0; padding: 0 0 12px; border-radius: 22px; background: var(--surface); box-shadow: 0 6px 14px rgba(70,60,40,.12); overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 2px; font: inherit; color: var(--ink); }
+.fr-card .fr-art { width: 100%; height: 170px; display: grid; place-items: center; margin-bottom: 6px; }
+.fr-card .fr-svg { width: 140px; height: 168px; }
+.fr-card b { font-family: var(--f-round); font-weight: 400; font-size: 1.4rem; } .fr-card small { font-size: .8rem; font-weight: 900; color: #8A6400; background: #FFF3D1; border-radius: 99px; padding: 1px 10px; }
+.fr-card.talk { box-shadow: 0 0 0 4px #F2B53A, 0 8px 18px rgba(70,60,40,.16); }
+.fr-card.talk .fr-svg { animation: wcBounce .45s ease-in-out infinite alternate; }
+.fr-cell { display: flex; flex-direction: column; gap: 6px; }
+.fr-edit { align-self: center; border: 0; background: var(--surface); border-radius: 99px; padding: 6px 14px; font-weight: 900; font-size: .85rem; color: var(--muted); box-shadow: 0 2px 6px rgba(0,0,0,.08), inset 0 0 0 1.5px var(--line); min-height: 36px; }
+.fr-svg { background: none !important; box-shadow: none !important; border-radius: 0 !important; }
+.fr-name { position: fixed; inset: 0; z-index: 2; background: rgba(40,34,30,.5); display: grid; place-items: center; padding: 16px; }
+.fr-nc { width: min(340px, 100%); background: var(--surface); border-radius: 26px; padding: 16px 18px 18px; text-align: center; box-shadow: 0 16px 40px rgba(0,0,0,.25); animation: wcIn .3s ease; }
+.fr-nart .fr-svg { width: 110px; height: 132px; } .fr-nc h3 { margin: 4px 0 10px; font-size: 1.5rem; }
+.fr-nc input { width: 100%; font: inherit; font-family: var(--f-round); font-size: 1.6rem; text-align: center; padding: 10px; border-radius: 16px; border: 2px solid var(--line-deep); background: var(--bg); color: var(--ink); }
+.fr-nc .pk-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+.fr-faces svg { width: 34px; height: 34px; margin-left: -10px; } .fr-et b { font-size: 1.2rem; white-space: nowrap; } .fr-et span { font-size: .8rem; }
+#frOk { background: #3E8E8B; color: #fff; box-shadow: 0 5px 0 #2C6866; }
+.fr-h2 { margin: 28px 0 0; text-align: center; font-family: var(--f-round); font-weight: 400; font-size: 1.7rem; color: #C2414B; }
+.fr-card.fr-bad { box-shadow: 0 6px 14px rgba(70,60,40,.12), inset 0 0 0 2px #F4C1C1; position: relative; }
+.fr-card.fr-bad small { background: #FDE6E6; color: #A63D33; }
+.fr-card.fr-bad.no::after { content: "🙅 不要！"; position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%) rotate(-8deg); background: #C2414B; color: #fff; font-weight: 900; font-size: 1.3rem; padding: 6px 14px; border-radius: 14px; box-shadow: 0 4px 0 #8A2A2A; animation: wcPop .4s ease; }
 /* ===== v50 新版面：吉卜力水彩風（方格紙、雙色標題、書架卡片） ===== */
 :root:not([data-theme="dark"]) {
   --bg: #F7F1E3; --dot: rgba(120,150,170,.10); --surface: #FFFDF8; --ink: #2F3B52; --muted: #56627A;
@@ -1745,6 +1776,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       <span class="yx-enter-text"><span class="yx-pill">🎡 用星星換遊戲</span><b>星星樂園</b><span>泡泡、接水果、打地鼠、貼紙樂園</span><span class="yx-go">進去玩 →</span></span>
       <span class="yx-enter-art" aria-hidden="true" style="font-size:72px;line-height:1;display:grid;place-items:center">🎡</span>
     </button>
+    <button class="fr-enter" id="frEnter" aria-label="認識我的好朋友"><span class="fr-faces" id="frFaces"></span><span class="fr-et"><b>認識我的好朋友</b><span>點一下聽他們自我介紹，還可以幫他們取名字</span></span><span class="fr-go" aria-hidden="true">→</span></button>
 
 
     <div class="groups">
@@ -3098,11 +3130,11 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   const scnMix = (a, b, t) => { const h = x => [1, 3, 5].map(i => parseInt(x.slice(i, i + 2), 16)); const A = h(a), B = h(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
   // [衣服, 頭髮, 髮型, 比例]  髮型：0 男孩 1 綁辮子女孩 2 長髮女生 3 短髮男生 4 爺爺 5 奶奶 6 陌生人 7 寶寶
   const SCN_LOOK = {
-    b1: ['#E8857A', '#2E2622', 0, 1], b2: ['#F5DE9A', '#8A5A3A', 0, 1], b3: ['#8FC27E', '#2E2622', 0, 1],
-    g1: ['#B4A0E0', '#3A2A22', 1, 1], g2: ['#86C3E3', '#F2C04E', 1, 1], g3: ['#F3A3BC', '#7A4A30', 1, 1],
+    b1: ['#2E3F66', '#3A2A22', 0, 1], b2: ['#F5DE9A', '#8A5A3A', 0, 1], b3: ['#8FC27E', '#2E2622', 0, 1],
+    g1: ['#F6B8C0', '#5A3A28', 1, .9], g2: ['#86C3E3', '#F2C04E', 1, 1], g3: ['#F3A3BC', '#7A4A30', 1, 1],
     sis: ['#F3A3BC', '#6A4630', 1, .82], bro: ['#F5DE9A', '#4A3326', 0, .82],
-    mom: ['#E8768A', '#5A3424', 2, 1.32], dad: ['#6F94D6', '#3A3036', 3, 1.38], tch: ['#86BFB0', '#3A2A22', 2, 1.32],
-    gpa: ['#A9B5BF', '#DADADA', 4, 1.3], gma: ['#C3A2D8', '#DADADA', 5, 1.28], man: ['#6B7380', '#3A3036', 6, 1.38], baby: ['#F5DE9A', '#6A4630', 7, .7]
+    mom: ['#E0457A', '#3A2A22', 2, 1.32], dad: ['#6F94D6', '#3A3036', 3, 1.38], tch: ['#86BFB0', '#3A2A22', 2, 1.32],
+    gpa: ['#A9B5BF', '#DADADA', 4, 1.3], gma: ['#C3A2D8', '#DADADA', 5, 1.28], man: ['#6B7380', '#3A3036', 6, 1.38], jin: ['#C2417A', '#F2C04E', 2, 1.3], ma: ['#8A6BA8', '#C9C9C9', 5, 1.24], niu: ['#7A6A58', '#3A3036', 3, 1.36], baby: ['#F5DE9A', '#6A4630', 7, .7]
   };
   // 動作：a=兩隻手的手掌位置、l=兩隻腳、r=身體傾斜
   const SCN_POSE = {
@@ -3160,15 +3192,19 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   const scnHand = (x, y) => `<circle cx="${x}" cy="${y}" r="5.5" fill="${SCN_SKIN}" stroke="${SCN_INK}" stroke-width="2.4"/>`;
   // 🧒 固定角色：每個同學都有自己的樣子（康康、樂樂、小安、米米、阿哲、朵朵，還有漂亮媽媽和有氣質的老師）
   const SCN_CHAR = {
-    b1: { n: '康康', hair: 'kang', fit: 'stripe', skin: '#FFDCC4', legs: '#4A6FA5' },
-    g1: { n: '樂樂', hair: 'lele', fit: 'collar', skin: '#FFE0CC', legs: '#FFE0CC', sock: '#fff' },
+    b1: { n: '寶哥', hair: 'bao', fit: 'bearvest', skin: '#FFDCC4', legs: '#D9C49A', sleeve: '#2E3F66', shoe: '#F4F4F4', hood: '#D8C29A' },
+    g1: { n: '筑筑', hair: 'zhu', fit: 'pinkhood', skin: '#FFE0CC', legs: '#2E2A2E', sleeve: '#F6B8C0', shoe: '#7FB2E5', sock: '#E8B23A', hood: '#F6B8C0' },
     b2: { n: '小安', hair: 'an', fit: 'overall', skin: '#FFDCC4', legs: '#5C7FB8' },
     g2: { n: '米米', hair: 'mimi', fit: 'pinafore', skin: '#FFE3D0', legs: '#FFE3D0', sock: '#FF9DB8' },
     b3: { n: '阿哲', hair: 'zhe', fit: 'hoodie', skin: '#D9A57A', legs: '#3F5A7A' },
     g3: { n: '朵朵', hair: 'duo', fit: 'bow', skin: '#FFE0CC', legs: '#FFE0CC', sock: '#fff' },
-    mom: { n: '媽媽', hair: 'mom', fit: 'momdress', skin: '#FFE0CC', legs: '#FFE0CC', heel: '#C2414B' },
+    mom: { n: '媽媽', hair: 'mom2', fit: 'polka', skin: '#FFE0CC', legs: '#2E2A2E', sleeve: '#A9AEB8', shoe: '#F6B8C8', sock: '#E8B23A' },
     tch: { n: '林老師', hair: 'tch', fit: 'cardigan', skin: '#FFDCC4', legs: '#5B6475' },
-    dad: { n: '爸爸', hair: 'dad', fit: 'tie', skin: '#F6CFAE', legs: '#3D4652' }
+    dad: { n: '爸爸', hair: 'dad', fit: 'tie', skin: '#F6CFAE', legs: '#3D4652' },
+    // ⚠️ 陌生人（不能改名）：教小朋友不跟陌生人走、不拿陌生人的東西
+    jin: { n: '金阿姨', hair: 'jin', fit: 'fur', skin: '#FFE0CC', legs: '#FFE0CC', heel: '#2E2622', bad: 1 },
+    ma: { n: '馬婆婆', hair: 'ma', fit: 'shawl', skin: '#F3D2BC', legs: '#6B5A7A', bad: 1 },
+    niu: { n: '牛叔叔', hair: 'niu', fit: 'coat', skin: '#EEC6A4', legs: '#4A4038', bad: 1 }
   };
   const scnFitBody = (C, shirt, dress) => {
     const I = SCN_INK, st = `stroke="${I}" stroke-width="2.6" stroke-linejoin="round"`, f = C.fit;
@@ -3181,6 +3217,12 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     if (f === 'bow') return frock(shirt) + `<path d="M0 -60l-8-5v10zM0 -60l8-5v10z" fill="#E8577A" stroke="${I}" stroke-width="1.6"/><circle cx="0" cy="-60" r="2.4" fill="#E8577A" stroke="${I}" stroke-width="1.4"/><path d="M-20 -30h40" stroke="#fff" stroke-width="2.4" stroke-dasharray="3 3" opacity=".8"/>`;
     if (f === 'momdress') return `<path d="M-14 -62h28l12 37h-52z" fill="${shirt}" ${st}/><path d="M-13 -46h26" stroke="${scnMix(shirt, '#7A2E2E', .3)}" stroke-width="3.4"/><g fill="#FFF3C4" stroke="${I}" stroke-width=".8">${[-7, -3.5, 0, 3.5, 7].map((x, i) => `<circle cx="${x}" cy="${-60 + Math.abs(i - 2) * -1.2 + 3}" r="1.7"/>`).join('')}</g><path d="M-14 -34q24 6 38 9" stroke="#fff" stroke-width="2" opacity=".5" fill="none"/>`;
     if (f === 'cardigan') return `<rect x="-16" y="-63" width="32" height="38" rx="10" fill="#FFFDF5" ${st}/><path d="M-6 -63h-8q-2 0-2 4v30q0 4 4 4h6zM6 -63h8q2 0 2 4v30q0 4-4 4h-6z" fill="${shirt}" stroke="${I}" stroke-width="2.2" stroke-linejoin="round"/><circle cx="-8" cy="-50" r="1.4" fill="${I}"/><circle cx="-8" cy="-40" r="1.4" fill="${I}"/><rect x="5" y="-54" width="10" height="6" rx="1.5" fill="#fff" stroke="${I}" stroke-width="1.2"/><path d="M-4 -60q4 4 8 0" fill="none" stroke="#C7A6F5" stroke-width="2"/>`;
+    if (f === 'bearvest') return `<rect x="-16" y="-63" width="32" height="38" rx="10" fill="#2E3F66" ${st}/><path d="M-15 -60q15-6 30 0v30q0 6-6 6h-18q-6 0-6-6z" fill="#F1E6CF" ${st}/><g stroke="#D9CBAE" stroke-width="1.6"><path d="M-14 -50h28M-14 -40h28M-14 -31h28"/></g><path d="M0 -60v36" stroke="${I}" stroke-width="1.6"/><path d="M-6 -46l3-3 3 3 3-3" fill="none" stroke="#2E3F66" stroke-width="1.6"/>`;
+    if (f === 'pinkhood') return `<rect x="-16" y="-63" width="32" height="30" rx="10" fill="#F6B8C0" ${st}/><path d="M-13 -60q13-5 26 0v24h-26z" fill="#F4ECDC" ${st}/><path d="M-13 -44h26v8h-26z" fill="#D8C2A4"/><path d="M0 -60v24" stroke="${I}" stroke-width="1.4"/><path d="M-17 -36h34l5 13h-44z" fill="#F7B5C8" ${st}/><path d="M-20 -24h40" stroke="#fff" stroke-width="1.6" opacity=".7"/>`;
+    if (f === 'polka') return `<rect x="-16" y="-63" width="32" height="34" rx="10" fill="#A9AEB8" ${st}/><path d="M-15 -62h30v26q0 4-4 4h-22q-4 0-4-4z" fill="#E0457A" ${st}/><g fill="#fff">${[[-10, -55], [-2, -57], [7, -55], [-7, -47], [3, -48], [11, -45], [-11, -39], [-2, -39], [8, -38]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2"/>`).join('')}</g><path d="M0 -62v30" stroke="${I}" stroke-width="1.4"/><path d="M-12 -62l26 34" stroke="#F2C2B0" stroke-width="2.6"/><path d="M-16 -32h32l6 30h-44z" fill="#6E95C4" ${st}/><path d="M-20 -4q4 3 8 0t8 0 8 0 8 0 8 0" fill="none" stroke="#E4EEF8" stroke-width="1.6"/><path d="M4 -30v26" stroke="#5A7FAE" stroke-width="1.4"/><ellipse cx="16" cy="-27" rx="7" ry="6" fill="#F2C2B0" ${st}/>`;
+    if (f === 'fur') return `<path d="M-14 -62h28l12 37h-52z" fill="${shirt}" ${st}/><path d="M-15 -64q15 10 30 0q4 6-2 10q-13 6-26 0q-6-4-2-10z" fill="#F4EDE4" ${st}/><g fill="#6B3A28" opacity=".55"><circle cx="-8" cy="-44" r="2"/><circle cx="4" cy="-38" r="2.4"/><circle cx="10" cy="-48" r="1.8"/><circle cx="-12" cy="-32" r="2.2"/><circle cx="14" cy="-30" r="2"/></g><rect x="12" y="-48" width="13" height="11" rx="3" fill="#2E2622" stroke="${I}" stroke-width="1.6"/><path d="M15 -48q3.5-6 7 0" fill="none" stroke="#F5C542" stroke-width="1.6"/>`;
+    if (f === 'shawl') return `<path d="M-15 -62h30l9 37h-48z" fill="${shirt}" ${st}/><path d="M-17 -62q17 20 34 0l2 10q-19 18-38 0z" fill="#B88A5A" ${st}/><path d="M-6 -46l-3 9M0 -44v9M6 -46l3 9" stroke="#8A6040" stroke-width="1.6" stroke-linecap="round"/><path d="M-20 -30h40" stroke="${scnMix(shirt, '#2E2622', .3)}" stroke-width="3"/>`;
+    if (f === 'coat') return `<path d="M-17 -63h34v40h-34z" fill="${shirt}" ${st}/><path d="M-10 -63l10 14 10-14" fill="#E9E1D2" stroke="${I}" stroke-width="2"/><path d="M0 -49v26" stroke="${I}" stroke-width="1.8"/><circle cx="-4" cy="-42" r="1.6" fill="${I}"/><circle cx="-4" cy="-32" r="1.6" fill="${I}"/><path d="M-17 -40h8M9 -40h8" stroke="${scnMix(shirt, '#2E2622', .3)}" stroke-width="3"/>`;
     if (f === 'tie') return tee + `<path d="M-8 -63l8 8 8-8" fill="#fff" stroke="${I}" stroke-width="2"/><path d="M0 -56l-3 4 3 14 3-14z" fill="#D9574A" stroke="${I}" stroke-width="1.4"/>`;
     return dress ? frock(shirt) : tee;
   };
@@ -3195,6 +3237,12 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     if (h === 'duo') { back = `<path d="M-25 -94q-4 24 1 32h48q5-8 1-32z" fill="${hair}" ${st}/>`; front = `<path d="M-23 -84q0-28 23-28t23 28q-3-8-5-12q-18 3-36 0q-2 4-5 12z" fill="${hair}" ${st}/><g transform="translate(15 -108) rotate(15)"><path d="M0 0l-12-7v14zM0 0l12-7v14z" fill="#FF7FA6" stroke="${I}" stroke-width="1.8" stroke-linejoin="round"/><circle r="3" fill="#FF7FA6" stroke="${I}" stroke-width="1.6"/></g>`; }
     if (h === 'mom') { back = `<path d="M-24 -92c-7 14-4 22-11 34c8 5 15 2 19-3h32c4 5 11 8 19 3c-7-12-4-20-11-34z" fill="${hair}" ${st}/>`; front = `<path d="M-23 -82q-1-30 25-30q21 2 20 26q-10-15-27-12q-10 3-18 16z" fill="${hair}" ${st}/><path d="M6 -110q-6 8-4 16" fill="none" stroke="${scnMix(hair, '#FFFFFF', .25)}" stroke-width="2" stroke-linecap="round"/>`; extra = `<circle cx="-22" cy="-76" r="2.6" fill="#F5C542" stroke="${I}" stroke-width="1"/><circle cx="22" cy="-76" r="2.6" fill="#F5C542" stroke="${I}" stroke-width="1"/><path d="M-13 -92l-3-2.5M-11 -93.5l-1.5-3M13 -92l3-2.5M11 -93.5l1.5-3" stroke="${I}" stroke-width="1.4" stroke-linecap="round"/>`; }
     if (h === 'tch') { back = `<circle cx="-15" cy="-70" r="9" fill="${hair}" ${st}/>`; front = `<path d="M-22 -86q0-26 22-26t22 26q-6-14-20-14q-10 0-12 6q-6-2-12 8z" fill="${hair}" ${st}/>`; extra = `<g fill="none" stroke="${I}" stroke-width="1.6"><rect x="-14.5" y="-92" width="11" height="8" rx="3"/><rect x="3.5" y="-92" width="11" height="8" rx="3"/><path d="M-3.5 -88h7"/></g><circle cx="-22" cy="-77" r="2" fill="#fff" stroke="${I}" stroke-width="1"/><circle cx="22" cy="-77" r="2" fill="#fff" stroke="${I}" stroke-width="1"/>`; }
+    if (h === 'bao' || h === 'zhu') { const hc = C.hood, ear = h === 'bao' ? `<circle cx="-17" cy="-110" r="7" fill="${hc}" ${st}/><circle cx="17" cy="-110" r="7" fill="${hc}" ${st}/><circle cx="-17" cy="-110" r="3" fill="${scnMix(hc, '#8A6040', .3)}"/><circle cx="17" cy="-110" r="3" fill="${scnMix(hc, '#8A6040', .3)}"/>` : `<path d="M-20 -104l-4-12 12 5z" fill="${hc}" ${st}/><path d="M20 -104l4-12-12 5z" fill="${hc}" ${st}/>`;
+      back = ear + `<circle cx="0" cy="-87" r="27" fill="${hc}" ${st}/>`; front = `<path d="M-20 -86q0-24 20-24t20 24q-6-10-14-11q-4 6-8 4q-6 3-8-2q-6 3-10 9z" fill="${hair}" ${st}/><path d="M-24 -80q-2-34 24-34t24 34" fill="none" stroke="${hc}" stroke-width="7" stroke-linecap="round"/><path d="M-24 -80q-2-34 24-34t24 34" fill="none" stroke="${I}" stroke-width="1.4" opacity=".5"/>`; }
+    if (h === 'mom2') { back = `<path d="M-24 -92c-8 16-6 28-14 40c8 5 16 4 21-2l2-14h30l2 14c5 6 13 7 21 2c-8-12-6-24-14-40z" fill="${hair}" ${st}/>`; front = `<path d="M-23 -82q-1-30 25-30q21 2 20 26q-9-13-24-12q-12 2-21 16z" fill="${hair}" ${st}/><path d="M-20 -90q-6 6-6 14M22 -88q5 6 4 14" fill="none" stroke="${hair}" stroke-width="3" stroke-linecap="round"/>`; extra = `<path d="M-13 -92l-3-2.5M-11 -93.5l-1.5-3M13 -92l3-2.5M11 -93.5l1.5-3" stroke="${I}" stroke-width="1.4" stroke-linecap="round"/><g fill="#C98A5A" opacity=".6"><circle cx="-14" cy="-82" r=".9"/><circle cx="-11" cy="-80" r=".9"/><circle cx="14" cy="-82" r=".9"/><circle cx="11" cy="-80" r=".9"/></g>`; }
+    if (h === 'jin') { back = `<g fill="${hair}" ${st}>${[[-24, -96, 11], [-27, -80, 10], [-22, -66, 9], [24, -96, 11], [27, -80, 10], [22, -66, 9]].map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}"/>`).join('')}</g>`; front = `<path d="M-23 -86q0-28 23-28t23 28q-10-12-24-10q-12 0-22 10z" fill="${hair}" ${st}/><path d="M-26 -104q26-14 52 0l-4 6q-22-10-44 0z" fill="#2E2622"/><circle cx="16" cy="-108" r="4" fill="#E04848"/>`; extra = `<g><rect x="-17" y="-94" width="15" height="10" rx="4" fill="#2E2622" stroke="${I}" stroke-width="1.6"/><rect x="2" y="-94" width="15" height="10" rx="4" fill="#2E2622" stroke="${I}" stroke-width="1.6"/><path d="M-2 -90h4" stroke="${I}" stroke-width="1.6"/><path d="M-13 -92l4-1" stroke="#fff" stroke-width="1.4" opacity=".6"/></g><circle cx="-22" cy="-76" r="3" fill="#F5C542" stroke="${I}" stroke-width="1"/><circle cx="22" cy="-76" r="3" fill="#F5C542" stroke="${I}" stroke-width="1"/>`; }
+    if (h === 'ma') { back = `<circle cx="0" cy="-112" r="10" fill="${hair}" ${st}/>`; front = `<path d="M-22 -86q0-26 22-26t22 26q-12-14-22-12q-10-2-22 12z" fill="${hair}" ${st}/><path d="M-6 -118l12 4" stroke="#B88A5A" stroke-width="2.4" stroke-linecap="round"/>`; extra = `<path d="M-14 -96l7 2M14 -96l-7 2" stroke="${I}" stroke-width="2.2" stroke-linecap="round"/><circle cx="17" cy="-80" r="1.8" fill="#8A5A3A"/><path d="M-12 -86q4 2 7 0M5 -86q4 2 7 0" fill="none" stroke="${scnMix(C.skin, '#8A5A3A', .5)}" stroke-width="1.2"/>`; }
+    if (h === 'niu') { front = `<path d="M-22 -90q2-20 22-20t22 20z" fill="${hair}" ${st}/><path d="M-30 -98h60l-4 5h-52z" fill="#4A4038" ${st}/><path d="M-20 -98q0-20 20-20t20 20z" fill="#5A4C40" ${st}/><path d="M-18 -103h36" stroke="#C9A06A" stroke-width="3"/>`; extra = `<g><rect x="-16" y="-93" width="14" height="9" rx="3" fill="#2E2622" stroke="${I}" stroke-width="1.6"/><rect x="2" y="-93" width="14" height="9" rx="3" fill="#2E2622" stroke="${I}" stroke-width="1.6"/><path d="M-2 -89h4" stroke="${I}" stroke-width="1.6"/></g><path d="M-10 -80q5-4 10-1q5-3 10 1q-4 3-10 1q-6 2-10-1z" fill="#3A3036"/>`; }
     if (h === 'dad') { front = `<path d="M-22 -88q2-24 24-24q20 0 20 22q-6-10-18-12q-4 6-14 6q-8 0-12 8z" fill="${hair}" ${st}/>`; extra = `<path d="M-6 -71q6 3 12 0" stroke="${scnMix(hair, '#FFDCC4', .45)}" stroke-width="3" stroke-linecap="round" opacity=".5"/>`; }
     let face = scnFace(m);
     if (h === 'mom') face = face.replace(/fill="#C2414B"/g, 'fill="#E0525E"').replace('M-6 -77q6 5 12 0"', 'M-6 -77q6 5 12 0" ').replace(/<path d="M-6 -77q6 5 12 0" fill="none" stroke="[^"]+"/, '<path d="M-6 -77q6 5 12 0" fill="none" stroke="#D9485A"');
@@ -3203,8 +3251,8 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   function scnPerson(look, x, y, pose, mood, flip) {
     const [shirt, hair, type, k] = SCN_LOOK[look] || SCN_LOOK.b1, P = SCN_POSE[pose] || SCN_POSE.stand, I = SCN_INK, C = SCN_CHAR[look];
     const dress = type === 1 || type === 2 || type === 5, pants = C ? C.legs : type === 4 ? '#6B7785' : type === 6 ? '#3D4652' : '#4A6FA5';
-    const head = mm => C ? scnHead2(C, hair, mm) : scnHead(hair, type, mm), shoe = C && (C.sock || C.heel) ? (C.heel || '#5A4A44') : I, hand = (hx, hy) => C ? `<circle cx="${hx}" cy="${hy}" r="5.5" fill="${C.skin}" stroke="${SCN_INK}" stroke-width="2.4"/>` : scnHand(hx, hy);
-    const sleeve = C && C.fit === 'cardigan' ? shirt : C && C.fit === 'pinafore' ? '#fff' : shirt;
+    const head = mm => C ? scnHead2(C, hair, mm) : scnHead(hair, type, mm), shoe = C && C.shoe ? C.shoe : C && (C.sock || C.heel) ? (C.heel || '#5A4A44') : I, hand = (hx, hy) => C ? `<circle cx="${hx}" cy="${hy}" r="5.5" fill="${C.skin}" stroke="${SCN_INK}" stroke-width="2.4"/>` : scnHand(hx, hy);
+    const sleeve = C && C.sleeve ? C.sleeve : C && C.fit === 'pinafore' ? '#fff' : shirt;
     let s = '';
     if (P.lie) {
       return `<g transform="translate(${x} ${y}) scale(${flip ? -k : k} ${k})"><rect x="-58" y="-26" width="104" height="26" rx="12" fill="#9FD3F5" stroke="${I}" stroke-width="2.6"/><g transform="translate(46 -8) rotate(-90)">${head('sleepy')}</g></g>`;
@@ -3398,7 +3446,12 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   const lvPool = bank => age === 'small' ? bank.filter(x => x.lv === 1) : bank;
   /* ---------- 進階版題庫 ---------- */
   const SAFETY = [
-    { sc: 'street|b1 96 stand plain|man 214 give smile f|e 🍬 162 106 24', e: '🍬', q: '不認識的人說要給你糖果，叫你跟他走，怎麼辦？', a: [['🙅', '說不要，去找爸媽'], ['🍬', '跟他走'], ['🤐', '不跟爸媽說']], lv: 1 },
+    { sc: 'street|b1 96 stand plain|jin 214 give smile f|e 🍬 162 106 24', e: '🍬', q: '不認識的人說要給你糖果，叫你跟他走，怎麼辦？', a: [['🙅', '說不要，去找爸媽'], ['🍬', '跟他走'], ['🤐', '不跟爸媽說']], lv: 1 },
+    { sc: 'park|g1 100 stand plain|jin 214 give smile f|e 🧸 168 110 30', e: '🧸', q: '金阿姨是不認識的人，她說要帶你去買玩具，爸媽不知道，怎麼辦？', a: [['🙅', '說不要，馬上去找爸媽'], ['🧸', '跟她去買玩具'], ['🤫', '偷偷去，不告訴爸媽']], why: '不認識的人說要給你東西或帶你去哪裡，都要說不要，馬上告訴爸媽。', lv: 1 },
+    { sc: 'street|b2 100 stand surprise|ma 214 reach smile f|e 🏫 290 50 34', e: '👵', q: '馬婆婆說：「你媽媽叫我來接你。」可是你不認識她，怎麼辦？', a: [['🏫', '不跟她走，去告訴老師'], ['🚶', '跟她走'], ['🍭', '先拿她的糖果']], why: '爸媽如果請別人來接，會先告訴老師。不認識的人說是爸媽叫的，也不能跟他走。', lv: 1 },
+    { sc: 'street|b3 96 stand plain|niu 214 reach smile f|e 🚗 284 166 56|e 🐶 172 66 24', e: '🚗', q: '牛叔叔說他的小狗不見了，要你上車幫忙找，怎麼辦？', a: [['🙅', '說不要，跑到大人多的地方'], ['🚗', '上車幫他找'], ['🗣️', '把家裡地址告訴他']], why: '大人需要幫忙會找大人，不會找小朋友。不認識的人叫你上車，一定要說不要，趕快跑開。', lv: 1 },
+    { sc: 'park|g2 100 stand plain|niu 214 hand smile f|e ❓ 168 66 26', e: '🏠', q: '牛叔叔問你：「你家住在哪裡？爸媽在家嗎？」要怎麼說？', a: [['🙅', '不告訴他，去找爸媽'], ['🏠', '告訴他家裡地址'], ['📱', '告訴他爸媽電話']], why: '家裡的地址、電話、爸媽在不在家，都不能告訴不認識的人。' },
+    { sc: 'store|g3 100 stand plain|ma 214 give smile f|e 🍬 162 106 24', e: '🍬', q: '馬婆婆拿糖果給你，說：「不要跟爸媽說喔。」要怎麼做？', a: [['🙅', '不拿，馬上告訴爸媽'], ['🍬', '拿了偷偷吃'], ['🤐', '答應她不說']], why: '叫你「不要告訴爸媽」的事，一定要告訴爸媽。不拿不認識的人給的東西。' },
     { sc: 'store|g2 160 cry cry|e ❓ 204 60 26', e: '🏬', q: '在百貨公司和爸媽走散了，怎麼辦？', a: [['🧍', '站在原地或找服務台'], ['🏃', '到處亂跑'], ['🚪', '自己走出去']], lv: 1 },
     { sc: 'pool|g1 110 stand plain|e 🛟 230 176 40', e: '🩱', q: '有人要碰你泳衣蓋住的地方，怎麼辦？', a: [['🙅', '大聲說不要，告訴爸媽'], ['🤫', '保守秘密'], ['😶', '不敢說']], why: '泳衣蓋住的地方是你的身體隱私，誰都不可以碰，一定要告訴爸媽', lv: 1 },
     { sc: 'room|e 🛗 214 116 116|b2 100 stand plain', e: '🛗', q: '坐電梯的時候，要怎麼做？', a: [['🧍', '站好不亂按'], ['🤸', '跳來跳去'], ['✋', '手放門縫']], lv: 1 },
@@ -3912,7 +3965,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     { sc: 'street|b1 120 stand smile|e 🎒 98 146 22|mom 200 stand smile f|e 🚦 290 70 36', e: '🚸', q: '上學過馬路要走哪裡？', a: [['🦓', '斑馬線'], ['🚗', '車子中間'], ['🌳', '隨便穿過去']], why: '走斑馬線，看清楚紅綠燈和車子' },
     { sc: 'street|b1 120 think plain|e 🚦 250 80 50', e: '🚦', q: '小綠人在閃，要怎麼做？', a: [['🚶', '還沒過就等下一次'], ['🏃', '用力衝過去'], ['💃', '在馬路中間跳舞']], why: '小綠人閃了，代表快變紅燈，等下一次比較安全' },
     { sc: 'street|g2 130 stand sad|e 🏫 262 120 60|e ⏰ 172 60 24', e: '🧍', q: '放學了，家人還沒來接，要怎麼做？', a: [['🏫', '在學校等，告訴老師'], ['🚶', '跟陌生人走'], ['🏃', '自己跑出去找']], why: '待在學校，請老師幫忙聯絡家人' },
-    { sc: 'street|b1 96 stand plain|man 214 give smile f|e 🍬 162 106 24|e 🏫 290 50 34', e: '🍬', q: '陌生人在校門口說要給你糖果，要怎麼做？', a: [['🙅', '說不要，趕快走開'], ['🍬', '拿了跟他走'], ['🤝', '把名字告訴他']], why: '不拿陌生人的東西，告訴老師或家人' },
+    { sc: 'street|b1 96 stand plain|niu 214 give smile f|e 🍬 162 106 24|e 🏫 290 50 34', e: '🍬', q: '陌生人在校門口說要給你糖果，要怎麼做？', a: [['🙅', '說不要，趕快走開'], ['🍬', '拿了跟他走'], ['🤝', '把名字告訴他']], why: '不拿陌生人的東西，告訴老師或家人' },
     { sc: 'class|b1 100 stand smile|tch 240 point smile f|e ❓ 150 56 26', e: '📖', q: '上國語課時，桌上要放什麼？', a: [['📕', '國語課本'], ['🧸', '玩具熊'], ['🍪', '餅乾']], why: '上什麼課就拿什麼課本出來' },
     { sc: 'class|g1 100 stand smile|tch 240 point smile f|e 🔢 160 64 30', e: '🧮', q: '上數學課時，要拿出什麼？', a: [['🔢', '數學課本'], ['🎨', '水彩'], ['⚽', '足球']], why: '照課表拿出要上的課本' },
     { sc: 'class|g1 110 stand smile|e 🖍️ 186 176 24 30|e 🖍️ 214 172 24 -30|e 📦 256 170 30', e: '🖍️', q: '用完蠟筆，要怎麼做？', a: [['📦', '收回盒子裡'], ['🏝️', '丟在地上'], ['🗑️', '丟進垃圾桶']], why: '用完收好，下次才找得到' },
@@ -8326,7 +8379,64 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     PK_STK_TASK.forEach(t => { if (!pkOwned().includes(t.e)) store.set('pkOwn', pkOwned().concat(t.e)); });
     draw(); track('park-sticker-open', '貼紙樂園');
   }
+  /* ---------- 🧒 認識我的好朋友：點角色會自我介紹 ---------- */
+  const FRIENDS = [
+    ['b1', '寶哥', '勇敢、愛跑跳', '#FCE7D8', n => `我是${n}！我最喜歡跑步，臉上的 OK 繃是踢足球留下的勳章喔！`],
+    ['g1', '筑筑', '溫柔、愛畫畫', '#ECE6F8', n => `我是${n}，我喜歡畫畫，紫色髮箍是我的幸運物。`],
+    ['b2', '小安', '聰明、愛看書', '#FFF3D1', n => `我是${n}，我最愛看書，有不會的問題可以問我！`],
+    ['g2', '米米', '活潑、愛唱歌', '#E1EEF8', n => `我是${n}！我愛唱歌，我們一起唱首歌吧！`],
+    ['b3', '阿哲', '運動健將', '#DDF0E3', n => `我是${n}，我是運動健將，戴上頭帶就充滿力量！`],
+    ['g3', '朵朵', '害羞、很有禮貌', '#FBE1EA', n => `我是${n}，我有一點害羞，可是我會說請、謝謝、對不起。`],
+    ['mom', '媽媽', '漂亮又溫柔', '#FCE3EE', n => `我是${n}，我最愛你們了，有什麼事都可以跟我說。`],
+    ['tch', '林老師', '有氣質的老師', '#DAF0F1', n => `我是${n}，歡迎來到動動腦小學堂，我們一起學習吧！`],
+    ['dad', '爸爸', '可靠的爸爸', '#E1EEF8', n => `我是${n}，週末我們一起去公園玩吧！`]
+  ];
+  const FR_BAD = [
+    ['jin', '金阿姨', '會說要帶你去買玩具', '#FDE6E6', '我是金阿姨，跟我走，我帶你去買玩具喔！', '小朋友要說：不要！我不跟不認識的人走，我要去找爸媽！'],
+    ['ma', '馬婆婆', '會拿糖果說不要告訴爸媽', '#EEE6F4', '小朋友，婆婆這裡有糖果，不要跟爸媽說喔！', '小朋友要說：不要！不認識的人給的東西不能拿，我要告訴爸媽！'],
+    ['niu', '牛叔叔', '會叫你上車幫他找小狗', '#EDE7DE', '小朋友，我的小狗不見了，上車幫我找好不好？', '小朋友要說：不要！我不上不認識的人的車，我要跑到大人多的地方！']
+  ];
+  const frName = k => (store.get('frNames', {})[k]) || (FRIENDS.find(f => f[0] === k) || [])[1] || '';
+  const frSVG = (k, pose, mood) => scnSVG(`none|${k} 160 ${pose} ${mood} - 200`, 'scn fr-svg', '85 30 150 180');
+  function openFriends() {
+    let box = $('friends');
+    if (!box) { box = document.createElement('div'); box.id = 'friends'; box.className = 'friends'; document.body.appendChild(box); }
+    box.innerHTML = `<div class="fr-in"><div class="fr-top"><button class="chunky back" id="frBack" aria-label="回首頁"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button></div>
+      <h2 class="fr-h"><span>動動腦</span>的好朋友</h2><p class="fr-sub">點一下，聽他們自我介紹！題目裡會一直看到他們喔</p>
+      <div class="fr-grid">${FRIENDS.map(([k, n, t, bg], i) => `<div class="fr-cell"><button class="fr-card" data-i="${i}" aria-label="${frName(k)}"><span class="fr-art" style="background:${bg}">${frSVG(k, 'stand', 'smile')}</span><b>${frName(k)}</b><small>${t}</small></button><button class="fr-edit" data-i="${i}" aria-label="幫${frName(k)}改名字">✏️ 改名字</button></div>`).join('')}</div>
+      <h3 class="fr-h2">⚠️ 小心！他們是陌生人</h3><p class="fr-sub">不拿陌生人的糖果、不跟陌生人走、不告訴他家裡地址</p>
+      <div class="fr-grid bad">${FR_BAD.map(([k, n, t, bg], i) => `<button class="fr-card fr-bad" data-b="${i}" aria-label="${n}"><span class="fr-art" style="background:${bg}">${frSVG(k, 'give', 'smile')}</span><b>${n}</b><small>${t}</small></button>`).join('')}</div>
+      <div class="fr-name" id="frName" hidden></div></div>`;
+    box.hidden = false; document.documentElement.classList.add('wc-open');
+    $('frBack').onclick = () => { box.hidden = true; box.innerHTML = ''; document.documentElement.classList.remove('wc-open'); speechSynthesis && speechSynthesis.cancel && speechSynthesis.cancel(); };
+    box.querySelectorAll('.fr-card').forEach(b => b.onclick = async () => {
+      const [k, , , , intro] = FRIENDS[+b.dataset.i], art = b.querySelector('.fr-art');
+      box.querySelectorAll('.fr-card.talk').forEach(x => { x.classList.remove('talk'); const f = FRIENDS[+x.dataset.i]; x.querySelector('.fr-art').innerHTML = frSVG(f[0], 'stand', 'smile'); });
+      art.innerHTML = frSVG(k, k === 'tch' || k === 'mom' ? 'wave' : ['wave', 'up', 'clap'][+b.dataset.i % 3] || 'wave', 'happy'); b.classList.add('talk');
+      track('friend-' + k, '認識好朋友');
+      await say([[intro(frName(k))]]);
+      if (b.classList.contains('talk')) { b.classList.remove('talk'); art.innerHTML = frSVG(k, 'stand', 'smile'); }
+    });
+    box.querySelectorAll('.fr-bad').forEach(b => b.onclick = async () => {
+      const [k, , , , bad, good] = FR_BAD[+b.dataset.b], art = b.querySelector('.fr-art');
+      b.classList.add('talk'); art.innerHTML = frSVG(k, 'give', 'smile'); track('friend-' + k, '認識陌生人');
+      await say([[bad]]); if (!b.isConnected) return;
+      art.innerHTML = frSVG(k, 'stand', 'surprise') ; b.classList.add('no'); await say([[good]]);
+      b.classList.remove('talk', 'no');
+    });
+    box.querySelectorAll('.fr-edit').forEach(b => b.onclick = () => {
+      const [k, def] = FRIENDS[+b.dataset.i], M = $('frName');
+      M.innerHTML = `<div class="fr-nc"><span class="fr-nart">${frSVG(k, 'wave', 'happy')}</span><h3>幫我取名字</h3><input id="frIn" maxlength="4" value="${frName(k)}" aria-label="新名字" autocomplete="off"><p class="note">最多 4 個字，原本叫「${def}」</p><div class="pk-row"><button class="btn small" id="frOk">好了</button><button class="btn ghost small" id="frDef">改回${def}</button><button class="btn ghost small" id="frNo">取消</button></div></div>`;
+      M.hidden = false; const inp = $('frIn'); setTimeout(() => inp.focus(), 50);
+      const done = v => { const all = store.get('frNames', {}); if (v && v !== def) all[k] = v; else delete all[k]; store.set('frNames', all); M.hidden = true; openFriends(); say([[FRIENDS.find(f => f[0] === k)[4](frName(k))]]); };
+      $('frOk').onclick = () => { const v = inp.value.replace(/[<>"'&\s]/g, '').slice(0, 4); if (!v) { inp.focus(); return; } done(v); };
+      inp.onkeydown = e => { if (e.key === 'Enter') $('frOk').click(); };
+      $('frDef').onclick = () => done(''); $('frNo').onclick = () => { M.hidden = true; };
+    });
+  }
   $('parkEnter').addEventListener('click', openPark);
+  $('frFaces').innerHTML = ['b1', 'g1', 'b2', 'g2'].map(k => scnSVG(`none|${k} 160 stand smile - 200`, 'scn fr-svg', '126 72 68 68')).join('');
+  $('frEnter').addEventListener('click', () => { openFriends(); track('friends-open', '認識好朋友'); });
   function drawPkMax() { const m = pkMax(); document.querySelectorAll('.pk-max-btn').forEach(b => b.setAttribute('aria-checked', String(Number(b.dataset.n) === m))); }
   document.querySelectorAll('.pk-max-btn').forEach(b => b.addEventListener('click', () => { store.set('pkMax', Number(b.dataset.n)); drawPkMax(); }));
   drawPkMax();
