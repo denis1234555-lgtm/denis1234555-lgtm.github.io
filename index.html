@@ -972,6 +972,7 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .rk-ava { font-size: 32px; text-align: center; }
 .rk-nick small { color: #C94C8A; font-size: .8em; }
 .rk-s { color: #8A6400; }
+.rk-gap { text-align: center; font-weight: 900; color: #8A7A5A; line-height: .6; font-size: 1.4rem; }
 .rk-msg { background: #fff; border-radius: 18px; padding: 18px; text-align: center; font-weight: 800; color: #5B6B7C; line-height: 1.6; }
 .rk-foot { text-align: center; color: #8A7A5A; font-size: .85rem; margin-top: 14px; font-weight: 700; }
 .rk-check { display: flex; gap: 8px; align-items: flex-start; font-weight: 800; line-height: 1.5; }
@@ -983,6 +984,7 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .rk-av { width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--bg); font-size: 26px; box-shadow: 0 3px 0 var(--line-deep); }
 .rk-av.on { box-shadow: 0 0 0 3px #F06FAA; background: #FFE3F0; }
 .rkA { position: relative; display: inline-grid; place-items: center; width: var(--sz); height: var(--sz); border-radius: 50%; box-shadow: inset 0 -4px 0 rgba(0,0,0,.12), 0 0 0 3px #fff; vertical-align: middle; flex: none; }
+.fe-on .rkA img.fe, .fe-on .rk-opt img.fe { width: 1em; height: 1em; vertical-align: middle; }
 .rkA .b { font-size: calc(var(--sz) * .62); line-height: 1; position: relative; z-index: 2; }
 .rkA .x { position: absolute; line-height: 1; z-index: 3; pointer-events: none; }
 .rkA .x-top { font-size: calc(var(--sz) * .42); top: calc(var(--sz) * -.16); left: 50%; transform: translateX(-50%) rotate(-8deg); }
@@ -1001,6 +1003,57 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .rk-opt i { position: absolute; bottom: -6px; font-style: normal; font-size: .68rem; font-weight: 900; background: #FFF3C4; border: 1.5px solid #F2C94C; border-radius: 99px; padding: 0 5px; color: #8A6400; filter: none; }
 .rk-tip { text-align: center; color: #7A6A55; font-weight: 800; font-size: .9rem; min-height: 1.2em; }
 .rk-mine { padding: 6px 4px; }
+.pk-lvl { margin-top: 10px; display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.8); padding: 5px 8px; border-radius: 99px; font-weight: 900; color: #1C4E7A; font-size: .9rem; }
+.pk-lvl .pk-tab { padding: 5px 12px; }
+/* 算式切切 */
+.pk-dojo { background: radial-gradient(120% 70% at 50% 0%, #FFE9C7 0%, #F9C784 45%, #E89A52 100%); }
+.pk-dojo::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(120,60,20,.10) 0 2px, transparent 2px 64px); pointer-events: none; }
+.pk-lantern { position: absolute; top: 70px; width: 46px; height: 60px; border-radius: 40%; background: radial-gradient(circle at 50% 40%, #FF8A65, #E5484D); box-shadow: 0 0 30px rgba(255,120,80,.7); }
+.pk-lantern::before { content: ''; position: absolute; left: 50%; top: -40px; height: 40px; border-left: 2px solid #8B5A2B; }
+.pk-trail { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; filter: drop-shadow(0 0 6px rgba(124,224,255,.9)); }
+.pk-fruit { position: absolute; left: 0; top: 0; display: grid; place-items: center; will-change: transform; }
+.pk-fruit .f { font-size: 70px; line-height: 1; filter: drop-shadow(0 8px 6px rgba(0,0,0,.2)); display: block; }
+.pk-fruit .tag { position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); background: #fff; border-radius: 12px; padding: 0 10px; font-size: 26px; box-shadow: 0 3px 0 rgba(0,0,0,.18); white-space: nowrap; }
+.pk-fruit.bomb .f { filter: drop-shadow(0 0 12px rgba(255,60,60,.95)); }
+.pk-fruit.pk-thud { animation: pkShake .35s ease; opacity: .5; }
+.pk-half { position: absolute; display: grid; place-items: center; line-height: 1; pointer-events: none; animation: pkHalf .7s ease-in forwards; z-index: 4; }
+@keyframes pkHalf { to { transform: translate(var(--dx), 160px) rotate(var(--rot)); opacity: 0; } }
+.pk-splat { position: absolute; width: 90px; height: 90px; margin: -45px 0 0 -45px; border-radius: 50% 40% 55% 45%; opacity: .55; pointer-events: none; animation: pkSplat 1.6s ease-out forwards; }
+@keyframes pkSplat { from { transform: scale(.3); } 20% { transform: scale(1.1); } to { transform: scale(1); opacity: 0; } }
+.pk-flash { position: absolute; inset: 0; background: rgba(255,255,255,.8); pointer-events: none; animation: pkFlash .4s ease-out forwards; z-index: 8; }
+@keyframes pkFlash { to { opacity: 0; } }
+/* 星星消消樂 */
+.pk-candy { background: radial-gradient(120% 80% at 50% 0%, #8C6BFF 0%, #5A3FD1 50%, #2E1F7A 100%); }
+.pk-candy::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(#fff 1px, transparent 1.5px), radial-gradient(#FFE07A 1.5px, transparent 2px); background-size: 60px 60px, 110px 110px; background-position: 10px 20px, 40px 70px; opacity: .6; pointer-events: none; }
+.pk-m3 { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); width: min(380px, 94vw); }
+.pk-m3goal { display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(255,255,255,.92); border-radius: 22px; padding: 8px 12px; margin-bottom: 12px; font-weight: 900; box-shadow: 0 5px 0 rgba(0,0,0,.18); }
+.pk-m3goal .gem { position: static; width: 40px; height: 40px; font-size: 24px; }
+.pk-m3goal .mv { margin-left: auto; color: #5A3FD1; }
+.pk-m3board { position: relative; width: 100%; aspect-ratio: 1; background: rgba(255,255,255,.16); border-radius: 24px; box-shadow: inset 0 0 0 3px rgba(255,255,255,.35), 0 10px 30px rgba(0,0,0,.3); backdrop-filter: blur(4px); touch-action: none; overflow: hidden; }
+.pk-m3board .gem, .pk-m3goal .gem { display: grid; place-items: center; border: 0; padding: 0; border-radius: 30%; background: radial-gradient(circle at 35% 30%, #fff 0 8%, var(--c1) 30%, var(--c2) 100%); box-shadow: inset 0 -4px 0 rgba(0,0,0,.15), 0 3px 0 rgba(0,0,0,.2); }
+.pk-m3board .gem { position: absolute; width: calc(100% / 7 - 6px); height: calc(100% / 7 - 6px); margin: 3px; font-size: clamp(20px, 6.4vw, 32px); transition: left .2s ease, top .25s ease-in, transform .2s; }
+.pk-m3board .gem.sel { transform: scale(1.12); box-shadow: 0 0 0 4px #fff, 0 0 18px #FFE07A; z-index: 2; }
+.pk-m3board .gem.pop { transform: scale(1.4); opacity: 0; transition: transform .25s, opacity .25s; }
+.pk-quiz { position: absolute; inset: 0; z-index: 20; display: grid; place-items: center; background: rgba(20,10,60,.5); padding: 20px; }
+.pk-quiz-card { background: #fff; border-radius: 28px; padding: 20px; text-align: center; width: min(340px, 100%); animation: pkPop .25s ease; }
+.pk-quiz-card .t { font-weight: 900; color: #8D5CE0; }
+.pk-quiz-card .q { font-size: 2.1rem; font-weight: 900; margin: 10px 0 14px; }
+.pk-quiz-card .o { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.pk-quiz-card .o .pk-btn { min-width: 76px; font-size: 1.4rem; background: #5B8DEF; box-shadow: 0 5px 0 #3F6FD8; }
+/* 校園跑跑 */
+.pk-track { background: linear-gradient(90deg, #8ED07A 0 14%, #7CC65C 14% 16%, transparent 16% 84%, #7CC65C 84% 86%, #8ED07A 86%); background-color: #8ED07A; }
+.pk-road { position: absolute; top: 0; bottom: 0; left: 16%; right: 16%; background: #E07B53; box-shadow: inset 6px 0 0 #fff, inset -6px 0 0 #fff; overflow: hidden; }
+.pk-road .lanes { position: absolute; inset: -120px 0 0; background: linear-gradient(90deg, transparent calc(33.3% - 2px), rgba(255,255,255,.85) calc(33.3% - 2px) calc(33.3% + 2px), transparent calc(33.3% + 2px) calc(66.6% - 2px), rgba(255,255,255,.85) calc(66.6% - 2px) calc(66.6% + 2px), transparent calc(66.6% + 2px)); -webkit-mask: repeating-linear-gradient(transparent 0 30px, #000 30px 70px, transparent 70px 120px); mask: repeating-linear-gradient(transparent 0 30px, #000 30px 70px, transparent 70px 120px); transform: translateY(var(--off, 0)); }
+.pk-tree { position: absolute; font-size: 44px; z-index: 1; }
+.pk-runner { position: absolute; left: 0; top: 0; width: 90px; height: 105px; z-index: 4; transition: transform .12s ease-out; will-change: transform; }
+.pk-runner .pk-kid { width: 90px; height: 105px; animation: pkBob .3s ease-in-out infinite alternate; }
+.pk-runner.hurt { opacity: .6; }
+.pk-runner.hurt .pk-kid { animation: pkShake .3s ease 2; }
+@keyframes pkBob { to { transform: translateY(-5px); } }
+.pk-ob { position: absolute; left: 0; top: 0; z-index: 3; will-change: transform; font-size: 46px; line-height: 1; width: 52px; text-align: center; }
+.pk-ob.gate { width: calc((68vw) / 3 - 8px); max-width: 120px; height: 64px; font-size: 1.5rem; border-radius: 16px 16px 6px 6px; background: linear-gradient(#FFFDF5, #FFF1C2); border: 4px solid #8B5A2B; box-shadow: 0 6px 0 rgba(0,0,0,.2); display: grid; place-items: center; font-weight: 900; color: #3F6FD8; }
+.pk-ob.gate.right { background: #C8F2B5; border-color: #3FA35B; }
+.pk-ob.gate.wrong { background: #FFD0D0; border-color: #E5484D; }
 /* ---------- 跨能力挑戰 ---------- */
 #game[data-sub="xmcolor"], #done[data-sub="xmcolor"], #game[data-sub="xmpattern"], #done[data-sub="xmpattern"] { --c: var(--color); --c-soft: var(--color-soft); --c-deep: var(--color-deep); }
 #game[data-sub="xmshape"], #done[data-sub="xmshape"], #game[data-sub="xmmirror"], #done[data-sub="xmmirror"] { --c: var(--geo); --c-soft: var(--geo-soft); --c-deep: var(--geo-deep); }
@@ -7374,7 +7427,7 @@ body.is-yx.is-print .promo { display: none; }
   $('repBack').addEventListener('click', () => show('home'));
 
   /* ---------- 🎡 星星樂園：闖關模式拿星星、純玩模式花星星（付費方案） ---------- */
-  const PK_COST = 10, PK_PLAY_MS = 180000;
+  const PK_COST = 10, PK_PLAY_MS = 180000, PK_EXTRA = {};
   const pkPaid = () => proLevel() > 0;
   const pkSpent = () => store.get('pkSpent', 0);
   const pkBal = () => Math.max(0, total - pkSpent());
@@ -7399,6 +7452,7 @@ body.is-yx.is-print .promo { display: none; }
   const pkTxt = (t, c) => `<b style="font-family:var(--f-display),inherit;font-weight:900;color:${c || '#2B2633'};font-size:.8em">${t}</b>`;
   // 每個題目：label（畫面）、speech（唸）、cat（記錄）、item() 產生一個物件 {h, ok}
   function pkTask(game) {
+    if (pkLvl() === 'e') return pkQ();
     const big = age === 'big', L = [];
     const num = () => { const n = rand(1, big ? 20 : 9); L.push({ cat: 'pkmath', label: `點「${n}」`, say: [[`找出數字${n}`]], item: () => { const ok = Math.random() < .4, v = ok ? n : pick([...Array(big ? 20 : 9).keys()].map(x => x + 1).filter(x => x !== n)); return { h: pkTxt(v, '#3F6FD8'), ok }; } }); };
     const color = () => { const c = pick(COLORS.slice(0, 6)); L.push({ cat: 'pkcolor', label: `${c.zh}的`, say: [[`找出${c.zh}的`]], item: () => { const ok = Math.random() < .42; return { h: pkSwatch(ok ? c.hex : pick(COLORS.slice(0, 6).filter(x => x !== c)).hex), ok }; } }); };
@@ -7434,8 +7488,9 @@ body.is-yx.is-print .promo { display: none; }
     const lock = pkPaid() ? '' : `<div class="pk-lock"><div class="pk-lock-card"><div class="big">🎡</div><h3>星星樂園是付費方案的功能</h3><p>開通任一付費方案，就能用學習拿到的星星換遊戲玩，還有 4 個邊玩邊學的闖關遊戲。</p><div class="pk-row"><button class="pk-btn gray" id="pkLockBack">回首頁</button><button class="pk-btn" id="pkLockPlan">看方案</button></div></div></div>`;
     return `<div class="pk-hub-in">${sky}<div class="pk-grass"></div>
       <div class="pk-hud"><button class="pk-back" id="pkHome" aria-label="回首頁">${pkBack}</button><div style="display:flex;gap:8px"><span class="pk-pill">🎟️ 今天 ${pkLeft()} 次</span><span class="pk-pill">⭐ <span id="pkBal">${pkBal()}</span></span></div></div>
-      ${wheel}<div class="pk-head"><div class="pk-ttl">星星樂園</div><div class="pk-sub">闖關拿星星，星星可以換遊戲玩！</div></div>
-      <div class="pk-cards">${card('bub', '🫧', '泡泡戳戳', '#7CC4F5', '#DFF4FF')}${card('fruit', '🧺', '接水果', '#F7A35C', '#FFF0D8')}${card('mole', '🐹', '打地鼠', '#8ED07A', '#E5F7DC')}
+      ${wheel}<div class="pk-head"><div class="pk-ttl">星星樂園</div><div class="pk-sub">闖關拿星星，星星可以換遊戲玩！</div>
+        <div class="pk-lvl" role="radiogroup" aria-label="闖關題目難度"><span>闖關題目：</span><button class="pk-tab${pkLvl() === 'k' ? ' on' : ''}" data-l="k">🧸 幼兒園</button><button class="pk-tab${pkLvl() === 'e' ? ' on' : ''}" data-l="e">🎒 小學</button></div></div>
+      <div class="pk-cards">${card('bub', '🫧', '泡泡戳戳', '#7CC4F5', '#DFF4FF')}${card('fruit', '🧺', '接水果', '#F7A35C', '#FFF0D8')}${card('mole', '🐹', '打地鼠', '#8ED07A', '#E5F7DC')}${card('slice', '🍉', '算式切切', '#F57E7E', '#FFE4E4')}${card('match', '🍬', '星星消消樂', '#B9A2F0', '#EFE9FF')}${card('run', '🏃', '校園跑跑', '#5B8DEF', '#E2ECFF')}
         <button class="pk-card" data-g="stk" style="--a:#B9A2F0;--s:#EFE9FF"><div class="pk-awn"></div><div class="pk-art">🎨</div><b>貼紙樂園</b><div class="pk-price">已收集 ${pkOwned().length} 張</div></button>
         <button class="pk-card wide" data-g="rank" style="background:linear-gradient(110deg,#FFF1C2,#FFE0EE)"><div class="pk-art">🏆</div><div><b>星星排行榜</b><small>${(() => { const c = store.get('rankCache', null); return rkOn() && c && c.week && c.week.me ? `本週第 ${c.week.me} 名・⭐ ${wkNow()}` : '和全台灣的小朋友比星星'; })()}</small></div><div class="pk-price">看排名 →</div></button></div>
       <div class="pk-note">🧠 <b>闖關模式</b>：照圓圓說的玩，過關拿 1～3 顆星星。<br>🎮 <b>純玩模式</b>：用 ${PK_COST} 顆星星換 3 分鐘，盡情玩！</div>
@@ -7451,11 +7506,12 @@ body.is-yx.is-print .promo { display: none; }
       return;
     }
     if (!pkMax()) { pkAsk('🔒', '家長已經關閉星星樂園', '可以到家長專區打開喔。', [['好', 'gray', () => {}]]); }
+    h.querySelectorAll('.pk-lvl .pk-tab').forEach(b => b.onclick = () => { store.set('pkLvl', b.dataset.l); h.querySelectorAll('.pk-lvl .pk-tab').forEach(x => x.classList.toggle('on', x === b)); say([[b.dataset.l === 'e' ? '小學題目：乘法、二位數加減、英文拼字' : '幼兒園題目']]); });
     h.querySelectorAll('.pk-card').forEach(b => b.onclick = () => {
       const g = b.dataset.g;
       if (g === 'stk') return pkSticker();
       if (g === 'rank') return openRank();
-      const nm = { bub: '泡泡戳戳', fruit: '接水果', mole: '打地鼠' }[g], em = { bub: '🫧', fruit: '🧺', mole: '🐹' }[g];
+      const nm = { bub: '泡泡戳戳', fruit: '接水果', mole: '打地鼠', slice: '算式切切', match: '星星消消樂', run: '校園跑跑' }[g], em = { bub: '🫧', fruit: '🧺', mole: '🐹', slice: '🍉', match: '🍬', run: '🏃' }[g];
       pkAsk(em, nm, '要怎麼玩？', [['🧠 闖關拿星星', '', () => pkStart(g, 'learn')], [`🎮 純玩（⭐${PK_COST}）`, 'gray', () => {
         if (!pkLeft()) return pkAsk('🎟️', '今天的次數用完了', '明天再來玩，或先玩闖關拿星星！', [['好', 'gray', () => {}]]);
         if (pkBal() < PK_COST) return pkAsk('⭐', `還差 ${PK_COST - pkBal()} 顆星星`, '先玩闖關模式或去學習，就能拿到星星喔！', [['去闖關', '', () => pkStart(g, 'learn')], ['好', 'gray', () => {}]]);
@@ -7465,7 +7521,8 @@ body.is-yx.is-print .promo { display: none; }
     });
   }
   function pkAsk(big, title, msg, btns) {
-    const a = $('pkAsk'); if (!a) return;
+    // 星星樂園入口和貼紙畫面各有一個詢問視窗，要用目前看得到的那一個
+    const P = $('pkPlay'), a = (P && !P.hidden && P.querySelector('.pk-ask')) || $('pkHub').querySelector('.pk-ask'); if (!a) return;
     a.innerHTML = `<div class="pk-ask-card"><div class="big">${big}</div><h3>${title}</h3><p>${msg}</p><div class="pk-row" style="flex-wrap:wrap">${btns.map((b, i) => `<button class="pk-btn ${b[1]}" data-i="${i}">${b[0]}</button>`).join('')}</div></div>`;
     a.hidden = false; a.onclick = e => { if (e.target === a) a.hidden = true; };
     a.querySelectorAll('button').forEach(b => b.onclick = () => { a.hidden = true; btns[+b.dataset.i][2](); });
@@ -7474,24 +7531,28 @@ body.is-yx.is-print .promo { display: none; }
   function pkStart(g, mode) {
     pkStop();
     const P = $('pkPlay'), learn = mode === 'learn';
-    const goal = age === 'big' ? 8 : 6, task = learn ? pkTask(g) : null;
+    const goal = g === 'run' ? 6 : age === 'big' || pkLvl() === 'e' ? 8 : 6;
+    const task = !learn ? null : g === 'slice' ? pkQ() : g === 'run' ? { cat: 'pkmath', label: '跑進答案對的門', say: [['看題目，跑進答案對的門']] } : g === 'match' ? { cat: 'pkmath', label: '收集水果', say: [['']] } : pkTask(g);
     const R = pkRun = { g, mode, learn, task, goal, got: 0, miss: 0, score: 0, combo: 0, t0: 0, left: learn ? 90000 : PK_PLAY_MS, items: [], last: 0, done: false };
-    const bg = { bub: 'pk-sea', fruit: 'pk-orch', mole: 'pk-mead' }[g], icon = { bub: '🫧', fruit: '🍓', mole: '🔨' }[g];
-    P.className = `pk pk-play ${bg}`; P.hidden = false; $('pkHub').hidden = true;
+    const bg = { bub: 'pk-sea', fruit: 'pk-orch', mole: 'pk-mead', slice: 'pk-dojo', match: 'pk-candy', run: 'pk-track' }[g], icon = { bub: '🫧', fruit: '🍓', mole: '🔨', slice: '🍉', match: '🍬', run: '⭐' }[g];
+    P.className = `pk pk-play ${bg}`; P.hidden = false; $('pkHub').hidden = true; $('pkHub').innerHTML = '';
     P.innerHTML = `<div class="pk-field" id="pkField">${pkScene(g)}</div>
       <div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="離開">${pkBack}</button>
       ${learn ? `<button class="pk-pill" id="pkSay" style="max-width:56vw;font-size:1rem">🔊 ${task.label}</button>` : `<div class="pk-timer" id="pkTimer" style="--p:100"><span>3:00</span></div>`}
-      <span class="pk-pill">${learn ? '🎯' : icon} <span id="pkScore">${learn ? `0/${goal}` : 0}</span></span></div>
-      <div class="pk-tip"><span class="pk-pill" style="font-size:.95rem">${learn ? { bub: '點破對的泡泡！', fruit: '移動籃子，接對的東西！', mole: '打舉著對的牌子的小動物！' }[g] : { bub: '點破泡泡，救出海底小動物！', fruit: '接水果，小心炸彈！', mole: '看到小動物就打牠！' }[g]}</span></div>
+      ${learn && g === 'match' ? '<span></span>' : `<span class="pk-pill">${learn ? '🎯' : icon} <span id="pkScore">${learn ? `0/${goal}` : 0}</span></span>`}</div>
+      <div class="pk-tip"><span class="pk-pill" style="font-size:.95rem">${learn ? { bub: '點破對的泡泡！', fruit: '移動籃子，接對的東西！', mole: '打舉著對的牌子的小動物！', slice: '用手指劃過去，切開答案對的水果！', match: '換位置，三個一樣就消掉！', run: '左右滑，跑進答案對的門！' }[g] : { bub: '點破泡泡，救出海底小動物！', fruit: '接水果，小心炸彈！', mole: '看到小動物就打牠！', slice: '用手指劃過去切水果，不要切到炸彈！', match: '換位置，三個一樣就消掉！', run: '左右滑，撿星星、躲障礙物！' }[g]}</span></div>
       <div class="pk-count" id="pkCount"><b class="pk-ttl">3</b></div>`;
     $('pkQuit').onclick = () => pkEnd(true);
-    if (learn) { $('pkSay').onclick = () => say(task.say); }
+    if (learn) { $('pkSay').onclick = () => say(R.task.say); }
     let c = 3; const cd = () => { const el = $('pkCount'); if (!el || pkRun !== R) return; if (c === 0) { el.remove(); R.t0 = performance.now(); R.prev = R.t0; pkLoop(); return; } el.innerHTML = `<b class="pk-ttl">${c}</b>`; tone([440 + (3 - c) * 120], .08, 'sine'); c--; setTimeout(cd, 650); };
-    if (learn) say(task.say); cd();
-    ({ bub: pkBubInit, fruit: pkFruitInit, mole: pkMoleInit })[g](R);
+    ({ bub: pkBubInit, fruit: pkFruitInit, mole: pkMoleInit, ...PK_EXTRA })[g](R);
+    if (learn) { if ($('pkSay')) $('pkSay').innerHTML = `🔊 ${R.task.label}`; say(R.task.say); } cd();
     pkTick = setInterval(() => { if (document.hidden || pkRun !== R || !R.t0) return; const p = playToday(); p.ms += 1000; store.set('playToday', p); }, 1000);
   }
   function pkScene(g) {
+    if (g === 'slice') return `<div class="pk-lantern" style="left:12%"></div><div class="pk-lantern" style="right:12%"></div><svg style="position:absolute;bottom:0;left:0;width:100%;height:140px" viewBox="0 0 390 140" preserveAspectRatio="none"><path d="M0 60h390v80H0z" fill="#B06A35"/><path d="M0 60h390" stroke="#7A4420" stroke-width="6"/><g stroke="#9A5A2C" stroke-width="2"><path d="M60 60v80M150 60v80M240 60v80M330 60v80"/></g></svg>`;
+    if (g === 'match') return '';
+    if (g === 'run') return `<div class="pk-tree" style="left:1%;top:12%">🌳</div><div class="pk-tree" style="right:1%;top:30%">🌲</div><div class="pk-tree" style="left:2%;top:58%">🌷</div><div class="pk-tree" style="right:2%;top:72%">🏫</div>`;
     if (g === 'bub') return `<div class="pk-ray" style="left:8%;transform:rotate(14deg)"></div><div class="pk-ray" style="left:44%;transform:rotate(4deg);width:60px;animation-delay:-2s"></div><div class="pk-ray" style="left:74%;transform:rotate(-10deg);animation-delay:-4s"></div>
       <svg style="position:absolute;bottom:0;left:0;width:100%;height:260px" viewBox="0 0 390 260" preserveAspectRatio="none"><path d="M0 200q100-30 200 0t190-10V260H0z" fill="#F3D9A0"/><g fill="none" stroke-linecap="round" stroke-width="12"><path d="M40 230q-20-50 10-90t-5-90" stroke="#3FB37F"/><path d="M70 230q15-40-5-80" stroke="#5FCB94"/><path d="M340 230q20-60-10-110t10-80" stroke="#3FB37F"/><path d="M310 230q-12-30 6-60" stroke="#5FCB94"/></g></svg><div style="position:absolute;bottom:14px;left:38%;font-size:34px">🐚</div><div style="position:absolute;bottom:30px;left:62%;font-size:30px">🦀</div>`;
     if (g === 'fruit') return `<svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 390 844" preserveAspectRatio="xMidYMax slice"><circle cx="300" cy="190" r="46" fill="#FFF3B0" opacity=".9"/><path d="M0 560q90-60 200-20t190-30V844H0z" fill="#B7DC86"/><path d="M0 640q120-50 230-10t160-10V844H0z" fill="#8FC96A"/><rect x="22" y="420" width="18" height="170" rx="6" fill="#9A6234"/><circle cx="31" cy="400" r="62" fill="#6DB85A"/><circle cx="-5" cy="450" r="40" fill="#6DB85A"/><circle cx="70" cy="445" r="40" fill="#5DAA4D"/><rect x="345" y="440" width="18" height="160" rx="6" fill="#9A6234"/><circle cx="354" cy="420" r="58" fill="#6DB85A"/><circle cx="320" cy="465" r="36" fill="#5DAA4D"/></svg>`;
@@ -7519,7 +7580,7 @@ body.is-yx.is-print .promo { display: none; }
       if (R.combo > 0 && R.combo % 5 === 0) { const c = document.createElement('div'); c.className = 'pk-combo'; c.innerHTML = `<span class="pk-ttl" style="color:#FF6B6B">連續 ${R.combo} 個！</span>`; $('pkField').appendChild(c); setTimeout(() => c.remove(), 950); }
     } else {
       pkBad(); R.combo = 0; R.miss++;
-      if (R.learn && R.miss % 3 === 0) say([['再找找看！'], ...R.task.say]);
+      if (R.learn && R.miss % 3 === 0 && R.g !== 'run') say([['再找找看！'], ...R.task.say]);
     }
   }
   function pkEnd(quit) {
@@ -7528,9 +7589,10 @@ body.is-yx.is-print .promo { display: none; }
     if (quit && !(R.learn && R.got >= R.goal)) { pkStop(); openPark(); return; }
     let msg, big, extra = '';
     if (R.learn) {
-      const st3 = R.miss <= 1 ? 3 : R.miss <= 4 ? 2 : 1; pkEarn(st3, R.task.cat, R.got, R.got + R.miss);
-      big = '⭐'.repeat(st3); msg = `過關了！拿到 ${st3} 顆星星`; extra = `現在有 ⭐ ${pkBal()} 顆`;
-      say([[`過關了！拿到${st3}顆星星，你好棒！`]]); track('park-learn-' + R.g, '星星樂園闖關過關');
+      const fail = R.g === 'match' && R.have < R.need;
+      const st3 = R.g === 'match' ? (fail ? 1 : R.moves >= 6 ? 3 : R.moves >= 2 ? 2 : 1) : R.miss <= 1 ? 3 : R.miss <= 4 ? 2 : 1; pkEarn(st3, R.task.cat, R.got, R.got + R.miss);
+      big = '⭐'.repeat(st3); msg = fail ? `步數用完了，送你 1 顆星` : `過關了！拿到 ${st3} 顆星星`; extra = `現在有 ⭐ ${pkBal()} 顆`;
+      say([[fail ? '步數用完了，差一點點，再試一次吧！' : `過關了！拿到${st3}顆星星，你好棒！`]]); track('park-learn-' + R.g, '星星樂園闖關過關');
     } else { big = '🏆'; msg = `你得到 ${R.score} 分！`; extra = '時間到囉，休息一下再玩吧'; say([[`時間到！你得到${R.score}分，好厲害！`]]); }
     const e = document.createElement('div'); e.className = 'pk-end';
     e.innerHTML = `<div class="pk-end-card"><div class="big">${big}</div><div class="score">${msg}</div><p>${extra}</p><div class="pk-row">${R.learn ? '<button class="pk-btn" id="pkAgain">再闖一關</button>' : ''}<button class="pk-btn gray" id="pkOut">回樂園</button></div></div>`;
@@ -7651,7 +7713,7 @@ body.is-yx.is-print .promo { display: none; }
   function pkOwned() { return store.get('pkOwn', ['🐶', '🐱', '🐰']); }
   function pkSticker() {
     pkStop();
-    const P = $('pkPlay'); P.className = 'pk pk-stk'; P.hidden = false; $('pkHub').hidden = true;
+    const P = $('pkPlay'); P.className = 'pk pk-stk'; P.hidden = false; $('pkHub').hidden = true; $('pkHub').innerHTML = '';
     let scene = store.get('pkScn', 'park'), cat = '動物', sel = null, task = null;
     const all = store.get('pkScenes', {});
     const save = () => { store.set('pkScenes', all); };
@@ -7731,6 +7793,199 @@ body.is-yx.is-print .promo { display: none; }
   document.querySelectorAll('.pk-max-btn').forEach(b => b.addEventListener('click', () => { store.set('pkMax', Number(b.dataset.n)); drawPkMax(); }));
   drawPkMax();
 
+  /* ---------- 星星樂園第二批：算式切切、星星消消樂、校園跑跑＋小學難度 ---------- */
+  const pkLvl = () => store.get('pkLvl', 'k');
+  // 題目：label 畫面、say 唸、ans 正確答案、wrong() 錯的答案（都回傳 HTML 字串）
+  function pkQ() {
+    const T = [];
+    const nq = (cat, label, say, ans, wf) => T.push({ cat, label, say: [[say]], ans: String(ans), wrong: () => { let w; do { w = String(wf()); } while (w === String(ans)); return w; } });
+    if (pkLvl() === 'e') {
+      const a = rand(2, 9), b = rand(2, 9);
+      nq('pkmath', `${a} × ${b} ＝ ？`, `${a}乘以${b}等於多少？`, a * b, () => a * b + pick([-a, a, -b, b, -1, 1, 10]));
+      const c = rand(12, 58), d = rand(11, 39);
+      nq('pkmath', `${c} ＋ ${d} ＝ ？`, `${c}加${d}等於多少？`, c + d, () => c + d + pick([-10, 10, -1, 1, -2, 2]));
+      const e = rand(40, 99), f = rand(11, e - 10);
+      nq('pkmath', `${e} － ${f} ＝ ？`, `${e}減${f}等於多少？`, e - f, () => e - f + pick([-10, 10, -1, 1, 2]));
+      const g = rand(1, 9);
+      nq('pkmath', `${g} ＋ ？ ＝ 10`, `${g}加多少等於十？`, 10 - g, () => rand(1, 9));
+      const h = rand(2, 9), k = rand(2, 9);
+      nq('pkmath', `${h * k} ÷ ${h} ＝ ？`, `${h * k}除以${h}等於多少？`, k, () => k + pick([-1, 1, 2, -2, h]));
+      const w = pick(EZ_ANIMAL.concat(EZ_FOOD.filter(x => x.w.length <= 6 && !/ /.test(x.w))));
+      T.push({ cat: 'pken', label: `${w.e} 的英文`, say: [[`${w.e === '🍎' ? 'apple' : w.w}. 這個的英文怎麼拼？`.replace(/^.*?\. /, ''), 'zh-TW']], ans: w.w, wrong: () => pick(EZ_ANIMAL.concat(EZ_FOOD).filter(x => x.w !== w.w && x.w.length <= 8)).w });
+      T[T.length - 1].say = [['這個的英文怎麼拼？'], [w.w, 'en-US']];
+    } else {
+      const big = age === 'big', n = rand(1, big ? 20 : 9);
+      nq('pkmath', `數字 ${n}`, `找出數字${n}`, n, () => rand(1, big ? 20 : 9));
+      const a = rand(1, 5), b = rand(1, big ? 5 : 4);
+      nq('pkmath', `${a} ＋ ${b} ＝ ？`, `${a}加${b}等於多少？`, a + b, () => rand(1, 10));
+      const L = pick(EZ_LETTERS); nq('pken', `字母 ${L}`, `找出字母${L}`, L, () => pick(EZ_LETTERS));
+      const z = pick(ZY.filter(x => big || x.lv === 1)); nq('pkzy', `注音 ${z.z}`, `找出注音${z.z}，${z.w}的${z.c}`, z.z, () => pick(ZY).z);
+    }
+    const q = pick(T);
+    q.item = () => { const ok = Math.random() < .4; return { h: pkTxt(ok ? q.ans : q.wrong(), '#3F6FD8'), ok, v: ok ? q.ans : null }; };
+    q.opts = n => { const s = new Set([q.ans]); let g = 0; while (s.size < n && g++ < 60) s.add(q.wrong()); return shuffle([...s]).map(v => ({ h: v, ok: v === q.ans })); };
+    return q;
+  }
+  // ---------- 🍉 算式切切 ----------
+  const PK_SLICE = ['🍉', '🍍', '🍊', '🍎', '🥝', '🍑', '🥥', '🍋'];
+  function pkSliceInit(R) {
+    const F = $('pkField');
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('class', 'pk-trail'); F.appendChild(svg);
+    let trail = [];
+    const cut = (x, y) => {
+      trail.push({ x, y, t: performance.now() });
+      R.items.forEach(o => { if (o.dead) return; const dx = o.x - x, dy = o.y - y; if (dx * dx + dy * dy < o.r * o.r) slice(o); });
+    };
+    const slice = o => {
+      if (R.learn && !o.ok) { o.dead = 1; o.el.classList.add('pk-thud'); setTimeout(() => o.el.remove(), 400); pkHit(R, false); return; }
+      if (!R.learn && o.bomb) { o.dead = 1; o.el.remove(); pkHit(R, false); const fl = document.createElement('div'); fl.className = 'pk-flash'; F.appendChild(fl); setTimeout(() => fl.remove(), 400); return; }
+      o.dead = 1; o.el.remove();
+      [-1, 1].forEach(s => { const h = document.createElement('div'); h.className = 'pk-half'; h.innerHTML = o.html; h.style.cssText = `left:${o.x - o.r}px;top:${o.y - o.r}px;width:${o.r * 2}px;height:${o.r * 2}px;font-size:${o.r * 1.5}px;clip-path:${s < 0 ? 'inset(0 50% 0 0)' : 'inset(0 0 0 50%)'};--dx:${s * 70}px;--rot:${s * 40}deg`; F.appendChild(h); setTimeout(() => h.remove(), 700); });
+      const sp = document.createElement('div'); sp.className = 'pk-splat'; sp.style.cssText = `left:${o.x}px;top:${o.y}px;background:${o.juice}`; F.appendChild(sp); setTimeout(() => sp.remove(), 1600);
+      pkHit(R, true, o.x, o.y);
+    };
+    F.addEventListener('pointerdown', e => { if (e.target.closest('.pk-hud')) return; F.setPointerCapture(e.pointerId); trail = []; const r = F.getBoundingClientRect(); cut(e.clientX - r.left, e.clientY - r.top); });
+    F.addEventListener('pointermove', e => { if (!e.buttons && e.pointerType === 'mouse') return; const r = F.getBoundingClientRect(); cut(e.clientX - r.left, e.clientY - r.top); });
+    const JUICE = { '🍉': '#F5506B', '🍍': '#FFC93C', '🍊': '#FF9A3C', '🍎': '#F04E4E', '🥝': '#8BC34A', '🍑': '#FF9DB8', '🥥': '#F1E7D0', '🍋': '#FFE04A' };
+    R.step = (dt, t) => {
+      const W = F.clientWidth, H = F.clientHeight, sp = Math.min(1.6, 1 + t / 120000);
+      if (t - R.last > (R.learn ? 1150 : 850) / sp) {
+        R.last = t; const n = R.learn ? 1 : rand(1, 2);
+        for (let k = 0; k < n; k++) {
+          const fr = pick(PK_SLICE), it = R.learn ? R.task.item() : { ok: true };
+          const bomb = !R.learn && Math.random() < .14, r = 42;
+          const html = bomb ? '💣' : fr;
+          const el = document.createElement('div'); el.className = 'pk-fruit' + (bomb ? ' bomb' : '');
+          el.innerHTML = `<span class="f">${html}</span>${R.learn ? `<span class="tag">${it.h}</span>` : ''}`; el.style.width = el.style.height = r * 2 + 'px';
+          const x = rand(60, W - 60), o = { el, x, y: H + r, vx: (W / 2 - x) / 900 * rand(5, 10) / 10 + (Math.random() - .5) * .12, vy: -(H * .00125 + Math.random() * .25) * sp, r, ok: it.ok, bomb, html, juice: JUICE[fr], rot: 0, vr: (Math.random() - .5) * .3 };
+          F.appendChild(el); R.items.push(o);
+        }
+      }
+      const g = .0016 * sp;
+      R.items = R.items.filter(o => { if (o.dead) return false; o.vy += g * dt; o.x += o.vx * dt; o.y += o.vy * dt; o.rot += o.vr * dt; o.el.style.transform = `translate(${o.x - o.r}px, ${o.y - o.r}px)`; o.el.querySelector('.f').style.transform = `rotate(${o.rot}deg)`; if (o.y > H + 80 && o.vy > 0) { o.el.remove(); return false; } return true; });
+      const now = performance.now(); trail = trail.filter(p => now - p.t < 160);
+      svg.innerHTML = trail.length > 1 ? `<polyline points="${trail.map(p => `${p.x.toFixed(0)},${p.y.toFixed(0)}`).join(' ')}" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/><polyline points="${trail.map(p => `${p.x.toFixed(0)},${p.y.toFixed(0)}`).join(' ')}" fill="none" stroke="#7CE0FF" stroke-width="3" stroke-linecap="round" opacity=".9"/>` : '';
+    };
+  }
+  // ---------- 🍬 星星消消樂 ----------
+  const PK_GEMS = [['🍓', '#FF7A93', '#E8435F'], ['🍋', '#FFE066', '#F2B90C'], ['🫐', '#8AA8FF', '#4D6BE0'], ['🍏', '#9BE07A', '#4FB33A'], ['🍇', '#C79BFF', '#8D5CE0'], ['🍊', '#FFB067', '#F27B1B']];
+  function pkMatchInit(R) {
+    const F = $('pkField'), N = 7, K = R.learn ? 5 : 6;
+    R.moves = R.learn ? 18 : 0; R.need = R.learn ? (age === 'big' || pkLvl() === 'e' ? 15 : 12) : 0; R.goalGem = rand(0, K - 1); R.have = 0; R.busy = false; R.sel = null;
+    const wrap = document.createElement('div'); wrap.className = 'pk-m3';
+    wrap.innerHTML = `${R.learn ? `<div class="pk-m3goal"><span>收集</span><b class="gem" style="--c1:${PK_GEMS[R.goalGem][1]};--c2:${PK_GEMS[R.goalGem][2]}">${PK_GEMS[R.goalGem][0]}</b><span id="m3have">0 / ${R.need}</span><span class="mv">👣 <b id="m3mv">${R.moves}</b> 步</span></div>` : ''}<div class="pk-m3board" id="m3b"></div>`;
+    F.appendChild(wrap);
+    const B = wrap.querySelector('#m3b');
+    let g = [];
+    const rnd = () => rand(0, K - 1);
+    for (let r = 0; r < N; r++) { g[r] = []; for (let c = 0; c < N; c++) { let v; do { v = rnd(); } while ((c > 1 && g[r][c - 1] === v && g[r][c - 2] === v) || (r > 1 && g[r - 1][c] === v && g[r - 2][c] === v)); g[r][c] = v; } }
+    const cells = [];
+    const mk = (v, r, c) => { const el = document.createElement('button'); el.className = 'gem'; el.style.setProperty('--c1', PK_GEMS[v][1]); el.style.setProperty('--c2', PK_GEMS[v][2]); el.innerHTML = PK_GEMS[v][0]; el.style.left = (c / N * 100) + '%'; el.style.top = (r / N * 100) + '%'; B.appendChild(el); return el; };
+    for (let r = 0; r < N; r++) { cells[r] = []; for (let c = 0; c < N; c++) cells[r][c] = mk(g[r][c], r, c); }
+    const place = (el, r, c) => { el.style.left = (c / N * 100) + '%'; el.style.top = (r / N * 100) + '%'; };
+    const find = () => { const m = new Set(); for (let r = 0; r < N; r++) for (let c = 0; c < N - 2; c++) { const v = g[r][c]; if (v >= 0 && g[r][c + 1] === v && g[r][c + 2] === v) { m.add(r * N + c); m.add(r * N + c + 1); m.add(r * N + c + 2); } } for (let c = 0; c < N; c++) for (let r = 0; r < N - 2; r++) { const v = g[r][c]; if (v >= 0 && g[r + 1][c] === v && g[r + 2][c] === v) { m.add(r * N + c); m.add((r + 1) * N + c); m.add((r + 2) * N + c); } } return [...m]; };
+    const wait = ms => new Promise(ok => setTimeout(ok, ms));
+    const resolve = async () => {
+      let chain = 0;
+      for (;;) {
+        const m = find(); if (!m.length) break; chain++;
+        m.forEach(i => { const r = Math.floor(i / N), c = i % N; if (R.learn && g[r][c] === R.goalGem) R.have++; cells[r][c].classList.add('pop'); });
+        const fb = B.getBoundingClientRect(), fr = F.getBoundingClientRect(), i0 = m[Math.floor(m.length / 2)];
+        R.score += m.length; if (!R.learn) $('pkScore').textContent = R.score; pkGood();
+        pkFx(fb.left - fr.left + (i0 % N + .5) / N * fb.width, fb.top - fr.top + (Math.floor(i0 / N) + .5) / N * fb.height, chain > 1 ? `連鎖 ×${chain}` : `+${m.length}`);
+        if (R.learn) { $('m3have').textContent = `${Math.min(R.have, R.need)} / ${R.need}`; }
+        await wait(260);
+        m.forEach(i => { const r = Math.floor(i / N), c = i % N; cells[r][c].remove(); cells[r][c] = null; g[r][c] = -1; });
+        for (let c = 0; c < N; c++) {
+          let w = N - 1;
+          for (let r = N - 1; r >= 0; r--) if (g[r][c] >= 0) { if (w !== r) { g[w][c] = g[r][c]; cells[w][c] = cells[r][c]; g[r][c] = -1; cells[r][c] = null; place(cells[w][c], w, c); } w--; }
+          for (let r = w; r >= 0; r--) { const v = rnd(); g[r][c] = v; const el = mk(v, r - w - 1, c); cells[r][c] = el; requestAnimationFrame(() => requestAnimationFrame(() => place(el, r, c))); }
+        }
+        await wait(300);
+      }
+      if (R.learn && R.have >= R.need) { R.got = R.goal; setTimeout(() => pkEnd(), 300); }
+      else if (R.learn && R.moves <= 0) { R.got = R.goal; R.miss = 9; setTimeout(() => pkEnd(), 300); }
+    };
+    const quiz = () => new Promise(done => {
+      const q = pkQ(), o = q.opts(3), box = document.createElement('div'); box.className = 'pk-quiz';
+      box.innerHTML = `<div class="pk-quiz-card"><div class="t">🎁 答對多 3 步！</div><div class="q">${q.label}</div><div class="o">${o.map((x, i) => `<button class="pk-btn" data-i="${i}">${x.h}</button>`).join('')}</div></div>`;
+      F.appendChild(box); say(q.say);
+      box.querySelectorAll('button').forEach(b => b.onclick = () => { const ok = o[+b.dataset.i].ok; if (ok) { pkGood(); R.moves += 3; $('m3mv').textContent = R.moves; R.score++; } else { pkBad(); say([[`答案是${q.ans}`]]); } pkEarnQ(q.cat, ok); box.remove(); done(); });
+    });
+    const swap = async (a, b) => {
+      R.busy = true; const [r1, c1] = a, [r2, c2] = b;
+      [g[r1][c1], g[r2][c2]] = [g[r2][c2], g[r1][c1]]; [cells[r1][c1], cells[r2][c2]] = [cells[r2][c2], cells[r1][c1]]; place(cells[r1][c1], r1, c1); place(cells[r2][c2], r2, c2);
+      await wait(200);
+      if (!find().length) { [g[r1][c1], g[r2][c2]] = [g[r2][c2], g[r1][c1]]; [cells[r1][c1], cells[r2][c2]] = [cells[r2][c2], cells[r1][c1]]; place(cells[r1][c1], r1, c1); place(cells[r2][c2], r2, c2); pkBad(); await wait(200); R.busy = false; return; }
+      if (R.learn) { R.moves--; $('m3mv').textContent = R.moves; }
+      await resolve();
+      if (R.learn && !R.done && R.moves > 0 && (18 - R.moves) % 5 === 0 && R.have < R.need) await quiz();
+      R.busy = false;
+    };
+    let down = null;
+    B.addEventListener('pointerdown', e => {
+      if (R.busy || !R.t0) return; const rc = B.getBoundingClientRect(), c = Math.floor((e.clientX - rc.left) / rc.width * N), r = Math.floor((e.clientY - rc.top) / rc.height * N);
+      if (r < 0 || c < 0 || r >= N || c >= N) return; down = { r, c, x: e.clientX, y: e.clientY };
+      if (R.sel && Math.abs(R.sel.r - r) + Math.abs(R.sel.c - c) === 1) { const s = R.sel; cells[s.r][s.c] && cells[s.r][s.c].classList.remove('sel'); R.sel = null; down = null; swap([s.r, s.c], [r, c]); return; }
+      if (R.sel && cells[R.sel.r][R.sel.c]) cells[R.sel.r][R.sel.c].classList.remove('sel');
+      R.sel = { r, c }; cells[r][c].classList.add('sel');
+    });
+    B.addEventListener('pointerup', e => {
+      if (!down || R.busy) return; const dx = e.clientX - down.x, dy = e.clientY - down.y; if (Math.max(Math.abs(dx), Math.abs(dy)) < 18) return;
+      const r2 = down.r + (Math.abs(dy) > Math.abs(dx) ? Math.sign(dy) : 0), c2 = down.c + (Math.abs(dx) >= Math.abs(dy) ? Math.sign(dx) : 0);
+      if (r2 < 0 || c2 < 0 || r2 >= N || c2 >= N) return;
+      if (cells[down.r][down.c]) cells[down.r][down.c].classList.remove('sel'); R.sel = null; const d = down; down = null; swap([d.r, d.c], [r2, c2]);
+    });
+    R.step = () => {};
+    if (R.learn) { R.goal = 1; R.task = { cat: 'pkmath', label: `收集 ${R.need} 個`, say: [[`在${R.moves}步裡面，收集${R.need}個${['草莓', '檸檬', '藍莓', '青蘋果', '葡萄', '橘子'][R.goalGem]}。每走五步會有一題，答對多三步喔！`]] }; }
+  }
+  // 消消樂的小題目也記到學習紀錄
+  function pkEarnQ(cat, ok) { const hist = store.get('history', []); hist.push({ sub: cat, age, s: ok ? 1 : 0, n: 1, t: Date.now() }); store.set('history', hist.slice(-400)); }
+  // ---------- 🏃 校園跑跑 ----------
+  function pkRunInit(R) {
+    const F = $('pkField'), P = $('pkPlay');
+    const road = document.createElement('div'); road.className = 'pk-road'; road.innerHTML = '<div class="lanes"></div>'; F.appendChild(road);
+    const kid = document.createElement('div'); kid.className = 'pk-runner'; kid.innerHTML = scnSVG(`none|${age === 'small' ? 'g2' : 'b1'} 160 run happy - 200`, 'pk-kid', '100 70 120 140'); F.appendChild(kid);
+    const ar = document.createElement('div'); ar.className = 'pk-arrows'; ar.innerHTML = '<button aria-label="往左">◀</button><button aria-label="往右">▶</button>'; P.appendChild(ar);
+    R.lane = 1; R.dist = 0; R.gateAt = 1800; R.hurt = 0;
+    const lx = l => { const W = road.clientWidth, L = road.offsetLeft; return L + W * (l + .5) / 3; };
+    const go = d => { R.lane = Math.max(0, Math.min(2, R.lane + d)); tone([520 + R.lane * 80], .04, 'sine'); };
+    const [lb, rb] = ar.querySelectorAll('button'); lb.onpointerdown = e => { e.preventDefault(); go(-1); }; rb.onpointerdown = e => { e.preventDefault(); go(1); };
+    let sx = null; F.addEventListener('pointerdown', e => { if (e.target.closest('.pk-arrows,.pk-hud')) return; sx = e.clientX; });
+    F.addEventListener('pointerup', e => { if (sx === null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 25) go(Math.sign(dx)); else { const r = F.getBoundingClientRect(); go(e.clientX - r.left < lx(R.lane) ? -1 : 1); } });
+    const spawn = (type, lane, extra) => { const el = document.createElement('div'); el.className = 'pk-ob ' + type; Object.assign(el, extra || {}); F.appendChild(el); const o = { el, lane, y: -90, type }; R.items.push(o); return o; };
+    R.step = (dt, t) => {
+      const H = F.clientHeight, sp = Math.min(1.8, 1 + t / 90000) * (R.hurt > 0 ? .5 : 1), v = .34 * sp;
+      R.dist += v * dt; road.style.setProperty('--off', (R.dist % 120) + 'px'); R.hurt = Math.max(0, R.hurt - dt);
+      const ky = H - 190; kid.style.transform = `translate(${lx(R.lane) - 45}px, ${ky}px)`; kid.classList.toggle('hurt', R.hurt > 0);
+      if (R.learn) {
+        if (!R.gate && R.dist > R.gateAt) {
+          const q = R.q = pkQ(), o = q.opts(3); R.gate = []; $('pkSay').innerHTML = `🔊 ${q.label}`; say(q.say);
+          o.forEach((x, l) => { const g = spawn('gate', l); g.el.innerHTML = `<span>${x.h}</span>`; g.ok = x.ok; R.gate.push(g); });
+        }
+      } else if (t - R.last > 700 / sp) {
+        R.last = t; const l = rand(0, 2);
+        if (Math.random() < .55) spawn('coin', l).el.textContent = '⭐';
+        else { const ob = spawn('cone', l); ob.el.textContent = pick(['🚧', '🪨', '🛞']); }
+      }
+      R.items = R.items.filter(o => {
+        o.y += v * dt; o.el.style.transform = `translate(${lx(o.lane) - (o.type === 'gate' ? road.clientWidth / 6 - 4 : 26)}px, ${o.y}px)`;
+        if (!o.hit && o.y > ky - 30 && o.y < ky + 40 && o.lane === R.lane) {
+          o.hit = 1;
+          if (o.type === 'coin') { o.el.remove(); pkHit(R, true, lx(o.lane), ky); return false; }
+          if (o.type === 'cone') { pkHit(R, false); R.hurt = 700; }
+          if (o.type === 'gate') {
+            const ok = o.ok; R.gate.forEach(gg => { gg.hit = 1; gg.el.classList.add(gg.ok ? 'right' : 'wrong'); });
+            pkHit(R, ok, lx(o.lane), ky); if (!ok) { R.hurt = 600; say([[`答案是${R.q.ans}`]]); }
+            pkEarnQ(R.q.cat, ok); R.gate = null; R.gateAt = R.dist + 1500;
+          }
+        }
+        if (o.y > H + 40) { o.el.remove(); return false; } return true;
+      });
+    };
+  }
+  Object.assign(PK_EXTRA, { slice: pkSliceInit, match: pkMatchInit, run: pkRunInit });
+
   /* ---------- 🏆 星星排行榜：所有付費玩家一起比，只顯示家長設定的暱稱 ---------- */
   const RK_AVA = ['🐻', '🐰', '🐱', '🐶', '🐼', '🦁', '🐯', '🦊', '🐸', '🐧', '🦄', '🦖'];
   const RK_BG = ['#FFD36E', '#FF9DB8', '#7CC4F5', '#8ED07A', '#B9A2F0', '#F7A35C', '#7FD8C8', '#F57E7E'];
@@ -7782,17 +8037,19 @@ body.is-yx.is-print .promo { display: none; }
   function rankMaybe() { if (rkOn() && Date.now() - rkLast > 180000) rankSync(); }
   // 排行榜畫面
   async function openRank() {
-    pkStop(); const P = $('pkPlay'); P.className = 'pk pk-rank'; P.hidden = false; $('pkHub').hidden = true;
+    pkStop(); const P = $('pkPlay'); P.className = 'pk pk-rank'; P.hidden = false; $('pkHub').hidden = true; $('pkHub').innerHTML = '';
     let tab = 'week';
     const draw = (j, msg) => {
       const d = j && j[tab];
+      const mine = d && d.me > d.top.length ? `<div class="rk-gap">⋯</div><div class="rk-row me"><span class="rk-no">${d.me}</span><span class="rk-ava">${rkAvaHTML(store.get('rankAva', ''), 40)}</span><span class="rk-nick">${store.get('rankNick', '')}<small>（我）</small></span><span class="rk-s">⭐ ${tab === 'week' ? wkNow() : total}</span></div>` : '';
       const rows = d ? d.top.map((x, i) => `<div class="rk-row${x.me ? ' me' : ''}"><span class="rk-no">${i < 3 ? ['🥇', '🥈', '🥉'][i] : i + 1}</span><span class="rk-ava">${rkAvaHTML(x.a, 40)}</span><span class="rk-nick">${x.n}${x.me ? '<small>（我）</small>' : ''}</span><span class="rk-s">⭐ ${x.s}</span></div>`).join('') : '';
+      const rowsAll = rows + mine;
       const meTxt = d && d.me ? (d.me === 1 ? `🎉 你是第 1 名！` : `你是第 ${d.me} 名，再 <b>${d.ahead}</b> 顆星就能往前一名！`) : '';
-      P.innerHTML = `<div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="回樂園">${pkBack}</button><span style="display:flex;gap:8px">${rkOn() ? '<button class="pk-pill" id="rkDesign">🎨 我的角色</button>' : ''}<span class="pk-pill">本週 ⭐ ${wkNow()}</span></span></div>
+      P.innerHTML = `<div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="回樂園">${pkBack}</button><span style="display:flex;gap:8px">${rkOn() ? '<button class="pk-pill" id="rkDesign">🎨 我的角色</button>' : ''}<span class="pk-pill">${tab === 'week' ? `本週 ⭐ ${wkNow()}` : `全部 ⭐ ${total}`}</span></span></div>
         <div class="rk-in"><div class="rk-head"><div class="rk-cup">🏆</div><div class="pk-ttl" style="font-size:2.2rem">星星排行榜</div><div class="pk-sub">和全台灣的小朋友一起比星星！</div></div>
         <div class="rk-tabs"><button class="pk-tab${tab === 'week' ? ' on' : ''}" data-t="week">本週</button><button class="pk-tab${tab === 'all' ? ' on' : ''}" data-t="all">全部</button></div>
         ${meTxt ? `<div class="rk-me">${meTxt}</div>` : ''}
-        <div class="rk-list">${msg ? `<p class="rk-msg">${msg}</p>` : rows || '<p class="rk-msg">這週還沒有人上榜，快去拿星星當第一名！</p>'}</div>
+        <div class="rk-list">${msg ? `<p class="rk-msg">${msg}</p>` : rowsAll || '<p class="rk-msg">這週還沒有人上榜，快去拿星星當第一名！</p>'}</div>
         <p class="rk-foot">${tab === 'week' ? '本週排行每週一重新開始。' : ''}只顯示暱稱，不會顯示真實姓名。</p></div>`;
       $('pkQuit').onclick = () => { pkStop(); openPark(); };
       P.querySelectorAll('.rk-tabs .pk-tab').forEach(b => b.onclick = () => { tab = b.dataset.t; draw(j, msg); });
