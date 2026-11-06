@@ -16,6 +16,7 @@ T0 = time.time()
 URL = f'https://{region}.tts.speech.microsoft.com/cognitiveservices/v1'
 OUT = 'audio/v'
 os.makedirs(OUT, exist_ok=True)
+FF = os.environ.get('FFMPEG') or 'ffmpeg'
 GAP = 3000  # 句子之間的停頓（毫秒）
 last_req = [0.0]
 spent = [0]
@@ -53,7 +54,7 @@ def ssml(voice, lang, parts):
 
 
 def enc(src, dst, a=None, b=None):
-    cmd = ['ffmpeg', '-v', 'error', '-y', '-i', src]
+    cmd = [FF, '-v', 'error', '-y', '-i', src]
     if a is not None: cmd += ['-ss', f'{a:.3f}']
     if b is not None: cmd += ['-to', f'{b:.3f}']
     cmd += ['-ac', '1', '-ar', '24000', '-c:a', 'libmp3lame', '-b:a', '40k', dst]
@@ -62,7 +63,7 @@ def enc(src, dst, a=None, b=None):
 
 def split(mp3, n):
     """回傳 n 段 (起, 迄) 秒數（念不出聲音的句子是 None）；對不上就回傳 None"""
-    r = subprocess.run(['ffmpeg', '-i', mp3, '-af', 'silencedetect=noise=-40dB:d=1.5', '-f', 'null', '-'], capture_output=True, text=True).stderr
+    r = subprocess.run([FF, '-i', mp3, '-af', 'silencedetect=noise=-40dB:d=1.5', '-f', 'null', '-'], capture_output=True, text=True).stderr
     dur = re.search(r'Duration: (\d+):(\d+):([\d.]+)', r)
     dur = int(dur[1]) * 3600 + int(dur[2]) * 60 + float(dur[3]) if dur else 1e9
     ss = [float(x) for x in re.findall(r'silence_start: (-?[\d.]+)', r)]

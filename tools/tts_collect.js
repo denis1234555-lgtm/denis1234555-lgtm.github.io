@@ -1,4 +1,4 @@
-const { chromium } = require('playwright');
+const { chromium } = require('playwright-core');
 const fs=require('fs'),path=require('path');
 const SRC=path.resolve('index.html'), COL=path.resolve('_tts_col.html');
 let s=fs.readFileSync(SRC,'utf8');
@@ -8,7 +8,7 @@ s=s.replace(a1,a1+'\n  window.__T = () => ({ GEN, ENG, st, age, startRound, setA
 s=s.replace(a2,"  window.__T2 = () => ({ LEARN, EZL, EZ_EN, pkQ, PK_STK_TASK, FRIENDS, FR_BAD, PK_EN_NAME, PRAISE, EN_PRAISE, setAge: v => { age = v; } });\n"+a2);
 fs.writeFileSync(COL,s);
 (async()=>{
-{const b=await chromium.launch();const p=await (await b.newContext({viewport:{width:390,height:844}})).newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
+{const b=await chromium.launch(process.env.CHROME?{executablePath:process.env.CHROME}:{});const p=await (await b.newContext({viewport:{width:390,height:844}})).newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
 await p.addInitScript(()=>{window.SPK=[];const ss={speaking:false,pending:false,getVoices:()=>[],cancel(){},speak(u){SPK.push([u.text,u.lang||'zh-TW']);setTimeout(()=>u.onend&&u.onend(),0);}};
  Object.defineProperty(window,'speechSynthesis',{value:ss});window.SpeechSynthesisUtterance=function(t){this.text=t};
  localStorage.setItem('ddn-nostat','1');localStorage.setItem('ddn-fe','0');localStorage.setItem('ddn-proLevel','3');localStorage.setItem('ddn-alwaysLearn','false');});
@@ -36,7 +36,7 @@ for(const ag of ['small','big']) for(const sub of subs){
 const spk=await p.evaluate(()=>SPK);
 fs.writeFileSync('/tmp/tts_raw1.json',JSON.stringify({out,spk}));
 console.log('errs',errs.slice(0,5));await b.close()}
-{const b=await chromium.launch();const p=await (await b.newContext({viewport:{width:390,height:844}})).newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
+{const b=await chromium.launch(process.env.CHROME?{executablePath:process.env.CHROME}:{});const p=await (await b.newContext({viewport:{width:390,height:844}})).newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
 await p.addInitScript(()=>{const ss={speaking:false,pending:false,getVoices:()=>[],cancel(){},speak(u){setTimeout(()=>u.onend&&u.onend(),0);}};
  Object.defineProperty(window,'speechSynthesis',{value:ss});window.SpeechSynthesisUtterance=function(t){this.text=t};localStorage.setItem('ddn-nostat','1');localStorage.setItem('ddn-fe','0');});
 await p.goto('file://'+COL);await p.waitForTimeout(800);
