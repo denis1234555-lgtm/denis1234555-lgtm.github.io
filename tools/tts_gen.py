@@ -18,6 +18,8 @@ OUT = 'audio/v'
 os.makedirs(OUT, exist_ok=True)
 GAP = 3000  # 句子之間的停頓（毫秒）
 last_req = [0.0]
+spent = [0]
+diag = [0]
 
 
 def post(ssml):
@@ -25,6 +27,7 @@ def post(ssml):
         wait = 3.1 - (time.time() - last_req[0])  # 每分鐘最多約 19 次
         if wait > 0: time.sleep(wait)
         last_req[0] = time.time()
+        spent[0] += len(re.sub(r'<[^>]+>', '', ssml))
         try:
             req = urllib.request.Request(URL, data=ssml.encode('utf-8'), headers={
                 'Ocp-Apim-Subscription-Key': key, 'Content-Type': 'application/ssml+xml',
@@ -58,16 +61,30 @@ def enc(src, dst, a=None, b=None):
 
 
 def split(mp3, n):
-    """回傳 n 段 (起, 迄) 秒數；找不到剛好 n-1 個長停頓就回傳 None"""
-    r = subprocess.run(['ffmpeg', '-i', mp3, '-af', 'silencedetect=noise=-42dB:d=1.6', '-f', 'null', '-'], capture_output=True, text=True).stderr
+    """回傳 n 段 (起, 迄) 秒數（念不出聲音的句子是 None）；對不上就回傳 None"""
+    r = subprocess.run(['ffmpeg', '-i', mp3, '-af', 'silencedetect=noise=-40dB:d=1.5', '-f', 'null', '-'], capture_output=True, text=True).stderr
     dur = re.search(r'Duration: (\d+):(\d+):([\d.]+)', r)
-    dur = int(dur[1]) * 3600 + int(dur[2]) * 60 + float(dur[3]) if dur else None
-    ss = [float(x) for x in re.findall(r'silence_start: ([\d.]+)', r)]
+    dur = int(dur[1]) * 3600 + int(dur[2]) * 60 + float(dur[3]) if dur else 1e9
+    ss = [float(x) for x in re.findall(r'silence_start: (-?[\d.]+)', r)]
     se = [float(x) for x in re.findall(r'silence_end: ([\d.]+)', r)]
-    sil = [(a, b) for a, b in zip(ss, se) if a > 0.05 and (dur is None or b < dur - 0.05)]
-    if len(sil) != n - 1: return None
-    edges = [0.0] + [x for p in sil for x in p] + [dur or 1e9]
-    return [(max(0, edges[2 * i] - (0.12 if i else 0)), edges[2 * i + 1] + 0.18) for i in range(n)]
+    sil = [(a, b) for a, b in zip(ss, se) if a > 0.05 and b < dur - 0.05]
+    # 很長的停頓 = 中間有句子沒有聲音（例如只有符號），一個停頓算好幾個
+    gaps = []
+    for a, b in sil:
+        m = max(1, round((b - a) / (GAP / 1000 + 0.25)))
+        gaps.append((a, b, m))
+    if sum(g[2] for g in gaps) != n - 1:
+        if diag[0] < 6:
+            diag[0] += 1
+            print('切不準：要', n - 1, '個停頓，找到', [(round(a, 2), round(b, 2)) for a, b in sil], '總長', round(dur, 2))
+        return None
+    out, start = [], 0.0
+    for a, b, m in gaps:
+        out.append((max(0, start - (0.12 if out else 0)), a + 0.18))
+        out += [None] * (m - 1)
+        start = b
+    out.append((max(0, start - 0.12), dur))
+    return out
 
 
 def one(row):
@@ -88,13 +105,16 @@ def batch(rows):
     seg = split(f.name, len(rows))
     if not seg:
         os.unlink(f.name)
-        if len(rows) > 4:  # 切不準就分兩半再試
+        if len(rows) > 6:  # 切不準就分兩半再試
             h = len(rows) // 2
             return batch(rows[:h]) + batch(rows[h:])
         return [one(r) for r in rows]
-    for r, (a, b) in zip(rows, seg): enc(f.name, f'{OUT}/{r[0]}.mp3', a, b)
+    res = []
+    for r, g in zip(rows, seg):
+        if g: enc(f.name, f'{OUT}/{r[0]}.mp3', g[0], g[1])
+        res.append(bool(g))
     os.unlink(f.name)
-    return [True] * len(rows)
+    return res
 
 
 def write_index():
@@ -105,6 +125,7 @@ def write_index():
 
 def save(msg):
     n = write_index()
+    use[month] = base + spent[0]; json.dump(use, open(USE, 'w'))
     subprocess.run('git add audio && (git diff --cached --quiet || git commit -q -m "AI 語音音檔 ' + msg + '") && git pull -q --rebase && git push -q', shell=True)
     print('saved', n)
 
@@ -122,19 +143,21 @@ for g in groups.values():
         cur.append(r); cc += len(r[3])
     if cur: jobs.append(cur)
 print('請求批次', len(jobs))
+MAXJOBS = int(os.environ.get('MAXJOBS', '0'))
 done = fail = 0; since = 0
 USE = 'audio/usage.json'
 use = json.load(open(USE)) if os.path.exists(USE) else {}
 month = time.strftime('%Y-%m'); CAP = int(os.environ.get('CAP', '450000'))
-print('本月已用字數', use.get(month, 0), '上限', CAP)
+base = use.get(month, 0)
+print('本月已用字數', base, '上限', CAP)
 for k, job in enumerate(jobs):
     if time.time() - T0 > BUDGET: print('時間到，下次繼續'); break
     n = sum(len(r[3]) for r in job)
-    if use.get(month, 0) + n > CAP: print('本月免費字數快用完了，先停在這裡，下個月再繼續'); break
-    use[month] = use.get(month, 0) + n; json.dump(use, open(USE, 'w'))
+    if base + spent[0] + n * 2 > CAP: print('本月免費字數快用完了，先停在這裡，下個月再繼續'); break
+    if MAXJOBS and k >= MAXJOBS: print('測試完成'); break
     res = batch(job)
     done += sum(res); fail += len(res) - sum(res); since += sum(res)
-    if k % 20 == 0: print(f'{k + 1}/{len(jobs)} 完成 {done} 失敗 {fail}')
+    if k % 10 == 0 or MAXJOBS: print(f'{k + 1}/{len(jobs)} 完成 {done} 失敗 {fail} 已用字數 {spent[0]}')
     if since >= 2500: save('（進行中）'); since = 0
 save('（全站）')
 left = len([r for r in rows if not os.path.exists(f'{OUT}/{r[0]}.mp3')])
