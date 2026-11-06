@@ -29,7 +29,8 @@ jobs:
           region = r
           if not region: print('AZURE_SPEECH_REGION 是空的：請到 Settings → Secrets 重新填，例如 eastasia'); sys.exit(1)
           if not key: print('AZURE_SPEECH_KEY 是空的'); sys.exit(1)
-          print('使用區域', region)
+          if len(region) > 30 or not region.isalnum(): print('AZURE_SPEECH_REGION 填錯了（看起來像金鑰）：請改成區域名稱，例如 eastasia'); sys.exit(1)
+          print('區域長度', len(region))
           SAMPLE = [
             ["s01", "zh-TW-HsiaoChenNeural", "zh-TW", "小貓要過馬路，看到紅燈亮了。牠應該怎麼做呢？", "-5%", "0%", "旁白／題目（曉臻）"],
             ["s02", "zh-TW-HsiaoYuNeural", "zh-TW", "小貓要過馬路，看到紅燈亮了。牠應該怎麼做呢？", "-5%", "0%", "旁白／題目（曉雨）"],
@@ -81,7 +82,7 @@ jobs:
           if lst == 'sample':
             rows = ''.join(f'<li><b>{html.escape(i[6])}</b><br>{html.escape(i[3])}<br><audio controls preload="none" src="{i[0]}.mp3"></audio></li>' for i in SAMPLE)
             open(f'{out}/index.html', 'w', encoding='utf-8').write(f'<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 語音試聽</title><body style="font-family:sans-serif;max-width:640px;margin:20px auto;padding:0 16px;line-height:1.6"><h1>AI 語音試聽</h1><ol>{rows}</ol></body>')
-          print(f'made {made}, skipped {skip}, failed {fail}', 'region', region, 'keylen', len(key))
+          print(f'made {made}, skipped {skip}, failed {fail}', )
           if fail and not made: sys.exit(1)
           PY
           python3 /tmp/gen.py
