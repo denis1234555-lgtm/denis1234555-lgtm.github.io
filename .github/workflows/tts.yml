@@ -7,12 +7,16 @@ on:
         default: sample
 permissions:
   contents: write
+  actions: write
+concurrency: tts
 jobs:
   tts:
     runs-on: ubuntu-latest
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
-      - name: 產生音檔
+      - name: 產生試聽音檔
+        if: github.event.inputs.list == 'sample'
         env:
           KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           REGION: ${{ secrets.AZURE_SPEECH_REGION }}
@@ -87,9 +91,30 @@ jobs:
           PY
           python3 /tmp/gen.py
       - name: 存回網站
+        if: github.event.inputs.list == 'sample'
         run: |
           git config user.name "tts-bot"
           git config user.email "tts-bot@users.noreply.github.com"
           git add audio
-          git diff --cached --quiet || git commit -m "AI 語音音檔 (${{ github.event.inputs.list }})"
+          git diff --cached --quiet || git commit -m "AI 語音音檔 (sample)"
           git push
+      - name: 產生全站音檔
+        if: github.event.inputs.list == 'all'
+        env:
+          KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+        run: |
+          sudo apt-get install -y -qq ffmpeg >/dev/null 2>&1 || true
+          git config user.name "tts-bot"
+          git config user.email "tts-bot@users.noreply.github.com"
+          npm i --no-save --silent playwright@1.48.2
+          npx playwright install --with-deps chromium >/dev/null
+          N=1000 node tools/tts_collect.js
+          python3 tools/tts_lines.py
+          python3 tools/tts_gen.py
+      - name: 還沒做完就自動接著做
+        if: github.event.inputs.list == 'all'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "$(cat /tmp/left 2>/dev/null || echo 0)" != "0" ]; then gh workflow run tts.yml -f list=all; fi
