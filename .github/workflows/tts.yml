@@ -1,0 +1,70 @@
+name: AI 語音音檔
+on:
+  workflow_dispatch:
+    inputs:
+      list:
+        description: '要做的清單（sample = 試聽 10 句；all = 全站）'
+        default: sample
+permissions:
+  contents: write
+jobs:
+  tts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 產生音檔
+        env:
+          KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+          LIST: ${{ github.event.inputs.list }}
+        run: |
+          cat > /tmp/gen.py <<'PY'
+          import json, os, sys, time, html, urllib.request
+          key, region, lst = os.environ['KEY'].strip(), os.environ['REGION'].strip(), os.environ['LIST']
+          SAMPLE = [
+            ["s01", "zh-TW-HsiaoChenNeural", "zh-TW", "小貓要過馬路，看到紅燈亮了。牠應該怎麼做呢？", "-5%", "0%"],
+            ["s02", "zh-TW-HsiaoYuNeural", "zh-TW", "小貓要過馬路，看到紅燈亮了。牠應該怎麼做呢？", "-5%", "0%"],
+            ["s03", "zh-TW-YunJheNeural", "zh-TW", "小貓要過馬路，看到紅燈亮了。牠應該怎麼做呢？", "-5%", "0%"],
+            ["s04", "zh-TW-HsiaoChenNeural", "zh-TW", "答對了！你好棒！", "0%", "+5%"],
+            ["s05", "zh-TW-HsiaoYuNeural", "zh-TW", "小朋友，跟阿姨走，我帶你去買玩具喔！", "-8%", "-5%"],
+            ["s06", "zh-TW-YunJheNeural", "zh-TW", "我是寶哥！我最喜歡跑步！", "0%", "+12%"],
+            ["s07", "zh-TW-HsiaoYuNeural", "zh-TW", "我是筑筑，我喜歡畫畫。", "-5%", "+15%"],
+            ["s08", "en-US-AnaNeural", "en-US", "Apple. A is for apple.", "-10%", "0%"],
+            ["s09", "en-US-JennyNeural", "en-US", "Stand up, please.", "-10%", "0%"],
+            ["s10", "zh-TW-HsiaoChenNeural", "zh-TW", "三加四，等於幾？", "-5%", "0%"]
+          ]
+          if lst == 'sample':
+            items, out = SAMPLE, 'audio/sample'
+          else:
+            items, out = json.load(open('audio/lines.json', encoding='utf-8')), 'audio/v'
+          os.makedirs(out, exist_ok=True)
+          url = f'https://{region}.tts.speech.microsoft.com/cognitiveservices/v1'
+          made = skip = fail = 0
+          for it in items:
+            fid, voice, lang, text, rate, pitch = it
+            fn = f'{out}/{fid}.mp3'
+            if os.path.exists(fn): skip += 1; continue
+            ssml = f'<speak version="1.0" xml:lang="{lang}"><voice name="{voice}"><prosody rate="{rate}" pitch="{pitch}">{html.escape(text)}</prosody></voice></speak>'
+            for k in range(4):
+              try:
+                req = urllib.request.Request(url, data=ssml.encode('utf-8'), headers={'Ocp-Apim-Subscription-Key': key, 'Content-Type': 'application/ssml+xml', 'X-Microsoft-OutputFormat': 'audio-24khz-48kbitrate-mono-mp3', 'User-Agent': 'ddn-tts'})
+                open(fn, 'wb').write(urllib.request.urlopen(req, timeout=60).read()); made += 1; break
+              except Exception as e:
+                print('retry', fid, e); time.sleep(3 * (k + 1))
+            else:
+              fail += 1
+            time.sleep(0.25)
+          if lst == 'sample':
+            rows = ''.join(f'<li><b>{i[0]}</b> {i[1].split("-")[2].replace("Neural","")}：{html.escape(i[3])}<br><audio controls src="{i[0]}.mp3"></audio></li>' for i in SAMPLE)
+            open(f'{out}/index.html', 'w', encoding='utf-8').write(f'<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 語音試聽</title><body style="font-family:sans-serif;max-width:640px;margin:20px auto;padding:0 16px;line-height:1.6"><h1>AI 語音試聽</h1><ol>{rows}</ol></body>')
+          print(f'made {made}, skipped {skip}, failed {fail}')
+          if fail and not made: sys.exit(1)
+          PY
+          python3 /tmp/gen.py
+      - name: 存回網站
+        run: |
+          git config user.name "tts-bot"
+          git config user.email "tts-bot@users.noreply.github.com"
+          git add audio
+          git diff --cached --quiet || git commit -m "AI 語音音檔 (${{ github.event.inputs.list }})"
+          git push
