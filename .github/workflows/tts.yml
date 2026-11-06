@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       list:
-        description: '要做的清單（sample = 試聽 20 句；all = 全站）'
+        description: '要做的清單（sample = 試聽 20 句；test = 全站先試 8 批；all = 全站）'
         default: sample
 permissions:
   contents: write
@@ -99,8 +99,9 @@ jobs:
           git diff --cached --quiet || git commit -m "AI 語音音檔 (sample)"
           git push
       - name: 產生全站音檔
-        if: github.event.inputs.list == 'all'
+        if: github.event.inputs.list == 'all' || github.event.inputs.list == 'test'
         env:
+          MAXJOBS: ${{ github.event.inputs.list == 'test' && '8' || '0' }}
           KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           REGION: ${{ secrets.AZURE_SPEECH_REGION }}
         run: |
