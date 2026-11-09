@@ -4,7 +4,12 @@ on:
     inputs:
       list:
         description: '要做的清單（sample = 試聽 20 句；test = 全站先試 8 批；all = 全站）'
-        default: sample
+        default: all
+  push:
+    branches: [main]
+    paths: ['index.html', 'tools/**']
+  schedule:
+    - cron: '7 1 1 * *'
 permissions:
   contents: write
   actions: write
@@ -16,11 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: 產生試聽音檔
-        if: github.event.inputs.list == 'sample'
+        if: (github.event.inputs.list || 'all') == 'sample'
         env:
           KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           REGION: ${{ secrets.AZURE_SPEECH_REGION }}
-          LIST: ${{ github.event.inputs.list }}
+          LIST: ${{ (github.event.inputs.list || 'all') }}
         run: |
           cat > /tmp/gen.py <<'PY'
           import json, os, sys, time, html, urllib.request, urllib.error, functools
@@ -91,7 +96,7 @@ jobs:
           PY
           python3 /tmp/gen.py
       - name: 存回網站
-        if: github.event.inputs.list == 'sample'
+        if: (github.event.inputs.list || 'all') == 'sample'
         run: |
           git config user.name "tts-bot"
           git config user.email "tts-bot@users.noreply.github.com"
@@ -99,9 +104,9 @@ jobs:
           git diff --cached --quiet || git commit -m "AI 語音音檔 (sample)"
           git push
       - name: 產生全站音檔
-        if: github.event.inputs.list == 'all' || github.event.inputs.list == 'test'
+        if: (github.event.inputs.list || 'all') == 'all' || (github.event.inputs.list || 'all') == 'test'
         env:
-          MAXJOBS: ${{ github.event.inputs.list == 'test' && '8' || '0' }}
+          MAXJOBS: ${{ (github.event.inputs.list || 'all') == 'test' && '8' || '0' }}
           KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           REGION: ${{ secrets.AZURE_SPEECH_REGION }}
         run: |
@@ -116,7 +121,7 @@ jobs:
           python3 tools/tts_lines.py
           python3 tools/tts_gen.py
       - name: 還沒做完就自動接著做
-        if: github.event.inputs.list == 'all'
+        if: (github.event.inputs.list || 'all') == 'all'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
