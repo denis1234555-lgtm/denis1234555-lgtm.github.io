@@ -18,9 +18,9 @@ console.log('subjects',subs.length);
 const out=[];
 for(const ag of ['small','big']) for(const sub of subs){
  const r=await p.evaluate(async([sub,ag,NN])=>{
-  const T=window.__T(); T.setAge(ag); const parts=[]; let err='';
+  const T=window.__T(); try{localStorage.setItem('ddn-age',JSON.stringify(ag));localStorage.removeItem('ddn-adapt');}catch(e){} T.setAge(ag); const parts=[]; let err='';
   const add=sp=>(sp||[]).forEach(x=>{ if(Array.isArray(x)) parts.push([String(x[0]||''),x[1]||'zh-TW']); });
-  try{ T.startRound(sub);}catch(e){err+='start:'+e.message;}
+  try{ T.startRound(sub);}catch(e){err+='start:'+e.message;} T.setAge(ag);
   const T2=window.__T();
   for(let i=0;i<(T2.ENG[sub]?60:NN);i++){
    try{ const t=window.__T();
@@ -61,5 +61,35 @@ const R=await p.evaluate(()=>{
 });
 fs.writeFileSync('/tmp/tts_raw2.json',JSON.stringify(R.out));
 console.log(JSON.stringify(R.info).slice(0,1500));console.log('n',R.out.length,'errs',errs.slice(0,5));await b.close()}
+
+{let s3=fs.readFileSync(SRC,'utf8');
+ const h1="  async function speakOne(text, lang, my, who) {\n", h2='  const delay = ms => new Promise(r => setTimeout(r, ms));', h3="b.className = 'opt chunky'; b.id = 'opt' + i;";
+ if(s3.includes(h1)&&s3.includes(h2)&&s3.includes(h3)){
+ s3=s3.replace(h1,h1+"    { (window.__CAP=window.__CAP||[]).push([String(text).trim(),lang||'zh-TW',who||'']); return delay(1); }\n").replace(h2,'  const delay = ms => new Promise(r => setTimeout(r, Math.min(ms, 15)));').replace(h3,h3+" b.dataset.c = o.correct ? '1' : '0';");
+ s3=s3.replace(a2,"  window.__C = () => ({ GEN, startRound, st: () => st });\n"+a2);
+ fs.writeFileSync(COL,s3);
+ const b=await chromium.launch(process.env.CHROME?{executablePath:process.env.CHROME}:{});const cap=new Map();
+ for(const ag of ['small','big']){
+  const p=await (await b.newContext({viewport:{width:390,height:844}})).newPage();
+  await p.addInitScript(a=>{const ss={speaking:false,pending:false,getVoices:()=>[],cancel(){},speak(u){setTimeout(()=>u.onend&&u.onend(),0);}};Object.defineProperty(window,'speechSynthesis',{value:ss});window.SpeechSynthesisUtterance=function(t){this.text=t};
+   localStorage.setItem('ddn-nostat','1');localStorage.setItem('ddn-limitMin','0');localStorage.setItem('ddn-alwaysLearn','false');localStorage.setItem('ddn-fe','0');localStorage.setItem('ddn-proLevel','3');localStorage.setItem('ddn-age',JSON.stringify(a));},ag);
+  await p.goto('file://'+COL);await p.waitForTimeout(800);
+  const subs=await p.evaluate(()=>[...new Set([...document.querySelectorAll('.subject[data-sub]')].map(x=>x.dataset.sub))].concat(['place','review']));
+  for(const sub of subs){
+   for(let r=0;r<2;r++){
+    await p.evaluate(s=>{document.querySelectorAll('.ls-ov,.move-box').forEach(e=>e.remove());try{window.__C().startRound(s);}catch(e){}},sub);
+    for(let k=0;k<500;k++){await p.waitForTimeout(15);
+     const d=await p.evaluate(r=>{const st=window.__C().st();if(!document.getElementById('done').hidden)return 'done';if(document.getElementById('game').hidden)return 'gone';const box=document.getElementById('options');if(!box||box.classList.contains('waiting')||st.locked)return 'w';const en=[...box.children].filter(o=>!o.disabled&&!o.classList.contains('gone'));if(!en.length)return 'n';const want=(st.i===0||(r&&st.i===2))?'0':'1';(en.find(o=>o.dataset.c===want)||en[0]).click();return 'x';},r);
+     if(d==='done'||d==='gone')break;}
+    await p.waitForTimeout(120);
+   }
+   // 多看幾題的第一題，收更多題目
+   for(let r=0;r<+(process.env.N3||40);r++){await p.evaluate(s=>{try{window.__C().startRound(s);}catch(e){}},sub);await p.waitForTimeout(20);}
+  }
+  (await p.evaluate(()=>window.__CAP||[])).forEach(x=>cap.set(x.join('\u0001'),x));
+  await p.close();
+ }
+ fs.writeFileSync('/tmp/tts_raw3.json',JSON.stringify([...cap.values()]));console.log('crawl',cap.size);await b.close();}
+ else console.log('第三段找不到注入點，略過');}
 fs.unlinkSync(COL);
 })();

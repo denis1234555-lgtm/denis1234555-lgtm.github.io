@@ -18,6 +18,15 @@ for x in d['out']:
   if x[0]=='P': add(x[1],x[2])
 for t,l in d['spk']: add(t,l)
 for t,l,w in json.load(open('/tmp/tts_raw2.json')): add(t,l,w)
+if os.path.exists('/tmp/tts_raw3.json'):
+  for t,l,w in json.load(open('/tmp/tts_raw3.json')): add(t,l,w)
+# 有數字的句子：再把「數字」和「數字中間的字」分開做，題目數字怎麼變都能用 AI 聲音拼起來念
+for (t,l,w) in list(items):
+  if re.search(r'\d',t):
+    for x in re.split(r'(\d+)',t):
+      x=x.strip()
+      if re.search(r'[\w一-鿿]',x): items[(x,l,w)]=1
+for n in range(0,1001): items[(str(n),'zh-TW','')]=1
 # literals on lines that call say(
 for line in src.split('\n'):
   if 'say(' not in line: continue
