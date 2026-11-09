@@ -109,6 +109,7 @@ jobs:
           MAXJOBS: ${{ (github.event.inputs.list || 'all') == 'test' && '8' || '0' }}
           KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+          CAP: '700000'  # 付費版：每月最多 70 萬字（約 US$10）
         run: |
           git config user.name "tts-bot"
           git config user.email "tts-bot@users.noreply.github.com"
@@ -117,7 +118,7 @@ jobs:
           export FFMPEG=$(node -p "require('ffmpeg-static')")
           export CHROME=$(command -v google-chrome || command -v chromium || command -v chromium-browser)
           echo "ffmpeg: $FFMPEG  chrome: $CHROME"
-          N=1000 timeout 900 node tools/tts_collect.js
+          N=1000 timeout 3600 node tools/tts_collect.js
           python3 tools/tts_lines.py
           python3 tools/tts_gen.py
       - name: 還沒做完就自動接著做
