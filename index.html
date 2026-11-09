@@ -2823,10 +2823,10 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       <p class="note">聲音像真人說話，不會有機器音；寶哥、筑筑、媽媽、老師、壞人都有自己的聲音。需要網路，聽過的句子會存在手機裡，下次沒網路也能聽。沒有音檔的句子會自動改用裝置內建語音。</p>
     </div>
     <div class="block" id="voiceBlock">
-      <h3>朗讀聲音 <small class="note">⭐ 完整版</small></h3>
-      <p class="note">選一個孩子喜歡的朗讀小夥伴，點一下可以試聽。每個角色說話的快慢和高低不一樣；聲音來自裝置內建語音，電腦上差別最明顯，手機上主要是快慢和高低不同。</p>
+      <h3>說話速度</h3>
+      <p class="note">孩子聽不太清楚、或是剛開始學，可以選「慢一點」。聲音一樣是 AI 老師的聲音，只是放慢，不會變調。點一下可以試聽。</p>
       <div class="voice-row" id="voiceRow"></div>
-      <div class="sys-voice"><label for="sysVoice">這台裝置的中文語音</label><select id="sysVoice"><option value="">自動選擇（建議）</option></select>
+      <div class="sys-voice" hidden><label for="sysVoice">這台裝置的中文語音</label><select id="sysVoice"><option value="">自動選擇（建議）</option></select>
         <p class="note">手機有下載其他中文語音（例如 iPhone「設定 → 輔助使用 → 朗讀內容 → 聲音」裡的高音質語音），可以在這裡選。清單裡沒有的語音，代表瀏覽器不開放使用。</p></div>
       <p class="note" id="voiceMsg"></p>
     </div>
@@ -2923,7 +2923,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 (function () {
   const $ = id => document.getElementById(id);
   // 多位小朋友：每個小朋友的學習紀錄分開存；開通、家長設定、聲音等是整台裝置共用
-  const KID_GLOBAL = new Set(['proLevel', 'codeIds', 'lastChk', 'trials', 'limitMin', 'pkMax', 'voice', 'sysVoice', 'aiVoice', 'sound', 'installLater', 'printOK', 'frNames', 'alwaysLearn', 'tapSay', 'moveOn', 'rankOn', 'kids', 'kidCur']);
+  const KID_GLOBAL = new Set(['proLevel', 'codeIds', 'lastChk', 'trials', 'limitMin', 'pkMax', 'voice', 'sysVoice', 'aiVoice', 'sound', 'installLater', 'printOK', 'frNames', 'alwaysLearn', 'tapSay', 'moveOn', 'speed', 'rankOn', 'kids', 'kidCur']);
   const kidRaw = (k, d) => { try { const v = localStorage.getItem('ddn-' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } };
   let kidCur = kidRaw('kidCur', 'k0');
   const kidKey = (kid, k) => 'ddn-' + (KID_GLOBAL.has(k) || kid === 'k0' ? '' : kid + '-') + k;
@@ -5818,7 +5818,9 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   };
   const MALE = /zhiwei|yunjhe|yun-jhe|male|男|kangkang|yunxi|yunyang|daniel|alex|fred|aaron|guy|david|mark/i;
   const FEMALE = /hanhan|yating|meijia|美佳|婷婷|mei-jia|female|女|xiaoxiao|huihui|samantha|victoria|karen|zira|google/i;
-  function voiceProfile() { const k = isFull() ? store.get('voice', 'yuan') : 'yuan'; return VOICES[k] || VOICES.yuan; }
+  function voiceProfile() { return VOICES.yuan; }
+  const SPEEDS = [[1, '🐇', '正常'], [.8, '🐢', '慢一點']];
+  const spd = () => { const v = +store.get('speed', 1); return v > 0 ? v : 1; };
   function voiceFor(lang, g, pref) {
     const norm = v => v.lang.replace('_', '-');
     const HQ = /高音質|增強|premium|enhanced|neural|natural/i;
@@ -5856,7 +5858,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
         const vp = en ? EN_VOICE : (sayProfile || voiceProfile());
         const v = voiceFor(lang, vp.g, vp.pref);
         const maleVoice = v && MALE.test(v.name);
-        u.lang = lang; u.rate = (en ? .8 : .9) * vp.rate * sayRateMul;
+        u.lang = lang; u.rate = (en ? .8 : .9) * vp.rate * sayRateMul * spd();
         // 沒有男聲語音時，團團用更低的音調來模擬
         u.pitch = vp.g === 'm' && !maleVoice && vp.pitch < 1 ? .5 : vp.pitch;
         if (v) u.voice = v;
@@ -5913,7 +5915,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       el.onplaying = () => { started = true; };
       el.onended = () => done(true); el.onerror = () => done(started);
       try {
-        el.src = url; el.preservesPitch = true; el.playbackRate = sayRateMul;
+        el.src = url; el.preservesPitch = true; el.playbackRate = sayRateMul * spd();
         const p = el.play(); if (p) p.catch(() => done(false));
       } catch (e) { done(false); }
     });
@@ -8101,15 +8103,12 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     $('prTopic').innerHTML = '<option value="mix">綜合練習（隨機混合）</option>' + list.map(([k, n, ty]) => `<option value="${k}"${k === cur ? ' selected' : ''}>${n}${ty === 't' ? '（寫字格）' : ''}</option>`).join('');
   }
   function renderVoices() {
-    renderSysVoices();
-    const cur = isFull() ? store.get('voice', 'yuan') : 'yuan';
-    $('voiceRow').innerHTML = Object.entries(VOICES).map(([k, v]) => `<button class="voice-btn" role="radio" aria-checked="${k === cur}" data-v="${k}"><span class="e">${v.e}</span>${v.n}<span class="sub">${v.d}</span></button>`).join('');
+    const cur = spd();
+    $('voiceRow').innerHTML = SPEEDS.map(([v, e, n]) => `<button class="voice-btn" role="radio" aria-checked="${v === cur}" data-v="${v}"><span class="e">${e}</span>${n}</button>`).join('');
     $('voiceRow').querySelectorAll('.voice-btn').forEach(b => b.addEventListener('click', () => {
-      const k = b.dataset.v, wasOn = soundOn;
-      soundOn = true; sayProfile = VOICES[k];
-      say([[`你好，我是${VOICES[k].n}，我們一起動動腦！`]]).then(() => { sayProfile = null; soundOn = wasOn; });
-      if (k === 'yuan' || isFull()) { store.set('voice', k); track('voice-' + k, '選擇朗讀聲音：' + VOICES[k].n); $('voiceMsg').textContent = `已經換成「${VOICES[k].n}」的聲音。`; renderVoices(); }
-      else $('voiceMsg').textContent = `這是「${VOICES[k].n}」的聲音試聽。開啟完整版後就可以換成這個聲音。`;
+      const v = +b.dataset.v, wasOn = soundOn; store.set('speed', v); renderVoices();
+      $('voiceMsg').textContent = `已經換成「${SPEEDS.find(x => x[0] === v)[2]}」。`; track('speed-' + v, '說話速度');
+      soundOn = true; say([['哪一個是紅色的蘋果？']]).then(() => { soundOn = wasOn; });
     }));
   }
   function showLock(justEnded) { if (!justEnded) track('premium-locked', '進階主題試玩用完'); $('lockMsg').textContent = justEnded ? '試玩 3 題結束囉！想繼續玩，請爸爸媽媽到家長專區看看怎麼開啟。' : '試玩已經用完囉！請爸爸媽媽到家長專區看看怎麼開啟。'; $('lockSheet').hidden = false; }
@@ -9354,7 +9353,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   }, true);
 
   const UI_SAY = () => {
-    const out = ['第一個', '第二個', '換你說', '說得真好', '學了好久了，我們起來動一動，讓眼睛和身體休息一下', '好棒！眼睛和身體都休息好了，我們回來繼續學習吧', '第一次來嗎？先玩六題小測驗，幫你找到剛剛好的程度', '答案是這一個喔', '等一下我們再考一次', '我幫你拿掉一個，我們再聽一次', '沒關係，我們再聽一次'];
+    const out = ['哪一個是紅色的蘋果？', '第一個', '第二個', '換你說', '說得真好', '學了好久了，我們起來動一動，讓眼睛和身體休息一下', '好棒！眼睛和身體都休息好了，我們回來繼續學習吧', '第一次來嗎？先玩六題小測驗，幫你找到剛剛好的程度', '答案是這一個喔', '等一下我們再考一次', '我幫你拿掉一個，我們再聽一次', '沒關係，我們再聽一次'];
     MOVES.forEach(m => out.push(m[1]));
     const fin = ['全部配對成功！記憶力真好。', '小測驗完成了！以後的題目會配合你的程度喔。', '你好厲害！下一次題目會難一點點喔。', '我們先練習簡單一點的，慢慢來就會了。', '全部都會了，真棒！', '很棒！再玩一次會更好。', '慢慢來，多玩幾次就會了。', '試玩結束囉！想玩更多，請爸爸媽媽開啟。'];
     for (let n = 0; n <= 30; n++) fin.forEach(m => out.push(`拿到${n}顆星星。${m}`));
