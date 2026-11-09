@@ -3157,6 +3157,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     left: { zh: '左邊', area: '2 / 1', rot: -90 }, right: { zh: '右邊', area: '2 / 3', rot: 90 }
   };
   const MEM_ICONS = ['🐶', '🐱', '🐰', '🐻', '🐼', '🐸', '🍎', '🍌', '🍓', '🚗', '⭐', '🌸', '🎈', '🐟', '🦁', '🐯', '🐵', '🦄', '🐢', '🦋', '🍉', '🍇', '🍩', '🚀', '🚂', '⚽', '🎁', '🌈', '🍦', '🐧'];
+  const DEDUCE_SET = (() => { let x = 7; const r = n => (x = (x * 1103515245 + 12345) % 2147483648) % n, out = []; while (out.length < 72) { const a = r(18), b = r(18), c = r(18); if (a !== b && b !== c && a !== c) out.push([a, b, c, out.length % 3]); } return out; })();
   const FACES = [['🐶', '小狗'], ['🐱', '小貓'], ['🐰', '兔子'], ['🐻', '熊'], ['🐼', '熊貓'], ['🐯', '老虎'], ['🦁', '獅子'], ['🐮', '牛'], ['🐷', '小豬'], ['🐸', '青蛙'], ['🐵', '猴子'], ['🐔', '雞'], ['🦊', '狐狸'], ['🐨', '無尾熊'], ['🐭', '老鼠'], ['🐧', '企鵝'], ['🦄', '獨角獸'], ['🐹', '倉鼠']];
   const COVERS = {
     bush: { n: '草叢', svg: '<path d="M0 155V62C14 20 52 12 74 40 92 4 142 0 160 34 180 6 230 8 244 44 262 30 280 38 280 46V155Z" fill="#43A047"/><path d="M0 155V96c22-24 58-22 76-4 20-22 64-22 84 0 22-20 66-20 84-2 14-8 30-8 36 0V155Z" fill="#2E7D32"/><circle cx="58" cy="70" r="6" fill="#E53935"/><circle cx="196" cy="58" r="6" fill="#E53935"/><circle cx="132" cy="110" r="6" fill="#FDD835"/>' },
@@ -5021,7 +5022,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
         options: shuffle(opts).map(o => ({ html: picHTML(o), label: o, correct: o === ans })), after: [['答對了']], key: kind + unit.join('') + hole
       };
     },
-    deduce() {
+    deduce(fix, idx) {
       if (age === 'small') {
         const boxes = shuffle([['🟥', '紅色'], ['🟦', '藍色'], ['🟨', '黃色']]), ani = pick(FACES), ans = boxes[2];
         return {
@@ -5030,11 +5031,10 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
           options: shuffle(boxes).map(b => ({ html: optLife(b), label: b[1], correct: b === ans })), after: [[`${ani[1]}在${ans[1]}的盒子`]], key: ani[0] + boxes.map(b => b[0]).join('')
         };
       }
-      const [L, M, R] = shuffle(FACES).slice(0, 3);
-      const variant = rand(0, 2);
+      const [li, mi, ri, variant] = idx != null ? DEDUCE_SET[idx] : pick(DEDUCE_SET), L = FACES[li], M = FACES[mi], R = FACES[ri];
       const clues = variant === 0 ? [`${R[0]} 在最右邊`, `${L[0]} 在 ${M[0]} 的左邊`] : variant === 1 ? [`${L[0]} 在最左邊`, `${R[0]} 在 ${M[0]} 的右邊`] : [`${M[0]} 不在兩邊`, `${L[0]} 在 ${R[0]} 的左邊`];
       const spoken = variant === 0 ? [`${R[1]}在最右邊`, `${L[1]}在${M[1]}的左邊`] : variant === 1 ? [`${L[1]}在最左邊`, `${R[1]}在${M[1]}的右邊`] : [`${M[1]}不在兩邊`, `${L[1]}在${R[1]}的左邊`];
-      const askPos = pick(['左邊', '中間', '右邊']), ans = { 左邊: L, 中間: M, 右邊: R }[askPos];
+      const askPos = fix || pick(['左邊', '中間', '右邊']), ans = { 左邊: L, 中間: M, 右邊: R }[askPos];
       return {
         prompt: `排成一排，誰在${askPos === '中間' ? '中間' : '最' + askPos}？`, speech: [[`三個好朋友排成一排。${spoken.join('，')}。誰在${askPos === '中間' ? '中間' : '最' + askPos}？`]],
         stage: `<div><div class="ord"><span><i>❓</i></span><span><i>❓</i></span><span><i>❓</i></span></div><div class="story" style="margin-top:10px">${clues.join('<br>')}</div></div>`,
@@ -5921,7 +5921,12 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   async function speakOne(text, lang, my, who) {
     lang = lang || 'zh-TW';
     if (await aiPlay(text, lang, my, who)) return;
-    if (my !== sayToken || !('speechSynthesis' in window)) return;
+    if (my !== sayToken) return;
+    if (/\d/.test(text) && AI.ids) {
+      const ps = String(text).split(/(\d+)/).map(x => x.trim()).filter(x => /[\w\u4e00-\u9fff]/.test(x));
+      if (ps.length > 1 && ps.every(x => aiHas(x, lang, who))) { for (const x of ps) { if (my !== sayToken) return; await aiPlay(x, lang, my, who); } return; }
+    }
+    if (!('speechSynthesis' in window)) return;
     return ttsOne(String(text).replace(/⟦([^|⟧]*)\|?([^⟧]*)⟧/g, (m, a, b) => b || a), lang, my);
   }
   // 依序念完每一段才 resolve；長的故事會照句號拆開念（避免手機念太長的句子會中斷）
@@ -5934,7 +5939,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       try { speechSynthesis.cancel(); } catch (e) {}
       try { AI.el && AI.el.pause(); } catch (e) {}
       const chunks = [];
-      (parts || []).forEach(([t, l, w]) => { const en = (l || '').startsWith('en'); String(t || '').split(en ? /(?<=[!?])\s+/ : /(?<=[。！？；])/).forEach(x => { if (x.trim()) chunks.push([x, l || 'zh-TW', w || '']); }); });
+      (parts || []).forEach(([t, l, w]) => { const en = (l || '').startsWith('en'); String(t || '').split(en ? /(?<=[!?])\s+/ : /(?<=[。！？；])/).forEach(x => { if (/[\w\u3105-\u3129\u4e00-\u9fff]/.test(x)) chunks.push([x, l || 'zh-TW', w || '']); }); });
       // 先把前兩句的音檔抓下來，念的時候不會卡
       const pre = k => { const c = chunks[k]; if (c && aiHas(c[0], c[1], c[2])) aiFetch(aiId(c[0], c[1], c[2])); };
       pre(0); pre(1);
@@ -9351,8 +9356,16 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   const UI_SAY = () => {
     const out = ['第一個', '第二個', '換你說', '說得真好', '學了好久了，我們起來動一動，讓眼睛和身體休息一下', '好棒！眼睛和身體都休息好了，我們回來繼續學習吧', '第一次來嗎？先玩六題小測驗，幫你找到剛剛好的程度', '答案是這一個喔', '等一下我們再考一次', '我幫你拿掉一個，我們再聽一次', '沒關係，我們再聽一次'];
     MOVES.forEach(m => out.push(m[1]));
+    const fin = ['全部配對成功！記憶力真好。', '小測驗完成了！以後的題目會配合你的程度喔。', '你好厲害！下一次題目會難一點點喔。', '我們先練習簡單一點的，慢慢來就會了。', '全部都會了，真棒！', '很棒！再玩一次會更好。', '慢慢來，多玩幾次就會了。', '試玩結束囉！想玩更多，請爸爸媽媽開啟。'];
+    for (let n = 0; n <= 30; n++) fin.forEach(m => out.push(`拿到${n}顆星星。${m}`));
+    const enE = ['The free trial is over.', 'Excellent!', 'Great job!', 'Good try! Practice makes perfect.'];
+    const en = []; for (let n = 0; n <= 30; n++) enE.forEach(m => en.push([`You got ${n} ${n === 1 ? 'star' : 'stars'}! ${m}`, 'en-US']));
+    BADGES.forEach(b => out.push(`恭喜你得到新徽章：${b.n}`));
+    try { EZL.forEach(c => c.items.forEach((x, i) => { [ezlFind(c, x), ezlAsk(c, x), `No. It's ${x.w}.`, x.say || x.w, `What comes after ${x.w}?`, `What comes before ${x.w}?`].forEach(t => en.push([t, 'en-US']));
+      if (c.type === 'text') { const nx = c.items[(i + 1) % c.items.length], pv = c.items[(i + c.items.length - 1) % c.items.length]; en.push([`After ${x.w} comes ${nx.w}.`, 'en-US'], [`Before ${x.w} comes ${pv.w}.`, 'en-US']); } })); en.push(['Yes!', 'en-US']); } catch (e) {}
+    try { const a0 = age; age = 'big'; DEDUCE_SET.forEach((d, k) => ['左邊', '中間', '右邊'].forEach(pos => { const q = GEN.deduce(pos, k); q.speech.forEach(x => out.push(x[0])); q.after.forEach(x => out.push(x[0])); })); age = a0; } catch (e) {}
     document.querySelectorAll('.subject, [data-say]').forEach(el => { const t = tapSayName(el).trim(); if (t) out.push(t); });
-    return [...new Set(out)].map(t => [t, 'zh-TW']);
+    return [...new Set(out)].map(t => [t, 'zh-TW']).concat(en);
   };
   /* ---------- 📒 錯題複習本：答錯的題目隔天、三天後再出現 ---------- */
   const revBook = () => store.get('revBook', []);
