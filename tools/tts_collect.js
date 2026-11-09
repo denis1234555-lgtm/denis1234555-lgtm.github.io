@@ -5,7 +5,7 @@ let s=fs.readFileSync(SRC,'utf8');
 const a1='  Object.assign(GEN, YX_GEN);', a2='  const frName = k =>';
 if(!s.includes(a1)||!s.includes(a2)){console.log('找不到注入點');process.exit(1);}
 s=s.replace(a1,a1+'\n  window.__T = () => ({ GEN, ENG, st, age, startRound, setAge: v => { age = v; } });');
-s=s.replace(a2,"  window.__T2 = () => ({ LEARN, EZL, EZ_EN, pkQ, PK_STK_TASK, FRIENDS, FR_BAD, PK_EN_NAME, PRAISE, EN_PRAISE, setAge: v => { age = v; } });\n"+a2);
+s=s.replace(a2,"  window.__T2 = () => ({ LEARN, EZL, EZ_EN, pkQ, PK_STK_TASK, FRIENDS, FR_BAD, PK_EN_NAME, PRAISE, EN_PRAISE, SLEEP: typeof SLEEP === 'undefined' ? [] : SLEEP, HEROES: typeof HEROES === 'undefined' ? [] : HEROES, SUBNAME: typeof SUBNAME === 'undefined' ? {} : SUBNAME, LS_TYPE: typeof LS_TYPE === 'undefined' ? {} : LS_TYPE, UI_SAY: typeof UI_SAY === 'undefined' ? null : UI_SAY, setAge: v => { age = v; } });\n"+a2);
 fs.writeFileSync(COL,s);
 (async()=>{
 {const b=await chromium.launch(process.env.CHROME?{executablePath:process.env.CHROME}:{});const p=await (await b.newContext({viewport:{width:390,height:844}})).newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
@@ -52,6 +52,9 @@ const R=await p.evaluate(()=>{
  Object.values(T.PK_EN_NAME).forEach(w=>add([[w,'en-US']]));
  T.FRIENDS.forEach(f=>add([[f[4](f[1])]],f[0]));
  T.FR_BAD.forEach(f=>{add([[f[4]]],f[0]); add([[f[5]]]);});
+ (T.SLEEP||[]).forEach(st=>st.L.forEach(l=>add([[l[0],'zh-TW']],l[1]||'sleep'))); (T.HEROES||[]).forEach(h=>{h.P.forEach(pg=>add([[pg[2]]]));add([[h.Q[0]]]);h.Q[1].forEach(o=>add([[o]]));add([[h.say]],h.who==='en'?'':h.who);});
+ if(T.LS_TYPE&&T.LS_TYPE.full){const tl=w=>add([[`你今天${w}，表現得真好！老師送你一張貼紙！`]],'tch');Object.keys(T.SUBNAME).forEach(k=>{tl(`${T.SUBNAME[k]}全部答對`);tl(`${T.SUBNAME[k]}進步好多`);});['streak','hero'].forEach(k=>tl(T.LS_TYPE[k][2]));Object.values(T.LS_TYPE).forEach(t=>add([[`${t[1]}，${t[2]}，好棒！`]]));}
+ if(T.UI_SAY) add(T.UI_SAY());
  T.PRAISE.forEach(w=>add([[w]])); T.EN_PRAISE.forEach(w=>add([[w,'en-US']]));
  for(let c=65;c<91;c++) add([[String.fromCharCode(c)+'.','en-US']]);
  return {out,info};

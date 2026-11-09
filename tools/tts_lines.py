@@ -30,6 +30,7 @@ VO={'':('zh-TW-HsiaoChenNeural','zh-TW','-5%','0%'),'en':('en-US-AnaNeural','en-
  'b2':('zh-TW-YunJheNeural','zh-TW','-3%','+8%'),'g2':('zh-TW-HsiaoChenNeural','zh-TW','+8%','+18%'),
  'b3':('zh-CN-YunxiaNeural','zh-CN','-5%','-5%'),'g3':('zh-CN-XiaoshuangNeural','zh-CN','-8%','-5%'),
  'mom':('zh-TW-HsiaoYuNeural','zh-TW','-5%','0%'),'tch':('zh-TW-HsiaoChenNeural','zh-TW','-8%','-3%'),'dad':('zh-TW-YunJheNeural','zh-TW','-5%','-8%'),
+ 'sleep':('zh-TW-HsiaoChenNeural','zh-TW','-22%','-4%'),'hero':('zh-CN-YunxiaNeural','zh-CN','-5%','+5%'),
  'jin':('zh-TW-HsiaoYuNeural','zh-TW','-10%','-8%'),'ma':('zh-TW-HsiaoChenNeural','zh-TW','-18%','-22%'),'niu':('zh-TW-YunJheNeural','zh-TW','-10%','-18%')}
 M=(1<<32)-1
 def imul(a,b): return (a*b)&M

@@ -45,8 +45,27 @@ def post(ssml):
     return None
 
 
+ZY_NAME = {'ㄅ': 'ㄅㄛ', 'ㄆ': 'ㄆㄛ', 'ㄇ': 'ㄇㄛ', 'ㄈ': 'ㄈㄛ', 'ㄉ': 'ㄉㄜ', 'ㄊ': 'ㄊㄜ', 'ㄋ': 'ㄋㄜ', 'ㄌ': 'ㄌㄜ', 'ㄍ': 'ㄍㄜ', 'ㄎ': 'ㄎㄜ', 'ㄏ': 'ㄏㄜ', 'ㄐ': 'ㄐㄧ', 'ㄑ': 'ㄑㄧ', 'ㄒ': 'ㄒㄧ'}
+TOK = re.compile(r'⟦([^|⟧]*)\|?([^⟧]*)⟧|([\u3105-\u3129][\u3105-\u3129ˊˇˋ˙]*)')
+
+
+def mark(t):
+    """注音符號和 ⟦IPA|字⟧ 改成 <phoneme>，讓 AI 念出正確的音"""
+    out, i = [], 0
+    for m in TOK.finditer(t):
+        out.append(html.escape(t[i:m.start()])); i = m.end()
+        if m.group(3):
+            z = m.group(3); core = re.sub('[ˊˇˋ˙]', '', z)
+            ph = ZY_NAME.get(z, z) if len(core) == 1 and z == core else z
+            out.append(f'<phoneme alphabet="sapi" ph="{html.escape(ph)}">{html.escape(z)}</phoneme>')
+        else:
+            out.append(f'<phoneme alphabet="ipa" ph="{html.escape(m.group(1))}">{html.escape(m.group(2) or m.group(1))}</phoneme>')
+    out.append(html.escape(t[i:]))
+    return ''.join(out)
+
+
 def prosody(t, rate, pitch):
-    return f'<prosody rate="{rate}" pitch="{pitch}">{html.escape(t)}</prosody>'
+    return f'<prosody rate="{rate}" pitch="{pitch}">{mark(t)}</prosody>'
 
 
 def ssml(voice, lang, parts):
@@ -132,6 +151,12 @@ def save(msg):
 
 
 rows = json.load(open('audio/lines.json', encoding='utf-8'))
+# 一次性：以前沒有用正確符號音念的注音句子，重新做一次
+if not os.path.exists('audio/zyfix.txt'):
+    redo = [r for r in rows if re.search('[\u3105-\u3129]', r[3]) and os.path.exists(f'{OUT}/{r[0]}.mp3')]
+    for r in redo: os.remove(f'{OUT}/{r[0]}.mp3')
+    open('audio/zyfix.txt', 'w').write(str(len(redo)))
+    print('注音句子重做', len(redo))
 todo = [r for r in rows if not os.path.exists(f'{OUT}/{r[0]}.mp3')]
 print('全部', len(rows), '要做', len(todo), '字數', sum(len(r[3]) for r in todo))
 groups = {}
