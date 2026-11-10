@@ -20,6 +20,8 @@ jobs:
     timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main  # 排隊等前一次跑完時，要拿到最新的音檔，才不會重做
       - name: 產生試聽音檔
         if: (github.event.inputs.list || 'all') == 'sample'
         env:
