@@ -1927,9 +1927,11 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   .an-wind { font-size: clamp(22px, 8vw, 46px); animation: tlWind 1.4s ease-in infinite; } @keyframes tlWind { from { opacity: 0; transform: translate(-50%, -50%); } 30% { opacity: 1; } to { opacity: 0; transform: translate(-260%, -50%) scale(1.4); } }
   .an-bl { animation: tlBL 1.4s ease-in-out infinite; } @keyframes tlBL { 50% { transform: translate(-50%, -50%) scale(calc(var(--s, 1) * 1.12)); } }
   .an-no { }
-  .mix.sm { gap: 4px; } .mix.sm .blob { width: 30px; height: 30px; } .mix.sm .op { font-size: 1.2rem; }
+  .ez-hide { font-size: 1.1rem !important; color: var(--muted) !important; } .mix.sm { gap: 4px; } .mix.sm .blob { width: 30px; height: 30px; } .mix.sm .op { font-size: 1.2rem; }
   .sl-mix { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; } .sl-mix .sl-btn { display: flex; flex-direction: column; align-items: center; padding: 4px 7px; line-height: 1.1; min-width: 44px; } .sl-mix .sl-btn small { font-size: .62rem; font-weight: 800; opacity: .85; }
   .tl-pp { display: block; height: 2.7em; width: auto; transform: translateY(-26%); } .tl-pa svg { display: block; height: 1.55em; width: auto; transform: translateY(-14%); } .tl-hum, .tl-ani { line-height: 0; }
+  .rk-grp { margin-top: 14px; padding: 12px; border-radius: 16px; background: var(--sun-soft); } .rk-code { font-family: var(--f-display); font-weight: 800; font-size: 1.6rem; letter-spacing: .12em; padding: 4px 12px; border-radius: 12px; background: var(--surface); } .rk-grp input { font: inherit; font-weight: 800; padding: 8px 10px; border-radius: 12px; border: 2px solid var(--line-deep); width: 11em; text-transform: uppercase; }
+  .pk-ani { display: inline-block; width: 1.3em; height: 1.3em; line-height: 0; vertical-align: middle; } .pk-ani svg { width: 100%; height: 100%; }
   .fb-art svg { height: 1.3em; width: auto; vertical-align: middle; display: inline-block; }
   .tl-steps { display: grid; gap: 10px; margin-top: 12px; }
   .tl-big { display: flex; align-items: center; gap: 10px; border: 0; border-radius: 20px; padding: 12px 14px; font: inherit; text-align: left; background: #fff; box-shadow: 0 4px 0 rgba(0,0,0,.08); } .tl-big span { font-size: 30px; } .tl-big b { font-size: 17px; } .tl-big small { display: block; color: #8A7A86; font-weight: 700; } .tl-big:disabled { opacity: .5; }
@@ -5693,15 +5695,15 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       };
     },
     share() {
-      const people = age === 'small' ? 2 : pick([2, 2, 3, 4]);
-      const each = age === 'small' ? rand(1, 4) : rand(1, Math.floor(12 / people));
+      const people = age === 'small' ? pick([2, 2, 3]) : age === 'six' ? pick([3, 4, 5, 6]) : pick([2, 2, 3, 4]);
+      const each = age === 'small' ? rand(1, people === 3 ? 2 : 4) : age === 'six' ? rand(2, Math.floor(24 / people)) : rand(1, Math.floor(12 / people));
       const total = people * each, item = pick([['🍬', '顆糖', '顆'], ['🍪', '片餅乾', '片'], ['🍓', '顆草莓', '顆'], ['🎈', '個氣球', '個'], ['🍎', '顆蘋果', '顆'], ['⭐', '張星星貼紙', '張'], ['🧸', '個玩偶', '個']]);
-      const kids = shuffle(['👦', '👧', '🧒', '👶']).slice(0, people);
+      const kids = shuffle(['👦', '👧', '🧒', '👶', '👦', '👧']).slice(0, people);
       return {
         prompt: `${total} ${item[1]}，分給 ${people} 個人，每人幾${item[2]}？`, speech: [[`${total}${item[1]}，平分給${people}個人，每個人分到幾${item[2]}？`]],
         stage: `<div><div class="count share">${Array(total).fill(`<span>${item[0]}</span>`).join('')}</div><div class="kids">${kids.map(k => `<span>${k}</span>`).join('')}</div></div>`,
-        options: numberOptions(each, age === 'small' ? 3 : 4, 1, 12).map(v => ({ html: numHTML(v), label: String(v), correct: v === each })),
-        after: [[`每個人分到${each}${item[2]}`]], key: 'p' + total + people
+        options: numberOptions(each, age === 'small' ? 3 : 4, 1, age === 'six' ? 12 : 12).map(v => ({ html: numHTML(v), label: String(v), correct: v === each })),
+        after: [[`每個人分到${each}${item[2]}`]], key: 'p' + total + people + item[0]
       };
     },
     calendar() {
@@ -6189,6 +6191,15 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       return q;
     }
   };
+  // 🎒 幼小銜接：5 歲少一個選項（比較容易），6 歲照原本 4 個選項；6 歲計算多了「連加減」
+  Object.keys(YX_GEN).forEach(k => { const f = YX_GEN[k]; YX_GEN[k] = function (...a) { const q = f.apply(this, a);
+    if (q && age === 'big' && Array.isArray(q.options) && q.options.length >= 4) { const bad = q.options.filter(o => !o.correct); if (bad.length) q.options = q.options.filter(o => o !== pick(bad)); }
+    return q; }; });
+  { const calc = YX_GEN.yxcalc; YX_GEN.yxcalc = function () {
+    if (age === 'six' && Math.random() < .35) { const a = rand(3, 10), b = rand(2, 9), c = rand(1, Math.min(9, a + b - 1)), r = a + b - c;
+      return { prompt: '算算看，答案是多少？', speech: [[`${a}加${b}再減${c}，等於多少？`]], stage: yxCard(`<div class="eq">${a} + ${b} − ${c} = <span class="q">?</span></div>`),
+        options: numberOptions(r, 4, 0, 20).map(k => ({ html: numHTML(k), label: String(k), correct: k === r })), after: [[`${a}加${b}等於${a + b}，再減${c}，等於${r}`]], key: 'x' + a + b + c }; }
+    return calc.apply(this, arguments); }; }
   Object.assign(GEN, YX_GEN);
 
   /* ---------- 聲音 ---------- */
@@ -6544,6 +6555,8 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 
 
   /* ---------- 動手玩：描字、排順序、連連看、找不同、迷宮、拼圖、著色 ---------- */
+  // ✍️ 6 歲：多數時間描簡單的國字（筆畫少、常用）
+  const TRACE_SIX = '人口山上下大小土工王日月田中天木水火禾竹米耳目手足牛羊石白子女心生立文左右力出入'.split('').map(c => [c, c, 'k']);
   const TRACE_SMALL = [['1', '1', 'n'], ['2', '2', 'n'], ['3', '3', 'n'], ['4', '4', 'n'], ['5', '5', 'n'], ['6', '6', 'n'], ['7', '7', 'n'], ['8', '8', 'n'], ['9', '9', 'n'], ['0', '0', 'n'], ['一', '一', 'k'], ['二', '二', 'k'], ['三', '三', 'k'], ['十', '十', 'k'], ['人', '人', 'k'], ['大', '大', 'k'], ['口', '口', 'k'], ['O', 'letter O', 'e'], ['L', 'letter L', 'e'], ['T', 'letter T', 'e'], ['上', '上', 'k'], ['下', '下', 'k'], ['山', '山', 'k'], ['日', '日', 'k'], ['ㄅ', '注音', 'z'], ['ㄇ', '注音', 'z']];
   const TRACE_BIG = [
     ...'ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙ'.split('').map(z => [z, '注音', 'z']),
@@ -6713,7 +6726,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     trace: {
       total: () => 5,
       render() {
-        const pool = st.tracePool || (age === 'small' ? TRACE_SMALL : TRACE_BIG);
+        const pool = st.tracePool || (age === 'small' ? TRACE_SMALL : age === 'six' && Math.random() < .7 ? TRACE_SIX : TRACE_BIG);
         let t; do { t = pick(pool); } while (st.used.has('tr' + t[0]) && st.used.size < pool.length);
         st.used.add('tr' + t[0]); st.tr = { t, tries: 0 };
         const spoken = t[2] === 'z' ? '這個注音' : t[2] === 'e' ? '這個英文字母' : t[2] === 'n' ? `數字${t[0]}` : `${t[0]}這個字`;
@@ -7663,7 +7676,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     const r = Math.random(), t = pick(pool);
     if (extra && r < .28) { const q = extra(); if (q) return q; }
     if (r < .62) {
-      const opts = shuffle([t, ...others(pool, t, 2, x => x.e)]);
+      const opts = shuffle([t, ...others(pool, t, age === 'six' ? 3 : 2, x => x.e)]);
       return {
         prompt: '聽英文，找出對的圖', en: ezFind(t), stage: ezEar(t.w),
         options: opts.map(o => ({ html: ezOptPic(o), label: o.zh, correct: o === t })),
@@ -7677,6 +7690,8 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     };
   }
 
+  // 🌍 英語：6 歲的「聽英文」題，常常不顯示英文字，要用耳朵聽
+  const ezSix = q => { if (q && age === 'six' && typeof q.stage === 'string' && /^聽/.test(q.prompt || '') && q.stage.includes('ez-word') && Math.random() < .6) q.stage = q.stage.replace(/<div class="ez-word">[\s\S]*?<\/div>/, '<div class="ez-word ez-hide">👂 仔細聽</div>'); return q; };
   const EZ_GEN = {
     /* ---------- Level 1 聽聽看 ---------- */
     ezanimal() {
@@ -8004,6 +8019,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     q.__en = true; return q;
   }
   Object.keys(EZ_GEN).forEach(k => { const f = EZ_GEN[k]; EZ_GEN[k] = () => ezEnglish(f()); });
+  Object.keys(EZ_GEN).forEach(k => { const f = EZ_GEN[k]; EZ_GEN[k] = function (...a) { return ezSix(f.apply(this, a)); }; });
   Object.assign(GEN, EZ_GEN);
   /* ---------- 🌍 英語小學堂：單字學習卡（先學再測驗，全英文朗讀） ---------- */
   const EZL_TIER_NAME = ['免費版', '標準版', '完整版', '幼小銜接版', '幼小銜接版＋列印學習單'];
@@ -9597,6 +9613,8 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     { say: 'Put the cat under the tree.', en: 1, e: '🐱', ok: s => s.x > 66 && s.x < 86 && s.y > 50 && s.y < 66, cat: 'pken' }
   ];
   const PK_EN_NAME = { '🐶': 'dog', '🐱': 'cat', '🐰': 'rabbit', '🐼': 'panda', '🦁': 'lion', '🐯': 'tiger', '🦒': 'giraffe', '🐘': 'elephant', '🦩': 'flamingo', '🦊': 'fox', '🐨': 'koala', '🦄': 'unicorn', '🦖': 'dinosaur', '🦕': 'dinosaur', '🐉': 'dragon', '🥚': 'egg', '🐠': 'fish', '🐙': 'octopus', '🐢': 'turtle', '🐬': 'dolphin', '🦀': 'crab', '🐚': 'shell', '🐡': 'blowfish', '🦈': 'shark', '🐳': 'whale', '🚀': 'rocket', '🛸': 'UFO', '🪐': 'planet', '🌙': 'moon', '⭐': 'star', '👽': 'alien', '☄️': 'comet', '🌸': 'flower', '🌻': 'sunflower', '🌈': 'rainbow', '🎈': 'balloon', '🎀': 'bow', '🍭': 'lollipop', '🌳': 'tree', '🦋': 'butterfly', '🦆': 'duck', '🐦': 'bird' };
+  // 🐾 貼紙：動物用全身的畫法（和寵物同一種風格）
+  const pkArt = e => { const a = aniSVG(e); return a ? `<span class="pk-ani">${a}</span>` : e; };
   function pkOwned() { return store.get('pkOwn', ['🐶', '🐱', '🐰']); }
   function pkSticker() {
     pkStop();
@@ -9608,7 +9626,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       P.innerHTML = `<div class="pk-canvas" id="pkCv"><div id="pkBox" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);aspect-ratio:390/557;height:100%;max-width:100%;overflow:hidden"><svg class="bg" viewBox="0 0 390 557" preserveAspectRatio="xMidYMid slice">${PK_SCN[scene][1]}</svg></div></div>
         <div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="回樂園">${pkBack}</button>${task ? `<button class="pk-pill" id="pkSay" style="max-width:58vw;font-size:.95rem">🔊 ${task.say}</button>` : `<button class="pk-pill" id="pkTaskBtn">🧠 闖關任務</button>`}<span class="pk-pill">⭐ <span id="pkBal">${pkBal()}</span></span></div>
         <div class="pk-tray"><div class="pk-tabs"><button class="pk-tab${cat === '收藏' ? ' on' : ''}" data-c="收藏">📒 我的收藏</button>${Object.keys(PK_STK).map(k => `<button class="pk-tab${k === cat ? ' on' : ''}" data-c="${k}">${k}</button>`).join('')}</div>
-        <div class="pk-sgrid">${cat === '收藏' ? (alOwn().length ? alOwn().map(id => `<button class="pk-s al own" data-e="al:${id}" data-p="0">${alSVG(id)}</button>`).join('') : '<p class="note" style="grid-column:1/-1">還沒有收藏貼紙，去「收集貼紙相簿」用星星換吧！</p>') : PK_STK[cat].map(([e, p]) => `<button class="pk-s${pkOwned().includes(e) ? ' own' : ''}" data-e="${e}" data-p="${p}">${e}${pkOwned().includes(e) ? '' : `<i>⭐${p}</i>`}</button>`).join('')}</div>
+        <div class="pk-sgrid">${cat === '收藏' ? (alOwn().length ? alOwn().map(id => `<button class="pk-s al own" data-e="al:${id}" data-p="0">${alSVG(id)}</button>`).join('') : '<p class="note" style="grid-column:1/-1">還沒有收藏貼紙，去「收集貼紙相簿」用星星換吧！</p>') : PK_STK[cat].map(([e, p]) => `<button class="pk-s${pkOwned().includes(e) ? ' own' : ''}" data-e="${e}" data-p="${p}">${pkArt(e)}${pkOwned().includes(e) ? '' : `<i>⭐${p}</i>`}</button>`).join('')}</div>
         <div class="pk-sfoot"><select id="pkScnSel" aria-label="換場景">${Object.entries(PK_SCN).map(([k, v]) => `<option value="${k}"${k === scene ? ' selected' : ''}>${v[0]}</option>`).join('')}</select>${task ? '<button class="pk-btn" id="pkCheck" style="padding:8px 18px;font-size:1rem">✅ 完成了</button>' : '<button class="pk-btn gray" id="pkClear" style="padding:8px 16px;font-size:.95rem">🧽 清空</button>'}<button class="pk-btn" id="pkShot" style="padding:8px 16px;font-size:.95rem;background:#3F6FD8;box-shadow:0 5px 0 #2C52A8">📷 存圖</button></div></div>
         <div class="pk-ask" id="pkAsk" hidden></div>`;
       const box = $('pkBox');
@@ -9633,7 +9651,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     const key = () => task ? 'park_task' : scene;
     const add = e => { const L = all[key()] = all[key()] || []; L.push({ e, x: 40 + rand(0, 20), y: 30 + rand(0, 20), s: 1, r: 0 }); save(); say([[e.startsWith('al:') ? (alInfo(e.slice(3)) || {}).en || '' : PK_EN_NAME[e] || '', 'en-US']]); sel = L.length - 1; draw(); };
     const mk = (s, i) => {
-      const el = document.createElement('div'); el.className = 'pk-sticker' + (i === sel ? ' sel' : '') + (s.e.startsWith('al:') ? ' al' : ''); if (s.e.startsWith('al:')) el.innerHTML = alSVG(s.e.slice(3)); else el.textContent = s.e;
+      const el = document.createElement('div'); el.className = 'pk-sticker' + (i === sel ? ' sel' : '') + (s.e.startsWith('al:') ? ' al' : ''); if (s.e.startsWith('al:')) el.innerHTML = alSVG(s.e.slice(3)); else el.innerHTML = pkArt(s.e);
       el.style.left = s.x + '%'; el.style.top = s.y + '%'; el.style.transform = `translate(-50%,-50%) rotate(${s.r}deg) scale(${s.s})`;
       el.addEventListener('pointerdown', ev => {
         ev.preventDefault(); el.setPointerCapture(ev.pointerId); const box = $('pkBox').getBoundingClientRect();
@@ -10047,6 +10065,53 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     { e: '🥛', q: '為什麼要多喝牛奶、多運動？', a: [['🦴', '讓骨頭長得又高又壯'], ['😴', '讓自己想睡覺'], ['🍭', '讓牙齒變甜']], why: '牛奶有鈣，再加上運動，骨頭會長得更好。', lv: 3 },
     { e: '⏰', q: '早上要準時起床，可以怎麼做？', a: [['🌙', '晚上早一點睡'], ['📱', '睡前玩手機'], ['🍫', '睡前吃巧克力']], why: '早睡才能早起，精神也會比較好。', lv: 3 }
   );
+  /* ---------- 🧸 3～4 歲生活題補充（lv 1） ---------- */
+  FEELQ.push(
+    { e: '🎈', q: '氣球飛走了，弟弟覺得怎麼樣？', a: [['😢', '難過'], ['😄', '開心'], ['😴', '想睡覺']], why: '心愛的氣球飛走了，會難過。', lv: 1 },
+    { e: '🎁', q: '收到一個大禮物，你覺得怎麼樣？', a: [['😄', '開心'], ['😢', '難過'], ['😠', '生氣']], why: '收到禮物，會好開心。', lv: 1 },
+    { e: '🐶', q: '大狗狗突然汪汪叫，妹妹覺得怎麼樣？', a: [['😨', '害怕'], ['😄', '開心'], ['😴', '想睡覺']], why: '突然好大聲，會覺得害怕。', lv: 1 },
+    { e: '🍪', q: '你的餅乾被搶走了，你覺得怎麼樣？', a: [['😠', '生氣'], ['😄', '開心'], ['😴', '想睡覺']], why: '東西被搶走，會生氣，可以用說的告訴他。', lv: 1 },
+    { e: '🌙', q: '玩了一整天，晚上覺得怎麼樣？', a: [['😪', '想睡覺'], ['😠', '生氣'], ['😨', '害怕']], why: '玩累了，就想睡覺了。', lv: 1 },
+    { e: '🎉', q: '看到好朋友來家裡玩，你覺得怎麼樣？', a: [['😄', '開心'], ['😢', '難過'], ['😨', '害怕']], why: '好朋友來玩，好開心。', lv: 1 },
+    { e: '🩹', q: '跌倒了，膝蓋好痛，你覺得怎麼樣？', a: [['😢', '難過、好痛'], ['😄', '開心'], ['😴', '想睡覺']], why: '受傷會痛，可以找大人幫忙。', lv: 1 },
+    { e: '🎁', q: '打開禮物，跳出一隻玩具小丑，你覺得怎麼樣？', a: [['😲', '嚇一跳、驚訝'], ['😴', '想睡覺'], ['😢', '難過']], why: '突然跳出來，會嚇一跳。', lv: 1 },
+    { e: '🤗', q: '朋友難過的時候，可以給他什麼？', a: [['🤗', '抱抱'], ['👊', '打他'], ['😝', '做鬼臉笑他']], why: '抱抱可以讓朋友覺得溫暖。', lv: 1 },
+    { e: '🌈', q: '下完雨看到彩虹，你覺得怎麼樣？', a: [['🤩', '好開心、好漂亮'], ['😠', '生氣'], ['😨', '害怕']], why: '看到美麗的彩虹，會覺得好開心。', lv: 1 },
+    { e: '🧸', q: '找不到最喜歡的玩具熊，你覺得怎麼樣？', a: [['😟', '著急'], ['😄', '開心'], ['😴', '想睡覺']], why: '找不到心愛的東西，會著急，可以請大人幫忙找。', lv: 1 },
+    { e: '👏', q: '你自己穿好鞋子，媽媽說好棒，你覺得怎麼樣？', a: [['😊', '開心、驕傲'], ['😢', '難過'], ['😠', '生氣']], why: '自己做到了，會覺得好開心。', lv: 1 });
+  TOGETHER.push(
+    { e: '🧸', q: '朋友想玩你的玩具，你可以怎麼做？', a: [['🔄', '一起玩，輪流玩'], ['🙅', '藏起來'], ['👐', '推開他']], why: '一起玩，大家都開心。', lv: 1 },
+    { e: '🛝', q: '溜滑梯有好多小朋友，要怎麼做？', a: [['🧍', '排隊等'], ['💨', '插隊'], ['🤜', '推別人']], why: '排隊，一個一個輪流溜。', lv: 1 },
+    { e: '🍎', q: '有兩顆蘋果，你和妹妹一人幾顆？', a: [['1️⃣', '一人一顆'], ['2️⃣', '我拿兩顆'], ['0️⃣', '都不給她']], why: '一人一顆，大家都有。', lv: 1 },
+    { e: '🙋', q: '想跟別的小朋友一起玩，要怎麼說？', a: [['🗣️', '我可以跟你一起玩嗎？'], ['😠', '走開'], ['🤐', '不說話，用搶的']], why: '用說的問他，他就知道你想一起玩。', lv: 1 },
+    { e: '😴', q: '弟弟在睡覺，你要怎麼樣？', a: [['🤫', '小小聲'], ['📢', '大聲唱歌'], ['🥁', '打鼓']], why: '有人在睡覺，要小小聲。', lv: 1 },
+    { e: '🧹', q: '玩完玩具，要怎麼做？', a: [['📦', '收好放回去'], ['🗑️', '丟滿地'], ['🏃', '跑走']], why: '玩完自己收好，下次才找得到。', lv: 1 },
+    { e: '🎂', q: '朋友過生日，你可以說什麼？', a: [['🎉', '生日快樂'], ['😴', '晚安'], ['👋', '再見']], why: '朋友生日，要說生日快樂。', lv: 1 },
+    { e: '🍽️', q: '大家一起吃飯，要等誰先開動？', a: [['👴', '等長輩先吃'], ['😋', '自己先吃光'], ['🏃', '邊跑邊吃']], why: '等長輩先開動，是有禮貌的表現。', lv: 1 },
+    { e: '🐱', q: '看到小貓咪，要怎麼做？', a: [['🤲', '輕輕的，不嚇牠'], ['🦶', '踢牠'], ['📢', '對牠大叫']], why: '對小動物要溫柔。', lv: 1 },
+    { e: '🖍️', q: '想借朋友的蠟筆，要怎麼說？', a: [['🙏', '可以借我嗎？'], ['✊', '直接拿走'], ['😭', '大哭']], why: '借東西要先問，用完要還。', lv: 1 },
+    { e: '🚮', q: '在公園看到垃圾，可以怎麼做？', a: [['🗑️', '撿起來丟垃圾桶'], ['🦶', '踢一踢'], ['🙈', '再丟更多']], why: '公園是大家的，要一起保持乾淨。', lv: 1 },
+    { e: '👋', q: '早上到學校看到老師，要說什麼？', a: [['☀️', '老師早'], ['🌙', '晚安'], ['🤐', '不說話']], why: '早上見到老師，要說老師早。', lv: 1 });
+  HABIT.push(
+    { e: '🪥', q: '早上起床，要先做什麼？', a: [['🪥', '刷牙洗臉'], ['📺', '看電視'], ['🍬', '吃糖果']], why: '起床先刷牙洗臉，乾乾淨淨。', lv: 1 },
+    { e: '🥦', q: '哪一個對身體最好？', a: [['🥦', '青菜'], ['🍭', '棒棒糖'], ['🥤', '汽水']], why: '多吃青菜，身體健康。', lv: 1 },
+    { e: '👟', q: '出門前要穿什麼？', a: [['👟', '鞋子'], ['🧦', '只穿襪子'], ['🩴', '光腳丫']], why: '出門要穿好鞋子，保護腳。', lv: 1 },
+    { e: '🍚', q: '吃飯的時候，要怎麼坐？', a: [['🪑', '坐好，慢慢吃'], ['🏃', '跑來跑去'], ['🛋️', '躺著吃']], why: '坐好慢慢吃，才不會噎到。', lv: 1 },
+    { e: '🛏️', q: '晚上幾點要睡覺比較好？', a: [['🌙', '早一點睡'], ['🌃', '玩到半夜'], ['📺', '看電視不睡']], why: '早睡早起，身體好。', lv: 1 },
+    { e: '🧥', q: '天氣好冷，要穿什麼？', a: [['🧥', '外套'], ['🩳', '短褲'], ['👙', '泳衣']], why: '天氣冷要穿外套。', lv: 1 },
+    { e: '☔', q: '下雨了，出門要帶什麼？', a: [['☂️', '雨傘'], ['🕶️', '墨鏡'], ['🏐', '皮球']], why: '下雨要帶雨傘或穿雨衣。', lv: 1 },
+    { e: '🍎', q: '水果要怎麼吃？', a: [['🚰', '洗乾淨再吃'], ['🦠', '掉地上撿起來吃'], ['🙅', '都不吃']], why: '水果要洗乾淨再吃。', lv: 1 },
+    { e: '💧', q: '玩得滿身大汗，要喝什麼？', a: [['💧', '白開水'], ['🥤', '汽水'], ['🧋', '珍珠奶茶']], why: '流汗要喝白開水。', lv: 1 },
+    { e: '👕', q: '衣服弄髒了，要怎麼辦？', a: [['🧺', '換乾淨的衣服'], ['🙈', '繼續穿'], ['🗑️', '丟掉']], why: '髒衣服換下來洗，換乾淨的穿。', lv: 1 },
+    { e: '📺', q: '看電視要坐在哪裡？', a: [['🛋️', '離遠一點'], ['👃', '鼻子貼著螢幕'], ['🙃', '倒立看']], why: '離遠一點，眼睛才不會累。', lv: 1 },
+    { e: '🦷', q: '吃完糖果以後，要做什麼？', a: [['🪥', '刷牙或漱口'], ['🍬', '再吃一顆'], ['😴', '直接睡覺']], why: '吃完甜的要刷牙或漱口，才不會蛀牙。', lv: 1 });
+  STRANGER_X.push(
+    { e: '🍭', q: '不認識的人給你棒棒糖，可以拿嗎？', a: [['🙅', '不拿，說不要'], ['😋', '拿來吃'], ['🤫', '偷偷拿']], why: '不認識的人給的東西，不能拿。', lv: 1 },
+    { e: '🏃', q: '不認識的人一直跟著你，要怎麼做？', a: [['🏪', '跑到人多的地方，找大人'], ['🙈', '躲起來不出聲'], ['🚶', '跟他走']], why: '跑到人多的地方，找警察或店員幫忙。', lv: 1 },
+    { e: '🙋', q: '不認識的人問你叫什麼名字、住哪裡，要怎麼做？', a: [['🙅', '不告訴他，去找爸媽'], ['🏠', '告訴他地址'], ['📇', '告訴他電話']], why: '不認識的人問家裡的事，不要說。', lv: 1 },
+    { e: '👮', q: '跟爸媽走散了，可以找誰幫忙？', a: [['👮', '警察'], ['🚗', '路邊車子裡的人'], ['🙈', '自己躲起來']], why: '可以找警察、店員，或帶小孩的媽媽幫忙。', lv: 1 },
+    { e: '🎒', q: '去公園玩，要待在哪裡？', a: [['👨‍👩‍👧', '爸媽看得到的地方'], ['🌳', '很遠很遠的地方'], ['🚗', '停車場']], why: '要在爸媽看得到的地方玩。', lv: 1 },
+    { e: '🗣️', q: '如果有人要拉你走，要怎麼做？', a: [['📢', '大聲喊：救命！我不認識你'], ['🤐', '不說話'], ['😊', '笑一笑跟他走']], why: '大聲喊，讓旁邊的大人知道。', lv: 1 });
   /* ---------- 🎓 6 歲專屬（lv 3）：要多想一步的題目，4 個選項 ---------- */
   SCIENCE.push(
     { e: '🧊', q: '冰塊放在太陽下，過一會兒會變成什麼？', a: [['💧', '水'], ['🪨', '石頭'], ['☁️', '雲'], ['🧊', '更大的冰塊']], why: '冰遇到熱會融化，變成水。', lv: 3 },
@@ -11934,7 +11999,7 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
   let rkLast = 0;
   async function rankSync(extra) {
     if (!ACT_URL || !store.get('codeIds', []).length) return { ok: false, reason: 'nocode' };
-    const q = new URLSearchParams(Object.assign({ act: 'rank', code: store.get('codeIds', [])[0], dev: devId(), nick: store.get('rankNick', ''), ava: store.get('rankAva', '🐻'), star: total, wks: wkNow(), wk: weekKey() }, extra || {}));
+    const q = new URLSearchParams(Object.assign({ act: 'rank', code: store.get('codeIds', [])[0], dev: devId(), nick: store.get('rankNick', ''), ava: store.get('rankAva', '🐻'), star: total, wks: wkNow(), wk: weekKey(), grp: store.get('rankGrp', '') }, extra || {}));
     const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 15000);
     try { const r = await fetch(ACT_URL + '?' + q, { signal: ctl.signal, cache: 'no-store' }); const j = await r.json(); if (j.ok && j.week) store.set('rankCache', j); rkLast = Date.now(); return j; }
     catch (e) { return { ok: false, reason: 'net' }; } finally { clearTimeout(t); }
@@ -11946,18 +12011,20 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
     let tab = 'week';
     const draw = (j, msg) => {
       const d = j && j[tab];
+      if (tab === 'grp' && !store.get('rankGrp', '')) msg = '還沒有好朋友小組。請爸爸媽媽到「家長專區 → 排行榜」建立小組，再把代碼傳給好朋友的爸爸媽媽。';
+      else if (tab === 'grp' && j && !j.grp) msg = '好朋友小組讀取中…';
       const mine = d && d.me > d.top.length ? `<div class="rk-gap">⋯</div><div class="rk-row me"><span class="rk-no">${d.me}</span><span class="rk-ava">${rkAvaHTML(store.get('rankAva', ''), 40)}</span><span class="rk-nick">${store.get('rankNick', '')}<small>（我）</small></span><span class="rk-s">⭐ ${tab === 'week' ? wkNow() : total}</span></div>` : '';
       const rows = d ? d.top.map((x, i) => `<div class="rk-row${x.me ? ' me' : ''}"><span class="rk-no">${i < 3 ? ['🥇', '🥈', '🥉'][i] : i + 1}</span><span class="rk-ava">${rkAvaHTML(x.a, 40)}</span><span class="rk-nick">${x.n}${x.me ? '<small>（我）</small>' : ''}</span><span class="rk-s">⭐ ${x.s}</span></div>`).join('') : '';
       const rowsAll = rows + mine;
       const meTxt = d && d.me ? (d.me === 1 ? `🎉 你是第 1 名！` : `你是第 ${d.me} 名，再 <b>${d.ahead}</b> 顆星就能往前一名！`) : '';
-      P.innerHTML = `<div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="回樂園">${pkBack}</button><span style="display:flex;gap:8px">${rkOn() ? '<button class="pk-pill" id="rkDesign">🎨 我的角色</button>' : ''}<span class="pk-pill">${tab === 'week' ? `本週 ⭐ ${wkNow()}` : `全部 ⭐ ${total}`}</span></span></div>
+      P.innerHTML = `<div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="回樂園">${pkBack}</button><span style="display:flex;gap:8px">${rkOn() ? '<button class="pk-pill" id="rkDesign">🎨 我的角色</button>' : ''}<span class="pk-pill">${tab !== 'all' ? `本週 ⭐ ${wkNow()}` : `全部 ⭐ ${total}`}</span></span></div>
         <div class="rk-in"><div class="rk-head"><div class="rk-cup">🏆</div><div class="pk-ttl" style="font-size:2.2rem">星星排行榜</div><div class="pk-sub">和全台灣的小朋友一起比星星！</div></div>
-        <div class="rk-tabs"><button class="pk-tab${tab === 'week' ? ' on' : ''}" data-t="week">本週</button><button class="pk-tab${tab === 'all' ? ' on' : ''}" data-t="all">全部</button></div>
+        <div class="rk-tabs"><button class="pk-tab${tab === 'week' ? ' on' : ''}" data-t="week">本週</button><button class="pk-tab${tab === 'all' ? ' on' : ''}" data-t="all">全部</button><button class="pk-tab${tab === 'grp' ? ' on' : ''}" data-t="grp">👫 好朋友</button></div>
         ${meTxt ? `<div class="rk-me">${meTxt}</div>` : ''}
         <div class="rk-list">${msg ? `<p class="rk-msg">${msg}</p>` : rowsAll || '<p class="rk-msg">這週還沒有人上榜，快去拿星星當第一名！</p>'}</div>
-        <p class="rk-foot">${tab === 'week' ? '本週排行每週一重新開始。' : ''}只顯示暱稱，不會顯示真實姓名。</p></div>`;
+        <p class="rk-foot">${tab === 'grp' && store.get('rankGrp', '') ? `好朋友小組 ${store.get('rankGrp', '')}：只有同一組的小朋友。` : ''}${tab !== 'all' ? '本週排行每週一重新開始。' : ''}只顯示暱稱，不會顯示真實姓名。</p></div>`;
       $('pkQuit').onclick = () => { pkStop(); openPark(); };
-      P.querySelectorAll('.rk-tabs .pk-tab').forEach(b => b.onclick = () => { tab = b.dataset.t; draw(j, msg); });
+      P.querySelectorAll('.rk-tabs .pk-tab').forEach(b => b.onclick = () => { tab = b.dataset.t; draw(j, ''); });
       if ($('rkDesign')) $('rkDesign').onclick = () => {
         P.querySelector('.rk-in').innerHTML = '<div class="rk-head"><div class="pk-ttl" style="font-size:2rem">設計我的角色</div><div class="pk-sub">選動物、換顏色、戴上配件！</div></div><div class="rk-card" id="rkDesBox"></div>';
         rkDesigner($('rkDesBox'), async m => { m.textContent = '儲存中…'; const r = await rankSync(); m.textContent = r.ok ? '✅ 換好了！' : '儲存好了，連上網路後會更新排行榜'; setTimeout(() => openRank(), 900); });
@@ -11984,7 +12051,23 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
       <div class="rk-form"${on ? '' : ' hidden'}><div class="rk-line"><input id="rkNick" maxlength="8" placeholder="暱稱（最多 8 個字）" value="${nick.replace(/"/g, '')}"><button class="btn ghost small" id="rkRand">🎲 隨機</button></div>
       <div class="rk-line"><span class="rk-mine">${rkAvaHTML(ava, 56)}</span><span class="note">孩子的角色可以在「星星樂園 → 排行榜 → 🎨 我的角色」自己設計。</span></div>
       <div class="rk-line"><button class="btn small" id="rkSave">儲存</button><span class="note" id="rkMsg"></span></div>
-      <p class="note">請不要用孩子的真實姓名。不適當的暱稱會被隱藏。</p></div>`;
+      <p class="note">請不要用孩子的真實姓名。不適當的暱稱會被隱藏。</p>
+      <div class="rk-grp" id="rkGrp"></div></div>`;
+    const grpDraw = () => {
+      const g = store.get('rankGrp', ''), el = $('rkGrp'); if (!el) return;
+      el.innerHTML = g ? `<b>👫 好朋友小組</b><p class="note">把這組代碼傳給好朋友的爸爸媽媽，他們在這裡按「加入小組」輸入，孩子們就能一起比星星。</p><div class="rk-line"><span class="rk-code">${g}</span><button class="btn ghost small" id="rkCopy">複製代碼</button><button class="btn ghost small" id="rkLeave">離開小組</button></div><span class="note" id="rkGMsg"></span>`
+        : `<b>👫 好朋友小組</b><p class="note">和同學、表兄弟姊妹組一個小組，只和小組裡的小朋友比星星。</p><div class="rk-line"><button class="btn small" id="rkNew">建立小組</button></div><div class="rk-line"><input id="rkJoin" maxlength="6" placeholder="輸入 6 碼小組代碼" autocapitalize="characters"><button class="btn ghost small" id="rkJoinOk">加入小組</button></div><span class="note" id="rkGMsg"></span>`;
+      const msgG = t => { const m = $('rkGMsg'); if (m) m.textContent = t; };
+      const sync = async () => { msgG('更新中…'); const r = await rankSync(); msgG(r.ok ? (r.grp ? `✅ 小組裡目前有 ${r.grp.total} 位小朋友` : '✅ 已更新') : '連不上網路，連線後會自動更新'); };
+      if (g) {
+        $('rkCopy').onclick = async () => { try { await navigator.clipboard.writeText(`一起來動動腦小學堂比星星！好朋友小組代碼：${g}`); msgG('已複製，可以貼到 LINE 傳給朋友'); } catch (e) { msgG('代碼是 ' + g); } };
+        $('rkLeave').onclick = () => { store.set('rankGrp', ''); grpDraw(); rankSync(); };
+      } else {
+        $('rkNew').onclick = () => { const A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; store.set('rankGrp', Array.from({ length: 6 }, () => A[rand(0, A.length - 1)]).join('')); grpDraw(); sync(); };
+        $('rkJoinOk').onclick = () => { const v = $('rkJoin').value.toUpperCase().replace(/[^A-Z0-9]/g, ''); if (v.length !== 6) { msgG('代碼是 6 個英文字母或數字'); return; } store.set('rankGrp', v); grpDraw(); sync(); };
+      }
+    };
+    grpDraw();
     let sel = ava;
     $('rkOn').onchange = async e => {
       if (e.target.checked) { store.set('rankOn', true); box.querySelector('.rk-form').hidden = false; if (!nick) $('rkNick').value = pick(RK_ADJ) + pick(RK_ANI); }
