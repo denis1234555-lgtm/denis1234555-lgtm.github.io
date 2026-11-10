@@ -230,12 +230,13 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
 .stage.mem-stage { padding: 14px; place-items: stretch; }
 .mem { display: grid; gap: 10px; width: 100%; }
 .mem-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 460px; margin: 0 auto; }
-.mem-6 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.mem-4, .mem-5, .mem-6, .mem-7, .mem-8, .mem-9 { grid-template-columns: repeat(4, minmax(0, 1fr)); } .mem-8 .card, .mem-9 .card { font-size: clamp(1.8rem, 9vw, 2.6rem); aspect-ratio: 4 / 5; }
+.mem-dots { font-size: .42em; line-height: 1.1; letter-spacing: .05em; display: block; max-width: 3.4em; word-break: break-all; text-align: center; } .mem-eq { font-size: .62em; font-family: var(--f-display); font-weight: 800; }
 .card { aspect-ratio: 3 / 4; border: 0; border-radius: 18px; background: var(--c); color: #fff; box-shadow: 0 5px 0 var(--c-deep); display: grid; place-items: center; font-size: clamp(2.2rem, 11vw, 3.6rem); line-height: 1; transition: transform .1s ease; }
 .card .back { font-family: var(--f-display); font-weight: 800; opacity: .85; }
 .card .front { display: none; }
 .card.open, .card.matched { background: var(--surface); box-shadow: 0 5px 0 var(--line-deep); animation: flip .25s ease; }
-.card.open .front, .card.matched .front { display: inline; }
+.card.open .front, .card.matched .front { display: inline; color: var(--ink); }
 .card.open .back, .card.matched .back { display: none; }
 .card.matched { background: var(--good-soft); box-shadow: 0 5px 0 var(--good-deep), inset 0 0 0 3px var(--good); }
 @keyframes flip { from { transform: rotateY(90deg); } }
@@ -373,19 +374,22 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
 .mt-item.txt { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.4rem, 6.5vw, 2.4rem); }
 .mt-item.sel { box-shadow: 0 6px 0 var(--c-deep), 0 0 0 4px var(--c); }
 .mt-item.done { background: var(--good-soft); box-shadow: 0 6px 0 var(--good-deep); }
+.mt-pen { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; z-index: 0; } .mt-ink { fill: none; stroke: #F28C28; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: .85; }
+.mt.tg { grid-template-columns: 64px 1fr 64px; gap: 0; min-height: 360px; margin-bottom: 8px; } .mt.tg .mt-col { justify-content: space-between; gap: 14px; position: relative; z-index: 1; } .mt.tg .mt-item { min-height: 58px; font-size: clamp(1.7rem, 8vw, 2.4rem); }
 /* 找不同 */
-.sd { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sd { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; } .sd-grid { min-width: 0; } .sd-cell { min-width: 0; }
 .sd-grid { display: grid; gap: 4px; background: var(--surface); padding: 6px; border-radius: 16px; box-shadow: 0 4px 0 var(--line-deep); }
 .sd-grid.g3 { grid-template-columns: repeat(3, 1fr); }
 .sd-grid.g4 { grid-template-columns: repeat(4, 1fr); }
 .sd-cell { aspect-ratio: 1; border: 0; background: none; border-radius: 10px; font-size: clamp(1.2rem, 6vw, 2.2rem); padding: 0; display: grid; place-items: center; }
 .sd-grid[data-side="L"] .sd-cell { cursor: default; }
+.sd-flip { display: inline-block; transform: rotate(180deg); } .sd-tiny { display: inline-block; transform: scale(.55); }
 .sd-cell.found { box-shadow: inset 0 0 0 3px var(--cn); border-radius: 50%; }
 .sd-count { text-align: center; font-weight: 900; margin-top: 8px; }
 /* 迷宮 */
 .mz-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .mz { display: grid; width: min(100%, 330px); aspect-ratio: 1; background: var(--surface); border-radius: 10px; }
-.mz-cell { aspect-ratio: 1; background: none; padding: 0; display: grid; place-items: center; font-size: clamp(1.2rem, 6vw, 2rem); border-radius: 0; }
+.mz.c8 .mz-cell { font-size: clamp(.9rem, 4.4vw, 1.4rem); } .mz-cell { min-width: 0; min-height: 0; overflow: hidden; aspect-ratio: 1; background: none; padding: 0; display: grid; place-items: center; font-size: clamp(1.2rem, 6vw, 2rem); border-radius: 0; }
 .mz-cell.trail { background: var(--c-soft); }
 .mz-pad { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .mz-pad > div { display: flex; gap: 6px; }
@@ -1923,6 +1927,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   .an-wind { font-size: clamp(22px, 8vw, 46px); animation: tlWind 1.4s ease-in infinite; } @keyframes tlWind { from { opacity: 0; transform: translate(-50%, -50%); } 30% { opacity: 1; } to { opacity: 0; transform: translate(-260%, -50%) scale(1.4); } }
   .an-bl { animation: tlBL 1.4s ease-in-out infinite; } @keyframes tlBL { 50% { transform: translate(-50%, -50%) scale(calc(var(--s, 1) * 1.12)); } }
   .an-no { }
+  .mix.sm { gap: 4px; } .mix.sm .blob { width: 30px; height: 30px; } .mix.sm .op { font-size: 1.2rem; }
   .sl-mix { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; } .sl-mix .sl-btn { display: flex; flex-direction: column; align-items: center; padding: 4px 7px; line-height: 1.1; min-width: 44px; } .sl-mix .sl-btn small { font-size: .62rem; font-weight: 800; opacity: .85; }
   .tl-pp { display: block; height: 2.7em; width: auto; transform: translateY(-26%); } .tl-pa svg { display: block; height: 1.55em; width: auto; transform: translateY(-14%); } .tl-hum, .tl-ani { line-height: 0; }
   .fb-art svg { height: 1.3em; width: auto; vertical-align: middle; display: inline-block; }
@@ -4070,7 +4075,9 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     }, extra || {});
   }
   let STRANGER = null; const strangerBank = () => STRANGER || (STRANGER = STRANGER_X.concat(SAFETY.filter(x => /陌生|不認識的人|金阿姨|馬婆婆|牛叔叔/.test(x.q))));
-  const lvPool = bank => age === 'small' ? bank.filter(x => x.lv === 1) : age === 'big' ? bank.filter(x => (x.lv || 1) <= 2) : bank;
+  const lvPool = bank => { if (age === 'small') return bank.filter(x => x.lv === 1); const L = n => bank.filter(x => (x.lv || 1) === n), r = Math.random();
+    if (age === 'big') { const b2 = L(2); return b2.length && r < .55 ? b2 : bank.filter(x => (x.lv || 1) <= 2); }
+    const b3 = L(3), b2 = L(2); return b3.length && r < .6 ? b3 : b2.length && r < .8 ? b2 : bank; };
   /* ---------- 六大領域補強：情緒理解、我和大家、生活自理 ---------- */
   const FEELQ = [
     { e: '🍦', q: '小明的冰淇淋掉到地上了，他會覺得怎麼樣？', a: [['😢', '難過'], ['😄', '開心'], ['😴', '想睡覺']], why: '心愛的東西掉了，會覺得難過。', lv: 1 },
@@ -4145,14 +4152,14 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     const ty = pick(types);
     const stage = (inner) => `<div class="mu-stage">${inner}<button class="mu-play" type="button">🔊 再聽一次</button></div>`;
     if (ty === 'count') {
-      const n = age === 'small' ? rand(2, 4) : rand(3, 6), opts = shuffle([n, ...others(age === 'small' ? [2, 3, 4] : [3, 4, 5, 6], n, 2, x => x)]);
+      const n = age === 'small' ? rand(2, 4) : age === 'six' ? rand(4, 8) : rand(3, 6), opts = shuffle([n, ...others(age === 'small' ? [2, 3, 4] : age === 'six' ? [4, 5, 6, 7, 8] : [3, 4, 5, 6], n, age === 'six' ? 3 : 2, x => x)]);
       const seq = []; for (let i = 0; i < n; i++) seq.push([196, .16, .3], [0, .34]);
       return { prompt: '仔細聽，敲了幾下？', speech: [['仔細聽，敲了幾下？']], stage: stage('<div class="mu-ear">🥁</div>'),
         options: opts.map(x => ({ html: `<span class="o-num">${x}</span>`, label: String(x), correct: x === n })), after: [[`敲了${n}下`]], key: 'count' + n,
         play: () => muRun(async () => { await muSeq(seq); }) };
     }
     if (ty === 'rhythm') {
-      const PAT = ['SSL', 'LSS', 'SLS', 'SSS', 'LLS', 'SLL'], ans = pick(PAT), opts = shuffle([ans, ...others(PAT, ans, 2, x => x)]);
+      const PAT = age === 'six' ? ['SSLS', 'LSSL', 'SLSL', 'SSSL', 'LLSS', 'SLLS', 'LSLS', 'SSLL'] : ['SSL', 'LSS', 'SLS', 'SSS', 'LLS', 'SLL'], ans = pick(PAT), opts = shuffle([ans, ...others(PAT, ans, age === 'six' ? 3 : 2, x => x)]);
       const vis = x => [...x].map(c => c === 'S' ? '<i class="mu-s"></i>' : '<i class="mu-l"></i>').join('');
       const seq = [...ans].flatMap(c => c === 'S' ? [[523, .2, .25], [0, .25]] : [[523, .75, .25], [0, .25]]);
       return { prompt: '聽聽看，是哪一種節奏？', speech: [['聽聽看，是哪一種節奏？點點是短的聲音，長條是長的聲音']], stage: stage('<div class="mu-ear">🎼</div>'),
@@ -4926,6 +4933,21 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
           after: [[`這是${t.zh}`]], key: t.w
         };
       }
+      // 6 歲：反過來想（哪兩個顏色混出來）、彩虹的順序
+      if (age === 'six' && Math.random() < .5) {
+        if (Math.random() < .5) {
+          const m = pick(MIX.filter(x => x[1] !== 'white')), C = w => COLORS.find(c => c.w === w), r = C(m[2]);
+          const B6 = COLORS.slice(0, 6), wrong = []; while (wrong.length < 3) { const x = shuffle(B6).slice(0, 2), mm = MIX.find(q => (q[0] === x[0].w && q[1] === x[1].w) || (q[0] === x[1].w && q[1] === x[0].w)); if ((!mm || mm[2] !== m[2]) && !wrong.some(w => w[0] === x[0] && w[1] === x[1]) && !(x.some(c => c.w === m[0]) && x.some(c => c.w === m[1]))) wrong.push(x); }
+          const pair = ([a, b]) => `<span class="mix sm"><span class="blob" style="background:${a.hex}"></span><span class="op">+</span><span class="blob" style="background:${b.hex}"></span></span>`;
+          const opts = shuffle([[C(m[0]), C(m[1]), 1], ...wrong.map(x => [x[0], x[1], 0])]);
+          return { prompt: `哪兩個顏色加在一起，會變成${r.zh}？`, speech: [[`哪兩個顏色加在一起，會變成${r.zh}？`]], stage: `<div class="mix"><span class="op">？+？=</span><span class="blob" style="background:${r.hex}"></span></div>`,
+            options: opts.map(([a, b, ok]) => ({ html: pair([a, b]), label: `${a.zh}加${b.zh}`, correct: !!ok })), after: [[`${C(m[0]).zh}加${C(m[1]).zh}，變成${r.zh}`]], key: 'rm' + r.w };
+        }
+        const RB = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'].map(w => COLORS.find(c => c.w === w)), k = rand(2, 4), nx = RB[k];
+        const opts = shuffle([nx, ...others(RB.filter((_, i) => i !== k), nx, 3, x => x.w)]);
+        return { prompt: `彩虹的顏色：${RB.slice(0, k).map(c => c.zh.replace('色', '')).join('、')}，下一個是什麼顏色？`, speech: [[`彩虹的顏色，${RB.slice(0, k).map(c => c.zh.replace('色', '')).join('、')}，下一個是什麼顏色？`]], stage: `<div class="mix">${RB.slice(0, k).map(c => `<span class="blob" style="background:${c.hex};width:clamp(40px,12vw,64px)"></span>`).join('')}<span class="op">❓</span></div>`,
+          options: opts.map(o => ({ ...sw(o), correct: o === nx })), after: [['彩虹的顏色是紅、橘、黃、綠、藍、紫']], key: 'rb' + k };
+      }
       if (Math.random() < .65) {
         const t = pick(OBJS), col = COLORS.find(c => c.w === t.c);
         const opts = shuffle([col, ...others(COLORS.slice(0, 8), col, 3, x => x.w)]);
@@ -5171,7 +5193,15 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       const pool = age === 'small' ? SOLIDS.filter(x => x.lv === 1) : SOLIDS;
       const objs = OBJ3D.filter(o => pool.some(p => p.id === o[2]) && (age !== 'small' || o[3] === 1));
       const n = age === 'small' ? 2 : 3;
-      const type = pick(['name', 'obj', 'find']);
+      const type = pick(age === 'six' ? ['name', 'obj', 'find', 'roll', 'roll'] : ['name', 'obj', 'find']);
+      if (type === 'roll') {
+        // 6 歲：想一想立體的特性——哪一個不能滾？／哪一個可以滾？
+        const RL = ['sphere', 'cylinder', 'cone'], NR = ['cube', 'cuboid', 'pyramid'], noRoll = Math.random() < .5, S = id => SOLIDS.find(x => x.id === id);
+        const ans = S(pick(noRoll ? NR : RL)), opts = shuffle([ans, ...shuffle(noRoll ? RL : NR).slice(0, 3).map(S)]);
+        return { prompt: noRoll ? '哪一個不能滾來滾去？' : '哪一個可以滾來滾去？', speech: [[noRoll ? '哪一個不能滾來滾去？' : '哪一個可以滾來滾去？']], stage: '',
+          options: opts.map((o, i) => ({ html: solidHTML(o.id, colors[i], 'o-solid'), label: o.zh, correct: o === ans })),
+          after: [[noRoll ? `${ans.zh}的面是平平的，不能滾` : `${ans.zh}有圓圓的地方，可以滾`]], key: 'r' + ans.id };
+      }
       if (type === 'name') {
         const t = pick(pool), opts = shuffle([t, ...others(pool, t, n, x => x.id)]);
         return {
@@ -5241,7 +5271,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       };
     },
     riddle() {
-      const pool = age === 'small' ? RIDDLES.filter(r => r.lv === 1) : RIDDLES;
+      const pool = lvPool(RIDDLES);
       const t = pick(pool), opts = shuffle([t, ...others(RIDDLES, t, age === 'small' ? 2 : 3, x => x.e)]);
       return {
         prompt: '猜猜看，是什麼？', speech: [[`${t.q}猜猜看，是什麼？`]],
@@ -5546,7 +5576,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       };
     },
     calm() {
-      const t = pick(CALM);
+      const t = pick(lvPool(CALM));
       return Object.assign(bankQ(CALM, t), { practice: t.say });
     },
     emotion() {
@@ -5734,7 +5764,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
           practice: good ? '' : ph[1], key: 'k' + text
         };
       }
-      const pool = age === 'small' ? MANNERS.filter(x => x.lv === 1) : MANNERS;
+      const pool = lvPool(MANNERS);
       const t = pick(pool);
       return {
         practice: t.say,
@@ -5745,7 +5775,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     },
     trash() {
       const opt = k => ({ html: `<span class="o-life">${binHTML(k)}<span class="t">${BINS[k].n}</span></span>`, label: BINS[k].n });
-      const subQ = age !== 'small' && Math.random() < .4;
+      const subQ = age !== 'small' && Math.random() < (age === 'six' ? .7 : .4);
       if (subQ) {
         const t = pick(TRASH.filter(x => x.sub && x.sub !== 'battery'));
         const kinds = shuffle(['paper', 'plastic', 'metal', 'glass']);
@@ -5767,7 +5797,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       };
     },
     life() {
-      const pool = age === 'small' ? LIFE.filter(x => x.lv === 1) : LIFE;
+      const pool = lvPool(LIFE);
       const t = pick(pool);
       return {
         prompt: t.q, speech: [[t.q]], stage: picOf(t),
@@ -6521,6 +6551,19 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     ...'abcdeghmnopst'.split('').map(l => [l, `small ${l}`, 'e']),
     ...'山水火木日月田上下中天土工王'.split('').map(c => [c, c, 'k'])
   ];
+  // 6 歲：5 個步驟的順序（多想一步）
+  const SEQS6 = [
+    { n: '做三明治', s: [['🧼', '洗手'], ['🍞', '拿出吐司'], ['🥬', '放生菜'], ['🧀', '放起司'], ['🥪', '蓋上吐司']] },
+    { n: '青蛙的一生', s: [['🫧', '卵'], ['🐟', '小蝌蚪'], ['🦵', '長出後腳'], ['🐸', '長出前腳'], ['🐸', '變成青蛙']] },
+    { n: '寄一封信', s: [['✏️', '寫信'], ['✉️', '放進信封'], ['📮', '貼郵票、投信箱'], ['🚚', '郵差送信'], ['📬', '朋友收到信']] },
+    { n: '洗澡', s: [['👕', '脫衣服'], ['🚿', '沖濕身體'], ['🧴', '抹沐浴乳'], ['💦', '沖乾淨'], ['🧖', '擦乾、穿衣服']] },
+    { n: '蘋果從樹上到桌上', s: [['🌸', '開花'], ['🍏', '結果'], ['🍎', '變紅成熟'], ['🧺', '採下來'], ['🍽️', '洗乾淨吃']] },
+    { n: '下雨的過程', s: [['☀️', '太陽曬水'], ['💨', '水變成水蒸氣'], ['☁️', '變成雲'], ['🌧️', '下雨'], ['🌊', '流到河裡']] },
+    { n: '過馬路', s: [['🛑', '停在路邊'], ['🚦', '看紅綠燈'], ['👀', '左右看'], ['🦓', '走斑馬線'], ['🏁', '安全到對面']] },
+    { n: '堆雪人', s: [['❄️', '下雪'], ['⚪', '滾一顆大雪球'], ['⚪', '再滾一顆小雪球'], ['⛄', '疊起來'], ['🥕', '插上鼻子']] },
+    { n: '蓋房子', s: [['📐', '畫設計圖'], ['🧱', '打地基'], ['🏗️', '蓋牆壁'], ['🏠', '蓋屋頂'], ['🛋️', '搬進家具']] },
+    { n: '蠶寶寶的一生', s: [['🥚', '蠶卵'], ['🐛', '蠶寶寶'], ['🍃', '吃桑葉長大'], ['🧶', '吐絲結繭'], ['🦋', '變成蛾']] }
+  ];
   const SEQS = [
     { n: '早上起床後', s: [['🛏️', '起床'], ['🪥', '刷牙'], ['🍳', '吃早餐'], ['🎒', '去上學']] },
     { n: '種花', s: [['🌰', '種種子'], ['🌱', '發芽'], ['🌿', '長葉子'], ['🌻', '開花']] },
@@ -6736,7 +6779,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     sequence: {
       total: () => 5,
       render() {
-        const SRC = st.seqPool || SEQS, pool = SRC.filter(q => !st.used.has('sq' + q.n));
+        const SRC = st.seqPool || (age === 'six' && Math.random() < .65 ? SEQS6 : SEQS), pool = SRC.filter(q => !st.used.has('sq' + q.n));
         const t = pick(pool.length ? pool : SRC); st.used.add('sq' + t.n);
         const steps = age === 'small' ? t.s.slice(0, 3) : t.s;
         st.sq = { steps, placed: [] };
@@ -6756,6 +6799,8 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     match: {
       total: () => 4,
       render() {
+        // 5 歲一半、6 歲大部分：彎彎曲曲的線（沿著線走，找出另一頭）
+        if (age !== 'small' && Math.random() < (age === 'six' ? .8 : .5)) { mtTangle(); return; }
         const sets = MATCHES.filter(m => (age !== 'small' || !m.big) && !st.used.has('mt' + m.n));
         const t = pick(sets.length ? sets : MATCHES.filter(m => age !== 'small' || !m.big)); st.used.add('mt' + t.n);
         const pairs = shuffle(t.p).slice(0, age === 'small' ? 3 : age === 'six' ? 5 : 4);
@@ -6773,7 +6818,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
         const n = age === 'small' ? 3 : 4, diffs = age === 'small' ? 1 : age === 'six' ? 3 : 2, set = pick(DIFF_SETS);
         const left = Array.from({ length: n * n }, () => pick(set.slice(0, 6)));
         const idx = shuffle(left.map((_, i) => i)).slice(0, diffs);
-        const right = left.slice(); idx.forEach(i => { right[i] = pick(set.filter(e => e !== left[i])); });
+        const right = left.slice(); idx.forEach((i, k) => { const ty = age === 'six' ? ['swap', 'flip', 'tiny'][k % 3] : 'swap'; right[i] = ty === 'swap' ? pick(set.filter(e => e !== left[i])) : `<span class="sd-${ty}">${left[i]}</span>`; });
         st.sd = { idx, found: new Set(), miss: 0 };
         setQ(`找出 ${diffs} 個不一樣的地方`, [[`左右兩張圖，有${diffs}個地方不一樣，找找看，點右邊的圖`]]);
         const grid = (arr, side) => `<div class="sd-grid g${n}" data-side="${side}">${arr.map((e, i) => `<button class="sd-cell" data-i="${i}" ${side === 'L' ? 'tabindex="-1" aria-hidden="true"' : `aria-label="第${i + 1}格"`}>${e}</button>`).join('')}</div>`;
@@ -6794,9 +6839,11 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
           walls[c][a] = 0; walls[n2][b] = 0; seen.add(n2); stack.push(n2);
         }
         const who = pick([['🐭', '🧀', '小老鼠', '起司'], ['🐰', '🥕', '小兔子', '紅蘿蔔'], ['🐶', '🦴', '小狗', '骨頭'], ['🐝', '🌸', '小蜜蜂', '花朵']]);
-        st.mz = { R, C, walls, at: 0, goal: R * C - 1, who, trail: new Set([0]) };
-        setQ(`帶${who[2]}去找${who[3]}`, [[`帶${who[2]}走出迷宮，去找${who[3]}。點旁邊的格子或下面的箭頭走路`]]);
-        $('stage').innerHTML = `<div class="mz-wrap"><div class="mz" id="mz" style="grid-template-columns:repeat(${C},1fr)"></div><div class="mz-pad"><button class="chunky mz-btn" data-d="t" aria-label="上">▲</button><div><button class="chunky mz-btn" data-d="l" aria-label="左">◀</button><button class="chunky mz-btn" data-d="b" aria-label="下">▼</button><button class="chunky mz-btn" data-d="r" aria-label="右">▶</button></div></div></div>`;
+        const key = age === 'six' ? rand(Math.floor(R * C * .35), Math.floor(R * C * .65)) : -1;
+        st.mz = { R, C, walls, at: 0, goal: R * C - 1, who, trail: new Set([0]), key, got: key < 0 };
+        if (key >= 0) setQ(`先拿鑰匙🗝️，再帶${who[2]}去找${who[3]}`, [[`先拿到鑰匙，才能打開門。帶${who[2]}去拿鑰匙，再去找${who[3]}`]]);
+        else setQ(`帶${who[2]}去找${who[3]}`, [[`帶${who[2]}走出迷宮，去找${who[3]}。點旁邊的格子或下面的箭頭走路`]]);
+        $('stage').innerHTML = `<div class="mz-wrap"><div class="mz c${C}" id="mz" style="grid-template-columns:repeat(${C},minmax(0,1fr))"></div><div class="mz-pad"><button class="chunky mz-btn" data-d="t" aria-label="上">▲</button><div><button class="chunky mz-btn" data-d="l" aria-label="左">◀</button><button class="chunky mz-btn" data-d="b" aria-label="下">▼</button><button class="chunky mz-btn" data-d="r" aria-label="右">▶</button></div></div></div>`;
         mzDraw();
         document.querySelectorAll('.mz-btn').forEach(b => b.addEventListener('click', () => mzMove(b.dataset.d)));
       }
@@ -6878,7 +6925,47 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     const wrap = $('mtWrap'), r = wrap.getBoundingClientRect(), ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
     return `<line x1="${ra.right - r.left}" y1="${ra.top + ra.height / 2 - r.top}" x2="${rb.left - r.left}" y2="${rb.top + rb.height / 2 - r.top}" stroke="var(--good)" stroke-width="5" stroke-linecap="round"/>`;
   }
-  function mtRedraw() { const mt = st && st.mt; if (!mt || !$('mtLines')) return; $('mtLines').innerHTML = mt.lines.map(([a, b]) => mtLine(a, b)).join(''); }
+  // 🧶 線條迷宮連連看：左邊和右邊用交叉、彎來彎去的線連起來，孩子要沿著線找到另一頭
+  const MT_TG = [
+    ['小動物沿著線走，會拿到什麼？', ['🐶', '🐱', '🐰', '🐻', '🐷', '🐸', '🐵', '🐭'], ['🍎', '🍌', '🍇', '🍓', '🍉', '🥕', '🍪', '🧀']],
+    ['小朋友沿著線走，會拿到哪一個玩具？', ['👦', '👧', '🧒', '👴', '👵', '👨', '👩'], ['🎈', '🪁', '⚽', '🧸', '🎁', '🚗', '🪀']],
+    ['小動物沿著線走，會回到哪一個家？', ['🐦', '🐝', '🐟', '🐜', '🐌', '🦋', '🐞'], ['🏠', '🏡', '🛖', '🏰', '⛺', '🏯', '🏚️']],
+    ['車子沿著馬路開，會開到哪裡？', ['🚗', '🚌', '🚒', '🚑', '🚓', '🚕', '🚚'], ['🏫', '🏥', '🏪', '🏦', '🏢', '🏟️', '🏬']]];
+  function mtTangle() {
+    const n = age === 'six' ? 5 : 4, t = pick(MT_TG), L = shuffle(t[1]).slice(0, n), Rv = shuffle(t[2]).slice(0, n), perm = shuffle(L.map((_, i) => i));
+    st.mt = { pairs: L, sel: null, done: 0, miss: 0, lines: [], tg: 1 };
+    setQ(t[0], [[`${t[0]}用手指沿著線走走看，先點左邊，再點線另一頭的東西`]]);
+    const right = Rv.map((v, j) => ({ v, i: perm.indexOf(j) }));
+    $('stage').innerHTML = `<div class="mt tg" id="mtWrap"><svg class="mt-lines" id="mtLines"></svg><svg class="mt-lines" id="mtTg"></svg><svg class="mt-pen" id="mtPen"></svg><div class="mt-col">${L.map((v, i) => `<button class="mt-item chunky" data-side="L" data-i="${i}" aria-label="${v}"><span>${v}</span></button>`).join('')}</div><div></div><div class="mt-col">${right.map(x => `<button class="mt-item chunky" data-side="R" data-i="${x.i}" aria-label="${x.v}"><span>${x.v}</span></button>`).join('')}</div></div><p class="note" style="text-align:center">沿著線走，左邊的東西會走到右邊哪一個？可以用手指在線上描描看</p>`;
+    document.querySelectorAll('.mt-item').forEach(b => b.addEventListener('click', () => mtTap(b)));
+    // 每條線經過的高度：6 歲彎比較多次、交叉比較多
+    const K = age === 'six' ? 3 : 2; st.mt.way = L.map(() => Array.from({ length: K }, () => Math.random() * 2 - 1));
+    requestAnimationFrame(mtTgDraw);
+    // ✏️ 用手指描線：在中間畫，會留下橘色筆跡
+    const pen = $('mtPen'); let cur = null, pts = [];
+    const xy = e => { const r = pen.getBoundingClientRect(); return [(e.clientX - r.left).toFixed(0), (e.clientY - r.top).toFixed(0)]; };
+    pen.addEventListener('pointerdown', e => { pen.setPointerCapture(e.pointerId); pts = [xy(e)]; cur = document.createElementNS('http://www.w3.org/2000/svg', 'polyline'); cur.setAttribute('class', 'mt-ink'); pen.appendChild(cur); cur.setAttribute('points', pts.join(' ')); });
+    pen.addEventListener('pointermove', e => { if (!cur) return; pts.push(xy(e)); cur.setAttribute('points', pts.join(' ')); });
+    ['pointerup', 'pointercancel'].forEach(t => pen.addEventListener(t, () => { cur = null; }));
+  }
+  function mtTgDraw() {
+    const mt = st && st.mt, svg = $('mtTg'), wrap = $('mtWrap'); if (!mt || !mt.tg || !svg || !wrap) return;
+    const W = wrap.getBoundingClientRect(), pt = (b, side) => { const r = b.getBoundingClientRect(); return [side === 'L' ? r.right - W.left : r.left - W.left, r.top + r.height / 2 - W.top]; };
+    const done = new Set(mt.lines.map(([a]) => a.dataset.i));
+    const paths = [...document.querySelectorAll('.mt-item[data-side="L"]')].map(a => {
+      const i = a.dataset.i, b = document.querySelector(`.mt-item[data-side="R"][data-i="${i}"]`); if (!b) return '';
+      const [x1, y1] = pt(a, 'L'), [x2, y2] = pt(b, 'R'), K = mt.way[i].length, P = [[x1, y1], [x1 + 14, y1]];
+      mt.way[i].forEach((f, k) => { const u = (k + 1) / (K + 1), base = y1 + (y2 - y1) * u, amp = W.height * (age === 'six' ? .34 : .26); P.push([x1 + 14 + (x2 - x1 - 28) * u, Math.max(10, Math.min(W.height - 10, base + f * amp))]); });
+      P.push([x2 - 14, y2], [x2, y2]);
+      let d = `M${P[0][0].toFixed(1)} ${P[0][1].toFixed(1)}`;
+      for (let k = 0; k < P.length - 1; k++) { const p0 = P[Math.max(0, k - 1)], p1 = P[k], p2 = P[k + 1], p3 = P[Math.min(P.length - 1, k + 2)];
+        d += `C${(p1[0] + (p2[0] - p0[0]) / 6).toFixed(1)} ${(p1[1] + (p2[1] - p0[1]) / 6).toFixed(1)} ${(p2[0] - (p3[0] - p1[0]) / 6).toFixed(1)} ${(p2[1] - (p3[1] - p1[1]) / 6).toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`; }
+      const ok = done.has(i);
+      return `<path d="${d}" fill="none" stroke="#FFFDF8" stroke-width="9" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${ok ? '#3E9A6A' : '#4A3B36'}" stroke-width="${ok ? 5 : 3.4}" stroke-linecap="round"/>`;
+    });
+    svg.innerHTML = paths.join('');
+  }
+  function mtRedraw() { const mt = st && st.mt; if (mt && mt.tg) { mtTgDraw(); return; } if (!mt || !$('mtLines')) return; $('mtLines').innerHTML = mt.lines.map(([a, b]) => mtLine(a, b)).join(''); }
   window.addEventListener('resize', mtRedraw);
   /* ---------- 跨能力挑戰（完整版以上） ---------- */
 
@@ -8001,7 +8088,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     if (!mt.sel) { say([['先點左邊的']]); return; }
     if (mt.sel.dataset.i === b.dataset.i) {
       mt.sel.classList.remove('sel'); mt.sel.classList.add('done'); b.classList.add('done');
-      mt.lines.push([mt.sel, b]); mtRedraw(); mt.sel = null; mt.done++; chime();
+      mt.lines.push([mt.sel, b]); if ($('mtPen')) $('mtPen').innerHTML = ''; mtRedraw(); mt.sel = null; mt.done++; chime();
       if (mt.done === mt.pairs.length) { st.locked = true; setTimeout(() => itemDone(mt.miss === 0), 300); }
     } else { mt.miss++; b.classList.add('shake'); buzz(); setTimeout(() => b.classList.remove('shake'), 400); }
   }
@@ -8017,7 +8104,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     const mz = st.mz, el = $('mz');
     el.innerHTML = mz.walls.map((w, i) => {
       const bd = k => w[k] ? '4px solid var(--ink)' : '4px solid transparent';
-      const inner = i === mz.at ? mz.who[0] : i === mz.goal ? mz.who[1] : '';
+      const inner = i === mz.at ? mz.who[0] : i === mz.goal ? (mz.got ? mz.who[1] : '🚪') : i === mz.key && !mz.got ? '🗝️' : '';
       return `<button class="mz-cell ${mz.trail.has(i) ? 'trail' : ''}" data-i="${i}" style="border-top:${bd('t')};border-right:${bd('r')};border-bottom:${bd('b')};border-left:${bd('l')}" aria-label="格子">${inner}</button>`;
     }).join('');
     el.querySelectorAll('.mz-cell').forEach(c => c.addEventListener('click', () => {
@@ -8029,8 +8116,10 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   function mzMove(dir) {
     const mz = st.mz; if (st.locked) return;
     if (mz.walls[mz.at][dir]) { buzz(); return; }
-    mz.at += { t: -mz.C, b: mz.C, l: -1, r: 1 }[dir]; mz.trail.add(mz.at); tone([620], .04, 'sine'); mzDraw();
-    if (mz.at === mz.goal) { st.locked = true; itemDone(true); }
+    mz.at += { t: -mz.C, b: mz.C, l: -1, r: 1 }[dir]; mz.trail.add(mz.at); tone([620], .04, 'sine');
+    if (mz.at === mz.key && !mz.got) { mz.got = true; chime(); say([['拿到鑰匙了！門打開了']]); }
+    mzDraw();
+    if (mz.at === mz.goal) { if (!mz.got) { buzz(); say([['門鎖住了，要先拿到鑰匙喔']]); return; } st.locked = true; itemDone(true); }
   }
   function pzPick(b) {
     if (st.locked || b.classList.contains('placed')) return;
@@ -8047,16 +8136,24 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   /* 記憶翻牌 */
   function startMemory() {
     const pairs = age === 'small' ? 3 : age === 'six' ? 8 : 6;
-    const icons = shuffle(MEM_ICONS).slice(0, pairs);
-    const cards = shuffle([...icons, ...icons]);
-    st.total = pairs; st.mem = { open: [], matched: 0, busy: false, tries: 0 };
-    st.q = { prompt: '翻翻看，找出一樣的兩張', speech: [['翻翻看，找出一樣的兩張牌']] };
+    // 5 歲一半、6 歲大部分：不是一樣的兩張，而是「相配」的兩張（數字↔點點、大寫↔小寫、算式↔答案）
+    const rel = age !== 'small' && Math.random() < (age === 'six' ? .75 : .45) ? pick(age === 'six' ? ['dots', 'case', 'add', 'add'] : ['dots', 'case']) : '';
+    let cards;
+    if (rel) {
+      const keys = rel === 'case' ? shuffle('ABDEFGHMNQRT'.split('')).slice(0, pairs) : shuffle(Array.from({ length: age === 'six' ? 9 : 6 }, (_, i) => i + (rel === 'add' ? 2 : 1))).slice(0, Math.min(pairs, age === 'six' ? 9 : 6));
+      const face = (k, side) => rel === 'case' ? (side ? k.toLowerCase() : k) : !side ? String(k) : rel === 'dots' ? `<span class="mem-dots">${'●'.repeat(k)}</span>` : (() => { const a = rand(1, k - 1); return `<span class="mem-eq">${a}+${k - a}</span>`; })();
+      cards = shuffle(keys.flatMap(k => [[k, face(k, 0)], [k, face(k, 1)]]));
+      st.total = keys.length;
+    } else { const icons = shuffle(MEM_ICONS).slice(0, pairs); cards = shuffle([...icons, ...icons]).map(e => [e, e]); st.total = pairs; }
+    st.mem = { open: [], matched: 0, busy: false, tries: 0 };
+    const hint = { dots: '數字和一樣多的點點是一對', case: '大寫和小寫是一對', add: '算式和答案是一對' }[rel];
+    st.q = rel ? { prompt: '翻翻看，找出相配的兩張', speech: [['翻翻看，找出相配的兩張牌'], [hint]] } : { prompt: '翻翻看，找出一樣的兩張', speech: [['翻翻看，找出一樣的兩張牌']] };
     mood('');
-    $('prompt').textContent = '翻翻看，找出一樣的兩張';
+    $('prompt').textContent = st.q.prompt;
     $('options').className = 'options'; $('options').innerHTML = '';
     const stage = $('stage');
     stage.hidden = false; stage.className = 'stage mem-stage';
-    stage.innerHTML = `<div class="mem mem-${pairs}">${cards.map((e, i) => `<button class="card" id="card${i}" data-e="${e}" aria-label="翻牌"><span class="back">?</span><span class="front">${e}</span></button>`).join('')}</div>`;
+    stage.innerHTML = `<div class="mem mem-${st.total}">${cards.map(([k, e], i) => `<button class="card" id="card${i}" data-e="${k}" aria-label="翻牌"><span class="back">?</span><span class="front">${e}</span></button>`).join('')}</div>${hint ? `<p class="note" style="text-align:center">${hint}</p>` : ''}`;
     stage.querySelectorAll('.card').forEach(c => c.addEventListener('click', () => flipCard(c)));
     drawTrack();
     say(st.q.speech);
@@ -8079,7 +8176,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
         m.open = []; m.busy = false;
         const cur = st;
         if (m.matched === st.total) setTimeout(() => { if (st === cur && !$('game').hidden) finish(); }, 1000);
-        else setTimeout(() => { if (st === cur) $('prompt').textContent = '翻翻看，找出一樣的兩張'; }, 1200);
+        else setTimeout(() => { if (st === cur) $('prompt').textContent = st.q.prompt; }, 1200);
       }, 350);
     } else {
       mood('is-think');
@@ -9950,6 +10047,147 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     { e: '🥛', q: '為什麼要多喝牛奶、多運動？', a: [['🦴', '讓骨頭長得又高又壯'], ['😴', '讓自己想睡覺'], ['🍭', '讓牙齒變甜']], why: '牛奶有鈣，再加上運動，骨頭會長得更好。', lv: 3 },
     { e: '⏰', q: '早上要準時起床，可以怎麼做？', a: [['🌙', '晚上早一點睡'], ['📱', '睡前玩手機'], ['🍫', '睡前吃巧克力']], why: '早睡才能早起，精神也會比較好。', lv: 3 }
   );
+  /* ---------- 🎓 6 歲專屬（lv 3）：要多想一步的題目，4 個選項 ---------- */
+  SCIENCE.push(
+    { e: '🧊', q: '冰塊放在太陽下，過一會兒會變成什麼？', a: [['💧', '水'], ['🪨', '石頭'], ['☁️', '雲'], ['🧊', '更大的冰塊']], why: '冰遇到熱會融化，變成水。', lv: 3 },
+    { e: '🌱', q: '種子要長大，需要哪些東西？', a: [['💧', '水、陽光、空氣'], ['🍬', '糖果、玩具、電視'], ['🧊', '冰塊、黑暗、鹽巴'], ['📱', '手機、電燈、音樂']], why: '植物需要水、陽光和空氣，才能長大。', lv: 3 },
+    { e: '🌙', q: '白天為什麼常常看不清楚月亮？', a: [['☀️', '太陽光太亮了'], ['🛌', '月亮去睡覺了'], ['🎈', '月亮被氣球擋住'], ['🌧️', '月亮怕熱躲起來']], why: '月亮白天也常常在天上，只是太陽太亮，看不清楚。', lv: 3 },
+    { e: '🧲', q: '磁鐵可以吸起哪一個？', a: [['📎', '迴紋針'], ['🪵', '木頭積木'], ['🧻', '衛生紙'], ['🥄', '塑膠湯匙']], why: '磁鐵會吸鐵做的東西，迴紋針是鐵做的。', lv: 3 },
+    { e: '🌡️', q: '溫度計的紅線往上升，表示變得怎麼樣？', a: [['🥵', '變熱'], ['🥶', '變冷'], ['🌧️', '下雨'], ['🌙', '天黑']], why: '紅線升高，表示溫度變高、變熱了。', lv: 3 },
+    { e: '🔦', q: '影子是怎麼來的？', a: [['🔦', '光被東西擋住了'], ['💧', '水滴下來'], ['🎨', '有人畫上去'], ['🌬️', '風吹出來']], why: '光照不過去的地方，就會出現影子。', lv: 3 },
+    { e: '🐛', q: '毛毛蟲長大以後，會變成什麼？', a: [['🦋', '蝴蝶'], ['🐝', '蜜蜂'], ['🐞', '瓢蟲'], ['🐜', '螞蟻']], why: '毛毛蟲先變成蛹，再變成美麗的蝴蝶。', lv: 3 },
+    { e: '🌈', q: '彩虹常常在什麼時候出現？', a: [['🌦️', '下完雨、出太陽的時候'], ['🌙', '半夜'], ['❄️', '下雪的晚上'], ['🌫️', '起大霧的時候']], why: '太陽光照到空氣裡的小水滴，就會出現彩虹。', lv: 3 },
+    { e: '🍂', q: '秋天有些樹葉為什麼會變黃、掉下來？', a: [['🍂', '天氣變冷，樹要準備過冬'], ['🎨', '有人把葉子塗黃'], ['💧', '葉子喝太多水'], ['🐛', '蟲把顏色吃掉']], why: '天氣變冷，有些樹會讓葉子掉下來，準備過冬。', lv: 3 },
+    { e: '🛁', q: '哪一個放進水裡會沉下去？', a: [['🔑', '鑰匙'], ['🏐', '皮球'], ['🪵', '木頭'], ['🦆', '小鴨玩具']], why: '鑰匙是金屬做的，比較重，會沉下去。', lv: 3 });
+  FESTIVAL.push(
+    { e: '🐉', q: '端午節划龍舟、吃粽子，是為了紀念誰？', a: [['📜', '詩人屈原'], ['🎅', '聖誕老人'], ['🐰', '月亮上的玉兔'], ['🧧', '財神爺']], why: '端午節是紀念愛國詩人屈原。', lv: 3 },
+    { e: '🥮', q: '中秋節晚上的月亮，是什麼樣子？', a: [['🌕', '圓圓的滿月'], ['🌙', '彎彎的月亮'], ['⭐', '星星的形狀'], ['🔺', '三角形']], why: '中秋節是農曆八月十五，月亮最圓。', lv: 3 },
+    { e: '🏮', q: '元宵節大家會做什麼？', a: [['🏮', '提燈籠、猜燈謎'], ['🎃', '刻南瓜燈'], ['🐉', '划龍舟'], ['🎄', '布置聖誕樹']], why: '元宵節要提燈籠、猜燈謎，還會吃湯圓。', lv: 3 },
+    { e: '🧧', q: '過年見到長輩，要說什麼吉祥話？', a: [['🙏', '新年快樂、恭喜發財'], ['🎂', '生日快樂'], ['😴', '晚安'], ['👋', '再見']], why: '過年要跟長輩說新年快樂、恭喜發財。', lv: 3 },
+    { e: '🌼', q: '清明節，大家會去做什麼？', a: [['🌼', '掃墓、紀念祖先'], ['🎆', '放煙火'], ['🎁', '交換禮物'], ['🏊', '去游泳']], why: '清明節要掃墓，紀念我們的祖先。', lv: 3 },
+    { e: '❄️', q: '冬至這一天，很多家庭會吃什麼？', a: [['🍡', '湯圓'], ['🥮', '月餅'], ['🍙', '粽子'], ['🎂', '蛋糕']], why: '冬至吃湯圓，表示一家人團團圓圓。', lv: 3 },
+    { e: '👨', q: '台灣的父親節是哪一天？', a: [['8️⃣', '8月8日'], ['🎄', '12月25日'], ['🧧', '過年那天'], ['🥮', '中秋節']], why: '8月8日，「八八」念起來像「爸爸」。', lv: 3 },
+    { e: '🎄', q: '聖誕節是幾月幾日？', a: [['🎄', '12月25日'], ['🎆', '1月1日'], ['🥮', '8月15日'], ['🎃', '10月31日']], why: '聖誕節是12月25日。', lv: 3 },
+    { e: '🍙', q: '划龍舟、吃粽子、掛香包，是哪一個節日？', a: [['🐉', '端午節'], ['🥮', '中秋節'], ['🧧', '過年'], ['🏮', '元宵節']], why: '端午節要划龍舟、吃粽子、掛香包。', lv: 3 },
+    { e: '🌸', q: '母親節在哪一個月？', a: [['5️⃣', '5月'], ['1️⃣', '1月'], ['🔟', '10月'], ['8️⃣', '8月']], why: '母親節是5月的第二個星期天。', lv: 3 });
+  JOBS.push(
+    { e: '🩺', q: '用聽診器聽心跳的，是哪一種工作的人？', a: [['👩‍⚕️', '醫生'], ['👨‍🚒', '消防員'], ['👨‍🍳', '廚師'], ['👮', '警察']], lv: 3 },
+    { e: '📬', q: '把信送到你家的人是誰？', a: [['📮', '郵差'], ['👩‍🌾', '農夫'], ['👨‍🎨', '畫家'], ['🧑‍✈️', '機長']], lv: 3 },
+    { e: '🌾', q: '我們吃的米，是誰種出來的？', a: [['👩‍🌾', '農夫'], ['👨‍🔧', '修車師傅'], ['👩‍🏫', '老師'], ['👨‍🚀', '太空人']], lv: 3 },
+    { e: '🚗', q: '汽車壞掉了，要找誰修理？', a: [['👨‍🔧', '修車師傅'], ['👩‍🍳', '廚師'], ['💇', '美髮師'], ['👨‍🌾', '農夫']], lv: 3 },
+    { e: '✈️', q: '開飛機的人叫做什麼？', a: [['🧑‍✈️', '機長'], ['🚌', '公車司機'], ['⛴️', '船長'], ['🚂', '火車司機']], lv: 3 },
+    { e: '📚', q: '在圖書館幫大家找書、整理書的人是誰？', a: [['📚', '圖書館員'], ['👩‍⚕️', '護理師'], ['👮', '警察'], ['👨‍🍳', '廚師']], lv: 3 },
+    { e: '🏗️', q: '蓋房子、蓋大樓的人是誰？', a: [['👷', '建築工人'], ['💇', '美髮師'], ['👩‍🏫', '老師'], ['🧑‍🎤', '歌手']], lv: 3 },
+    { e: '🐶', q: '小狗生病了，要帶牠去找誰？', a: [['🩺', '獸醫'], ['👩‍🏫', '老師'], ['👮', '警察'], ['👨‍🍳', '廚師']], lv: 3 },
+    { e: '🚀', q: '坐火箭到太空去工作的人是誰？', a: [['👨‍🚀', '太空人'], ['🧑‍✈️', '機長'], ['👨‍🚒', '消防員'], ['👩‍🌾', '農夫']], lv: 3 },
+    { e: '🛒', q: '在超市幫你結帳的人是誰？', a: [['🧑‍💼', '收銀員'], ['👩‍⚕️', '護理師'], ['👷', '建築工人'], ['👨‍🚀', '太空人']], lv: 3 });
+  ANIMALS.push(
+    { e: '❄️', q: '哪一種動物冬天會冬眠，睡很久很久？', a: [['🐻', '熊'], ['🐕', '小狗'], ['🐔', '雞'], ['🐄', '牛']], lv: 3 },
+    { e: '🐋', q: '鯨魚住在海裡，牠是怎麼呼吸的？', a: [['🫁', '浮到水面上吸空氣'], ['🐟', '用鰓，跟魚一樣'], ['👃', '在水裡用鼻子吸水'], ['🫧', '吃泡泡']], lv: 3 },
+    { e: '🦒', q: '長頸鹿的長脖子，可以幫牠做什麼？', a: [['🌳', '吃到高高樹上的葉子'], ['🏊', '游泳'], ['🕳️', '鑽洞'], ['🎵', '唱歌']], lv: 3 },
+    { e: '🏜️', q: '哪一種動物住在沙漠，很久不喝水也沒關係？', a: [['🐪', '駱駝'], ['🐧', '企鵝'], ['🐸', '青蛙'], ['🐟', '魚']], lv: 3 },
+    { e: '🌊', q: '小蝌蚪長大以後，會變成什麼？', a: [['🐸', '青蛙'], ['🐟', '魚'], ['🐢', '烏龜'], ['🦆', '鴨子']], lv: 3 },
+    { e: '🌙', q: '哪一種動物白天睡覺、晚上出來找東西吃？', a: [['🦉', '貓頭鷹'], ['🐔', '雞'], ['🐄', '牛'], ['🦋', '蝴蝶']], lv: 3 },
+    { e: '🐧', q: '企鵝是鳥，可是牠不會做什麼？', a: [['🕊️', '在天上飛'], ['🏊', '游泳'], ['🚶', '走路'], ['🥚', '生蛋']], lv: 3 },
+    { e: '🦔', q: '刺蝟遇到危險，會怎麼保護自己？', a: [['🦔', '捲成一顆刺刺的球'], ['🕊️', '飛走'], ['💦', '噴水'], ['🔊', '大聲唱歌']], lv: 3 },
+    { e: '🕷️', q: '蜘蛛有幾隻腳？', a: [['8️⃣', '8隻'], ['6️⃣', '6隻'], ['4️⃣', '4隻'], ['2️⃣', '2隻']], lv: 3 },
+    { e: '🐜', q: '螞蟻、蜜蜂這些昆蟲，有幾隻腳？', a: [['6️⃣', '6隻'], ['8️⃣', '8隻'], ['4️⃣', '4隻'], ['🔟', '10隻']], lv: 3 });
+  SAFETY.push(
+    { e: '🔥', q: '如果衣服著火了，要怎麼做？', a: [['🛑', '停下來、躺下、滾一滾'], ['🏃', '趕快跑'], ['🌬️', '用嘴巴吹'], ['🙈', '躲起來']], why: '停下來、躺在地上滾一滾，可以把火壓熄。', lv: 3 },
+    { e: '🌫️', q: '家裡失火有煙，要怎麼逃出去？', a: [['🧎', '彎腰低頭、摀住口鼻往外走'], ['🛗', '搭電梯'], ['🛏️', '躲到床底下'], ['🧸', '先去拿玩具']], why: '煙會往上飄，身體壓低比較安全；失火不能搭電梯。', lv: 3 },
+    { e: '🏊', q: '看到有人掉進水裡，小朋友要怎麼做？', a: [['📣', '大聲叫大人來幫忙'], ['🏊', '自己跳下去救'], ['🙈', '假裝沒看到'], ['📷', '拍照']], why: '小朋友不能自己下水，要趕快大聲叫大人。', lv: 3 },
+    { e: '☎️', q: '遇到很危險的事，要打哪一支電話？', a: [['🚓', '110 或 119'], ['🍕', '外送電話'], ['🎮', '遊戲客服'], ['📺', '電視台']], why: '110 是找警察，119 是找消防車和救護車。', lv: 3 },
+    { e: '🔌', q: '可以用濕濕的手去插插頭嗎？', a: [['🙅', '不可以，會觸電'], ['👍', '可以'], ['🤷', '沒關係'], ['💧', '越濕越好']], why: '濕濕的手碰電，很容易觸電，非常危險。', lv: 3 },
+    { e: '🏬', q: '在百貨公司跟爸媽走散了，要找誰幫忙？', a: [['🧑‍💼', '櫃台或穿制服的工作人員'], ['🚗', '停車場的陌生人'], ['🏃', '自己跑出去找'], ['🚌', '自己坐公車回家']], why: '待在原地，或找穿制服的工作人員幫忙。', lv: 3 },
+    { e: '💊', q: '在家裡看到像糖果的藥丸，可以吃嗎？', a: [['🙅', '不可以，要先問大人'], ['😋', '可以吃'], ['🤫', '偷偷吃一顆'], ['🧃', '配果汁吃']], why: '藥不是糖果，吃錯會生病，一定要問大人。', lv: 3 },
+    { e: '🚪', q: '自己在家時，有人按門鈴說要送東西，要怎麼做？', a: [['🚫', '不開門，打電話問爸媽'], ['🚪', '馬上開門'], ['🗣️', '告訴他只有我在家'], ['🍬', '請他進來坐']], why: '不認識的人來，不要開門，先問爸媽。', lv: 3 },
+    { e: '🛴', q: '騎滑板車、腳踏車時，一定要戴什麼？', a: [['⛑️', '安全帽'], ['👒', '草帽'], ['🕶️', '墨鏡'], ['🎧', '耳機']], why: '戴安全帽可以保護頭，跌倒比較不會受傷。', lv: 3 },
+    { e: '🚸', q: '過馬路時，最安全的走法是？', a: [['🦓', '走斑馬線，看紅綠燈'], ['🚗', '從兩台車中間鑽過去'], ['🛣️', '從馬路中間跑過去'], ['🌳', '從樹後面衝出去']], why: '要走斑馬線、看紅綠燈，左右看清楚再走。', lv: 3 });
+  FEELQ.push(
+    { e: '🏃', q: '小美跑步得了第二名，雖然有點可惜，但她很努力。她可能是什麼心情？', a: [['😌', '有點可惜，也為自己驕傲'], ['😡', '非常生氣'], ['😴', '想睡覺'], ['🤢', '想吐']], why: '沒有得第一有點可惜，但努力過也很棒。', lv: 3 },
+    { e: '🏰', q: '你不小心撞倒小華的積木城堡，小華會有什麼感覺？', a: [['😢', '難過又失望'], ['😄', '很開心'], ['😴', '想睡覺'], ['🤩', '很興奮']], why: '辛苦蓋好的城堡倒了，小華會難過，要跟他說對不起。', lv: 3 },
+    { e: '😳', q: '在大家面前說錯話，臉紅紅的，這是什麼感覺？', a: [['😳', '不好意思'], ['😡', '生氣'], ['😋', '好吃'], ['🥶', '很冷']], why: '在大家面前出錯，會覺得不好意思，沒關係的。', lv: 3 },
+    { e: '🐶', q: '小華的小狗走丟了，一直找不到。他心裡會怎麼樣？', a: [['😟', '很擔心'], ['😆', '覺得好笑'], ['😎', '很酷'], ['😪', '好睏']], why: '心愛的小狗不見了，會很擔心。', lv: 3 },
+    { e: '🎢', q: '第一次坐雲霄飛車，又怕又想玩，這是什麼心情？', a: [['😬', '又緊張又期待'], ['😢', '難過'], ['😡', '生氣'], ['😴', '很無聊']], why: '第一次做新的事情，常常會又緊張又期待。', lv: 3 },
+    { e: '🤝', q: '朋友難過的時候，你可以怎麼做？', a: [['🤗', '陪他、問他怎麼了'], ['😂', '笑他'], ['🏃', '走開'], ['🙉', '不理他']], why: '陪在朋友身邊、聽他說，他會覺得好一點。', lv: 3 },
+    { e: '😤', q: '很生氣的時候，哪一個方法可以讓自己冷靜？', a: [['🌬️', '深呼吸，慢慢數到10'], ['👊', '打人'], ['📢', '大吼大叫'], ['💥', '摔東西']], why: '深呼吸、數一數，心情會慢慢平靜下來。', lv: 3 },
+    { e: '🧸', q: '妹妹最喜歡的娃娃不見了，她哭了。為什麼？', a: [['💔', '心愛的東西不見了'], ['🍰', '吃太飽了'], ['🎉', '太開心了'], ['🌞', '天氣太好']], why: '心愛的東西不見，會很傷心。', lv: 3 },
+    { e: '🚲', q: '小明練習了好多天，終於學會騎腳踏車。他會覺得怎麼樣？', a: [['🥳', '很有成就感'], ['😢', '很難過'], ['😠', '很生氣'], ['😐', '沒感覺']], why: '努力練習以後成功了，會覺得很有成就感。', lv: 3 },
+    { e: '🎂', q: '小安沒有被邀請去生日派對，他可能覺得怎麼樣？', a: [['😔', '被冷落，有點難過'], ['😆', '超級開心'], ['😋', '肚子餓'], ['🥵', '很熱']], why: '大家都去了，只有自己沒被邀請，會有點難過。', lv: 3 });
+  TOGETHER.push(
+    { e: '🧩', q: '大家一起拼拼圖，小華一直搶著拼。怎麼做比較好？', a: [['🔄', '輪流，一人放一片'], ['😠', '把拼圖搶走'], ['😭', '大哭'], ['🚪', '不玩了走掉']], why: '輪流玩，每個人都有機會，大家都開心。', lv: 3 },
+    { e: '✊', q: '大家想玩的遊戲不一樣，怎麼決定比較公平？', a: [['✋', '舉手投票或猜拳'], ['📢', '誰最大聲聽誰的'], ['😤', '都聽我的'], ['🏃', '各玩各的不說話']], why: '投票或猜拳，大家都同意的方法最公平。', lv: 3 },
+    { e: '🍰', q: '只剩最後一塊蛋糕，你和姊姊都想吃，怎麼辦？', a: [['🔪', '切一半，一人一半'], ['😋', '趕快自己吃掉'], ['😭', '哭到她讓我'], ['🗑️', '丟掉誰都別吃']], why: '一人一半，大家都吃得到。', lv: 3 },
+    { e: '🚌', q: '搭公車時，看到老奶奶沒有位子坐，怎麼做？', a: [['🪑', '讓位給她'], ['🙈', '假裝睡覺'], ['📱', '繼續玩手機'], ['🏃', '跑去搶別的位子']], why: '把位子讓給老人家，是有禮貌的好行為。', lv: 3 },
+    { e: '🙋', q: '上課時想說話，要怎麼做？', a: [['🙋', '先舉手，等老師點到'], ['📢', '直接大聲說'], ['🥁', '敲桌子'], ['🏃', '走到前面去']], why: '先舉手，等老師點到再說，大家才聽得清楚。', lv: 3 },
+    { e: '🧹', q: '班上要打掃，大家怎麼做最快？', a: [['🤝', '分工合作，每人做一件'], ['😴', '一個人做，大家看'], ['🏃', '跑出去玩'], ['😠', '吵架']], why: '分工合作，一下子就打掃好了。', lv: 3 },
+    { e: '🎲', q: '玩遊戲輸了，要怎麼做？', a: [['👏', '恭喜別人，下次再加油'], ['😭', '大哭說不公平'], ['💥', '把遊戲弄壞'], ['😤', '罵別人']], why: '輸了沒關係，恭喜別人，下次再加油。', lv: 3 },
+    { e: '🆕', q: '班上來了新同學，一個人坐在旁邊，你可以怎麼做？', a: [['👋', '邀請他一起玩'], ['😂', '笑他'], ['🙈', '不理他'], ['📢', '叫他走開']], why: '主動邀請新同學，他會很開心。', lv: 3 },
+    { e: '📖', q: '跟同學借了書，要怎麼做？', a: [['📖', '好好愛惜，看完準時還'], ['✏️', '在上面亂畫'], ['🎒', '帶回家不還'], ['🗑️', '弄丟也沒關係']], why: '借來的東西要愛惜，用完要還。', lv: 3 },
+    { e: '🗑️', q: '在公園吃完點心，垃圾要怎麼辦？', a: [['🗑️', '丟垃圾桶，或帶回家'], ['🌳', '丟在草地上'], ['🦆', '丟進池塘'], ['🪑', '放在椅子上']], why: '垃圾要丟進垃圾桶，公園才會乾淨。', lv: 3 });
+  HABIT.push(
+    { e: '🪥', q: '刷牙大概要刷多久？', a: [['⏱️', '2分鐘，每顆都刷到'], ['⚡', '2秒鐘'], ['🕐', '1個小時'], ['🙅', '不用刷']], why: '每顆牙齒都要刷到，大約刷2分鐘。', lv: 3 },
+    { e: '🌅', q: '早上起床後，哪一個順序是對的？', a: [['🛏️', '起床→刷牙洗臉→換衣服→吃早餐'], ['🍞', '吃早餐→起床→刷牙'], ['🎒', '背書包→起床→換衣服'], ['👟', '穿鞋→起床→洗臉']], why: '先起床，再刷牙洗臉、換衣服，最後吃早餐出門。', lv: 3 },
+    { e: '🧼', q: '洗手要搓多久才會乾淨？', a: [['🎵', '唱完一首生日快樂歌'], ['⚡', '碰一下水就好'], ['🕐', '1個小時'], ['🙅', '不用搓']], why: '用肥皂搓大約20秒，差不多唱完一首生日快樂歌。', lv: 3 },
+    { e: '🍳', q: '哪一份早餐最健康？', a: [['🥛', '牛奶、蛋、水果'], ['🍭', '糖果和汽水'], ['🍟', '薯條和可樂'], ['🍰', '只吃蛋糕']], why: '有牛奶、蛋和水果，營養最均衡。', lv: 3 },
+    { e: '😴', q: '小朋友晚上大概要睡多久？', a: [['🌙', '10個小時左右'], ['⏰', '2個小時'], ['🙅', '不用睡'], ['📺', '看電視看到很晚']], why: '小朋友要睡飽，大約10個小時，才會長得高。', lv: 3 },
+    { e: '📱', q: '看平板一段時間以後，要做什麼？', a: [['👀', '讓眼睛休息，看看遠方'], ['📱', '換手機繼續看'], ['🎮', '打電動'], ['🛌', '躺著繼續看']], why: '眼睛要休息，看看遠方，才不會近視。', lv: 3 },
+    { e: '🎒', q: '睡覺前，可以先幫明天準備什麼？', a: [['🎒', '整理好書包和衣服'], ['🍬', '準備糖果'], ['📺', '打開電視'], ['🧸', '把玩具丟滿地']], why: '前一天整理好，早上就不會手忙腳亂。', lv: 3 },
+    { e: '⚽', q: '運動流汗以後，要記得做什麼？', a: [['💧', '喝水、擦汗'], ['🥤', '喝很多汽水'], ['🧊', '馬上吹冷風'], ['🍦', '吃冰淇淋']], why: '流汗以後要喝水、擦乾汗，才不會感冒。', lv: 3 },
+    { e: '🥶', q: '天氣變冷了，出門要怎麼穿？', a: [['🧥', '多加一件外套'], ['🩳', '穿短褲短袖'], ['🩴', '穿拖鞋'], ['👙', '穿泳衣']], why: '天氣冷要多穿一件外套，才不會感冒。', lv: 3 },
+    { e: '🚽', q: '上完廁所，要做哪兩件事？', a: [['🚰', '沖水、洗手'], ['🏃', '直接跑出去'], ['📱', '玩手機'], ['🍪', '吃點心']], why: '上完廁所要沖水，再把手洗乾淨。', lv: 3 });
+  LIFE.push(
+    { e: '🚥', q: '綠燈開始閃了，你還在路邊，要怎麼做？', a: [['✋', '等下一個綠燈'], ['🏃', '趕快衝過去'], ['🛴', '騎車衝過去'], ['🙈', '閉眼睛走']], why: '綠燈在閃，表示快變紅燈了，要等下一次。', lv: 3 },
+    { e: '🚗', q: '坐車的時候，小朋友要坐在哪裡？', a: [['💺', '後座的安全座椅，繫好安全帶'], ['🚘', '前座，坐在大人身上'], ['🪟', '把頭伸出窗外'], ['🧍', '站著']], why: '小朋友要坐後座的安全座椅，繫好安全帶。', lv: 3 },
+    { e: '🛗', q: '搭電梯時，哪一個做法是對的？', a: [['🚪', '先讓裡面的人出來，再進去'], ['🏃', '衝進去搶位置'], ['🔘', '把按鈕全部按一遍'], ['🦘', '在裡面跳']], why: '先出後進，大家都方便。', lv: 3 },
+    { e: '💰', q: '10元的東西，你給店員20元，會找回多少錢？', a: [['🪙', '10元'], ['💵', '20元'], ['🙅', '不會找錢'], ['5️⃣', '5元']], why: '20元減掉10元，要找回10元。', lv: 3 },
+    { e: '🧃', q: '喝完的牛奶紙盒，要怎麼回收？', a: [['🧃', '沖乾淨、壓扁，再回收'], ['🗑️', '直接丟一般垃圾'], ['🌳', '丟在路邊'], ['🚽', '丟進馬桶']], why: '紙盒沖乾淨、壓扁，才能好好回收。', lv: 3 },
+    { e: '🤒', q: '發燒、不舒服的時候，要怎麼做？', a: [['🛌', '告訴大人、多休息、看醫生'], ['🍦', '吃很多冰'], ['🏃', '去外面跑步'], ['🤫', '忍著不說']], why: '不舒服要馬上告訴大人，好好休息、看醫生。', lv: 3 },
+    { e: '📇', q: '走失的時候，要告訴警察什麼？', a: [['📇', '爸媽的名字和電話'], ['🎮', '喜歡的遊戲'], ['🍭', '最愛的糖果'], ['📺', '最喜歡的卡通']], why: '記住爸媽的名字和電話，警察才能幫你找到家人。', lv: 3 },
+    { e: '🚮', q: '走在路上，手上有垃圾，附近沒有垃圾桶，怎麼辦？', a: [['🎒', '先收起來，帶回家丟'], ['🌳', '丟在樹下'], ['🚗', '丟到馬路上'], ['🌊', '丟進水溝']], why: '找不到垃圾桶，就先收起來，回家再丟。', lv: 3 },
+    { e: '🪥', q: '刷牙的時候，怎麼做可以省水？', a: [['🚰', '用杯子裝水，關掉水龍頭'], ['🌊', '水一直開著'], ['🛁', '放一缸水來刷牙'], ['🚿', '開蓮蓬頭刷牙']], why: '用杯子裝水、關水龍頭，就能省很多水。', lv: 3 },
+    { e: '💡', q: '離開房間的時候，可以怎麼省電？', a: [['💡', '隨手關燈'], ['📺', '電視一直開著'], ['❄️', '冷氣開最強'], ['🔌', '把電器都打開']], why: '離開房間隨手關燈，就能省電。', lv: 3 });
+  RIDDLES.push(
+    { q: '有臉沒有嘴，有手沒有腳，一天到晚滴答走。', e: '⏰', n: '時鐘', lv: 3 },
+    { q: '身體細細長長，穿著木頭衣服，越用越短，可以寫字。', e: '✏️', n: '鉛筆', lv: 3 },
+    { q: '白天收起來，下雨撐開來，像一朵大花保護你。', e: '☂️', n: '雨傘', lv: 3 },
+    { q: '有很多頁，打開會說故事，可是自己不會說話。', e: '📖', n: '書', lv: 3 },
+    { q: '有牙齒不會咬人，每天幫你整理頭髮。', e: '🪮', n: '梳子', lv: 3 },
+    { q: '冬天不見了，夏天最熱情，每天早上從東邊出來。', e: '☀️', n: '太陽', lv: 3 },
+    { q: '小時候穿黑衣服在水裡游，長大以後跳到岸上呱呱叫。', e: '🐸', n: '青蛙', lv: 3 },
+    { q: '有門沒有鎖，裡面冷冰冰，食物放進去不會壞。', e: '🧊', n: '冰箱', lv: 3 },
+    { q: '有兩個輪子，沒有引擎，要用腳踩才會往前走。', e: '🚲', n: '腳踏車', lv: 3 },
+    { q: '有一個大鼻子，可以噴水洗澡，耳朵像兩把大扇子。', e: '🐘', n: '大象', lv: 3 });
+  STRANGER_X.push(
+    { e: '📱', q: '有人在網路上說要送你遊戲寶物，叫你告訴他家裡地址，怎麼辦？', a: [['🙅', '不告訴他，跟爸媽說'], ['🏠', '告訴他地址'], ['📷', '傳照片給他'], ['🤫', '偷偷跟他約見面']], why: '網路上不認識的人，不能告訴他名字、地址、學校。', lv: 3 },
+    { e: '🤫', q: '有大人說：「這是我們的秘密，不要告訴爸媽。」怎麼辦？', a: [['🗣️', '一定要告訴爸媽'], ['🤐', '守住秘密'], ['😨', '害怕不敢說'], ['🍬', '拿了糖果就不說']], why: '讓你不舒服、叫你不要告訴爸媽的秘密，一定要說出來。', lv: 3 },
+    { e: '🚗', q: '放學時，一個不認識的叔叔說：「你媽媽叫我來接你。」怎麼辦？', a: [['🏫', '不跟他走，告訴老師'], ['🚗', '跟他上車'], ['🏃', '自己走回家'], ['🍦', '他買冰就跟他走']], why: '爸媽沒有跟老師說好的人來接，不能跟他走。', lv: 3 },
+    { e: '☎️', q: '有人打電話來問：「你家大人在嗎？你家住哪裡？」怎麼回答？', a: [['🙅', '不說地址，請他晚點再打'], ['🏠', '告訴他地址'], ['🗣️', '說只有我一個人在家'], ['📇', '告訴他爸媽的密碼']], why: '電話裡不認識的人，不要說家裡只有你，也不要說地址。', lv: 3 },
+    { e: '🙋', q: '不舒服的觸碰（例如有人要摸你的身體），要怎麼做？', a: [['✋', '大聲說不要，馬上告訴大人'], ['🤐', '不說話忍著'], ['😊', '笑一笑沒關係'], ['🎁', '收下禮物就算了']], why: '身體是自己的，不舒服就大聲說不要，並告訴信任的大人。', lv: 3 },
+    { e: '🧭', q: '在公園有人說要帶你去找走丟的小狗，你可以怎麼回答？', a: [['🗣️', '我要先問爸媽'], ['🐶', '好，我跟你去'], ['🏃', '自己跑去找'], ['🤫', '偷偷去一下']], why: '要去哪裡，一定要先問爸媽。', lv: 3 });
+  CALM.push(
+    { e: '😤', q: '積木一直倒，你越來越生氣，可以怎麼做？', a: [['🌬️', '先休息、深呼吸，再試一次'], ['💥', '把積木丟掉'], ['😭', '大哭不玩了'], ['👊', '打旁邊的人']], why: '先讓自己冷靜，再慢慢試，會成功的。', say: '我先深呼吸，等一下再試一次。', lv: 3 },
+    { e: '😢', q: '朋友不跟你玩，你很難過，可以怎麼做？', a: [['🗣️', '說出感覺：「我很難過，可以一起玩嗎？」'], ['😠', '罵他'], ['🙈', '躲起來哭一整天'], ['💥', '弄壞他的東西']], why: '把感覺說出來，朋友才知道你的想法。', say: '我很難過，我們可以一起玩嗎？', lv: 3 },
+    { e: '😨', q: '明天要上台表演，你很緊張，可以怎麼做？', a: [['🎵', '多練習幾次，跟爸媽說說'], ['🙅', '說不去了'], ['😭', '一直哭'], ['🤐', '都不告訴別人']], why: '多練習、說出緊張，心情會好一點。', say: '我有一點緊張，可以陪我練習嗎？', lv: 3 },
+    { e: '🤬', q: '有人笑你畫得很醜，你很生氣，可以怎麼說？', a: [['🗣️', '「你這樣說我會難過，請不要這樣」'], ['👊', '打他'], ['🖍️', '把他的畫撕掉'], ['😭', '大哭跑走']], why: '用說的告訴他你的感受，不用打人。', say: '你這樣說我會難過，請不要這樣。', lv: 3 },
+    { e: '😞', q: '比賽輸了，你很失望，可以怎麼做？', a: [['💪', '跟自己說：下次再加油'], ['😡', '說別人作弊'], ['💥', '摔東西'], ['🙅', '以後都不比了']], why: '輸了沒關係，下次再加油。', say: '沒關係，下次再加油！', lv: 3 },
+    { e: '🫂', q: '弟弟哭不停，你覺得很煩，可以怎麼做？', a: [['🧸', '拿玩具給他，或請大人幫忙'], ['📢', '對他大吼'], ['👐', '推他'], ['🚪', '把他關在門外']], why: '可以幫忙安慰弟弟，或請大人來幫忙。', say: '弟弟不要哭，這個給你玩。', lv: 3 });
+  MANNERS.push(
+    { e: '🎁', q: '收到不喜歡的禮物，要怎麼說？', a: [['🙏', '謝謝你送我禮物'], ['🙄', '我不喜歡這個'], ['🗑️', '直接丟掉'], ['😠', '要換別的']], why: '別人用心準備禮物，要說謝謝。', say: '謝謝你送我禮物！', lv: 3 },
+    { e: '📞', q: '接到電話，第一句要說什麼？', a: [['☎️', '喂，你好，請問找誰？'], ['😠', '幹嘛？'], ['🤐', '不說話'], ['📴', '直接掛掉']], why: '接電話要有禮貌，先說你好。', say: '喂，你好，請問找誰？', lv: 3 },
+    { e: '🍽️', q: '到朋友家吃飯，吃完要說什麼？', a: [['🙏', '謝謝招待，很好吃'], ['🙄', '不好吃'], ['🏃', '直接跑去玩'], ['🤐', '什麼都不說']], why: '吃完要謝謝主人用心準備。', say: '謝謝招待，很好吃！', lv: 3 },
+    { e: '🚪', q: '要進別人的房間，要先怎麼做？', a: [['✊', '先敲門，問：可以進去嗎？'], ['🚪', '直接開門衝進去'], ['🦶', '用腳踢門'], ['📢', '大叫他的名字']], why: '進別人房間前要先敲門。', say: '叩叩，請問我可以進去嗎？', lv: 3 },
+    { e: '🗣️', q: '大人在說話，你有事想說，要怎麼做？', a: [['⏳', '等他說完，再說：不好意思'], ['📢', '馬上插嘴'], ['👋', '拉他衣服一直叫'], ['😭', '哭給他看']], why: '等別人說完再說話，是有禮貌的表現。', say: '不好意思，我可以說一件事嗎？', lv: 3 },
+    { e: '🤧', q: '要打噴嚏了，要怎麼做？', a: [['💪', '用手肘遮住口鼻'], ['😮', '對著別人打'], ['🍽️', '對著食物打'], ['🙌', '張開手到處揮']], why: '用手肘遮住，細菌才不會亂飛。', say: '不好意思，我打噴嚏了。', lv: 3 });
+  EMO_SIT.push(
+    { e: '🏅', q: '你練習很久，終於上台表演成功了，心情會怎樣？', a: [['😊', '驕傲'], ['😢', '難過'], ['😠', '生氣'], ['😪', '想睡覺']], lv: 3 },
+    { e: '🍭', q: '別人都有糖果，只有你沒有，心裡酸酸的，這是什麼心情？', a: [['😒', '羨慕'], ['😄', '開心'], ['😨', '害怕'], ['😲', '驚訝']], lv: 3 },
+    { e: '🎡', q: '期待好久的遊樂園，因為下雨不能去了，心情會怎樣？', a: [['😞', '失望'], ['😆', '興奮'], ['😠', '生氣到打人'], ['😴', '想睡覺']], lv: 3 },
+    { e: '🤝', q: '你跌倒了，同學扶你起來，你心裡會覺得？', a: [['🥰', '感謝'], ['😠', '生氣'], ['😨', '害怕'], ['😒', '討厭']], lv: 3 },
+    { e: '🙈', q: '你穿錯鞋子去學校，大家都看到了，你會覺得？', a: [['😳', '尷尬'], ['😄', '開心'], ['😡', '生氣'], ['😪', '想睡覺']], lv: 3 },
+    { e: '⏳', q: '明天要去旅行，晚上一直睡不著，這是什麼心情？', a: [['🤩', '期待'], ['😢', '難過'], ['😠', '生氣'], ['😨', '害怕']], lv: 3 },
+    { e: '🧸', q: '你把玩具借給朋友，朋友很開心，你會覺得？', a: [['😊', '溫暖、開心'], ['😠', '生氣'], ['😢', '難過'], ['😨', '害怕']], lv: 3 },
+    { e: '🌩️', q: '晚上打雷又停電，你一個人在房間，心情會怎樣？', a: [['😨', '害怕'], ['😄', '開心'], ['😴', '很想睡'], ['🤩', '很期待']], lv: 3 });
   /* ---------- 🚀 5 歲／6 歲分開的進階題（L1＝5 歲中班，超前到大班；L2＝6 歲大班，超前到小一上學期） ---------- */
   const ageLv = () => age === 'six' ? 2 : age === 'big' ? 1 : 0;
   const nOpt = (ans, n, lo, hi) => numberOptions(ans, n, lo, hi).map(k => ({ html: numHTML(k), label: String(k), correct: k === ans }));
@@ -10135,6 +10373,8 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   const UI_SAY = () => {
     const out = ['哪一個是紅色的蘋果？', '第一個', '第二個', '換你說', '說得真好', '學了好久了，我們起來動一動，讓眼睛和身體休息一下', '好棒！眼睛和身體都休息好了，我們回來繼續學習吧', '第一次來嗎？先玩六題小測驗，幫你找到剛剛好的程度', '答案是這一個喔', '等一下我們再考一次', '我幫你拿掉一個，我們再聽一次', '沒關係，我們再聽一次'];
     MOVES.forEach(m => out.push(m[1]));
+    out.push('翻翻看，找出相配的兩張牌', '數字和一樣多的點點是一對', '大寫和小寫是一對', '算式和答案是一對', '拿到鑰匙了！門打開了', '門鎖住了，要先拿到鑰匙喔'); [['小老鼠', '起司'], ['小兔子', '紅蘿蔔'], ['小狗', '骨頭'], ['小蜜蜂', '花朵']].forEach(([a, b]) => out.push(`先拿到鑰匙，才能打開門。帶${a}去拿鑰匙，再去找${b}`));
+    MT_TG.forEach(t => out.push(t[0])); out.push('用手指沿著線走走看，先點左邊，再點線另一頭的東西');
     try { TELL.forEach(S => { out.push(`${S.t}。先聽老師說故事，再換你說`); S.P.forEach(p => { out.push(p.s, p.q); }); }); out.push('故事說完了！現在換你當說故事的人', '換你跟著說一次', '說得真好', '你好棒！把整個故事說完了，可以播放給爸爸媽媽聽喔'); } catch (e) {}
     const fin = ['全部配對成功！記憶力真好。', '小測驗完成了！以後的題目會配合你的程度喔。', '你好厲害！下一次題目會難一點點喔。', '我們先練習簡單一點的，慢慢來就會了。', '全部都會了，真棒！', '很棒！再玩一次會更好。', '慢慢來，多玩幾次就會了。', '試玩結束囉！想玩更多，請爸爸媽媽開啟。'];
     for (let n = 0; n <= 30; n++) fin.forEach(m => out.push(`拿到${n}顆星星。${m}`));
