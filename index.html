@@ -1923,6 +1923,9 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   .an-wind { font-size: clamp(22px, 8vw, 46px); animation: tlWind 1.4s ease-in infinite; } @keyframes tlWind { from { opacity: 0; transform: translate(-50%, -50%); } 30% { opacity: 1; } to { opacity: 0; transform: translate(-260%, -50%) scale(1.4); } }
   .an-bl { animation: tlBL 1.4s ease-in-out infinite; } @keyframes tlBL { 50% { transform: translate(-50%, -50%) scale(calc(var(--s, 1) * 1.12)); } }
   .an-no { }
+  .sl-mix { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; } .sl-mix .sl-btn { display: flex; flex-direction: column; align-items: center; padding: 4px 7px; line-height: 1.1; min-width: 44px; } .sl-mix .sl-btn small { font-size: .62rem; font-weight: 800; opacity: .85; }
+  .tl-pp { display: block; height: 2.7em; width: auto; transform: translateY(-26%); } .tl-pa svg { display: block; height: 1.55em; width: auto; transform: translateY(-14%); } .tl-hum, .tl-ani { line-height: 0; }
+  .fb-art svg { height: 1.3em; width: auto; vertical-align: middle; display: inline-block; }
   .tl-steps { display: grid; gap: 10px; margin-top: 12px; }
   .tl-big { display: flex; align-items: center; gap: 10px; border: 0; border-radius: 20px; padding: 12px 14px; font: inherit; text-align: left; background: #fff; box-shadow: 0 4px 0 rgba(0,0,0,.08); } .tl-big span { font-size: 30px; } .tl-big b { font-size: 17px; } .tl-big small { display: block; color: #8A7A86; font-weight: 700; } .tl-big:disabled { opacity: .5; }
   .tl-big b + small { margin-left: auto; }
@@ -8314,9 +8317,25 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     slBgmStop(); if (SL.mode === 'off') return;
     try {
       const ac = SL.ac || (SL.ac = new (window.AudioContext || window.webkitAudioContext)()); ac.resume && ac.resume();
-      const out = ac.createGain(); out.gain.value = 0; out.connect(ac.destination); out.gain.linearRampToValueAtTime(SL.mode === 'rain' ? .05 : .045, ac.currentTime + 3);
-      let timer = null, src = null;
-      if (SL.mode === 'rain') {
+      const out = ac.createGain(); out.gain.value = 0; out.connect(ac.destination); out.gain.linearRampToValueAtTime({ rain: .05, wind: .07, wave: .06, bug: .035, bird: .04 }[SL.mode] || .045, ac.currentTime + 3);
+      let timer = null, src = null; const xs = [];
+      // 白噪音：用聲音合成做的（不用錄音檔）
+      const noise = (sec, k) => { const len = ac.sampleRate * sec, buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0); let last = 0; for (let i = 0; i < len; i++) { last = (last + k * (Math.random() * 2 - 1)) / (1 + k); d[i] = last * 3.5; } const n = ac.createBufferSource(); n.buffer = buf; n.loop = true; return n; };
+      const lfo = (freq, depth, param) => { const o = ac.createOscillator(), g = ac.createGain(); o.frequency.value = freq; g.gain.value = depth; o.connect(g); g.connect(param); o.start(); xs.push(o); };
+      const chirp = (at, f0, f1, dur, vol) => { const o = ac.createOscillator(), g = ac.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(f0, at); o.frequency.exponentialRampToValueAtTime(f1, at + dur); g.gain.setValueAtTime(0, at); g.gain.linearRampToValueAtTime(vol, at + dur * .2); g.gain.exponentialRampToValueAtTime(.001, at + dur); o.connect(g); g.connect(out); o.start(at); o.stop(at + dur + .05); };
+      if (SL.mode === 'wind') {
+        src = noise(4, .02); const f = ac.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 500; f.Q.value = .8; const g = ac.createGain(); g.gain.value = .7;
+        src.connect(f); f.connect(g); g.connect(out); lfo(.07, 320, f.frequency); lfo(.11, .35, g.gain); src.start();
+      } else if (SL.mode === 'wave') {
+        src = noise(4, .04); const f = ac.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 900; const g = ac.createGain(); g.gain.value = .55;
+        src.connect(f); f.connect(g); g.connect(out); lfo(.09, .5, g.gain); lfo(.09, 500, f.frequency); src.start();
+      } else if (SL.mode === 'bug') {
+        const tick = () => { const t = ac.currentTime; for (let c = 0; c < 3; c++) { const base = t + Math.random() * 1.6, fq = 4200 + c * 450 + Math.random() * 200; for (let k = 0; k < 3; k++) chirp(base + k * .07, fq, fq * .98, .05, .25); } };
+        tick(); timer = setInterval(tick, 1800);
+      } else if (SL.mode === 'bird') {
+        const tick = () => { const t = ac.currentTime + Math.random() * 2; const n = rand(2, 5), f = 2400 + Math.random() * 1400; for (let k = 0; k < n; k++) chirp(t + k * .16, f, f * (Math.random() < .5 ? 1.4 : .7), .12, .35); };
+        tick(); timer = setInterval(tick, 2600);
+      } else if (SL.mode === 'rain') {
         const len = ac.sampleRate * 2, buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0); let last = 0;
         for (let i = 0; i < len; i++) { last = (last + .02 * (Math.random() * 2 - 1)) / 1.02; d[i] = last * 3.5; }
         src = ac.createBufferSource(); src.buffer = buf; src.loop = true; const f = ac.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 1200; src.connect(f); f.connect(out); src.start();
@@ -8326,7 +8345,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
         const tick = () => { const t = ac.currentTime; for (let k = 0; k < 4; k++) { const o = ac.createOscillator(), g = ac.createGain(), at = t + k * step; o.type = 'sine'; o.frequency.value = notes[(i + k) % notes.length]; g.gain.setValueAtTime(0, at); g.gain.linearRampToValueAtTime(.6, at + .02); g.gain.exponentialRampToValueAtTime(.001, at + 1.6); o.connect(g); g.connect(out); o.start(at); o.stop(at + 1.7); } i += 4; };
         tick(); timer = setInterval(tick, step * 4000);
       }
-      SL.bgm = { stop() { clearInterval(timer); const t = ac.currentTime; out.gain.cancelScheduledValues(t); out.gain.setValueAtTime(out.gain.value, t); out.gain.linearRampToValueAtTime(0, t + 1.5); setTimeout(() => { try { src && src.stop(); } catch (e) {} out.disconnect(); }, 1700); } };
+      SL.bgm = { stop() { clearInterval(timer); const t = ac.currentTime; out.gain.cancelScheduledValues(t); out.gain.setValueAtTime(out.gain.value, t); out.gain.linearRampToValueAtTime(0, t + 1.5); setTimeout(() => { try { src && src.stop(); } catch (e) {} xs.forEach(o => { try { o.stop(); } catch (e) {} }); out.disconnect(); }, 1700); } };
     } catch (e) {}
   }
   function slClose() { SL.tok++; sayStop(); slBgmStop(); const o = $('slOv'); if (o) o.remove(); }
@@ -8339,11 +8358,11 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   }
   function slTop(back) {
     const m = SL.mode;
-    return `<div class="sl-top"><button class="sl-btn" id="slBack">${back ? '← 故事列表' : '✕ 關閉'}</button><span style="display:flex;gap:6px"><button class="sl-btn${m === 'box' ? ' on' : ''}" data-m="box">🎵</button><button class="sl-btn${m === 'rain' ? ' on' : ''}" data-m="rain">🌧️</button><button class="sl-btn${m === 'off' ? ' on' : ''}" data-m="off">🔇</button></span></div>`;
+    return `<div class="sl-top"><button class="sl-btn" id="slBack">${back ? '← 故事列表' : '✕ 關閉'}</button><span class="sl-mix">${[['box', '🎵', '音樂盒'], ['rain', '🌧️', '雨聲'], ['wind', '🍃', '風聲'], ['wave', '🌊', '海浪'], ['bug', '🦗', '蟲鳴'], ['bird', '🐦', '鳥鳴'], ['off', '🔇', '安靜']].map(([k, e, n]) => `<button class="sl-btn${m === k ? ' on' : ''}" data-m="${k}" aria-label="${n}"><span>${e}</span><small>${n}</small></button>`).join('')}</span></div>`;
   }
   function slWire(back) {
     $('slBack').onclick = back ? slListView : slClose;
-    document.querySelectorAll('#slOv .sl-btn[data-m]').forEach(b => b.onclick = () => { SL.mode = b.dataset.m; store.set('slBgm', SL.mode); document.querySelectorAll('#slOv .sl-btn[data-m]').forEach(x => x.classList.toggle('on', x === b)); if (SL.playing || SL.mode === 'off') slBgmStart(); });
+    document.querySelectorAll('#slOv .sl-btn[data-m]').forEach(b => b.onclick = () => { SL.mode = b.dataset.m; store.set('slBgm', SL.mode); document.querySelectorAll('#slOv .sl-btn[data-m]').forEach(x => x.classList.toggle('on', x === b)); slBgmStart(); });
   }
   function slListView() {
     SL.tok++; SL.playing = false; sayStop(); slBgmStop(); const ov = $('slOv'); if (!ov) return; ov.classList.remove('dim');
@@ -10139,7 +10158,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       l = l.trim(); if (!l) return;
       if (l.startsWith('##')) { const [a, e, t] = l.slice(2).trim().split('|'); cur = { id: 'tl' + out.length, a: { s: 'small', b: 'big', x: 'six' }[a], e, t, P: [] }; out.push(cur); return; }
       const [bg, it, s, q, k] = l.split('|');
-      cur.P.push({ bg, it: (it || '').split(';').filter(Boolean).map(x => { const [e, pos, an] = x.split('@'); const [px, py, sz] = (pos || '50,60').split(',').map(Number); return [e, px, py, an || 'b', sz || 1]; }), s, q, k: (k || '').split(',').filter(Boolean) });
+      cur.P.push({ bg, it: (it || '').split(';').filter(Boolean).map(x => { const [e, pos] = x.split('@'); const q = (pos || '50,60').split(','); return [e, +q[0], +q[1], q[2] || 'b', +q[3] || 1, q[4] || '']; }), s, q, k: (k || '').split(',').filter(Boolean) });
     });
     return out;
   })();
@@ -10156,9 +10175,32 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   async function tlPut(k, blob) { try { const db = await tlDB(); await new Promise(r => { const t = db.transaction('rec', 'readwrite'); t.objectStore('rec').put(blob, k); t.oncomplete = r; t.onerror = r; }); } catch (e) {} }
   async function tlGet(k) { try { const db = await tlDB(); return await new Promise(r => { const q = db.transaction('rec').objectStore('rec').get(k); q.onsuccess = () => r(q.result || null); q.onerror = () => r(null); }); } catch (e) { return null; } }
   const tlKey = (st, i) => `${kidNow().id}|${st.id}|${i}`;
+  // 📖 看圖說故事：人物用有身體、有動作的角色（不是只有頭），動物用全身的畫法
+  const TL_PEOPLE = { '👴': 'gpa', '👵': 'gma', '👨': 'dad', '👩': 'mom', '👶': 'baby', '👨‍🌾': 'dad', '👩‍🌾': 'mom', '👩‍🏫': 'tch', '🧑‍🏫': 'tch', '👨‍🏫': 'tch', '🚶': 'b2', '🧑': 'b2', '👩‍🍳': 'mom', '👨‍🍳': 'dad' };
+  const TL_KIDS = { '👦': ['b1', 'b2', 'b3'], '👧': ['g1', 'g2', 'g3'], '🧒': ['b2', 'b3', 'g3'] };
+  const scnVB = look => { const k = (SCN_LOOK[look] || [0, 0, 0, 1])[3]; return `${(-56 * k).toFixed(0)} ${(-150 * k).toFixed(0)} ${(112 * k).toFixed(0)} ${(160 * k).toFixed(0)}`; };
+  function tlPerson(look, an, p, x, its, fp) {
+    const t = p.s || '';
+    const mood = /哭|難過|傷心/.test(t) ? 'cry' : /生氣/.test(t) ? 'angry' : /害怕|嚇/.test(t) ? 'scared' : /對不起/.test(t) ? 'sorry' : an === 'zz' ? 'sleepy' : an === 'jp' || /開心|好棒|高興|哈哈|笑/.test(t) ? 'laugh' : 'happy';
+    let pose = { jp: 'up', wr: 'walk', wl: 'walk', sh: 'grab', zz: 'sleep', fa: 'fall', sp: 'clap', fl: 'up', sw: 'wave', bl: 'stand' }[an] || 'stand', flip = an === 'wl';
+    if (pose === 'stand') { if (mood === 'cry') pose = 'cry'; else if (/給|送/.test(t)) pose = 'give'; else if (/揮手|再見|你好|歡迎/.test(t)) pose = 'wave'; else if (/吃|喝/.test(t)) pose = 'eat'; else if (/坐/.test(t)) pose = 'sit'; else if (/指|看到|發現/.test(t)) pose = 'point'; else if (/抱/.test(t)) pose = 'hug'; }
+    if (/跑/.test(t) && (pose === 'walk' || pose === 'stand')) pose = 'run';
+    if (fp) pose = fp;
+    if (pose === 'grab' || pose === 'give' || pose === 'point' || pose === 'hug') { const thing = q => !TL_PEOPLE[q[0]] && !TL_KIDS[q[0]] && !FB_ANI_SVG[q[0]], pool = its.filter(q => q[1] !== x && thing(q)), o = (pool.length ? pool : its.filter(q => q[1] !== x)).sort((a, b) => Math.abs(a[1] - x) - Math.abs(b[1] - x))[0]; if (o && o[1] < x) flip = true; }
+    return `<svg viewBox="-70 -205 140 215" class="tl-pp" aria-hidden="true">${scnPerson(look, 0, 0, pose, mood, flip)}</svg>`;
+  }
   function tlScene(p) {
     const B = TELL_BG[p.bg] || TELL_BG.grass, deco = B[2].split(';').map(x => { const [e, pos] = x.split('@'); const [px, py, sz] = pos.split(',').map(Number); return `<span class="tl-it tl-deco" style="left:${px}%;top:${py}%;--s:${sz || 1}">${e}</span>`; }).join('');
-    const its = p.it.map(([e, x, y, an, sz], i) => `<span class="tl-it an-${an}" style="left:${x}%;top:${y}%;--s:${sz};animation-delay:${i * .25}s">${e}</span>${an === 'bl' ? `<span class="tl-it an-wind" style="left:${x + 12}%;top:${y}%">💨</span>` : an === 'zz' ? `<span class="tl-it an-z" style="left:${x + 8}%;top:${y - 14}%">💤</span>` : ''}`).join('');
+    const used = {}, big = q => TL_PEOPLE[q[0]] || TL_KIDS[q[0]] || FB_ANI_SVG[q[0]] || q[4] >= 1.4;
+    // 人物、動物、大東西不要擠在一起：左右至少隔開一點
+    const P2 = p.it.map(q => q.slice()), B2 = P2.filter(big).sort((a, b) => a[1] - b[1]);
+    for (let i = 1; i < B2.length; i++) { const hum = q => TL_PEOPLE[q[0]] || TL_KIDS[q[0]], g = (hum(B2[i]) && hum(B2[i - 1]) ? 17 : 15) * Math.max(1, (B2[i][4] + B2[i - 1][4]) / 2); if (Math.abs(B2[i][2] - B2[i - 1][2]) < 22 && B2[i][1] - B2[i - 1][1] < g) B2[i][1] = B2[i - 1][1] + g; }
+    const over = B2.length ? B2[B2.length - 1][1] - 90 : 0; if (over > 0) B2.forEach(q => q[1] = Math.max(8, q[1] - over));
+    const its = P2.map(([e, x, y, an, sz, fp], i) => {
+      let look = TL_PEOPLE[e]; if (!look && TL_KIDS[e]) { used[e] = (used[e] || 0); look = TL_KIDS[e][used[e]++ % 3]; }
+      const ani = !look && aniSVG(e), art = look ? tlPerson(look, an, p, x, P2, fp) : ani ? `<span class="tl-pa">${ani}</span>` : e;
+      return `<span class="tl-it an-${an}${look ? ' tl-hum' : ani ? ' tl-ani' : ''}" style="left:${x}%;top:${y}%;--s:${sz};animation-delay:${i * .25}s">${art}</span>${an === 'bl' ? `<span class="tl-it an-wind" style="left:${x + 12}%;top:${y}%">💨</span>` : an === 'zz' ? `<span class="tl-it an-z" style="left:${x + 8}%;top:${y - 14}%">💤</span>` : ''}`;
+    }).join('');
     return `<div class="tl-stage" style="--sky:${B[0]};--gd:${B[1]}">${deco}${its}</div>`;
   }
   function tellClose() { TL.tok++; sayStop(); try { TL.rec && TL.rec.state === 'recording' && TL.rec.stop(); } catch (e) {} const o = $('tlOv'); if (o) o.remove(); }
@@ -11474,8 +11516,8 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
   const PETC_STAGE = ['幼年期', '成長期', '成熟期'];
   let petcN = 0;
   function petcLight(hex, a) { const n = parseInt(hex.slice(1), 16); let r = n >> 16, g = n >> 8 & 255, b = n & 255; const t = a > 0 ? 255 : 0, k = Math.abs(a); r = Math.round(r + (t - r) * k); g = Math.round(g + (t - g) * k); b = Math.round(b + (t - b) * k); return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1); }
-  function petcSVG(id, stage) {
-    const P = PETC[id], u = 'pc' + (++petcN), defs = [], pal = Object.assign({ white: '#FFFFFF', dark: '#2A2140', cheek: '#FF8FB0' }, P.pal);
+  function petcSVG(id, stage, PP) {
+    const P = PP || PETC[id], u = 'pc' + (++petcN), defs = [], pal = Object.assign({ white: '#FFFFFF', dark: '#2A2140', cheek: '#FF8FB0' }, P.pal);
     let gi = 0;
     const lay = L => (L || []).map(([role, el]) => {
       const col = pal[role] || '#999', flat = ['dark', 'white', 'cheek'].includes(role); let fill = col, st = '';
@@ -11494,6 +11536,40 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
     return `<svg viewBox="-10 -10 220 220" aria-hidden="true"><defs>${defs.join('')}<filter id="${f}" x="-20%" y="-20%" width="140%" height="140%"><feMorphology in="SourceAlpha" operator="dilate" radius="8" result="d"/><feFlood flood-color="#fff"/><feComposite in2="d" operator="in" result="w"/><feGaussianBlur in="d" stdDeviation="3" result="sb"/><feOffset in="sb" dy="4" result="so"/><feFlood flood-color="#2A2140" flood-opacity=".18"/><feComposite in2="so" operator="in" result="s"/><feMerge><feMergeNode in="s"/><feMergeNode in="w"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g filter="url(#${f})">${inner}</g></svg>`;
   }
 
+  // 🐾 情境圖用的全身動物（和寵物同一種畫法，不在寵物商店出現）
+  const SCA_FACE = (nose) => [['dark', '<ellipse cx="80" cy="78" rx="6" ry="7"/><ellipse cx="120" cy="78" rx="6" ry="7"/>' + (nose || '<ellipse cx="100" cy="92" rx="6" ry="4.2"/>') + '<path d="M100 96q-5 7-10 4M100 96q5 7 10 4" fill="none" stroke-width="3" stroke-linecap="round"/>'], ['white', '<circle cx="82" cy="75" r="2.3"/><circle cx="122" cy="75" r="2.3"/>'], ['cheek', '<ellipse cx="66" cy="96" rx="8" ry="5"/><ellipse cx="134" cy="96" rx="8" ry="5"/>']];
+  const SC_ANI = {
+    frog: { pal: { main: '#7CC576', main2: '#4E9A4A', cream: '#E8F6C8' },
+      b: [['main', PB.body], ['cream', PB.belly], ['main', PB.arms], ['main2', '<ellipse cx="76" cy="188" rx="20" ry="9"/><ellipse cx="124" cy="188" rx="20" ry="9"/>']],
+      h: [['main', '<circle cx="70" cy="50" r="20"/><circle cx="130" cy="50" r="20"/><ellipse cx="100" cy="86" rx="56" ry="38"/>'], ['white', '<circle cx="70" cy="50" r="13"/><circle cx="130" cy="50" r="13"/>'], ['dark', '<circle cx="72" cy="52" r="7"/><circle cx="128" cy="52" r="7"/><path d="M74 96q26 18 52 0" fill="none" stroke-width="3.5" stroke-linecap="round"/>'], ['white', '<circle cx="74" cy="49" r="2.4"/><circle cx="130" cy="49" r="2.4"/>'], ['cheek', '<ellipse cx="62" cy="94" rx="8" ry="5"/><ellipse cx="138" cy="94" rx="8" ry="5"/>']] },
+    fox: { pal: { main: '#F28C3E', main2: '#C9632A', cream: '#FFF3E4' },
+      k: [['main', '<path d="M134 176q50-6 54-52q2-18-14-12q-14 6-12 30q-2 22-30 22z"/>'], ['cream', '<path d="M176 116q14-6 12 10q-2 10-12 6z"/>']],
+      b: [['main', PB.body], ['cream', PB.belly], ['main', PB.arms], ['main2', PB.feet]],
+      h: [['main', '<path d="M58 66L50 18l36 26zM142 66l8-48-36 26z"/>'], ['main2', '<path d="M60 56l-4-26 18 14zM140 56l4-26-18 14z"/>'], ['main', '<ellipse cx="100" cy="80" rx="50" ry="42"/>'], ['cream', '<path d="M62 92q38 34 76 0q-6 26-38 26t-38-26z"/>']].concat(SCA_FACE()) },
+    wolf: { pal: { main: '#8E97A8', main2: '#5E6678', cream: '#E8ECF2' },
+      k: [['main', '<path d="M134 176q52-4 56-50q2-18-14-12q-14 6-12 30q-2 22-30 22z"/>']],
+      b: [['main', PB.body], ['cream', PB.belly], ['main', PB.arms], ['main2', PB.feet]],
+      h: [['main', '<path d="M58 66L52 14l34 30zM142 66l6-52-34 30z"/>'], ['main2', '<path d="M60 56l-3-28 17 14zM140 56l3-28-17 14z"/>'], ['main', '<ellipse cx="100" cy="80" rx="52" ry="42"/>'], ['cream', '<path d="M64 90q36 36 72 0q-6 28-36 28t-36-28z"/>'], ['dark', '<path d="M70 66l16 6M130 66l-16 6" fill="none" stroke-width="4" stroke-linecap="round"/>']].concat(SCA_FACE('<ellipse cx="100" cy="92" rx="8" ry="5.5"/>')) },
+    lion: { pal: { main: '#F6BE52', main2: '#D9902E', mane: '#C9632A', cream: '#FFF1D2' },
+      k: [['main', '<path d="M134 172q40 4 44-30" fill="none" stroke-width="6" stroke-linecap="round"/>'], ['mane', '<circle cx="178" cy="140" r="9"/>']],
+      b: [['main', PB.body], ['cream', PB.belly], ['main', PB.arms], ['main2', PB.feet]],
+      h: [['mane', [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map(a => `<circle cx="${(100 + 52 * Math.cos(a * Math.PI / 180)).toFixed(1)}" cy="${(80 + 48 * Math.sin(a * Math.PI / 180)).toFixed(1)}" r="20"/>`).join('')], ['main', '<circle cx="66" cy="46" r="11"/><circle cx="134" cy="46" r="11"/><ellipse cx="100" cy="82" rx="46" ry="40"/>'], ['cream', '<ellipse cx="100" cy="98" rx="20" ry="14"/>']].concat(SCA_FACE()) },
+    dog: { pal: { main: '#EAC9A0', main2: '#A8743E', cream: '#FFF6EA' },
+      k: [['main', '<path d="M136 166q22-2 28-26" fill="none" stroke-width="8" stroke-linecap="round"/>']],
+      b: [['main', PB.body], ['cream', PB.belly], ['main', PB.arms], ['main2', PB.feet]],
+      h: [['main', '<ellipse cx="100" cy="80" rx="48" ry="43"/>'], ['main2', '<ellipse cx="54" cy="78" rx="14" ry="30" transform="rotate(14 54 78)"/><ellipse cx="146" cy="78" rx="14" ry="30" transform="rotate(-14 146 78)"/><ellipse cx="118" cy="70" rx="12" ry="11"/>'], ['cream', '<ellipse cx="100" cy="98" rx="22" ry="15"/>']].concat(SCA_FACE('<ellipse cx="100" cy="91" rx="7.5" ry="5.2"/>')) },
+    monkey: { pal: { main: '#A8714A', main2: '#7E4F30', cream: '#F6D7B0' },
+      k: [['main', '<path d="M136 170q40 6 38-30q-2-14-12-8" fill="none" stroke-width="7" stroke-linecap="round"/>']],
+      b: [['main', PB.body], ['cream', PB.belly], ['main', PB.arms], ['main2', PB.feet]],
+      h: [['main', '<circle cx="50" cy="82" r="16"/><circle cx="150" cy="82" r="16"/>'], ['cream', '<circle cx="50" cy="82" r="8"/><circle cx="150" cy="82" r="8"/>'], ['main', '<ellipse cx="100" cy="80" rx="48" ry="44"/>'], ['cream', '<path d="M100 50q-30-6-34 22q-10 30 34 40q44-10 34-40q-4-28-34-22z"/>']].concat(SCA_FACE('<ellipse cx="100" cy="92" rx="4" ry="2.6"/>')) },
+    mouse: { pal: { main: '#BCC2CE', main2: '#8D95A6', cream: '#FFE3EC' },
+      k: [['main2', '<path d="M136 172q30 8 40-12q6-12 16-6" fill="none" stroke-width="4" stroke-linecap="round"/>']],
+      b: [['main', PB.body], ['cream', PB.belly], ['main', PB.arms], ['main2', PB.feet]],
+      h: [['main', '<circle cx="56" cy="46" r="26"/><circle cx="144" cy="46" r="26"/>'], ['cream', '<circle cx="56" cy="46" r="15"/><circle cx="144" cy="46" r="15"/>'], ['main', '<ellipse cx="100" cy="84" rx="44" ry="40"/>']].concat(SCA_FACE('<ellipse cx="100" cy="94" rx="6" ry="4.2"/>')) }
+  };
+  // 頭像 emoji → 全身的動物（寵物畫法）
+  const FB_ANI_SVG = { '🐻': 'bear', '🐰': 'rabbit', '🐇': 'rabbit', '🐯': 'tiger', '🐼': 'panda', '🐷': 'piggy', '🐖': 'piggy', '🐱': 'kitty', '🐑': 'lamb', '🐢': 'turtle', '🐘': 'elephant', '🐸': 'frog', '🦊': 'fox', '🐺': 'wolf', '🦁': 'lion', '🐶': 'dog', '🐕': 'dog', '🐵': 'monkey', '🐒': 'monkey', '🐭': 'mouse', '🐁': 'mouse' };
+  const aniSVG = e => { const k = FB_ANI_SVG[e]; if (!k) return ''; return SC_ANI[k] ? petcSVG(k, 1, Object.assign({ x1: [] }, SC_ANI[k])) : petcSVG(k, 1, Object.assign({}, PETC[k], { x1: [] })); };
   /* ---------- 🐾 我的小寵物（v72 改版）：熊熊免費，其他用 200 顆學習星星換；玩耍、洗澡、回答問題增加親密度，幼年期 → 成長期 → 成熟期 ---------- */
   const PET_PRICE = 200, PET_STAGE_AT = [0, 60, 200], PET_DAY = { play: 3, bath: 3, q: 5 };
   const PET_PLAY = [['🪇', '搖搖鈴，叮叮噹！'], ['⚽', '丟球給我，我接到了！'], ['🎵', '我們一起跳舞吧！']];
@@ -11756,6 +11832,18 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
     };
     return img;
   }
+  // 🧍 題目圖片：只有一個人物頭像或動物頭像時，換成有身體的人物／全身動物
+  const FB_PEOPLE = { '👦': 'b1', '👧': 'g1', '🧒': 'b2', '👨': 'dad', '👩': 'mom', '👴': 'gpa', '👵': 'gma', '👶': 'baby' };
+  function fullBody(root) {
+    if (!root || root.nodeType !== 1 || root.namespaceURI === 'http://www.w3.org/2000/svg' || root.closest('svg, .no-fb, input, textarea, select')) return;
+    [root, ...root.querySelectorAll('*')].forEach(el => {
+      if (el.children.length || el.namespaceURI === 'http://www.w3.org/2000/svg' || /^(INPUT|TEXTAREA|SELECT|OPTION|SCRIPT|STYLE|CANVAS)$/.test(el.nodeName)) return;
+      const t = el.textContent.trim(), look = FB_PEOPLE[t], ani = !look && FB_ANI_SVG[t] && aniSVG(t);
+      if (!look && !ani) return;
+      el.classList.add('fb-art'); el.innerHTML = look ? `<svg viewBox="${scnVB(look)}" aria-hidden="true">${scnPerson(look, 0, 0, 'stand', 'smile')}</svg>` : ani;
+    });
+  }
+  ['game', 'learn'].forEach(id => { const el = $(id); if (el) new MutationObserver(list => { for (const m of list) m.addedNodes.forEach(fullBody); }).observe(el, { childList: true, subtree: true }); });
   function emojify(root) {
     if (!root) return;
     if (root.nodeType === 3) {
