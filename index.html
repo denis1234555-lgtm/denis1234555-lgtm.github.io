@@ -8359,7 +8359,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       <p class="note">一次買斷，不用月費。每個鎖住的主題都可以先免費試玩 3 題。</p>
       <ol class="buy-steps"><li>在蝦皮下單，選要的方案</li><li>下單後，在蝦皮聊聊收到解鎖碼</li><li>回到這裡輸入解鎖碼，馬上開放</li></ol>
       ${buy}${codeForm}
-      <div class="hz-prorow"><div><b>👑 我的主角</b><small>寶哥、筑筑可以換成孩子的名字和造型：9 大類上億種搭配，真人語音念小名。一次買斷。</small></div><span class="plan-price">NT$99</span></div><button class="btn small ghost" id="heroFromPro" style="margin-top:10px">${heroPaid() ? '✅ 已開啟，打開主角設計室' : '👀 先看看主角設計室'}</button>`;
+      <div class="hz-prorow"><div><b>👑 我的主角</b><small>寶哥、筑筑可以換成孩子的名字和造型：9 大類上億種搭配，真人語音念小名。一次買斷。</small></div><span class="plan-price">App 版</span></div><button class="btn small ghost" id="heroFromPro" style="margin-top:10px">${heroPaid() ? '✅ 已開啟，打開主角設計室' : '👀 先看看主角設計室'}</button>`;
     $('heroFromPro').onclick = () => openHero('b1');
     $('codeBtn').addEventListener('click', async () => {
       const got = await tryCode($('codeInput').value);
@@ -9864,12 +9864,11 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       <li>📚 情境題、生活題、好朋友、睡前故事裡的主角，都會變成孩子的樣子和名字</li>
       <li>🔊 <b>真人 AI 語音</b>念出孩子的小名（${HERO_NAMES.length - 2} 個常用小名，不用機器音）</li>
       <li>👨‍👩‍👧 一次買斷不是月費；這台裝置的每位小朋友都能各自設計，以後新增的造型也免費</li></ul>
-      <div class="hz-price"><b>NT$99</b><small>一次買斷・兩個主角位置</small></div>
-      <a class="btn" href="${HERO_BUY_URL}" target="_blank" rel="noopener" id="hzBuy">去蝦皮購買「我的主角」</a>
+      <div class="hz-price"><b>NT$99</b><small>一次買斷・兩個主角位置（App 版）</small></div>
+      <p class="hz-note">📱 「我的主角」會在 iPhone App 版開放購買。</p>
       <div class="hz-code"><input id="hzCode" placeholder="輸入主角解鎖碼 DDH-…" autocomplete="off" autocapitalize="characters" aria-label="主角解鎖碼"><button class="btn small" id="hzCodeOk">開啟</button></div><p class="hz-note" id="hzCodeMsg">設計好的造型會先幫你存著，開啟後馬上就能用。</p>
       <button class="btn ghost small" id="hzPayNo">繼續設計</button></div>`;
     $('hzPayNo').onclick = () => { P.hidden = true; };
-    $('hzBuy').onclick = () => track('hero-buy', '主角購買連結');
     $('hzCodeOk').onclick = async () => { const got = await tryCode($('hzCode').value); if (!got || !got.hero) { $('hzCodeMsg').textContent = got ? '這是一般方案的解鎖碼，請到「家長專區」輸入。主角解鎖碼是 DDH 開頭的。' : '解鎖碼不對，請檢查有沒有打錯。'; return; } if (await heroRedeem(got, $('hzCodeMsg'), $('hzCodeOk'))) { P.hidden = true; heroSave(); } };
   }
   // 開啟主角解鎖碼（裝置上限沿用試算表；試算表還不認得 DDH 時先直接開通）
@@ -12058,7 +12057,7 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
       el.innerHTML = g ? `<b>👫 好朋友小組</b><p class="note">把這組代碼傳給好朋友的爸爸媽媽，他們在這裡按「加入小組」輸入，孩子們就能一起比星星。</p><div class="rk-line"><span class="rk-code">${g}</span><button class="btn ghost small" id="rkCopy">複製代碼</button><button class="btn ghost small" id="rkLeave">離開小組</button></div><span class="note" id="rkGMsg"></span>`
         : `<b>👫 好朋友小組</b><p class="note">和同學、表兄弟姊妹組一個小組，只和小組裡的小朋友比星星。</p><div class="rk-line"><button class="btn small" id="rkNew">建立小組</button></div><div class="rk-line"><input id="rkJoin" maxlength="6" placeholder="輸入 6 碼小組代碼" autocapitalize="characters"><button class="btn ghost small" id="rkJoinOk">加入小組</button></div><span class="note" id="rkGMsg"></span>`;
       const msgG = t => { const m = $('rkGMsg'); if (m) m.textContent = t; };
-      const sync = async () => { msgG('更新中…'); const r = await rankSync(); msgG(r.ok ? (r.grp ? `✅ 小組裡目前有 ${r.grp.total} 位小朋友` : '✅ 已更新') : '連不上網路，連線後會自動更新'); };
+      const sync = async () => { msgG('更新中…'); const r = await rankSync(); msgG(r.ok ? (r.grp ? `✅ 小組裡目前有 ${r.grp.total} 位小朋友` : '✅ 已更新') : ({ nick: '請先在上面輸入暱稱，按「儲存」，再建立或加入小組', nodev: '這台裝置的開通紀錄找不到，請重新輸入解鎖碼', revoked: '這組解鎖碼已停用', bad: '需要先開通付費方案', nocode: '需要先開通付費方案' }[r.reason] || '連不上網路，連線後會自動更新')); };
       if (g) {
         $('rkCopy').onclick = async () => { try { await navigator.clipboard.writeText(`一起來動動腦小學堂比星星！好朋友小組代碼：${g}`); msgG('已複製，可以貼到 LINE 傳給朋友'); } catch (e) { msgG('代碼是 ' + g); } };
         $('rkLeave').onclick = () => { store.set('rankGrp', ''); grpDraw(); rankSync(); };
