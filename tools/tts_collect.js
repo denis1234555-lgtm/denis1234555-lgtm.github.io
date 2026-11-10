@@ -16,7 +16,7 @@ await p.goto('file://'+COL);await p.waitForTimeout(800);
 const subs=await p.evaluate(()=>[...new Set([...document.querySelectorAll('.subject[data-sub]')].map(x=>x.dataset.sub))]);
 console.log('subjects',subs.length);
 const out=[];
-for(const ag of ['small','big']) for(const sub of subs){
+for(const ag of ['small','big','six']) for(const sub of subs){
  const r=await p.evaluate(async([sub,ag,NN])=>{
   const T=window.__T(); try{localStorage.setItem('ddn-age',JSON.stringify(ag));localStorage.removeItem('ddn-adapt');}catch(e){} T.setAge(ag); const parts=[]; let err='';
   const add=sp=>(sp||[]).forEach(x=>{ if(Array.isArray(x)) parts.push([String(x[0]||''),x[1]||'zh-TW']); });
@@ -41,9 +41,9 @@ await p.addInitScript(()=>{const ss={speaking:false,pending:false,getVoices:()=>
  Object.defineProperty(window,'speechSynthesis',{value:ss});window.SpeechSynthesisUtterance=function(t){this.text=t};localStorage.setItem('ddn-nostat','1');localStorage.setItem('ddn-fe','0');});
 await p.goto('file://'+COL);await p.waitForTimeout(800);
 const R=await p.evaluate(()=>{
- const T=window.__T2(), out=[], add=(sp,who)=>(sp||[]).forEach(x=>Array.isArray(x)&&out.push([String(x[0]||''),x[1]||'zh-TW',who||'']));
+ const T=window.__T2(), out=[], add=(sp,who)=>(sp||[]).forEach(x=>Array.isArray(x)&&out.push([String(x[0]||''),x[1]||'zh-TW',x[2]||who||'']));
  const info={};
- for(const ag of ['small','big']){ T.setAge(ag); window.__T().setAge(ag);
+ for(const ag of ['small','big','six']){ T.setAge(ag); window.__T().setAge(ag);
   for(const k of Object.keys(T.LEARN)){ try{ const cs=T.LEARN[k](); cs.forEach(c=>add(c.say)); info[k]=cs.length;}catch(e){info[k]='ERR '+e.message;} }
   for(const lv of ['s','b','e','m','']){ try{localStorage.setItem('ddn-pkLvl',JSON.stringify(lv));}catch(e){} for(let i=0;i<300;i++){ try{ const q=T.pkQ(); add(q.say); }catch(e){info.pk='ERR '+e.message;break;} } }
  }
@@ -69,7 +69,7 @@ console.log(JSON.stringify(R.info).slice(0,1500));console.log('n',R.out.length,'
  s3=s3.replace(a2,"  window.__C = () => ({ GEN, startRound, st: () => st });\n"+a2);
  fs.writeFileSync(COL,s3);
  const b=await chromium.launch(process.env.CHROME?{executablePath:process.env.CHROME}:{});const cap=new Map();
- for(const ag of ['small','big']){
+ for(const ag of ['small','big','six']){
   const p=await (await b.newContext({viewport:{width:390,height:844}})).newPage();
   await p.addInitScript(a=>{const ss={speaking:false,pending:false,getVoices:()=>[],cancel(){},speak(u){setTimeout(()=>u.onend&&u.onend(),0);}};Object.defineProperty(window,'speechSynthesis',{value:ss});window.SpeechSynthesisUtterance=function(t){this.text=t};
    localStorage.setItem('ddn-nostat','1');localStorage.setItem('ddn-limitMin','0');localStorage.setItem('ddn-alwaysLearn','false');localStorage.setItem('ddn-fe','0');localStorage.setItem('ddn-proLevel','3');localStorage.setItem('ddn-age',JSON.stringify(a));},ag);
