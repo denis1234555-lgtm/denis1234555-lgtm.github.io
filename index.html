@@ -6306,16 +6306,18 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     if (my !== sayToken) return true;
     if (!blob) return false;
     const el = AI.el || (AI.el = new Audio()), url = URL.createObjectURL(blob);
+    // 同一個播放器會被下一句接著用：只處理「自己這一句」，不要把新的一句暫停或清掉（以前會讓下一句改用手機聲音）
+    const me = {}; AI.owner = me;
     return new Promise(res => {
       let fin = false, started = false;
-      const done = ok => { if (fin) return; fin = true; clearInterval(pl); clearTimeout(cap); el.onended = el.onerror = el.onplaying = null; setTimeout(() => URL.revokeObjectURL(url), 500); res(ok); };
-      const pl = setInterval(() => { if (my !== sayToken) { try { el.pause(); } catch (e) {} done(true); } }, 120);
+      const done = ok => { if (fin) return; fin = true; clearInterval(pl); clearTimeout(cap); if (AI.owner === me) el.onended = el.onerror = el.onplaying = null; setTimeout(() => URL.revokeObjectURL(url), 500); res(ok); };
+      const pl = setInterval(() => { if (my !== sayToken || AI.owner !== me) { if (AI.owner === me) try { el.pause(); } catch (e) {} done(true); } }, 120);
       const cap = setTimeout(() => done(started), 40000);
       el.onplaying = () => { started = true; };
       el.onended = () => done(true); el.onerror = () => done(started);
       try {
         el.src = url; el.preservesPitch = true; el.playbackRate = sayRateMul * spd();
-        const p = el.play(); if (p) p.catch(() => done(false));
+        const p = el.play(); if (p) p.catch(e => done(started || my !== sayToken || AI.owner !== me || (e && e.name === 'AbortError')));
       } catch (e) { done(false); }
     });
   }
@@ -10438,7 +10440,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     const out = ['哪一個是紅色的蘋果？', '第一個', '第二個', '換你說', '說得真好', '學了好久了，我們起來動一動，讓眼睛和身體休息一下', '好棒！眼睛和身體都休息好了，我們回來繼續學習吧', '第一次來嗎？先玩六題小測驗，幫你找到剛剛好的程度', '答案是這一個喔', '等一下我們再考一次', '我幫你拿掉一個，我們再聽一次', '沒關係，我們再聽一次'];
     MOVES.forEach(m => out.push(m[1]));
     out.push('翻翻看，找出相配的兩張牌', '數字和一樣多的點點是一對', '大寫和小寫是一對', '算式和答案是一對', '拿到鑰匙了！門打開了', '門鎖住了，要先拿到鑰匙喔'); [['小老鼠', '起司'], ['小兔子', '紅蘿蔔'], ['小狗', '骨頭'], ['小蜜蜂', '花朵']].forEach(([a, b]) => out.push(`先拿到鑰匙，才能打開門。帶${a}去拿鑰匙，再去找${b}`));
-    MT_TG.forEach(t => out.push(t[0])); out.push('用手指沿著線走走看，先點左邊，再點線另一頭的東西');
+    MT_TG.forEach(t => out.push(t[0])); Object.values(PETC).forEach(x => out.push(x.n)); TELL.forEach(x => out.push(x.t)); out.push('用手指沿著線走走看，先點左邊，再點線另一頭的東西');
     try { TELL.forEach(S => { out.push(`${S.t}。先聽老師說故事，再換你說`); S.P.forEach(p => { out.push(p.s, p.q); }); }); out.push('故事說完了！現在換你當說故事的人', '換你跟著說一次', '說得真好', '你好棒！把整個故事說完了，可以播放給爸爸媽媽聽喔'); } catch (e) {}
     const fin = ['全部配對成功！記憶力真好。', '小測驗完成了！以後的題目會配合你的程度喔。', '你好厲害！下一次題目會難一點點喔。', '我們先練習簡單一點的，慢慢來就會了。', '全部都會了，真棒！', '很棒！再玩一次會更好。', '慢慢來，多玩幾次就會了。', '試玩結束囉！想玩更多，請爸爸媽媽開啟。'];
     for (let n = 0; n <= 30; n++) fin.forEach(m => out.push(`拿到${n}顆星星。${m}`));
@@ -10519,7 +10521,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     $('tlBody').innerHTML = `<div class="tl-top"><button class="sl-btn" id="tlX">✕ 關閉</button><b>📖 看圖說故事</b><span></span></div>
       <p class="tl-intro">先聽老師說故事，再換你當說故事的人！說完可以播放給爸爸媽媽聽。</p>
       <div class="tl-tabs">${['small', 'big', 'six'].map(k => `<button class="tl-tab${k === a ? ' on' : ''}" data-a="${k}">${tellAgeN[k]}</button>`).join('')}</div>
-      <div class="tl-list">${TELL.filter(s => s.a === a).map(s => `<button class="tl-card" data-id="${s.id}" data-say="${s.t}"><span class="tl-ce">${s.e}</span><b>${s.t}</b><small>${s.P.length} 張圖${done[s.id] ? '・🎤 說過了' : ''}</small></button>`).join('')}</div>`;
+      <div class="tl-list">${TELL.filter(s => s.a === a).map(s => `<button class="tl-card" data-id="${s.id}"><span class="tl-ce">${s.e}</span><b>${s.t}</b><small>${s.P.length} 張圖${done[s.id] ? '・🎤 說過了' : ''}</small></button>`).join('')}</div>`;
     $('tlX').onclick = tellClose;
     document.querySelectorAll('#tlOv .tl-tab').forEach(b => b.onclick = () => tellList(b.dataset.a));
     document.querySelectorAll('#tlOv .tl-card').forEach(b => b.onclick = () => tellStory(TELL.find(s => s.id === b.dataset.id)));
