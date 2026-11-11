@@ -76,6 +76,11 @@ def prosody(t, rate, pitch):
 
 
 def ssml(voice, lang, parts):
+    # 注音的 sapi 念法只有台灣華語的聲音認得；其他聲音（例如角色用的 zh-CN 童聲）拿掉，免得整批失敗
+    if lang == 'zh-CN':  # 大陸聲音用拼音
+        PY = {'ㄌㄜˋ': 'le 4', 'ㄔㄤˊ': 'chang 2', 'ㄓㄨㄥˋ': 'zhong 4', 'ㄓㄤˇ': 'zhang 3'}
+        parts = re.sub(r'<phoneme alphabet="sapi" ph="([^"]*)">([^<]*)</phoneme>', lambda m: f'<phoneme alphabet="sapi" ph="{PY[m[1]]}">{m[2]}</phoneme>' if m[1] in PY else m[2], parts)
+    elif lang != 'zh-TW': parts = re.sub(r'<phoneme alphabet="sapi" ph="[^"]*">([^<]*)</phoneme>', r'\1', parts)
     return f'<speak version="1.0" xml:lang="{lang}"><voice name="{voice}">' + parts + '</voice></speak>'
 
 
