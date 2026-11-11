@@ -2085,6 +2085,10 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
 .zyr-row span { font-size: 12px; color: #3E9A6A; }
 .zyr-st { margin: 0; font-size: 13.5px; color: #6A5A50; } .zyr-foot { display: flex; gap: 8px; flex-wrap: wrap; }
 .zyr-open { margin: 8px 0 4px; }
+body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left: 50%; top: calc(env(safe-area-inset-top, 0px) + 10px); transform: translateX(-50%); z-index: 200; background: #FFF3C4; color: #7A4A10; border: 2px solid #F2B84B; font: 900 15px/1 "Noto Sans TC", system-ui, sans-serif; padding: 7px 14px; border-radius: 999px; box-shadow: 0 3px 0 rgba(0,0,0,.12); pointer-events: none; }
+.cnl-duo { margin: 0 0 10px; background: #FFF8E6; border: 2px dashed #F2C66B; border-radius: 16px; padding: 8px 12px; font-size: 14px; line-height: 1.6; color: #5A4030; }
+.cnl-duo small { display: block; color: #8A7460; font-size: 11.5px; }
+.cnl-card.merge .cnl-pin i { opacity: 0; } .cnl-card.merge .cnl-pin { letter-spacing: -.1em; transition: letter-spacing .3s; }
 </style>
 </head>
 <body>
@@ -2628,7 +2632,8 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5"/></svg>
       <span><b>給家長：</b>每回合 10 題，約 3 分鐘。題目會唸出來，第一次就答對得一顆星，答錯可以一直試到對。卡片右上角是每個科目累積的星星。沒有聲音時，請確認裝置不是靜音。<br><button id="reportBtn2" class="rep-open">看孩子的學習紀錄</button></span>
     </div>
-    <p class="copyright">© 2026 動動腦小學堂 版權所有・本網站的題目、圖畫與程式皆受著作權法保護，未經授權不得重製、散布或販售。</p>
+    <p class="copyright">© 2026 動動腦小學堂 版權所有・本網站的題目、圖畫與程式皆受著作權法保護（下方註明的教育部注音音檔除外），未經授權不得重製、散布或販售。</p>
+    <p class="copyright cc-moe">注音符號發音音檔：2017 © 教育部，國語注音符號手冊-開放部件。此素材依「創用CC 姓名標示 4.0 國際版本」授權條款進行公眾釋出，使用者於遵守本條款各項規定之前提下，得利用之。創用CC 姓名標示 4.0 國際版授權條款：<a href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW" target="_blank" rel="noopener">https://creativecommons.org/licenses/by/4.0/deed.zh_TW</a>（本站已將音檔轉成 MP3，並調整音量與音高，讓它和網站其他語音一致）</p>
 
   </section>
 
@@ -2805,6 +2810,7 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
       <h2 id="cnlTitle"></h2>
     </div>
     <div class="ezl-bar"><span id="cnlProg"></span><button id="cnlAll" class="btn small">▶ 全部聽一次</button></div>
+    <p class="cnl-duo" id="cnlDuo" hidden>👩‍🏫 <b>注音老師</b>念注音符號，🤖 <b>AI 老師</b>念國字和詞語。小朋友聽完，再跟著念！<small>注音符號發音：2017 © 教育部，國語注音符號手冊-開放部件（創用CC 姓名標示 4.0）</small></p>
     <div class="ezl-grid" id="cnlGrid"></div>
     <div class="ezl-foot"><p class="note" id="cnlHint"></p><button id="cnlTest" class="btn">📝 開始測驗</button></div>
   </section>
@@ -3116,7 +3122,8 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
       <button id="resetBtn" class="link-btn">清除所有紀錄</button>
     </div>
     <label class="nostat"><input type="checkbox" id="noStat"> 這台裝置不列入使用人數統計（作者測試用）</label>
-    <p class="copyright">© 2026 動動腦小學堂 版權所有・本網站的題目、圖畫與程式皆受著作權法保護，未經授權不得重製、散布或販售。</p>
+    <p class="copyright">© 2026 動動腦小學堂 版權所有・本網站的題目、圖畫與程式皆受著作權法保護（下方註明的教育部注音音檔除外），未經授權不得重製、散布或販售。</p>
+    <p class="copyright cc-moe">注音符號發音音檔：2017 © 教育部，國語注音符號手冊-開放部件。此素材依「創用CC 姓名標示 4.0 國際版本」授權條款進行公眾釋出，使用者於遵守本條款各項規定之前提下，得利用之。創用CC 姓名標示 4.0 國際版授權條款：<a href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW" target="_blank" rel="noopener">https://creativecommons.org/licenses/by/4.0/deed.zh_TW</a>（本站已將音檔轉成 MP3，並調整音量與音高，讓它和網站其他語音一致）</p>
     <p class="note" style="text-align:center">紀錄只存在這台裝置的瀏覽器裡，換手機或清除瀏覽器資料就會不見。</p>
   </section>
 
@@ -5108,7 +5115,7 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
         };
       }
       return {
-        prompt: '哪一個是這個注音開頭的？', speech: [[`看看注音，${t.z}。${t.z}。哪一個是它開頭的？`]],
+        prompt: '哪一個是這個注音開頭的？', speech: [[`看看注音。${t.z}。${t.z}。哪一個是它開頭的？`]],
         stage: `<div class="bigchar">${t.z}</div>`,
         options: opts.map(o => ({ html: picHTML(o.e), label: o.w, correct: o === t })),
         after: [[`${t.z}。${t.w}的${t.c}。${t.z}。`]], key: 'r' + t.z
@@ -5997,13 +6004,13 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
         return {
           prompt: `「${t[2]}」是哪一個注音開頭？`, speech: [[`${t[1]}的${t[2]}，是哪一個注音開頭？`]],
           stage: yxCard(`<div class="pic">${t[3]}</div><div class="word-zh">${hlWord(t[1], t[2])}</div>`),
-          options: opts.map(z => ({ html: charHTML(z), label: z, correct: z === t[0] })), after: [[`${t[0]}。${t[1]}的${t[2]}，${t[0]}。`]], key: 'w' + t[1]
+          options: opts.map(z => ({ html: charHTML(z), label: z, correct: z === t[0] })), after: [[`${t[0]}。${t[1] === t[2] ? t[2] : t[1] + '的' + t[2]}。${t[0]}。`]], key: 'w' + t[1]
         };
       }
       const seen = new Set([t[0]]), ds = [];
       for (const x of shuffle(YX_ZY)) { if (ds.length >= 3) break; if (!seen.has(x[0])) { seen.add(x[0]); ds.push(x); } }
       return {
-        prompt: `哪一個字是「${t[0]}」開頭的？`, speech: [['看看括號裡的字，哪一個是這個注音開頭的？']],
+        prompt: `哪一個字是「${t[0]}」開頭的？`, speech: [[`${t[0]}。看看括號裡的字，哪一個是這個注音開頭的？`]],
         stage: yxCard(`<div class="bigchar">${t[0]}</div>`),
         options: shuffle([t, ...ds]).map(o => ({ html: optLife([o[3], o[1] === o[2] ? o[1] : o[1].replace(o[2], `「${o[2]}」`)]), label: `${o[1]}的${o[2]}`, correct: o === t })), after: [[`${t[1]}的${t[2]}`]], key: 'r' + t[1]
       };
@@ -9419,6 +9426,7 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
     { id: 'zi', zh: '常用國字', sub: '20 個看圖認字', icon: '山', type: 'zi', items: [['人', 'ㄖㄣˊ', '🧍', '大人'], ['口', 'ㄎㄡˇ', '👄', '嘴巴、口'], ['手', 'ㄕㄡˇ', '✋', '小手'], ['日', 'ㄖˋ', '☀️', '太陽、日'], ['月', 'ㄩㄝˋ', '🌙', '月亮'], ['山', 'ㄕㄢ', '⛰️', '高山'], ['水', 'ㄕㄨㄟˇ', '💧', '喝水'], ['火', 'ㄏㄨㄛˇ', '🔥', '火'], ['木', 'ㄇㄨˋ', '🌳', '木頭'], ['大', 'ㄉㄚˋ', '🐘', '大象'], ['小', 'ㄒㄧㄠˇ', '🐭', '小老鼠'], ['上', 'ㄕㄤˋ', '⬆️', '上面'], ['下', 'ㄒㄧㄚˋ', '⬇️', '下面'], ['雨', 'ㄩˇ', '🌧️', '下雨'], ['田', 'ㄊㄧㄢˊ', '🌾', '田地'], ['目', 'ㄇㄨˋ', '👁️', '眼睛、目'], ['耳', 'ㄦˇ', '👂', '耳朵'], ['牛', 'ㄋㄧㄡˊ', '🐮', '牛'], ['羊', 'ㄧㄤˊ', '🐑', '小羊'], ['魚', 'ㄩˊ', '🐟', '小魚']].map(([c, z, e, w]) => ({ k: c, big: c, z, e, zh: w, say: `${c}。${w}的${c}。`, ans: c, c })) }
   ];
   const CNL_BY = Object.fromEntries(CNL.map(c => [c.id, c]));
+  const CNL_DUO_SAY = '注音符號，請注音老師來念。小朋友聽完，再跟著念喔！'; let cnlDuoSaid = false;
   // 🏫 六個學堂：首頁只放入口，主題按年齡分成 Level 1～3（付費的主題旁邊有 🔒）
   const SCHOOLS = [
     { id: 'cn', name: '國語小學堂', icon: '🀄', art: ['ㄅ', 'ㄆ', 'ㄇ', 'ㄈ'], c: '#D9573A', small: '注音、拼音、國字', head: '先學會怎麼念，再來玩', desc: '先點學習卡聽注音的發音：聲母、韻母、四聲聲調，再學把注音拼起來和常用國字。每一類都學過，就可以測驗。下面有三個等級的國語主題。',
@@ -9472,7 +9480,7 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
     if (typeof refreshGot === 'function') try { refreshGot(); } catch (e) {}
   }
   function openSchool(id) { if (id === 'en') { CNZ.sch = 'en'; openEZone(); return; } CNZ.sch = id; renderCnZone(); show('cnone'); track('sch-open-' + id, '進入' + SCH_BY[id].name); }
-  function cnlOpen(id) { CNZ.sch = 'cn'; CNZ.cur = id; renderCnl(); dqLog('learn'); show('cnlearn'); track('cnl-open-' + id, '國語學習卡：' + CNL_BY[id].zh); }
+  function cnlOpen(id) { CNZ.sch = 'cn'; CNZ.cur = id; renderCnl(); dqLog('learn'); show('cnlearn'); { const zy = CNL_BY[id].type === 'zy' || CNL_BY[id].type === 'pin'; $('cnlDuo').hidden = !zy; if (zy && !cnlDuoSaid) { cnlDuoSaid = true; say([[CNL_DUO_SAY]]); } } track('cnl-open-' + id, '國語學習卡：' + CNL_BY[id].zh); }
   function cnlProgress() {
     const c = CNL_BY[CNZ.cur], n = cnlLearned(c.id).size, N = c.items.length, done = n >= N;
     $('cnlProg').textContent = `已學 ${Math.min(n, N)} / ${N}`; $('cnlTest').disabled = !done;
@@ -9489,18 +9497,20 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
     cnlProgress();
   }
   // 跟著念：注音先念一次 → 停 2 秒讓小朋友跟著念 → 再念一次 → 例子
-  async function cnlTap(c, x, b) {
+  async function cnlTap(c, x, b, live = () => CNZ.playing) {
     cnlMark(c, x); b.classList.add('done', 'reading'); cnlProgress();
-    if (c.type === 'zy') { await say([[x.big + '。']]); if (!CNZ.playing) return b.classList.remove('reading'); b.classList.add('follow'); await delay(2000); b.classList.remove('follow'); if (!CNZ.playing) return b.classList.remove('reading'); await say([[x.big + '。']]); await delay(500); await say([[x.zh + '。']]); }
+    if (c.type === 'zy') { await say([[x.big + '。']]); if (!live()) return b.classList.remove('reading'); b.classList.add('follow'); await delay(2000); b.classList.remove('follow'); if (!live()) return b.classList.remove('reading'); await say([[x.big + '。']]); await delay(500); await say([[x.zh + '。']]); }
+    else if (c.type === 'pin') { for (const p of x.parts) { await say([[p + '。']]); if (!live()) break; await delay(350); }
+      if (live()) { b.classList.add('merge'); for (const p of x.parts) await say([[p + '。']]); await delay(250); b.classList.remove('merge'); } if (live()) await say([[`${x.big}。${x.c}。`]]); }
     else await say([[x.say]]);
     b.classList.remove('reading');
   }
   $('cnlAll').addEventListener('click', async () => {
     if (CNZ.playing) { CNZ.playing = false; return; }
-    CNZ.playing = true; $('cnlAll').textContent = '⏸ 停止';
+    CNZ.playing = true; const my = CNZ.run = (CNZ.run || 0) + 1, live = () => CNZ.playing && CNZ.run === my; $('cnlAll').textContent = '⏸ 停止';
     const c = CNL_BY[CNZ.cur], btns = [...$('cnlGrid').children];
-    for (let i = 0; i < btns.length && CNZ.playing && !$('cnlearn').hidden; i++) { btns[i].scrollIntoView({ block: 'nearest', behavior: 'smooth' }); await cnlTap(c, c.items[i], btns[i]); await delay(c.type === 'zy' ? 1500 : soundOn ? 500 : 250); }
-    CNZ.playing = false; $('cnlAll').textContent = '▶ 全部聽一次';
+    for (let i = 0; i < btns.length && live() && !$('cnlearn').hidden; i++) { btns[i].scrollIntoView({ block: 'nearest', behavior: 'smooth' }); await cnlTap(c, c.items[i], btns[i], live); await delay(c.type === 'zy' ? 1500 : soundOn ? 500 : 250); }
+    if (CNZ.run === my) { CNZ.playing = false; $('cnlAll').textContent = '▶ 全部聽一次'; }
   });
   $('cnlTest').addEventListener('click', () => { CNZ.playing = false; CNZ.from = true; CNZ.sch = 'cn'; track('cnl-test-' + CNZ.cur, '國語學習卡測驗'); startRound('cnl_' + CNZ.cur); });
   $('cnlBack').addEventListener('click', () => { CNZ.playing = false; sayStop(); renderCnZone(); show('cnone'); });
@@ -10693,7 +10703,7 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
     const out = ['哪一個是紅色的蘋果？', '第一個', '第二個', '換你說', '說得真好', '學了好久了，我們起來動一動，讓眼睛和身體休息一下', '好棒！眼睛和身體都休息好了，我們回來繼續學習吧', '第一次來嗎？先玩六題小測驗，幫你找到剛剛好的程度', '答案是這一個喔', '等一下我們再考一次', '我幫你拿掉一個，我們再聽一次', '沒關係，我們再聽一次'];
     MOVES.forEach(m => out.push(m[1]));
     out.push('翻翻看，找出相配的兩張牌', '數字和一樣多的點點是一對', '大寫和小寫是一對', '算式和答案是一對', '拿到鑰匙了！門打開了', '門鎖住了，要先拿到鑰匙喔'); [['小老鼠', '起司'], ['小兔子', '紅蘿蔔'], ['小狗', '骨頭'], ['小蜜蜂', '花朵']].forEach(([a, b]) => out.push(`先拿到鑰匙，才能打開門。帶${a}去拿鑰匙，再去找${b}`));
-    try { CNL.forEach(c => { out.push(c.zh); c.items.forEach(x => { out.push(x.say, x.k); if (c.type === 'tone') out.push(`${x.c}。${x.c}。這是第幾聲？`, `${x.c}，是${x.k}。`); else if (c.type === 'zi') out.push(`${x.zh}。哪一個是${x.c}？`, `${x.zh}的${x.c}。`, `${x.c}。${x.zh}的${x.c}。`); else if (c.type === 'pin') out.push(`${x.big}。${x.c}。`); else out.push(`${x.big}。${x.big}。`); }); }); out.push('國語小學堂', '聽一聽，這是第幾聲？', '看圖，找出對的國字', '聽一聽，找出對的國字', '聽一聽，找出對的注音'); } catch (e) {}
+    try { out.push(CNL_DUO_SAY); CNL.forEach(c => { c.items.forEach(x => { out.push(x.say, x.k); if (c.type === 'tone') out.push(`${x.c}。${x.c}。這是第幾聲？`, `${x.c}，是${x.k}。`); else if (c.type === 'zi') out.push(`${x.zh}。哪一個是${x.c}？`, `${x.zh}的${x.c}。`, `${x.c}。${x.zh}的${x.c}。`); else if (c.type === 'pin') out.push(`${x.big}。${x.c}。`); else out.push(`${x.big}。${x.big}。`); }); }); out.push('國語小學堂', '聽一聽，這是第幾聲？', '看圖，找出對的國字', '聽一聽，找出對的國字', '聽一聽，找出對的注音'); } catch (e) {}
     MT_TG.forEach(t => out.push(t[0])); Object.values(PETC).forEach(x => out.push(x.n)); TELL.forEach(x => out.push(x.t)); out.push('用手指沿著線走走看，先點左邊，再點線另一頭的東西');
     try { TELL.forEach(S => { out.push(`${S.t}。先聽老師說故事，再換你說`); S.P.forEach(p => { out.push(p.s, p.q); }); }); out.push('故事說完了！現在換你當說故事的人', '換你跟著說一次', '說得真好', '你好棒！把整個故事說完了，可以播放給爸爸媽媽聽喔'); } catch (e) {}
     const fin = ['全部配對成功！記憶力真好。', '小測驗完成了！以後的題目會配合你的程度喔。', '你好厲害！下一次題目會難一點點喔。', '我們先練習簡單一點的，慢慢來就會了。', '全部都會了，真棒！', '很棒！再玩一次會更好。', '慢慢來，多玩幾次就會了。', '試玩結束囉！想玩更多，請爸爸媽媽開啟。'];
@@ -10775,18 +10785,19 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
   const ZYR = { local: {}, server: null };
   async function zyrLoad() {
     for (const z of ZY_INIT) { const b = await tlGet('zy:' + z).catch(() => null); if (b) ZYR.local[z] = b; else delete ZYR.local[z]; }
-    if (ZYR.server === null) { ZYR.server = {}; try { const r = await fetch('audio/zy/index.json', { cache: 'no-cache' }); if (r.ok) (await r.json()).forEach(z => { ZYR.server[z] = 1; }); } catch (e) {} }
+    if (ZYR.server === null) { ZYR.server = {}; try { const r = await fetch('audio/zy/index.json', { cache: 'no-cache' }); if (r.ok) { const j = await r.json(); if (Array.isArray(j)) j.forEach(z => { ZYR.server[z] = `audio/zy/${ZY_ROM[z]}.wav`; }); else Object.entries(j).forEach(([z, f]) => { ZYR.server[z] = 'audio/zy/' + f; }); } } catch (e) {} }
   }
   setTimeout(() => zyrLoad().catch(() => {}), 800);
-  // 一整句只有一個聲母（例如「ㄅ。」）→ 播真人錄音；這台裝置自己錄的優先，再來是網站上的
+  // 一整句只有一個注音符號（例如「ㄅ。」）→ 播「注音老師」的真人錄音（教育部國語注音符號手冊開放音檔）；這台裝置自己錄的優先
   function zyrFor(text) {
-    const m = /^\s*([ㄅ-ㄙ])\s*[。！？，、]?\s*$/.exec(String(text)); if (!m) return null;
-    const z = m[1]; return ZYR.local[z] || (ZYR.server && ZYR.server[z] ? `audio/zy/${ZY_ROM[z]}.wav` : null);
+    const m = /^\s*([\u3105-\u3129])\s*[。！？，、]?\s*$/.exec(String(text)); if (!m) return null;
+    const z = m[1]; return ZYR.local[z] || (ZYR.server && ZYR.server[z]) || null;
   }
   function zyrPlay(src, my) {
     return new Promise(res => {
       const a = new Audio(), url = typeof src === 'string' ? src : URL.createObjectURL(src); a.setAttribute('playsinline', '');
-      let t = 0; const end = () => { clearInterval(t); if (typeof src !== 'string') URL.revokeObjectURL(url); res(); };
+      let t = 0, end = () => { clearInterval(t); if (typeof src !== 'string') URL.revokeObjectURL(url); res(); };
+      document.body.classList.add('zy-moe'); const end0 = end; end = () => { document.body.classList.remove('zy-moe'); end0(); };
       a.onended = end; a.onerror = end; t = setInterval(() => { if (my !== undefined && my !== sayToken) { try { a.pause(); } catch (e) {} end(); } }, 120);
       a.src = url; const p = a.play(); if (p) p.catch(end);
     });
@@ -10830,7 +10841,7 @@ body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px
     const n = () => ZY_INIT.filter(z => ZYR.local[z]).length;
     const draw = () => {
       box.innerHTML = `<div class="zyr-card"><div class="zyr-top"><b>🎙️ 錄製注音聲母（本音）</b><button class="zyr-x" aria-label="關閉">✕</button></div>
-        <p class="zyr-tip">AI 念不出「純聲母」，請老師或家長用溫柔、清楚的聲音錄。每個聲母<b>只念本音</b>，不要加 ㄛ、ㄜ（例如 ㄅ 不要念成「玻」）。按 🎙️ 開始，念完再按一次停止，前後的空白會自動剪掉。請在安靜的地方錄，手機離嘴巴一個拳頭。</p>
+        <p class="zyr-tip">網站已經使用教育部的注音符號發音音檔（注音老師）。如果想改用自己的聲音，才需要在這裡錄。每個聲母<b>只念本音</b>，不要加 ㄛ、ㄜ（例如 ㄅ 不要念成「玻」）。按 🎙️ 開始，念完再按一次停止，前後的空白會自動剪掉。請在安靜的地方錄，手機離嘴巴一個拳頭。</p>
         <div class="zyr-grid">${rows()}</div>
         <p class="zyr-st" id="zyrSt">已錄 ${n()} / 21。錄好的聲音這台手機會馬上使用；要讓所有人都聽到，請按「下載全部」，再把檔案上傳到 GitHub。</p>
         <div class="zyr-foot"><button class="btn small" id="zyrAll">▶ 全部聽一次</button><button class="btn small" id="zyrDl" ${n() ? '' : 'disabled'}>⬇️ 下載全部（zip）</button></div></div>`;
