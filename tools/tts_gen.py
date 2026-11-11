@@ -46,11 +46,18 @@ def post(ssml):
 
 
 ZY_NAME = {'ㄅ': 'ㄅㄛ', 'ㄆ': 'ㄆㄛ', 'ㄇ': 'ㄇㄛ', 'ㄈ': 'ㄈㄛ', 'ㄉ': 'ㄉㄜ', 'ㄊ': 'ㄊㄜ', 'ㄋ': 'ㄋㄜ', 'ㄌ': 'ㄌㄜ', 'ㄍ': 'ㄍㄜ', 'ㄎ': 'ㄎㄜ', 'ㄏ': 'ㄏㄜ', 'ㄐ': 'ㄐㄧ', 'ㄑ': 'ㄑㄧ', 'ㄒ': 'ㄒㄧ'}
+# 破音字：句子太短、AI 猜不出來的，直接指定念法
+POLY = {'長': [('長', 'ㄔㄤˊ')], '最長': [('長', 'ㄔㄤˊ')], '格長': [('長', 'ㄔㄤˊ')], '重': [('重', 'ㄓㄨㄥˋ')], '機長': [('長', 'ㄓㄤˇ')], '船長': [('長', 'ㄓㄤˇ')], '樂樂': [('樂', 'ㄌㄜˋ')], '小樂': [('樂', 'ㄌㄜˋ')]}
+POLY_CORE = lambda t: re.sub(r'[。！？，、\s]', '', t)
 TOK = re.compile(r'⟦([^|⟧]*)\|?([^⟧]*)⟧|([\u3105-\u3129][\u3105-\u3129ˊˇˋ˙]*)')
 
 
 def mark(t):
     """注音符號和 ⟦IPA|字⟧ 改成 <phoneme>，讓 AI 念出正確的音"""
+    pc = POLY.get(POLY_CORE(t))
+    if pc:
+        mp = dict(pc)
+        return ''.join(f'<phoneme alphabet="sapi" ph="{html.escape(mp[c])}">{html.escape(c)}</phoneme>' if c in mp else html.escape(c) for c in t)
     out, i = [], 0
     for m in TOK.finditer(t):
         out.append(html.escape(t[i:m.start()])); i = m.end()
@@ -157,6 +164,12 @@ if not os.path.exists('audio/zyfix.txt'):
     for r in redo: os.remove(f'{OUT}/{r[0]}.mp3')
     open('audio/zyfix.txt', 'w').write(str(len(redo)))
     print('注音句子重做', len(redo))
+# 第二次：破音字指定念法，重新做這幾句
+if not os.path.exists('audio/zyfix2.txt'):
+    redo = [r for r in rows if POLY_CORE(r[3]) in POLY and os.path.exists(f'{OUT}/{r[0]}.mp3')]
+    for r in redo: os.remove(f'{OUT}/{r[0]}.mp3')
+    open('audio/zyfix2.txt', 'w').write(str(len(redo)))
+    print('破音字重做', len(redo))
 todo = [r for r in rows if not os.path.exists(f'{OUT}/{r[0]}.mp3')]
 print('全部', len(rows), '要做', len(todo), '字數', sum(len(r[3]) for r in todo))
 groups = {}
