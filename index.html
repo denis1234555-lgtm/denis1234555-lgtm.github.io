@@ -847,6 +847,7 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .lc-pos .ez-pos { zoom: .55; }
 .lc-en u { text-decoration-color: #E5484D; text-decoration-thickness: 3px; text-underline-offset: 3px; }
 .o-pic.scn-o { line-height: 0; }
+.o-hand { display: block; width: 100%; line-height: 0; } .o-hand .fing { width: 82%; height: auto; } .o-hand .fing.two { width: 100%; } .lc-hand { width: min(60vw, 220px); margin: 0 auto; }
 /* 情境小圖選項：圖片填滿整個選項格，不會超出被切掉 */
 /* 選項是情境圖時：改成兩欄放大，第三個置中；上面的「聽」卡片縮小，把空間讓給選項 */
 .options.has-scn.cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -4056,7 +4057,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   function scnEmo(e, x, y, size, rot) {
     const t = `<text x="${x}" y="${y}" font-size="${size}" text-anchor="middle" dominant-baseline="central"${rot ? ` transform="rotate(${rot} ${x} ${y})"` : ''}>${e}</text>`;
     if (!SCN_FE) return t;
-    const src = SCN_FE + [...e].map(c => c.codePointAt(0).toString(16)).filter(h => h !== 'fe0f').join('-') + '.svg', h = size * 1.05;
+    const src = SCN_FE + [...e].map(c => c.codePointAt(0).toString(16)).join('-') + '.svg', h = size * 1.05; // v89：先用完整編碼（含 fe0f），載不到再由下方 fei 錯誤處理換另一種寫法
     return t + `<image class="fei" href="${src}" x="${x - h / 2}" y="${y - h / 2}" width="${h}" height="${h}"${rot ? ` transform="rotate(${rot} ${x} ${y})"` : ''}/>`;
   }
   // 背景（320×220，地面約在 y=180）。同一種場所有好幾種樣子，依題目自動挑，避免一直重複
@@ -6643,7 +6644,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     $('stage').innerHTML = q.stage; $('stage').hidden = !q.stage;
     const box = $('options');
     const len = q.options.length;
-    const scnQ = q.options.some(o => /o-pic scn-o/.test(o.html || '')); // 只有圖、沒有文字的情境選項才放大成兩欄
+    const scnQ = q.options.some(o => /o-pic scn-o|o-hand/.test(o.html || '')); // 只有圖、沒有文字的情境選項才放大成兩欄
     box.className = 'options ' + (len === 4 ? 'cols-4' : len === 2 ? 'cols-2' : 'cols-3') + (scnQ ? ' has-scn' : '');
     $('stage').classList.toggle('scn-q', scnQ || q.options.some(o => /scn-opt/.test(o.html || '')));
     box.innerHTML = '';
@@ -7830,6 +7831,26 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   EZ_FEEL.forEach(x => { x.sc = EZ_FEEL_SC[x.w]; });
   EZ_PEOPLE.forEach(x => { if (EZ_FAM_SC[x.w]) x.sc = EZ_FAM_SC[x.w]; });
   const ezPicOf = t => t && t.sc ? `<div class="pic scn-pic">${scnSVG(t.sc)}</div>` : `<div class="pic">${t.e}</div>`;
+  // 比手指的圖：1～5 一隻手，6～10 兩隻手（左手 5 根全開＋右手）。食指、中指、無名指、小指、大拇指依序打開
+  function fingerSVG(n) {
+    const skin = '#FFD7B5', ink = '#8A5A3C';
+    const hand = (k, ox, mirror) => {
+      const F = [[30, 10], [44, 4], [58, 8], [71, 18]]; let g = '';
+      F.forEach(([x, top], i) => {
+        const up = i < Math.min(k, 4);
+        g += up ? `<rect x="${x - 6.5}" y="${top}" width="13" height="${62 - top}" rx="6.5" fill="${skin}" stroke="${ink}" stroke-width="2.6"/><path d="M${x - 3.5} ${top + 6}h7" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".6"/>`
+          : `<rect x="${x - 6.5}" y="44" width="13" height="18" rx="6.5" fill="#F4C49E" stroke="${ink}" stroke-width="2.6"/>`;
+      });
+      if (k >= 5) g += `<path d="M27 82L11 54" stroke="${ink}" stroke-width="15.6" stroke-linecap="round"/><path d="M27 82L11 54" stroke="${skin}" stroke-width="10.4" stroke-linecap="round"/>`;
+      g += `<path d="M20 52q0-6 6-6h50q6 0 6 8v26q0 22-24 22h-14q-24 0-24-22z" fill="${skin}" stroke="${ink}" stroke-width="2.6" stroke-linejoin="round"/>`;
+      g += k >= 5 ? ''
+        : `<path d="M22 72q8-10 22-6" fill="none" stroke="${ink}" stroke-width="2.6" stroke-linecap="round"/><rect x="20" y="64" width="26" height="12" rx="6" fill="#F4C49E" stroke="${ink}" stroke-width="2.4"/>`;
+      g += `<path d="M30 92q20 6 40 0" fill="none" stroke="${ink}" stroke-width="1.6" opacity=".35"/>`;
+      return `<g transform="translate(${ox} 0)${mirror ? ' translate(100 0) scale(-1 1)' : ''}">${g}</g>`;
+    };
+    if (n <= 5) return `<svg class="fing" viewBox="0 0 100 108" role="img" aria-label="${n}">${hand(n, 0, false)}</svg>`;
+    return `<svg class="fing two" viewBox="0 0 216 108" role="img" aria-label="${n}">${hand(5, 0, true)}${hand(n - 5, 116, false)}</svg>`;
+  }
   const ezOptPic = o => o.sc ? `<span class="o-pic scn-o">${scnSVG(o.sc, 'scn-opt', scnFocus(o.sc))}</span>` : ezPic(o.e);
   const ezOptLife = (o, txt) => `<span class="o-life">${o.sc ? `<span class="e scn-o">${scnSVG(o.sc, 'scn-opt', scnFocus(o.sc))}</span>` : `<span class="e">${o.e}</span>`}<span class="t">${txt}</span></span>`;
   // 英文小故事：依故事內容組一張圖
@@ -8025,7 +8046,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       }
       if (r < .55) {
         const n = rand(1, 10), s = `Show me ${EZ_NUMW[n]} ${n === 1 ? 'finger' : 'fingers'}.`;
-        return { prompt: `聽指令：${s}`, speech: [[s, EZ_EN]], stage: ezEar('Simon says…'), options: numberOptions(n, 3, 1, 10).map(v => ({ html: `<span class="o-num">${v}</span><small class="ez-sub">🖐️</small>`, label: String(v), correct: v === n })), after: [[s, EZ_EN], [`比出 ${n} 根手指`]], key: 'sf' + n };
+        return { prompt: `聽指令：${s}`, speech: [[s, EZ_EN]], stage: ezEar('Simon says…'), options: numberOptions(n, 3, 1, 10).map(v => ({ html: `<span class="o-hand">${fingerSVG(v)}</span>`, label: String(v), correct: v === n })), after: [[s, EZ_EN], [`比出 ${n} 根手指`]], key: 'sf' + n };
       }
       if (r < .75) {
         const c = pick(EZ_COLOR), obj = pick(['balloon', 'ball', 'star']), E = { balloon: 'circle', ball: 'circle', star: 'star' }[obj], s = `Point to the ${c.w} ${obj}.`;
@@ -9043,7 +9064,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     ezsimon: () => [{ v: lcEmo('🗣️'), t: enB('Simon says…'), s: '聽到 Simon says，就照著做', say: enS('Simon says, clap your hands.'), wide: 1 }]
       .concat(EZ_SIMON_BODY.map(w => { const b = EZ_BODY.find(x => x.w === w); return { v: lcArt({ e: b.e, sc: ezTouchSc(w) }), t: enB(`Touch your ${w}.`), s: `摸摸你的${b.zh}`, say: enS(`Touch your ${w}.`) }; }))
       .concat(EZ_SIMON_ACT.map(([p, e]) => ({ v: lcArt({ e, sc: EZ_SIMON_SC[p] }), t: enB(p), s: '', say: enS(p) })))
-      .concat([3, 5].map(n => ({ v: lcEmo('🖐️'), t: enB(`Show me ${EZ_NUMW[n]} fingers.`), s: `比出 ${n} 根手指`, say: enS(`Show me ${EZ_NUMW[n]} fingers.`) }))),
+      .concat([3, 5].map(n => ({ v: `<span class="o-hand lc-hand">${fingerSVG(n)}</span>`, t: enB(`Show me ${EZ_NUMW[n]} fingers.`), s: `比出 ${n} 根手指`, say: enS(`Show me ${EZ_NUMW[n]} fingers.`) }))),
     ezcvc: () => EZ_CVC.map(x => ({ v: lcEmo(x.e), t: enB(x.w.split('').join(' - ')), s: x.w, say: enS(`${snd(x.w[0])}, ${snd(x.w[1])}, ${snd(x.w[2])}. ${x.w}.`) })),
     ezvowel: () => ['a', 'e', 'i', 'o', 'u'].map(v => { const ws = EZ_CVC.filter(x => x.v === v).slice(0, 4); return { v: `<span class="ezl-letter">${v}</span>`, t: ws.map(x => `${x.e} ${enB(x.w[0] + '<u>' + v + '</u>' + x.w[2])}`).join('　'), s: `短母音 ${v}：${EZ_VOWEL[v][1]}`, say: enS(`The short ${v} sound, ${snd(v)}, ${snd(v)}. ${ws.map(x => x.w).join(', ')}.`), wide: 1 }; })
       .concat(EZ_CVC.map(x => ({ v: lcEmo(x.e), t: enB(x.w[0] + '<u>' + x.v + '</u>' + x.w[2]), s: `中間是 ${x.v}`, say: enS(`${x.w}.`) }))),
@@ -13242,6 +13263,15 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
   try { feOn = localStorage.getItem('ddn-fe') !== '0'; } catch (e) {}
   if (feOn) {
     SCN_FE = FE_BASE;
+    // v89：情境圖裡的圖示載不到時（有沒有 fe0f 的檔名不同），換另一種檔名再試一次；還是不行就拿掉圖片，露出底下的文字圖示，不再出現灰色破圖
+    document.addEventListener('error', ev => {
+      const t = ev.target; if (!t || !t.classList || !t.classList.contains('fei')) return;
+      if (t.dataset.t) { t.remove(); return; }
+      t.dataset.t = '1';
+      const ps = (t.getAttribute('href') || '').slice(FE_BASE.length).replace(/\.svg$/, '').split('-');
+      const alt = ps.includes('fe0f') ? ps.filter(h => h !== 'fe0f') : [ps[0], 'fe0f', ...ps.slice(1)];
+      t.setAttribute('href', FE_BASE + alt.join('-') + '.svg');
+    }, true);
     document.body.classList.add('fe-on');
     emojify(document.body);
     new MutationObserver(list => { for (const m of list) m.addedNodes.forEach(n => emojify(n)); }).observe(document.body, { childList: true, subtree: true });
