@@ -8156,7 +8156,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       let story, q, ans, wrong, opt, key, emo, sc;
       if (k === 0) {
         const a = sp(EZ_ANIMAL.slice(0, 12)), c = sp(EZ_COLOR.filter(x => ['red', 'blue', 'yellow', 'green', 'pink', 'black', 'white', 'brown', 'orange', 'purple'].includes(x.w)));
-        story = `${nm} has a ${c.w} ${a.w}. The ${a.w} is very cute.`; q = `What color is the ${a.w}?`; ans = c; wrong = others(EZ_COLOR.filter(x => x.w !== 'gray'), c, 2, x => x.w); emo = a.e; sc = ezStorySc(0, he, a.e);
+        story = `${nm} has ${/^[aeiou]/.test(c.w) ? 'an' : 'a'} ${c.w} ${a.w}. The ${a.w} is very cute.`; q = `What color is the ${a.w}?`; ans = c; wrong = others(EZ_COLOR.filter(x => x.w !== 'gray'), c, 2, x => x.w); emo = a.e; sc = ezStorySc(0, he, a.e);
         opt = x => ({ html: `<span class="o-life"><span class="e">${swatchHTML(x.hex)}</span><span class="t">${x.w}</span></span>`, label: x.w }); key = 'st0' + nm + a.w + c.w;
       } else if (k === 1) {
         const f = sp([['apples', '🍎'], ['cookies', '🍪'], ['candies', '🍬'], ['oranges', '🍊'], ['eggs', '🥚']]), a = sr(1, 4), b = sr(1, 3);
@@ -8210,7 +8210,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     if (q.readOpts && q.options.some(o => !o.lang || !/^en/.test(o.lang))) q.readOpts = false;
     q.__en = true; return q;
   }
-  Object.keys(EZ_GEN).forEach(k => { const f = EZ_GEN[k]; EZ_GEN[k] = () => ezEnglish(f()); });
+  Object.keys(EZ_GEN).forEach(k => { const f = EZ_GEN[k]; EZ_GEN[k] = function (...a) { return ezEnglish(f.apply(this, a)); }; }); // v89：把題號傳下去，英文小故事的 72 題才會固定（語音也才會全部做到）
   Object.keys(EZ_GEN).forEach(k => { const f = EZ_GEN[k]; EZ_GEN[k] = function (...a) { return ezSix(f.apply(this, a)); }; });
   Object.assign(GEN, EZ_GEN);
   /* ---------- 🌍 英語小學堂：單字學習卡（先學再測驗，全英文朗讀） ---------- */
