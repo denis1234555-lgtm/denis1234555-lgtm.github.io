@@ -355,6 +355,8 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
 .trace { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .trace-box { position: relative; width: 100%; max-width: 320px; background: var(--surface); border-radius: 24px; box-shadow: 0 5px 0 var(--line-deep); overflow: hidden; }
 .trace-box canvas { position: absolute; left: 50%; top: 0; transform: translateX(-50%); touch-action: none; }
+/* 描字、描線的畫布不能被上面「#game *」的 manipulation 蓋掉，不然手指一滑整頁就跟著捲 */
+html .trace-box, html .trace-box canvas, html #game .trace-box canvas, html.no-zoom #game .trace-box canvas, html.no-zoom #game .mt-pen, html.no-zoom #game .mt-pen *, html #game .mt-pen { touch-action: none !important; overscroll-behavior: contain; }
 .trace-tools { display: flex; gap: 10px; }
 /* 排順序 */
 .sq { display: flex; flex-direction: column; gap: 14px; }
@@ -6894,6 +6896,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         pc.lineCap = pc.lineJoin = 'round'; pc.lineWidth = W * .075; pc.strokeStyle = css('--c');
         let down = false, last = null;
         const pos = e => { const r = pen.getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * W / r.height]; };
+        ['touchstart', 'touchmove'].forEach(ev => pen.addEventListener(ev, e => { if (e.cancelable) e.preventDefault(); }, { passive: false }));
         pen.addEventListener('pointerdown', e => { down = true; last = pos(e); pen.setPointerCapture(e.pointerId); pc.beginPath(); pc.arc(last[0], last[1], pc.lineWidth / 2, 0, 7); pc.fillStyle = pc.strokeStyle; pc.fill(); });
         pen.addEventListener('pointermove', e => { if (!down) return; const p = pos(e); pc.beginPath(); pc.moveTo(last[0], last[1]); pc.lineTo(p[0], p[1]); pc.stroke(); last = p; });
         const up = () => { down = false; }; pen.addEventListener('pointerup', up); pen.addEventListener('pointercancel', up);
@@ -7093,6 +7096,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     // ✏️ 用手指描線：在中間畫，會留下橘色筆跡
     const pen = $('mtPen'); let cur = null, pts = [];
     const xy = e => { const r = pen.getBoundingClientRect(); return [(e.clientX - r.left).toFixed(0), (e.clientY - r.top).toFixed(0)]; };
+    ['touchstart', 'touchmove'].forEach(ev => pen.addEventListener(ev, e => { if (e.cancelable) e.preventDefault(); }, { passive: false }));
     pen.addEventListener('pointerdown', e => { pen.setPointerCapture(e.pointerId); pts = [xy(e)]; cur = document.createElementNS('http://www.w3.org/2000/svg', 'polyline'); cur.setAttribute('class', 'mt-ink'); pen.appendChild(cur); cur.setAttribute('points', pts.join(' ')); });
     pen.addEventListener('pointermove', e => { if (!cur) return; pts.push(xy(e)); cur.setAttribute('points', pts.join(' ')); });
     ['pointerup', 'pointercancel'].forEach(t => pen.addEventListener(t, () => { cur = null; }));
