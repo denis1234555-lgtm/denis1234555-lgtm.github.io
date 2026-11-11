@@ -1,5 +1,5 @@
 // 動動腦小學堂 離線快取。遊戲更新時，把版本號加 1。
-const CACHE = 'ddn-v82';
+const CACHE = 'ddn-v84';
 const AUDIO = 'ddn-audio'; // AI 語音音檔另外存，換版本也不用重新下載
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 

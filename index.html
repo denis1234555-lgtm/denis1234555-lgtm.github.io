@@ -1940,7 +1940,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   .tl-foot { margin-top: 10px; } .tl-cap, .tl-q { font-size: 19px; font-weight: 800; line-height: 1.6; background: #fff; border-radius: 16px; padding: 10px 14px; margin: 0 0 8px; } .tl-q b { color: #C2457E; }
   .tl-hint { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-weight: 700; color: #6B5A66; margin-bottom: 8px; } .tl-hint span { background: #FFE2EC; color: #A23468; border-radius: 99px; padding: 3px 10px; }
   .tl-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 6px 0; }
-  .tl-mic { width: 86px; height: 86px; border-radius: 50%; border: 0; font-size: 40px; background: #fff; box-shadow: 0 5px 0 rgba(0,0,0,.12); } .tl-mic.on { background: #FF5C5C; animation: tlB 1s infinite; }
+  .tl-mic { width: 86px; height: 86px; border-radius: 50%; border: 0; font-size: 40px; background: #fff; box-shadow: 0 5px 0 rgba(0,0,0,.12); } .tl-mic:disabled { opacity: .35; filter: grayscale(1); } .tl-mic.on { background: #FF5C5C; animation: tlB 1s infinite; }
   .tl-st { text-align: center; font-weight: 800; color: #6B5A66; margin: 4px 0; }
   .tl-go { border: 0; border-radius: 99px; padding: 10px 18px; font: inherit; font-weight: 900; background: #C2457E; color: #fff; box-shadow: 0 4px 0 #8E2E58; }
   .sdk { display: grid; gap: 4px; width: min(86%, 300px); margin: 0 auto; background: #2A2140; padding: 4px; border-radius: 14px; }
@@ -2028,6 +2028,63 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   .t2-spin { animation: t2spin 3s linear infinite; } @keyframes t2spin { to { rotate: 360deg; } }
   .t2-rk { animation: t2rk 2s ease-in-out infinite; } @keyframes t2rk { 0%, 100% { rotate: -3deg; } 50% { rotate: 3deg; } }
 
+
+.yx-enter.cn-enter { background: radial-gradient(120% 140% at 0% 0%, #F08A5D 0%, #D9573A 55%, #A9402A 100%); box-shadow: 0 8px 0 #7E2E1E; }
+.yx-enter.cn-enter:active { box-shadow: 0 3px 0 #7E2E1E; }
+.cn-enter .yx-go { color: #A9402A; }
+.cn-art { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; place-content: center; }
+.cn-art span { width: 44px; height: 44px; border-radius: 12px; background: #FFF6EC; color: #C2452D; font: 900 28px/44px "Noto Sans TC", system-ui, sans-serif; text-align: center; box-shadow: 0 3px 0 rgba(0,0,0,.15); }
+.cn-art.big span { width: 54px; height: 54px; font-size: 34px; line-height: 54px; }
+.cnl-i { font: 900 26px/1 "Noto Sans TC", system-ui, sans-serif; color: #C2452D; }
+.cnl-zy, .cnl-zi { font: 900 52px/1.1 "Noto Sans TC", system-ui, sans-serif; color: #C2452D; }
+.cnl-pin { font: 900 30px/1.2 "Noto Sans TC", system-ui, sans-serif; color: #C2452D; display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: center; }
+.cnl-pin i { font-style: normal; color: #9A8A80; font-size: 22px; } .cnl-pin b { color: #2C7BCB; }
+.cnl-opt { font: 900 34px/1.1 "Noto Sans TC", system-ui, sans-serif; }
+.cnl-qbig { font-size: 76px; line-height: 1.1; text-align: center; padding: 10px 0; }
+.ezl-big .cnl-zy, .ezl-big .cnl-zi { font-size: 110px; } .ezl-big .cnl-pin { font-size: 52px; }
+
+/* 新首頁 */
+#home > .hs-enter, #home > .tl-enter, #home > .sl-enter, #home > .jump, #home > .yx-enter, #home > .fr-enter, #home > .groups { display: none !important; }
+#home.t-dq #pathCard, #home:not(.t-dq) #dqCard { display: none !important; }
+.hm-tabs { display: flex; gap: 8px; margin: 14px 0 -4px; }
+.hm-tabs button { flex: 1; border: 0; border-radius: 14px 14px 0 0; padding: 10px 6px; font: 800 15px/1.2 inherit; font-family: inherit; background: rgba(255,255,255,.55); color: var(--ink-soft, #6A5A50); }
+.hm-tabs button.on { background: var(--surface, #fff); color: var(--ink, #3B2F2A); box-shadow: 0 -2px 0 var(--line, #EADFCF) inset; }
+.hm-h { font-size: 20px; font-weight: 900; margin: 22px 2px 10px; color: var(--ink, #3B2F2A); }
+.hm-h small { display: block; font-size: 13px; font-weight: 600; color: var(--ink-soft, #7A6A60); margin-top: 2px; }
+.sch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.sch-tile { border: 0; border-radius: 22px; padding: 14px 10px 12px; background: var(--surface, #fff); box-shadow: 0 5px 0 color-mix(in srgb, var(--c) 35%, #D8CCBC); display: grid; justify-items: center; gap: 4px; text-align: center; font-family: inherit; color: var(--ink, #3B2F2A); }
+.sch-tile:active { transform: translateY(3px); box-shadow: 0 2px 0 color-mix(in srgb, var(--c) 35%, #D8CCBC); }
+.sch-tile b { font-size: 17px; font-weight: 900; color: var(--c); } .sch-tile small { font-size: 12.5px; color: var(--ink-soft, #7A6A60); line-height: 1.3; }
+.sch-art { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 4px; }
+.sch-art span { width: 34px; height: 34px; border-radius: 10px; background: color-mix(in srgb, var(--c) 14%, #FFFFFF); color: var(--c); font: 900 20px/34px "Noto Sans TC", system-ui, sans-serif; text-align: center; }
+.zone-hero .sch-art span { width: 50px; height: 50px; font-size: 30px; line-height: 50px; }
+.sch-yx { margin-top: 12px; width: 100%; border: 0; border-radius: 20px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; text-align: left; font-family: inherit; background: linear-gradient(120deg, #FFE7A8, #FFD27A); box-shadow: 0 5px 0 #D9A84A; color: #5A3A10; }
+.sch-yx .i { font-size: 34px; } .sch-yx .t { flex: 1; display: grid; } .sch-yx b { font-size: 18px; font-weight: 900; } .sch-yx small { font-size: 13px; } .sch-yx .go { font-size: 22px; font-weight: 900; }
+.sch-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; } .sch-row.two { grid-template-columns: 1fr 1fr; }
+.sch-mini { border: 0; border-radius: 18px; padding: 12px 6px; background: color-mix(in srgb, var(--c) 12%, #FFFFFF); box-shadow: 0 4px 0 color-mix(in srgb, var(--c) 40%, #D8CCBC); display: grid; justify-items: center; gap: 2px; font-family: inherit; color: var(--ink, #3B2F2A); text-align: center; }
+.sch-mini .i { font-size: 32px; line-height: 1.2; } .sch-mini b { font-size: 15px; font-weight: 900; color: var(--c); } .sch-mini small { font-size: 11.5px; color: var(--ink-soft, #7A6A60); line-height: 1.25; }
+.botnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: none; background: rgba(255,255,255,.96); border-top: 1px solid #EADFCF; padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); box-shadow: 0 -4px 14px rgba(0,0,0,.06); }
+body.has-bot .botnav { display: flex; } body.has-bot { padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)); }
+.botnav button { flex: 1; border: 0; background: none; font: 700 12px/1.2 inherit; font-family: inherit; color: #6A5A50; display: grid; justify-items: center; gap: 2px; padding: 2px 0; }
+.botnav button span { font-size: 22px; line-height: 1.1; }
+.bnav { display: none !important; } body.on-home:not(.has-bot) { padding-bottom: 0; }
+.pa-tracks { display: flex; gap: 6px; margin-bottom: 8px; } .pa-tracks button { border: 0; border-radius: 999px; padding: 5px 14px; font: 800 13px/1.2 inherit; font-family: inherit; background: #F3ECE2; color: #7A6A60; } .pa-tracks button.on { background: #3E9A6A; color: #fff; }
+
+.cnl-card.follow::after { content: "跟我念 👄"; position: absolute; left: 50%; top: 6px; transform: translateX(-50%); background: #FFD43B; color: #5A3A10; font: 900 13px/1 inherit; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+.cnl-card { position: relative; }
+.zyr { position: fixed; inset: 0; z-index: 120; background: rgba(30,24,20,.55); display: grid; place-items: center; padding: 16px max(16px, env(safe-area-inset-left, 0px)); }
+.zyr[hidden] { display: none; }
+.zyr-card { background: #FFFDF8; border-radius: 22px; width: min(560px, 100%); max-height: 92vh; overflow: auto; padding: 16px; display: grid; gap: 10px; color: #3B2F2A; }
+.zyr-top { display: flex; justify-content: space-between; align-items: center; font-size: 18px; } .zyr-x { border: 0; background: #F3ECE2; border-radius: 50%; width: 36px; height: 36px; font-size: 18px; }
+.zyr-tip { margin: 0; font-size: 14px; line-height: 1.6; color: #6A5A50; }
+.zyr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.zyr-row { display: flex; align-items: center; gap: 6px; background: #F6EFE4; border-radius: 14px; padding: 6px 8px; }
+.zyr-row.ok { background: #E3F3E8; } .zyr-row.on { outline: 3px solid #E8584F; }
+.zyr-row b { font: 900 28px/1 "Noto Sans TC", system-ui, sans-serif; color: #C2452D; width: 34px; text-align: center; }
+.zyr-row button { border: 0; border-radius: 10px; width: 38px; height: 38px; font-size: 18px; background: #FFFFFF; box-shadow: 0 2px 0 #D8CCBC; } .zyr-row button:disabled { opacity: .35; }
+.zyr-row span { font-size: 12px; color: #3E9A6A; }
+.zyr-st { margin: 0; font-size: 13.5px; color: #6A5A50; } .zyr-foot { display: flex; gap: 8px; flex-wrap: wrap; }
+.zyr-open { margin: 8px 0 4px; }
 </style>
 </head>
 <body>
@@ -2098,6 +2155,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     </div>
   </header>
 
+  <nav class="botnav" id="botNav" aria-label="快速切換"><button data-n="home"><span>🏠</span>首頁</button><button data-n="sch"><span>🏫</span>學堂</button><button data-n="story"><span>📚</span>故事</button><button data-n="park"><span>🎡</span>樂園</button><button data-n="parent"><span>👨‍👩‍👧</span>家長</button></nav>
   <section id="home" class="screen">
     <div class="hero">
       <svg class="hero-sky" viewBox="0 0 400 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><linearGradient id="hSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FD3EC"/><stop offset=".7" stop-color="#DDF0F2"/><stop offset="1" stop-color="#F3EEDB"/></linearGradient><filter id="hPaint" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="7"/><feDisplacementMap in="SourceGraphic" scale="7"/></filter><radialGradient id="hSun"><stop offset="0" stop-color="#FFF6D2"/><stop offset="1" stop-color="#FFF6D2" stop-opacity="0"/></radialGradient></defs><rect width="400" height="220" fill="url(#hSky)"/><circle cx="340" cy="40" r="60" fill="url(#hSun)"/><g filter="url(#hPaint)"><path d="M150 70 C170 40 210 40 222 56 C236 30 284 30 292 60 C320 52 348 66 344 88 L148 88 Z" fill="#fff" opacity=".95"/><path d="M148 88 C210 80 280 84 344 88 Z" fill="#DCE9F2"/><path d="M-10 50 C0 34 28 32 38 42 C50 28 80 30 84 50 L-10 50 Z" fill="#fff" opacity=".85"/></g><g filter="url(#hPaint)"><path d="M-10 160 C70 126 160 132 240 146 C310 158 360 140 410 128 L410 220 L-10 220 Z" fill="#A9D18E"/><path d="M-10 186 C90 166 190 172 270 184 C330 192 370 182 410 176 L410 220 L-10 220 Z" fill="#8CC07A"/><path d="M196 160 C196 134 210 120 224 120 C240 120 252 136 250 160 Z" fill="#5E9A57"/><rect x="220" y="158" width="6" height="18" fill="#8A6244"/><path d="M140 166 L140 146 L160 132 L180 146 L180 166 Z" fill="#F6EAD2"/><path d="M134 148 L160 124 L186 148 Z" fill="#D9695A"/><rect x="154" y="152" width="11" height="14" rx="2" fill="#6A8FB0"/></g><path d="M200 108 q5 -4 10 0 q5 -4 10 0" fill="none" stroke="#45526B" stroke-width="1.5" stroke-linecap="round" opacity=".7"/></svg>
@@ -2118,8 +2176,16 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       </div>
     </div>
 
+    <div class="hm-tabs" id="hmTabs" role="tablist" aria-label="今天的學習"><button data-t="path" role="tab">🗺️ 學習路線</button><button data-t="dq" role="tab">✅ 今天的任務</button></div>
     <section class="pa-card" id="pathCard" aria-label="今天的學習路線"></section>
     <section class="dq-card" id="dqCard" aria-label="今天的任務"></section>
+    <h3 class="hm-h" id="hmSchools">🏫 六個學堂 <small>先學再玩，每個學堂都有 Level 1～3</small></h3>
+    <div class="sch-grid" id="schGrid"></div>
+    <button class="sch-yx" id="schYx" data-say="幼小銜接專區"><span class="i">🎒</span><span class="t"><b>幼小銜接專區</b><small>升小一前先準備・22 個主題，每個 50 題以上</small></span><span class="go">→</span></button>
+    <h3 class="hm-h" id="hmStories">📚 聽故事、說故事</h3>
+    <div class="sch-row" id="storyGrid"></div>
+    <h3 class="hm-h" id="hmPlay">🎡 玩樂和好朋友</h3>
+    <div class="sch-row two" id="playGrid"></div>
     <button class="hs-enter" id="heroEnter" aria-label="星光守護隊"><span class="hs-ic">🦸</span><span><b>星光守護隊</b><small>聽英雄故事，拿英雄貼紙</small></span><span class="sl-go">去認識 →</span></button>
     <button class="tl-enter" id="tellEnter" aria-label="看圖說故事"><span class="tl-ic">📖</span><span><b>看圖說故事</b><small>聽老師說，再換你說給爸媽聽</small></span><span class="sl-go">去說故事 →</span></button>
     <button class="sl-enter" id="sleepEnter" aria-label="睡前故事"><span class="sl-moon">🌙</span><span><b>睡前故事</b><small>關燈聽故事，不用看螢幕</small></span><span class="sl-go">聽故事 →</span></button>
@@ -2131,6 +2197,10 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     <button class="yx-enter ez-enter" id="ezEnter" aria-label="進入英語小學堂">
       <span class="yx-enter-text"><span class="yx-pill">🌍 英文從聽開始</span><b>英語小學堂</b><span>22 類單字卡＋19 個主題，全英文朗讀</span><span class="yx-go">進去看看 →</span></span>
       <svg class="yx-enter-art" viewBox="0 0 200 160" aria-hidden="true"><use href="#ez-globe"/></svg>
+    </button>
+    <button class="yx-enter cn-enter" id="cnEnter" aria-label="進入國語小學堂">
+      <span class="yx-enter-text"><span class="yx-pill">🀄 注音從發音開始</span><b>國語小學堂</b><span>先學注音發音、聲調、拼音和國字，再玩主題</span><span class="yx-go">進去看看 →</span></span>
+      <span class="yx-enter-art cn-art" aria-hidden="true"><span>ㄅ</span><span>ㄆ</span><span>ㄇ</span><span>ㄈ</span></span>
     </button>
     <button class="yx-enter park-enter" id="parkEnter" aria-label="進入星星樂園">
       <span class="yx-enter-text"><span class="yx-pill">🎡 用星星換遊戲</span><b>星星樂園</b><span>泡泡、接水果、打地鼠、貼紙樂園</span><span class="yx-go">進去玩 →</span></span>
@@ -2696,6 +2766,8 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     <div class="ezl-grid" id="lnGrid"></div>
     <div class="ln-pager" id="lnPager"><button id="lnPrev" class="btn ghost small">◀ 上一組</button><span id="lnPageTxt"></span><button id="lnNext" class="btn ghost small">下一組 ▶</button></div>
     <div class="ezl-foot"><p class="note" id="lnHint"></p><button id="lnPlay" class="btn">🎮 學好了，開始玩</button></div>
+    <h3 class="group-title" style="--g: var(--en-deep)">更多英文主題 <small>聽單字、字母、拼字、生活用語、動作</small></h3>
+    <div class="subjects" id="ezMore"></div>
   </section>
   <section id="ezlearn" class="screen" hidden>
     <div class="zone-top">
@@ -2707,6 +2779,34 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     <div class="ezl-bar"><span id="ezlProg"></span><button id="ezlAll" class="btn small">▶ 全部聽一次</button></div>
     <div class="ezl-grid" id="ezlGrid"></div>
     <div class="ezl-foot"><p class="note" id="ezlHint"></p><button id="ezlTest" class="btn">📝 開始測驗</button></div>
+  </section>
+  <section id="cnone" class="screen" hidden>
+    <div class="zone-top">
+      <button id="cnoneBack" class="chunky back" aria-label="回首頁">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <h2 id="schTitle">🀄 國語小學堂</h2>
+    </div>
+    <div class="zone-hero">
+      <span class="sch-art" id="schArt" aria-hidden="true"></span>
+      <div><b id="schHead"></b><p id="schDesc"></p></div>
+    </div>
+    <div class="ezl-sec" id="cnlSec">
+      <h3 class="group-title" style="--g: var(--cn)">📚 注音和國字學習卡 <small>先點卡片聽發音，每一張都學過，就可以測驗</small></h3>
+      <div class="ezl-cats" id="cnlCats"></div>
+    </div>
+    <div class="groups" id="cnLevels"></div>
+  </section>
+  <section id="cnlearn" class="screen" hidden>
+    <div class="zone-top">
+      <button id="cnlBack" class="chunky back" aria-label="回國語小學堂">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <h2 id="cnlTitle"></h2>
+    </div>
+    <div class="ezl-bar"><span id="cnlProg"></span><button id="cnlAll" class="btn small">▶ 全部聽一次</button></div>
+    <div class="ezl-grid" id="cnlGrid"></div>
+    <div class="ezl-foot"><p class="note" id="cnlHint"></p><button id="cnlTest" class="btn">📝 開始測驗</button></div>
   </section>
   <section id="zone" class="screen" hidden>
     <div class="zone-top">
@@ -2884,6 +2984,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       <button id="repBack" class="chunky back" aria-label="回首頁"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
       <h2>學習紀錄</h2>
     </div>
+    <button class="btn small zyr-open" id="zyrOpen">🎙️ 錄製注音聲母發音（老師、家長用）</button>
     <div class="kid-banner">
       <svg viewBox="0 0 120 120" class="mascot is-happy" aria-hidden="true"></svg>
       <div><b id="kidLine"></b><span id="kidSub"></span></div>
@@ -5003,14 +5104,14 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
           prompt: `「${t.w}」是哪一個注音開頭？`, speech: [[`${t.w}的${t.c}，是哪一個注音開頭？`]],
           stage: `<div><div class="pic">${t.e}</div><div class="word-zh">${t.w}</div></div>`,
           options: opts.map(o => ({ html: charHTML(o.z), label: o.z, correct: o === t })),
-          after: [[`${t.z}。${t.w}的${t.c}，${t.z}。`]], key: t.z
+          after: [[`${t.z}。${t.w}的${t.c}。${t.z}。`]], key: t.z
         };
       }
       return {
         prompt: '哪一個是這個注音開頭的？', speech: [[`看看注音，${t.z}。${t.z}。哪一個是它開頭的？`]],
         stage: `<div class="bigchar">${t.z}</div>`,
         options: opts.map(o => ({ html: picHTML(o.e), label: o.w, correct: o === t })),
-        after: [[`${t.z}。${t.w}的${t.c}，${t.z}。`]], key: 'r' + t.z
+        after: [[`${t.z}。${t.w}的${t.c}。${t.z}。`]], key: 'r' + t.z
       };
     },
     money() {
@@ -6348,6 +6449,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   }
   async function speakOne(text, lang, my, who) {
     lang = lang || 'zh-TW';
+    { const zr = (!lang || lang.startsWith('zh')) && typeof zyrFor === 'function' ? zyrFor(text) : null; if (zr) { await zyrPlay(zr, my); return; } }
     if (await aiPlay(text, lang, my, who)) return;
     if (my !== sayToken) return;
     if (/\d/.test(text) && AI.ids) {
@@ -6429,7 +6531,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     if (m) { void mascot.getBoundingClientRect(); mascot.classList.add(m); }
   }
 
-  function show(id) { if (id !== 'game' && id !== 'done') age = baseAge(); pinchLock(['park', 'game', 'learn', 'ezlearn'].includes(id)); if (id !== 'park') { const a = $('pkHub'), b = $('pkPlay'); if (a) a.hidden = true; if (b) b.hidden = true; } ['home', 'zone', 'ezone', 'ezlearn', 'learn', 'game', 'done', 'gate', 'report', 'rest', 'park'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); if (id === 'home' || id === 'done') { try { dqRender(); pathRender(); badgeCheck(); } catch (e) {} } document.body.classList.toggle('on-home', id === 'home'); }
+  function show(id) { if (id !== 'game' && id !== 'done') age = baseAge(); pinchLock(['park', 'game', 'learn', 'ezlearn', 'cnlearn'].includes(id)); if (id !== 'park') { const a = $('pkHub'), b = $('pkPlay'); if (a) a.hidden = true; if (b) b.hidden = true; } ['home', 'zone', 'ezone', 'ezlearn', 'cnone', 'cnlearn', 'learn', 'game', 'done', 'gate', 'report', 'rest', 'park'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); if (id === 'home' || id === 'done') { try { dqRender(); pathRender(); badgeCheck(); } catch (e) {} } document.body.classList.toggle('on-home', id === 'home'); document.body.classList.toggle('has-bot', ['home', 'cnone', 'ezone', 'zone'].includes(id)); if (id === 'home') try { CNZ.from = false; CNZ.sch = ''; } catch (e) {} }
 
   function addStar() {
     const pt = playToday(); pt.stars++; store.set('playToday', pt); wkAdd(1);
@@ -8847,7 +8949,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   });
   const LEARN = {
     cn: () => CN.filter(lv1).map(x => ({ v: lcEmo(x.e), t: `<span class="lc-kai">${x.ch}</span>`, s: x.say, say: [[x.say]] })),
-    zhuyin: () => ZY.filter(lv1).map(x => ({ v: lcEmo(x.e), t: `<span class="lc-zy">${x.z}</span>`, s: `${x.w}的${x.c}`, say: [[`${x.z}。${x.z}。${x.z}。${x.w}的${x.c}，${x.z}。`]] })),
+    zhuyin: () => ZY.filter(lv1).map(x => ({ v: lcEmo(x.e), t: `<span class="lc-zy">${x.z}</span>`, s: `${x.w}的${x.c}`, say: [[`${x.z}。${x.z}。${x.z}。${x.w}的${x.c}。${x.z}。`]] })),
     en: () => EN.filter(lv1).map(x => ({ v: lcEmo(x.e), t: `<span class="lc-en">${x.w}</span>`, s: x.zh, say: [[x.w, 'en-US'], [x.zh]] })),
     abc: () => Object.entries(AW).map(([L, [w, e]]) => ({ v: `<span class="ezl-letter">${L}${L.toLowerCase()}</span>`, t: `<span class="lc-en">${w}</span>`, s: e, say: [[`${L}. ${L} says ${snd(L)}, ${snd(L)}. ${L} is for ${w}.`, 'en-US']] })),
     color: () => COLORS.map(c => ({ v: `<span class="o-swatch ezl-sw" style="background:${c.hex}"></span>`, t: c.zh, s: c.w, say: [[c.zh], [c.w, 'en-US']] })),
@@ -9091,9 +9193,9 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   $('ageBig').addEventListener('click', () => setAge('big'));
   $('ageSix').addEventListener('click', () => setAge('six'));
   $('soundBtn').addEventListener('click', () => setSound(!soundOn));
-  document.querySelectorAll('.subject').forEach(b => b.addEventListener('click', () => (b.dataset.sub === 'fix' ? openFix() : wantLearn(b.dataset.sub) ? openLearn(b.dataset.sub) : startRound(b.dataset.sub))));
+  document.querySelectorAll('.subject').forEach(b => b.addEventListener('click', () => (CNZ.from = false, b.dataset.sub === 'fix' ? openFix() : wantLearn(b.dataset.sub) ? openLearn(b.dataset.sub) : startRound(b.dataset.sub))));
   $('lnPlay').addEventListener('click', () => { lnPlaying = false; track('learn-play-' + lnSub, '學完開始玩'); startRound(lnSub); });
-  $('lnBack').addEventListener('click', () => { lnPlaying = false; show('home'); });
+  $('lnBack').addEventListener('click', () => { lnPlaying = false; if (CNZ.from && CNZ.sch) { if (CNZ.sch === 'en') { renderZone(); show('ezone'); } else { renderCnZone(); show('cnone'); } } else show('home'); });
   $('lnPrev').addEventListener('click', () => { lnPlaying = false; lnPage = Math.max(0, lnPage - 1); lnRender(); });
   $('lnNext').addEventListener('click', () => { lnPlaying = false; lnPage++; lnRender(); });
   $('lnAll').addEventListener('click', async () => {
@@ -9110,7 +9212,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   $('tapSayOn').addEventListener('change', e => store.set('tapSay', e.target.checked));
   $('moveOn').addEventListener('change', e => store.set('moveOn', e.target.checked));
   $('speakBtn').addEventListener('click', () => { if (!st || !st.q) return; if (st.sub === 'memory' || st.locked || !st.q.options) say(st.q.speech); else readQuestion(st.q); });
-  const backTo = () => (st && st.sub && /^ezl_/.test(st.sub) ? (renderEzl(), 'ezlearn') : st && st.sub && /^ez/.test(st.sub) ? 'ezone' : st && st.sub && YX.has(st.sub) ? 'zone' : 'home');
+  const backTo = () => (st && st.sub && /^cnl_/.test(st.sub) ? (renderCnl(), 'cnlearn') : st && st.sub && CNZ.from && CN_SUBS.has(st.sub) ? (CNZ.sch === 'en' ? (renderZone(), 'ezone') : (renderCnZone(), 'cnone')) : st && st.sub && /^ezl_/.test(st.sub) ? (renderEzl(), 'ezlearn') : st && st.sub && /^ez/.test(st.sub) ? 'ezone' : st && st.sub && YX.has(st.sub) ? 'zone' : 'home');
   try { $('noStat').checked = localStorage.getItem('ddn-nostat') === '1'; } catch (e) {}
   $('noStat').addEventListener('change', e => { try { if (e.target.checked) localStorage.setItem('ddn-nostat', '1'); else localStorage.removeItem('ddn-nostat'); } catch (err) {} });
   const pvFit = () => { const z = Math.min(1, (innerWidth - 28) / 734).toFixed(3); document.querySelectorAll('#pvScroll .psheet').forEach(x => { x.style.zoom = z; }); };
@@ -9186,6 +9288,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     $('zoneLock').hidden = isYX();
     $('ezoneLock').hidden = isYX() && canPrint();
     renderEzlCats();
+    if ($('ezMore')) { $('ezMore').innerHTML = ''; schClone($('ezMore'), SCH_BY.en.more, 'en'); }
     document.querySelectorAll('[data-ezlv]').forEach(el => { const lv = EZ_LEVELS[+el.dataset.ezlv - 1]; el.textContent = '⭐ ' + lv.subs.reduce((a, k) => a + (subStars[k] || 0), 0); });
   }
   function renderEzlCats() {
@@ -9303,6 +9406,128 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   const openEZone = () => { renderZone(); show('ezone'); track('ezone-open', '進入英語小學堂'); };
   $('ezEnter').addEventListener('click', openEZone); $('ezChip').addEventListener('click', e => { e.preventDefault(); openEZone(); });
   $('ezoneBack').addEventListener('click', () => show('home'));
+  /* ---------- 🀄 國語小學堂：先學注音發音（聲母、韻母、聲調、拼音），再學常用國字，學完再測驗 ---------- */
+  const CNZ_YUN = [['ㄚ', '爸爸', '爸', '👨'], ['ㄛ', '公雞喔喔叫', '喔', '🐓'], ['ㄜ', '白鵝', '鵝', '🦢'], ['ㄝ', '椰子', '椰', '🥥'], ['ㄞ', '愛心', '愛', '❤️'], ['ㄟ', '飛機', '飛', '✈️'], ['ㄠ', '貓咪', '貓', '🐱'], ['ㄡ', '狗狗', '狗', '🐶'],
+    ['ㄢ', '高山', '山', '⛰️'], ['ㄣ', '大門', '門', '🚪'], ['ㄤ', '糖果', '糖', '🍬'], ['ㄥ', '電燈', '燈', '💡'], ['ㄦ', '耳朵', '耳', '👂'], ['ㄧ', '衣服', '衣', '👕'], ['ㄨ', '烏龜', '烏', '🐢'], ['ㄩ', '小魚', '魚', '🐟']];
+  const CNZ_SHENG = ZY.filter(x => !'ㄧㄨㄩ'.includes(x.z)).map(x => [x.z, x.w, x.c, x.e]);
+  const CNL = [
+    { id: 'sheng', zh: '聲母 ㄅ～ㄙ', sub: '21 個', icon: 'ㄅ', type: 'zy', items: CNZ_SHENG.map(([z, w, c, e]) => ({ k: z, big: z, e, zh: `${w}的${c}`, say: `${z}。${z}。${w}的${c}。`, ans: z })) },
+    { id: 'yun', zh: '韻母 ㄚ～ㄩ', sub: '16 個', icon: 'ㄚ', type: 'zy', items: CNZ_YUN.map(([z, w, c, e]) => ({ k: z, big: z, e, zh: `${w}的${c}`, say: `${z}。${z}。${w}的${c}。`, ans: z })) },
+    { id: 'tone', zh: '四聲聲調', sub: '一二三四聲、輕聲', icon: 'ˇ', type: 'tone', items: [['一聲', 'ㄇㄚ', '媽', '👩', '媽媽'], ['二聲', 'ㄇㄚˊ', '麻', '🍡', '麻糬'], ['三聲', 'ㄇㄚˇ', '馬', '🐴', '小馬'], ['四聲', 'ㄇㄚˋ', '罵', '😠', '罵人'], ['輕聲', '˙ㄇㄚ', '嗎', '❓', '好嗎']].map(([t, z, c, e, w]) => ({ k: t, big: z, e, zh: `${t}・${c}`, say: `${t}。${c}。${w}的${c}。`, ans: t, c })) },
+    { id: 'pin2', zh: '兩個注音拼一拼', sub: '聲母＋韻母', icon: 'ㄅㄚ', type: 'pin', items: [['ㄅ', 'ㄚ', 'ㄅㄚ', '八', '8️⃣'], ['ㄇ', 'ㄠ', 'ㄇㄠ', '貓', '🐱'], ['ㄍ', 'ㄡ', 'ㄍㄡˇ', '狗', '🐶'], ['ㄏ', 'ㄨ', 'ㄏㄨˇ', '虎', '🐯'], ['ㄕ', 'ㄢ', 'ㄕㄢ', '山', '⛰️'], ['ㄇ', 'ㄣ', 'ㄇㄣˊ', '門', '🚪'], ['ㄊ', 'ㄤ', 'ㄊㄤˊ', '糖', '🍬'], ['ㄉ', 'ㄥ', 'ㄉㄥ', '燈', '💡'], ['ㄓ', 'ㄨ', 'ㄓㄨ', '豬', '🐷'], ['ㄕ', 'ㄨ', 'ㄕㄨ', '書', '📖'], ['ㄏ', 'ㄜ', 'ㄏㄜ', '喝', '🥤'], ['ㄈ', 'ㄟ', 'ㄈㄟ', '飛', '✈️']].map(([a, b, z, c, e]) => ({ k: z, parts: [a, b], big: z, e, zh: c, say: `${a}。${b}。${z}。${c}。`, ans: z, c })) },
+    { id: 'pin3', zh: '三個注音拼一拼', sub: '聲母＋介音＋韻母', icon: 'ㄏㄨㄚ', type: 'pin', items: [['ㄍ', 'ㄨ', 'ㄚ', 'ㄍㄨㄚ', '瓜', '🍉'], ['ㄏ', 'ㄨ', 'ㄚ', 'ㄏㄨㄚ', '花', '🌸'], ['ㄐ', 'ㄧ', 'ㄚ', 'ㄐㄧㄚ', '家', '🏠'], ['ㄊ', 'ㄧ', 'ㄢ', 'ㄊㄧㄢ', '天', '🌤️'], ['ㄏ', 'ㄨ', 'ㄛ', 'ㄏㄨㄛˇ', '火', '🔥'], ['ㄔ', 'ㄨ', 'ㄢ', 'ㄔㄨㄢˊ', '船', '🚢'], ['ㄒ', 'ㄩ', 'ㄝ', 'ㄒㄩㄝˇ', '雪', '❄️'], ['ㄐ', 'ㄧ', 'ㄠ', 'ㄐㄧㄠˇ', '腳', '🦶'], ['ㄍ', 'ㄨ', 'ㄛ', 'ㄍㄨㄛˇ', '果', '🍎'], ['ㄒ', 'ㄧ', 'ㄤ', 'ㄒㄧㄤˋ', '象', '🐘']].map(([a, b, d, z, c, e]) => ({ k: z, parts: [a, b, d], big: z, e, zh: c, say: `${a}。${b}。${d}。${z}。${c}。`, ans: z, c })) },
+    { id: 'zi', zh: '常用國字', sub: '20 個看圖認字', icon: '山', type: 'zi', items: [['人', 'ㄖㄣˊ', '🧍', '大人'], ['口', 'ㄎㄡˇ', '👄', '嘴巴、口'], ['手', 'ㄕㄡˇ', '✋', '小手'], ['日', 'ㄖˋ', '☀️', '太陽、日'], ['月', 'ㄩㄝˋ', '🌙', '月亮'], ['山', 'ㄕㄢ', '⛰️', '高山'], ['水', 'ㄕㄨㄟˇ', '💧', '喝水'], ['火', 'ㄏㄨㄛˇ', '🔥', '火'], ['木', 'ㄇㄨˋ', '🌳', '木頭'], ['大', 'ㄉㄚˋ', '🐘', '大象'], ['小', 'ㄒㄧㄠˇ', '🐭', '小老鼠'], ['上', 'ㄕㄤˋ', '⬆️', '上面'], ['下', 'ㄒㄧㄚˋ', '⬇️', '下面'], ['雨', 'ㄩˇ', '🌧️', '下雨'], ['田', 'ㄊㄧㄢˊ', '🌾', '田地'], ['目', 'ㄇㄨˋ', '👁️', '眼睛、目'], ['耳', 'ㄦˇ', '👂', '耳朵'], ['牛', 'ㄋㄧㄡˊ', '🐮', '牛'], ['羊', 'ㄧㄤˊ', '🐑', '小羊'], ['魚', 'ㄩˊ', '🐟', '小魚']].map(([c, z, e, w]) => ({ k: c, big: c, z, e, zh: w, say: `${c}。${w}的${c}。`, ans: c, c })) }
+  ];
+  const CNL_BY = Object.fromEntries(CNL.map(c => [c.id, c]));
+  // 🏫 六個學堂：首頁只放入口，主題按年齡分成 Level 1～3（付費的主題旁邊有 🔒）
+  const SCHOOLS = [
+    { id: 'cn', name: '國語小學堂', icon: '🀄', art: ['ㄅ', 'ㄆ', 'ㄇ', 'ㄈ'], c: '#D9573A', small: '注音、拼音、國字', head: '先學會怎麼念，再來玩', desc: '先點學習卡聽注音的發音：聲母、韻母、四聲聲調，再學把注音拼起來和常用國字。每一類都學過，就可以測驗。下面有三個等級的國語主題。',
+      levels: [['Level 1 聽聽看', '3～4 歲，聽注音和中文選圖', ['zhuyin', 'cn', 'cnword', 'story']], ['Level 2 拼拼看', '5 歲，把注音拼起來、認詞語', ['spell', 'words', 'zhuyinpro', 'cnsimilar']], ['Level 3 讀讀寫寫', '6 歲，句子、國字、故事排序', ['sentence', 'tracepro', 'storyseq']]] },
+    { id: 'math', name: '數學小學堂', icon: '🔢', art: ['1', '2', '+', '='], c: '#2C7BCB', small: '數數、加減、時間、錢', head: '數一數、算一算', desc: '從數數開始，再學加減、比大小、時間和錢。每個主題都會唸題目，答錯可以一直試到對。',
+      levels: [['Level 1 數數看', '3～4 歲，數數、比多少、認錢幣和時鐘', ['math', 'addsub', 'compare', 'money', 'time']], ['Level 2 算算看', '5 歲，長短、平分、第幾個、星期', ['measure', 'share', 'ordinal', 'calendar', 'mathpro', 'fix']], ['Level 3 動動腦', '6 歲，應用題、找錢、半點', ['wordpro', 'moneypro', 'clockpro']]] },
+    { id: 'en', name: '英語小學堂', icon: '🌍', art: ['A', 'b', 'C', 'd'], c: '#3F6FD8', small: '單字卡、字母、全英文', head: '', desc: '' },
+    { id: 'think', name: '思考小學堂', icon: '🔍', art: ['🔺', '🟦', '❓', '🧩'], c: '#8E5CD9', small: '觀察、找不同、推理', head: '仔細看、想一想', desc: '認識形狀和顏色、找不同、找規律、猜謎和推理。最後還有一題練好幾種能力的跨能力挑戰。',
+      levels: [['Level 1 看一看', '3～4 歲，形狀、顏色、位置', ['geo', 'color', 'position', 'hide', 'odd']], ['Level 2 找一找', '5 歲，找不同、推理、猜謎', ['solid', 'spotdiff', 'logic', 'riddle', 'patternpro', 'xmshape', 'xmcolor']], ['Level 3 想一想', '6 歲，邏輯推理、跨能力挑戰', ['deduce', 'xmplace', 'xmday', 'xmpattern', 'challenge']]] },
+    { id: 'hand', name: '動手玩', icon: '✏️', art: ['✏️', '🧩', '🎨', '🔗'], c: '#E08A1E', small: '描字、迷宮、拼圖、著色', head: '用手指動一動', desc: '描字、連連看、排順序、記憶翻牌、走迷宮、拼圖和著色，一邊玩一邊練手眼協調。',
+      levels: [['Level 1 玩玩看', '3～4 歲，描字、連連看、翻牌、著色', ['trace', 'match', 'sequence', 'memory', 'coloring']], ['Level 2 試試看', '5 歲，迷宮、拼圖、連點成圖', ['maze', 'puzzle', 'xmdots', 'xmcopy']], ['Level 3 挑戰看', '6 歲，對稱畫一半', ['xmmirror']]] },
+    { id: 'life', name: '生活小學堂', icon: '🌱', art: ['🪥', '🚦', '😊', '🍎'], c: '#3E9A6A', small: '禮貌、情緒、安全、常識', head: '學會照顧自己', desc: '生活常識、禮貌、情緒、生活自理、安全和自然科學，從生活的小事開始學。',
+      levels: [['Level 1 生活小事', '3～4 歲，常識、禮貌、情緒、自理', ['life', 'manners', 'emotion', 'habit', 'together', 'music', 'trash']], ['Level 2 我會照顧自己', '5 歲，陌生人、身體、職業、四季、飲食', ['stranger', 'calm', 'body', 'jobs', 'seasons', 'food', 'feel', 'animals']], ['Level 3 我懂更多', '6 歲，安全、科學、節日、情緒偵探', ['safety', 'science', 'festival', 'xmemo']]] }
+  ];
+  SCHOOLS.find(x => x.id === 'en').more = ['en', 'abc', 'enspell', 'enphrase', 'enverb'];
+  const SCH_BY = Object.fromEntries(SCHOOLS.map(x => [x.id, x]));
+  const SCH_SUBS = Object.fromEntries(SCHOOLS.map(x => [x.id, new Set((x.levels || []).flatMap(l => l[2]).concat(x.more || []))]));
+  const CN_SUBS = { has: sub => !!(CNZ.sch && SCH_SUBS[CNZ.sch] && SCH_SUBS[CNZ.sch].has(sub)) };
+  const CNZ = { from: false, sch: '', cur: 'sheng', playing: false };
+  const cnlVis = (c, x, opt) => c.type === 'zi' ? `<span class="cnl-zi">${x.big}</span>${opt ? '' : `<span class="ezl-mini">${x.e}</span>`}`
+    : c.type === 'pin' && !opt ? `<span class="cnl-pin">${x.parts.join('<i>+</i>')}<i>=</i><b>${x.big}</b></span><span class="ezl-mini">${x.e}</span>`
+    : `<span class="cnl-zy">${x.big}</span>${opt ? '' : `<span class="ezl-mini">${x.e}</span>`}`;
+  const cnlLearned = id => new Set(store.get('cnLearned', {})[id] || []);
+  function cnlMark(c, x) { const all = store.get('cnLearned', {}), s = new Set(all[c.id] || []); s.add(x.k); all[c.id] = [...s]; store.set('cnLearned', all); }
+  // 測驗：聽聲音找注音／國字、聽聲調、看圖找字
+  function cnlGen(c) {
+    return () => {
+      const t = pick(c.items), n = c.items.length >= 6 ? 4 : 3, opts = shuffle([t, ...others(c.items, t, n - 1, x => x.k)]);
+      if (c.type === 'tone') return { prompt: '聽一聽，這是第幾聲？', speech: [[`${t.c}。${t.c}。這是第幾聲？`]], stage: `<div class="cnl-qbig"><span class="cnl-zi">${t.c}</span></div>`, options: opts.map(o => ({ html: `<span class="cnl-opt">${o.k}</span>`, label: o.k, correct: o === t })), readOpts: true, after: [[`${t.c}，是${t.k}。`]], key: 't' + t.k };
+      if (c.type === 'zi' && Math.random() < .5) return { prompt: '看圖，找出對的國字', speech: [[`${t.zh}。哪一個是${t.c}？`]], stage: `<div class="cnl-qbig">${t.e}</div>`, options: opts.map(o => ({ html: `<span class="cnl-opt">${o.big}</span>`, label: o.big, correct: o === t })), after: [[`${t.zh}的${t.c}。`]], key: 'p' + t.k };
+      return { prompt: c.type === 'zi' ? '聽一聽，找出對的國字' : '聽一聽，找出對的注音', speech: [[c.type === 'zi' ? `${t.c}。${t.zh}的${t.c}。` : c.type === 'pin' ? `${t.big}。${t.c}。` : `${t.big}。${t.big}。`]], stage: `<div class="cnl-qbig">👂</div>`, options: opts.map(o => ({ html: `<span class="cnl-opt">${o.big}</span>`, label: o.big, correct: o === t })), after: [[t.say]], key: 'a' + t.k };
+    };
+  }
+  CNL.forEach(c => { GEN['cnl_' + c.id] = cnlGen(c); SUBNAME['cnl_' + c.id] = '國語學習卡・' + c.zh; });
+  // 從首頁（或幼小銜接）拿主題卡片複製一份放進學堂，點了一樣會開始玩
+  function schClone(box, subs, sch) {
+    subs.forEach(su => { const src = document.querySelector(`#home .subject[data-sub="${su}"], #zone .subject[data-sub="${su}"]`); if (!src) return; const b = src.cloneNode(true); b.onclick = () => { CNZ.from = true; CNZ.sch = sch; su === 'fix' ? openFix() : wantLearn(su) ? openLearn(su) : startRound(su); }; box.appendChild(b); });
+  }
+  function renderCnZone() {
+    const S = SCH_BY[CNZ.sch] || SCH_BY.cn, L = store.get('cnLearned', {});
+    $('schTitle').textContent = `${S.icon} ${S.name}`; $('schHead').textContent = S.head; $('schDesc').textContent = S.desc;
+    $('schArt').innerHTML = S.art.map(a => `<span style="--c:${S.c}">${a}</span>`).join('');
+    $('cnlSec').hidden = S.id !== 'cn';
+    if (S.id === 'cn') {
+      $('cnlCats').innerHTML = CNL.map(c => { const n = (L[c.id] || []).length, N = c.items.length, ready = n >= N, stars = subStars['cnl_' + c.id] || 0;
+        return `<button class="ezl-cat${ready ? ' ready' : ''}" data-c="${c.id}"><span class="i cnl-i">${c.icon}</span><span><b>${c.zh}</b><small>${c.sub}</small><span class="st">${ready ? `✅ 可以測驗${stars ? '　⭐ ' + stars : ''}` : `已學 ${n} / ${N}`}</span></span></button>`; }).join('');
+      $('cnlCats').querySelectorAll('.ezl-cat').forEach(b => b.onclick = () => cnlOpen(b.dataset.c));
+    }
+    $('cnLevels').innerHTML = S.levels.map((lv, i) => `<h3 class="group-title" style="--g: ${S.c}">${lv[0]} <small>${lv[1]}</small></h3><div class="subjects" data-cnlv="${i}"></div>`).join('');
+    S.levels.forEach((lv, i) => schClone($('cnLevels').querySelector(`[data-cnlv="${i}"]`), lv[2], S.id));
+    if (typeof refreshGot === 'function') try { refreshGot(); } catch (e) {}
+  }
+  function openSchool(id) { if (id === 'en') { CNZ.sch = 'en'; openEZone(); return; } CNZ.sch = id; renderCnZone(); show('cnone'); track('sch-open-' + id, '進入' + SCH_BY[id].name); }
+  function cnlOpen(id) { CNZ.sch = 'cn'; CNZ.cur = id; renderCnl(); dqLog('learn'); show('cnlearn'); track('cnl-open-' + id, '國語學習卡：' + CNL_BY[id].zh); }
+  function cnlProgress() {
+    const c = CNL_BY[CNZ.cur], n = cnlLearned(c.id).size, N = c.items.length, done = n >= N;
+    $('cnlProg').textContent = `已學 ${Math.min(n, N)} / ${N}`; $('cnlTest').disabled = !done;
+    $('cnlHint').textContent = done ? `全部學過了！按下面開始測驗，一共 ${ROUND} 題。` : `每一張卡片都點一下聽聽看（或按「全部聽一次」），還差 ${N - n} 張就可以測驗。`;
+  }
+  function renderCnl() {
+    const c = CNL_BY[CNZ.cur], L = cnlLearned(c.id);
+    $('cnlTitle').textContent = `${c.zh}`;
+    $('cnlGrid').innerHTML = c.items.map((x, i) => `<button class="ezl-card cnl-card${L.has(x.k) ? ' done' : ''}" data-i="${i}" aria-label="${x.k}">${cnlVis(c, x)}<small>${x.zh}${x.z ? `（${x.z}）` : ''}</small></button>`).join('');
+    $('cnlGrid').querySelectorAll('.cnl-card').forEach(b => b.addEventListener('click', () => {
+      CNZ.playing = false; const i = +b.dataset.i; cnlMark(c, c.items[i]); b.classList.add('done'); cnlProgress();
+      wcOpen(c.items.map(x => ({ vis: `<div class="ezl-big">${cnlVis(c, x)}</div>`, word: x.big, text: x.big, sub: x.zh, tag: c.zh, say: [[x.say]], onSay: () => { cnlMark(c, x); } })), i);
+    }));
+    cnlProgress();
+  }
+  // 跟著念：注音先念一次 → 停 2 秒讓小朋友跟著念 → 再念一次 → 例子
+  async function cnlTap(c, x, b) {
+    cnlMark(c, x); b.classList.add('done', 'reading'); cnlProgress();
+    if (c.type === 'zy') { await say([[x.big + '。']]); if (!CNZ.playing) return b.classList.remove('reading'); b.classList.add('follow'); await delay(2000); b.classList.remove('follow'); if (!CNZ.playing) return b.classList.remove('reading'); await say([[x.big + '。']]); await delay(500); await say([[x.zh + '。']]); }
+    else await say([[x.say]]);
+    b.classList.remove('reading');
+  }
+  $('cnlAll').addEventListener('click', async () => {
+    if (CNZ.playing) { CNZ.playing = false; return; }
+    CNZ.playing = true; $('cnlAll').textContent = '⏸ 停止';
+    const c = CNL_BY[CNZ.cur], btns = [...$('cnlGrid').children];
+    for (let i = 0; i < btns.length && CNZ.playing && !$('cnlearn').hidden; i++) { btns[i].scrollIntoView({ block: 'nearest', behavior: 'smooth' }); await cnlTap(c, c.items[i], btns[i]); await delay(c.type === 'zy' ? 1500 : soundOn ? 500 : 250); }
+    CNZ.playing = false; $('cnlAll').textContent = '▶ 全部聽一次';
+  });
+  $('cnlTest').addEventListener('click', () => { CNZ.playing = false; CNZ.from = true; CNZ.sch = 'cn'; track('cnl-test-' + CNZ.cur, '國語學習卡測驗'); startRound('cnl_' + CNZ.cur); });
+  $('cnlBack').addEventListener('click', () => { CNZ.playing = false; sayStop(); renderCnZone(); show('cnone'); });
+  $('cnEnter').addEventListener('click', () => openSchool('cn'));
+  $('cnoneBack').addEventListener('click', () => { CNZ.from = false; show('home'); });
+  /* ---------- 🏠 新首頁：今天的學習（分頁）、六個學堂、故事、玩樂，下方固定按鈕列 ---------- */
+  (() => {
+    const tabs = $('hmTabs'), setTab = t => { $('home').classList.toggle('t-dq', t === 'dq'); tabs.querySelectorAll('button').forEach(b => { b.classList.toggle('on', b.dataset.t === t); b.setAttribute('aria-selected', b.dataset.t === t); }); store.set('hmTab', t); };
+    tabs.querySelectorAll('button').forEach(b => b.onclick = () => setTab(b.dataset.t)); setTab(store.get('hmTab', 'path'));
+    $('schGrid').innerHTML = SCHOOLS.map(S => `<button class="sch-tile" data-s="${S.id}" data-say="${S.name}" style="--c:${S.c}"><span class="sch-art">${S.art.map(a => `<span>${a}</span>`).join('')}</span><b>${S.name}</b><small>${S.small}</small></button>`).join('');
+    $('schGrid').querySelectorAll('.sch-tile').forEach(b => b.onclick = () => openSchool(b.dataset.s));
+    $('schYx').onclick = () => $('yxEnter').click();
+    const tile = (id, ic, name, small, c) => `<button class="sch-mini" data-go="${id}" data-say="${name}" style="--c:${c}"><span class="i">${ic}</span><b>${name}</b><small>${small}</small></button>`;
+    $('storyGrid').innerHTML = tile('tellEnter', '📖', '看圖說故事', '聽老師說，再換你說', '#E8743B') + tile('sleepEnter', '🌙', '睡前故事', '關燈聽故事', '#4A4FA8') + tile('heroEnter', '🦸', '星光守護隊', '英雄故事和貼紙', '#E0577A');
+    $('playGrid').innerHTML = tile('parkEnter', '🎡', '星星樂園', '用星星換遊戲', '#D9479A') + tile('frEnter', '🧸', '我的好朋友', '聽他們自我介紹', '#3E9A6A');
+    document.querySelectorAll('.sch-mini').forEach(b => b.onclick = () => $(b.dataset.go).click());
+    if (!$('home').hidden) document.body.classList.add('has-bot');
+    // 下方按鈕列：只在首頁和學堂頁出現，玩遊戲的時候不會出現
+    $('botNav').querySelectorAll('button').forEach(b => b.onclick = () => {
+      const n = b.dataset.n; sayStop();
+      if (n === 'park') { $('parkEnter').click(); return; }
+      if (n === 'parent') { $('reportBtn').click(); return; }
+      if ($('home').hidden) { CNZ.sch = ''; show('home'); }
+      const el = n === 'sch' ? $('hmSchools') : n === 'story' ? $('hmStories') : null;
+      setTimeout(() => el ? el.scrollIntoView({ behavior: 'smooth', block: 'start' }) : window.scrollTo({ top: 0, behavior: 'smooth' }), 60);
+    });
+  })();
   $('ezoneBuy').addEventListener('click', () => { track('ezone-buy', '英語小學堂購買說明'); openGate(() => { renderReport(); show('report'); setTimeout(() => $('proBox').scrollIntoView({ behavior: 'smooth' }), 100); }); });
   const openZone = () => { renderZone(); show('zone'); track('zone-open', '進入幼小銜接專區'); };
   $('yxEnter').addEventListener('click', openZone); $('yxChip').addEventListener('click', e => { e.preventDefault(); openZone(); });
@@ -9330,6 +9555,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   $('reportBtn2').addEventListener('click', () => openGate());
   $('gateBack').addEventListener('click', () => show('home'));
   $('repBack').addEventListener('click', () => show('home'));
+  $('zyrOpen').addEventListener('click', () => zyrOpen());
 
   /* ---------- 🎡 星星樂園：闖關模式拿星星、純玩模式花星星（付費方案） ---------- */
   const PK_COST = 10, PK_PLAY_MS = 60000, PK_EXTRA = {}; // 每一場最多 1 分鐘，闖關和純玩都要先花星星
@@ -9935,6 +10161,8 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
         ${LEARN[s] ? step(I.learn, nowA === 'learn', '📖', '學一學', 'learn') : ''}${step(I.play, nowA === 'play', '🎮', `玩一回 ${subName(s)}`, 'play')}${step(I.test, nowA === 'test', '📝', '階段小考（答對 9 題）', 'test')}
         ${nx.map((x, j) => `<div class="pa-st next"><span class="pa-code" style="background:${bg[Math.floor((cur + 1 + j) / 3) % 5]}">${code(cur + 1 + j)}</span><span class="pa-body"><b>${subName(x)}</b></span></div>`).join('')}
       </div></div>`;
+    box.insertAdjacentHTML('afterbegin', `<div class="pa-tracks">${['math', 'cn', 'en'].map(t => `<button data-tk="${t}" class="${t === k ? 'on' : ''}">${PATH_TRACK[t].n}</button>`).join('')}</div>`);
+    box.querySelectorAll('[data-tk]').forEach(b => b.onclick = () => { store.set('pathTrack', b.dataset.tk); pathRender(); say([[`${PATH_TRACK[b.dataset.tk].n}的學習路線`]]); });
     box.querySelectorAll('.pa-step').forEach(b => b.onclick = () => { const a = b.dataset.a; track('path-' + a, '學習路線'); if (s === 'fix') openFix(); else if (a === 'learn') openLearn(s); else if (/^ez/.test(s)) { if (wantLearn(s)) openLearn(s); else startRound(s); } else startRound(s); });
     document.querySelectorAll('.bnav button').forEach(b => b.classList.toggle('on', b.dataset.t === k));
   }
@@ -10465,6 +10693,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     const out = ['哪一個是紅色的蘋果？', '第一個', '第二個', '換你說', '說得真好', '學了好久了，我們起來動一動，讓眼睛和身體休息一下', '好棒！眼睛和身體都休息好了，我們回來繼續學習吧', '第一次來嗎？先玩六題小測驗，幫你找到剛剛好的程度', '答案是這一個喔', '等一下我們再考一次', '我幫你拿掉一個，我們再聽一次', '沒關係，我們再聽一次'];
     MOVES.forEach(m => out.push(m[1]));
     out.push('翻翻看，找出相配的兩張牌', '數字和一樣多的點點是一對', '大寫和小寫是一對', '算式和答案是一對', '拿到鑰匙了！門打開了', '門鎖住了，要先拿到鑰匙喔'); [['小老鼠', '起司'], ['小兔子', '紅蘿蔔'], ['小狗', '骨頭'], ['小蜜蜂', '花朵']].forEach(([a, b]) => out.push(`先拿到鑰匙，才能打開門。帶${a}去拿鑰匙，再去找${b}`));
+    try { CNL.forEach(c => { out.push(c.zh); c.items.forEach(x => { out.push(x.say, x.k); if (c.type === 'tone') out.push(`${x.c}。${x.c}。這是第幾聲？`, `${x.c}，是${x.k}。`); else if (c.type === 'zi') out.push(`${x.zh}。哪一個是${x.c}？`, `${x.zh}的${x.c}。`, `${x.c}。${x.zh}的${x.c}。`); else if (c.type === 'pin') out.push(`${x.big}。${x.c}。`); else out.push(`${x.big}。${x.big}。`); }); }); out.push('國語小學堂', '聽一聽，這是第幾聲？', '看圖，找出對的國字', '聽一聽，找出對的國字', '聽一聽，找出對的注音'); } catch (e) {}
     MT_TG.forEach(t => out.push(t[0])); Object.values(PETC).forEach(x => out.push(x.n)); TELL.forEach(x => out.push(x.t)); out.push('用手指沿著線走走看，先點左邊，再點線另一頭的東西');
     try { TELL.forEach(S => { out.push(`${S.t}。先聽老師說故事，再換你說`); S.P.forEach(p => { out.push(p.s, p.q); }); }); out.push('故事說完了！現在換你當說故事的人', '換你跟著說一次', '說得真好', '你好棒！把整個故事說完了，可以播放給爸爸媽媽聽喔'); } catch (e) {}
     const fin = ['全部配對成功！記憶力真好。', '小測驗完成了！以後的題目會配合你的程度喔。', '你好厲害！下一次題目會難一點點喔。', '我們先練習簡單一點的，慢慢來就會了。', '全部都會了，真棒！', '很棒！再玩一次會更好。', '慢慢來，多玩幾次就會了。', '試玩結束囉！想玩更多，請爸爸媽媽開啟。'];
@@ -10538,7 +10767,101 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
   const TL = { tok: 0, rec: null };
   // 錄音存在這台裝置的 IndexedDB（不會上傳）
   const tlDB = () => new Promise((res, rej) => { try { const r = indexedDB.open('ddn-tell', 1); r.onupgradeneeded = () => r.result.createObjectStore('rec'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); } catch (e) { rej(e); } });
+  async function tlDel(k) { try { const db = await tlDB(); await new Promise(r => { const t = db.transaction('rec', 'readwrite'); t.objectStore('rec').delete(k); t.oncomplete = r; t.onerror = r; }); } catch (e) {} }
   async function tlPut(k, blob) { try { const db = await tlDB(); await new Promise(r => { const t = db.transaction('rec', 'readwrite'); t.objectStore('rec').put(blob, k); t.oncomplete = r; t.onerror = r; }); } catch (e) {} }
+  /* ---------- 🎙️ 注音聲母真人錄音：AI 念不出「純聲母本音」，請老師或家長錄好 21 個聲母，網站就改播真人錄音 ---------- */
+  const ZY_INIT = 'ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙ'.split('');
+  const ZY_ROM = { ㄅ: 'b', ㄆ: 'p', ㄇ: 'm', ㄈ: 'f', ㄉ: 'd', ㄊ: 't', ㄋ: 'n', ㄌ: 'l', ㄍ: 'g', ㄎ: 'k', ㄏ: 'h', ㄐ: 'j', ㄑ: 'q', ㄒ: 'x', ㄓ: 'zh', ㄔ: 'ch', ㄕ: 'sh', ㄖ: 'r', ㄗ: 'z', ㄘ: 'c', ㄙ: 's' };
+  const ZYR = { local: {}, server: null };
+  async function zyrLoad() {
+    for (const z of ZY_INIT) { const b = await tlGet('zy:' + z).catch(() => null); if (b) ZYR.local[z] = b; else delete ZYR.local[z]; }
+    if (ZYR.server === null) { ZYR.server = {}; try { const r = await fetch('audio/zy/index.json', { cache: 'no-cache' }); if (r.ok) (await r.json()).forEach(z => { ZYR.server[z] = 1; }); } catch (e) {} }
+  }
+  setTimeout(() => zyrLoad().catch(() => {}), 800);
+  // 一整句只有一個聲母（例如「ㄅ。」）→ 播真人錄音；這台裝置自己錄的優先，再來是網站上的
+  function zyrFor(text) {
+    const m = /^\s*([ㄅ-ㄙ])\s*[。！？，、]?\s*$/.exec(String(text)); if (!m) return null;
+    const z = m[1]; return ZYR.local[z] || (ZYR.server && ZYR.server[z] ? `audio/zy/${ZY_ROM[z]}.wav` : null);
+  }
+  function zyrPlay(src, my) {
+    return new Promise(res => {
+      const a = new Audio(), url = typeof src === 'string' ? src : URL.createObjectURL(src); a.setAttribute('playsinline', '');
+      let t = 0; const end = () => { clearInterval(t); if (typeof src !== 'string') URL.revokeObjectURL(url); res(); };
+      a.onended = end; a.onerror = end; t = setInterval(() => { if (my !== undefined && my !== sayToken) { try { a.pause(); } catch (e) {} end(); } }, 120);
+      a.src = url; const p = a.play(); if (p) p.catch(end);
+    });
+  }
+  // 錄好的聲音：轉成單聲道、剪掉前後空白、音量調到一樣大，存成 WAV（每台手機都能播）
+  async function zyrProcess(blob) {
+    const ac = TL.ac || (TL.ac = new (window.AudioContext || window.webkitAudioContext)());
+    const buf = await new Promise((ok, no) => blob.arrayBuffer().then(b => ac.decodeAudioData(b, ok, no)).catch(no));
+    const n = buf.length, ch = buf.numberOfChannels, x = new Float32Array(n);
+    for (let c = 0; c < ch; c++) { const d = buf.getChannelData(c); for (let i = 0; i < n; i++) x[i] += d[i] / ch; }
+    let pk = 0; for (let i = 0; i < n; i++) pk = Math.max(pk, Math.abs(x[i])); if (pk < .01) return null;
+    const th = pk * .06, sr = buf.sampleRate, win = Math.floor(sr * .01); let a = 0, b = n - 1;
+    const loud = i => { let m = 0; for (let k = i; k < Math.min(n, i + win); k++) m = Math.max(m, Math.abs(x[k])); return m > th; };
+    while (a < n - win && !loud(a)) a += win; while (b > a && !loud(Math.max(0, b - win))) b -= win;
+    a = Math.max(0, a - Math.floor(sr * .08)); b = Math.min(n, b + Math.floor(sr * .15));
+    const OUT = 24000, len = Math.floor((b - a) * OUT / sr), y = new Int16Array(len), g = .9 / pk;
+    for (let i = 0; i < len; i++) { const s = a + i * sr / OUT, i0 = Math.floor(s), f = s - i0, v = (x[i0] || 0) * (1 - f) + (x[i0 + 1] || 0) * f; const fade = Math.min(1, i / (OUT * .01), (len - i) / (OUT * .02)); y[i] = Math.max(-1, Math.min(1, v * g * fade)) * 32767; }
+    const hd = new DataView(new ArrayBuffer(44)), w = (o, s) => [...s].forEach((c, i) => hd.setUint8(o + i, c.charCodeAt(0)));
+    w(0, 'RIFF'); hd.setUint32(4, 36 + len * 2, true); w(8, 'WAVE'); w(12, 'fmt '); hd.setUint32(16, 16, true); hd.setUint16(20, 1, true); hd.setUint16(22, 1, true); hd.setUint32(24, OUT, true); hd.setUint32(28, OUT * 2, true); hd.setUint16(32, 2, true); hd.setUint16(34, 16, true); w(36, 'data'); hd.setUint32(40, len * 2, true);
+    return new Blob([hd.buffer, y.buffer], { type: 'audio/wav' });
+  }
+  // 打包成 zip（不壓縮），讓家長下載後上傳到 GitHub 的 audio/zy 資料夾
+  const ZCRC = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+  const zcrc = u => { let c = 0xFFFFFFFF; for (let i = 0; i < u.length; i++) c = ZCRC[(c ^ u[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+  async function zyrZip(files) {
+    const parts = [], cen = []; let off = 0;
+    for (const [name, blob] of files) {
+      const d = new Uint8Array(await blob.arrayBuffer()), nm = new TextEncoder().encode(name), c = zcrc(d), h = new DataView(new ArrayBuffer(30));
+      h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint32(14, c, true); h.setUint32(18, d.length, true); h.setUint32(22, d.length, true); h.setUint16(26, nm.length, true);
+      parts.push(h.buffer, nm, d);
+      const e = new DataView(new ArrayBuffer(46)); e.setUint32(0, 0x02014b50, true); e.setUint16(4, 20, true); e.setUint16(6, 20, true); e.setUint32(16, c, true); e.setUint32(20, d.length, true); e.setUint32(24, d.length, true); e.setUint16(28, nm.length, true); e.setUint32(42, off, true);
+      cen.push(e.buffer, nm); off += 30 + nm.length + d.length;
+    }
+    const csz = cen.reduce((s, b) => s + (b.byteLength || b.length), 0), end = new DataView(new ArrayBuffer(22));
+    end.setUint32(0, 0x06054b50, true); end.setUint16(8, files.length, true); end.setUint16(10, files.length, true); end.setUint32(12, csz, true); end.setUint32(16, off, true);
+    return new Blob([...parts, ...cen, end.buffer], { type: 'application/zip' });
+  }
+  function zyrOpen() {
+    let box = $('zyRec'); if (!box) { box = document.createElement('div'); box.id = 'zyRec'; box.className = 'zyr'; document.body.appendChild(box); }
+    const rows = () => ZY_INIT.map(z => `<div class="zyr-row${ZYR.local[z] ? ' ok' : ''}" data-z="${z}"><b>${z}</b><button class="zyr-mic" aria-label="錄 ${z}">🎙️</button><button class="zyr-pl" aria-label="聽 ${z}" ${ZYR.local[z] ? '' : 'disabled'}>▶</button><span>${ZYR.local[z] ? '✅' : ZYR.server && ZYR.server[z] ? '網站上有' : ''}</span></div>`).join('');
+    const n = () => ZY_INIT.filter(z => ZYR.local[z]).length;
+    const draw = () => {
+      box.innerHTML = `<div class="zyr-card"><div class="zyr-top"><b>🎙️ 錄製注音聲母（本音）</b><button class="zyr-x" aria-label="關閉">✕</button></div>
+        <p class="zyr-tip">AI 念不出「純聲母」，請老師或家長用溫柔、清楚的聲音錄。每個聲母<b>只念本音</b>，不要加 ㄛ、ㄜ（例如 ㄅ 不要念成「玻」）。按 🎙️ 開始，念完再按一次停止，前後的空白會自動剪掉。請在安靜的地方錄，手機離嘴巴一個拳頭。</p>
+        <div class="zyr-grid">${rows()}</div>
+        <p class="zyr-st" id="zyrSt">已錄 ${n()} / 21。錄好的聲音這台手機會馬上使用；要讓所有人都聽到，請按「下載全部」，再把檔案上傳到 GitHub。</p>
+        <div class="zyr-foot"><button class="btn small" id="zyrAll">▶ 全部聽一次</button><button class="btn small" id="zyrDl" ${n() ? '' : 'disabled'}>⬇️ 下載全部（zip）</button></div></div>`;
+      box.querySelector('.zyr-x').onclick = () => { if (TL.rec && TL.rec.state === 'recording') TL.rec.stop(); box.hidden = true; };
+      box.querySelectorAll('.zyr-row').forEach(r => {
+        const z = r.dataset.z;
+        r.querySelector('.zyr-pl').onclick = () => ZYR.local[z] && zyrPlay(ZYR.local[z]);
+        r.querySelector('.zyr-mic').onclick = async () => {
+          if (TL.rec && TL.rec.state === 'recording') { TL.rec.stop(); return; }
+          let stream; try { stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: true, autoGainControl: false } }); } catch (e) { $('zyrSt').textContent = '沒辦法使用麥克風，請到手機設定允許這個網站使用麥克風。'; return; }
+          const mt = tlMime(), ch = [], rec = mt ? new MediaRecorder(stream, { mimeType: mt }) : new MediaRecorder(stream); TL.rec = rec;
+          rec.ondataavailable = e => { if (e.data && e.data.size) ch.push(e.data); };
+          rec.onstop = async () => {
+            stream.getTracks().forEach(t => t.stop()); r.classList.remove('on');
+            try { const wav = await zyrProcess(new Blob(ch, { type: (ch[0] && ch[0].type) || mt || 'audio/mp4' })); if (!wav) { $('zyrSt').textContent = `${z} 沒有錄到聲音，請再錄一次。`; return; } ZYR.local[z] = wav; await tlPut('zy:' + z, wav); draw(); zyrPlay(wav); }
+            catch (e) { $('zyrSt').textContent = '這段錄音處理不了，請再錄一次。'; }
+          };
+          sayStop(); rec.start(500); r.classList.add('on'); $('zyrSt').textContent = `錄音中：請念「${z}」的本音，念完再按一次 🎙️`;
+          setTimeout(() => { if (rec.state === 'recording') rec.stop(); }, 6000);
+        };
+      });
+      $('zyrAll').onclick = async () => { for (const z of ZY_INIT) { if (box.hidden) return; const s = ZYR.local[z]; if (!s) continue; const r = box.querySelector(`[data-z="${z}"]`); r.classList.add('on'); await zyrPlay(s); r.classList.remove('on'); await delay(700); } };
+      $('zyrDl').onclick = async () => {
+        const files = ZY_INIT.filter(z => ZYR.local[z]).map(z => [`${ZY_ROM[z]}.wav`, ZYR.local[z]]);
+        files.push(['index.json', new Blob([JSON.stringify(ZY_INIT.filter(z => ZYR.local[z]))], { type: 'application/json' })]);
+        const zip = await zyrZip(files), a = document.createElement('a'); a.href = URL.createObjectURL(zip); a.download = '注音聲母錄音.zip'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
+        $('zyrSt').textContent = '已下載。請把 zip 解開，把裡面全部檔案上傳到 GitHub 的 audio/zy 資料夾。';
+      };
+    };
+    zyrLoad().then(() => { box.hidden = false; draw(); });
+  }
   async function tlGet(k) { try { const db = await tlDB(); return await new Promise(r => { const q = db.transaction('rec').objectStore('rec').get(k); q.onsuccess = () => r(q.result || null); q.onerror = () => r(null); }); } catch (e) { return null; } }
   const tlKey = (st, i) => `${kidNow().id}|${st.id}|${i}`;
   // 📖 看圖說故事：人物用有身體、有動作的角色（不是只有頭），動物用全身的畫法
@@ -11180,29 +11503,64 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
     $('tlNow').onclick = () => tellMine(S, 0); $('tlAgain').onclick = () => tellListen(S);
     say([['故事說完了！現在換你當說故事的人']]);
   }
+  // 播放孩子自己錄的聲音：先用 audio 播，播不出來（iPhone 有時會這樣）就改用 Web Audio 播，一定有聲音
+  function tlPlay(blob, alive) {
+    sayStop();
+    return new Promise(res => {
+      let done = false; const end = ok => { if (done) return; done = true; clearInterval(t); res(ok); };
+      const t = setInterval(() => { if (alive && !alive()) { try { a.pause(); } catch (e) {} try { src && src.stop(); } catch (e) {} end(false); } }, 250);
+      let src = null;
+      const viaWA = async () => {
+        try {
+          const ac = TL.ac || (TL.ac = new (window.AudioContext || window.webkitAudioContext)()); if (ac.state === 'suspended') await ac.resume();
+          const buf = await new Promise((ok, no) => blob.arrayBuffer().then(b => ac.decodeAudioData(b, ok, no)).catch(no));
+          src = ac.createBufferSource(); src.buffer = buf; src.connect(ac.destination); src.onended = () => end(true); src.start();
+        } catch (e) { end(false); }
+      };
+      const a = TL.au || (TL.au = new Audio()); a.setAttribute('playsinline', ''); a.onended = () => end(true); a.onloadedmetadata = () => { if (isFinite(a.duration) && a.duration > 0) setTimeout(() => end(true), a.duration * 1000 + 1500); }; setTimeout(() => end(true), 32000); a.onerror = () => { if (!done) viaWA(); };
+      try { if (TL.auUrl) URL.revokeObjectURL(TL.auUrl); TL.auUrl = URL.createObjectURL(blob); a.src = TL.auUrl; a.load(); const pr = a.play(); if (pr) pr.catch(() => { if (!done) viaWA(); }); } catch (e) { viaWA(); }
+    });
+  }
+  const tlMime = () => { try { return ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm', 'audio/ogg'].find(m => MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m)) || ''; } catch (e) { return ''; } };
   async function tellMine(S, i) {
     const my = ++TL.tok, p = S.P[i], small = S.a === 'small';
     const guide = small ? '跟著老師說一次' : p.q;
     tlPanel(S, i, `<p class="tl-q">${small ? '👂 先聽，再跟著說：' : '💬 '}<b>${small ? p.s : p.q}</b></p>
       ${!small && p.k.length ? `<div class="tl-hint">可以用這些詞：${p.k.map(w => `<span>${w}</span>`).join('')}</div>` : ''}
-      <div class="tl-row"><button class="tl-mic" id="tlMic">🎤</button></div><p class="tl-st" id="tlSt">按一下麥克風開始說，說完再按一下</p>
-      <div class="tl-row"><button class="sl-btn" id="tlHear">👂 聽老師說這張</button><button class="sl-btn" id="tlMe" hidden>▶ 聽我說的</button><button class="tl-go" id="tlNext" hidden>${i + 1 < S.P.length ? '下一張 →' : '完成 🎉'}</button></div>`);
-    $('tlHear').onclick = () => say([[p.s]]);
-    const old = await tlGet(tlKey(S, i)); let url = old ? URL.createObjectURL(old) : null;
-    if (url) { $('tlMe').hidden = false; $('tlNext').hidden = false; }
-    $('tlMe').onclick = () => { if (url) new Audio(url).play().catch(() => {}); };
+      <div class="tl-row"><button class="tl-mic" id="tlMic">🎤</button></div><p class="tl-st" id="tlSt">先聽老師說完，再按麥克風</p>
+      <div class="tl-row"><button class="sl-btn" id="tlHear">👂 聽老師說這張</button><button class="sl-btn" id="tlMe" hidden>▶ 聽我說的</button><button class="sl-btn" id="tlDel" hidden>🗑️ 刪掉這段</button><button class="tl-go" id="tlNext" hidden>${i + 1 < S.P.length ? '下一張 →' : '完成 🎉'}</button></div>`);
+    // 老師在念的時候先不能錄音（才不會錄到老師的聲音），念完才亮起來
+    const micOn = on => { const m = $('tlMic'); if (!m || my !== TL.tok) return; m.disabled = !on; if (!(TL.rec && TL.rec.state === 'recording')) $('tlSt').textContent = on ? '按一下麥克風開始說，說完再按一下' : '先聽老師說完，再按麥克風'; };
+    micOn(false);
+    $('tlHear').onclick = async () => { if (TL.rec && TL.rec.state === 'recording') return; micOn(false); await Promise.race([say([[p.s]]), delay(20000)]); micOn(true); };
+    const old = await tlGet(tlKey(S, i));
+    if (old) { $('tlMe').hidden = false; $('tlDel').hidden = false; $('tlNext').hidden = false; }
+    let mine = old;
+    // 刪掉這一頁的錄音（要按兩下才會刪，避免不小心按到）
+    let delArm = 0;
+    $('tlDel').onclick = async () => {
+      if (!mine || (TL.rec && TL.rec.state === 'recording')) return;
+      if (Date.now() - delArm > 3000) { delArm = Date.now(); $('tlDel').textContent = '🗑️ 再按一次就刪掉'; setTimeout(() => { if ($('tlDel') && Date.now() - delArm >= 3000) $('tlDel').textContent = '🗑️ 刪掉這段'; }, 3100); return; }
+      delArm = 0; sayStop(); try { TL.au && TL.au.pause(); } catch (e) {}
+      await tlDel(tlKey(S, i)); mine = null; if (!$('tlDel')) return;
+      $('tlDel').hidden = true; $('tlDel').textContent = '🗑️ 刪掉這段'; $('tlMe').hidden = true;
+      $('tlSt').textContent = '刪掉了！按一下麥克風重新錄';
+    };
+    $('tlMe').onclick = async () => { if (!mine || (TL.rec && TL.rec.state === 'recording')) return; $('tlSt').textContent = '▶ 播放中⋯'; const ok = await tlPlay(mine, () => !!$('tlMe')); if ($('tlSt')) $('tlSt').textContent = ok ? '說得真好！可以再聽一次，或重新錄一次' : '播放不出來，請把音量調大，或重新錄一次'; };
     $('tlNext').onclick = () => { if (i + 1 < S.P.length) tellMine(S, i + 1); else tellFinish(S); };
     $('tlMic').onclick = async () => {
       if (TL.rec && TL.rec.state === 'recording') { TL.rec.stop(); return; }
       if (!navigator.mediaDevices || !window.MediaRecorder) { $('tlSt').textContent = '這台裝置不能錄音，可以直接大聲說，說完按「下一張」'; $('tlNext').hidden = false; return; }
       let stream; try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e) { $('tlSt').textContent = '要先允許使用麥克風，才能錄下你說的故事喔！'; $('tlNext').hidden = false; return; }
-      const ch = [], r = new MediaRecorder(stream); TL.rec = r; r.ondataavailable = e => ch.push(e.data);
-      r.onstop = async () => { stream.getTracks().forEach(t => t.stop()); $('tlMic') && $('tlMic').classList.remove('on'); const blob = new Blob(ch, { type: r.mimeType || 'audio/webm' }); await tlPut(tlKey(S, i), blob);
-        if (url) URL.revokeObjectURL(url); url = URL.createObjectURL(blob); if (!$('tlMe')) return; $('tlMe').hidden = false; $('tlNext').hidden = false; $('tlSt').textContent = '說得真好！可以聽聽看，或重新錄一次';
+      const mt = tlMime(), ch = [], r = mt ? new MediaRecorder(stream, { mimeType: mt }) : new MediaRecorder(stream); TL.rec = r; r.ondataavailable = e => { if (e.data && e.data.size) ch.push(e.data); };
+      r.onstop = async () => { stream.getTracks().forEach(t => t.stop()); $('tlMic') && $('tlMic').classList.remove('on'); const blob = new Blob(ch, { type: (ch[0] && ch[0].type) || r.mimeType || mt || 'audio/mp4' });
+        if (!blob.size) { if ($('tlSt')) $('tlSt').textContent = '沒有錄到聲音，再按一下麥克風試試看'; return; }
+        mine = blob; tlPut(tlKey(S, i), blob).catch(() => {}); if (!$('tlMe')) return; $('tlMe').hidden = false; $('tlDel').hidden = false; $('tlNext').hidden = false; $('tlSt').textContent = '說得真好！可以聽聽看，或重新錄一次';
         const L = store.get('speakLog', {}); L[today()] = (L[today()] || 0) + 1; store.set('speakLog', L); say([['說得真好']]); };
-      r.start(); $('tlMic').classList.add('on'); $('tlSt').textContent = '🔴 錄音中⋯說完再按一下麥克風'; setTimeout(() => { if (r.state === 'recording') r.stop(); }, 30000);
+      sayStop(); r.start(1000); $('tlMic').classList.add('on'); $('tlSt').textContent = '🔴 錄音中⋯說完再按一下麥克風'; setTimeout(() => { if (r.state === 'recording') r.stop(); }, 30000);
     };
-    if (small) await say([[p.s], ['換你跟著說一次']]); else await say([[p.q]]);
+    await Promise.race([small ? say([[p.s], ['換你跟著說一次']]) : say([[p.q]]), delay(25000)]);
+    micOn(true);
   }
   function tellFinish(S) {
     const D = store.get('tellDone', {}), first = !D[S.id]; D[S.id] = Date.now(); store.set('tellDone', D);
@@ -11218,7 +11576,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
       if (my !== TL.tok) return;
       tlPanel(S, i, `<p class="tl-cap">🎙️ 說故事的人：${kidNow().name}</p>`);
       const b = await tlGet(tlKey(S, i));
-      if (b) await new Promise(r => { const a = new Audio(URL.createObjectURL(b)); a.onended = r; a.onerror = r; a.play().catch(r); const t = setInterval(() => { if (my !== TL.tok) { a.pause(); clearInterval(t); r(); } }, 300); });
+      if (b) await tlPlay(b, () => my === TL.tok);
       else await say([[S.P[i].s]]);
       await delay(700);
     }
