@@ -172,16 +172,23 @@ if not os.path.exists('audio/zyfix2.txt'):
     print('破音字重做', len(redo))
 todo = [r for r in rows if not os.path.exists(f'{OUT}/{r[0]}.mp3')]
 print('全部', len(rows), '要做', len(todo), '字數', sum(len(r[3]) for r in todo))
+# 優先清單：固定會念的句子先做，而且用實際字數計算（不乘 2），把本月剩下的額度留給它們
+PRI = set(json.load(open('audio/priority.json', encoding='utf-8'))) if os.path.exists('audio/priority.json') else set()
+pri_rows = [r for r in todo if r[3] in PRI]; todo = [r for r in todo if r[3] not in PRI]
+print('優先句子', len(pri_rows), '字數', sum(len(r[3]) for r in pri_rows))
 groups = {}
 for r in todo: groups.setdefault((r[1], r[2], r[4], r[5]), []).append(r)
+pgroups = {}
+for r in pri_rows: pgroups.setdefault((r[1], r[2], r[4], r[5]), []).append(r)
 jobs = []
-for g in groups.values():
+for g in list(pgroups.values()) + list(groups.values()):
     cur, cc = [], 0
     for r in g:
         if cur and (len(cur) >= 30 or cc + len(r[3]) > 700): jobs.append(cur); cur, cc = [], 0
         cur.append(r); cc += len(r[3])
     if cur: jobs.append(cur)
-print('請求批次', len(jobs))
+NPRI = sum(1 for j in jobs if j[0][3] in PRI)
+print('請求批次', len(jobs), '其中優先', NPRI)
 MAXJOBS = int(os.environ.get('MAXJOBS', '0'))
 done = fail = 0; since = 0
 USE = 'audio/usage.json'
@@ -192,7 +199,9 @@ print('本月已用字數', base, '上限', CAP)
 for k, job in enumerate(jobs):
     if time.time() - T0 > BUDGET: print('時間到，下次繼續'); break
     n = sum(len(r[3]) for r in job)
-    if base + spent[0] + n * 2 > CAP: print('本月免費字數快用完了，先停在這裡，下個月再繼續'); break
+    if base + spent[0] + n * (1 if k < NPRI else 2) > CAP:
+        if k < NPRI: continue
+        print('本月免費字數快用完了，先停在這裡，下個月再繼續'); break
     if MAXJOBS and k >= MAXJOBS: print('測試完成'); break
     res = batch(job)
     done += sum(res); fail += len(res) - sum(res); since += sum(res)
