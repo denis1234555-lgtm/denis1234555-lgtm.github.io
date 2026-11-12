@@ -7176,8 +7176,10 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     const slot = [...document.querySelectorAll('.sq-slot')].find(sl => !sl.querySelector('.sq-card'));
     if (!slot) return;
     slot.appendChild(b); sq.placed.push(b); tone([600 + 60 * sq.placed.length], .06, 'sine');
+    { const tx = b.querySelector('.t'); if (tx && tx.textContent) say([[tx.textContent]]); } // 小朋友還不認字：放上去就念出這一步
     if (document.querySelectorAll('.sq-slot .sq-card').length < sq.steps.length) return;
-    const ok = [...document.querySelectorAll('.sq-slot')].every((sl, i) => Number(sl.querySelector('.sq-card').dataset.i) === i);
+    // 圖一樣的兩步（例如兩隻🐸、兩顆雪球）對調也算對，因為小朋友看不出差別
+    const ok = [...document.querySelectorAll('.sq-slot')].every((sl, i) => { const j = Number(sl.querySelector('.sq-card').dataset.i); return j === i || sq.steps[j][0] === sq.steps[i][0]; });
     if (ok) { st.locked = true; itemDone(st.first); return; }
     st.first = false; mood('is-think'); buzz(); say([['順序不太對，再想想看']]);
     document.querySelector('.sq-slots').classList.add('shake');
@@ -10896,7 +10898,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     MOVES.forEach(m => out.push(m[1]));
     out.push('翻翻看，找出相配的兩張牌', '數字和一樣多的點點是一對', '大寫和小寫是一對', '算式和答案是一對', '拿到鑰匙了！門打開了', '門鎖住了，要先拿到鑰匙喔'); [['小老鼠', '起司'], ['小兔子', '紅蘿蔔'], ['小狗', '骨頭'], ['小蜜蜂', '花朵']].forEach(([a, b]) => out.push(`先拿到鑰匙，才能打開門。帶${a}去拿鑰匙，再去找${b}`));
     try { out.push(CNL_DUO_SAY); CNL.forEach(c => { c.items.forEach(x => { out.push(x.say, x.k); if (c.type === 'tone') out.push(`${x.c}。${x.c}。這是第幾聲？`, `${x.c}，是${x.k}。`); else if (c.type === 'zi') out.push(`${x.zh}。哪一個是${x.c}？`, `${x.zh}的${x.c}。`, `${x.c}。${x.zh}的${x.c}。`); else if (c.type === 'pin') out.push(`${x.big}。${x.c}。`); else out.push(`${x.big}。${x.big}。`); }); }); out.push('國語小學堂', '聽一聽，這是第幾聲？', '看圖，找出對的國字', '聽一聽，找出對的國字', '聽一聽，找出對的注音'); } catch (e) {}
-    MT_TG.forEach(t => out.push(t[0])); MATCHES.forEach(m => { if (m.say) out.push(m.say); m.p.forEach(x => { if (Array.isArray(x) && x[2]) out.push(x[2], m.snd ? `${x[2]}，是${x[3]}在叫` : x[3]); }); }); Object.values(PETC).forEach(x => out.push(x.n)); TELL.forEach(x => out.push(x.t)); out.push('用手指沿著線走走看，先點左邊，再點線另一頭的東西');
+    MT_TG.forEach(t => out.push(t[0])); SEQS.concat(SEQS6, PRO_SEQS).forEach(q => (q.s || []).forEach(x => x[1] && out.push(x[1]))); MATCHES.forEach(m => { if (m.say) out.push(m.say); m.p.forEach(x => { if (Array.isArray(x) && x[2]) out.push(x[2], m.snd ? `${x[2]}，是${x[3]}在叫` : x[3]); }); }); Object.values(PETC).forEach(x => out.push(x.n)); TELL.forEach(x => out.push(x.t)); out.push('用手指沿著線走走看，先點左邊，再點線另一頭的東西');
     try { TELL.forEach(S => { out.push(`${S.t}。先聽老師說故事，再換你說`); S.P.forEach(p => { out.push(p.s, p.q); }); }); out.push('故事說完了！現在換你當說故事的人', '換你跟著說一次', '說得真好', '你好棒！把整個故事說完了，可以播放給爸爸媽媽聽喔'); } catch (e) {}
     const fin = ['全部配對成功！記憶力真好。', '小測驗完成了！以後的題目會配合你的程度喔。', '你好厲害！下一次題目會難一點點喔。', '我們先練習簡單一點的，慢慢來就會了。', '全部都會了，真棒！', '很棒！再玩一次會更好。', '慢慢來，多玩幾次就會了。', '試玩結束囉！想玩更多，請爸爸媽媽開啟。'];
     for (let n = 0; n <= 30; n++) fin.forEach(m => out.push(`拿到${n}顆星星。${m}`));
