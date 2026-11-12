@@ -374,6 +374,9 @@ html .trace-box, html .trace-box canvas, html #game .trace-box canvas, html.no-z
 .mt-col { display: flex; flex-direction: column; gap: 10px; }
 .mt-item { min-height: 66px; display: grid; place-items: center; font-size: clamp(2rem, 9vw, 2.8rem); padding: 4px; }
 .mt-item.txt { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.4rem, 6.5vw, 2.4rem); }
+.mt-item.snd { grid-auto-flow: column; gap: 6px; font-size: clamp(1.2rem, 5.5vw, 2rem); } .mt-spk { font-size: 1.1em; animation: mtSpk 1.6s ease-in-out infinite; } @keyframes mtSpk { 50% { transform: scale(1.15); } }
+.mt-item .fb-art svg { height: 1.75em; }
+.mt-sw { width: 48px; height: 48px; border-radius: 50%; border: 3px solid var(--ink); display: block; }
 .mt-item.sel { box-shadow: 0 6px 0 var(--c-deep), 0 0 0 4px var(--c); }
 .mt-item.done { background: var(--good-soft); box-shadow: 0 6px 0 var(--good-deep); }
 .mt-pen { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; z-index: 0; } .mt-ink { fill: none; stroke: #F28C28; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: .85; }
@@ -3399,7 +3402,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     { sc: 'table|b1 120 stand happy|e 🍚 160 130 30', e: '🍚', q: '吃飯前，要先做什麼？', a: [['🧼', '洗手'], ['🎮', '玩遊戲'], ['🛏️', '睡覺']], why: '吃飯前要洗手', lv: 1 },
     { e: '🐟', q: '魚住在哪裡？', a: [['🌊', '水裡'], ['🌳', '樹上'], ['🌵', '沙漠']], why: '魚住在水裡', lv: 1 },
     { e: '🐦', q: '小鳥的家在哪裡？', a: [['🌳', '樹上'], ['🌊', '水裡'], ['🧊', '冰上']], why: '小鳥住在樹上', lv: 1 },
-    { sc: 'bedroom|b2 150 stand sad|e 🌡️ 182 72 24', e: '🤒', q: '生病了，要去哪裡？', a: [['🏥', '醫院'], ['🏫', '學校'], ['🎡', '遊樂園']], why: '生病要去看醫生', lv: 1 },
+    { sc: 'bedroom|b2 150 stand sick|e 🌡️ 177 108 16', e: '🤒', q: '生病了，要去哪裡？', a: [['🏥', '醫院'], ['🏫', '學校'], ['🎡', '遊樂園']], why: '生病要去看醫生', lv: 1 },
     { e: '🐧', q: '企鵝住在哪裡？', a: [['🧊', '冰天雪地'], ['🌵', '沙漠'], ['🌳', '樹上']], why: '企鵝住在很冷的地方', lv: 2 },
     { e: '🐪', q: '駱駝住在哪裡？', a: [['🌵', '沙漠'], ['🧊', '冰天雪地'], ['🌊', '水裡']], why: '駱駝住在沙漠', lv: 2 },
     { e: '🍌', q: '香蕉皮要丟哪裡？', a: [['🍂', '廚餘'], ['♻️', '資源回收'], ['🗑️', '一般垃圾']], why: '香蕉皮是廚餘', lv: 2 },
@@ -3408,21 +3411,21 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     { e: '🧻', q: '用過的衛生紙要丟哪裡？', a: [['🗑️', '一般垃圾'], ['♻️', '資源回收'], ['🍂', '廚餘']], why: '用過的衛生紙是一般垃圾', lv: 2 },
     { e: '🔥', q: '失火了，要打哪個電話？', a: [['📞', '119'], ['📞', '110'], ['📞', '123']], why: '失火或受傷，打 119', num: true, lv: 2 },
     { sc: 'street|b1 90 stand happy|e 🚗 222 150 110', e: '🚗', q: '坐車的時候，要做什麼？', a: [['🔒', '繫安全帶'], ['🙌', '把手伸出窗外'], ['🤸', '站起來跳']], why: '坐車要繫好安全帶', lv: 2 },
-    { sc: 'park|e ☀️ 278 34 50|b1 140 stand plain|e 💦 170 80 22', e: '😎', q: '太陽很大，出門要戴什麼？', a: [['🧢', '帽子'], ['🧤', '手套'], ['🧣', '圍巾']], why: '太陽大要戴帽子', lv: 1 },
+    { sc: 'park|e ☀️ 278 34 50|b1 140 stand plain|ml M172 80q5 7 0 12', e: '😎', q: '太陽很大，出門要戴什麼？', a: [['🧢', '帽子'], ['🧤', '手套'], ['🧣', '圍巾']], why: '太陽大要戴帽子', lv: 1 },
     { sc: 'room|g2 140 hold happy|e 🍬 140 138 26|e 🦷 196 80 26', e: '🍬', q: '吃完糖果，要做什麼？', a: [['🪥', '刷牙'], ['🍭', '再吃一顆'], ['🛌', '直接睡覺']], why: '吃完糖果要刷牙', lv: 1 },
     { sc: 'street|b1 120 think plain|mom 200 stand smile f', e: '🚸', q: '過馬路，要走哪裡？', a: [['🦓', '斑馬線'], ['🚗', '車子中間'], ['🧱', '圍牆上面']], why: '過馬路要走斑馬線', lv: 1 },
     { sc: 'room|b1 130 reach surprise|e 🔌 210 150 30', e: '🔌', q: '可以用手指摸插座嗎？', a: [['🙅', '不可以'], ['👍', '可以'], ['🤷', '不知道']], why: '插座有電，不可以摸', lv: 1 },
-    { sc: 'kitchen|b1 140 reach plain|e 🍲 230 82 34|e ♨️ 230 56 22', e: '🍳', q: '爐子上的鍋子很燙，怎麼辦？', a: [['🙅', '不要碰'], ['✋', '用手摸摸看'], ['🤸', '在旁邊跳']], why: '很燙的東西不要碰', lv: 1 },
+    { sc: 'kitchen|b1 140 reach plain|e 🍲 230 82 34|ml M222 58q-6-8 0-16 M238 58q-6-8 0-16', e: '🍳', q: '爐子上的鍋子很燙，怎麼辦？', a: [['🙅', '不要碰'], ['✋', '用手摸摸看'], ['🤸', '在旁邊跳']], why: '很燙的東西不要碰', lv: 1 },
     { e: '🥛', q: '牛奶是從哪裡來的？', a: [['🐮', '乳牛'], ['🐔', '母雞'], ['🐟', '魚']], why: '牛奶來自乳牛', lv: 1 },
     { e: '🥚', q: '雞蛋是誰生的？', a: [['🐔', '母雞'], ['🐮', '乳牛'], ['🐷', '小豬']], why: '雞蛋是母雞生的', lv: 1 },
     { sc: 'room|g1 110 stand smile|e 🧸 180 176 26|e 🚗 220 178 24|e 🧱 260 180 22', e: '🧸', q: '玩完玩具，要怎麼做？', a: [['📦', '收好'], ['🗑️', '丟掉'], ['🛋️', '放在地上']], why: '玩完玩具要收好', lv: 1 },
     { e: '🌃', q: '晚上抬頭看天空，會看到什麼？', a: [['🌙', '月亮星星'], ['🌈', '彩虹'], ['☀️', '大太陽']], why: '晚上會看到月亮和星星', lv: 1 },
     { e: '🍯', q: '蜂蜜是誰做的？', a: [['🐝', '蜜蜂'], ['🦋', '蝴蝶'], ['🐞', '瓢蟲']], why: '蜂蜜是蜜蜂做的', lv: 2 },
-    { sc: 'room|b1 130 stand plain|e 💨 168 90 30|e 🦠 206 80 18', e: '🤧', q: '打噴嚏的時候，要怎麼做？', a: [['💪', '用手肘遮住'], ['😮', '對著別人'], ['👏', '拍手']], why: '打噴嚏要用手肘遮住', lv: 2 },
+    { sc: 'room|b1 130 stand plain|e 🦠 206 80 18', e: '🤧', q: '打噴嚏的時候，要怎麼做？', a: [['💪', '用手肘遮住'], ['😮', '對著別人'], ['👏', '拍手']], why: '打噴嚏要用手肘遮住', lv: 2 },
     { e: '👮', q: '遇到危險要找警察，打哪個電話？', a: [['📞', '110'], ['📞', '119'], ['📞', '123']], why: '找警察打 110', num: true, lv: 2 },
     { sc: 'pool|b1 110 run happy', e: '🏊', q: '可以自己去游泳池玩水嗎？', a: [['👨‍👧', '要大人陪'], ['🏃', '自己去'], ['🌙', '晚上偷偷去']], why: '玩水一定要有大人陪', lv: 2 },
     { e: '🥤', q: '喝完的寶特瓶要丟哪裡？', a: [['♻️', '資源回收'], ['🍂', '廚餘'], ['🗑️', '一般垃圾']], why: '寶特瓶可以回收', lv: 2 },
-    { sc: 'park|e ⛈️ 160 40 50|b2 120 cower scared', e: '⛈️', q: '打雷的時候，要待在哪裡？', a: [['🏠', '屋子裡'], ['🌳', '大樹下'], ['🏖️', '海邊']], why: '打雷要待在屋子裡', lv: 2 },
+    { sc: 'park|e ⛈️ 130 40 50|b2 120 run scared|e 🏠 252 130 80', e: '⛈️', q: '打雷的時候，要待在哪裡？', a: [['🏠', '屋子裡'], ['🌳', '大樹下'], ['🏖️', '海邊']], why: '打雷要待在屋子裡', lv: 2 },
     { sc: 'kitchen|g2 130 hold happy|e 🍎 130 138 28', e: '🍎', q: '吃水果前，要先做什麼？', a: [['🚰', '洗乾淨'], ['🧦', '放進襪子'], ['🐶', '給小狗聞']], why: '水果要先洗乾淨', lv: 2 },
     { sc: 'bath|e 🚽 236 140 64|b2 120 stand smile', e: '🚽', q: '上完廁所，要做什麼？', a: [['🧼', '洗手'], ['🍪', '吃餅乾'], ['🏃', '直接跑走']], why: '上完廁所要洗手', lv: 1 },
     { e: '🌙', q: '晚上要做什麼？', a: [['😴', '睡覺'], ['🏊', '去游泳'], ['🏫', '去上學']], why: '晚上要好好睡覺', lv: 1 },
@@ -3506,26 +3509,26 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const FEEL = [['😄', '開心'], ['😢', '難過'], ['😠', '生氣'], ['😨', '害怕'], ['😲', '驚訝'], ['😳', '害羞'], ['😪', '想睡覺']];
   const EMO_FACE = [['😄', '開心', 1], ['😁', '開心', 1], ['😢', '難過', 1], ['😭', '難過', 1], ['😠', '生氣', 1], ['😡', '生氣', 2], ['😨', '害怕', 1], ['😱', '害怕', 2], ['😲', '驚訝', 2], ['😳', '害羞', 2], ['😪', '想睡覺', 2]];
   const EMO_SIT = [
-    { sc: 'room|g1 150 hold plain|e 🎁 150 138 34|e 🎈 230 76 32|e 🎈 76 76 28', e: '🎁', q: '生日收到禮物，心情會怎樣？', a: [['😄', '開心'], ['😢', '難過'], ['😠', '生氣']], lv: 1 },
-    { sc: 'room|b1 140 stand plain|e 🤖 200 174 30 80|e 💥 196 154 22', e: '🧸', q: '心愛的玩具壞掉了，心情會怎樣？', a: [['😢', '難過'], ['😄', '開心'], ['😲', '驚訝']], lv: 1 },
+    { sc: 'room|g1 150 hold plain|e 🎁 150 144 34|e 🎈 230 76 32|e 🎈 76 76 28', e: '🎁', q: '生日收到禮物，心情會怎樣？', a: [['😄', '開心'], ['😢', '難過'], ['😠', '生氣']], lv: 1 },
+    { sc: 'room|b1 140 stand plain|e 🤖 200 174 30 80', e: '🧸', q: '心愛的玩具壞掉了，心情會怎樣？', a: [['😢', '難過'], ['😄', '開心'], ['😲', '驚訝']], lv: 1 },
     { sc: 'room|b2 110 stand plain|e 🧱 186 176 24 30|e 🧱 212 170 24 -20|e 🧱 198 154 24 60|bro 270 push laugh f', e: '🧱', q: '辛苦堆好的積木被推倒了，心情會怎樣？', a: [['😠', '生氣'], ['😄', '開心'], ['😪', '想睡覺']], lv: 1 },
-    { sc: 'night|b1 170 stand plain|e ⚡ 60 60 36', e: '⛈️', q: '晚上打雷好大聲，心情會怎樣？', a: [['😨', '害怕'], ['😄', '開心'], ['😪', '想睡覺']], lv: 1 },
+    { sc: 'night|b1 170 stand plain', e: '⛈️', q: '晚上打雷好大聲，心情會怎樣？', a: [['😨', '害怕'], ['😄', '開心'], ['😪', '想睡覺']], lv: 1 },
     { sc: 'park|g2 130 stand plain|e 🍦 196 176 30 150', e: '🍦', q: '冰淇淋掉到地上了，心情會怎樣？', a: [['😢', '難過'], ['😄', '開心'], ['😲', '驚訝']], lv: 1 },
     { sc: 'field|b1 160 hold plain|e 🏆 160 136 30', e: '🏆', q: '比賽得到第一名，心情會怎樣？', a: [['😄', '開心'], ['😢', '難過'], ['😨', '害怕']], lv: 1 },
     { sc: 'room|b1 70 stand plain|g1 180 up happy f|b3 252 up happy f|e 🎉 216 46 30', e: '🎉', q: '一開門，大家突然大喊生日快樂，心情會怎樣？', a: [['😲', '驚訝'], ['😢', '難過'], ['😠', '生氣']], lv: 2 },
-    { sc: 'night|g2 170 stand plain|e ❗ 70 140 24|e 🔊 70 110 0', e: '🌑', q: '一個人在很暗的房間，聽到奇怪的聲音，心情會怎樣？', a: [['😨', '害怕'], ['😄', '開心'], ['😳', '害羞']], lv: 2 },
+    { sc: 'night|g2 170 stand plain|e 🔊 70 110 0', e: '🌑', q: '一個人在很暗的房間，聽到奇怪的聲音，心情會怎樣？', a: [['😨', '害怕'], ['😄', '開心'], ['😳', '害羞']], lv: 2 },
     { sc: 'park|b2 80 stand plain|b1 150 run laugh|g1 236 stand smile f', e: '✋', q: '排隊排很久，有人插隊到你前面，心情會怎樣？', a: [['😠', '生氣'], ['😄', '開心'], ['😪', '想睡覺']], lv: 2 },
     { sc: 'stage|g2 160 stand plain|e 🎤 182 128 22|e 👀 40 200 26|e 👀 280 200 26', e: '🎤', q: '第一次上台表演，很多人在看，心情會怎樣？', a: [['😳', '害羞'], ['😠', '生氣'], ['😪', '想睡覺']], lv: 2 },
-    { sc: 'room|b1 160 stand plain|e 💢 196 70 30', e: '😠', q: '生氣的時候，可以怎麼做？', a: [['😮‍💨', '深呼吸'], ['👊', '打人'], ['💥', '丟東西']], why: '生氣時先深呼吸，再說出自己的感覺', lv: 2 },
+    { sc: 'room|b1 160 stand plain', e: '😠', q: '生氣的時候，可以怎麼做？', a: [['😮‍💨', '深呼吸'], ['👊', '打人'], ['💥', '丟東西']], why: '生氣時先深呼吸，再說出自己的感覺', lv: 2 },
     { sc: 'room|g1 160 stand plain|e 💧 194 76 22', e: '😢', q: '難過的時候，可以怎麼做？', a: [['🤗', '找爸媽抱抱'], ['🙈', '一直躲起來'], ['💥', '亂踢東西']], why: '難過時可以找爸爸媽媽說說話、抱一抱', lv: 2 },
-    { sc: 'night|b2 170 stand plain|e 🌩️ 60 60 36', e: '😨', q: '害怕的時候，可以怎麼做？', a: [['🗣️', '告訴大人'], ['🏃', '自己亂跑'], ['🤐', '都不說']], why: '害怕時要告訴大人', lv: 2 },
+    { sc: 'night|b2 170 ears scared|e 🌩️ 60 60 36', e: '😨', q: '害怕的時候，可以怎麼做？', a: [['🗣️', '告訴大人'], ['🏃', '自己亂跑'], ['🤐', '都不說']], why: '害怕時要告訴大人', lv: 2 },
     { sc: 'park|sis 130 reach plain|e 🎈 230 50 36', e: '🎈', q: '氣球飛走了，心情會怎樣？', a: [['😢', '難過'], ['😄', '開心'], ['😠', '生氣']], lv: 1 },
     { sc: 'garden|b1 110 stand plain|e 🐕 220 158 60', e: '🐶', q: '小狗跑過來跟你玩，心情會怎樣？', a: [['😄', '開心'], ['😨', '害怕'], ['😢', '難過']], lv: 1 },
     { sc: 'doctor|b2 110 stand plain|tch 230 hold smile f|e 💉 230 128 30', e: '💉', q: '要打針了，心情可能會怎樣？', a: [['😨', '害怕'], ['😄', '開心'], ['😪', '想睡覺']], lv: 1 },
     { sc: 'beach|g2 120 stand plain|e 🪣 200 176 40|e 🐚 250 186 26', e: '🏖️', q: '要去海邊玩了，心情會怎樣？', a: [['😄', '開心'], ['😢', '難過'], ['😠', '生氣']], lv: 1 },
     { sc: 'room|b1 100 stand plain|e 📄 174 140 30 20|e 📄 204 150 26 -30|bro 262 stand laugh f', e: '🖍️', q: '畫好的圖被弟弟撕破了，心情會怎樣？', a: [['😠', '生氣'], ['😄', '開心'], ['😪', '想睡覺']], lv: 1 },
     { sc: 'night.1|g1 150 stand plain|e 🛏️ 252 158 60', e: '🌙', q: '玩了一整天，晚上眼睛快閉起來，心情會怎樣？', a: [['😪', '想睡覺'], ['😠', '生氣'], ['😲', '驚訝']], lv: 1 },
-    { sc: 'street|b1 80 stand plain|g2 180 wave smile f|e 🚚 270 150 64|e 📦 230 178 26', e: '👋', q: '好朋友要搬家了，心情會怎樣？', a: [['😢', '難過'], ['😄', '開心'], ['😲', '驚訝']], lv: 1 },
+    { sc: 'street|b1 90 cry cry|g2 186 wave smile f|e 🚚 270 150 64|e 📦 230 178 26', e: '👋', q: '好朋友要搬家了，心情會怎樣？', a: [['😢', '難過'], ['😄', '開心'], ['😲', '驚訝']], lv: 1 },
     { sc: 'room|b2 110 stand plain|e 📦 200 160 44|e 🐸 200 118 34', e: '🎁', q: '打開盒子，跳出一隻玩具青蛙，心情會怎樣？', a: [['😲', '驚訝'], ['😢', '難過'], ['😪', '想睡覺']], lv: 1 }
   ];
   const OPP = [
@@ -3666,10 +3669,10 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const HEALTHY = [['🥦', '花椰菜'], ['🍎', '蘋果'], ['🥕', '紅蘿蔔'], ['🍌', '香蕉'], ['🥛', '牛奶'], ['🐟', '魚'], ['🥚', '雞蛋'], ['🥗', '沙拉'], ['💧', '白開水'], ['🍊', '橘子'], ['🌽', '玉米'], ['🍚', '米飯']];
   const JUNK = [['🍭', '棒棒糖'], ['🍩', '甜甜圈'], ['🍟', '薯條'], ['🥤', '含糖飲料'], ['🍫', '巧克力'], ['🍬', '糖果'], ['🍔', '漢堡'], ['🧁', '杯子蛋糕'], ['🌭', '熱狗'], ['🍿', '爆米花']];
   const FOOD_Q = [
-    { sc: 'park|b1 140 stand sad|e 💦 172 84 22|e ☀️ 278 34 40', e: '🥵', q: '口渴了，最好喝什麼？', a: [['💧', '白開水'], ['🥤', '含糖飲料'], ['🧋', '珍珠奶茶']], lv: 1 },
+    { sc: 'park|b1 140 stand tongue|ml M172 80q5 7 0 12 M110 80q-5 7 0 12|e ☀️ 278 34 40', e: '🥵', q: '口渴了，最好喝什麼？', a: [['💧', '白開水'], ['🥤', '含糖飲料'], ['🧋', '珍珠奶茶']], lv: 1 },
     { e: '💪', q: '每天要多吃什麼，身體才會健康？', a: [['🥦', '蔬菜水果'], ['🍬', '糖果'], ['🍟', '炸薯條']], lv: 1 },
     { e: '🦷', q: '吃太多糖果，牙齒會怎樣？', a: [['😖', '蛀牙'], ['💪', '變強壯'], ['✨', '變白']], lv: 2 },
-    { sc: 'table|b1 120 stand happy|e 🍚 130 130 28|e 🥦 172 130 24', e: '🍽️', q: '吃飯的時候，要怎麼吃比較好？', a: [['🥗', '什麼都吃一點'], ['🍬', '只吃甜的'], ['🍟', '只吃炸的']], lv: 2 },
+    { sc: 'table|b1 120 stand happy|e 🍚 130 134 28|e 🥦 172 130 24', e: '🍽️', q: '吃飯的時候，要怎麼吃比較好？', a: [['🥗', '什麼都吃一點'], ['🍬', '只吃甜的'], ['🍟', '只吃炸的']], lv: 2 },
     { e: '🛌', q: '晚上睡覺前，可以吃什麼？', a: [['🥛', '一杯牛奶'], ['🍭', '一大堆糖果'], ['🥤', '汽水']], lv: 2 }
   ];
   const ORD_FACES = ['🐶', '🐱', '🐰', '🐻', '🐼', '🐸', '🐵', '🐷', '🦁', '🐯', '🐮', '🐔'];
@@ -3681,7 +3684,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const SCN_LOOK = {
     b1: ['#2E3F66', '#3A2A22', 0, 1], b2: ['#F5DE9A', '#8A5A3A', 0, 1], b3: ['#8FC27E', '#2E2622', 0, 1],
     g1: ['#F6B8C0', '#5A3A28', 1, .9], g2: ['#86C3E3', '#F2C04E', 1, 1], g3: ['#F3A3BC', '#7A4A30', 1, 1],
-    sis: ['#F3A3BC', '#6A4630', 1, .82], bro: ['#F5DE9A', '#4A3326', 0, .82],
+    sis: ['#F3A3BC', '#6A4630', 1, .82], bro: ['#F5DE9A', '#4A3326', 0, .82], sis2: ['#E8584F', '#4A3326', 1, 1.14], bro2: ['#E8584F', '#3A2A22', 0, 1.16],
     mom: ['#E0457A', '#3A2A22', 2, 1.32], dad: ['#6F94D6', '#3A3036', 3, 1.38], tch: ['#86BFB0', '#3A2A22', 2, 1.32],
     gpa: ['#A9B5BF', '#DADADA', 4, 1.3], gma: ['#C3A2D8', '#DADADA', 5, 1.28], man: ['#6B7380', '#3A3036', 6, 1.38], jin: ['#C2417A', '#F2C04E', 2, 1.3], ma: ['#8A6BA8', '#C9C9C9', 5, 1.24], niu: ['#7A6A58', '#3A3036', 3, 1.36], baby: ['#F5DE9A', '#6A4630', 7, .7]
   };
@@ -3694,14 +3697,14 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     fall: { a: [[-30, -92], [28, -86]], l: [[-6, 0], [14, -4]], r: -18 }, cry: { a: [[-9, -82], [9, -82]] },
     ears: { a: [[-25, -90], [25, -90]] }, bow: { a: [[-6, -32], [6, -32]], ru: 30 }, hug: { a: [[32, -62], [36, -48]] },
     point: { a: [[-22, -34], [50, -80]] }, hold: { a: [[-10, -46], [10, -46]] }, kick: { a: [[-26, -60], [24, -60]], l: [[-8, 0], [34, -22]], r: -4 },
-    shh: { a: [[-22, -34], [2, -78]] }, think: { a: [[-22, -34], [8, -74]] }, walk: { a: [[-24, -40], [20, -34]], l: [[-12, 0], [10, 0]] },
+    shh: { a: [[-22, -34], [2, -74]], top: 1 }, think: { a: [[-22, -34], [8, -74]] }, walk: { a: [[-24, -40], [20, -34]], l: [[-12, 0], [10, 0]] },
     cower: { a: [[-12, -72], [12, -72]] }, stomp: { a: [[-26, -50], [26, -50]], l: [[-8, 0], [12, -12]] },
     hips: { a: [[-18, -40], [18, -40]] }, sit: { sit: 1, a: [[-24, -14], [24, -14]] }, sitcry: { sit: 1, a: [[-9, -70], [9, -70]] },
     sitreach: { sit: 1, a: [[-24, -14], [40, -60]] }, seat: { sit: 2, a: [[-6, -40], [10, -40]] }, cane: { a: [[-22, -34], [26, -30]], cane: 1 }, sleep: { lie: 1 },
     clap: { a: [[-3, -56], [3, -56]] }, jump: { a: [[-30, -94], [30, -94]], l: [[-14, -6], [14, -6]], dy: -22 }, dance: { a: [[-32, -92], [30, -42]], l: [[-14, 0], [12, -12]], r: -6 },
     tnose: { a: [[-22, -34], [3, -82]] }, teye: { a: [[-22, -34], [9, -90]] }, tear: { a: [[-22, -34], [25, -88]] }, thead: { a: [[-14, -108], [14, -108]] },
     tarm: { a: [[-22, -34], [-15, -50]] }, tleg: { a: [[-22, -34], [9, -16]], ru: 18 }, eat: { a: [[-10, -46], [5, -76]] }, sitdown: { sit: 2, a: [[-6, -40], [10, -40]] },
-    belly: { a: [[-6, -42], [6, -42]] }, run2: { a: [[-22, -30], [26, -66]], l: [[-2, 0], [24, -8]], r: 12 }, side: { a: [[-34, -48], [34, -48]] }
+    belly: { a: [[-6, -42], [6, -42]] }, run2: { a: [[-22, -30], [26, -66]], l: [[-2, 0], [24, -8]], r: 12 }, side: { a: [[-34, -48], [34, -48]] }, back: { a: [[-24, -36], [24, -36]], back: 1 }, beckon: { a: [[-22, -34], [-36, -80]] }, listen: { a: [[-22, -34], [26, -84]], top: 1 }
   };
   function scnFace(m, o) {
     const I = SCN_INK, E = o ? o.eye : 'dot';
@@ -4056,13 +4059,14 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     if (h === 'cus') { const o = C.cus, hh = heroHair(o), ht = heroHat(o); back = hh[0] + ht[0] + heroEar(o); front = (heroHood(o) ? `<path d="M-20 -86q0-24 20-24t20 24q-6-10-14-11q-4 6-8 4q-6 3-8-2q-6 3-10 9z" fill="${o.hairC}" ${st}/>` : hh[1]) + ht[1]; extra = heroGlass(o, m); }
     let face = scnFace(m, C.cus);
     if (h === 'mom') face = face.replace(/fill="#C2414B"/g, 'fill="#E0525E"').replace('M-6 -77q6 5 12 0"', 'M-6 -77q6 5 12 0" ').replace(/<path d="M-6 -77q6 5 12 0" fill="none" stroke="[^"]+"/, '<path d="M-6 -77q6 5 12 0" fill="none" stroke="#D9485A"');
+    if (m === '__back') return back + (C.hood ? '' : `<circle cx="0" cy="-88" r="24" fill="${hair}" ${st}/>`); // 背面：只畫帽子或頭髮，不畫臉
     return back + `<circle cx="0" cy="-86" r="22" fill="${C.skin}" ${st}/>` + face + front + extra;
   }
   function scnPerson(look, x, y, pose, mood, flip) {
     if (look === 'b1' || look === 'g1') heroSync();
     const [shirt, hair, type, k] = SCN_LOOK[look] || SCN_LOOK.b1, P = SCN_POSE[pose] || SCN_POSE.stand, I = SCN_INK, C = SCN_CHAR[look];
     const dress = type === 1 || type === 2 || type === 5, pants = C ? C.legs : type === 4 ? '#6B7785' : type === 6 ? '#3D4652' : '#4A6FA5';
-    const head = mm => C ? scnHead2(C, hair, mm) : scnHead(hair, type, mm), shoe = C && C.shoe ? C.shoe : C && (C.sock || C.heel) ? (C.heel || '#5A4A44') : I, hand = (hx, hy) => C ? `<circle cx="${hx}" cy="${hy}" r="5.5" fill="${C.skin}" stroke="${SCN_INK}" stroke-width="2.4"/>` : scnHand(hx, hy);
+    const head = mm => C ? scnHead2(C, hair, P.back ? '__back' : mm) : scnHead(hair, type, mm), shoe = C && C.shoe ? C.shoe : C && (C.sock || C.heel) ? (C.heel || '#5A4A44') : I, hand = (hx, hy) => C ? `<circle cx="${hx}" cy="${hy}" r="5.5" fill="${C.skin}" stroke="${SCN_INK}" stroke-width="2.4"/>` : scnHand(hx, hy);
     const sleeve = C && C.sleeve ? C.sleeve : C && C.fit === 'pinafore' ? '#fff' : shirt;
     let s = '';
     if (P.lie) {
@@ -4084,13 +4088,17 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       (P.l || [[-8, 0], [8, 0]]).forEach(([lx, ly]) => { s += scnLimb(lx < 0 ? -7 : 7, -26, lx, ly - 4, pants, 10) + `${C && C.sock ? `<path d="M${lx - 4} ${ly - 9}h8" stroke="${C.sock}" stroke-width="6" stroke-linecap="round"/>` : ''}<ellipse cx="${lx}" cy="${ly}" rx="8" ry="5" fill="${shoe}"/>`; });
       if (C && C.bot) s += C.bot;
       if (P.ru) s += `<g transform="rotate(${P.ru} 0 -26)">`;
-      P.a.forEach(([ax, ay]) => { s += scnLimb(ax < 0 ? -13 : 13, -56, ax, ay, sleeve, 8) + hand(ax, ay); });
+      let armTop = ''; P.a.forEach(([ax, ay]) => { const t = scnLimb(ax < 0 ? -13 : 13, -56, ax, ay, sleeve, 8) + hand(ax, ay); if (P.top && ax > 0) armTop += t; else s += t; });
       if (P.cane) s += `<path d="M26 -30V0" stroke="#8B5A2B" stroke-width="4" stroke-linecap="round"/><path d="M26 -30q0-8 -8-8" fill="none" stroke="#8B5A2B" stroke-width="4" stroke-linecap="round"/>`;
-      s += body + head(mood) + (P.ru ? '</g>' : '');
+      s += body + head(mood) + armTop + (P.ru ? '</g>' : ''); // top：右手畫在臉前面（噓、聽）
     }
     return `<g transform="translate(${x} ${y + (P.dy || 0) * k}) scale(${flip ? -k : k} ${k}) rotate(${P.r || 0})">${P.dy ? `<ellipse cx="0" cy="${-P.dy + 2}" rx="20" ry="4" fill="#000" opacity=".12"/>` : ''}${s}</g>`;
   }
-  function scnEmo(e, x, y, size, rot) {
+  function scnEmo(e, x, y, size, rot, tint) {
+    if (tint && /^#[0-9a-fA-F]{6}$/.test(tint)) { // v91：把動物塗成故事說的顏色（黃色的牛、綠色的獅子…）
+      const c = [1, 3, 5].map(i => parseInt(tint.slice(i, i + 2), 16) / 255), id = 'tn' + tint.slice(1), row = v => `${(v * .36).toFixed(3)} ${(v * .7).toFixed(3)} ${(v * .14).toFixed(3)} 0 ${(v * .18).toFixed(3)}`;
+      return `<filter id="${id}" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="${row(c[0])} ${row(c[1])} ${row(c[2])} 0 0 0 1 0"/></filter><g filter="url(#${id})">${scnEmo(e, x, y, size, rot)}</g>`;
+    }
     const t = `<text x="${x}" y="${y}" font-size="${size}" text-anchor="middle" dominant-baseline="central"${rot ? ` transform="rotate(${rot} ${x} ${y})"` : ''}>${e}</text>`;
     if (!SCN_FE) return t;
     const src = SCN_FE + [...e].map(c => c.codePointAt(0).toString(16)).join('-') + '.svg', h = size * 1.05; // v89：先用完整編碼（含 fe0f），載不到再由下方 fei 錯誤處理換另一種寫法
@@ -4130,7 +4138,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     ],
     class: [
       SCN_ROOM('#EAF4EC', '#E6D3B5') + '<rect x="70" y="28" width="180" height="78" rx="6" fill="#3E7D5A" stroke="#B9A07E" stroke-width="6"/><path d="M90 52h40M90 70h70M160 52h30" stroke="#fff" stroke-width="3" opacity=".7" stroke-linecap="round"/>',
-      SCN_ROOM('#FFF4DE', '#E3CFAE') + SCN_BUNT(10, ['#F57E7E', '#7CC4F5', '#FFC93C', '#8ED07A', '#B9A2F0']) + '<rect x="84" y="40" width="152" height="70" rx="6" fill="#fff" stroke="#9AA8B6" stroke-width="5"/><text x="160" y="84" text-anchor="middle" font-size="28" font-weight="900" fill="#5B8DEF" font-family="sans-serif">A B C</text>',
+      SCN_ROOM('#FFF4DE', '#E3CFAE') + SCN_BUNT(10, ['#F57E7E', '#7CC4F5', '#FFC93C', '#8ED07A', '#B9A2F0']) + '<rect x="84" y="40" width="152" height="70" rx="6" fill="#fff" stroke="#9AA8B6" stroke-width="5"/><path d="M104 62q22-8 44 0M104 80q30-6 60 0M180 66h36M180 82h24" stroke="#C7D2DD" stroke-width="4" stroke-linecap="round" fill="none"/>',
       SCN_ROOM('#EAF0FF', '#E0CCAA') + '<rect x="28" y="36" width="130" height="74" rx="6" fill="#E3B67A" stroke="#B9874A" stroke-width="5"/><rect x="40" y="46" width="32" height="26" fill="#fff"/><circle cx="56" cy="59" r="7" fill="#FFC93C"/><rect x="80" y="50" width="30" height="40" fill="#fff"/><path d="M86 80l8-14 8 14z" fill="#8ED07A"/><rect x="118" y="46" width="30" height="28" fill="#fff"/><path d="M124 66q9-14 18 0" fill="none" stroke="#F57E7E" stroke-width="3"/>' + SCN_CLOCK(206, 50) + SCN_WIN(244, 36)
     ],
     home: [
@@ -4178,7 +4186,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       const t = p.trim().split(/\s+/);
       if (t[0] === 'z') return `${t[1]} ${t[2]} ${t[3]} ${t[3]}`;
       if (t[0] === 'e') { let sz = +t[4] || 30; sz = SCN_MARK.has(t[1]) ? sz * 1.15 : sz < 80 ? Math.min(84, sz * 1.5) : sz; add(+t[2] - sz / 2, +t[3] - sz / 2, +t[2] + sz / 2, +t[3] + sz / 2); continue; }
-      if (t[0] === 'w' || t[0] === 'l') continue;
+      if (t[0] === 'w' || t[0] === 'l' || t[0] === 'ml' || t[0] === 'ob') continue;
       const k = (SCN_LOOK[t[0]] || SCN_LOOK.b1)[3], P = SCN_POSE[t[2]] || SCN_POSE.stand, x = +t[1], y = t[5] ? +t[5] : 186;
       if (P.lie) { add(x - 62 * k, y - 50 * k, x + 62 * k, y + 6); continue; }
       const up = Math.min(-118, ...(P.a || []).map(a => a[1] - 10)), dy = (P.dy || 0) * k;
@@ -4190,19 +4198,39 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     let vx = Math.max(0, Math.min(320 - w, cx - w / 2)), vy = Math.max(0, Math.min(220 - w, cy - w / 2));
     return `${vx.toFixed(0)} ${vy.toFixed(0)} ${w.toFixed(0)} ${w.toFixed(0)}`;
   }
+  // v91：不用 emoji、直接畫的小物件（emoji 的牙刷斜放在臉上像叉叉）
+  const SCN_OBJ = {
+    brush: (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><rect x="2" y="-3.5" width="34" height="7" rx="3.5" fill="#5AB4F0" stroke="${SCN_INK}" stroke-width="2.2"/><rect x="-6" y="-6" width="11" height="8" rx="2" fill="#fff" stroke="${SCN_INK}" stroke-width="2"/><g fill="#fff" stroke="#BFE3F7" stroke-width="1.4"><circle cx="-10" cy="4" r="4"/><circle cx="-4" cy="9" r="3"/><circle cx="-14" cy="-3" r="2.6"/></g></g>`,
+    belt: (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><path d="M-16 -22L16 22" stroke="${SCN_INK}" stroke-width="11" stroke-linecap="round"/><path d="M-16 -22L16 22" stroke="#6B7380" stroke-width="6" stroke-linecap="round"/><rect x="4" y="4" width="13" height="10" rx="2" fill="#D9DEE3" stroke="${SCN_INK}" stroke-width="2" transform="rotate(54 10 9)"/></g>`
+  };
   function scnSVG(spec, cls, vb) {
     const parts = spec.split('|'), [bg, vi] = parts.shift().split('.'), V = SCN_BGV[bg] || [''];
     let out = `<g filter="url(#scnWob)">${V[vi !== undefined ? +vi % V.length : scnHash(spec) % V.length]}</g>`, ground = 186;
     const fg = bg === 'table' ? '<rect x="24" y="138" width="272" height="16" rx="5" fill="#C98B55" stroke="#9A6436" stroke-width="3"/><path d="M48 154v30M272 154v30" stroke="#9A6436" stroke-width="9"/>' : '';
     const later = [];
+    // v91：物品不可以遮住臉——先算出每個人的臉在哪裡，物品蓋到臉就往下（或往旁邊）移
+    const heads = [];
+    parts.forEach(p => { const t = p.trim().split(/\s+/); if (!SCN_LOOK[t[0]]) return; const k = SCN_LOOK[t[0]][3], P = SCN_POSE[t[2]] || SCN_POSE.stand; if (P.lie) return;
+      const y = t[5] ? +t[5] : 186; heads.push({ x: +t[1], y: y - 86 * k + (P.sit ? 14 * k : 0) + (P.dy || 0) * k, r: 24 * k, side: /^(eat|listen|tear|shh|tnose|teye)$/.test(t[2]), feet: y }); });
+    const SCN_WEAR = new Set(['🧢', '👒', '🎩', '👑', '🎀', '🕶️', '👓', '😷']);
     parts.forEach(p => {
       const t = p.trim().split(/\s+/);
       if (t[0] === 'e') {
         let sz = +t[4] || 30; sz = SCN_MARK.has(t[1]) ? sz * 1.15 : sz < 80 ? Math.min(84, sz * 1.5) : sz;
-        const em = scnEmo(t[1], +t[2], +t[3], Math.round(sz), +t[5] || 0);
+        if (!SCN_MARK.has(t[1]) && !SCN_WEAR.has(t[1]) && (+t[4] || 30) < 80) heads.forEach(h => {
+          let ex = +t[2], ey = +t[3]; const half = sz * .42;
+          if (Math.abs(ex - h.x) < h.r * .85 + half && Math.abs(ey - h.y) < h.r * .85 + half) {
+            if (h.side || h.y + h.r * .9 + half > h.feet - 6) { const d = ex >= h.x ? 1 : -1; ex = h.x + d * (h.r * .95 + half); }
+            else { ey = h.y + h.r * .9 + half; if (sz > 40) { sz = 40; } }
+            t[2] = String(Math.round(ex)); t[3] = String(Math.round(ey));
+          }
+        });
+        const em = scnEmo(t[1], +t[2], +t[3], Math.round(sz), +t[5] || 0, t[6]);
         if (fg && +t[3] > 110 && +t[3] < 140) later.push(em); else out += em;
       } else if (t[0] === 'w') out += `<rect x="${t[1]}" y="${t[3]}" width="${t[2] - t[1]}" height="${220 - t[3]}" fill="#6EC6F0" opacity=".92"/><path d="M${t[1]} ${t[3]}q10-6 20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0" fill="none" stroke="#fff" stroke-width="3" opacity=".8"/>`;
       else if (t[0] === 'z') { /* 選項放大用的取景框，不畫東西 */ }
+      else if (t[0] === 'ob') out += (SCN_OBJ[t[1]] || (() => ''))(+t[2], +t[3], +t[4] || 1); // 自己畫的小物件（牙刷、安全帶…）
+      else if (t[0] === 'ml') out += `<path d="${t.slice(1).join(' ')}" fill="none" stroke="${SCN_INK}" stroke-width="2.6" stroke-linecap="round" opacity=".5"/>`; // 動作線
       else if (t[0] === 'l') out += `<path d="M${t[1]} ${t[2]}Q${(+t[1] + +t[3]) / 2} ${Math.max(+t[2], +t[4]) + 20} ${t[3]} ${t[4]}" fill="none" stroke="#5E6670" stroke-width="2"/>`;
       else out += scnPerson(t[0], +t[1], t[5] ? +t[5] : ground, t[2] || 'stand', t[3] || 'smile', t[4] === 'f');
     });
@@ -4214,14 +4242,14 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     [/打開|打鼓|打籃球|打掃|打電話|打給|打噴嚏|推推車|踢球|踢足球/, null],
     [/發財|抱抱娃娃/, null],
     [/不跟爸媽說|不跟大人說|不敢說|誰都不說|都不說|什麼都不說/, "opt|b1 110 shh scared|mom 222 stand plain f"],
-    [/你好笨|你好醜|你是壞人/, "opt|b1 110 point angry|e 💬 150 52 26|g1 220 stand sad f"],
+    [/你好笨|你好醜|你是壞人/, "opt|b1 110 point angry|g1 220 stand sad f"],
     [/大聲搶答/, "opt|b1 110 hand laugh|e 📢 150 60 26|tch 228 stand surprise f"],
-    [/打妹妹|打她|她一碰就打她/, "opt|b1 110 hit angry|e 💥 160 96 26|sis 206 cower scared f"],
-    [/打爸爸/, "opt|b1 110 hit angry|e 💥 160 96 26|dad 226 stand surprise f"],
-    [/打東西/, "opt|b1 110 hit angry|e 📦 196 140 48|e 💥 166 98 24"],
-    [/打贏的人/, "opt|b1 110 hit angry|e 💥 160 96 26|g2 210 cower scared f|e 🥇 210 146 18"],
-    [/數完就打人|打一架|打回去|先打|打他|打人|揍/, "opt|b1 110 hit angry|e 💥 160 96 26|b3 210 cower scared f"],
-    [/推翻/, "opt|b1 110 push angry|e 🎲 196 162 32 30|e 💥 186 130 22"],
+    [/打妹妹|打她|她一碰就打她/, "opt|b1 110 hit angry|sis 206 cower scared f"],
+    [/打爸爸/, "opt|b1 110 hit angry|dad 226 stand surprise f"],
+    [/打東西/, "opt|b1 110 hit angry|e 📦 196 140 48"],
+    [/打贏的人/, "opt|b1 110 hit angry|g2 210 cower scared f|e 🥇 210 146 18"],
+    [/數完就打人|打一架|打回去|先打|打他|打人|揍/, "opt|b1 110 hit angry|b3 210 cower scared f"],
+    [/推翻/, "opt|b1 110 push angry|e 🎲 196 162 32 30"],
     [/推門/, "opt|b1 110 push plain|e 🚪 206 118 96"],
     [/推倒他的/, "opt|b1 110 push angry|e 🧱 186 172 24 30|e 🧱 210 162 24 -30|e 🧱 198 142 24 60"],
     [/推別人下水/, "opt|b1 110 push angry|b3 206 fall scared f|e 🌊 220 180 40"],
@@ -4232,35 +4260,38 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     [/踢門/, "opt|b1 110 kick angry|e 🚪 206 118 96"],
     [/踢/, "opt|b1 110 kick angry|e 📦 166 166 34"],
     [/咬人/, "opt|b1 116 grab angry|e 🦷 160 96 22|b3 210 cry cry f"],
-    [/摔碗/, "opt|b1 120 up angry|e 🥣 196 172 30 40|e 💥 196 150 24"],
-    [/丟東西|摔東西|摔/, "opt|b1 120 up angry|e 🧸 196 162 30 60|e 💥 206 140 24"],
-    [/罵/, "opt|b1 110 point angry|e 💢 152 56 26|g1 220 stand sad f"],
+    [/摔碗/, "opt|b1 120 up angry|e 🥣 196 172 30 40"],
+    [/丟東西|摔東西|摔/, "opt|b1 120 up angry|e 🧸 196 162 30 60"],
+    [/罵/, "opt|b1 110 point angry|g1 220 stand sad f"],
     [/大叫|大吼|亂叫/, "opt|b1 110 stomp angry|e 📢 152 70 28|g2 220 ears scared f"],
     [/笑他|笑她|笑他愛哭/, "opt|b1 110 point laugh|g1 220 cry cry f"],
-    [/不理/, "opt|b1 110 hips plain|e 💤 136 52 20|g1 220 stand sad f"],
+    [/不理/, "opt|b1 110 hips plain|g1 220 stand sad f"],
     [/插隊/, "opt|g1 70 stand angry|b1 160 run laugh|b3 250 stand angry f"],
-    [/跑走|跑掉|跑得遠遠|跑出去|到處亂跑/, "opt|b1 170 run scared|e 💨 104 150 28"],
+    [/跑走|跑掉|跑得遠遠|跑出去|到處亂跑/, "opt|b1 170 run scared"],
     [/躲起來|藏起來|假裝沒看到/, "opt|e 🌳 210 112 116|b1 120 cower scared"],
     [/大哭|一直哭|躺地上哭|哭鬧/, "opt|b1 160 cry cry"],
     [/對不起/, "opt|b1 110 bow sorry|g1 222 stand smile f"],
     [/謝謝/, "opt|b1 110 hold happy|e 🎁 110 140 26|g1 222 stand smile f"],
-    [/告訴老師|請老師|問老師|跟老師說|老師幫忙/, "opt|b1 110 point plain|e 💬 152 52 24|tch 228 stand smile f"],
-    [/告訴爸媽|找爸媽|跟爸媽說|請爸媽|告訴大人|問大人|找大人/, "opt|b1 110 point plain|e 💬 152 52 24|mom 228 stand smile f"],
+    [/告訴老師|請老師|問老師|跟老師說|老師幫忙/, "opt|b1 110 point plain|tch 228 stand smile f"],
+    [/告訴爸媽|找爸媽|跟爸媽說|請爸媽|告訴大人|問大人|找大人/, "opt|b1 110 point plain|mom 228 stand smile f"],
     [/舉手/, "opt|b1 110 hand happy|tch 228 stand smile f"],
     [/扶他|扶她|拉他起來/, "opt|b1 110 reach smile|g2 196 sitreach sad f"],
     [/抱抱|安慰|陪你|陪她|陪他|問他怎麼了|關心/, "opt|b1 120 hug smile|g3 200 cry sad f"],
     [/讓座/, "opt|b1 90 point smile|e 💺 160 160 52|gpa 238 cane smile f"],
     [/輪流|換我|換你|等一下|排隊|等他|等她/, "opt|b1 110 stand smile|e ⏳ 140 52 24|g1 214 hold happy f|e 🧸 214 140 26"],
     [/分享|一起玩|給你玩|借他|借她|分給|一人一半|分一點/, "opt|b1 110 give happy|e 🍪 148 126 26|g1 220 reach happy f"],
-    [/拍手|你好棒|鼓掌|恭喜/, "opt|b1 110 hold happy|e 👏 110 134 26|g1 220 up happy f"],
+    [/拍手|你好棒|鼓掌|恭喜/, "opt|b1 110 clap laugh|ml M86 120l-10-4 M84 130h-12 M134 120l10-4 M136 130h12|g1 220 up happy f"],
     [/早安|午安|晚安|你好|老師早|打招呼|說再見|^再見/, "opt|b1 110 wave happy|g1 220 wave happy f"],
-    [/可以借我|可以還我|可以.*嗎|請你|請問|請給|請還給我|請幫幫我/, "opt|b1 110 reach smile|e 💬 150 52 24|g1 220 hold smile f|e 🧸 220 140 26"],
-    [/深呼吸|數到|冷靜/, "opt|b1 160 stand calm|e 🌬️ 200 74 26"],
+    [/可以借我|可以還我|可以.*嗎|請你|請問|請給|請還給我|請幫幫我/, "opt|b1 110 reach smile|g1 220 hold smile f|e 🧸 220 140 26"],
+    [/深呼吸|數到|冷靜/, "opt|b1 160 stand calm"],
     [/幫忙|幫他|幫她|撿起來/, "opt|b1 110 reach smile|g2 196 sitreach sad f"],
-    [/安靜聽/, "opt|tch 110 point smile|e 💬 152 52 24|b1 220 shh smile f"],
+    [/安靜聽/, "opt|tch 110 point smile|b1 220 shh smile f"],
     [/坐好/, "opt|e 🪑 150 146 100|b1 140 seat smile - 150|e 🍚 236 150 30"]
   ];
+  // v91：依修正清單，每個答案配自己的情境圖（先找完全相同的答案，找不到才用上面的關鍵字）
+  const ANS_SC = {"刀尖朝下慢慢走": "class|b1 160 walk plain|e ✂️ 184 160 16 90|ml M120 180h-12 M124 170h-10", "坐安全座椅、繫安全帶": "bus|b1 160 seat smile - 176|ob belt 160 124 1", "停下、躺下、滾一滾": "field|b1 160 sleep scared - 186|ml M90 170q-12-16 0-30 M230 170q12-16 0-30 M110 140q50-24 100 0|e 🔥 200 170 10|z 60 40 200", "不開門，打給爸媽": "home|e 🚪 96 110 110|b1 190 stand plain|e 📱 216 104 14", "走斑馬線，看紅綠燈": "street|mom 130 walk smile|b1 196 walk happy|e 🚦 266 90 30", "不開門，打電話問爸媽": "home|e 🚪 96 110 110|b1 190 stand plain|e 📞 217 106 16", "在家找別的好玩的事": "room|g1 160 sit happy - 190|e 🧩 214 172 22|e 🌧️ 84 50 22", "讓位給他們": "bus|b1 90 stand smile|e 💺 170 156 48|gpa 230 cane smile f", "看一看、聞一聞就好": "garden|g1 140 stand happy|e 🌼 196 160 26|ml M176 118q6-4 12 0", "先讓裡面的人下車": "bus|b3 120 walk smile|mom 210 stand smile f|b1 260 stand plain f", "讓給下一個小朋友": "play|b1 110 point smile|g2 210 stand happy f|e 🎠 210 146 50", "丟進垃圾桶": "park|g1 140 reach plain|e 🗑️ 210 156 34|e 🍬 184 120 12", "收好放回去": "room|b1 140 reach smile|e 🧺 210 160 34|e 🧱 196 128 14", "丟垃圾桶，或帶回家": "park|g1 140 reach plain|e 🗑️ 210 156 34|e 🛍️ 184 120 12", "好好愛惜，看完準時還": "class|b1 110 give smile|e 📘 160 126 18|b3 220 reach happy f", "讓位給她": "bus|g1 90 stand smile|e 💺 170 156 48|gma 232 cane smile f", "沖水、洗手": "bath|b1 160 hold happy|e 🧼 160 146 14|e 💧 150 128 10|e 💧 170 128 10|e 🚽 80 150 34", "用手肘遮住": "class|g1 160 cower calm|ml M196 90l8-4 M198 100h10", "把碗盤拿到廚房": "kitchen|b1 150 hold happy|e 🍽️ 150 130 22", "刷牙洗臉": "bath|g1 160 eat happy|ob brush 164 118 .9|e 🧴 220 150 16", "刷牙或漱口": "bath|b1 160 eat happy|ob brush 164 110 1|e 🥤 220 150 14", "刷牙": "bath|b1 160 eat happy|ob brush 164 110 1", "戴帽子、多喝水": "park|g1 160 eat happy|e 👒 160 54 22|e 🥤 184 104 14|e ☀️ 270 36 26", "唱完一首生日快樂歌": "bath|b1 160 hold laugh|e 🧼 160 146 14|e 💧 150 128 10", "洗乾淨再吃": "kitchen|g1 160 hold happy|e 🍇 160 140 16|e 💧 160 131 12", "先穿內衣，再穿外套": "bedroom|b1 140 up plain|e 👕 140 70 24|e 🧥 220 160 26", "整理好書包": "bedroom|g1 140 reach smile|e 🎒 206 156 30|e 📚 196 118 14", "先交叉打一個結": "home|b1 150 sitreach plain - 190|e 👟 206 176 20", "喝水、擦汗": "field|b1 160 eat happy|e 🥤 186 104 14|e 🧻 136 120 12", "整理好書包和衣服": "bedroom|g1 140 reach smile|e 🎒 206 160 26|e 👕 206 122 18", "起床→刷牙洗臉→換衣服→吃早餐": "home|b1 160 stand happy|e 🛏️ 70 160 26|e 🪥 120 70 16|e 👕 200 70 16|e 🍳 252 160 22", "讓眼睛休息，看看遠方": "home|g1 140 point happy|e 🌳 240 90 46|e 📱 104 160 14", "2分鐘，每顆都刷到": "bath|b1 150 eat happy|ob brush 154 110 1|e ⏳ 228 120 24", "晚上早一點睡": "bedroom|g1 176 sleep calm - 168|e 🌙 250 50 22|z 90 30 170", "早一點睡": "bedroom|b1 176 sleep calm - 168|e 🌙 250 50 22|z 90 30 170", "不跟她走，去找老師": "street|ma 80 reach plain|b1 170 run scared|tch 260 stand smile f", "我要先問爸媽": "park|niu 90 point smile|b1 170 point plain f|mom 270 stand smile f", "畫出心情": "room|g1 150 hold sad|e 🖍️ 176 130 14|e 📄 150 150 22", "先收好，拿別的給妹妹": "room|b1 140 give smile|e 🧸 176 128 14|sis 230 reach happy f|e 🧺 80 160 22", "說我需要休息一下": "room|b1 110 sit calm - 190|e 🎲 230 160 22", "安靜角落坐一下": "class|b1 160 sit calm - 190|e 🧸 200 172 18", "切開大家分": "kitchen|mom 160 hold smile|e 🍗 160 130 20|b1 84 stand happy|sis 240 stand happy f", "玩完這次就去": "room|b1 120 point smile|e 🧱 140 168 16|mom 230 stand smile f", "抱抱娃娃": "room|g1 160 hug calm|e 🧸 176 137 22", "去玩別的": "room|b1 160 sit happy - 190|e 🧱 214 168 22|e 📺 72 120 34", "吃完飯再吃": "kitchen|g1 150 eat happy|e 🍚 150 140 18|e 🍬 230 140 12", "我很生氣，因為玩具被拿走": "room|b1 110 hips angry|b3 214 hold plain f|e 🚗 214 140 16", "我不喜歡你這樣說": "class|g1 110 push plain|b3 220 stand surprise f", "說好，收起來": "room|b1 120 reach smile|e 🧺 170 160 26|mom 240 stand smile f", "跟自己說：下次再加油": "field|b1 160 hips smile|e 🏃 260 150 22", "「你這樣說我會難過，請不要這樣」": "class|g1 110 push sad|e 🖼️ 70 140 18|b3 220 stand surprise f", "先敲門": "home|e 🚪 200 110 110|b1 120 point plain|ml M178 96l8-4 M180 108h10", "說我不喜歡這樣": "room|b1 110 push plain|e 🧱 160 172 16|b3 220 stand sorry f", "耐心等待": "play|g1 110 stand calm|b3 180 stand plain|e 🎠 260 120 46", "誠實說出來": "home|b1 110 bow sorry|e 🏺 140 160 16|mom 230 stand plain f", "上廁所時跟大人說": "home|e 🚽 80 150 34|b1 160 point plain|mom 240 stand smile f", "用手肘遮住口鼻": "class|b1 160 cower calm|ml M196 90l8-4 M198 100h10", "停下來等": "street|mom 140 stand smile|b1 200 stand plain|e 🚥 268 90 28", "拿去洗": "kitchen|b1 160 hold happy|e 🍽️ 160 130 20|e 💧 180 112 12", "收好": "room|b1 140 reach smile|e 🧺 210 160 34|e 🚗 196 128 14", "繫安全帶": "bus|g1 160 seat smile - 176|ob belt 160 126 .9", "洗乾淨": "kitchen|b1 160 hold happy|e 🍎 160 140 16|e 💧 160 124 12", "先收起來，帶回家丟": "street|g1 160 hold smile|e 🛍️ 160 140 16", "沖乾淨、壓扁，再回收": "kitchen|b1 160 hold happy|e 🧃 160 140 16|e 💧 160 123 10", "隨手關燈": "room|g1 150 reach smile|e 💡 210 84 22", "後座的安全座椅，繫好安全帶": "bus|b1 160 seat smile - 176|ob belt 160 124 1", "等下一個綠燈": "street|mom 140 stand smile|g1 200 stand plain|e 🚦 268 90 28", "先讓裡面的人出來，再進去": "hall|b3 150 walk smile|mom 230 stand smile f|b1 274 stand plain f", "用杯子裝水，關掉水龍頭": "bath|g1 160 eat happy|e 🥤 184 112 14|ob brush 120 140 .7", "打鼓": "stage|b1 150 up laugh|e 🥁 150 160 30", "跟著大家一起唱": "stage|b1 80 stand laugh|g1 160 stand laugh|g2 240 stand laugh", "小心，不拿著跑": "class|g1 150 seat calm - 176|e ✂️ 166 128 14|e 📄 196 140 16", "敲門說報告": "hall|e 🚪 200 110 110|b1 120 point plain|ml M178 96l8-4 M180 108h10", "先吃一點點試試看": "kitchen|g1 150 eat plain|e 🥦 173 104 12|e 🍱 150 146 20", "壓扁放資源回收": "class|g1 140 hold happy|e 🧃 140 140 16|e 📦 220 166 22|e 📦 236 150 18", "準時還書": "library|g1 120 give smile|e 📘 166 126 16|tch 230 reach smile f", "看課表": "room|b1 130 point plain|e 🗓️ 214 88 30", "沖水和洗手": "bath|g1 160 hold happy|e 🧼 160 146 14|e 💧 150 128 10|e 💧 170 128 10|e 🚽 80 150 34", "掛在椅背或掛勾": "class|b1 130 reach smile|e 🪑 210 150 60|e 🧥 206 112 20", "坐在位子上吃": "kitchen|g1 150 eat happy|e 🍱 150 146 20", "收回盒子裡": "class|g1 150 reach smile|e 🖍️ 196 130 16|e 📦 210 160 22", "一定要告訴爸媽": "home|b1 110 point plain|mom 228 stand smile f", "不傳，告訴爸媽": "home|g1 110 give plain|e 📱 150 120 14|mom 228 stand smile f", "不可以，要先問大人": "home|b1 120 hold plain|e 💊 120 132 12|mom 228 stand smile f", "不可以，要問大人": "home|g1 120 hold plain|e 💊 120 132 12|dad 228 stand smile f", "不告訴他，去找爸媽": "park|niu 70 point smile|b1 160 run plain|mom 268 stand smile f", "不告訴他，跟爸媽說": "home|g1 110 point plain|e 📱 150 150 14|dad 228 stand smile f", "不回答，告訴爸媽": "home|b1 110 give plain|e 📞 150 120 14|mom 228 stand smile f", "不拿，馬上告訴爸媽": "park|ma 70 give smile|e 🍬 104 120 12|g1 160 run plain|mom 268 stand smile f", "不說，告訴爸媽": "home|b1 110 point plain|e 📱 150 150 14|mom 228 stand smile f", "偷偷去，不告訴爸媽": "street|jin 220 reach smile f|g1 130 walk plain", "告訴大人": "park|b1 110 point scared|tch 228 stand smile f", "告訴大人、多休息、看醫生": "bedroom|g1 140 sleep sick - 180|mom 236 stand smile f|z 50 10 230", "告訴大人，洗乾淨貼 OK 繃": "bath|b1 110 sit sad - 190|mom 220 hold smile f|e 🩹 186 140 12", "多練習幾次，跟爸媽說說": "home|g1 120 dance happy|mom 230 clap happy f", "大聲說不要，告訴爸媽": "park|niu 220 reach plain f|b1 120 push angry", "大聲說不要，馬上告訴大人": "park|jin 220 reach plain f|g1 120 push angry", "安慰她，找大人幫忙修": "room|b1 120 hug smile|sis 200 cry cry f|e 🧸 236 172 14", "找爸媽抱抱": "home|g1 130 hug sad|mom 200 hug smile f", "說不要，去找爸媽": "park|niu 70 give smile|e 🍬 104 120 12|b1 160 run plain|mom 268 stand smile f", "說不要，馬上去找爸媽": "play|jin 70 reach smile|g1 160 run plain|dad 268 stand smile f", "說我好難過，請爸媽幫忙": "room|b1 120 cry cry|dad 220 stand smile f|e 🧱 170 172 14", "跑到人多的地方，找大人": "store|man 60 walk plain|g1 160 run scared|mom 260 stand smile f", "跟爸媽說愛他們": "home|mom 110 hug happy|b1 160 hug laugh|dad 210 hug happy f", "道歉並告訴大人": "room|g1 110 bow sorry|b3 210 stand plain f|e 🧸 160 176 12", "不敢說": "room|g1 160 cower scared", "不跟爸媽說": "home|b1 120 shh scared|mom 240 stand plain f", "什麼都不說": "home|g1 120 stand plain|e 🎁 120 140 16|mom 230 stand smile f", "害怕不敢說": "room|b1 160 cower scared", "誰都不說": "class|g1 160 sitcry sad - 190", "都不說": "home|b1 110 stand plain|dad 230 stand plain f", "一起幫忙收": "class|b1 110 reach smile|g2 210 reach smile f|e 🧺 160 168 26", "上車幫他找": "street|e 🚗 220 140 80|niu 260 point smile f|b1 150 walk plain", "問他痛不痛，扶他起來": "field|g1 120 reach smile|b3 200 sitreach sad f", "問她需不需要幫忙": "street|b1 120 reach smile|gma 220 hold plain f|e 🛍️ 220 140 18", "大聲叫大人來幫忙": "park|w 200 320 170|g1 110 point scared|tch 40 run surprise", "幫忙他": "hall|b1 120 reach smile|b3 210 stand smile f|e 📚 166 176 16", "想請別人幫忙": "class|g1 120 hold sad|e 🥤 120 134 14|tch 226 stand smile f", "扶他起來": "field|b1 120 reach smile|g2 200 sitreach sad f", "找穿制服的服務人員或店員幫忙": "store|g1 120 point plain|man 230 stand smile f", "拿玩具給他，或請大人幫忙": "room|b1 120 give smile|e 🧸 160 126 14|bro 220 cry cry f", "掉地上撿起來吃": "park|g1 160 eat plain|e 🍎 183 104 12", "用袋子撿起來丟掉": "park|mom 150 reach smile|e 🐕 230 160 26|e 🛍️ 194 150 12", "需要別人幫忙": "home|b1 150 hand plain|e 🥤 196 60 14", "不跟他走，告訴老師": "street|man 70 reach smile|b1 160 run scared|tch 264 stand smile f", "不跟她走，去告訴老師": "street|ma 70 reach smile|g1 160 run scared|tch 264 stand smile f", "告訴老師": "class|b1 110 point plain|tch 228 stand smile f", "在學校等，告訴老師": "class|g1 120 stand plain|tch 220 stand smile f|e 🎒 150 160 16", "舉手告訴老師": "class|b1 110 hand plain|tch 228 stand smile f", "舉手問老師": "class|g1 110 hand plain|e 📖 140 140 14|tch 228 stand smile f", "舉手跟老師說": "class|b1 110 hand plain|tch 228 point smile f", "說不要並告訴老師": "class|g1 120 push angry|b3 220 stand surprise f", "請老師幫忙": "class|b1 90 stand sad|b3 150 stand sad|tch 240 stand smile f", "一直躲起來": "bedroom|g1 160 cower sad|e 🛏️ 160 157 60", "假裝沒看到": "park|b1 150 walk plain|e 🧴 220 176 14", "偷偷藏起來": "home|g1 130 hold scared|e 🏺 140 140 14|e 🛋️ 230 150 50", "月亮怕熱躲起來": "park|e 🌙 160 90 50|e ☁️ 186 100 50", "月亮把太陽藏起來": "park|e 🌞 150 90 60|e 🌑 170 90 54", "自己躲起來": "store|b1 150 cower scared|e 👗 200 130 44", "藏起來": "class|g1 150 hold scared|e ✏️ 150 140 14", "躲起來": "bedroom|b1 160 cower scared|e 🛏️ 200 150 60", "躲起來不出聲": "home|g1 160 shh scared", "躲起來哭一整天": "room|b1 160 sitcry cry - 190|e 🌙 260 40 18", "先休息、深呼吸，再試一次": "room|b1 150 belly calm|e 🧱 220 170 18", "先冷靜下來": "class|g1 160 sit calm - 190", "慢慢數到十": "room|b1 160 up calm", "深呼吸": "class|g1 160 belly calm", "深呼吸再說": "room|b1 120 belly calm|sis 220 stand plain f", "深呼吸數到五": "class|g1 160 wave calm", "深呼吸，下次再加油": "field|b1 160 belly calm|e 🏃 264 150 20", "深呼吸，多練習幾次": "stage|g1 160 belly calm", "深呼吸，慢慢數到10": "room|b1 160 up calm", "深呼吸，用說的": "class|g1 120 belly calm|b3 220 stand smile f", "縮起來深呼吸": "field|b1 150 sitcry calm - 190|e 🐢 230 170 20", "別人跟你說謝謝": "class|b3 110 bow happy|g1 220 stand smile f", "說謝謝，給對方抱抱": "home|b1 130 hug happy|g2 200 hug happy f|e 🎁 166 150 14", "謝謝": "class|g1 120 bow smile|tch 220 give smile f|e 📒 176 124 12", "謝謝你": "park|b1 120 hold happy|e ⚽ 120 140 14|b3 220 stand smile f", "謝謝你送我禮物": "home|g1 120 bow smile|e 🎁 120 150 14|g2 220 stand smile f", "謝謝招待，很好吃": "kitchen|b1 110 bow smile|mom 230 stand smile f", "借他一起用": "class|g1 110 give smile|e 🖍️ 160 130 14|b3 220 reach happy f", "分一點給他": "park|b1 110 give happy|e 🍪 160 126 14|g2 220 reach happy f", "切一半，一人一半": "kitchen|g1 110 hold happy|e 🍰 160 140 16|sis 220 stand happy f", "問他：我可以一起玩嗎": "play|b1 90 point smile|b3 190 hold happy f|g2 260 hold happy f|e ⚽ 226 140 14", "想辦法一起玩": "beach|g1 120 sitreach happy|b3 210 sitreach happy f|e 🏰 166 168 22", "我可以一起玩嗎": "play|g1 90 point smile|b3 190 hold happy f|g2 260 hold happy f", "我可以跟你一起玩嗎？": "class|b1 110 point smile|b3 210 sitreach happy f|e 🧱 172 172 14", "說出感覺：「我很難過，可以一起玩嗎？」": "play|g1 110 hold sad|g2 220 stand plain f", "邀他一起玩": "park|b1 110 give happy|e ⚽ 150 126 14|b3 220 stand shy f", "邀朋友一起玩": "room|g1 110 give happy|e 🧸 150 126 14|g2 220 reach happy f", "邀請他一起玩": "class|b1 110 reach happy|e 🪑 210 150 70|b3 210 seat shy f 158", "不理他": "class|g1 120 hips plain f|b3 220 stand sad f", "不理她": "room|b1 120 hips plain f|sis 220 cry cry f|e 🎈 250 100 16", "不理老師": "class|g1 120 hips plain f|tch 230 wave smile f", "一起玩，輪流玩": "play|b1 120 stand smile|g2 200 hold happy f|e 🚗 200 140 14", "排隊一個一個溜": "play|g1 120 stand smile|b3 180 stand smile|g2 240 stand smile|e 🛝 60 120 60", "排隊等": "play|b1 120 stand calm|b3 180 stand plain|g2 240 stand plain|e 🛝 60 120 60", "猜拳或輪流玩": "play|g1 120 reach happy|b3 200 reach happy f|e ✊ 160 110 14|e ✌️ 180 125 14", "等一下輪到我": "play|b1 110 stand calm|sis 210 hold happy f|e 🛝 254 120 50", "等他玩完": "room|g1 110 stand calm|b3 210 sitreach happy f|e 🧱 172 172 14", "等他說完，再說：不好意思": "home|b1 100 stand calm|mom 190 stand smile|dad 260 stand smile f", "說下次可以換我嗎": "kitchen|g1 110 point plain|sis 200 eat happy f|e 🍗 200 138 14|mom 266 stand smile f", "輕輕拍手臂等一下": "home|b1 110 reach calm|mom 210 stand smile f|e 📱 196 102 12", "輪流玩": "room|b1 110 give smile|e 🚗 160 130 14|sis 220 reach happy f", "輪流說，一起決定": "class|b1 90 hand smile|g1 170 stand smile|b3 250 stand smile f", "輪流，一人放一片": "kitchen|g1 110 reach smile|b3 220 stand smile f|e 🧩 160 130 18", "一個人搶走": "kitchen|b1 110 grab angry|e 🍗 156 130 16|sis 220 cry cry f", "不說話，用搶的": "play|g1 110 grab angry|e ⚽ 160 132 16|b3 220 stand surprise f", "把拼圖搶走": "kitchen|b1 110 grab angry|e 🧩 160 130 16|b3 220 cry cry f", "搶位子": "bus|b1 140 push angry|g2 220 fall scared f|e 💺 70 156 40", "搶別人的": "kitchen|g1 110 grab angry|e 🍰 160 132 16|b3 220 stand surprise f", "搶回來大哭": "room|b1 110 grab cry|e 🧸 160 132 16|sis 220 grab angry f", "搶過來": "play|g1 110 grab angry|e 🪣 160 132 16|g2 220 cry cry f", "用搶的": "room|b1 110 grab angry|e 🧱 160 132 16|b3 220 grab angry f", "直接搶玩具": "class|g1 110 grab angry|e 🚗 160 132 16|b3 220 cry cry f", "直接搶過來": "play|b1 110 grab angry|e ⚽ 160 132 16|g2 220 cry cry f", "衝進去搶位置": "hall|g1 160 run angry|b3 240 fall scared f", "跑去搶別的位子": "bus|b1 150 run angry|e 💺 240 156 40|gma 70 cane plain", "先問：可以借我玩嗎": "play|g1 110 reach smile|b3 220 hold happy f|e 🚗 220 140 14", "先敲門，問：可以進去嗎？": "home|e 🚪 200 110 110|b1 120 point smile|ml M178 96l8-4 M180 108h10", "可以借我嗎？": "class|g1 110 reach smile|g2 220 hold happy f|e 🖍️ 220 140 14", "問可以借我嗎": "class|b1 110 reach smile|b3 220 hold happy f|e 🤖 220 140 16", "好好問可以再玩一次嗎": "room|g1 120 reach smile|mom 230 stand smile f|e 🧱 150 172 14", "說請還給我": "room|b1 110 reach plain|b3 220 hold plain f|e 🚗 220 140 14", "說：可以還我嗎": "room|g1 110 reach plain|sis 220 hold plain f|e 🧸 220 140 14", "請幫幫我": "home|b1 120 hold plain|e 🫙 120 140 14|mom 228 stand smile f", "請給我飲料": "home|g1 120 reach smile|mom 228 hold smile f|e 🧃 228 124 14", "也說 Hello，你好": "park|b1 110 wave happy|g2 220 wave happy f", "再見": "street|g1 120 wave happy|mom 210 walk smile", "喂，你好，請問找誰？": "home|b1 160 listen smile|e 📞 186 98 14", "早安": "kitchen|g1 120 wave happy|mom 230 stand smile f|e 🍳 230 140 14", "晚安": "bedroom|b1 140 sleep happy - 180|mom 236 wave smile f|e 🌙 270 40 18|z 50 10 240", "老師早": "class|g1 110 bow happy|e 🎒 92 140 16|tch 228 wave smile f", "先舉手，等老師點到": "class|g1 110 hand calm|tch 228 point smile f", "舉手": "class|b1 160 hand happy|z 70 22 180", "舉手投票": "class|b1 80 hand happy|g1 150 hand happy|b3 220 hand happy|z 20 10 260", "舉手投票或猜拳": "class|b1 80 hand happy|g1 150 hand happy|b3 220 reach happy|g2 280 reach happy f|z 20 10 290", "舉手等老師點名": "class|g1 110 hand happy|tch 228 point smile f", "姊姊／妹妹": "home|b1 120 stand happy|g3 200 stand happy f"};
   function sceneFor(t) {
+    const k = String(t).replace(/\s*[✓✗]\s*$/, '').trim(); if (ANS_SC[k]) return ANS_SC[k];
     for (const [re, sc] of SCENES) if (re.test(t)) return sc;
     return null;
   }
@@ -4391,7 +4422,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     { sc: 'street|b1 100 stand surprise|ma 214 reach sad f', e: '😟', q: '馬婆婆說：「你爸爸受傷了，快跟我走！」可是你不認識她，怎麼辦？', a: [['🏫', '不跟她走，去找老師'], ['🏃', '趕快跟她走'], ['😭', '站著哭不動']], why: '就算說家人出事了，也不能跟不認識的人走。要找老師或打電話給爸媽確認。', lv: 1 },
     { sc: 'home|g1 110 stand plain|e 🚪 240 118 96|e 🔔 214 60 26', e: '🔔', q: '自己在家，有人按門鈴說是送貨的，要怎麼做？', a: [['🙅', '不開門，等爸媽回來'], ['🚪', '馬上開門'], ['🗣️', '告訴他家裡沒大人']], why: '自己在家不要開門，也不要說家裡沒有大人，可以打電話給爸媽。', lv: 1 },
     { sc: 'park|b1 100 cower scared|niu 200 grab angry f', e: '📢', q: '牛叔叔突然拉住你的手，要把你帶走，怎麼辦？', a: [['📢', '大聲喊「我不認識你！救命！」'], ['🤐', '不敢出聲'], ['🚶', '乖乖跟他走']], why: '被不認識的人拉走，要大聲喊「我不認識你！」，讓旁邊的大人知道。', lv: 1 },
-    { sc: 'bedroom|g2 140 stand plain|e 📱 200 120 34|e 💬 230 70 26', e: '📱', q: '網路上不認識的人，要你傳照片給他，要怎麼做？', a: [['🙅', '不傳，告訴爸媽'], ['📷', '傳照片給他'], ['🏠', '告訴他住哪裡']], why: '網路上不認識的人也是陌生人，照片、名字、地址都不能給。' },
+    { sc: 'bedroom|g2 140 stand plain|e 📱 200 120 34', e: '📱', q: '網路上不認識的人，要你傳照片給他，要怎麼做？', a: [['🙅', '不傳，告訴爸媽'], ['📷', '傳照片給他'], ['🏠', '告訴他住哪裡']], why: '網路上不認識的人也是陌生人，照片、名字、地址都不能給。' },
     { sc: 'store|b2 110 cry cry|e 👮 240 110 60', e: '👮', q: '跟爸媽走散了，可以請誰幫忙？', a: [['👮', '警察或店裡穿制服的人'], ['🚗', '路邊車子裡的人'], ['🙋', '隨便一個叔叔']], why: '走散的時候，找警察、店員或帶著小孩的媽媽幫忙，不要跟人離開店裡。', lv: 1 },
     { sc: 'park|g3 100 stand plain|niu 214 hand smile f|e 📷 168 70 26', e: '📷', q: '牛叔叔說要幫你拍照，問你叫什麼名字、讀哪個學校，要怎麼說？', a: [['🙅', '不告訴他，去找爸媽'], ['🏫', '告訴他學校名字'], ['📛', '告訴他全名']], why: '名字、學校、家裡地址，都不能告訴不認識的人。' }
   ];
@@ -4400,27 +4431,27 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     { sc: 'park|g1 100 stand plain|jin 214 give smile f|e 🧸 168 110 30', e: '🧸', q: '金阿姨是不認識的人，她說要帶你去買玩具，爸媽不知道，怎麼辦？', a: [['🙅', '說不要，馬上去找爸媽'], ['🧸', '跟她去買玩具'], ['🤫', '偷偷去，不告訴爸媽']], why: '不認識的人說要給你東西或帶你去哪裡，都要說不要，馬上告訴爸媽。', lv: 1 },
     { sc: 'street|b2 100 stand surprise|ma 214 reach smile f|e 🏫 290 50 34', e: '👵', q: '馬婆婆說：「你媽媽叫我來接你。」可是你不認識她，怎麼辦？', a: [['🏫', '不跟她走，去告訴老師'], ['🚶', '跟她走'], ['🍭', '先拿她的糖果']], why: '爸媽如果請別人來接，會先告訴老師。不認識的人說是爸媽叫的，也不能跟他走。', lv: 1 },
     { sc: 'street|b3 96 stand plain|niu 214 reach smile f|e 🚗 284 166 56|e 🐶 172 66 24', e: '🚗', q: '牛叔叔說他的小狗不見了，要你上車幫忙找，怎麼辦？', a: [['🙅', '說不要，跑到大人多的地方'], ['🚗', '上車幫他找'], ['🗣️', '把家裡地址告訴他']], why: '大人需要幫忙會找大人，不會找小朋友。不認識的人叫你上車，一定要說不要，趕快跑開。', lv: 1 },
-    { sc: 'park|g2 100 stand plain|niu 214 hand smile f|e ❓ 168 66 26', e: '🏠', q: '牛叔叔問你：「你家住在哪裡？爸媽在家嗎？」要怎麼說？', a: [['🙅', '不告訴他，去找爸媽'], ['🏠', '告訴他家裡地址'], ['📱', '告訴他爸媽電話']], why: '家裡的地址、電話、爸媽在不在家，都不能告訴不認識的人。' },
+    { sc: 'park|g2 100 stand plain|niu 214 hand smile f', e: '🏠', q: '牛叔叔問你：「你家住在哪裡？爸媽在家嗎？」要怎麼說？', a: [['🙅', '不告訴他，去找爸媽'], ['🏠', '告訴他家裡地址'], ['📱', '告訴他爸媽電話']], why: '家裡的地址、電話、爸媽在不在家，都不能告訴不認識的人。' },
     { sc: 'store|g3 100 stand plain|ma 214 give smile f|e 🍬 162 106 24', e: '🍬', q: '馬婆婆拿糖果給你，說：「不要跟爸媽說喔。」要怎麼做？', a: [['🙅', '不拿，馬上告訴爸媽'], ['🍬', '拿了偷偷吃'], ['🤐', '答應她不說']], why: '叫你「不要告訴爸媽」的事，一定要告訴爸媽。不拿不認識的人給的東西。' },
-    { sc: 'store|g2 160 cry cry|e ❓ 204 60 26', e: '🏬', q: '在百貨公司和爸媽走散了，怎麼辦？', a: [['🧍', '站在原地或找服務台'], ['🏃', '到處亂跑'], ['🚪', '自己走出去']], lv: 1 },
+    { sc: 'store|g2 160 cry cry', e: '🏬', q: '在百貨公司和爸媽走散了，怎麼辦？', a: [['🧍', '站在原地或找服務台'], ['🏃', '到處亂跑'], ['🚪', '自己走出去']], lv: 1 },
     { sc: 'pool|g1 110 stand plain|e 🛟 230 176 40', e: '🩱', q: '有人要碰你泳衣蓋住的地方，怎麼辦？', a: [['🙅', '大聲說不要，告訴爸媽'], ['🤫', '保守秘密'], ['😶', '不敢說']], why: '泳衣蓋住的地方是你的身體隱私，誰都不可以碰，一定要告訴爸媽', lv: 1 },
     { sc: 'room|e 🛗 214 116 116|b2 100 stand plain', e: '🛗', q: '坐電梯的時候，要怎麼做？', a: [['🧍', '站好不亂按'], ['🤸', '跳來跳去'], ['✋', '手放門縫']], lv: 1 },
     { sc: 'kitchen|b1 130 reach happy|e 💊 206 90 22|e 💊 228 92 18', e: '💊', q: '看到像糖果的藥丸，可以吃嗎？', a: [['🙅', '不可以，要問大人'], ['😋', '可以吃'], ['🤫', '偷偷吃']], lv: 1 },
     { sc: 'room|e 🪑 262 158 50|b1 264 reach happy - 142', e: '🪟', q: '可以爬到窗戶邊嗎？', a: [['🙅', '不可以，很危險'], ['👍', '可以'], ['🧗', '爬高高看外面']], lv: 1 },
     { sc: 'class|g2 160 walk smile|e ✂️ 184 150 26', e: '✂️', q: '拿剪刀走路時，要怎麼拿？', a: [['👇', '刀尖朝下慢慢走'], ['🏃', '拿著跑'], ['🤺', '揮來揮去']], lv: 1 },
-    { sc: 'room|b1 160 stand scared|e 〰️ 104 120 30|e 〰️ 216 120 30|e 🖼️ 62 62 34 18', e: '🌏', q: '地震了，要怎麼做？', a: [['🫣', '趴下、掩護、穩住'], ['🏃', '馬上衝出去'], ['🛗', '去搭電梯']], why: '地震時趴下、掩護頭部、穩住，等搖晃停了再聽大人的話離開', lv: 1 },
+    { sc: 'room|b1 160 stand scared|ml M100 104q8-8 0-16 M108 120q8-8 0-16 M220 104q-8-8 0-16 M212 120q-8-8 0-16|e 🖼️ 62 62 34 18', e: '🌏', q: '地震了，要怎麼做？', a: [['🫣', '趴下、掩護、穩住'], ['🏃', '馬上衝出去'], ['🛗', '去搭電梯']], why: '地震時趴下、掩護頭部、穩住，等搖晃停了再聽大人的話離開', lv: 1 },
     { sc: 'class|b1 100 ears scared|g2 210 ears scared f|e 🚨 276 50 32', e: '🚨', q: '聽到火災警報，要怎麼做？', a: [['👨‍👧', '跟著大人往外走'], ['🙈', '躲到床底下'], ['🛗', '去搭電梯']], lv: 1 },
     { sc: 'park|b2 160 stand scared|e 🔥 174 138 26', e: '🔥', q: '衣服著火了，要怎麼做？', a: [['🛑', '停下、躺下、滾一滾'], ['🏃', '趕快跑'], ['💨', '用嘴巴吹']], why: '衣服著火要停、躺、滾，跑會讓火更大', lv: 2 },
-    { sc: 'home|e 🚪 62 118 104|e ❗ 110 52 24|b1 160 stand scared', e: '🚪', q: '一個人在家，有人敲門，怎麼辦？', a: [['📞', '不開門，打給爸媽'], ['🔓', '馬上開門'], ['🗣️', '說爸媽不在家']], lv: 2 },
+    { sc: 'home|e 🚪 62 118 104|b1 160 stand scared', e: '🚪', q: '一個人在家，有人敲門，怎麼辦？', a: [['📞', '不開門，打給爸媽'], ['🔓', '馬上開門'], ['🗣️', '說爸媽不在家']], lv: 2 },
     { sc: 'pool|b1 110 stand smile|e 🛟 260 176 30', e: '🏊', q: '在游泳池邊，要怎麼做？', a: [['🚶', '慢慢走'], ['🏃', '用跑的'], ['🤸', '推別人下水']], lv: 1 },
     { sc: 'park|b1 100 stand smile|e 🚲 200 146 84', e: '🚲', q: '騎腳踏車要戴什麼？', a: [['⛑️', '安全帽'], ['🧢', '棒球帽'], ['🕶️', '太陽眼鏡']], lv: 1 },
-    { sc: 'home|g1 130 think smile|e 📱 140 112 22|e 💭 186 62 44|e 👨‍👩‍👧 186 60 22', e: '📱', q: '一定要記住誰的電話？', a: [['👨‍👩‍👧', '爸爸媽媽的電話'], ['🍕', '披薩店的電話'], ['🎮', '遊戲的電話']], lv: 2 },
-    { sc: 'room|b2 120 stand surprise|e 🔥 196 176 20|e ❓ 140 56 24', e: '🔥', q: '在地上看到打火機，怎麼辦？', a: [['🗣️', '告訴大人'], ['🔥', '拿來玩'], ['🎒', '放進書包']], lv: 1 },
+    { sc: 'home|g1 120 hold smile|e 📱 120 136 16|mom 226 stand smile f', e: '📱', q: '一定要記住誰的電話？', a: [['👨‍👩‍👧', '爸爸媽媽的電話'], ['🍕', '披薩店的電話'], ['🎮', '遊戲的電話']], lv: 2 },
+    { sc: 'room|b2 120 stand surprise|e 🔥 196 176 20', e: '🔥', q: '在地上看到打火機，怎麼辦？', a: [['🗣️', '告訴大人'], ['🔥', '拿來玩'], ['🎒', '放進書包']], lv: 1 },
     { sc: 'garden|b1 110 reach happy|e 🐕 216 158 60', e: '🐕', q: '看到不認識的狗狗，可以直接摸嗎？', a: [['🙋', '先問主人可不可以'], ['✋', '直接摸'], ['🦶', '踢牠']], lv: 1 },
     { sc: 'park|e ⛈️ 160 40 50|b2 100 run scared|e 🌳 250 118 100', e: '⛈️', q: '在外面遇到打雷，可以躲在大樹下嗎？', a: [['🏠', '不行，要進到屋子裡'], ['🌳', '可以躲樹下'], ['🧗', '爬到樹上']], lv: 2 },
     { sc: 'street|e 🚙 64 146 70|e 🚗 254 150 80|b1 160 stand plain', e: '🅿️', q: '在停車場要怎麼走？', a: [['🤝', '牽著大人的手'], ['🏃', '自己跑'], ['🙈', '躲在車子後面']], lv: 1 },
-    { sc: 'street|e 🚗 150 150 140|e 🙋 222 92 34|e ⚠️ 282 56 26', e: '🚗', q: '坐車時，頭可以伸出窗外嗎？', a: [['🙅', '不可以'], ['👍', '可以'], ['🙌', '手也伸出去']], lv: 1 },
-    { sc: 'home|g2 110 stand plain|e 💻 180 142 44|e 💬 214 78 32|e 🏠 214 76 14', e: '💻', q: '網路上有人問你家住在哪裡，怎麼辦？', a: [['🙅', '不說，告訴爸媽'], ['🏠', '告訴他'], ['📸', '傳照片給他']], lv: 2 },
+    { sc: 'street|e 🚗 150 150 140|e 🙋 222 92 34', e: '🚗', q: '坐車時，頭可以伸出窗外嗎？', a: [['🙅', '不可以'], ['👍', '可以'], ['🙌', '手也伸出去']], lv: 1 },
+    { sc: 'home|g2 110 stand plain|e 💻 180 142 44|e 🏠 214 76 14', e: '💻', q: '網路上有人問你家住在哪裡，怎麼辦？', a: [['🙅', '不說，告訴爸媽'], ['🏠', '告訴他'], ['📸', '傳照片給他']], lv: 2 },
     { sc: 'kitchen|b1 130 reach happy|e 🔪 230 88 30 30', e: '🔪', q: '廚房的刀子可以自己拿來玩嗎？', a: [['🙅', '不可以'], ['👍', '可以'], ['🤺', '拿來比劍']], lv: 1 }
   ];
   const SCIENCE = [
@@ -4524,6 +4555,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const VERBS = [['run', '🏃', '跑'], ['jump', '🤸', '跳'], ['swim', '🏊', '游泳'], ['eat', '😋', '吃'], ['sleep', '😴', '睡覺'], ['read', '📖', '讀書'], ['sing', '🎤', '唱歌'], ['dance', '💃', '跳舞'],
     ['cry', '😭', '哭'], ['laugh', '😂', '笑'], ['walk', '🚶', '走路'], ['drink', '🥤', '喝'], ['write', '✍️', '寫字'], ['draw', '🎨', '畫畫'], ['cook', '🍳', '煮飯'], ['ride', '🚲', '騎車'],
     ['fly', '✈️', '飛'], ['climb', '🧗', '爬'], ['wash', '🧼', '洗'], ['play', '⚽', '玩'], ['sit', '🪑', '坐'], ['clap', '👏', '拍手']];
+  const VERB_SC = {"run": "park|b1 160 run happy|ml M112 150h-14 M114 162h-18", "jump": "park|g1 160 jump laugh", "swim": "pool|b1 160 up happy - 196|w 0 320 156", "eat": "kitchen|g1 160 eat happy|e 🍚 160 146 16", "sleep": "bedroom|b1 176 sleep calm - 168|z 90 30 170", "read": "library|g1 160 hold happy|e 📖 160 138 22", "sing": "stage|g1 160 eat laugh|e 🎤 183 112 12|ml M196 82q6 6 0 12 M204 76q10 10 0 22", "dance": "stage|g1 160 dance happy", "cry": "room|b1 160 cry cry", "laugh": "park|g1 160 hips laugh", "walk": "street|b1 160 walk smile|ml M118 176h-12 M114 166h-10", "drink": "kitchen|b1 160 eat happy|e 🥛 186 106 14", "write": "class|b1 150 seat plain - 170|e 📒 192 150 20|e ✏️ 186 130 12", "draw": "class|g1 150 seat happy - 170|e 🖼️ 192 150 20|e 🖍️ 186 130 12", "cook": "kitchen|b1 160 hold happy|e 🍳 164 136 18", "ride": "park|e 🚲 160 160 60|b1 160 seat happy - 150", "fly": "park|e 🐦 160 96 48|ml M112 84q-10-10-20-6 M208 84q10-10 20-6", "climb": "play|e 🪜 160 126 100|b1 160 up happy - 150", "wash": "bath|g1 160 hold happy|e 🧼 160 146 14|e 💧 150 128 10|e 💧 170 128 10", "play": "park|b1 110 kick happy|e ⚽ 170 176 14|b3 230 stand happy f", "sit": "class|e 🪑 150 146 100|g1 140 sitdown smile - 150", "clap": "class|g1 160 clap laugh|ml M136 120l-10-4 M134 130h-12 M184 120l10-4 M186 130h12"};
   const SIMILAR = [[['大', '大小的大'], ['太', '太陽的太'], ['天', '天空的天']], [['人', '大人的人'], ['入', '入口的入'], ['八', '數字八']], [['日', '日出的日'], ['目', '眼睛，目'], ['白', '白色的白'], ['田', '田地的田']],
     [['土', '泥土的土'], ['王', '國王的王'], ['工', '工人的工']], [['木', '樹木的木'], ['本', '書本的本'], ['禾', '禾苗的禾']], [['口', '嘴巴，口'], ['回', '回家的回'], ['日', '日出的日']],
     [['力', '力氣的力'], ['刀', '刀子的刀'], ['九', '數字九']], [['午', '中午的午'], ['牛', '小牛的牛'], ['千', '一千的千']], [['手', '小手的手'], ['毛', '毛巾的毛'], ['才', '天才的才']],
@@ -4565,22 +4597,22 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const CH_SUBS = ['math', 'addsub', 'compare', 'measure', 'share', 'ordinal', 'money', 'time', 'calendar', 'cn', 'zhuyin', 'spell', 'en', 'abc', 'words', 'geo', 'solid', 'color', 'position', 'odd', 'logic', 'riddle', 'life', 'body', 'jobs', 'seasons', 'food', 'emotion'];
   const MANNERS = [
     { sc: 'play|g2 46 stand plain|b1 98 stand smile|g1 150 stand smile|b3 202 up happy', e: '🎠', q: '溜滑梯好多人在玩，要怎麼做？', a: [['🧍', '排隊等'], ['💨', '插隊'], ['🤜', '推開別人']], why: '要排隊，一個一個輪流玩', lv: 1 },
-    { sc: 'park|b1 120 run surprise|g1 214 fall surprise f|e 💫 168 86 30', e: '💥', q: '不小心撞到別人，要說什麼？', a: [['🙇', '對不起'], ['🙄', '走開啦'], ['🤐', '不說話']], why: '撞到別人，要說對不起', lv: 1 },
+    { sc: 'park|b1 120 run surprise|g1 214 fall surprise f', e: '💥', q: '不小心撞到別人，要說什麼？', a: [['🙇', '對不起'], ['🙄', '走開啦'], ['🤐', '不說話']], why: '撞到別人，要說對不起', lv: 1 },
     { sc: 'room|b2 120 hand sad|e 📦 136 52 32|mom 240 stand smile f', e: '🙋', q: '需要別人幫忙，要怎麼說？', a: [['🙏', '請幫幫我'], ['😤', '快點給我'], ['😭', '一直哭']], why: '請人幫忙，要說「請」', lv: 1 },
     { sc: 'home|g2 110 give happy|e 🎁 148 124 36|b1 210 stand surprise f', e: '🎁', q: '別人送你禮物，要說什麼？', a: [['😊', '謝謝'], ['😑', '不說話'], ['🙅', '我不要']], why: '收到東西，要說謝謝', lv: 1 },
     { sc: 'class|b1 100 stand smile|e 🎒 78 146 24|tch 220 wave smile f', e: '🏫', q: '早上到學校看到老師，要說什麼？', a: [['👋', '老師早'], ['🌙', '晚安'], ['🤐', '不理老師']], why: '看到老師，要說老師早', lv: 1 },
-    { sc: 'room|b2 100 think plain|g1 210 hold happy f|e 🧸 210 140 32', e: '🧸', q: '想玩朋友的玩具，要怎麼做？', a: [['🙏', '問可以借我嗎'], ['✊', '直接搶過來'], ['😭', '大哭']], why: '想借東西，要先問', lv: 1 },
+    { sc: 'room|b2 100 think plain|g1 210 hold happy f|e 🧸 210 143 32', e: '🧸', q: '想玩朋友的玩具，要怎麼做？', a: [['🙏', '問可以借我嗎'], ['✊', '直接搶過來'], ['😭', '大哭']], why: '想借東西，要先問', lv: 1 },
     { sc: 'park|b1 110 walk smile|g2 210 stand smile f|e 🏠 282 132 44', e: '🏠', q: '要回家了，跟朋友說什麼？', a: [['👋', '再見'], ['🌅', '早安'], ['🙄', '哼']], why: '離開時要說再見', lv: 1 },
     { sc: 'play|g2 100 sitcry cry|b3 210 stand surprise f', e: '🤕', q: '朋友跌倒了，要怎麼做？', a: [['🤝', '扶他起來'], ['😂', '哈哈大笑'], ['🏃', '趕快跑走']], why: '朋友跌倒，要扶他起來，問他還好嗎', lv: 1 },
-    { sc: 'park|b1 110 hold smile|e 🍪 110 140 32|g1 210 stand plain f|e 💭 250 76 46|e 🍪 250 74 20', e: '🍪', q: '你有點心，朋友也想吃，怎麼辦？', a: [['🤲', '分一點給他'], ['🙈', '藏起來'], ['😝', '吃給他看']], why: '好東西可以和朋友分享', lv: 1 },
+    { sc: 'park|b1 110 hold smile|e 🍪 110 140 32|g1 210 stand plain f|e 🍪 250 74 20', e: '🍪', q: '你有點心，朋友也想吃，怎麼辦？', a: [['🤲', '分一點給他'], ['🙈', '藏起來'], ['😝', '吃給他看']], why: '好東西可以和朋友分享', lv: 1 },
     { sc: 'park|b2 110 bow sorry|g1 214 stand plain f', e: '🙇', q: '別人跟你說對不起，你可以說什麼？', a: [['🤝', '沒關係'], ['😠', '走開'], ['🙄', '哼']], why: '別人道歉，可以說沒關係', lv: 1 },
-    { sc: 'class|tch 160 point smile|e 💬 214 58 30|b1 70 stand smile|g2 260 stand smile f', e: '🗣️', q: '別人在說話的時候，要怎麼做？', a: [['👂', '安靜聽完'], ['📢', '大聲插嘴'], ['🙉', '摀住耳朵']], why: '別人說話時，要安靜聽完', lv: 1 },
+    { sc: 'class|tch 160 point smile|b1 70 stand smile|g2 260 stand smile f', e: '🗣️', q: '別人在說話的時候，要怎麼做？', a: [['👂', '安靜聽完'], ['📢', '大聲插嘴'], ['🙉', '摀住耳朵']], why: '別人說話時，要安靜聽完', lv: 1 },
     { sc: 'room|e 🚪 222 116 120|b1 120 stand think', e: '🚪', q: '進別人房間之前，要先做什麼？', a: [['✊', '先敲門'], ['🏃', '直接衝進去'], ['🦶', '用腳踢門']], why: '進房間前要先敲門', lv: 1 },
-    { sc: 'class|b2 110 stand shy|e 💭 160 70 46|e 🚽 160 68 22|tch 250 stand smile f', e: '✋', q: '上課時想上廁所，要怎麼做？', a: [['✋', '舉手告訴老師'], ['🏃', '自己跑出去'], ['🤐', '一直忍著']], why: '要舉手告訴老師', lv: 1 },
-    { sc: 'room|b1 110 stand scared|e 🏺 200 172 36 70|e 💥 196 150 28', e: '🏺', q: '不小心弄壞別人的東西，怎麼辦？', a: [['🙇', '道歉並告訴大人'], ['🙈', '偷偷藏起來'], ['🤥', '說不是我']], why: '要說對不起，並告訴大人', lv: 1 },
+    { sc: 'class|b2 110 stand shy|e 🚽 160 68 22|tch 250 stand smile f', e: '✋', q: '上課時想上廁所，要怎麼做？', a: [['✋', '舉手告訴老師'], ['🏃', '自己跑出去'], ['🤐', '一直忍著']], why: '要舉手告訴老師', lv: 1 },
+    { sc: 'room|b1 110 stand scared|e 🏺 200 172 36 70', e: '🏺', q: '不小心弄壞別人的東西，怎麼辦？', a: [['🙇', '道歉並告訴大人'], ['🙈', '偷偷藏起來'], ['🤥', '說不是我']], why: '要說對不起，並告訴大人', lv: 1 },
     { sc: 'park|b2 100 stand surprise|g3 200 cry cry f', e: '😢', q: '朋友難過哭了，可以怎麼做？', a: [['🤗', '安慰他'], ['😂', '笑他'], ['🙉', '不理他']], why: '朋友難過時，可以安慰他', lv: 1 },
-    { sc: 'table|b1 90 stand happy|g2 220 stand smile f|e 🍚 100 132 28|e 🍲 220 132 30', e: '🍽️', q: '吃飯的時候，要怎麼做？', a: [['🪑', '坐好慢慢吃'], ['🏃', '邊跑邊吃'], ['📢', '大聲吵鬧']], why: '吃飯要坐好，慢慢吃', lv: 1 },
-    { sc: 'home|g1 130 think surprise|e 📱 140 112 24|e 🔔 178 76 24', e: '📞', q: '接電話的時候，第一句要說什麼？', a: [['😊', '您好'], ['😤', '幹嘛'], ['🤐', '不說話']], why: '接電話要先說您好', lv: 1 },
+    { sc: 'table|b1 90 stand happy|g2 220 stand smile f|e 🍚 100 132 28|e 🍲 220 135 30', e: '🍽️', q: '吃飯的時候，要怎麼做？', a: [['🪑', '坐好慢慢吃'], ['🏃', '邊跑邊吃'], ['📢', '大聲吵鬧']], why: '吃飯要坐好，慢慢吃', lv: 1 },
+    { sc: 'home|g1 130 think surprise|e 📱 160 112 24|e 🔔 178 76 24', e: '📞', q: '接電話的時候，第一句要說什麼？', a: [['😊', '您好'], ['😤', '幹嘛'], ['🤐', '不說話']], why: '接電話要先說您好', lv: 1 },
     { sc: 'bus|e 💺 224 160 60|b1 208 sit smile - 166|gpa 100 cane sad', e: '🚌', q: '公車上老爺爺沒有位子坐，怎麼辦？', a: [['🪑', '讓座給他'], ['😴', '假裝睡覺'], ['🙄', '不理他']], why: '要讓座給老人家', lv: 1 },
     { sc: 'room|g2 110 hold smile|e 🧺 110 148 34|e 🧸 190 172 26|e 🚗 232 178 24|e 🧱 160 180 20|b3 280 stand plain f', e: '🧹', q: '玩完玩具，朋友還在收，怎麼辦？', a: [['🤝', '一起幫忙收'], ['🏃', '自己先跑走'], ['🛋️', '坐著看']], why: '大家一起收比較快', lv: 1 },
     { sc: 'park|b1 100 stand sad|g1 214 up happy f|e 🏆 214 66 30', e: '🏆', q: '玩遊戲輸了，要怎麼做？', a: [['👏', '恭喜贏的人'], ['😠', '生氣丟東西'], ['😭', '大哭耍賴']], why: '輸了也要恭喜別人，下次再加油', lv: 1 },
@@ -4591,67 +4623,67 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     { sc: 'park|b3 120 stand think|e 🥤 190 178 26 80|e 🗑️ 270 150 44', e: '🗑️', q: '看到地上有垃圾，怎麼辦？', a: [['🙋', '撿起來丟垃圾桶'], ['🦶', '踢到旁邊'], ['🙈', '假裝沒看到']], why: '看到垃圾可以撿起來丟掉', lv: 1 },
     { sc: 'room|b1 100 reach happy|g1 220 reach happy f|e 🚂 160 132 36', e: '🧸', q: '你和朋友都想玩同一個玩具，怎麼辦？', a: [['🔄', '輪流玩'], ['✊', '用搶的'], ['😭', '大哭大鬧']], why: '可以輪流玩，你先玩一下，再換我', say: '我們輪流玩好不好？', lv: 1 },
     { sc: 'room|b2 100 cry sad|b1 210 hold laugh f|e 🚗 210 140 30', e: '🚗', q: '朋友搶走你正在玩的車子，你可以怎麼做？', a: [['🗣️', '說請還給我'], ['👊', '打他'], ['😭', '躺地上哭']], why: '用說的，不要用打的。他不還，就請老師幫忙', say: '我還在玩，請還給我。', lv: 1 },
-    { sc: 'park|b1 96 run surprise|g2 186 sitcry cry|e 💫 180 66 26', e: '💥', q: '玩鬼抓人時，不小心撞倒別人，要怎麼做？', a: [['🙇', '停下來說對不起'], ['🏃', '趕快跑走'], ['🙈', '假裝不是我']], why: '撞到人要先停下來，看著他說對不起，再問他還好嗎', say: '對不起，你還好嗎？', lv: 1 },
-    { sc: 'park|e 🏺 80 172 36 70|e 💥 80 152 26|b2 210 run scared|e 💨 160 150 26', e: '🏃', q: '做錯事，很想趕快跑走，怎麼辦？', a: [['🔙', '回去說對不起'], ['🏃', '跑得遠遠的'], ['🙈', '躲起來']], why: '跑走不能解決問題，回去說對不起，是很勇敢的事', say: '對不起，我不是故意的。', lv: 1 },
-    { sc: 'park|b1 110 stand shy|e 💦 140 84 22|g1 214 stand plain f', e: '😳', q: '覺得說對不起很難為情，可以怎麼做？', a: [['😮‍💨', '深呼吸再說'], ['🤐', '都不說'], ['🙄', '說是他的錯']], why: '先深呼吸，看著對方，小小聲說也沒關係，說出來就很棒', say: '對不起。', lv: 1 },
-    { sc: 'park|b1 100 hips angry|g2 220 hips angry f|e 💢 160 70 32', e: '🗯️', q: '和朋友吵架了，第一步要做什麼？', a: [['😮‍💨', '先冷靜下來'], ['📢', '大聲罵他'], ['👊', '推他']], why: '先深呼吸，讓自己冷靜，再用說的', say: '我需要冷靜一下。', lv: 1 },
+    { sc: 'park|b1 96 run surprise|g2 186 sitcry cry', e: '💥', q: '玩鬼抓人時，不小心撞倒別人，要怎麼做？', a: [['🙇', '停下來說對不起'], ['🏃', '趕快跑走'], ['🙈', '假裝不是我']], why: '撞到人要先停下來，看著他說對不起，再問他還好嗎', say: '對不起，你還好嗎？', lv: 1 },
+    { sc: 'park|e 🏺 80 172 36 70|b2 210 run scared', e: '🏃', q: '做錯事，很想趕快跑走，怎麼辦？', a: [['🔙', '回去說對不起'], ['🏃', '跑得遠遠的'], ['🙈', '躲起來']], why: '跑走不能解決問題，回去說對不起，是很勇敢的事', say: '對不起，我不是故意的。', lv: 1 },
+    { sc: 'park|b1 110 stand shy|g1 214 stand plain f', e: '😳', q: '覺得說對不起很難為情，可以怎麼做？', a: [['😮‍💨', '深呼吸再說'], ['🤐', '都不說'], ['🙄', '說是他的錯']], why: '先深呼吸，看著對方，小小聲說也沒關係，說出來就很棒', say: '對不起。', lv: 1 },
+    { sc: 'park|b1 100 hips angry|g2 220 hips angry f', e: '🗯️', q: '和朋友吵架了，第一步要做什麼？', a: [['😮‍💨', '先冷靜下來'], ['📢', '大聲罵他'], ['👊', '推他']], why: '先深呼吸，讓自己冷靜，再用說的', say: '我需要冷靜一下。', lv: 1 },
     { sc: 'room|b1 90 stand angry|e 🧱 166 176 24 30|e 🧱 192 172 24 -20|e 🧱 178 158 24 60|g2 254 push surprise f', e: '🧱', q: '朋友把你的積木推倒了，你可以怎麼說？', a: [['🗣️', '說我不喜歡這樣'], ['👊', '推回去'], ['💥', '也推倒他的']], why: '說出自己的感覺，比推回去更有用', say: '我不喜歡你推倒我的積木。', lv: 1 },
     { sc: 'park|g1 96 sit sad|e 🍪 160 186 20|b2 230 bow sorry f', e: '🩹', q: '說完對不起，還可以做什麼？', a: [['🤝', '幫忙他'], ['🏃', '馬上跑走'], ['😝', '做鬼臉']], why: '說完對不起，可以扶他起來、幫他撿東西', say: '我來幫你。', lv: 1 },
     { sc: 'park|b1 100 stand sorry|g3 210 cry cry f', e: '😢', q: '你不小心把朋友弄哭了，怎麼辦？', a: [['🙇', '說對不起抱抱他'], ['😂', '笑他愛哭'], ['🙉', '不理他']], why: '說對不起，問他需不需要抱抱', say: '對不起，你要不要抱抱？', lv: 1 },
-    { sc: 'class|b1 100 hips angry|g1 200 hips angry f|e 💢 150 64 28|e 💢 172 86 22', e: '👩‍🏫', q: '吵架吵不停，誰也不讓誰，怎麼辦？', a: [['🙋', '請老師幫忙'], ['👊', '打一架'], ['😤', '一直吵']], why: '自己解決不了的時候，可以請大人幫忙', say: '老師，可以幫我們嗎？', lv: 1 },
+    { sc: 'class|b1 100 hips angry|g1 200 hips angry f', e: '👩‍🏫', q: '吵架吵不停，誰也不讓誰，怎麼辦？', a: [['🙋', '請老師幫忙'], ['👊', '打一架'], ['😤', '一直吵']], why: '自己解決不了的時候，可以請大人幫忙', say: '老師，可以幫我們嗎？', lv: 1 },
     { sc: 'room|b2 80 stand plain|g2 170 hold happy|e 🎮 170 140 28|b3 260 stand smile f', e: '🎮', q: '玩遊戲還沒輪到你，要怎麼做？', a: [['⏳', '耐心等待'], ['✊', '搶過來'], ['😭', '哭著要先玩']], why: '耐心等一等，很快就輪到你', say: '好，我等一下。', lv: 1 },
     { sc: 'park|b1 90 stand sad|g1 196 stand plain f|g2 256 stand smile f|e ⚽ 228 180 22', e: '🙅', q: '別人現在不想跟你玩，你可以怎麼做？', a: [['🙂', '找別人玩'], ['👊', '逼他玩'], ['😭', '一直哭']], why: '可以說好吧，下次再一起玩，然後找其他朋友', say: '好吧，那我們下次一起玩。', lv: 1 },
     { sc: 'class|b1 70 stand smile|g2 120 stand smile|g3 214 sit sad', e: '🧒', q: '新同學一個人坐著，你可以怎麼做？', a: [['👋', '邀他一起玩'], ['🙈', '不理他'], ['😝', '笑他']], why: '邀請新朋友，他會很開心', say: '你要不要一起玩？', lv: 1 },
     { sc: 'park|b2 100 stand sad|e 🍪 160 182 24|g1 222 bow sorry f', e: '🍪', q: '朋友撞掉你的點心，跟你說對不起，你可以怎麼說？', a: [['🤝', '說沒關係'], ['😠', '一直生氣'], ['👊', '打他']], why: '別人道歉了，可以原諒他', say: '沒關係。', lv: 1 },
     { sc: 'park|g2 70 stand shy|b1 180 run happy|b3 266 run laugh f|e ⚽ 222 178 24', e: '🗣️', q: '想加入別人的遊戲，要怎麼說？', a: [['🙋', '我可以一起玩嗎'], ['✊', '直接搶玩具'], ['😤', '不讓我玩就哭']], why: '先問問看，大家通常都會說好', say: '我可以一起玩嗎？', lv: 1 },
-    { sc: 'room|b2 100 stand plain|e ⏳ 130 64 28|g1 210 hold happy f|e 🧸 210 140 30', e: '⏳', q: '朋友說玩具還要再玩一下，怎麼辦？', a: [['⏳', '等他玩完'], ['✊', '搶過來'], ['🦶', '跺腳生氣']], why: '等他玩完，再換你玩', say: '好，你玩完換我。', lv: 1 },
-    { sc: 'park|g2 100 cower scared|b1 196 hit angry f|e 💥 146 98 26', e: '🛑', q: '有人一直打你，怎麼辦？', a: [['🙅', '說不要並告訴老師'], ['👊', '打回去'], ['🤐', '一直忍著']], why: '大聲說不要打我，然後告訴老師或爸爸媽媽', say: '不要打我！', lv: 1 },
-    { sc: 'home|b2 110 cower scared|e 🏺 180 176 36 70|e 💥 176 156 26', e: '🏺', q: '你弄壞了東西，怕被罵，要怎麼做？', a: [['🗣️', '誠實說出來'], ['🙈', '偷偷藏起來'], ['🤥', '說是別人弄的']], why: '誠實說出來很勇敢，大人會幫你想辦法', say: '對不起，是我弄壞的。', lv: 1 },
-    { sc: 'park|b1 150 stomp angry|e 💢 186 70 32|e 🔥 112 80 26', e: '😠', q: '很生氣很想打人的時候，可以怎麼做？', a: [['😮‍💨', '深呼吸數到五'], ['👊', '打人'], ['💥', '丟東西']], why: '先深呼吸數到五，再說出你很生氣', say: '我現在很生氣。', lv: 1 },
-    { sc: 'park|b1 100 hips angry|e 💬 146 64 34|g1 230 stand surprise f', e: '😡', q: '很生氣，很想說「我要揍扁你」，可以改成說什麼？', a: [['🗣️', '我很生氣，請停下來'], ['👊', '我要揍扁你'], ['🤬', '你是笨蛋']], why: '生氣可以說出來，但不說嚇人、傷人的話', say: '我很生氣，請你停下來。', lv: 1 },
+    { sc: 'room|b2 100 stand plain|e ⏳ 130 64 28|g1 210 hold happy f|e 🧸 210 142 30', e: '⏳', q: '朋友說玩具還要再玩一下，怎麼辦？', a: [['⏳', '等他玩完'], ['✊', '搶過來'], ['🦶', '跺腳生氣']], why: '等他玩完，再換你玩', say: '好，你玩完換我。', lv: 1 },
+    { sc: 'park|g2 100 cower scared|b1 196 hit angry f', e: '🛑', q: '有人一直打你，怎麼辦？', a: [['🙅', '說不要並告訴老師'], ['👊', '打回去'], ['🤐', '一直忍著']], why: '大聲說不要打我，然後告訴老師或爸爸媽媽', say: '不要打我！', lv: 1 },
+    { sc: 'home|b2 110 cower scared|e 🏺 180 176 36 70', e: '🏺', q: '你弄壞了東西，怕被罵，要怎麼做？', a: [['🗣️', '誠實說出來'], ['🙈', '偷偷藏起來'], ['🤥', '說是別人弄的']], why: '誠實說出來很勇敢，大人會幫你想辦法', say: '對不起，是我弄壞的。', lv: 1 },
+    { sc: 'park|b1 150 stomp angry|e 🔥 112 80 26', e: '😠', q: '很生氣很想打人的時候，可以怎麼做？', a: [['😮‍💨', '深呼吸數到五'], ['👊', '打人'], ['💥', '丟東西']], why: '先深呼吸數到五，再說出你很生氣', say: '我現在很生氣。', lv: 1 },
+    { sc: 'park|b1 100 hips angry|g1 230 stand surprise f', e: '😡', q: '很生氣，很想說「我要揍扁你」，可以改成說什麼？', a: [['🗣️', '我很生氣，請停下來'], ['👊', '我要揍扁你'], ['🤬', '你是笨蛋']], why: '生氣可以說出來，但不說嚇人、傷人的話', say: '我很生氣，請你停下來。', lv: 1 },
     { sc: 'table|b1 80 stand laugh|g2 160 stand laugh|b3 246 stand plain f|e 💩 120 64 28|e 🍚 160 130 24', e: '🍽️', q: '吃飯時，朋友一直說屁股、大便，大家都在笑，你可以怎麼做？', a: [['🙅', '不跟著說'], ['📢', '說得更大聲'], ['😝', '一起大叫']], why: '吃飯時不說屁股、大便，可以換個話題', say: '我們聊別的好不好？', lv: 1 },
-    { sc: 'bath|e 🚽 236 140 64|b2 120 stand think|e ❓ 142 56 26', e: '🚽', q: '屁股、大便這些話，什麼時候說比較適合？', a: [['🚽', '上廁所時跟大人說'], ['🍽️', '吃飯的時候'], ['🏫', '上課時大聲說']], why: '這是身體的事，上廁所或跟爸爸媽媽說就好，不在大家面前大聲說', lv: 1 },
-    { sc: 'park|g1 100 stand sad|b1 210 point laugh f|e 💬 172 56 30', e: '😢', q: '有人說你好笨，你可以怎麼說？', a: [['🗣️', '我不喜歡你這樣說'], ['🤬', '你才笨'], ['👊', '打他']], why: '說出自己的感覺，再告訴老師', say: '我不喜歡你這樣說。', lv: 1 },
+    { sc: 'bath|e 🚽 236 140 64|b2 120 stand think', e: '🚽', q: '屁股、大便這些話，什麼時候說比較適合？', a: [['🚽', '上廁所時跟大人說'], ['🍽️', '吃飯的時候'], ['🏫', '上課時大聲說']], why: '這是身體的事，上廁所或跟爸爸媽媽說就好，不在大家面前大聲說', lv: 1 },
+    { sc: 'park|g1 100 stand sad|b1 210 point laugh f', e: '😢', q: '有人說你好笨，你可以怎麼說？', a: [['🗣️', '我不喜歡你這樣說'], ['🤬', '你才笨'], ['👊', '打他']], why: '說出自己的感覺，再告訴老師', say: '我不喜歡你這樣說。', lv: 1 },
     { sc: 'park|b2 100 shh scared|g2 210 cry cry f', e: '🤭', q: '不小心說了不好聽的話，朋友難過了，怎麼辦？', a: [['🙇', '說對不起'], ['😂', '哈哈大笑'], ['🏃', '跑走']], why: '說錯話也可以道歉，下次換成好聽的話', say: '對不起，我不應該那樣說。', lv: 1 },
-    { sc: 'class|g1 70 stand laugh|b1 160 up happy|g2 250 stand laugh f|e ✨ 160 46 26', e: '😆', q: '想讓大家笑，可以怎麼做？', a: [['🤡', '講好笑的故事'], ['🤬', '說罵人的話'], ['💩', '一直說大便']], why: '好笑的話要讓大家都開心，不讓別人難過或不舒服', lv: 1 },
-    { sc: 'class|b3 70 stand surprise|b1 180 hips angry|e 💬 150 56 26|g2 262 cower scared f', e: '👂', q: '聽到別人說「我要揍扁你」，你可以怎麼做？', a: [['🙋', '告訴老師'], ['👊', '先打他'], ['🤬', '罵回去']], why: '聽到嚇人的話，要告訴老師或爸爸媽媽', say: '老師，他說要打我。', lv: 1 }
+    { sc: 'class|g1 70 stand laugh|b1 160 up happy|g2 250 stand laugh f', e: '😆', q: '想讓大家笑，可以怎麼做？', a: [['🤡', '講好笑的故事'], ['🤬', '說罵人的話'], ['💩', '一直說大便']], why: '好笑的話要讓大家都開心，不讓別人難過或不舒服', lv: 1 },
+    { sc: 'class|b3 70 stand surprise|b1 180 hips angry|g2 262 cower scared f', e: '👂', q: '聽到別人說「我要揍扁你」，你可以怎麼做？', a: [['🙋', '告訴老師'], ['👊', '先打他'], ['🤬', '罵回去']], why: '聽到嚇人的話，要告訴老師或爸爸媽媽', say: '老師，他說要打我。', lv: 1 }
   ];
   const CALM = [
     { sc: 'home|b1 100 hips angry|sis 210 hold happy f|e 🧸 210 150 28', e: '🧸', q: '妹妹拿了你的玩具，你很生氣，可以怎麼做？', a: [['🗣️', '說：可以還我嗎'], ['👊', '打妹妹'], ['😭', '搶回來大哭']], why: '用說的，不打人。妹妹還小，不懂的時候可以請爸媽幫忙', say: '這是我的，可以還給我嗎？', lv: 1 },
     { sc: 'home|b1 110 hold smile|e 🚂 110 140 30|sis 210 reach smile f', e: '👧', q: '妹妹也想玩你的玩具，你可以怎麼做？', a: [['🔄', '輪流玩'], ['🙅', '都不給她'], ['👐', '推開她']], why: '輪流玩，大家都可以玩到', say: '我玩一下，再換你玩。', lv: 1 },
-    { sc: 'home|b1 100 hold plain|e 🦖 100 138 32|e ✨ 130 112 18|sis 210 reach smile f', e: '💎', q: '有一個最寶貝、不想借的玩具，怎麼辦？', a: [['📦', '先收好，拿別的給妹妹'], ['👊', '她一碰就打她'], ['😭', '一直哭']], why: '最寶貝的可以先收好，拿別的玩具跟妹妹一起玩', say: '這個給你玩好不好？', lv: 1 },
-    { sc: 'table|b1 80 reach happy|sis 160 reach happy|dad 256 stand smile f|e 🍗 160 128 36', e: '🍗', q: '晚餐只有一隻大雞腿，大家都想吃，怎麼辦？', a: [['🍽️', '切開大家分'], ['✊', '一個人搶走'], ['😡', '不給我就生氣']], why: '好吃的東西大家分著吃，一起吃更開心', say: '我們一起分著吃。', lv: 1 },
-    { sc: 'table|b1 90 stand sad|sis 196 hold happy|e 🍗 196 140 28', e: '😞', q: '雞腿給了妹妹，你好失望，可以怎麼做？', a: [['🗣️', '說下次可以換我嗎'], ['💥', '摔碗生氣'], ['🙅', '都不吃飯']], why: '說出想要的，下次就有機會', say: '我好想吃，下次可以換我嗎？', lv: 1 },
+    { sc: 'home|b1 100 hold plain|e 🦖 100 138 32|sis 210 reach smile f', e: '💎', q: '有一個最寶貝、不想借的玩具，怎麼辦？', a: [['📦', '先收好，拿別的給妹妹'], ['👊', '她一碰就打她'], ['😭', '一直哭']], why: '最寶貝的可以先收好，拿別的玩具跟妹妹一起玩', say: '這個給你玩好不好？', lv: 1 },
+    { sc: 'table|b1 80 reach happy|sis 160 reach happy|dad 256 stand smile f|e 🍗 160 151 36', e: '🍗', q: '晚餐只有一隻大雞腿，大家都想吃，怎麼辦？', a: [['🍽️', '切開大家分'], ['✊', '一個人搶走'], ['😡', '不給我就生氣']], why: '好吃的東西大家分著吃，一起吃更開心', say: '我們一起分著吃。', lv: 1 },
+    { sc: 'table|b1 90 stand sad|sis 196 hold happy|e 🍗 196 146 28', e: '😞', q: '雞腿給了妹妹，你好失望，可以怎麼做？', a: [['🗣️', '說下次可以換我嗎'], ['💥', '摔碗生氣'], ['🙅', '都不吃飯']], why: '說出想要的，下次就有機會', say: '我好想吃，下次可以換我嗎？', lv: 1 },
     { sc: 'table|g2 140 stand sad|e 🥦 170 130 32', e: '🥦', q: '碗裡有不喜歡的青菜，可以怎麼做？', a: [['😋', '試吃一小口'], ['🗑️', '偷偷丟掉'], ['😭', '大哭不吃']], why: '試一小口，也許會發現很好吃', say: '我吃一小口試試看。', lv: 1 },
     { sc: 'room|b1 100 hold happy|e 🧸 100 140 28|mom 220 point smile f|e ⏰ 160 50 30', e: '⏰', q: '玩得正開心，媽媽說時間到了，怎麼辦？', a: [['👍', '說好，收起來'], ['😭', '大哭不要'], ['🏃', '跑走繼續玩']], why: '時間到就停下來，明天還可以再玩', say: '好，我明天再玩。', lv: 1 },
     { sc: 'home|b2 100 hold happy|e 🎮 100 140 26|dad 220 stand smile f', e: '🎮', q: '還想玩，可以怎麼跟爸媽說？', a: [['🙏', '好好問可以再玩一次嗎'], ['😡', '我就是要玩'], ['💥', '丟東西']], why: '好好問，爸媽說不行的時候，也要接受', say: '我可以再玩一次就好嗎？', lv: 1 },
     { sc: 'room|e 📺 80 126 70|b1 170 stand sad|dad 256 point plain f', e: '📺', q: '看電視時間到了，爸爸關掉電視，你可以怎麼做？', a: [['🧸', '去玩別的'], ['😭', '大哭大叫'], ['👊', '打爸爸']], why: '電視關了，還有好多好玩的事可以做', say: '好，那我去玩積木。', lv: 1 },
     { sc: 'home|b1 100 hold happy|e 🚗 100 140 28|mom 220 point smile f|e 🛁 160 56 32', e: '🛁', q: '要洗澡了，可是你還在玩，怎麼做？', a: [['⏳', '玩完這次就去'], ['🙅', '說不要洗'], ['🏃', '躲起來']], why: '跟爸媽說好玩完這次，就說到做到', say: '我玩完這次就去洗澡。', lv: 1 },
     { sc: 'night.1|e 🛏️ 262 158 66|b1 120 up happy|mom 210 point smile f', e: '😴', q: '睡覺時間到了，還不想睡，怎麼辦？', a: [['📖', '聽個故事就上床'], ['🏃', '一直跑來跑去'], ['😭', '大哭']], why: '睡飽了，明天才有力氣玩', say: '好，講完故事我就睡。', lv: 1 },
-    { sc: 'park|b1 160 stomp angry|e 🔥 126 64 26|e 🔥 196 64 26|e 💢 206 96 24', e: '😠', q: '覺得很生氣、身體熱熱的，第一步要做什麼？', a: [['🛑', '先停下來'], ['👊', '打東西'], ['📢', '大叫']], why: '先停下來，不讓生氣變成打人', say: '我需要停一下。', lv: 1 },
-    { sc: 'room|g1 160 stand angry|e 💢 196 72 28', e: '🌬️', q: '哪一個是讓自己冷靜下來的好方法？', a: [['😮‍💨', '深呼吸數到五'], ['💥', '摔東西'], ['👊', '打人']], why: '慢慢吸氣、吐氣，數到五，心情會慢慢平靜', say: '吸氣，吐氣，一二三四五。', lv: 1 },
+    { sc: 'park|b1 160 stomp angry|e 🔥 126 64 26|e 🔥 196 64 26', e: '😠', q: '覺得很生氣、身體熱熱的，第一步要做什麼？', a: [['🛑', '先停下來'], ['👊', '打東西'], ['📢', '大叫']], why: '先停下來，不讓生氣變成打人', say: '我需要停一下。', lv: 1 },
+    { sc: 'room|g1 160 stand angry', e: '🌬️', q: '哪一個是讓自己冷靜下來的好方法？', a: [['😮‍💨', '深呼吸數到五'], ['💥', '摔東西'], ['👊', '打人']], why: '慢慢吸氣、吐氣，數到五，心情會慢慢平靜', say: '吸氣，吐氣，一二三四五。', lv: 1 },
     { sc: 'room|g2 160 cry sad', e: '🫂', q: '生氣難過的時候，可以抱什麼讓自己舒服一點？', a: [['🧸', '抱抱娃娃'], ['🦶', '踢門'], ['😬', '咬人']], why: '抱抱娃娃或找爸媽抱抱，心情會好一點', say: '我想要抱抱。', lv: 1 },
     { sc: 'home|b1 110 stand scared|sis 210 cry cry f', e: '🤕', q: '不小心打了妹妹，怎麼辦？', a: [['🙇', '說對不起，問她痛不痛'], ['🏃', '跑走'], ['🙈', '說是她先的']], why: '打了人要說對不起，關心她有沒有受傷', say: '對不起，你痛不痛？', lv: 1 },
-    { sc: 'table|b1 90 stand plain|sis 200 stand happy f|e 🍰 100 130 20|e 🍰 200 126 34', e: '🍰', q: '蛋糕切好了，你的那塊比較小，可以怎麼想？', a: [['😊', '有吃到就很開心'], ['😡', '一直生氣'], ['✊', '搶別人的']], why: '有吃到就很幸福，下次可以先問能不能換', say: '有吃到我就很開心。', lv: 1 },
+    { sc: 'table|b1 90 stand plain|sis 200 stand happy f|e 🍰 100 130 20|e 🍰 200 149 34', e: '🍰', q: '蛋糕切好了，你的那塊比較小，可以怎麼想？', a: [['😊', '有吃到就很開心'], ['😡', '一直生氣'], ['✊', '搶別人的']], why: '有吃到就很幸福，下次可以先問能不能換', say: '有吃到我就很開心。', lv: 1 },
     { sc: 'room|b1 100 stand sad|sis 200 up happy f|e 🎲 150 178 26', e: '🏆', q: '玩遊戲輸給妹妹，你可以怎麼做？', a: [['👏', '說你好棒'], ['💥', '把遊戲推翻'], ['😭', '大哭耍賴']], why: '輸了也可以為別人鼓掌，下次再加油', say: '你好棒！我們再玩一次。', lv: 1 },
     { sc: 'store|e 🤖 52 94 30|b1 120 point happy f|mom 228 stand plain f|e 🛒 288 150 44', e: '🛒', q: '在超市想買玩具，媽媽說不行，怎麼辦？', a: [['🗣️', '好吧，生日再買'], ['😭', '躺在地上哭'], ['🦶', '跺腳生氣']], why: '不是每次都可以買，可以把它放進願望清單', say: '好吧，那我生日再買。', lv: 1 },
     { sc: 'room|b1 90 cry cry|e 🧱 166 176 24 30|e 🧱 192 170 24 -20|e 🧱 180 154 24 60|sis 254 stand surprise f', e: '🏰', q: '妹妹弄倒你的積木城堡，你好難過，可以怎麼做？', a: [['🗣️', '說我好難過，請爸媽幫忙'], ['👊', '打她'], ['💥', '弄壞她的東西']], why: '說出感覺，請大人幫忙，再一起重新蓋', say: '我好難過，可以幫我嗎？', lv: 1 },
     { sc: 'kitchen|b2 100 reach happy|e 🍬 156 98 24|mom 250 stand smile f|e 🍲 290 82 28', e: '🍬', q: '想吃糖果，可是快要吃飯了，怎麼辦？', a: [['⏳', '吃完飯再吃'], ['😭', '現在就要'], ['🙈', '偷偷吃']], why: '先吃飯，飯後再吃一顆', say: '好，吃完飯再吃。', lv: 1 },
-    { sc: 'park|b1 90 stand surprise|sis 180 cry cry|e 💥 220 74 30', e: '🎈', q: '妹妹的氣球破了，她在哭，你可以怎麼做？', a: [['🤗', '安慰她'], ['😂', '笑她'], ['🙉', '不理她']], why: '當個好哥哥好姊姊，陪她一下', say: '不要哭，我陪你。', lv: 1 },
+    { sc: 'park|b1 90 stand surprise|sis 180 cry cry', e: '🎈', q: '妹妹的氣球破了，她在哭，你可以怎麼做？', a: [['🤗', '安慰她'], ['😂', '笑她'], ['🙉', '不理她']], why: '當個好哥哥好姊姊，陪她一下', say: '不要哭，我陪你。', lv: 1 },
     { sc: 'play|b1 120 stand plain|sis 206 stand happy', e: '🔄', q: '輪到妹妹先玩，你要怎麼做？', a: [['⏳', '等一下輪到我'], ['✊', '搶過來'], ['😠', '推她']], why: '等一等，很快就輪到你', say: '好，你先玩，等一下換我。', lv: 1 },
-    { sc: 'home|b2 100 stand plain|mom 210 think smile f|e 📱 199 92 22', e: '📱', q: '爸媽在講電話，你有事情要說，怎麼辦？', a: [['✋', '輕輕拍手臂等一下'], ['📢', '一直大叫'], ['😭', '大哭']], why: '輕輕拍爸媽的手臂，等他們講完', say: '我等你講完。', lv: 1 },
+    { sc: 'home|b2 100 stand plain|mom 210 think smile f|e 📱 199 108 22', e: '📱', q: '爸媽在講電話，你有事情要說，怎麼辦？', a: [['✋', '輕輕拍手臂等一下'], ['📢', '一直大叫'], ['😭', '大哭']], why: '輕輕拍爸媽的手臂，等他們講完', say: '我等你講完。', lv: 1 },
     { sc: 'field|b1 110 up laugh|e 🥇 110 56 28|g2 220 stand sad f', e: '🥇', q: '比賽贏了，可以對朋友說「我第一名，你最後一名」嗎？', a: [['🙅', '不可以，他會難過'], ['👍', '可以，因為我贏了'], ['😝', '還要做鬼臉']], why: '贏了很開心，但不笑別人。可以謝謝朋友陪你玩', say: '謝謝你陪我玩！', lv: 1 },
-    { sc: 'class|g1 110 hold happy|e 💯 110 136 32|b2 220 stand plain f', e: '💯', q: '考了 100 分，跟朋友說什麼比較好？', a: [['😊', '我好開心，一起練習吧'], ['😝', '我 100 分，你 0 分'], ['🙄', '你好笨']], why: '分享開心，不跟別人比來比去', say: '我好開心，我們一起練習好不好？', lv: 1 },
+    { sc: 'class|g1 110 hold happy|e 💯 110 143 32|b2 220 stand plain f', e: '💯', q: '考了 100 分，跟朋友說什麼比較好？', a: [['😊', '我好開心，一起練習吧'], ['😝', '我 100 分，你 0 分'], ['🙄', '你好笨']], why: '分享開心，不跟別人比來比去', say: '我好開心，我們一起練習好不好？', lv: 1 },
     { sc: 'field|g2 100 stand sad|b1 210 point laugh f|e 🏁 280 130 32', e: '😢', q: '有人笑你「你最後一名」，你很難過，可以怎麼說？', a: [['🗣️', '我不喜歡你這樣說'], ['👊', '打他'], ['😭', '大哭不玩了']], why: '說出感覺，自己下次再加油就好', say: '我不喜歡你這樣說，我下次會加油。', lv: 1 },
     { sc: 'field|b2 100 stomp angry|g1 216 up happy f|e 🏁 282 126 32', e: '🏃', q: '賽跑輸了，覺得好不甘心，可以怎麼做？', a: [['😮‍💨', '深呼吸，下次再加油'], ['💥', '生氣丟東西'], ['🤥', '說別人作弊']], why: '輸了會不甘心很正常，深呼吸，下次再努力', say: '我下次再加油！', lv: 1 },
     { sc: 'room|g2 100 stand sad|e 🎲 166 180 24|b1 230 up happy f', e: '🎲', q: '玩遊戲一直輸，好想哭，可以怎麼做？', a: [['🗣️', '說我需要休息一下'], ['💥', '把遊戲推翻'], ['👊', '打贏的人']], why: '難過時可以先休息，等心情好了再玩', say: '我需要休息一下。', lv: 1 },
     { sc: 'field|b1 100 stand smile|g1 210 up happy f|e 🏅 210 142 24', e: '🏅', q: '朋友得到第一名，你可以說什麼？', a: [['👏', '恭喜你'], ['🙄', '有什麼了不起'], ['😠', '不理他']], why: '為別人開心，也是很棒的事', say: '恭喜你！', lv: 1 },
     { sc: 'field|b1 160 hold plain|e 🥈 160 138 28', e: '🥈', q: '比賽得了第二名，你可以怎麼想？', a: [['😊', '我已經很棒了'], ['😭', '沒有第一名就不要'], ['😡', '生氣不玩']], why: '有努力就很棒，不一定要第一名', say: '我已經很棒了！', lv: 1 },
-    { sc: 'room|b1 150 stomp angry|e 💢 186 70 30|e 🔥 114 72 26', e: '🌋', q: '生氣到快要爆炸了，可以去哪裡讓自己冷靜？', a: [['🛋️', '安靜角落坐一下'], ['🏃', '衝出家門'], ['🚪', '用力甩門']], why: '可以去安靜角落坐一下，抱抱娃娃，等心情平靜', say: '我去安靜角落坐一下。', lv: 1 },
-    { sc: 'room|g1 140 stand sad|e 💭 196 60 44|e ❓ 196 58 20', e: '😶', q: '心裡很難過，可是說不出來，可以怎麼做？', a: [['🖍️', '畫出心情'], ['💥', '亂摔東西'], ['🤐', '一直悶著']], why: '可以畫畫，或指出心情臉，讓爸媽知道', say: '我現在很難過。', lv: 1 },
+    { sc: 'room|b1 150 stomp angry|e 🔥 114 72 26', e: '🌋', q: '生氣到快要爆炸了，可以去哪裡讓自己冷靜？', a: [['🛋️', '安靜角落坐一下'], ['🏃', '衝出家門'], ['🚪', '用力甩門']], why: '可以去安靜角落坐一下，抱抱娃娃，等心情平靜', say: '我去安靜角落坐一下。', lv: 1 },
+    { sc: 'room|g1 140 stand sad', e: '😶', q: '心裡很難過，可是說不出來，可以怎麼做？', a: [['🖍️', '畫出心情'], ['💥', '亂摔東西'], ['🤐', '一直悶著']], why: '可以畫畫，或指出心情臉，讓爸媽知道', say: '我現在很難過。', lv: 1 },
     { sc: 'park|b1 110 hips angry|e 🐢 220 168 46', e: '🐢', q: '一生氣就想動手，可以學小烏龜怎麼做？', a: [['🐢', '縮起來深呼吸'], ['👊', '先打再說'], ['📢', '大吼大叫']], why: '像小烏龜縮進殼裡，深呼吸三次，再出來好好說', say: '我先深呼吸三次。', lv: 1 },
     { sc: 'room|g2 140 stand angry|e 🔢 210 70 32', e: '🔢', q: '生氣的時候慢慢數數，可以數到多少？', a: [['🔟', '慢慢數到十'], ['0️⃣', '不用數'], ['💥', '數完就打人']], why: '慢慢數到十，生氣會變小一點', say: '一、二、三……數到十。', lv: 1 },
-    { sc: 'home|b2 100 hips angry|sis 210 hold happy f|e 🧸 210 150 28|e 💬 146 60 28', e: '💬', q: '想說出自己的心情，哪一句最好？', a: [['🗣️', '我很生氣，因為玩具被拿走'], ['🤬', '都是你啦'], ['😤', '哼！']], why: '說出「我覺得……因為……」，別人就懂你了', say: '我很生氣，因為我的玩具被拿走了。', lv: 1 }
+    { sc: 'home|b2 100 hips angry|sis 210 hold happy f|e 🧸 210 150 28', e: '💬', q: '想說出自己的心情，哪一句最好？', a: [['🗣️', '我很生氣，因為玩具被拿走'], ['🤬', '都是你啦'], ['😤', '哼！']], why: '說出「我覺得……因為……」，別人就懂你了', say: '我很生氣，因為我的玩具被拿走了。', lv: 1 }
   ];
   const KIND = ['謝謝你', '你好棒', '我們一起玩', '對不起', '沒關係', '請借我好嗎', '你需要幫忙嗎', '早安', '你的畫好漂亮', '我可以一起玩嗎', '加油', '請等我一下', '你還好嗎', '我們輪流玩'];
   const UNKIND = [['我要揍扁你', '我很生氣，請你停下來'], ['你好笨', '我們一起想想看'], ['走開啦', '我想自己玩一下'], ['你好醜', '每個人都不一樣'], ['閉嘴', '請你小聲一點'], ['我不跟你好了', '我現在很生氣，等一下再玩'], ['臭大便', '我們來玩別的'], ['哼，不要理你', '我現在不想玩，等一下好嗎'], ['你是壞人', '我不喜歡你這樣做'], ['都是你的錯', '我們一起想辦法'], ['屁股屁股（上課時大叫）', '上課要安靜聽老師說']];
@@ -4676,9 +4708,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     { e: '🪥', n: '舊牙刷', bin: 'general', lv: 1 }, { e: '🖍️', n: '斷掉的蠟筆', bin: 'general', lv: 1 },
     { e: '🧃', n: '喝完的鋁箔包', bin: 'recycle', lv: 1 }, { e: '🥛', n: '洗乾淨的牛奶紙盒', bin: 'recycle', lv: 1 }
   ];
+  // v91：垃圾分類選項改成「一堆該類的東西」，不用看標誌或文字也能選
+  const BIN_PILE = { general: ['🧻', '🧽', '🥡', '🦴'], recycle: ['📦', '🧴', '🥫', '🍾'], food: ['🍌', '🥬', '🍉', '🍊'], paper: ['📰', '📚', '📄', '📦'], plastic: ['🧴', '🥤', '🧴', '🥤'], metal: ['🥫', '🥫', '🥫', '🥫'], glass: ['🍾', '🫙', '🍾', '🫙'] };
   function binHTML(k) {
-    const b = BINS[k];
-    return `<svg class="o-bin" viewBox="0 0 100 110" aria-hidden="true"><rect x="38" y="4" width="24" height="10" rx="4" fill="${b.d}"/><rect x="8" y="12" width="84" height="14" rx="6" fill="${b.d}"/><path d="M14 28h72l-7 76a6 6 0 0 1-6 6H27a6 6 0 0 1-6-6z" fill="${b.c}"/><path d="M36 40v56M50 40v56M64 40v56" stroke="#fff" stroke-opacity=".25" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="67" r="31" fill="#fff" opacity=".95"/><text x="50" y="80" text-anchor="middle" font-size="36" font-weight="900" fill="${b.d}">${b.icon}</text></svg>`;
+    const P = BIN_PILE[k] || BIN_PILE.general, at = [[26, 78, 30, -14], [74, 78, 30, 12], [50, 80, 32, 0], [50, 48, 34, -4]];
+    return `<svg class="o-bin" viewBox="0 0 100 110" aria-hidden="true"><ellipse cx="50" cy="100" rx="44" ry="7" fill="#000" opacity=".08"/>${at.map(([x, y, z, r], i) => scnEmo(P[i], x, y, z, r)).join('')}</svg>`;
   }
   function pencilSVG(L, color) {
     return `<svg class="o-pencil" viewBox="0 0 124 40" aria-hidden="true"><rect x="8" y="12" width="${L}" height="16" rx="3" fill="${color}"/><rect x="8" y="12" width="${L}" height="5" rx="2" fill="#fff" opacity=".3"/><rect x="2" y="12" width="9" height="16" rx="3" fill="#F48FB1"/><path d="M${8 + L} 12l14 8-14 8z" fill="#F3D3A8"/><path d="M${18 + L} 17.7l4 2.3-4 2.3z" fill="#2B2633"/></svg>`;
@@ -4889,60 +4923,60 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     ['🚌', '公車上', '💺', '坐好'], ['🏔️', '山上', '🥾', '爬山'], ['🎡', '遊樂園', '🎠', '坐旋轉木馬'], ['🧺', '陽台', '👕', '曬衣服']
   ];
   const YX_SCHOOL = [
-    { sc: 'class|b1 100 stand happy|e 💭 144 60 42|e 💬 144 58 18|tch 240 stand smile f', e: '🙋', q: '上課時想說話，要先做什麼？', a: [['🙋', '舉手'], ['🗣️', '大聲喊'], ['🚶', '走到老師旁邊']], why: '上課想發言，先舉手，等老師叫到你再說' },
-    { sc: 'class|b2 110 stand shy|e 💭 160 70 46|e 🚽 160 68 22|tch 250 stand smile f', e: '🚽', q: '上課時想上廁所，怎麼辦？', a: [['🙋', '舉手跟老師說'], ['🏃', '直接跑出去'], ['🤐', '一直忍著']], why: '先跟老師說，老師知道你去哪裡才放心' },
-    { sc: 'play|b1 110 run happy|g1 180 stand surprise|e 🔔 60 60 36|e 🎵 92 38 20', e: '🔔', q: '上課鐘響了，要做什麼？', a: [['🪑', '回教室坐好'], ['🛝', '繼續溜滑梯'], ['🙈', '躲起來']], why: '聽到上課鐘聲，要趕快回到教室坐好' },
+    { sc: 'class|b1 100 stand happy|tch 240 stand smile f', e: '🙋', q: '上課時想說話，要先做什麼？', a: [['🙋', '舉手'], ['🗣️', '大聲喊'], ['🚶', '走到老師旁邊']], why: '上課想發言，先舉手，等老師叫到你再說' },
+    { sc: 'class|b2 110 stand shy|e 🚽 160 68 22|tch 250 stand smile f', e: '🚽', q: '上課時想上廁所，怎麼辦？', a: [['🙋', '舉手跟老師說'], ['🏃', '直接跑出去'], ['🤐', '一直忍著']], why: '先跟老師說，老師知道你去哪裡才放心' },
+    { sc: 'play|b1 110 run happy|g1 180 stand surprise|e 🔔 60 60 36', e: '🔔', q: '上課鐘響了，要做什麼？', a: [['🪑', '回教室坐好'], ['🛝', '繼續溜滑梯'], ['🙈', '躲起來']], why: '聽到上課鐘聲，要趕快回到教室坐好' },
     { sc: 'night|b2 130 hold smile|e 🎒 130 138 34|e 📚 210 172 30', e: '🎒', q: '書包要什麼時候整理？', a: [['🌙', '前一天晚上'], ['🏃', '出門前一分鐘'], ['🙅', '都不用整理']], why: '前一天晚上照著課表整理好，早上就不會忘東忘西' },
     { sc: 'room|g1 110 think plain|e 📅 196 110 50|e 📚 262 172 30', e: '📅', q: '要怎麼知道明天要帶哪些課本？', a: [['📋', '看課表'], ['🎲', '隨便猜'], ['📺', '看電視']], why: '課表會寫每天上什麼課，照著帶課本就對了' },
     { sc: 'street|tch 54 walk smile|b1 126 walk smile|g2 178 walk smile|b3 230 walk smile', e: '🚶', q: '放學排路隊，要怎麼走？', a: [['🚶', '跟著隊伍慢慢走'], ['🏃', '自己先跑走'], ['🤸', '邊走邊翻跟斗']], why: '跟著隊伍走，老師才能照顧到每一個人' },
-    { sc: 'class|tch 160 point smile|e 💬 214 58 30|b1 70 stand smile|g2 260 stand smile f', e: '🧑‍🏫', q: '老師在說話的時候，要怎麼做？', a: [['👂', '安靜聽'], ['🗣️', '跟同學聊天'], ['🎮', '玩玩具']], why: '專心聽老師說話，才知道要做什麼' },
-    { sc: 'class|b2 130 hold sad|e ✏️ 130 138 30 40|e 💥 158 124 18', e: '✏️', q: '鉛筆斷了，可以怎麼做？', a: [['✏️', '用削鉛筆機削好'], ['😭', '大哭'], ['🙅', '不寫了']], why: '自己削好鉛筆，或是請同學借你一枝' },
-    { sc: 'class|b1 100 think plain|e 💭 140 60 40|e ✏️ 140 58 18|g1 220 hold smile f|e 🧼 220 140 22', e: '🤝', q: '想跟同學借橡皮擦，要怎麼說？', a: [['🙏', '可以借我嗎？'], ['✊', '直接搶過來'], ['🙈', '偷偷拿']], why: '用「請」和「可以借我嗎」，用完記得還和說謝謝' },
-    { sc: 'table|b1 90 stand happy|g2 220 stand smile f|e 🍱 100 130 30|e 🍱 220 130 30', e: '🍱', q: '午餐時間要怎麼吃飯？', a: [['🪑', '坐在位子上吃'], ['🏃', '邊跑邊吃'], ['🗑️', '不吃倒掉']], why: '坐好慢慢吃，吃不完再跟老師說' },
-    { sc: 'class|b1 110 hold smile|e 🧹 116 140 44|g2 220 hold smile f|e 🪣 220 150 30', e: '🧹', q: '打掃時間要做什麼？', a: [['🧹', '做好自己的工作'], ['🏃', '跑去玩'], ['😴', '趴著睡覺']], why: '每個人都有自己的打掃工作，做好教室就乾淨了' },
-    { sc: 'class|g1 170 sleep plain|e 💤 226 110 30', e: '😴', q: '午休時間要做什麼？', a: [['😴', '安靜休息'], ['🗣️', '大聲聊天'], ['🏃', '在教室跑']], why: '午休要安靜，下午才有精神' },
+    { sc: 'class|tch 160 point smile|b1 70 stand smile|g2 260 stand smile f', e: '🧑‍🏫', q: '老師在說話的時候，要怎麼做？', a: [['👂', '安靜聽'], ['🗣️', '跟同學聊天'], ['🎮', '玩玩具']], why: '專心聽老師說話，才知道要做什麼' },
+    { sc: 'class|b2 130 hold sad|e ✏️ 118 140 16 40|e ✏️ 146 142 12 -30', e: '✏️', q: '鉛筆斷了，可以怎麼做？', a: [['✏️', '用削鉛筆機削好'], ['😭', '大哭'], ['🙅', '不寫了']], why: '自己削好鉛筆，或是請同學借你一枝' },
+    { sc: 'class|b1 100 reach plain|g1 220 hold smile f|e 🧽 220 140 14', e: '🤝', q: '想跟同學借橡皮擦，要怎麼說？', a: [['🙏', '可以借我嗎？'], ['✊', '直接搶過來'], ['🙈', '偷偷拿']], why: '用「請」和「可以借我嗎」，用完記得還和說謝謝' },
+    { sc: 'table|b1 90 stand happy|g2 220 stand smile f|e 🍱 100 135 30|e 🍱 220 135 30', e: '🍱', q: '午餐時間要怎麼吃飯？', a: [['🪑', '坐在位子上吃'], ['🏃', '邊跑邊吃'], ['🗑️', '不吃倒掉']], why: '坐好慢慢吃，吃不完再跟老師說' },
+    { sc: 'class|b1 110 hold smile|e 🧹 116 143 44|g2 220 hold smile f|e 🪣 220 150 30', e: '🧹', q: '打掃時間要做什麼？', a: [['🧹', '做好自己的工作'], ['🏃', '跑去玩'], ['😴', '趴著睡覺']], why: '每個人都有自己的打掃工作，做好教室就乾淨了' },
+    { sc: 'class|g1 170 sleep plain', e: '😴', q: '午休時間要做什麼？', a: [['😴', '安靜休息'], ['🗣️', '大聲聊天'], ['🏃', '在教室跑']], why: '午休要安靜，下午才有精神' },
     { sc: 'play.1|b2 110 sitcry cry|e 🩹 150 150 22', e: '🏥', q: '在學校跌倒受傷了，要去哪裡？', a: [['🏥', '健康中心'], ['🛝', '遊樂場'], ['🍱', '福利社']], why: '健康中心的阿姨會幫你擦藥' },
     { sc: 'class|b1 110 stand sad|e 🌡️ 148 66 26|tch 240 stand smile f', e: '🤒', q: '在學校覺得不舒服，要先告訴誰？', a: [['🧑‍🏫', '老師'], ['🐦', '小鳥'], ['🙅', '誰都不說']], why: '跟老師說，老師會幫你聯絡家人或帶你去健康中心' },
     { sc: 'class|g2 130 hold sad|e 🧃 130 138 28|e 💧 170 100 20', e: '🧃', q: '水壺的水喝完了，可以去哪裡裝？', a: [['🚰', '飲水機'], ['🚽', '廁所馬桶'], ['🌧️', '外面的雨']], why: '飲水機的水是乾淨的，可以安全的喝' },
     { sc: 'class|b1 90 stand plain|tch 220 point smile f|e 📝 150 56 30', e: '📝', q: '老師出了回家功課，要記在哪裡？', a: [['📒', '聯絡簿'], ['🖐️', '手上'], ['🧠', '不用記']], why: '寫在聯絡簿上，回家給爸媽看，就不會忘記' },
     { sc: 'home|b1 100 give happy|e 📒 140 126 28|mom 230 stand smile f', e: '📒', q: '聯絡簿寫好了，回家要給誰看？', a: [['👨‍👩‍👧', '爸爸媽媽'], ['🐶', '小狗'], ['🙈', '藏起來']], why: '爸媽看了聯絡簿，才知道你在學校的事' },
-    { sc: 'class|g1 120 hold smile|e 🖍️ 120 138 28|e 🏷️ 164 118 26|e ❓ 150 56 24', e: '🏷️', q: '自己的東西要怎麼做，比較不會弄丟？', a: [['🏷️', '寫上名字'], ['🎨', '畫滿圖案'], ['🙅', '什麼都不做']], why: '寫上名字，掉了別人才知道是你的' },
+    { sc: 'class|g1 120 hold plain|e 🖍️ 120 140 28|e 🏷️ 164 118 26', e: '🏷️', q: '自己的東西要怎麼做，比較不會弄丟？', a: [['🏷️', '寫上名字'], ['🎨', '畫滿圖案'], ['🙅', '什麼都不做']], why: '寫上名字，掉了別人才知道是你的' },
     { sc: 'class|b2 110 reach surprise|e 👛 176 176 28', e: '🔍', q: '撿到別人的東西，要怎麼做？', a: [['🧑‍🏫', '交給老師'], ['🎒', '放進自己書包'], ['🗑️', '丟掉']], why: '交給老師，老師會幫忙找到主人' },
     { sc: 'class|b1 90 stand surprise|g3 210 cry cry f', e: '😢', q: '同學一個人在哭，你可以怎麼做？', a: [['🤗', '問他怎麼了'], ['😂', '笑他'], ['🙉', '假裝沒看到']], why: '關心一下，或是告訴老師' },
-    { sc: 'class|g2 100 hips angry|b1 196 point laugh f|e 💢 140 64 26', e: '🙅', q: '有同學一直弄你，叫他不要也不停，怎麼辦？', a: [['🧑‍🏫', '告訴老師'], ['👊', '打他'], ['🤐', '一直忍著']], why: '說不要，他還是不停，就要告訴老師' },
+    { sc: 'class|g2 100 hips angry|b1 196 point laugh f', e: '🙅', q: '有同學一直弄你，叫他不要也不停，怎麼辦？', a: [['🧑‍🏫', '告訴老師'], ['👊', '打他'], ['🤐', '一直忍著']], why: '說不要，他還是不停，就要告訴老師' },
     { sc: 'play|g2 46 stand plain|b1 98 stand smile|g1 150 stand smile|b3 202 up happy', e: '🛝', q: '下課玩溜滑梯，要怎麼玩？', a: [['⏳', '排隊一個一個溜'], ['🧗', '從下面爬上去'], ['👐', '推前面的人']], why: '排隊、坐著往下溜，才不會受傷' },
-    { sc: 'hall|b1 120 run happy|e 💨 64 150 26|g1 220 stand surprise f', e: '🏃', q: '在走廊上要怎麼走？', a: [['🚶', '靠右慢慢走'], ['🏃', '用力跑'], ['🤸', '翻跟斗']], why: '走廊人多，用跑的很容易撞到人' },
+    { sc: 'hall|b1 120 run happy|g1 220 stand surprise f', e: '🏃', q: '在走廊上要怎麼走？', a: [['🚶', '靠右慢慢走'], ['🏃', '用力跑'], ['🤸', '翻跟斗']], why: '走廊人多，用跑的很容易撞到人' },
     { sc: 'street|b1 120 stand smile|e 🎒 98 146 22|mom 200 stand smile f|e 🚦 290 70 36', e: '🚸', q: '上學過馬路要走哪裡？', a: [['🦓', '斑馬線'], ['🚗', '車子中間'], ['🌳', '隨便穿過去']], why: '走斑馬線，看清楚紅綠燈和車子' },
     { sc: 'street|b1 120 think plain|e 🚦 250 80 50', e: '🚦', q: '小綠人在閃，要怎麼做？', a: [['🚶', '還沒過就等下一次'], ['🏃', '用力衝過去'], ['💃', '在馬路中間跳舞']], why: '小綠人閃了，代表快變紅燈，等下一次比較安全' },
     { sc: 'street|g2 130 stand sad|e 🏫 262 120 60|e ⏰ 172 60 24', e: '🧍', q: '放學了，家人還沒來接，要怎麼做？', a: [['🏫', '在學校等，告訴老師'], ['🚶', '跟陌生人走'], ['🏃', '自己跑出去找']], why: '待在學校，請老師幫忙聯絡家人' },
     { sc: 'street|b1 96 stand plain|niu 214 give smile f|e 🍬 162 106 24|e 🏫 290 50 34', e: '🍬', q: '陌生人在校門口說要給你糖果，要怎麼做？', a: [['🙅', '說不要，趕快走開'], ['🍬', '拿了跟他走'], ['🤝', '把名字告訴他']], why: '不拿陌生人的東西，告訴老師或家人' },
-    { sc: 'class|b1 100 stand smile|tch 240 point smile f|e ❓ 150 56 26', e: '📖', q: '上國語課時，桌上要放什麼？', a: [['📕', '國語課本'], ['🧸', '玩具熊'], ['🍪', '餅乾']], why: '上什麼課就拿什麼課本出來' },
+    { sc: 'class|b1 100 stand smile|tch 240 point smile f', e: '📖', q: '上國語課時，桌上要放什麼？', a: [['📕', '國語課本'], ['🧸', '玩具熊'], ['🍪', '餅乾']], why: '上什麼課就拿什麼課本出來' },
     { sc: 'class|g1 100 stand smile|tch 240 point smile f|e 🔢 160 64 30', e: '🧮', q: '上數學課時，要拿出什麼？', a: [['🔢', '數學課本'], ['🎨', '水彩'], ['⚽', '足球']], why: '照課表拿出要上的課本' },
     { sc: 'class|g1 110 stand smile|e 🖍️ 186 176 24 30|e 🖍️ 214 172 24 -30|e 📦 256 170 30', e: '🖍️', q: '用完蠟筆，要怎麼做？', a: [['📦', '收回盒子裡'], ['🏝️', '丟在地上'], ['🗑️', '丟進垃圾桶']], why: '用完收好，下次才找得到' },
     { sc: 'class|b3 120 hold smile|e 🍪 120 138 26|e 🗑️ 260 150 44', e: '🗑️', q: '吃完的餅乾袋子要丟去哪裡？', a: [['🗑️', '垃圾桶'], ['🪟', '窗戶外面'], ['🪑', '抽屜裡']], why: '垃圾要丟進垃圾桶，教室才會乾淨' },
     { sc: 'class|g2 120 hold smile|e 🧃 120 138 28|e ♻️ 260 150 36', e: '🥤', q: '喝完的鋁箔包要怎麼處理？', a: [['♻️', '壓扁放資源回收'], ['🪑', '塞在抽屜'], ['🌳', '丟到花園']], why: '鋁箔包可以回收，壓扁放進回收桶' },
     { sc: 'field|b1 120 run happy|e ⚽ 220 176 28', e: '👟', q: '上體育課要穿什麼鞋子？', a: [['👟', '運動鞋'], ['🩴', '拖鞋'], ['👠', '高跟鞋']], why: '運動鞋跑跳比較安全' },
-    { sc: 'field|g2 120 stand plain|e 💦 150 84 20|e ☀️ 278 34 44', e: '🧢', q: '去操場曬太陽，可以戴什麼？', a: [['🧢', '帽子'], ['🧤', '手套'], ['🥽', '泳鏡']], why: '戴帽子可以擋太陽' },
-    { sc: 'class|b1 80 stand happy|g1 140 stand happy|tch 240 stand smile f|e 🎵 190 60 28', e: '🎵', q: '音樂課老師請大家一起唱歌，要怎麼做？', a: [['🎤', '跟著大家一起唱'], ['🙉', '摀住耳朵'], ['🗣️', '亂叫']], why: '一起唱歌，大家都很開心' },
-    { sc: 'class|b1 100 stand happy|e 💡 100 52 26|tch 240 point smile f|e ❓ 196 48 26', e: '🙋', q: '老師問問題，你知道答案，要怎麼做？', a: [['🙋', '舉手等老師點名'], ['🗣️', '馬上大聲搶答'], ['🤐', '都不說']], why: '舉手等老師叫你，大家輪流說' },
-    { sc: 'class|b2 110 stand plain|e ❓ 140 60 30|tch 240 point smile f', e: '❓', q: '老師說的話聽不懂，要怎麼辦？', a: [['🙋', '舉手問老師'], ['😶', '假裝聽懂'], ['😭', '大哭']], why: '聽不懂就問，問問題是很棒的事' },
-    { sc: 'class|g1 120 hold smile|e 📄 120 140 30|e ❓ 150 56 24', e: '📏', q: '要畫直直的線，可以用什麼？', a: [['📏', '尺'], ['🥄', '湯匙'], ['🧦', '襪子']], why: '用尺畫線，線會又直又好看' },
+    { sc: 'field|g2 120 stand plain|ml M150 82q5 7 0 12|e ☀️ 278 34 44', e: '🧢', q: '去操場曬太陽，可以戴什麼？', a: [['🧢', '帽子'], ['🧤', '手套'], ['🥽', '泳鏡']], why: '戴帽子可以擋太陽' },
+    { sc: 'class|b1 80 stand happy|g1 140 stand happy|tch 240 stand smile f', e: '🎵', q: '音樂課老師請大家一起唱歌，要怎麼做？', a: [['🎤', '跟著大家一起唱'], ['🙉', '摀住耳朵'], ['🗣️', '亂叫']], why: '一起唱歌，大家都很開心' },
+    { sc: 'class|b1 100 stand happy|e 💡 100 52 26|tch 240 point smile f', e: '🙋', q: '老師問問題，你知道答案，要怎麼做？', a: [['🙋', '舉手等老師點名'], ['🗣️', '馬上大聲搶答'], ['🤐', '都不說']], why: '舉手等老師叫你，大家輪流說' },
+    { sc: 'class|b2 110 stand plain|tch 240 point smile f', e: '❓', q: '老師說的話聽不懂，要怎麼辦？', a: [['🙋', '舉手問老師'], ['😶', '假裝聽懂'], ['😭', '大哭']], why: '聽不懂就問，問問題是很棒的事' },
+    { sc: 'class|g1 120 hold smile|e 📄 120 142 30', e: '📏', q: '要畫直直的線，可以用什麼？', a: [['📏', '尺'], ['🥄', '湯匙'], ['🧦', '襪子']], why: '用尺畫線，線會又直又好看' },
     { sc: 'class|g2 140 hold smile|e ✂️ 140 140 30|e 📄 192 150 26', e: '✂️', q: '用剪刀的時候要注意什麼？', a: [['✂️', '小心，不拿著跑'], ['🤺', '拿著剪刀玩打架'], ['🏃', '拿著跑來跑去']], why: '剪刀很利，要小心用，不可以拿著跑' },
     { sc: 'class|e 🪑 170 150 80|b1 90 walk smile', e: '🪑', q: '下課離開座位，椅子要怎麼放？', a: [['🪑', '靠進桌子下面'], ['🛝', '翻倒在地上'], ['🚪', '放在門口']], why: '椅子靠好，大家走路才不會絆倒' },
     { sc: 'class|b1 90 stand plain|g2 160 stand plain|b3 230 stand plain|e 📝 160 56 30', e: '🔕', q: '考試的時候要怎麼做？', a: [['🤫', '安靜自己寫'], ['👀', '看隔壁的答案'], ['🗣️', '問同學答案']], why: '考試要自己寫，才知道自己會不會' },
     { sc: 'play|b1 60 stand smile|g2 112 stand smile|g3 216 stand sad f', e: '🧑‍🤝‍🧑', q: '新同學沒有朋友一起玩，你可以怎麼做？', a: [['👋', '邀請他一起玩'], ['🙅', '不讓他玩'], ['😂', '笑他']], why: '一句「要不要一起玩」，就能交到新朋友' },
-    { sc: 'table|g2 140 stand sad|e 🍱 156 130 32|e 🥕 196 126 22', e: '🍱', q: '不喜歡吃的菜，可以怎麼做？', a: [['🤏', '先吃一點點試試看'], ['🗑️', '全部倒掉'], ['🤮', '吐在桌上']], why: '每種菜都試一口，身體才會健康' },
-    { sc: 'bath|e 🚽 236 140 64|b2 120 stand smile|e ❓ 140 56 24', e: '🧻', q: '上完廁所要記得做什麼？', a: [['🚽', '沖水和洗手'], ['🏃', '馬上跑走'], ['🧻', '把衛生紙丟地上']], why: '沖水、洗手，乾淨又衛生' },
-    { sc: 'class|b1 130 stand plain|e 💨 168 90 26|e 🦠 204 80 18|g1 240 stand surprise f', e: '😷', q: '咳嗽或打噴嚏的時候，要怎麼做？', a: [['💪', '用手肘遮住'], ['😮', '對著同學'], ['🍱', '對著便當']], why: '遮住口鼻，才不會把細菌傳給別人' },
+    { sc: 'table|g2 140 stand sad|e 🍱 156 136 32|e 🥕 196 126 22', e: '🍱', q: '不喜歡吃的菜，可以怎麼做？', a: [['🤏', '先吃一點點試試看'], ['🗑️', '全部倒掉'], ['🤮', '吐在桌上']], why: '每種菜都試一口，身體才會健康' },
+    { sc: 'bath|e 🚽 236 140 64|b2 120 stand smile', e: '🧻', q: '上完廁所要記得做什麼？', a: [['🚽', '沖水和洗手'], ['🏃', '馬上跑走'], ['🧻', '把衛生紙丟地上']], why: '沖水、洗手，乾淨又衛生' },
+    { sc: 'class|b1 130 stand plain|e 🦠 204 80 18|g1 240 stand surprise f', e: '😷', q: '咳嗽或打噴嚏的時候，要怎麼做？', a: [['💪', '用手肘遮住'], ['😮', '對著同學'], ['🍱', '對著便當']], why: '遮住口鼻，才不會把細菌傳給別人' },
     { sc: 'field|b1 100 stand sad|g1 200 up happy f|e 🏆 200 66 30', e: '🏆', q: '比賽輸了，要怎麼做？', a: [['👏', '幫贏的人拍手'], ['💥', '生氣摔東西'], ['😤', '說他作弊']], why: '輸了也可以有風度，下次再加油' },
     { sc: 'class|e 🚪 222 116 120|b1 120 think plain', e: '🚪', q: '進老師辦公室前要先做什麼？', a: [['✊', '敲門說報告'], ['💥', '用力推門'], ['🏃', '直接跑進去']], why: '先敲門說「報告」，是有禮貌的做法' },
-    { sc: 'class|b1 160 stand smile|e 🔢 210 70 30|e 🏷️ 160 138 22', e: '🔢', q: '學校的座號是做什麼用的？', a: [['🔢', '幫大家排順序'], ['🎁', '換禮物'], ['🍬', '買糖果']], why: '座號是你在班上的號碼，排隊、發作業都會用到' },
-    { sc: 'class|g2 120 hold smile|e 🧥 120 138 36|e ❓ 160 56 24', e: '🧥', q: '外套脫下來要放哪裡？', a: [['🪝', '掛在椅背或掛勾'], ['🏞️', '丟在操場'], ['🗑️', '放進垃圾桶']], why: '放好自己的東西，回家才不會忘記帶' },
+    { sc: 'class|b1 100 stand smile|g1 160 stand smile|b3 220 stand smile', e: '🔢', q: '學校的座號是做什麼用的？', a: [['🔢', '幫大家排順序'], ['🎁', '換禮物'], ['🍬', '買糖果']], why: '座號是你在班上的號碼，排隊、發作業都會用到' },
+    { sc: 'class|g2 120 hold smile|e 🧥 120 138 36', e: '🧥', q: '外套脫下來要放哪裡？', a: [['🪝', '掛在椅背或掛勾'], ['🏞️', '丟在操場'], ['🗑️', '放進垃圾桶']], why: '放好自己的東西，回家才不會忘記帶' },
     { sc: 'room|b1 110 stand surprise|e 🎒 92 146 24|e ⏰ 220 70 44', e: '⏰', q: '早上要幾點出門才不會遲到？', a: [['⏰', '照家人說的時間'], ['😴', '睡飽才起來'], ['🎮', '玩完遊戲再說']], why: '前一天早點睡，早上準時出門' },
-    { sc: 'play|b2 120 stand sad|e 💭 160 64 40|e 🍽️ 160 62 18', e: '🍎', q: '下課肚子餓了，可以吃什麼？', a: [['🍎', '帶來的水果點心'], ['🍭', '一大包糖果'], ['🌿', '花園的葉子']], why: '健康的點心比較好，也要記得收好垃圾' },
-    { sc: 'library|g1 120 hold smile|e 📚 120 138 30|tch 240 stand smile f', e: '📚', q: '在圖書室借書，要注意什麼？', a: [['📅', '準時還書'], ['✂️', '把書剪下來'], ['🎒', '帶回家不還']], why: '書是大家的，看完要準時還' },
-    { sc: 'library|b1 100 think plain|g2 210 hold smile f|e 📖 210 140 26|e 💬 140 60 24', e: '🤫', q: '在圖書室說話要怎麼樣？', a: [['🤫', '小小聲'], ['📢', '很大聲'], ['🎤', '唱歌']], why: '圖書室要安靜，大家才能專心看書' },
-    { sc: 'class|b1 80 stand plain|g1 160 stand plain|b3 240 stand plain f|e 💬 110 60 22|e 💬 206 60 22', e: '🧑‍🤝‍🧑', q: '分組活動時，同學意見跟你不一樣，要怎麼做？', a: [['🗣️', '輪流說，一起決定'], ['😤', '只聽我的'], ['🚶', '生氣走掉']], why: '聽聽別人的想法，大家一起決定' },
+    { sc: 'play|b2 140 belly sad', e: '🍎', q: '下課肚子餓了，可以吃什麼？', a: [['🍎', '帶來的水果點心'], ['🍭', '一大包糖果'], ['🌿', '花園的葉子']], why: '健康的點心比較好，也要記得收好垃圾' },
+    { sc: 'library|g1 120 hold smile|e 📚 120 142 30|tch 240 stand smile f', e: '📚', q: '在圖書室借書，要注意什麼？', a: [['📅', '準時還書'], ['✂️', '把書剪下來'], ['🎒', '帶回家不還']], why: '書是大家的，看完要準時還' },
+    { sc: 'library|b1 100 think plain|g2 210 hold smile f|e 📖 210 140 26', e: '🤫', q: '在圖書室說話要怎麼樣？', a: [['🤫', '小小聲'], ['📢', '很大聲'], ['🎤', '唱歌']], why: '圖書室要安靜，大家才能專心看書' },
+    { sc: 'class|b1 80 stand plain|g1 160 stand plain|b3 240 stand plain f', e: '🧑‍🤝‍🧑', q: '分組活動時，同學意見跟你不一樣，要怎麼做？', a: [['🗣️', '輪流說，一起決定'], ['😤', '只聽我的'], ['🚶', '生氣走掉']], why: '聽聽別人的想法，大家一起決定' },
     { sc: 'home|b1 100 stand happy|e 🎒 78 146 24|mom 220 stand smile f', e: '👋', q: '放學回家，見到家人可以說什麼？', a: [['🏠', '我回來了'], ['🙅', '什麼都不說'], ['😤', '走開']], why: '說「我回來了」，再分享今天學校的事' }
   ];
   const YX_TRACE = '一二三十人大小口日月山上下中土王工木本天手牛田白目子女心水石早生立五六七八九千文左右力入出入玉禾竹米田耳花草雨雲星我你他'.split('').filter((c, i, a) => a.indexOf(c) === i).map(c => [c, c, 'k']);
@@ -5518,17 +5552,18 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     },
     enverb() {
       const t = pick(VERBS), n = age === 'small' ? 2 : 3;
+      const vPic = o => VERB_SC[o[0]] ? ezOptPic({ sc: VERB_SC[o[0]] }) : picHTML(o[1]); // v91：動作用人在做的情境圖
       if (age === 'small' || Math.random() < .5) {
         const opts = shuffle([t, ...others(VERBS, t, n, x => x[1])]);
         return {
           prompt: '聽英文，找出對的動作', speech: [['哪一個是'], [t[0], 'en-US']], stage: `<div class="word">${t[0]}</div>`,
-          options: opts.map(o => ({ html: picHTML(o[1]), label: o[2], correct: o === t })),
+          options: opts.map(o => ({ html: vPic(o), label: o[2], correct: o === t })),
           after: [[t[0], 'en-US'], [t[2]]], key: 'p' + t[0]
         };
       }
       const opts = shuffle([t, ...others(VERBS, t, n, x => x[0])]);
       return {
-        prompt: '這個動作的英文是？', speech: [['這個動作，英文是什麼？']], stage: `<div class="pic">${t[1]}</div>`,
+        prompt: '這個動作的英文是？', speech: [['這個動作，英文是什麼？']], stage: VERB_SC[t[0]] ? `<div class="pic scn-pic">${scnSVG(VERB_SC[t[0]])}</div>` : `<div class="pic">${t[1]}</div>`,
         options: opts.map(o => ({ html: `<span class="o-life"><span class="t solo" style="font-family:var(--f-display)">${o[0]}</span></span>`, label: o[0], lang: 'en-US', correct: o === t })),
         after: [[t[0], 'en-US'], [t[2]]], key: 'w' + t[0]
       };
@@ -6832,8 +6867,10 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     { n: '把媽媽和寶寶連起來', p: [['🐔', '🐣'], ['🐸', '🥚'], ['🦋', '🐛'], ['🧑', '👶']] },
     { n: '把大寫和小寫連起來', p: 'ABDEGHMNQRT'.split('').map(L => [L, L.toLowerCase()]), txt: true, big: true },
     { n: '把一起用的東西連起來', p: [['🔑', '🔒'], ['⚽', '🥅'], ['✏️', '📒'], ['🪥', '🦷'], ['🧦', '👟'], ['🍼', '👶'], ['🥄', '🥣']] },
-    { n: '把叫聲和動物連起來', p: [['汪汪', '🐶'], ['喵喵', '🐱'], ['呱呱', '🐸'], ['哞哞', '🐮'], ['咩咩', '🐑'], ['喔喔', '🐓']], txt: true },
-    { n: '把顏色和水果連起來', p: [['紅色', '🍓'], ['黃色', '🍌'], ['紫色', '🍇'], ['綠色', '🥦'], ['橘色', '🥕']], txt: true },
+    { n: '把叫聲和動物連起來', p: [['汪汪', '🐶', '汪汪汪', '小狗'], ['喵喵', '🐱', '喵喵喵', '小貓'], ['呱呱', '🐸', '呱呱呱', '青蛙'], ['哞哞', '🐮', '哞哞哞', '牛'], ['咩咩', '🐑', '咩咩咩', '綿羊'], ['喔喔', '🐓', '喔喔喔', '公雞']], txt: true, snd: true,
+      say: '點左邊的小喇叭，聽聽看是什麼叫聲，再點是哪一隻動物在叫' },
+    { n: '把顏色和蔬果連起來', p: [['紅色', '🍓', '紅色', '紅色的草莓', '#E53935'], ['黃色', '🍌', '黃色', '黃色的香蕉', '#FDD835'], ['紫色', '🍇', '紫色', '紫色的葡萄', '#8E24AA'], ['綠色', '🥦', '綠色', '綠色的花椰菜', '#43A047'], ['橘色', '🥕', '橘色', '橘色的紅蘿蔔', '#FB8C00']], col: true,
+      say: '左邊是顏色，點一下會告訴你是什麼顏色，再點一樣顏色的蔬菜水果' },
     { n: '把形狀和東西連起來', p: [['⚪', '⚽'], ['🔺', '🍕'], ['⬛', '🎲'], ['❤️', '💌']] },
     { n: '把動物和牠的家連起來', p: [['🐟', '🌊'], ['🐦', '🌳'], ['🐝', '🍯'], ['🐧', '🧊'], ['🐪', '🌵']] }
   ];
@@ -7031,9 +7068,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         const t = pick(sets.length ? sets : MATCHES.filter(m => age !== 'small' || !m.big)); st.used.add('mt' + t.n);
         const pairs = shuffle(t.p).slice(0, age === 'small' ? 3 : age === 'six' ? 5 : 4);
         st.mt = { pairs, sel: null, done: 0, miss: 0, lines: [] };
-        setQ(t.n);
-        const L = pairs.map((p, i) => ({ v: p[0], i })), R = shuffle(pairs.map((p, i) => ({ v: p[1], i })));
-        const cell = (x, side) => `<button class="mt-item chunky ${t.txt ? 'txt' : ''}" data-side="${side}" data-i="${x.i}" aria-label="${x.v}"><span>${x.v}</span></button>`;
+        setQ(t.n, t.say ? [[t.say]] : null); st.mt.t = t;
+        const L = pairs.map((p, i) => ({ v: p[0], i, sp: p[2] || '', c: p[4] })), R = shuffle(pairs.map((p, i) => ({ v: p[1], i })));
+        // 🔊 小朋友還不認識字：叫聲／顏色點一下就會念出來，顏色直接畫色塊
+        const inner = x => x.c ? `<span class="mt-sw" style="background:${x.c}"></span>` : t.snd && x.sp ? `<span class="mt-spk">🔊</span><span>${x.v}</span>` : `<span>${x.v}</span>`;
+        const cell = (x, side) => `<button class="mt-item chunky ${t.txt && (side === 'L' || !t.snd) ? 'txt' : ''} ${t.snd && side === 'L' ? 'snd' : ''}" data-side="${side}" data-i="${x.i}" ${side === 'L' && x.sp ? `data-sp="${x.sp}"` : ''} aria-label="${x.sp || x.v}">${side === 'L' ? inner(x) : `<span>${x.v}</span>`}</button>`;
         $('stage').innerHTML = `<div class="mt" id="mtWrap"><svg class="mt-lines" id="mtLines"></svg><div class="mt-col">${L.map(x => cell(x, 'L')).join('')}</div><div class="mt-col">${R.map(x => cell(x, 'R')).join('')}</div></div><p class="note" style="text-align:center">先點左邊，再點右邊配對的東西</p>`;
         document.querySelectorAll('.mt-item').forEach(b => b.addEventListener('click', () => mtTap(b)));
       }
@@ -7813,48 +7852,48 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     'class|b1 100 wave happy|e 🎒 78 146 22|tch 222 wave smile f|e ☀️ 290 30 30',
     'bedroom|b2 110 up happy|mom 200 wave smile f',
     'night|b1 100 wave sleepy|mom 200 stand smile f|dad 266 stand smile f',
-    'night.1|g2 110 stand sleepy|e 🛏️ 230 150 80|e 💤 140 60 24',
+    'night.1|g2 110 stand sleepy|e 🛏️ 230 150 80',
     'park|b1 100 wave happy|g1 220 wave happy f',
     'class|g2 100 wave happy|b3 220 stand shy f',
     'street|b1 100 wave smile|e 🎒 78 146 22|e 🚌 250 140 80',
     'home|b2 90 wave smile|gma 200 wave smile f|e 🚪 290 118 100',
-    'room|g1 110 hold happy|e 🎁 110 136 30|mom 230 stand smile f|e 🎈 280 60 26',
+    'room|g1 110 hold happy|e 🎁 110 142 30|mom 230 stand smile f|e 🎈 280 60 26',
     'store|b1 100 reach happy|tch 230 give smile f|e 🥤 180 112 26',
     'park|b1 100 give smile|e 🍪 140 126 24|g1 214 hold happy f',
-    'park|b1 120 run surprise|g1 214 fall surprise f|e 💫 168 86 30',
-    'table|b2 100 stand scared|g2 220 stand surprise f|e 🧃 160 128 28 90|e 💦 186 132 20',
+    'park|b1 120 run surprise|g1 214 fall surprise f',
+    'table|b2 100 stand scared|g2 220 stand surprise f|e 🧃 160 128 28 90',
     'park|b2 110 bow sorry|g1 214 stand smile f',
     'hall|b1 80 walk smile|g2 170 stand plain|b3 230 stand plain f',
     'kitchen|b1 100 reach smile|mom 230 hold smile f|e 🍪 224 128 26',
     'room|b1 90 up happy|g2 200 hold happy f|e 🎂 200 138 34|e 🎈 280 70 30',
-    'park|b1 100 reach smile|g3 210 reach smile f',
-    'class|b2 100 stand happy|tch 220 wave smile f|e 💬 170 56 24',
-    'home|b1 120 hug happy|mom 200 hug smile f|e ❤️ 160 58 30',
-    'pool|b1 236 up scared - 200|w 150 320 172|e 💦 200 150 20',
+    'park|b1 100 reach smile|g3 210 reach smile f|e 🤝 156 136 14',
+    'class|b2 100 stand happy|tch 220 wave smile f',
+    'home|b1 120 hug happy|mom 200 hug smile f',
+    'pool|b1 236 up scared - 200|w 150 320 172',
     'play|b1 100 point happy|g1 200 stand smile f|e 🧸 150 176 30',
     'home|g2 100 up happy|e 🎄 230 120 90|e 🎁 262 172 28',
     'night|b1 110 up happy|g1 210 up happy f|e 🎆 160 44 50',
-    'class|b1 100 clap happy|e 👏 100 128 22|g1 210 hold happy f|e 🖼️ 210 134 34',
+    'class|b1 100 clap laugh|ml M76 120l-10-4 M74 130h-12 M124 120l10-4 M126 130h12|g1 210 hold happy f|e 🖼️ 210 140 20',
     'park|b1 90 reach scared|e 🪨 166 180 26|g2 200 fall surprise f',
-    'park|b1 80 run sad|g1 230 run smile|e 💨 160 150 24',
-    'table|g2 140 eat happy|e 🍰 156 112 26',
-    'room|b1 150 cry sad|e 💥 150 66 30',
+    'park|b1 80 run sad|g1 230 run smile',
+    'table|g2 140 eat happy|e 🍰 156 132 26',
+    'home|b1 150 cower cry|ml M136 52l6 8 M160 44v10 M184 52l-6 8',
     'street|b1 100 wave happy|g2 220 wave happy f|e 🏫 160 76 50',
     'kitchen|b2 100 reach sad|mom 230 hold smile f|e 🥤 222 128 26',
-    'class|b2 110 hand shy|e 💭 160 70 46|e 🚽 160 68 22|tch 250 stand smile f'
+    'class|b2 110 hand shy|e 🚽 160 68 22|tch 250 stand smile f'
   ];
   const EZ_ACT_SC = {
-    run: 'park|b1 160 run happy|e 💨 100 150 26', jump: 'park|g2 160 jump happy', swim: 'pool|b2 236 up happy - 200|w 150 320 172',
-    sing: 'stage|g1 160 think happy|e 🎤 167 111 22|e 🎵 204 70 24', dance: 'room|g2 160 dance happy|e 🎵 210 60 26', read: 'library|b1 160 hold smile|e 📖 160 140 30',
-    write: 'class|g1 150 hold smile|e 📝 150 140 30|e ✏️ 178 128 22 30', eat: 'table|b1 160 eat happy|e 🍚 140 130 28', drink: 'kitchen|g2 140 eat happy|e 🥤 146 108 24',
-    sleep: 'night.1|b1 160 sleep plain|e 💤 216 110 26', walk: 'street|g1 160 walk smile', 'ride a bike': 'park|b2 150 seat happy - 150|e 🚲 150 156 110',
-    climb: 'play.0|b1 280 up happy - 150', draw: 'class|g2 150 hold happy|e 🖼️ 150 140 30|e 🖍️ 180 128 22', kick: 'field|b1 140 kick happy|e ⚽ 186 172 24',
-    clap: 'room|g1 160 clap happy|e 👏 160 124 22', 'wash my hands': 'bath|b2 160 hold smile|e 🧼 160 136 22|e 💧 178 118 18', 'brush my teeth': 'bath|g2 160 eat smile|e 🪥 166 110 22',
-    cook: 'kitchen|b1 200 hold happy|e 🍳 200 138 30|e ♨️ 200 104 20', 'play the drum': 'room|b2 160 side happy|e 🥁 160 150 50', 'fly a kite': 'park|g1 110 reach happy|e 🪁 262 50 40|l 152 124 252 66'
+    run: 'park|b1 160 run happy|ml M112 150h-14 M114 162h-18', jump: 'park|g2 160 jump happy', swim: 'pool|b2 236 up happy - 200|w 150 320 172',
+    sing: 'stage|g1 160 think happy|e 🎤 189 111 22', dance: 'room|g2 160 dance happy', read: 'library|b1 160 hold smile|e 📖 160 140 30',
+    write: 'class|g1 150 hold smile|e 📝 150 142 30|e ✏️ 178 128 22 30', eat: 'kitchen|b1 160 eat happy|e 🍚 160 146 16', drink: 'kitchen|g2 140 eat happy|e 🥤 172 108 24',
+    sleep: 'night.1|b1 176 sleep calm - 168|z 90 30 170', walk: 'street|g1 160 walk smile', 'ride a bike': 'park|b2 150 seat happy - 150|e 🚲 150 156 110',
+    climb: 'play|e 🪜 160 126 100|b1 160 up happy - 150', draw: 'class|g2 150 hold happy|e 🖼️ 150 140 30|e 🖍️ 180 128 22', kick: 'field|b1 140 kick happy|e ⚽ 186 172 24',
+    clap: 'room|g1 160 clap laugh|ml M136 120l-10-4 M134 130h-12 M184 120l10-4 M186 130h12', 'wash my hands': 'bath|b2 160 hold smile|e 🧼 160 136 22|e 💧 178 128 18', 'brush my teeth': 'bath|g2 160 eat smile|ob brush 164 110 1',
+    cook: 'kitchen|b1 160 hold happy|e 🍳 164 140 18', 'play the drum': 'stage|b2 150 up laugh|e 🥁 150 160 30', 'fly a kite': 'park|g1 110 reach happy|e 🪁 262 50 40|l 152 124 252 66'
   };
   const EZ_FEEL_SC = {
-    happy: 'park|b1 160 up happy', sad: 'room|g1 160 stand sad|e 💧 196 80 18', angry: 'room|b2 160 hips angry|e 💢 196 70 26', scared: 'night|g2 160 cower scared|e ⚡ 60 60 30',
-    tired: 'room|b1 160 stand sleepy|e 💤 196 64 24', surprised: 'room|g1 160 up surprise|e ❗ 196 58 26', hungry: 'table|b2 160 belly sad|e 💭 202 62 40|e 🍔 202 60 18', sick: 'bedroom|g2 140 stand sick|e 🌡️ 154 112 22'
+    happy: 'park|b1 160 up happy', sad: 'room|g1 160 cry cry', angry: 'room|b2 160 stomp angry', scared: 'night|g2 160 ears scared|e 🌩️ 60 60 30',
+    tired: 'room|b1 160 sitcry sleepy - 190', surprised: 'room|g1 160 up surprise', hungry: 'kitchen|b2 160 belly sad|e 🍽️ 220 160 18', sick: 'bedroom|g2 140 stand sick|e 🌡️ 154 130 22'
   };
   const EZ_FAM_SC = {
     mom: 'home|mom 160 wave smile', dad: 'home|dad 160 wave smile', baby: 'room|baby 160 up happy|e 🍼 210 160 26', grandma: 'home|gma 160 stand smile', grandpa: 'home|gpa 160 cane smile',
@@ -7862,15 +7901,26 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   };
   const EZ_TOUCH_SC = { eye: 'teye', ear: 'tear', nose: 'tnose', mouth: 'shh', hand: 'clap', foot: 'tleg', head: 'thead', hair: 'thead', arm: 'tarm', leg: 'tleg', tooth: 'shh', tongue: 'stand' };
   const ezTouchSc = w => `room|${['b1', 'g2', 'b2', 'g1'][w.length % 4]} 160 ${EZ_TOUCH_SC[w] || 'stand'} ${w === 'tongue' ? 'tongue' : 'happy'}`;
+  // v91：依修正清單重畫（原本角色造型；動作清楚、不用符號圖示）
   const EZ_SIMON_SC = {
-    'Clap your hands.': 'room|g1 160 clap happy|e 👏 160 124 22', 'Jump up and down.': 'park|b1 160 jump happy', 'Wave your hand.': 'park|g2 160 wave happy',
-    'Stand up.': 'class|b2 160 up smile|e ⬆️ 210 80 24', 'Sit down.': 'class|e 🪑 150 146 100|g1 140 sitdown smile - 150', 'Turn around.': 'room|b1 160 side happy|e 🔄 160 40 30',
-    'Be quiet.': 'class|g2 160 shh calm|z 108 52 104', 'Open your book.': 'class|b1 160 hold happy|e 📖 160 140 30', 'Raise your hand.': 'class|g1 160 hand happy',
-    'Line up.': 'hall|b1 80 walk smile|g2 140 walk smile|b3 200 walk smile|g1 260 walk smile', 'Close your eyes.': 'room|b2 160 stand calm|z 116 56 88', 'Wash your hands.': 'bath|g2 160 hold smile|e 🧼 160 136 22|e 💧 178 118 18'
+    "Clap your hands.": "class|g1 160 clap laugh|ml M136 120l-10-4 M134 130h-12 M136 140l-10 4 M184 120l10-4 M186 130h12 M184 140l10 4",
+    "Jump up and down.": "park|b1 160 jump laugh|ml M146 178v8 M160 180v9 M174 178v8",
+    "Wave your hand.": "class|g1 160 wave happy|ml M198 84q8 8 4 20 M206 78q12 12 6 30",
+    "Stand up.": "class|e 🪑 122 150 70|b1 178 stand happy|ml M156 92l-6-8 M200 92l6-8 M178 70v-10",
+    "Sit down.": "class|e 🪑 150 146 100|g1 140 sitdown smile - 150",
+    "Turn around.": "class|b1 160 back plain|ml M128 192q32 14 64 0",
+    "Be quiet.": "class|g1 160 shh plain|ml M178 96q6 4 6 10",
+    "Open your book.": "class|b1 160 hold happy|e 📖 160 138 26|ml M130 118l-8-6 M190 118l8-6",
+    "Raise your hand.": "class|g1 160 hand happy|z 70 22 180",
+    "Line up.": "hall|g2 70 walk smile|b3 130 walk smile|g1 190 walk smile|b1 250 walk smile",
+    "Close your eyes.": "room|b1 160 stand calm",
+    "Wash your hands.": "bath|g1 160 hold happy|e 🧼 160 146 14|e 💧 150 128 10|e 💧 170 128 10"
   };
   EZ_HELLO.forEach((x, i) => { x.sc = EZ_HELLO_SC[i]; });
   EZ_ACTION.forEach(x => { x.sc = EZ_ACT_SC[x.w]; });
   EZ_FEEL.forEach(x => { x.sc = EZ_FEEL_SC[x.w]; });
+  // 圖上的主角是男生還是女生（第一個人物）
+  const ezHe = t => { const m = String(t && t.sc || '').split('|').slice(1).map(x => x.trim().split(/\s+/)[0]).find(k => SCN_LOOK[k]); return /^(g\d|sis|sis2|mom|gma|tch)$/.test(m || '') ? 'she' : 'he'; };
   EZ_PEOPLE.forEach(x => { if (EZ_FAM_SC[x.w]) x.sc = EZ_FAM_SC[x.w]; });
   const ezPicOf = t => t && t.sc ? `<div class="pic scn-pic">${scnSVG(t.sc)}</div>` : `<div class="pic">${t.e}</div>`;
   // 比手指的圖：1～5 一隻手，6～10 兩隻手（左手 5 根全開＋右手）。食指、中指、無名指、小指、大拇指依序打開
@@ -7896,14 +7946,20 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const ezOptPic = o => o.sc ? `<span class="o-pic scn-o">${scnSVG(o.sc, 'scn-opt', scnFocus(o.sc))}</span>` : ezPic(o.e);
   const ezOptLife = (o, txt) => `<span class="o-life">${o.sc ? `<span class="e scn-o">${scnSVG(o.sc, 'scn-opt', scnFocus(o.sc))}</span>` : `<span class="e">${o.e}</span>`}<span class="t">${txt}</span></span>`;
   // 英文小故事：依故事內容組一張圖
-  function ezStorySc(k, he, x) {
-    const kid = he === 'he' ? pick(['b1', 'b2', 'b3']) : pick(['g1', 'g2', 'g3']);
-    if (k === 0) return `park|${kid} 110 stand happy|e ${x} 210 160 50`;
-    if (k === 1) return `kitchen|${kid} 100 hold happy|e ${x} 100 138 28|mom 230 give smile f|e ${x} 182 110 24`;
-    if (k === 2) return `room|${kid} 150 stand plain|e ${x} 220 150 40`;
-    if (k === 3) return `room|${kid} 150 hold smile|e ${x} 150 138 34`;
-    if (k === 4) return `${x}|${kid} 150 walk happy`;
-    return `table|${kid} 150 stand happy|e 💭 204 62 42|e ❤️ 204 60 18`;
+  // v91：故事圖照故事內容畫（主角性別、動物顏色、數量、家人、天氣、喜歡和不喜歡都要對）
+  function ezStorySc(k, he, d) {
+    const kid = he === 'he' ? 'b1' : 'g1'; d = d || {};
+    if (k === 0) return `park|${kid} 100 hug happy|e ${d.a} 212 150 46 0 ${d.hex}`;
+    if (k === 1) { const row = (n, x0, y, gap, sz) => Array.from({ length: n }, (_, i) => `|e ${d.e} ${x0 + i * gap} ${y} ${sz}`).join('');
+      return `kitchen|${kid} 74 stand happy|mom 252 give smile f` + row(d.a, 112, 178, 24, 13) + row(d.b, 206 - (d.b - 1) * 11, 112, 22, 12); }
+    if (k === 2) return { happy: `room|${kid} 150 up laugh|e 🧸 196 112 20|e 🎁 220 168 18`, sad: `park|${kid} 150 cry cry`, tired: `room|${kid} 150 sitcry sleepy - 190`,
+      hungry: `kitchen|${kid} 150 belly sad|e 🍽️ 214 160 18`, scared: `room|${kid} 150 ears scared|e 🌩️ 240 60 26`, angry: `room|${kid} 150 stomp angry|e 🧸 214 176 16 70` }[d.f] || `room|${kid} 150 stand plain`;
+    if (k === 3) return { sunny: `park|${kid} 160 wave happy|e 🧢 160 ${he === 'he' ? 66 : 70} 18|e ☀️ 266 40 30`, rainy: `street|${kid} 160 stand smile|e 🧥 160 132 26|e 🌧️ 90 50 30|e 🌧️ 240 46 26`,
+      cold: `park|${kid} 160 cower sad|e 🧣 160 128 14|e 🍂 230 170 14`, snowy: `park|${kid} 140 stand happy|e 🧤 120 144 12|e ⛄ 240 150 36|e ❄️ 80 50 14|e ❄️ 200 40 14|e ❄️ 270 80 12`,
+      hot: `beach|${kid} 160 hold happy|e 🍦 160 136 16|e ☀️ 266 40 34` }[d.w] || `park|${kid} 160 stand smile`;
+    if (k === 4) { const P = { mom: 'mom', dad: 'dad', grandma: 'gma', grandpa: 'gpa', brother: 'bro2', sister: 'sis2' }[d.p] || 'mom';
+      return `${d.pl}|${kid} 120 walk happy|${P} 206 walk ${d.p === 'grandpa' || d.p === 'grandma' ? 'smile' : 'happy'}`; }
+    return `kitchen|${kid} 120 eat happy|e ${d.a} 150 128 10|e 🍽️ 236 168 22|e ${d.b} 236 156 16|ml M196 120q8-8 0-16`;
   }
   // 共用：單字主題（聽英文找圖、是不是、反向）
   function ezVocab(pool, tag, extra) {
@@ -8074,11 +8130,13 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       const t = pick(pool), r = Math.random();
       if (r < .65) {
         const opts = shuffle([t, ...others(pool.filter(x => !!x.feel === !!t.feel), t, 2, x => x.w)]);
-        return { prompt: '聽英文，找出對的圖', en: t.feel ? `Who is ${t.w}?` : `Who can ${t.w.replace('my ', 'his ')}?`, stage: ezEar(t.w), options: opts.map(o => ({ html: ezOptPic(o), label: o.zh, correct: o === t })), after: [[t.w, EZ_EN], [t.zh]], practice: t.w, practiceLang: EZ_EN, key: 'aca' + t.w };
+        return { prompt: '聽英文，找出對的圖', en: t.feel ? `Who is ${t.w}?` : `Who can ${t.w.replace('my ', ezHe(t) === 'she' ? 'her ' : 'his ')}?`, stage: ezEar(t.w), options: opts.map(o => ({ html: ezOptPic(o), label: o.zh, correct: o === t })), after: [[t.w, EZ_EN], [t.zh]], practice: t.w, practiceLang: EZ_EN, key: 'aca' + t.w };
       }
       const ask = Math.random() < .5 ? t : pick(pool.filter(x => x !== t && !!x.feel === !!t.feel)), ok = ask === t;
-      const qq = t.feel ? `Is he ${ask.w}?` : `Can he ${ask.w.replace('my ', 'his ')}?`;
-      return { prompt: `聽一聽：${qq}`, speech: [[qq, EZ_EN]], stage: ezCard(ezPicOf(t)), options: ezYN(ok), after: [[ok ? (t.feel ? 'Yes, he is.' : 'Yes, he can.') : (t.feel ? "No, he isn't." : "No, he can't."), EZ_EN], [t.zh]], key: 'acy' + t.w + '|' + ask.w };
+      // 圖上是女生就問 she／her，男生問 he／his
+      const he = ezHe(t), His = he === 'she' ? 'her ' : 'his ';
+      const qq = t.feel ? `Is ${he} ${ask.w}?` : `Can ${he} ${ask.w.replace('my ', His)}?`;
+      return { prompt: `聽一聽：${qq}`, speech: [[qq, EZ_EN]], stage: ezCard(ezPicOf(t)), options: ezYN(ok), after: [[ok ? (t.feel ? `Yes, ${he} is.` : `Yes, ${he} can.`) : (t.feel ? `No, ${he} isn't.` : `No, ${he} can't.`), EZ_EN], [t.zh]], key: 'acy' + t.w + '|' + ask.w };
     },
     ezsimon() {
       const r = Math.random();
@@ -8198,28 +8256,28 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       let story, q, ans, wrong, opt, key, emo, sc;
       if (k === 0) {
         const a = sp(EZ_ANIMAL.slice(0, 12)), c = sp(EZ_COLOR.filter(x => ['red', 'blue', 'yellow', 'green', 'pink', 'black', 'white', 'brown', 'orange', 'purple'].includes(x.w)));
-        story = `${nm} has ${/^[aeiou]/.test(c.w) ? 'an' : 'a'} ${c.w} ${a.w}. The ${a.w} is very cute.`; q = `What color is the ${a.w}?`; ans = c; wrong = others(EZ_COLOR.filter(x => x.w !== 'gray'), c, 2, x => x.w); emo = a.e; sc = ezStorySc(0, he, a.e);
+        story = `${nm} has ${/^[aeiou]/.test(c.w) ? 'an' : 'a'} ${c.w} ${a.w}. The ${a.w} is very cute.`; q = `What color is the ${a.w}?`; ans = c; wrong = others(EZ_COLOR.filter(x => x.w !== 'gray'), c, 2, x => x.w); emo = a.e; sc = ezStorySc(0, he, { a: a.e, hex: c.hex });
         opt = x => ({ html: `<span class="o-life"><span class="e">${swatchHTML(x.hex)}</span><span class="t">${x.w}</span></span>`, label: x.w }); key = 'st0' + nm + a.w + c.w;
       } else if (k === 1) {
         const f = sp([['apples', '🍎'], ['cookies', '🍪'], ['candies', '🍬'], ['oranges', '🍊'], ['eggs', '🥚']]), a = sr(1, 4), b = sr(1, 3);
         story = `${nm} has ${EZ_NUMW[a]} ${a === 1 ? f[0].replace(/ies$/, 'y').replace(/s$/, '') : f[0]}. Mom gives ${he === 'he' ? 'him' : 'her'} ${EZ_NUMW[b]} more.`; q = `How many ${f[0]} does ${nm} have now?`; ans = a + b; wrong = [...new Set([a + b + 1, Math.max(1, a + b - 1), a].filter(v => v !== a + b))].slice(0, 2); emo = f[1];
-        opt = x => ({ html: `<span class="o-num">${x}</span><small class="ez-sub">${EZ_NUMW[x]}</small>`, label: EZ_NUMW[x] }); key = 'st1' + nm + f[0] + a + b; sc = ezStorySc(1, he, f[1]);
+        opt = x => ({ html: `<span class="o-num">${x}</span><small class="ez-sub">${EZ_NUMW[x]}</small>`, label: EZ_NUMW[x] }); key = 'st1' + nm + f[0] + a + b; sc = ezStorySc(1, he, { e: f[1], a, b });
       } else if (k === 2) {
         const fe = sp([['happy', 'got a new toy'], ['sad', 'lost ' + his + ' ball'], ['tired', 'ran all day'], ['hungry', 'did not eat lunch'], ['scared', 'heard a loud noise'], ['angry', 'broke ' + his + ' toy']]), t = EZ_FEEL.find(x => x.w === fe[0]);
-        story = `${nm} ${fe[1]}. ${He} is ${fe[0]}.`; q = `How does ${nm} feel?`; ans = t; wrong = others(EZ_FEEL, t, 2, x => x.w); emo = '🧒'; sc = ezStorySc(2, he, { happy: '🎁', sad: '⚽', tired: '🏃', hungry: '🍽️', scared: '💥', angry: '🧸' }[fe[0]]);
+        story = `${nm} ${fe[1]}. ${He} is ${fe[0]}.`; q = `How does ${nm} feel?`; ans = t; wrong = others(EZ_FEEL, t, 2, x => x.w); emo = '🧒'; sc = ezStorySc(2, he, { f: fe[0] });
         opt = x => ({ html: `<span class="o-life"><span class="e">${x.e}</span><span class="t">${x.w}</span></span>`, label: x.w }); key = 'st2' + nm + fe[0];
       } else if (k === 3) {
         const w = sp([['sunny', 'a cap', '🧢'], ['rainy', 'a raincoat', '🧥'], ['cold', 'a scarf', '🧣'], ['snowy', 'gloves', '🧤'], ['hot', 'shorts', '🩳']]), t = EZ_WEATHER.find(x => x[0] === w[0]);
-        story = `It is ${w[0]} today. ${nm} wears ${w[1]}.`; q = 'What is the weather like today?'; ans = t; wrong = others(EZ_WEATHER, t, 2, x => x[0]); emo = w[2]; sc = ezStorySc(3, he, w[2]);
+        story = `It is ${w[0]} today. ${nm} wears ${w[1]}.`; q = 'What is the weather like today?'; ans = t; wrong = others(EZ_WEATHER, t, 2, x => x[0]); emo = w[2]; sc = ezStorySc(3, he, { w: w[0] });
         opt = x => ({ html: `<span class="o-life"><span class="e">${x[1]}</span><span class="t">${x[0]}</span></span>`, label: x[0] }); key = 'st3' + nm + w[0];
       } else if (k === 4) {
         const p = sp(EZ_PEOPLE.filter(x => x.k === 'fam' && x.w !== 'family' && x.w !== 'baby')), pl = sp([['the park', '🌳'], ['the zoo', '🦁'], ['the beach', '🏖️'], ['the library', '📚'], ['the market', '🛒']]);
-        story = `${nm} goes to ${pl[0]} with ${his} ${p.w}. They have fun.`; q = `Who goes with ${nm}?`; ans = p; wrong = others(EZ_PEOPLE.filter(x => x.k === 'fam' && x.w !== 'family'), p, 2, x => x.w); emo = pl[1]; sc = ezStorySc(4, he, { 'the park': 'park', 'the zoo': 'zoo', 'the beach': 'beach', 'the library': 'library', 'the market': 'store' }[pl[0]]);
+        story = `${nm} goes to ${pl[0]} with ${his} ${p.w}. They have fun.`; q = `Who goes with ${nm}?`; ans = p; wrong = others(EZ_PEOPLE.filter(x => x.k === 'fam' && x.w !== 'family'), p, 2, x => x.w); emo = pl[1]; sc = ezStorySc(4, he, { p: p.w, pl: { 'the park': 'park', 'the zoo': 'zoo', 'the beach': 'beach', 'the library': 'library', 'the market': 'store' }[pl[0]] });
         opt = x => ({ html: `<span class="o-life"><span class="e">${x.e}</span><span class="t">${x.w}</span></span>`, label: x.w }); key = 'st4' + nm + p.w + pl[0];
       } else {
         const plur = x => x.art === 'pl' ? x.w : /y$/.test(x.w) ? x.w.slice(0, -1) + 'ies' : /(ch|sh|s|to)$/.test(x.w) ? x.w + 'es' : x.w + 's';
         const pool = EZ_FOOD.filter(x => x.art === undefined || x.art === 'pl'), a = sp(pool), b = sp(pool.filter(x => x !== a)), aw = plur(a), bw = plur(b);
-        story = `${nm} likes ${aw}. ${He} does not like ${bw}.`; q = `What does ${nm} like?`; ans = a; wrong = [b, sp(pool.filter(x => x !== a && x !== b))]; emo = '😋'; sc = ezStorySc(5, he);
+        story = `${nm} likes ${aw}. ${He} does not like ${bw}.`; q = `What does ${nm} like?`; ans = a; wrong = [b, sp(pool.filter(x => x !== a && x !== b))]; emo = '😋'; sc = ezStorySc(5, he, { a: a.e, b: b.e });
         opt = x => ({ html: `<span class="o-life"><span class="e">${x.e}</span><span class="t">${x.w}</span></span>`, label: x.w }); key = 'st5' + nm + a.w + b.w;
       }
       const opts = shuffle([ans, ...wrong]);
@@ -8295,6 +8353,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const EZL_BY = Object.fromEntries(EZL.map(c => [c.id, c]));
   const ezlArt = x => x.art === 'pl' ? 'the ' : x.art === '' || x.art === 'adj' || x.art === 'verb' ? '' : x.art === 'the' ? 'the ' : x.art === 'an' ? 'an ' : (/^[aeiou]/i.test(x.w) ? 'an ' : 'a ');
   function ezlVis(c, x, opt) {
+    if (x.sc) return opt ? ezOptPic(x) : `<div class="pic scn-pic">${scnSVG(x.sc)}</div>`;
     if (c.type === 'color') return `<span class="o-swatch ezl-sw" style="background:${x.hex}"></span>`;
     if (c.type === 'num') return `<span class="ezl-num">${x.n}</span>`;
     if (c.type === 'shape') return ezShapeSVG(x.w, x.hex, opt ? 'opt' : 'ezl');
@@ -8305,7 +8364,14 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   }
   const ezlFind = (c, x) => c.type === 'phrase' ? x.w : c.w3 && !x.e ? `Find the word ${x.w}.` : c.type === 'num' ? `Find the number ${x.w}.` : c.type === 'letter' ? `Find the letter ${x.w}.` : c.type === 'color' || c.type === 'text' ? `Find ${x.w}.`
     : x.art === 'verb' ? `Who can ${x.w}?` : x.art === 'adj' ? (c.id === 'weather' ? `Which one is ${x.w}?` : `Who is ${x.w}?`) : `Find ${ezlArt(x)}${x.w}.`;
-  const ezlAsk = (c, x) => c.type === 'num' ? `Is it ${x.w}?` : c.type === 'letter' ? `Is it the letter ${x.w}?` : c.type === 'color' ? `Is it ${x.w}?` : x.art === 'pl' ? `Are they ${x.w}?` : x.art === 'verb' ? `Can he ${x.w}?` : x.art === 'adj' ? (c.id === 'weather' ? `Is it ${x.w}?` : `Is he ${x.w}?`) : `Is it ${ezlArt(x)}${x.w}?`;
+  const ezlAsk = (c, x, he) => c.type === 'num' ? `Is it ${x.w}?` : c.type === 'letter' ? `Is it the letter ${x.w}?` : c.type === 'color' ? `Is it ${x.w}?` : x.art === 'pl' ? `Are they ${x.w}?` : x.art === 'verb' ? `Can ${he || 'he'} ${x.w}?` : x.art === 'adj' ? (c.id === 'weather' ? `Is it ${x.w}?` : `Is ${he || 'he'} ${x.w}?`) : `Is it ${ezlArt(x)}${x.w}?`;
+  // 答錯時的說法：動作「No. He can run.」、心情「No. She is happy.」
+  const ezlNo = (c, t, he) => { const H = (he || 'he')[0].toUpperCase() + (he || 'he').slice(1); return t.art === 'verb' ? `No. ${H} can ${t.w}.` : t.art === 'adj' && c.id !== 'weather' ? `No. ${H} is ${t.w}.` : `No. It's ${t.w}.`; };
+  // 動作、心情：用人物在做動作的情境圖（和英文動作題同一套圖）
+  EZL.forEach(c => c.items.forEach(x => { if (x.sc) return; if (c.id === 'actions' && EZ_ACT_SC[x.w]) x.sc = EZ_ACT_SC[x.w]; if (c.id === 'feelings' && EZ_FEEL_SC[x.w]) x.sc = EZ_FEEL_SC[x.w]; }));
+  // v91：教室英語的動作用情境圖（人在做動作），不再只畫物件
+  const EZL_SC = {"Stand up.": "class|e 🪑 122 150 70|b1 178 stand happy|ml M156 92l-6-8 M200 92l6-8 M178 70v-10", "Sit down.": "class|e 🪑 150 146 100|g1 140 sitdown smile - 150", "Open your book.": "class|b1 160 hold happy|e 📖 160 138 26|ml M130 118l-8-6 M190 118l8-6", "Close your book.": "class|g1 160 hold smile|e 📕 160 144 16|ml M140 118q-6 8-4 18", "Listen.": "class|g1 160 listen plain|ml M196 92q6 8 0 16 M204 86q10 14 0 28", "Raise your hand.": "class|g1 160 hand happy|z 70 22 180", "Be quiet, please.": "class|g1 160 shh plain|ml M178 96q6 4 6 10", "Line up.": "hall|g2 70 walk smile|b3 130 walk smile|g1 190 walk smile|b1 250 walk smile", "Come here.": "class|tch 222 beckon happy|b1 112 walk happy|ml M74 150h-12 M76 162h-16 M74 174h-12", "Look.": "class|b1 150 point surprise|ml M206 100l10-4 M208 112h12", "Good job!": "class|b1 116 hold laugh|e 🖼️ 116 138 20|tch 214 clap happy f", "Thank you.": "class|g1 116 bow smile|tch 214 give smile f|e 📒 176 122 14", "Excuse me.": "class|b1 110 bow sorry|g2 214 stand plain f", "May I go to the restroom?": "class|b1 130 hand plain|tch 226 stand smile f", "I don't know.": "class|g1 160 side plain|ml M118 118q-6-6-12-4 M202 118q6-6 12-4", "Can you help me?": "class|g1 116 hold sad|e 📚 116 137 22|tch 216 stand smile f", "Clean up.": "class|g1 110 hold happy|e 🧸 110 142 14|b3 214 hold happy f|e 🧱 214 142 14|e 🧺 162 172 22", "Take out your pencil.": "class|g1 160 hold happy|e ✏️ 180 146 12|e 👝 150 148 13", "Let's go!": "park|b1 120 run happy|g1 206 run happy|ml M80 140h-14 M84 152h-18 M166 140h-14", "Time's up.": "class|tch 214 point smile f|e ⏰ 110 76 30|b1 126 stand surprise - 196", "Say it again.": "class|g1 116 listen plain|tch 216 stand smile f|ml M150 92q6 8 0 16", "Work in pairs.": "class|b1 122 hold happy|g1 198 hold happy f|e 📄 160 142 16"};
+  EZL.forEach(c => c.items && c.items.forEach(x => { if (!x.sc && EZL_SC[x.w] && c.type === 'phrase') x.sc = EZL_SC[x.w]; }));
   function ezlGen(c) {
     return () => {
       const items = c.items, t = pick(items);
@@ -8323,10 +8389,10 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
           after: [[t.say || t.w, EZ_EN]], practice: t.w, practiceLang: EZ_EN, key: 'a' + t.w
         });
       }
-      const ask = Math.random() < .5 ? t : pick(items.filter(x => x !== t)), ok = ask === t, qq = ezlAsk(c, ask);
+      const ask = Math.random() < .5 ? t : pick(items.filter(x => x !== t)), ok = ask === t, he = ezHe(t), qq = ezlAsk(c, ask, he);
       return ezEnglish({
         prompt: `聽一聽：${qq}`, en: qq, stage: ezCard(`<div class="ezl-big">${ezlVis(c, t)}</div>`), options: ezYN(ok),
-        after: [[ok ? 'Yes!' : `No. It's ${t.w}.`, EZ_EN]], key: 'y' + t.w + '|' + ask.w
+        after: [[ok ? 'Yes!' : ezlNo(c, t, he), EZ_EN]], key: 'y' + t.w + '|' + ask.w
       });
     };
   }
@@ -8334,10 +8400,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
 
   function mtTap(b) {
     const mt = st.mt; if (b.classList.contains('done') || st.locked) return;
-    if (b.dataset.side === 'L') { document.querySelectorAll('.mt-item[data-side="L"]').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); mt.sel = b; tone([660], .05, 'sine'); return; }
+    if (b.dataset.side === 'L') { document.querySelectorAll('.mt-item[data-side="L"]').forEach(x => x.classList.remove('sel')); b.classList.add('sel'); mt.sel = b; if (b.dataset.sp) say([[b.dataset.sp]]); else tone([660], .05, 'sine'); return; }
     if (!mt.sel) { say([['先點左邊的']]); return; }
     if (mt.sel.dataset.i === b.dataset.i) {
       mt.sel.classList.remove('sel'); mt.sel.classList.add('done'); b.classList.add('done');
+      const pr = mt.t && mt.pairs[Number(b.dataset.i)]; if (pr && pr[3]) say([[mt.t.snd ? `${pr[2]}，是${pr[3]}在叫` : pr[3]]]);
       mt.lines.push([mt.sel, b]); if ($('mtPen')) $('mtPen').innerHTML = ''; mtRedraw(); mt.sel = null; mt.done++; chime();
       if (mt.done === mt.pairs.length) { st.locked = true; setTimeout(() => itemDone(mt.miss === 0), 300); }
     } else { mt.miss++; b.classList.add('shake'); buzz(); setTimeout(() => b.classList.remove('shake'), 400); }
@@ -10829,7 +10896,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     MOVES.forEach(m => out.push(m[1]));
     out.push('翻翻看，找出相配的兩張牌', '數字和一樣多的點點是一對', '大寫和小寫是一對', '算式和答案是一對', '拿到鑰匙了！門打開了', '門鎖住了，要先拿到鑰匙喔'); [['小老鼠', '起司'], ['小兔子', '紅蘿蔔'], ['小狗', '骨頭'], ['小蜜蜂', '花朵']].forEach(([a, b]) => out.push(`先拿到鑰匙，才能打開門。帶${a}去拿鑰匙，再去找${b}`));
     try { out.push(CNL_DUO_SAY); CNL.forEach(c => { c.items.forEach(x => { out.push(x.say, x.k); if (c.type === 'tone') out.push(`${x.c}。${x.c}。這是第幾聲？`, `${x.c}，是${x.k}。`); else if (c.type === 'zi') out.push(`${x.zh}。哪一個是${x.c}？`, `${x.zh}的${x.c}。`, `${x.c}。${x.zh}的${x.c}。`); else if (c.type === 'pin') out.push(`${x.big}。${x.c}。`); else out.push(`${x.big}。${x.big}。`); }); }); out.push('國語小學堂', '聽一聽，這是第幾聲？', '看圖，找出對的國字', '聽一聽，找出對的國字', '聽一聽，找出對的注音'); } catch (e) {}
-    MT_TG.forEach(t => out.push(t[0])); Object.values(PETC).forEach(x => out.push(x.n)); TELL.forEach(x => out.push(x.t)); out.push('用手指沿著線走走看，先點左邊，再點線另一頭的東西');
+    MT_TG.forEach(t => out.push(t[0])); MATCHES.forEach(m => { if (m.say) out.push(m.say); m.p.forEach(x => { if (Array.isArray(x) && x[2]) out.push(x[2], m.snd ? `${x[2]}，是${x[3]}在叫` : x[3]); }); }); Object.values(PETC).forEach(x => out.push(x.n)); TELL.forEach(x => out.push(x.t)); out.push('用手指沿著線走走看，先點左邊，再點線另一頭的東西');
     try { TELL.forEach(S => { out.push(`${S.t}。先聽老師說故事，再換你說`); S.P.forEach(p => { out.push(p.s, p.q); }); }); out.push('故事說完了！現在換你當說故事的人', '換你跟著說一次', '說得真好', '你好棒！把整個故事說完了，可以播放給爸爸媽媽聽喔'); } catch (e) {}
     const fin = ['全部配對成功！記憶力真好。', '小測驗完成了！以後的題目會配合你的程度喔。', '你好厲害！下一次題目會難一點點喔。', '我們先練習簡單一點的，慢慢來就會了。', '全部都會了，真棒！', '很棒！再玩一次會更好。', '慢慢來，多玩幾次就會了。', '試玩結束囉！想玩更多，請爸爸媽媽開啟。'];
     for (let n = 0; n <= 30; n++) fin.forEach(m => out.push(`拿到${n}顆星星。${m}`));
@@ -10838,7 +10905,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     BADGES.forEach(b => out.push(`恭喜你得到新徽章：${b.n}`));
     try { Object.values(PETC).forEach(p => { out.push(`你好！我是${p.n}，請好好照顧我喔`, `${p.n}來陪你了！`); PET_STAGE_W.slice(1).forEach(x => out.push(`哇！${p.n}長大了，變成${x}了！`)); }); PET_PLAY.concat(PET_BATH).forEach(x => out.push(x[1]));
       out.push('你今天有學習，我好開心！', '今天的問題都答完了，明天再問你！', '今天玩夠了，明天再來陪我玩！', '答對了！送你一顆星星', '再想想看喔！', '再多學習一點，就能換到這隻寵物喔'); } catch (e) {}
-    try { EZL.forEach(c => c.items.forEach((x, i) => { [ezlFind(c, x), ezlAsk(c, x), `No. It's ${x.w}.`, x.say || x.w, `What comes after ${x.w}?`, `What comes before ${x.w}?`].forEach(t => en.push([t, 'en-US']));
+    try { EZL.forEach(c => c.items.forEach((x, i) => { [ezlFind(c, x), ezlAsk(c, x), ezlAsk(c, x, 'she'), ezlNo(c, x, 'he'), ezlNo(c, x, 'she'), `No. It's ${x.w}.`, x.say || x.w, `What comes after ${x.w}?`, `What comes before ${x.w}?`].forEach(t => en.push([t, 'en-US']));
       if (c.type === 'text') { const nx = c.items[(i + 1) % c.items.length], pv = c.items[(i + c.items.length - 1) % c.items.length]; en.push([`After ${x.w} comes ${nx.w}.`, 'en-US'], [`Before ${x.w} comes ${pv.w}.`, 'en-US']); } })); en.push(['Yes!', 'en-US']); } catch (e) {}
     try { for (let i = 0; i < 72; i++) { const q = GEN.ezstory(i); q.speech.concat(q.after).forEach(x => en.push([x[0], 'en-US'])); } } catch (e) {}
     try { const a0 = age; age = 'big'; DEDUCE_SET.forEach((d, k) => ['左邊', '中間', '右邊'].forEach(pos => { const q = GEN.deduce(pos, k); q.speech.forEach(x => out.push(x[0])); q.after.forEach(x => out.push(x[0])); })); age = a0; } catch (e) {}
