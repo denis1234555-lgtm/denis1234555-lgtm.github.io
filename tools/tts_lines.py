@@ -13,11 +13,12 @@ def add(t,l,w=''):
     k=(x.strip(),l,w)
     if not re.search(r'[\w一-鿿]',k[0]): continue
     items[k]=1
+# 固定的句子（介面、主角、故事、好朋友…）排在前面先做；隨機出題抽到的句子排後面，額度不夠時先做固定的
+for t,l,w in json.load(open('/tmp/tts_raw2.json')): add(t,l,w)
 d=json.load(open('/tmp/tts_raw1.json'))
 for x in d['out']:
   if x[0]=='P': add(x[1],x[2])
 for t,l in d['spk']: add(t,l)
-for t,l,w in json.load(open('/tmp/tts_raw2.json')): add(t,l,w)
 if os.path.exists('/tmp/tts_raw3.json'):
   for t,l,w in json.load(open('/tmp/tts_raw3.json')): add(t,l,w)
 # 有數字的句子：再把「數字」和「數字中間的字」分開做，題目數字怎麼變都能用 AI 聲音拼起來念
