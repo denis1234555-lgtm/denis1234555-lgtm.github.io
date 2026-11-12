@@ -727,6 +727,11 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .o-en { font-family: 'Andika', 'Nunito', var(--f-body); font-weight: 800; font-size: 1.35rem; line-height: 1.25; }
 .o-en.big { font-size: 1.9rem; }
 .o-en.long { font-size: 1.1rem; }
+/* 長的英文字（Wednesday、September）在手機上會超出按鈕：字縮小、不換行斷字 */
+.opt .o-en, .opt .ezl-txt { max-width: 100%; font-size: min(1.35rem, 5.4vw); overflow-wrap: break-word; }
+.opt .o-en.big { font-size: min(1.9rem, 7vw); }
+.options.cols-3 .opt .ezl-txt, .options.cols-3 .opt .o-en { font-size: min(1.15rem, 4.3vw); padding-left: 0; padding-right: 0; }
+.ezl-big .ezl-txt { max-width: 100%; font-size: min(2.6rem, 8.6vw); overflow-wrap: break-word; }
 .ez-sub { display: block; font-size: .8rem; font-weight: 800; color: var(--muted); margin-top: 2px; }
 .ez-pos { position: relative; width: 150px; height: 130px; margin: 0 auto; }
 .ez-pos span { position: absolute; line-height: 1; }
@@ -1699,6 +1704,9 @@ html.wc-open body { overflow: hidden; }
 .pet-grow b { display: block; font-family: var(--f-round); font-weight: 400; font-size: 1.6rem; color: #E8590C; } .pet-grow span { font-weight: 900; }
 .done-sc { position: relative; display: inline-flex; align-items: center; justify-content: center; }
 .done-stamp { position: absolute; right: -104px; top: -34px; width: 96px; height: 96px; transform: rotate(-14deg); opacity: .92; }
+/* 手機比較窄：印章不能超出畫面（以前會讓整頁變寬、左右晃） */
+@media (max-width: 520px) { .done-stamp { right: -18px; top: -70px; width: 80px; height: 80px; } }
+#done { overflow-x: clip; }
 .done-stamp.go { animation: doneStamp .55s cubic-bezier(.3,1.6,.5,1) .4s both; }
 @keyframes doneStamp { from { transform: rotate(-30deg) scale(2.4); opacity: 0; } 60% { opacity: 1; } to { transform: rotate(-14deg) scale(1); opacity: .92; } }
 /* 每日任務、徽章 */
@@ -3228,7 +3236,14 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const rand = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
   const pick = a => a[Math.floor(Math.random() * a.length)];
   const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-  const others = (pool, t, n, key) => shuffle(pool.filter(x => key(x) !== key(t))).slice(0, n);
+  // 挑干擾選項：圖（emoji）或名字跟答案、或彼此一樣的不要選（以前會出現兩個時鐘⏰🕰️、兩個🙏，小朋友分不出來）
+  const optIds = x => (Array.isArray(x) ? [x[0], x[1]] : x && typeof x === 'object' ? [x.e, x.n, x.w, x.zh] : [x]).filter(v => v != null && v !== '').map(String);
+  const others = (pool, t, n, key) => {
+    const cand = shuffle(pool.filter(x => key(x) !== key(t))), used = new Set(optIds(t)), out = [];
+    for (const x of cand) { if (out.length >= n) break; const ids = optIds(x); if (ids.some(v => used.has(v))) continue; out.push(x); ids.forEach(v => used.add(v)); }
+    for (const x of cand) { if (out.length >= n) break; if (!out.includes(x) && !out.some(y => key(y) === key(x))) out.push(x); }
+    return out;
+  };
   const delay = ms => new Promise(r => setTimeout(r, ms));
   // 使用統計（GoatCounter，不用 cookie、不記錄個人身分）；沒有載入統計時什麼都不做
   function track(path, title) {
@@ -6429,7 +6444,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   };
   // 🎒 幼小銜接：5 歲少一個選項（比較容易），6 歲照原本 4 個選項；6 歲計算多了「連加減」
   Object.keys(YX_GEN).forEach(k => { const f = YX_GEN[k]; YX_GEN[k] = function (...a) { const q = f.apply(this, a);
-    if (q && age === 'big' && Array.isArray(q.options) && q.options.length >= 4) { const bad = q.options.filter(o => !o.correct); if (bad.length) q.options = q.options.filter(o => o !== pick(bad)); }
+    if (q && age === 'big' && Array.isArray(q.options) && q.options.length >= 4) { const bad = q.options.filter(o => !o.correct); if (bad.length) { const x = pick(bad); q.options = q.options.filter(o => o !== x); } } // 以前 pick 寫在 filter 裡，每個選項各抽一次，常常刪到只剩答案
     return q; }; });
   { const calc = YX_GEN.yxcalc; YX_GEN.yxcalc = function () {
     if (age === 'six' && Math.random() < .35) { const a = rand(3, 10), b = rand(2, 9), c = rand(1, Math.min(9, a + b - 1)), r = a + b - c;
@@ -7411,6 +7426,15 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   // 連點成圖：依點數取輪廓；有對應的著色圖時，畫出背景、先露出部分線索，連完後整張圖上色
   const xmDotPts = (sh, n) => (sh[5] && sh[5].P[n]) ? sh[5].P[n] : (n === 10 && sh[3]) ? sh[3] : n === 15 ? sh[2] : resample(sh[2], n);
   const XM_DOT_PAL = ['#FFC93C', '#7CC4F5', '#8ED07A', '#FF9DB8', '#F7A35C', '#B9A2F0', '#FFE59A', '#7FD8C8', '#F57E7E'];
+  // 連點成圖：數字往圖形外面放（以前一律放右上／左上，點很密時數字會疊在一起）
+  function xmLab(pts, i, sc, dense) {
+    const n = pts.length, cx = pts.reduce((a, p) => a + p[0], 0) / n, cy = pts.reduce((a, p) => a + p[1], 0) / n;
+    const [x, y] = pts[i], [px, py] = pts[(i - 1 + n) % n], [nx, ny] = pts[(i + 1) % n];
+    let dx = -(ny - py), dy = nx - px; const L = Math.hypot(dx, dy) || 1; dx /= L; dy /= L;   // 線的法線方向
+    if (dx * (x - cx) + dy * (y - cy) < 0) { dx = -dx; dy = -dy; }                                // 朝外
+    const r = dense ? 13 : 15;
+    return [Math.round(Math.min(292, Math.max(8, sc(x) + dx * r))), Math.round(Math.min(294, Math.max(8, sc(y) + dy * r)))];
+  }
   function xmDotScene(sh, flip) {
     const ex = sh[5], sky = '<rect x="0" y="0" width="300" height="300" rx="22" fill="#E3F2FF"/>';
     if (!ex) return { back: sky + '<path d="M0 240q75-14 150 0t150 0V278a22 22 0 0 1-22 22H22A22 22 0 0 1 0 278z" fill="#D5EEC6"/>', full: '', hint: false };
@@ -7609,13 +7633,16 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         const pool = XM_DOTS.map((x, i) => i).filter(i => age !== 'small' || XM_DOTS[i][4] !== 'b');
         const t = xmFresh(() => ({ p: pick(pool), m: rand(0, modes.length - 1) }), t => t.p + '-' + t.m);
         const [flip, start, step, count] = modes[t.m], shape = XM_DOTS[t.p], ex = shape[5];
-        let pts = xmDotPts(shape, count); if (flip === 'm') pts = pts.map(([x, y]) => [100 - x, y]);
+        // 點太密（兩個點幾乎疊在一起）就少放幾個點，小朋友才分得出來
+        const minD = P => { let m = 1e9; for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) m = Math.min(m, Math.hypot(P[i][0] - P[j][0], P[i][1] - P[j][1])); return m; };
+        let cnt = count, pts = xmDotPts(shape, cnt); while (minD(pts) < 6 && cnt > 10) { cnt -= 5; pts = xmDotPts(shape, cnt); }
+        if (flip === 'm') pts = pts.map(([x, y]) => [100 - x, y]);
         const nums = pts.map((_, i) => start + i * step); let next = 0;
         const label = step === 1 ? `從 ${nums[0]} 連到 ${nums[nums.length - 1]}` : `${step} 個 ${step} 個數，從 ${nums[0]} 連到 ${nums[nums.length - 1]}`;
         setQ(`連連看：${label}`, [[`照數字順序點一點，${label.replace(/ /g, '')}，看看會變成什麼`]]);
         const S = 300, sc = v => 18 + v * (S - 36) / 100, dense = pts.length > 20;
         const scene = xmDotScene(shape, flip === 'm');
-        const svg = `<svg viewBox="0 0 ${S} ${S}" class="xm-dots${dense ? ' dense' : ''}">${scene.back}<g class="xm-full">${scene.full}</g><path id="xmPath" d="" fill="none" stroke="var(--c-deep)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>${pts.map(([x, y], i) => `<g class="dot" data-i="${i}"><circle cx="${sc(x)}" cy="${sc(y)}" r="${dense ? 12 : 15}" fill="transparent"/><circle class="dd" cx="${sc(x)}" cy="${sc(y)}" r="${dense ? 5 : 7}"/><text x="${sc(x) + (x > 50 ? 8 : -8)}" y="${sc(y) - 7}" text-anchor="${x > 50 ? 'start' : 'end'}">${nums[i]}</text></g>`).join('')}</svg>`;
+        const svg = `<svg viewBox="0 0 ${S} ${S}" class="xm-dots${dense ? ' dense' : ''}">${scene.back}<g class="xm-full">${scene.full}</g><path id="xmPath" d="" fill="none" stroke="var(--c-deep)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>${pts.map(([x, y], i) => `<g class="dot" data-i="${i}"><circle cx="${sc(x)}" cy="${sc(y)}" r="${dense ? 12 : 15}" fill="transparent"/><circle class="dd" cx="${sc(x)}" cy="${sc(y)}" r="${dense ? 5 : 7}"/><text x="${xmLab(pts, i, sc, dense)[0]}" y="${xmLab(pts, i, sc, dense)[1]}" text-anchor="middle" dominant-baseline="central">${nums[i]}</text></g>`).join('')}</svg>`;
         const wrap = document.createElement('div'); wrap.className = 'xm-wrap'; wrap.innerHTML = `<div class="xm-dots-box">${svg}<div class="xm-reveal" hidden></div></div><p class="note" id="xmDotMsg">從 ${nums[0]} 開始點${scene.hint ? '，看看這些是什麼的一部分？' : ''}</p>`;
         $('stage').innerHTML = ''; $('stage').appendChild(wrap);
         const path = wrap.querySelector('#xmPath'), d = [];
@@ -9045,7 +9072,9 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   };
   function familyTask(sub) {
     const ds = domainsOf(sub), d = pick(ds), seen = store.get('taskSeen', []);
-    const pool = FAMILY_TASK[d].filter(t => !seen.includes(t)), t = pick(pool.length ? pool : FAMILY_TASK[d]);
+    // 英文的親子任務只出現在英文主題（以前玩中文也會出「把英文單字教爸媽」）
+    const enSub = /^(ez|en|abc)/.test(sub), fit = FAMILY_TASK[d].filter(t => enSub || !/英文/.test(t));
+    const pool = fit.filter(t => !seen.includes(t)), t = pick(pool.length ? pool : fit);
     store.set('taskSeen', seen.concat(t).slice(-20));
     return { d, t };
   }
@@ -10816,7 +10845,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         : [['動物', ['小狗', '小貓', '兔子', '老虎']], ['水果', ['蘋果', '香蕉', '葡萄', '西瓜']], ['交通工具', ['公車', '火車', '飛機', '船']], ['衣服', ['上衣', '褲子', '外套', '裙子']], ['顏色', ['紅色', '藍色', '黃色', '綠色']]];
       const [A, B] = shuffle(CAT), same = shuffle(A[1]).slice(0, 3), odd = pick(B[1]), opts = shuffle([...same, odd]);
       return { prompt: '哪一個跟其他三個不是同一類？', speech: [['聽一聽，哪一個跟其他三個不是同一類？']], stage: '', readOpts: true,
-        options: opts.map(x => ({ html: `<span class="o-time">${x}</span>`, label: x, correct: x === odd })), after: [[`${same.join('、')}都是${A[0]}，${odd}不是`]], key: 'od' + opts.join('') };
+        options: opts.map(x => ({ html: `<span class="o-time">${x}</span>`, label: x, correct: x === odd })), after: [[`其他三個都是${A[0]}，${odd}不是${A[0]}`]], key: 'od' + opts.join('') };
     }
   });
   // 語文、英文、進階數學：5 歲混入部分大班題型，6 歲混入幼小銜接（小一上）與英語小學堂的題型
