@@ -3828,7 +3828,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const heroCall = k => { heroSync(); const o = SCN_CHAR[k].hn; return o ? heroCallOf(o) : HERO_ORIG[k].n; };
   const heroCallRec = (k, o) => HREC.url[k] ? `⟪${k}⟫` : (o ? heroCallOf(o) : heroCall(k)); // v95：有錄名字就播錄音
   // v95：玩的時候叫孩子的名字（有開通「我的主角」才會叫；句子裡的「寶哥」換成孩子的名字或錄音）
-  const HERO_SAYS = { start: ['寶哥，我們開始囉！', '寶哥，準備好了嗎？我們開始囉！', '準備好囉，寶哥！'], streak3: ['寶哥，連續答對三題，好厲害！', '太棒了，寶哥好厲害！'], streak5: ['寶哥，連續答對五題，太棒了！'], oops: ['寶哥，沒關係，我們再聽一次'], oops2: ['寶哥，沒關係，我幫你拿掉一個，我們再聽一次'], great: ['寶哥，你好棒！'], tried: ['寶哥，你很努力喔！'], night: ['晚安，寶哥，做個好夢。'] };
+  const HERO_SAYS = { start: ['寶哥，我們開始囉！', '寶哥，準備好了嗎？我們開始囉！', '準備好囉，寶哥！'], streak3: ['寶哥，連續答對三題，好厲害！', '太棒了，寶哥好厲害！'], streak5: ['寶哥，連續答對五題，太棒了！'], oops: ['寶哥，沒關係，我們再聽一次'], oops2: ['寶哥，沒關係，我幫你拿掉一個，我們再聽一次'], great: ['寶哥，你好棒！'], tried: ['寶哥，你很努力喔！'], night: ['晚安，寶哥，做個好夢。'], oopsG: ['沒關係，寶哥，我們再試一次！', '寶哥，沒關係，再試一次！'], oopsT: ['寶哥，沒關係，答案是這一個喔'], oopsN: ['寶哥，沒關係！'] };
+  const heroOops = key => { if (typeof st === 'undefined' || !st || st.heroOops) return null; const h = heroLine(key); if (h) st.heroOops = 1; return h; }; // 每個主題答錯時叫一次名字
   const heroMe = () => { heroSync(); return ['b1', 'g1'].find(k => SCN_CHAR[k].hn) || null; };
   const heroLine = (key, who) => { const k = heroMe(); if (!k) return null; return [pick(HERO_SAYS[key]).split('寶哥').join(heroCallRec(k)), 'zh-TW', who || '']; };
   const heroWho = k => { heroSync(); const o = SCN_CHAR[k].hn; return o && o.g !== HERO_SLOT_G[k] ? (k === 'b1' ? 'g1' : 'b1') : k; };
@@ -6811,8 +6812,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         // 第 1 次錯：再念一次題目；選項多的時候順便拿掉一個錯的，讓題目變簡單
         if (wrongLeft.length >= 2) { const x = pick(wrongLeft); x.disabled = true; x.classList.add('gone'); }
         $('prompt').textContent = enW ? 'Listen again.（再聽一次）' : wrongLeft.length >= 2 ? '我幫你拿掉一個，再聽一次題目' : '沒關係，再聽一次題目';
-        const ho = !enW && !cur.heroOops && heroLine(wrongLeft.length >= 2 ? 'oops2' : 'oops'); if (ho) cur.heroOops = 1;
-        say([...(enW ? [['Listen again.', 'en-US']] : [ho || [wrongLeft.length >= 2 ? '我幫你拿掉一個，我們再聽一次' : '沒關係，我們再聽一次']]), ...q.speech]).then(() => { if (q.play && st.q === q && !st.locked) q.play(); });
+        const ho = heroOops(enW ? 'oopsN' : wrongLeft.length >= 2 ? 'oops2' : 'oops');
+        say([...(enW ? [...(ho ? [ho] : []), ['Listen again.', 'en-US']] : [ho || [wrongLeft.length >= 2 ? '我幫你拿掉一個，我們再聽一次' : '沒關係，我們再聽一次']]), ...q.speech]).then(() => { if (q.play && st.q === q && !st.locked) q.play(); });
       } else {
         // 第 2 次錯：直接教，這題等一下再考一次
         st.locked = true; if (right) right.classList.add('teach');
@@ -6820,7 +6821,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         st.results[st.i] = 'done'; drawTrack(); try { revMark(q, false); } catch (e) {} if (st.sub === 'place' && q.plSub) st.plRes[q.plSub] = false;
         [...$('options').children].forEach(x => { x.disabled = true; });
         let again = false; if (!q.again && st.sub !== 'place' && (st.reN || 0) < 2) { again = true; st.reN = (st.reN || 0) + 1; st.pend.push({ q, at: st.i + 3 }); st.total++; } // 一回合最多再考 2 題，不讓回合變太長
-        say([...(enW ? [['This is the answer.', 'en-US']] : [['答案是這一個喔']]), ...q.after, ...(enW || !again ? [] : [['等一下我們再考一次']])]).then(() => delay(1200)).then(() => { if (st !== cur || $('game').hidden) return; st.i++; nextQ(); });
+        const ho2 = heroOops(enW ? 'oopsN' : 'oopsT');
+        say([...(enW ? [...(ho2 ? [ho2] : []), ['This is the answer.', 'en-US']] : [ho2 || ['答案是這一個喔']]), ...q.after, ...(enW || !again ? [] : [['等一下我們再考一次']])]).then(() => delay(1200)).then(() => { if (st !== cur || $('game').hidden) return; st.i++; nextQ(); });
         return;
       }
       setTimeout(() => { if (st === cur && st.q === q && !st.locked) $('prompt').textContent = q.prompt; }, 2600);
@@ -7049,7 +7051,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
           if (covered >= .6 && outside <= .45) { $('trDone').disabled = true; itemDone(tr.tries === 0); return; }
           tr.tries++; st.first = false; mood('is-think'); buzz();
           const msg = covered < .6 ? '再描多一點，把灰色的字都蓋滿喔' : '要照著灰色的字描喔';
-          $('trMsg').textContent = msg; say([[msg]]);
+          $('trMsg').textContent = msg; { const h = heroOops('oopsG'); say(h ? [h, [msg]] : [[msg]]); }
           if (tr.tries >= 3) { $('trDone').disabled = true; setTimeout(() => itemDone(false), 900); }
         });
       }
@@ -7208,7 +7210,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     // 圖一樣的兩步（例如兩隻🐸、兩顆雪球）對調也算對，因為小朋友看不出差別
     const ok = [...document.querySelectorAll('.sq-slot')].every((sl, i) => { const j = Number(sl.querySelector('.sq-card').dataset.i); return j === i || sq.steps[j][0] === sq.steps[i][0]; });
     if (ok) { st.locked = true; itemDone(st.first); return; }
-    st.first = false; mood('is-think'); buzz(); say([['順序不太對，再想想看']]);
+    st.first = false; mood('is-think'); buzz(); { const h = heroOops('oopsN'); say(h ? [h, ['順序不太對，再想想看']] : [['順序不太對，再想想看']]); }
     document.querySelector('.sq-slots').classList.add('shake');
     setTimeout(() => {
       document.querySelector('.sq-slots')?.classList.remove('shake');
@@ -7317,7 +7319,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     return el;
   }
   const colorOf = k => (XM_COLORS.find(x => x[0] === k) || [0, 0, BLANK])[2];
-  function xmFail(msg) { st.first = false; $('prompt').textContent = msg; mood('is-think'); say([[msg]]); }
+  function xmFail(msg) { st.first = false; $('prompt').textContent = msg; mood('is-think'); const h = heroOops('oopsN'); say(h ? [h, [msg]] : [[msg]]); }
   function xmDoneRow(label, onDone, extra) {
     const row = document.createElement('div'); row.className = 'xm-tools';
     row.innerHTML = `${extra || ''}<button class="btn small xm-done">${label || '好了'}</button>`;
@@ -8448,7 +8450,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       const pr = mt.t && mt.pairs[Number(b.dataset.i)]; if (pr && pr[3]) say([[mt.t.snd ? `${pr[2]}，是${pr[3]}在叫` : pr[3]]]);
       mt.lines.push([mt.sel, b]); if ($('mtPen')) $('mtPen').innerHTML = ''; mtRedraw(); mt.sel = null; mt.done++; chime();
       if (mt.done === mt.pairs.length) { st.locked = true; setTimeout(() => itemDone(mt.miss === 0), 300); }
-    } else { mt.miss++; b.classList.add('shake'); buzz(); setTimeout(() => b.classList.remove('shake'), 400); }
+    } else { mt.miss++; b.classList.add('shake'); buzz(); { const h = heroOops('oopsG'); if (h) say([h]); } setTimeout(() => b.classList.remove('shake'), 400); }
   }
   function sdTap(b) {
     const sd = st.sd, i = Number(b.dataset.i); if (st.locked || sd.found.has(i)) return;
@@ -8456,7 +8458,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       sd.found.add(i); document.querySelectorAll(`.sd-cell[data-i="${i}"]`).forEach(c => c.classList.add('found')); chime();
       $('sdCount').textContent = `找到 ${sd.found.size} / ${sd.idx.length}`;
       if (sd.found.size === sd.idx.length) { st.locked = true; itemDone(sd.miss === 0); }
-    } else { sd.miss++; b.classList.add('shake'); buzz(); setTimeout(() => b.classList.remove('shake'), 400); }
+    } else { sd.miss++; b.classList.add('shake'); buzz(); { const h = heroOops('oopsG'); if (h) say([h]); } setTimeout(() => b.classList.remove('shake'), 400); }
   }
   function mzDraw() {
     const mz = st.mz, el = $('mz');
@@ -8488,7 +8490,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     if (pz.sel.dataset.i === slot.dataset.i) {
       slot.innerHTML = pz.sel.innerHTML; slot.classList.add('filled'); pz.sel.classList.add('placed'); pz.sel.classList.remove('sel'); pz.sel = null; pz.placed++; chime();
       if (pz.placed === pz.n * pz.n) { st.locked = true; $('pzBoard').classList.add('complete'); itemDone(pz.miss <= 1); }
-    } else { pz.miss++; slot.classList.add('shake'); buzz(); setTimeout(() => slot.classList.remove('shake'), 400); }
+    } else { pz.miss++; slot.classList.add('shake'); buzz(); { const h = heroOops('oopsG'); if (h) say([h]); } setTimeout(() => slot.classList.remove('shake'), 400); }
   }
 
   /* 記憶翻牌 */
