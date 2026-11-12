@@ -111,7 +111,7 @@ jobs:
           MAXJOBS: ${{ (github.event.inputs.list || 'all') == 'test' && '8' || '0' }}
           KEY: ${{ secrets.AZURE_SPEECH_KEY }}
           REGION: ${{ secrets.AZURE_SPEECH_REGION }}
-          CAP: '925000'  # 付費版：每月最多 92.5 萬字
+          CAP: '1000000'  # 付費版：每月最多 100 萬字（2026-11 臨時調高）
         run: |
           git config user.name "tts-bot"
           git config user.email "tts-bot@users.noreply.github.com"
