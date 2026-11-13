@@ -3780,8 +3780,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     ma: { n: '馬婆婆', hair: 'ma', fit: 'shawl', skin: '#F3D2BC', legs: '#6B5A7A', bad: 1 },
     niu: { n: '牛叔叔', hair: 'niu', fit: 'coat', skin: '#EEC6A4', legs: '#4A4038', bad: 1 }
   };
-  /* ---------- 👑 我的主角：付費解鎖後，寶哥／筑筑的位置可以換成自己孩子的名字，還能錄下名字（造型固定） ---------- */
-  // 寶哥、筑筑是固定主角，不能免費改名；家長解鎖後，可以把名字換成孩子的名字，並錄下孩子念自己的名字（v89 起造型固定，不能改）
+  /* ---------- 👑 我的主角：付費解鎖後，寶哥／筑筑的位置可以換成自己孩子的名字（造型固定） ---------- */
+  // 寶哥、筑筑是固定主角，不能免費改名；家長解鎖後，可以把名字換成孩子的名字（v89 起造型固定；v98 拿掉錄名字功能，念名字一律用 AI 小名）
   const HERO_ORIG = { b1: Object.assign({}, SCN_CHAR.b1), g1: Object.assign({}, SCN_CHAR.g1), Lb1: SCN_LOOK.b1.slice(), Lg1: SCN_LOOK.g1.slice() };
   const HERO_SLOT_G = { b1: 'b', g1: 'g' };
   // 有 AI 真人語音的小名（念題目、故事時會念出孩子的名字）
@@ -3826,12 +3826,6 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const heroCallOf = o => heroHasVoice(o.name) ? o.name : (heroHasVoice(o.call) ? o.call : '寶貝');
   const heroName = k => { heroSync(); const o = SCN_CHAR[k].hn; return o ? o.name || HERO_ORIG[k].n : HERO_ORIG[k].n; };
   const heroCall = k => { heroSync(); const o = SCN_CHAR[k].hn; return o ? heroCallOf(o) : HERO_ORIG[k].n; };
-  const heroCallRec = (k, o) => HREC.url[k] ? `⟪${k}⟫` : (o ? heroCallOf(o) : heroCall(k)); // v95：有錄名字就播錄音
-  // v95：玩的時候叫孩子的名字（有開通「我的主角」才會叫；句子裡的「寶哥」換成孩子的名字或錄音）
-  const HERO_SAYS = { start: ['寶哥，我們開始囉！', '寶哥，準備好了嗎？我們開始囉！', '準備好囉，寶哥！'], streak3: ['寶哥，連續答對三題，好厲害！', '太棒了，寶哥好厲害！'], streak5: ['寶哥，連續答對五題，太棒了！'], oops: ['寶哥，沒關係，我們再聽一次'], oops2: ['寶哥，沒關係，我幫你拿掉一個，我們再聽一次'], great: ['寶哥，你好棒！'], tried: ['寶哥，你很努力喔！'], night: ['晚安，寶哥，做個好夢。'], oopsG: ['沒關係，寶哥，我們再試一次！', '寶哥，沒關係，再試一次！'], oopsT: ['寶哥，沒關係，答案是這一個喔'], oopsN: ['寶哥，沒關係！'] };
-  const heroOops = key => { if (typeof st === 'undefined' || !st || st.heroOops) return null; const h = heroLine(key); if (h) st.heroOops = 1; return h; }; // 每個主題答錯時叫一次名字
-  const heroMe = () => { heroSync(); return ['b1', 'g1'].find(k => SCN_CHAR[k].hn) || null; };
-  const heroLine = (key, who) => { const k = heroMe(); if (!k) return null; return [pick(HERO_SAYS[key]).split('寶哥').join(heroCallRec(k)), 'zh-TW', who || '']; };
   const heroWho = k => { heroSync(); const o = SCN_CHAR[k].hn; return o && o.g !== HERO_SLOT_G[k] ? (k === 'b1' ? 'g1' : 'b1') : k; };
   // 畫面上的文字：寶哥／筑筑換成孩子的名字；這兩位的故事，性別改了，他／她 也跟著換
   function heroDisp(t, story) {
@@ -3842,44 +3836,10 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     return s;
   }
   // 念出來的文字：換成有真人語音的小名
-  function heroSpeak(t) { heroSync(); let s = String(t); ['b1', 'g1'].forEach(k => { const o = SCN_CHAR[k].hn; if (o) s = s.split(HERO_ORIG[k].n).join(HREC.url[k] ? `⟪${k}⟫` : heroCallOf(o)); }); return s; } // 有錄名字：名字的位置放記號，念的時候播錄音
-  /* 🎙️ 家長／孩子自己錄的名字：只存在這台裝置（IndexedDB），不會上傳 */
-  const HREC = { url: {}, key: '' };
-  const hrDB = () => new Promise((res, rej) => { try { const r = indexedDB.open('ddn-hero', 1); r.onupgradeneeded = () => r.result.createObjectStore('rec'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); } catch (e) { rej(e); } });
-  const hrKey = k => (typeof kidCur !== 'undefined' ? kidCur : '') + '|' + k;
-  async function hrGet(k) { try { const db = await hrDB(); return await new Promise(r => { const q = db.transaction('rec').objectStore('rec').get(hrKey(k)); q.onsuccess = () => r(q.result || null); q.onerror = () => r(null); }); } catch (e) { return null; } }
-  async function hrPut(k, blob) { try { const db = await hrDB(); await new Promise(r => { const t = db.transaction('rec', 'readwrite'); blob ? t.objectStore('rec').put(blob, hrKey(k)) : t.objectStore('rec').delete(hrKey(k)); t.oncomplete = r; t.onerror = r; }); } catch (e) {} }
-  async function hrLoad() {
-    const key = hrKey(''); HREC.key = key;
-    for (const k of ['b1', 'g1']) { const b = await hrGet(k); if (HREC.key !== key) return; if (HREC.url[k]) URL.revokeObjectURL(HREC.url[k]); HREC.url[k] = b ? URL.createObjectURL(b) : null; }
-  }
-  function hrPlay(k, my) {
-    return new Promise(res => {
-      const u = HREC.url[k]; if (!u || my !== sayToken) return res(false);
-      const a = HREC.el || (HREC.el = new Audio()); let fin = false;
-      const done = ok => { if (fin) return; fin = true; clearInterval(t); a.onended = a.onerror = null; res(ok); };
-      const t = setInterval(() => { if (my !== sayToken) { try { a.pause(); } catch (e) {} done(true); } }, 120);
-      a.onended = () => done(true); a.onerror = () => done(false); setTimeout(() => done(true), 6000);
-      try { a.src = u; const p = a.play(); if (p) p.catch(() => done(false)); } catch (e) { done(false); }
-    });
-  }
-  // 錄好的聲音：剪掉前後的安靜、音量調到跟 AI 語音差不多，存成 wav
-  async function hrClean(blob) {
-    const C = window.AudioContext || window.webkitAudioContext, ctx = new C();
-    try {
-      const buf = await new Promise((ok, no) => blob.arrayBuffer().then(ab => { const p = ctx.decodeAudioData(ab, ok, no); if (p && p.catch) p.catch(no); }, no));
-      const d = buf.getChannelData(0), sr = buf.sampleRate; let mx = 0; for (let i = 0; i < d.length; i++) mx = Math.max(mx, Math.abs(d[i]));
-      if (mx < .01) return null;
-      const th = mx * .08; let a = 0, b = d.length - 1; while (a < b && Math.abs(d[a]) < th) a++; while (b > a && Math.abs(d[b]) < th) b--;
-      a = Math.max(0, a - Math.round(sr * .06)); b = Math.min(d.length - 1, b + Math.round(sr * .12));
-      const n = b - a + 1, g = .8 / mx, out = new DataView(new ArrayBuffer(44 + n * 2)), W = (o, str) => [...str].forEach((c, i) => out.setUint8(o + i, c.charCodeAt(0)));
-      W(0, 'RIFF'); out.setUint32(4, 36 + n * 2, true); W(8, 'WAVEfmt '); out.setUint32(16, 16, true); out.setUint16(20, 1, true); out.setUint16(22, 1, true); out.setUint32(24, sr, true); out.setUint32(28, sr * 2, true); out.setUint16(32, 2, true); out.setUint16(34, 16, true); W(36, 'data'); out.setUint32(40, n * 2, true);
-      for (let i = 0; i < n; i++) { const fade = Math.min(1, i / (sr * .01), (n - i) / (sr * .02)); out.setInt16(44 + i * 2, Math.max(-1, Math.min(1, d[a + i] * g * fade)) * 32767, true); }
-      return new Blob([out], { type: 'audio/wav' });
-    } catch (e) { return null; } finally { try { ctx.close(); } catch (e) {} }
-  }
+  function heroSpeak(t) { heroSync(); let s = String(t); ['b1', 'g1'].forEach(k => { const o = SCN_CHAR[k].hn; if (o) s = s.split(HERO_ORIG[k].n).join(heroCallOf(o)); }); return s; }
+  try { indexedDB.deleteDatabase('ddn-hero'); } catch (e) {} // v98：錄名字功能拿掉，清掉以前存在這台裝置的名字錄音
   function heroSync(force) {
-    const key = kidCur + '|' + HERO_REV; if (!force && key === HERO_K) return; HERO_K = key; HERO_CALLS = []; hrLoad();
+    const key = kidCur + '|' + HERO_REV; if (!force && key === HERO_K) return; HERO_K = key; HERO_CALLS = [];
     ['b1', 'g1'].forEach(k => {
       const o = heroGet(k);
       SCN_CHAR[k] = Object.assign({}, HERO_ORIG[k]); SCN_LOOK[k] = HERO_ORIG['L' + k].slice();
@@ -4034,9 +3994,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     const out = [], ok = x => /[\wㄅ-ㄩ一-鿿]/.test(x), chunk = t => String(t).split(/(?<=[。！？；])/).filter(ok);
     const cut = (t, who) => chunk(t).forEach(c => { let hit = false; ['寶哥', '筑筑'].forEach(nm => { if (c.includes(nm)) { hit = true; c.split(nm).map(x => x.trim()).filter(ok).forEach(x => out.push([x, 'zh-TW', who])); } }); if (!hit) out.push([c.trim(), 'zh-TW', who]); });
     HERO_NAMES.forEach(n => ['b1', 'g1', 'sleep'].forEach(w => out.push([n, 'zh-TW', w])));
-    ['b1', 'g1'].forEach(w => { cut(HERO_INTRO('寶哥'), w); cut(HERO_SAVE('寶哥'), w); HERO_WOW.b.concat(HERO_WOW.g).forEach(x => out.push([x, 'zh-TW', w])); });
+    ['b1', 'g1'].forEach(w => { out.push([`我是${HERO_ORIG[w].n}！`, 'zh-TW', w]); cut(HERO_INTRO('寶哥'), w); cut(HERO_SAVE('寶哥'), w); HERO_WOW.b.concat(HERO_WOW.g).forEach(x => out.push([x, 'zh-TW', w])); });
     try { SLEEP.forEach(S => S.L.forEach(([t, w]) => { if (/寶哥|筑筑/.test(t)) cut(t, w || 'sleep'); })); } catch (e) {}
-    Object.entries(HERO_SAYS).forEach(([key, a]) => a.forEach(t => cut(t, key === 'night' ? 'sleep' : '')));
     const seen = new Set(); return out.filter(x => { const k = x.join('|'); if (seen.has(k)) return false; seen.add(k); return true; });
   }
   const scnFitBody = (C, shirt, dress) => {
@@ -6551,6 +6510,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const aiHas = (text, lang, who) => aiOn() && AI.ids && AI.ids.has(aiId(text, lang, who));
   // iPhone 要先在手指點一下的時候播過聲音，之後才能自動播
   const aiUnlock = () => {
+    try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); if (ac.state === 'suspended') ac.resume(); } catch (e) {}
     if (AI.unlocked) return; AI.unlocked = true;
     if (AI.el && !AI.el.paused) return; // 正在念的時候不要打斷
     try { AI.el = AI.el || new Audio(); AI.el.src = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjYwLjE2LjEwMAAAAAAAAAAAAAAA//OEwAAAAAAAAAAAAEluZm8AAAAPAAAABwAAA2AAVVVVVVVVVVVVVVVVVVVxcXFxcXFxcXFxcXFxcY6Ojo6Ojo6Ojo6Ojo6Oqqqqqqqqqqqqqqqqqqqqx8fHx8fHx8fHx8fHx8fj4+Pj4+Pj4+Pj4+Pj4///////////////////AAAAAExhdmM2MC4zMQAAAAAAAAAAAAAAACQEIAAAAAAAAANgmVBi7QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//NExAAAAANIAAAAAExBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMu//NExFMAAANIAAAAADEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMu//NExKYAAANIAAAAADEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMu//NExKwAAANIAAAAADEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMu//NExKwAAANIAAAAADEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//NExKwAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//NExKwAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV'; const p = AI.el.play(); p && p.catch(() => { AI.unlocked = false; }); } catch (e) { AI.unlocked = false; }
@@ -6579,6 +6539,37 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       } catch (e) { done(false); }
     });
   }
+  /* v98：AI 小名和前後的 AI 句子，先剪掉每段頭尾的空白、調成一樣大聲，再接成一整段播，聽起來比較順 */
+  const STITCH = new Map();
+  async function stitchBuf(src) {
+    if (STITCH.has(src.key)) return STITCH.get(src.key);
+    const pr = (async () => {
+      const blob = src.rec ? await fetch(src.rec).then(r => r.blob()).catch(() => null) : await aiFetch(src.id); if (!blob) return null;
+      const ab = await blob.arrayBuffer(); const buf = await new Promise((ok, no) => { const q = ac.decodeAudioData(ab, ok, no); if (q && q.catch) q.catch(no); });
+      const d = buf.getChannelData(0), sr = buf.sampleRate, win = Math.max(1, Math.round(sr * .01)), nw = Math.floor(d.length / win); if (!nw) return null;
+      const E = new Float32Array(nw); let pk = 0; for (let w = 0; w < nw; w++) { let q = 0; for (let i = w * win; i < (w + 1) * win; i++) q += d[i] * d[i]; E[w] = Math.sqrt(q / win); pk = Math.max(pk, E[w]); }
+      const th = pk * .06; let a = 0, b = nw - 1; while (a < b && E[a] < th) a++; while (b > a && E[b] < th) b--;
+      a = Math.max(0, a - 2) * win; b = Math.min(nw, b + 3) * win;
+      let q = 0, c = 0; for (let w = 0; w < nw; w++) if (E[w] >= th) { q += E[w] * E[w]; c++; } const rms = Math.sqrt(q / Math.max(1, c)) || 1;
+      return { d: d.slice(a, b), sr, g: .12 / rms };
+    })().catch(() => null);
+    STITCH.set(src.key, pr); if (STITCH.size > 40) STITCH.delete(STITCH.keys().next().value);
+    return pr;
+  }
+  async function stitchPlay(srcs, my) {
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)(); if (ac.state === 'suspended') { try { await ac.resume(); } catch (e) {} }
+      if (ac.state !== 'running') return false;
+      const bufs = await Promise.all(srcs.map(stitchBuf)); if (my !== sayToken) return true; if (bufs.some(x => !x)) return false;
+      const sr = bufs[0].sr, gapOf = i => Math.round(sr * (/[，、,]$/.test(srcs[i].t || '') || /^[，、,]/.test((srcs[i + 1] || {}).t || '') ? .12 : .04));
+      let n = 0; bufs.forEach((x, i) => { n += x.d.length + (i < bufs.length - 1 ? gapOf(i) : 0); });
+      const out = ac.createBuffer(1, n, sr), o = out.getChannelData(0); let at = 0;
+      bufs.forEach((x, i) => { const g = Math.min(x.g, .95 / Math.max(1e-4, x.d.reduce((m, v) => Math.max(m, Math.abs(v)), 0))); for (let j = 0; j < x.d.length; j++) { const f = Math.min(1, j / (sr * .008), (x.d.length - j) / (sr * .012)); o[at + j] = x.d[j] * g * f; } at += x.d.length + (i < bufs.length - 1 ? gapOf(i) : 0); });
+      const node = ac.createBufferSource(); node.buffer = out; const rt = sayRateMul * spd(); if (Math.abs(rt - 1) > .05) node.playbackRate.value = rt; node.connect(ac.destination);
+      await new Promise(res => { let fin = false; const done = () => { if (fin) return; fin = true; clearInterval(t); res(); }; const t = setInterval(() => { if (my !== sayToken) { try { node.stop(); } catch (e) {} done(); } }, 100); node.onended = done; node.start(); setTimeout(done, out.duration * 1000 / Math.max(.3, rt) + 2000); });
+      return true;
+    } catch (e) { return false; }
+  }
   async function speakOne(text, lang, my, who) {
     lang = lang || 'zh-TW';
     { const zr = (!lang || lang.startsWith('zh')) && typeof zyrFor === 'function' ? zyrFor(text) : null; if (zr) { await zyrPlay(zr, my); return; } }
@@ -6588,15 +6579,9 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       const ps = String(text).split(/(\d+)/).map(x => x.trim()).filter(x => /[\w\u4e00-\u9fff]/.test(x));
       if (ps.length > 1 && ps.every(x => aiHas(x, lang, who))) { for (const x of ps) { if (my !== sayToken) return; await aiPlay(x, lang, my, who); } return; }
     }
-    // 🎙️ 我的主角：名字是家長／孩子自己錄的
-    if (/⟪(b1|g1)⟫/.test(text)) {
-      const ps = String(text).split(/(⟪(?:b1|g1)⟫)/).map(x => x.trim()).filter(x => /⟪|[\w\u4e00-\u9fff]/.test(x)), rec = x => /^⟪(b1|g1)⟫$/.test(x);
-      if (AI.ids && ps.every(x => rec(x) || aiHas(x, lang, who))) { for (const x of ps) { if (my !== sayToken) return; if (rec(x)) { if (!(await hrPlay(x.slice(1, 3), my))) await aiPlay(heroCall(x.slice(1, 3)), lang, my, who); } else await aiPlay(x, lang, my, who); } return; }
-      text = String(text).replace(/⟪(b1|g1)⟫/g, (m, k) => heroCall(k));
-    }
     // 👑 我的主角：名字和前後的句子分開念（名字有自己的真人語音檔）
     { heroSync(); const hn = HERO_CALLS.filter(n => String(text).includes(n));
-      if (hn.length && AI.ids) { const ps = String(text).split(new RegExp('(' + hn.join('|') + ')')).map(x => x.trim()).filter(x => /[\w\u4e00-\u9fff]/.test(x)); if (ps.length > 1 && ps.every(x => aiHas(x, lang, who))) { for (const x of ps) { if (my !== sayToken) return; await aiPlay(x, lang, my, who); } return; } } }
+      if (hn.length && AI.ids) { const ps = String(text).split(new RegExp('(' + hn.join('|') + ')')).map(x => x.trim()).filter(x => /[\w\u4e00-\u9fff]/.test(x)); if (ps.length > 1 && ps.every(x => aiHas(x, lang, who))) { if (await stitchPlay(ps.map(x => ({ key: aiId(x, lang, who), id: aiId(x, lang, who), t: x })), my)) return; for (const x of ps) { if (my !== sayToken) return; await aiPlay(x, lang, my, who); } return; } } }
     if (!('speechSynthesis' in window)) return;
     return ttsOne(String(text).replace(/⟦([^|⟧]*)\|?([^⟧]*)⟧/g, (m, a, b) => b || a), lang, my);
   }
@@ -6717,8 +6702,6 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     $('game').dataset.sub = sub; $('done').dataset.sub = sub;
     track(`play-${sub}-${age}`, `開始玩：${sub}（${{ small: '3–4 歲', big: '5 歲', six: '6 歲' }[age]}）`);
     show('game');
-    const hi = (sub === 'memory' || ENG[sub]) && heroLine('start');
-    if (hi) { st.heroHi = 1; const cur = st; say([hi]).then(() => { if (st !== cur || $('game').hidden) return; if (sub === 'memory') startMemory(); else { st.total = ENG[sub].total(); if (trial) st.total = Math.min(st.total, TRIAL_N); nextItem(); } }); return; }
     if (sub === 'memory') startMemory();
     else if (ENG[sub]) { st.total = ENG[sub].total(); if (trial) st.total = Math.min(st.total, TRIAL_N); nextItem(); }
     else { if (sub === 'challenge') st.total = age === 'small' ? 8 : 10; if (trial) st.total = Math.min(st.total, TRIAL_N); nextQ(); }
@@ -6767,8 +6750,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     const btns = [...box.children];
     const reading = soundOn && q.readOpts && (('speechSynthesis' in window) || aiOn());
     box.classList.toggle('waiting', reading);
-    const hs = st.i === 0 && !st.heroHi && heroLine('start'); if (hs) st.heroHi = 1;
-    await say(hs ? [hs, ...q.speech] : q.speech);
+    await say(q.speech);
     if (!reading) return;
     if (st !== cur || st.q !== q) return;
     await delay(2000); // 題目念完停 2 秒，再開始念答案
@@ -6793,14 +6775,12 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       if (st.first) addStar();
       try { revMark(st.q, st.first); } catch (e) {}
       const enMode = /^ez/.test(st.sub);
-      st.run = st.first ? (st.run || 0) + 1 : 0; const hk = !enMode && (st.run === 3 ? heroLine('streak3') : st.run === 5 ? heroLine('streak5') : null);
       $('prompt').textContent = st.q.practice ? (enMode ? `Say it with me: "${st.q.practice}"` : `跟著說一次：「${st.q.practice}」`) : enMode ? pick(EN_PRAISE) : pick(PRAISE);
       mood('is-happy'); chime(); burst(b, st.first ? 22 : 10); drawTrack();
       [...$('options').children].forEach(x => { x.disabled = true; });
       const cur = st, pr = st.q.practice;
       const talk = enMode ? [[pick(EN_PRAISE), 'en-US'], ...cur.q.after, ...(pr ? [['Say it with me.', 'en-US'], [pr, 'en-US']] : [])] : pr ? [...cur.q.after, ['跟著圓圓說一次'], [pr, cur.q.practiceLang]] : cur.q.after;
       // 唸完解說後再停一下，才進下一題
-      if (hk) talk.push(hk);
       Promise.all([delay(300).then(() => say(talk)).then(() => delay(soundOn ? 1500 : 0)), delay(pr ? 3200 : 1500)]).then(() => { if (st !== cur || $('game').hidden) return; st.i++; nextQ(); });
     } else {
       st.first = false; st.wrongN++; b.classList.add('wrong'); b.disabled = true;
@@ -6812,8 +6792,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         // 第 1 次錯：再念一次題目；選項多的時候順便拿掉一個錯的，讓題目變簡單
         if (wrongLeft.length >= 2) { const x = pick(wrongLeft); x.disabled = true; x.classList.add('gone'); }
         $('prompt').textContent = enW ? 'Listen again.（再聽一次）' : wrongLeft.length >= 2 ? '我幫你拿掉一個，再聽一次題目' : '沒關係，再聽一次題目';
-        const ho = heroOops(enW ? 'oopsN' : wrongLeft.length >= 2 ? 'oops2' : 'oops');
-        say([...(enW ? [...(ho ? [ho] : []), ['Listen again.', 'en-US']] : [ho || [wrongLeft.length >= 2 ? '我幫你拿掉一個，我們再聽一次' : '沒關係，我們再聽一次']]), ...q.speech]).then(() => { if (q.play && st.q === q && !st.locked) q.play(); });
+        say([...(enW ? [['Listen again.', 'en-US']] : [[wrongLeft.length >= 2 ? '我幫你拿掉一個，我們再聽一次' : '沒關係，我們再聽一次']]), ...q.speech]).then(() => { if (q.play && st.q === q && !st.locked) q.play(); });
       } else {
         // 第 2 次錯：直接教，這題等一下再考一次
         st.locked = true; if (right) right.classList.add('teach');
@@ -6821,8 +6800,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         st.results[st.i] = 'done'; drawTrack(); try { revMark(q, false); } catch (e) {} if (st.sub === 'place' && q.plSub) st.plRes[q.plSub] = false;
         [...$('options').children].forEach(x => { x.disabled = true; });
         let again = false; if (!q.again && st.sub !== 'place' && (st.reN || 0) < 2) { again = true; st.reN = (st.reN || 0) + 1; st.pend.push({ q, at: st.i + 3 }); st.total++; } // 一回合最多再考 2 題，不讓回合變太長
-        const ho2 = heroOops(enW ? 'oopsN' : 'oopsT');
-        say([...(enW ? [...(ho2 ? [ho2] : []), ['This is the answer.', 'en-US']] : [ho2 || ['答案是這一個喔']]), ...q.after, ...(enW || !again ? [] : [['等一下我們再考一次']])]).then(() => delay(1200)).then(() => { if (st !== cur || $('game').hidden) return; st.i++; nextQ(); });
+        say([...(enW ? [['This is the answer.', 'en-US']] : [['答案是這一個喔']]), ...q.after, ...(enW || !again ? [] : [['等一下我們再考一次']])]).then(() => delay(1200)).then(() => { if (st !== cur || $('game').hidden) return; st.i++; nextQ(); });
         return;
       }
       setTimeout(() => { if (st === cur && st.q === q && !st.locked) $('prompt').textContent = q.prompt; }, 2600);
@@ -7051,7 +7029,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
           if (covered >= .6 && outside <= .45) { $('trDone').disabled = true; itemDone(tr.tries === 0); return; }
           tr.tries++; st.first = false; mood('is-think'); buzz();
           const msg = covered < .6 ? '再描多一點，把灰色的字都蓋滿喔' : '要照著灰色的字描喔';
-          $('trMsg').textContent = msg; { const h = heroOops('oopsG'); say(h ? [h, [msg]] : [[msg]]); }
+          $('trMsg').textContent = msg; say([[msg]]);
           if (tr.tries >= 3) { $('trDone').disabled = true; setTimeout(() => itemDone(false), 900); }
         });
       }
@@ -7210,7 +7188,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     // 圖一樣的兩步（例如兩隻🐸、兩顆雪球）對調也算對，因為小朋友看不出差別
     const ok = [...document.querySelectorAll('.sq-slot')].every((sl, i) => { const j = Number(sl.querySelector('.sq-card').dataset.i); return j === i || sq.steps[j][0] === sq.steps[i][0]; });
     if (ok) { st.locked = true; itemDone(st.first); return; }
-    st.first = false; mood('is-think'); buzz(); { const h = heroOops('oopsN'); say(h ? [h, ['順序不太對，再想想看']] : [['順序不太對，再想想看']]); }
+    st.first = false; mood('is-think'); buzz(); say([['順序不太對，再想想看']]);
     document.querySelector('.sq-slots').classList.add('shake');
     setTimeout(() => {
       document.querySelector('.sq-slots')?.classList.remove('shake');
@@ -7319,7 +7297,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     return el;
   }
   const colorOf = k => (XM_COLORS.find(x => x[0] === k) || [0, 0, BLANK])[2];
-  function xmFail(msg) { st.first = false; $('prompt').textContent = msg; mood('is-think'); const h = heroOops('oopsN'); say(h ? [h, [msg]] : [[msg]]); }
+  function xmFail(msg) { st.first = false; $('prompt').textContent = msg; mood('is-think'); say([[msg]]); }
   function xmDoneRow(label, onDone, extra) {
     const row = document.createElement('div'); row.className = 'xm-tools';
     row.innerHTML = `${extra || ''}<button class="btn small xm-done">${label || '好了'}</button>`;
@@ -8450,7 +8428,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       const pr = mt.t && mt.pairs[Number(b.dataset.i)]; if (pr && pr[3]) say([[mt.t.snd ? `${pr[2]}，是${pr[3]}在叫` : pr[3]]]);
       mt.lines.push([mt.sel, b]); if ($('mtPen')) $('mtPen').innerHTML = ''; mtRedraw(); mt.sel = null; mt.done++; chime();
       if (mt.done === mt.pairs.length) { st.locked = true; setTimeout(() => itemDone(mt.miss === 0), 300); }
-    } else { mt.miss++; b.classList.add('shake'); buzz(); { const h = heroOops('oopsG'); if (h) say([h]); } setTimeout(() => b.classList.remove('shake'), 400); }
+    } else { mt.miss++; b.classList.add('shake'); buzz(); setTimeout(() => b.classList.remove('shake'), 400); }
   }
   function sdTap(b) {
     const sd = st.sd, i = Number(b.dataset.i); if (st.locked || sd.found.has(i)) return;
@@ -8458,7 +8436,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       sd.found.add(i); document.querySelectorAll(`.sd-cell[data-i="${i}"]`).forEach(c => c.classList.add('found')); chime();
       $('sdCount').textContent = `找到 ${sd.found.size} / ${sd.idx.length}`;
       if (sd.found.size === sd.idx.length) { st.locked = true; itemDone(sd.miss === 0); }
-    } else { sd.miss++; b.classList.add('shake'); buzz(); { const h = heroOops('oopsG'); if (h) say([h]); } setTimeout(() => b.classList.remove('shake'), 400); }
+    } else { sd.miss++; b.classList.add('shake'); buzz(); setTimeout(() => b.classList.remove('shake'), 400); }
   }
   function mzDraw() {
     const mz = st.mz, el = $('mz');
@@ -8490,7 +8468,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     if (pz.sel.dataset.i === slot.dataset.i) {
       slot.innerHTML = pz.sel.innerHTML; slot.classList.add('filled'); pz.sel.classList.add('placed'); pz.sel.classList.remove('sel'); pz.sel = null; pz.placed++; chime();
       if (pz.placed === pz.n * pz.n) { st.locked = true; $('pzBoard').classList.add('complete'); itemDone(pz.miss <= 1); }
-    } else { pz.miss++; slot.classList.add('shake'); buzz(); { const h = heroOops('oopsG'); if (h) say([h]); } setTimeout(() => slot.classList.remove('shake'), 400); }
+    } else { pz.miss++; slot.classList.add('shake'); buzz(); setTimeout(() => slot.classList.remove('shake'), 400); }
   }
 
   /* 記憶翻牌 */
@@ -8594,7 +8572,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     const m = $('doneMascot'); m.classList.remove('is-happy'); void m.getBoundingClientRect(); m.classList.add('is-happy');
     tone([523, 659, 784, 1046], .13, 'sine');
     setTimeout(() => burst($('doneScore'), 40), 150);
-    say(/^ez/.test(st.sub) ? [...(heroLine(ratio >= .9 ? 'great' : 'tried') ? [heroLine(ratio >= .9 ? 'great' : 'tried')] : []), [`You got ${s} ${s === 1 ? 'star' : 'stars'}! ${trialEnd ? 'The free trial is over.' : ratio >= .9 ? 'Excellent!' : ratio >= .6 ? 'Great job!' : 'Good try! Practice makes perfect.'}`, 'en-US']] : [...(heroLine(ratio >= .9 ? 'great' : 'tried') ? [heroLine(ratio >= .9 ? 'great' : 'tried')] : []), [`拿到${s}顆星星。${fmsg}`]]);
+    say(/^ez/.test(st.sub) ? [[`You got ${s} ${s === 1 ? 'star' : 'stars'}! ${trialEnd ? 'The free trial is over.' : ratio >= .9 ? 'Excellent!' : ratio >= .6 ? 'Great job!' : 'Good try! Practice makes perfect.'}`, 'en-US']] : [[`拿到${s}顆星星。${fmsg}`]]);
     if (trialEnd) { track('trial-end-' + st.sub, '試玩結束：' + st.sub); setTimeout(() => { if (!$('done').hidden) showLock(true); }, 3500); }
     const L = limitMs();
     if (L && playToday().ms >= L - 30000) setTimeout(() => { if (!$('done').hidden) showRest(); }, 3500);
@@ -8703,7 +8681,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       <p class="note">一次買斷，不用月費。每個鎖住的主題都可以先免費試玩 3 題。</p>
       <ol class="buy-steps"><li>在蝦皮下單，選要的方案</li><li>下單後，在蝦皮聊聊收到解鎖碼</li><li>回到這裡輸入解鎖碼，馬上開放</li></ol>
       ${buy}${codeForm}
-      <div class="hz-prorow"><div><b>👑 我的主角</b><small>寶哥、筑筑可以換成孩子的名字，還能錄下孩子自己念名字。一次買斷。</small></div><span class="plan-price">App 版</span></div><button class="btn small ghost" id="heroFromPro" style="margin-top:10px">${heroPaid() ? '✅ 已開啟，打開主角設計室' : '👀 先看看主角設計室'}</button>`;
+      <div class="hz-prorow"><div><b>👑 我的主角</b><small>寶哥、筑筑可以換成孩子的名字，故事裡會叫孩子的名字。一次買斷。</small></div><span class="plan-price">App 版</span></div><button class="btn small ghost" id="heroFromPro" style="margin-top:10px">${heroPaid() ? '✅ 已開啟，打開主角設計室' : '👀 先看看主角設計室'}</button>`;
     $('heroFromPro').onclick = () => openHero('b1');
     $('codeBtn').addEventListener('click', async () => {
       const got = await tryCode($('codeInput').value);
@@ -8848,7 +8826,6 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     }
     const H = new Set(store.get('slHeard', [])); H.add(i); store.set('slHeard', [...H]);
     const el = $('slLine'); if (el) el.textContent = '晚安，好夢。🌙';
-    { const hn = !S.L.some(([t]) => /寶哥|筑筑/.test(t)) && heroLine('night', 'sleep'); if (hn && SL.tok === my) await say([hn]); }
     await delay(8000); if (SL.tok === my) { SL.playing = false; slBgmStop(); }
   }
   $('sleepEnter').onclick = openSleep;
@@ -10191,7 +10168,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     if (!box) { box = document.createElement('div'); box.id = 'friends'; box.className = 'friends'; document.body.appendChild(box); }
     box.innerHTML = `<div class="fr-in"><div class="fr-top"><button class="chunky back" id="frBack" aria-label="回首頁"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button></div>
       <h2 class="fr-h"><span>動動腦</span>的好朋友</h2><p class="fr-sub">點一下，聽他們自我介紹！題目裡會一直看到他們喔</p>
-      <button class="hz-banner" id="frHero"><span class="hz-bh">${heroHeadOf('b1')}${heroHeadOf('g1')}</span><span><b>👑 讓孩子當主角</b><small>${heroPaid() ? '幫寶哥或筑筑換成孩子的名字，錄下孩子念名字' : '用孩子的名字取代寶哥或筑筑，還能錄名字（家長付費功能，可以先免費看看）'}</small></span><i>›</i></button>
+      <button class="hz-banner" id="frHero"><span class="hz-bh">${heroHeadOf('b1')}${heroHeadOf('g1')}</span><span><b>👑 讓孩子當主角</b><small>${heroPaid() ? '幫寶哥或筑筑換成孩子的名字' : '用孩子的名字取代寶哥或筑筑（家長付費功能，可以先免費看看）'}</small></span><i>›</i></button>
       <div class="fr-grid">${FRIENDS.map(([k, n, t, bg], i) => `<div class="fr-cell"><button class="fr-card" data-i="${i}" aria-label="${frName(k)}"><span class="fr-art" style="background:${bg}">${frSVG(k, 'stand', 'smile')}</span><b>${frName(k)}</b><small>${(k === 'b1' || k === 'g1') && heroGet(k) ? '👑 我的主角' : t}</small></button>${k === 'b1' || k === 'g1' ? `<button class="fr-edit frh" data-k="${k}">👑 ${heroGet(k) ? '換造型' : '變成我的主角'}</button>` : ''}</div>`).join('')}</div>
       <h3 class="fr-h2">⚠️ 小心！他們是陌生人</h3><p class="fr-sub">不拿陌生人的糖果、不跟陌生人走、不告訴他家裡地址</p>
       <div class="fr-grid bad">${FR_BAD.map(([k, n, t, bg], i) => `<button class="fr-card fr-bad" data-b="${i}" aria-label="${n}"><span class="fr-art" style="background:${bg}">${frSVG(k, 'give', 'smile')}</span><b>${n}</b><small>${t}</small></button>`).join('')}</div>
@@ -10203,7 +10180,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       box.querySelectorAll('.fr-card.talk').forEach(x => { x.classList.remove('talk'); const f = FRIENDS[+x.dataset.i]; x.querySelector('.fr-art').innerHTML = frSVG(f[0], 'stand', 'smile'); });
       art.innerHTML = frSVG(k, k === 'tch' || k === 'mom' ? 'wave' : ['wave', 'up', 'clap'][+b.dataset.i % 3] || 'wave', 'happy'); b.classList.add('talk');
       track('friend-' + k, '認識好朋友'); { const S = new Set(store.get('frHeard', [])); S.add(k); store.set('frHeard', [...S]); const A = store.get('dqAll', {}); A.friend = S.size; store.set('dqAll', A); }
-      { const o = (k === 'b1' || k === 'g1') && heroGet(k); await say([[o ? HERO_INTRO(heroCallRec(k)) : intro(frName(k)), 'zh-TW', o ? heroWho(k) : k]]); }
+      { const o = (k === 'b1' || k === 'g1') && heroGet(k); await say([[o ? HERO_INTRO(heroCall(k)) : intro(frName(k)), 'zh-TW', o ? heroWho(k) : k]]); }
       if (b.classList.contains('talk')) { b.classList.remove('talk'); art.innerHTML = frSVG(k, 'stand', 'smile'); }
     });
     box.querySelectorAll('.fr-bad').forEach(b => b.onclick = async () => {
@@ -10219,7 +10196,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const heroHeadOf = k => { heroSync(); return `<svg viewBox="-34 -136 68 72" aria-hidden="true">${scnHead2(SCN_CHAR[k], SCN_LOOK[k][1], 'smile')}</svg>`; };
   /* ---------- 👑 主角設計室：家長幫孩子設計自己的主角 ---------- */
   const HERO_BUY_URL = BUY_URL;
-  const HZ_TABS = [['name', '名字和錄音', '✏️']]; // v89：造型固定，只能改名字、錄名字
+  const HZ_TABS = [['name', '名字', '✏️']]; // v89：造型固定，只能改名字
   const HZ_GROUPS = {
     face: [['skin', '膚色', 'c', HZ_SKIN], ['eye', '眼睛', 'h'], ['brow', '眉毛', 'h'], ['nose', '鼻子', 'h'], ['mouth', '嘴巴', 'h'], ['ear', '耳朵', 'h']],
     hair: [['hair', '髮型', 'h'], ['hairC', '髮色', 'c', HZ_HAIRC]],
@@ -10241,7 +10218,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   function openHero(k) {
     const drafts = store.get('heroDraft', {}), saved = (store.get('heroLook', {}) || {});
     const load = s => Object.assign(heroNew(s), saved[s] || {}, drafts[s] || {});
-    HZ = { k: k || 'b1', d: null, tab: 'name', pose: 'wave', mood: 'happy', load }; hrLoad();
+    HZ = { k: k || 'b1', d: null, tab: 'name', pose: 'wave', mood: 'happy', load };
     HZ.d = load(HZ.k);
     let box = $('heroDz');
     if (!box) { box = document.createElement('div'); box.id = 'heroDz'; box.className = 'hz'; document.body.appendChild(box); }
@@ -10268,30 +10245,6 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     track('hero-open', '主角設計室');
     hzDraw();
   }
-  function hzRecUI(msg) {
-    const B = $('hzRecBox'); if (!B) return; const k = HZ.k, has = !!HREC.url[k];
-    B.innerHTML = HZ.recOn ? `<button data-rec="stop" class="on">⏹ 好了</button>` : `<button data-rec="go">🎙️ ${has ? '重錄' : '開始錄'}</button>${has ? `<button data-rec="play">▶️ 聽聽看</button><button data-rec="del">🗑 刪掉</button>` : ''}`;
-    if (msg !== undefined) $('hzRecMsg').textContent = msg;
-  }
-  async function hzRec(act) {
-    const k = HZ.k;
-    if (act === 'play') { sayStop(); const my = ++sayToken; await hrPlay(k, my); return; }
-    if (act === 'del') { await hrPut(k, null); await hrLoad(); HERO_REV++; heroSync(true); hzRecUI('錄音刪掉了，會改念有真人語音的小名。'); return; }
-    if (act === 'stop') { if (HZ.rec && HZ.rec.state !== 'inactive') HZ.rec.stop(); return; }
-    if (!navigator.mediaDevices || !window.MediaRecorder) { hzRecUI('這台裝置不能錄音，會念有真人語音的小名。'); return; }
-    sayStop(); let stream; try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e) { hzRecUI('要先允許使用麥克風才能錄音，請到手機設定打開。'); return; }
-    const mt = (() => { try { return ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm'].find(m => MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m)) || ''; } catch (e) { return ''; } })();
-    const ch = [], rec = mt ? new MediaRecorder(stream, { mimeType: mt }) : new MediaRecorder(stream); HZ.rec = rec; HZ.recOn = true;
-    rec.ondataavailable = e => { if (e.data && e.data.size) ch.push(e.data); };
-    const cap = setTimeout(() => { if (rec.state !== 'inactive') rec.stop(); }, 4000);
-    rec.onstop = async () => {
-      clearTimeout(cap); stream.getTracks().forEach(t => t.stop()); HZ.recOn = false; hzRecUI('處理中…');
-      const w = await hrClean(new Blob(ch, { type: rec.mimeType || mt || 'audio/mp4' }));
-      if (!w) { hzRecUI('沒有錄到聲音，請靠近一點、大聲一點再錄一次。'); return; }
-      await hrPut(k, w); await hrLoad(); HERO_REV++; heroSync(true); hzRecUI('錄好了！按「聽聽看」確認。'); const my = ++sayToken; hrPlay(k, my);
-    };
-    rec.start(); hzRecUI('錄音中…念完按「好了」（最多 4 秒）');
-  }
   function hzKeep() { const D = store.get('heroDraft', {}); D[HZ.k] = HZ.d; store.set('heroDraft', D); }
   function hzStage() { $('hzArt').innerHTML = heroSVG(HZ.d, HZ.k, HZ.pose, HZ.mood, '-66 -172 132 180', 'hz-big'); $('hzTag').innerHTML = `<b>${HZ.d.name || HERO_ORIG[HZ.k].n}</b><small>${HZ_SLOT_TXT[HZ.k]}</small>`; }
   const HZ_SLOT_TXT = { b1: '👦 男生（寶哥的樣子）', g1: '👧 女生（筑筑的樣子）' };
@@ -10303,16 +10256,15 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   function hzName() {
     const d = HZ.d, v = $('hzVoice'); if (!v) return;
     v.innerHTML = !d.name ? `還沒取名字，會用「${HERO_ORIG[HZ.k].n}」。` : heroHasVoice(d.name) ? `🔊 「${d.name}」有真人語音，題目和故事會念出這個名字。`
-      : `「${d.name}」沒有現成的語音，請在下面錄下名字 🎙️。還沒錄的時候，先叫他：<select id="hzCall">${HERO_NAMES.slice(2).map(n => `<option${n === d.call ? ' selected' : ''}>${n}</option>`).join('')}</select>`;
+      : `「${d.name}」沒有現成的語音，念到名字的時候會叫他：<select id="hzCall">${HERO_NAMES.slice(2).map(n => `<option${n === d.call ? ' selected' : ''}>${n}</option>`).join('')}</select>`;
   }
   function hzPanel() {
     const P = $('hzPanel'), d = HZ.d, k = HZ.k;
     if (HZ.tab === 'name') {
       P.innerHTML = `<div class="hz-sec"><h4>孩子的名字或小名</h4><input id="hzName" maxlength="6" value="${d.name}" placeholder="例如：宇宇" autocomplete="off" aria-label="孩子的名字"><p class="hz-voice" id="hzVoice"></p></div>
-        <div class="hz-sec"><h4>🎙️ 錄下名字（建議讓孩子自己念）</h4><p class="hz-note">按「開始錄」，念一次名字，再按「好了」。念到主角名字的時候，會播這段錄音。錄音只存在這台裝置，不會上傳。</p><div class="hz-g" id="hzRecBox"></div><p class="hz-note" id="hzRecMsg"></p></div>
         <p class="hz-note">主角的樣子和聲音固定是${HERO_ORIG[k].n}，只換名字。男生用「寶哥的位置」、女生用「筑筑的位置」。</p>
         <div class="hz-sec"><h4>有真人語音的小名 🔊（點一下就填好）</h4><div class="hz-chips">${HERO_NAMES.slice(2).map(n => `<button data-n="${n}" class="${n === d.name ? 'on' : ''}">${n}</button>`).join('')}</div></div>`;
-      hzName(); hzRecUI(); return;
+      hzName(); return;
     }
     const hide = g => (g === 'num' && d.pat !== 'num') || (g === 'patC' && /^(none|rainbow)$/.test(d.pat)) || (g === 'hatC' && /^(none|crown)$/.test(d.hat)) || (g === 'sockC' && d.bot === 'pants' && d.top !== 'dress');
     P.innerHTML = HZ_GROUPS[HZ.tab].filter(g => !hide(g[0])).map(([key, label, type, list]) => {
@@ -10330,7 +10282,6 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   }
   function hzPick(e) {
     const d = HZ.d, b = e.target.closest('button'); if (!b) return;
-    if (b.dataset.rec) { hzRec(b.dataset.rec); return; }
     if (b.dataset.n) { d.name = b.dataset.n; d.call = b.dataset.n; hzKeep(); hzPanel(); hzStage(); say([[b.dataset.n, 'zh-TW', d.g === 'g' ? 'g1' : 'b1']]); return; }
     if (b.dataset.g) { if (b.dataset.g !== d.g) { const keep = { name: d.name, call: d.call, skin: d.skin, on: 1 }; HZ.d = Object.assign(d, JSON.parse(JSON.stringify(HERO_PRESET[b.dataset.g])), keep); HZ.pose = 'wave'; } hzKeep(); hzDraw(); return; }
     const key = b.dataset.k, v = b.dataset.v; if (!key) return;
@@ -10342,12 +10293,19 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     hzKeep(); const y = $('hzPanel').scrollTop; hzStage(); hzPanel(); $('hzPanel').scrollTop = y; tone([660], .05, 'sine');
   }
   function heroSave() {
+    if (!HZ.d.name) { // v98：沒有填名字（例如按了「換回寶哥」）就維持原本的寶哥／筑筑
+      const L0 = store.get('heroLook', {}); if (L0[HZ.k]) { L0[HZ.k].on = 0; store.set('heroLook', L0); }
+      const D0 = store.get('heroDraft', {}); delete D0[HZ.k]; store.set('heroDraft', D0);
+      HERO_REV++; heroSync(true); hzStage();
+      const c0 = document.createElement('div'); c0.className = 'hz-done'; c0.textContent = `${HERO_ORIG[HZ.k].n}回來了！`; $('heroDz').appendChild(c0); setTimeout(() => c0.remove(), 3200);
+      say([[`我是${HERO_ORIG[HZ.k].n}！`, 'zh-TW', HZ.k]]); return;
+    }
     const L = store.get('heroLook', {}); L[HZ.k] = Object.assign({}, HZ.d, { on: 1 }); store.set('heroLook', L);
     const D = store.get('heroDraft', {}); delete D[HZ.k]; store.set('heroDraft', D);
     HERO_REV++; heroSync(true); track('hero-save', '設計好主角');
     HZ.pose = 'jump'; HZ.mood = 'laugh'; hzStage(); tone([523, 659, 784, 1046], .1, 'sine');
     const c = document.createElement('div'); c.className = 'hz-done'; c.textContent = `🎉 ${HZ.d.name || HERO_ORIG[HZ.k].n}變成主角了！`; $('heroDz').appendChild(c); setTimeout(() => c.remove(), 3200);
-    say([[HERO_SAVE(heroCallRec(HZ.k, HZ.d)), 'zh-TW', heroWho(HZ.k)]]);
+    say([[HERO_SAVE(heroCallOf(HZ.d)), 'zh-TW', heroWho(HZ.k)]]);
   }
   // 家長確認（簡單的算數）→ 購買說明 → 輸入主角解鎖碼
   function hzPay() {
@@ -10362,8 +10320,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     P.innerHTML = `<div class="hz-pc"><div class="hz-pa">${heroSVG(HZ.d, HZ.k, 'wave', 'happy', '-56 -144 112 152')}</div><h3>👑 讓孩子當故事裡的主角</h3>
       <ul class="hz-val"><li>🧒 <b>寶哥、筑筑兩個主角位置</b>都能換成自己的孩子，兄弟姊妹一人一個</li>
       <li>✏️ 主角的名字換成孩子的名字，睡前故事、主角介紹都會叫孩子的名字</li>
-      <li>🎙️ <b>錄下孩子自己念名字</b>，念到主角時播孩子的聲音（錄音只存在這台裝置）</li>
-      <li>🔊 不想錄音也可以：有 ${HERO_NAMES.length - 2} 個常用小名有真人 AI 語音</li>
+      <li>🔊 有 ${HERO_NAMES.length - 2} 個常用小名有真人 AI 語音，名字沒有語音時，可以選一個小名來叫</li>
       <li>👨‍👩‍👧 一次買斷不是月費；這台裝置的每位小朋友都能各自設定</li></ul>
       <div class="hz-price"><b>NT$99</b><small>一次買斷・兩個主角位置（App 版）</small></div>
       <p class="hz-note">📱 「我的主角」會在 iPhone App 版開放購買。</p>
