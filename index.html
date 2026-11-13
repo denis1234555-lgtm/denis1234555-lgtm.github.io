@@ -1965,6 +1965,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 .mb-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
 .mb-act{border:0;border-radius:22px;padding:14px 18px;font:inherit;font-weight:900;font-size:1.05rem;background:#fff;box-shadow:0 5px 0 #EAD9C0;cursor:pointer;touch-action:none}
 .mb-act.on{background:#9BE8C0;box-shadow:0 5px 0 #5CC28F}.mb-act.big{background:#FFD45C;box-shadow:0 5px 0 #E0B33A;font-size:1.2rem}.mb-act:disabled{opacity:.5}
+.mb-wind{display:flex;align-items:center;gap:8px;width:min(260px,80%)}.mb-wind i{flex:1;height:16px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 2px #EAD9C0;overflow:hidden}.mb-wind u{display:block;height:100%;width:0;background:#CFC6B8;transition:width .08s}
 .mb-dand{width:min(220px,58vw);height:auto;overflow:visible}
 .mb-seed{transform-box:fill-box;transform-origin:0 0}.mb-seed.fly{animation:mbseed 2.4s ease-out forwards}
 .mb-monbox{position:relative;width:min(230px,62vw);touch-action:none;cursor:pointer;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
@@ -9709,16 +9710,35 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         b.onpointerdown = e => { e.preventDefault(); if (t) return; b.classList.add('on'); fly(); t = setInterval(fly, 450); }; b.onpointerup = b.onpointerleave = b.onpointercancel = up; S.clean.push(up); }
       // 麥克風：聲音太大提醒輕輕吹；溫柔穩定的吹氣讓種子飛走
       $('mbMic').onclick = async () => {
-        let st; try { st = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e) { $('mbHint').textContent = '沒有開麥克風也沒關係，按住「👆 按住吹氣」就可以吹喔！'; return; }
+        // v108：關掉手機的「降噪／自動音量」，不然吹氣聲會被當成雜音濾掉；分析節點要接到喇叭（音量 0），iPhone 才會真的處理
+        let st; const hint = t => { const h = $('mbHint'); if (h) h.textContent = t; };
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { hint('這台手機不能用麥克風，按住「👆 按住吹氣」就可以吹喔！'); return; }
+        try { st = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } }); }
+        catch (e) { try { st = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e2) { hint(e2 && e2.name === 'NotAllowedError' ? '麥克風沒有開啟。請到手機「設定」允許麥克風，或按住「👆 按住吹氣」' : '沒有開麥克風也沒關係，按住「👆 按住吹氣」就可以吹喔！'); return; } }
         if (!S.alive) { st.getTracks().forEach(t => t.stop()); return; }
-        $('mbMic').classList.add('on'); $('mbMic').textContent = '🎤 吹吹看…';
+        $('mbMic').classList.add('on'); $('mbMic').textContent = '🎤 吹吹看…'; hint('對著手機下面輕輕吹～看風力條');
         ac = ac || new (window.AudioContext || window.webkitAudioContext)(); try { await ac.resume(); } catch (e) {}
-        const src = ac.createMediaStreamSource(st), an = ac.createAnalyser(); an.fftSize = 512; src.connect(an); const buf = new Float32Array(an.fftSize);
-        let acc = 0, raf = 0; const loop = () => { an.getFloatTimeDomainData(buf); let q = 0; for (const v of buf) q += v * v; const rms = Math.sqrt(q / buf.length);
-          if (rms > .3) { if (Date.now() - lastHard > 4000) { lastHard = Date.now(); $('mbHint').textContent = '風太大啦！輕輕吹～'; SAY([[MB_SAY.blowHard]]); } }
-          else if (rms > .035) { acc += 16; if (acc >= 260) { acc = 0; fly(); } } else acc = Math.max(0, acc - 8);
-          raf = requestAnimationFrame(loop); };
-        loop(); S.clean.push(() => { cancelAnimationFrame(raf); try { src.disconnect(); } catch (e) {} st.getTracks().forEach(t => t.stop()); });
+        const src = ac.createMediaStreamSource(st), an = ac.createAnalyser(), mute = ac.createGain(); mute.gain.value = 0; an.fftSize = 1024; src.connect(an); an.connect(mute); mute.connect(ac.destination);
+        const buf = new Float32Array(an.fftSize), fq = new Uint8Array(an.frequencyBinCount);
+        let bar = stage.querySelector('.mb-wind'); if (!bar) { bar = document.createElement('div'); bar.className = 'mb-wind'; bar.innerHTML = '<span>💨</span><i><u></u></i>'; $('mbHint').after(bar); }
+        // 先聽 0.6 秒環境聲當基準，吹氣要比環境大很多才算
+        let base = 0, nb = 0, acc = 0, raf = 0, t0 = performance.now(), hard = 0;
+        const loop = () => {
+          an.getFloatTimeDomainData(buf); an.getByteFrequencyData(fq);
+          let q = 0; for (const v of buf) q += v * v; const rms = Math.sqrt(q / buf.length);
+          let hi = 0; for (let k = 8; k < fq.length; k++) hi += fq[k]; hi /= (fq.length - 8) * 255; // 吹氣是「沙沙」的寬頻聲
+          const lvl = Math.max(rms * 4, hi * 2.2);
+          if (performance.now() - t0 < 600) { base += lvl; nb++; }
+          else {
+            const b = nb ? base / nb : 0, th = Math.max(.06, b * 2.2), p = Math.min(1, lvl / .9);
+            const u = bar.querySelector('u'); if (u) { u.style.width = (p * 100).toFixed(0) + '%'; u.style.background = lvl > .9 ? '#F2735E' : lvl > th ? '#5CC28F' : '#CFC6B8'; }
+            if (lvl > .9) { hard++; if (hard > 25 && Date.now() - lastHard > 4000) { lastHard = Date.now(); hint('風太大啦！輕輕吹～'); SAY([[MB_SAY.blowHard]]); } acc += 6; }
+            else if (lvl > th) { hard = Math.max(0, hard - 1); acc += 16; } else { hard = Math.max(0, hard - 2); acc = Math.max(0, acc - 6); }
+            if (acc >= 220) { acc = 0; fly(); }
+          }
+          raf = requestAnimationFrame(loop);
+        };
+        loop(); S.clean.push(() => { cancelAnimationFrame(raf); try { src.disconnect(); an.disconnect(); mute.disconnect(); } catch (e) {} st.getTracks().forEach(t => t.stop()); });
       };
     }
     // 遊戲 B：怪獸捏捏樂（戳一戳會晃；按住 3 秒捏扁，放開變鬼臉；捏 3 次變好朋友）
