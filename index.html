@@ -3322,6 +3322,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       </div>
       <p class="note" id="limitToday"></p>
       <label class="eye-set"><input type="checkbox" id="eyeOn"> 👀 護眼小衛士：每連續玩 10 分鐘，自動暫停 10 秒，帶孩子看遠方、眨眨眼</label>
+      <div class="eye-set"><button class="btn small ghost" id="mbPreview" type="button">👪 家長搶先試玩百寶箱</button> <small class="note">魔法心情百寶箱的語音 12/1 後才會做好，孩子點「情緒急救箱」暫時還是深呼吸版；這裡可以先試玩，沒有語音的句子只顯示文字。</small></div>
       <label class="eye-set">💌 百寶箱的打氣信封：<select id="mbLetterSel" aria-label="選一封打氣信"></select> <select id="mbLetterV" aria-label="誰的聲音"><option value="mom">媽媽的聲音</option><option value="dad">爸爸的聲音</option></select></label>
       <label class="eye-set"><input type="checkbox" id="cheerOn"> 🎉 大聲稱讚：一回合全部答對時，放號角、老師大聲稱讚（晚上 8 點後自動變小聲）</label>
     </div>
@@ -9641,8 +9642,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const mbReady = () => [...Object.values(MB_SAY)].every(t => pvVoiced(t, ''));
   async function calmOpen() { if (aiOn() && !AI.ids) await Promise.race([aiReady(), delay(1500)]); return mbReady() ? openBox() : openCalm(); }
   $('calmEnter').onclick = calmOpen;
+  if ($('mbPreview')) $('mbPreview').onclick = () => { track('mb-preview', '家長搶先試玩百寶箱'); openBox(true); };
   { const s1 = $('mbLetterSel'), s2 = $('mbLetterV'); if (s1 && s2) { s1.innerHTML = '<option value="-1">還沒選</option>' + MB_LETTERS.map((t, i) => `<option value="${i}">${t}</option>`).join(''); s1.value = String(store.get('mbLetter', -1)); s2.value = store.get('mbLetterV', 'mom'); s1.onchange = () => store.set('mbLetter', +s1.value); s2.onchange = () => store.set('mbLetterV', s2.value); } }
-  function openBox() {
+  function openBox(preview) {
+    // 家長搶先試玩：還沒有 AI 語音的句子不念（只顯示文字），有的照念
+    const SAY = parts => say(preview ? parts.filter(p => pvVoiced(p[0], p[2] || '')) : parts);
     sayStop(); track('mb-open', '魔法心情百寶箱');
     const who = Math.random() < .5 ? 'b1' : 'g1', ch = (pose, mood) => { try { return frSVG(who, pose, mood); } catch (e) { return ''; } };
     const ov = document.createElement('div'); ov.className = 'mb-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', '魔法心情百寶箱');
@@ -9663,18 +9667,18 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       ov.appendChild(p); p.querySelector('#mbTipX').onclick = () => p.remove();
     }
     // 🧰 急救寶盒
-    $('mbDtab').onclick = () => { const d = $('mbDrawer'); d.classList.toggle('open'); if (d.classList.contains('open')) say([[MB_SAY.box]]); };
+    $('mbDtab').onclick = () => { const d = $('mbDrawer'); d.classList.toggle('open'); if (d.classList.contains('open')) SAY([[MB_SAY.box]]); };
     ov.querySelectorAll('.mb-item').forEach(b => b.onclick = () => {
       const k = b.dataset.it; b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop');
-      if (k === 'letter') { const i = store.get('mbLetter', -1), v = store.get('mbLetterV', 'mom'); if (i >= 0 && MB_LETTERS[i]) { tone([660, 880], .08, 'sine'); if (pvVoiced(MB_LETTERS[i], v)) say([[MB_LETTERS[i], 'zh-TW', v]]); } else say([[MB_SAY.noLetter]]); }
-      else { tone(k === 'ball' ? [330, 262] : k === 'bear' ? [392, 523] : [784, 1046, 1318], .08, 'sine'); say([[MB_SAY[k]]]); try { navigator.vibrate && navigator.vibrate(25); } catch (e) {} }
+      if (k === 'letter') { const i = store.get('mbLetter', -1), v = store.get('mbLetterV', 'mom'); if (i >= 0 && MB_LETTERS[i]) { tone([660, 880], .08, 'sine'); if (pvVoiced(MB_LETTERS[i], v)) SAY([[MB_LETTERS[i], 'zh-TW', v]]); } else SAY([[MB_SAY.noLetter]]); }
+      else { tone(k === 'ball' ? [330, 262] : k === 'bear' ? [392, 523] : [784, 1046, 1318], .08, 'sine'); SAY([[MB_SAY[k]]]); try { navigator.vibrate && navigator.vibrate(25); } catch (e) {} }
     });
     // 1. 心情天氣
     function weather() {
       stopGame(); S.mood = '';
       stage.innerHTML = `<div class="mb-char" id="mbChar">${ch('stand', 'smile')}</div><p class="mb-say">你現在心裡的感覺，像哪一種天氣呢？</p>
         <div class="mb-clouds">${MB_MOODS.map(([k, e, n]) => `<button class="mb-cloud c-${k}" data-m="${k}"><span>${e}</span><b>${n}</b></button>`).join('')}</div>`;
-      say([[MB_SAY.hi]]);
+      SAY([[MB_SAY.hi]]);
       stage.querySelectorAll('.mb-cloud').forEach(b => b.onclick = () => mood(b.dataset.m));
     }
     function mood(k) {
@@ -9684,9 +9688,9 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         ${k === 'sun' ? `<div class="mb-games"><button class="mb-game big" data-g="box"><span>🧰</span><b>打開急救寶盒</b></button><button class="mb-game" data-g="end"><span>🌞</span><b>我很好，結束</b></button></div>`
         : `<div class="mb-games"><button class="mb-game big" data-g="${rec}"><span>${MB_GAMES[rec][0]}</span><b>${MB_GAMES[rec][1]}</b></button>${others.map(g => `<button class="mb-game" data-g="${g}"><span>${MB_GAMES[g][0]}</span><b>${MB_GAMES[g][1]}</b></button>`).join('')}</div>`}
         <button class="mb-btn mb-back" id="mbBack">← 換一種天氣</button>`;
-      say([[MB_SAY[k]], ...(k === 'sun' ? [] : [[MB_SAY.pick]])]);
+      SAY([[MB_SAY[k]], ...(k === 'sun' ? [] : [[MB_SAY.pick]])]);
       $('mbBack').onclick = weather;
-      stage.querySelectorAll('.mb-game').forEach(b => b.onclick = () => { const g = b.dataset.g; if (g === 'box') { $('mbDrawer').classList.add('open'); say([[MB_SAY.box]]); return; } if (g === 'end') return sunny(); ({ blow, mon, jar, breath })[g](); });
+      stage.querySelectorAll('.mb-game').forEach(b => b.onclick = () => { const g = b.dataset.g; if (g === 'box') { $('mbDrawer').classList.add('open'); SAY([[MB_SAY.box]]); return; } if (g === 'end') return sunny(); ({ blow, mon, jar, breath })[g](); });
     }
     const gameTop = (title) => `<div class="mb-gtitle"><button class="mb-btn" id="mbGBack">← 回去</button><b>${title}</b></div>`;
     const wireBack = () => { $('mbGBack').onclick = () => { stopGame(); sayStop(); S.mood ? mood(S.mood) : weather(); }; };
@@ -9696,10 +9700,10 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       const N = 18, seeds = [...Array(N)].map((_, i) => { const a = i / N * Math.PI * 2, x = Math.cos(a) * 34, y = Math.sin(a) * 34; return `<g class="mb-seed" style="--dx:${Math.round(60 + Math.random() * 120)}px;--dy:${Math.round(-140 - Math.random() * 160)}px;--r:${Math.round(Math.random() * 300 - 150)}deg"><line x1="0" y1="0" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#C9C2B0" stroke-width="1.6"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="#FFFFFF" stroke="#E5DFCC"/></g>`; }).join('');
       stage.innerHTML = gameTop('🌼 吹吹蒲公英') + `<svg class="mb-dand" viewBox="-80 -90 160 230" aria-hidden="true"><path d="M0 40 Q 6 90 -4 138" stroke="#6CB86A" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M-2 100 q-26 -6 -34 -24 q22 -2 34 18" fill="#8ED081"/>${seeds}<circle r="9" fill="#E8C35A"/></svg>
         <p class="mb-say" id="mbHint">對著手機輕輕吹，或按住下面的按鈕</p><div class="mb-row"><button class="mb-act" id="mbMic">🎤 對著手機吹</button><button class="mb-act hold" id="mbHold">👆 按住吹氣</button></div>`;
-      wireBack(); say([[MB_SAY.blowHi]]);
+      wireBack(); SAY([[MB_SAY.blowHi]]);
       let left = N, lastHard = 0, saidGood = false;
       const fly = () => { const g = stage.querySelector('.mb-seed:not(.fly)'); if (!g) return; g.classList.add('fly'); left--; tone([880 + Math.random() * 300], .04, 'sine');
-        if (!saidGood && left === N - 3) { saidGood = true; say([[MB_SAY.blowGood]]); } if (left <= 0) { stopGame(); setTimeout(() => { if (S.alive) done(MB_SAY.blowEnd); }, 900); } };
+        if (!saidGood && left === N - 3) { saidGood = true; SAY([[MB_SAY.blowGood]]); } if (left <= 0) { stopGame(); setTimeout(() => { if (S.alive) done(MB_SAY.blowEnd); }, 900); } };
       // 按住：每 0.45 秒飛走一顆
       { const b = $('mbHold'); let t = 0; const up = () => { clearInterval(t); t = 0; b.classList.remove('on'); };
         b.onpointerdown = e => { e.preventDefault(); if (t) return; b.classList.add('on'); fly(); t = setInterval(fly, 450); }; b.onpointerup = b.onpointerleave = b.onpointercancel = up; S.clean.push(up); }
@@ -9711,7 +9715,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         ac = ac || new (window.AudioContext || window.webkitAudioContext)(); try { await ac.resume(); } catch (e) {}
         const src = ac.createMediaStreamSource(st), an = ac.createAnalyser(); an.fftSize = 512; src.connect(an); const buf = new Float32Array(an.fftSize);
         let acc = 0, raf = 0; const loop = () => { an.getFloatTimeDomainData(buf); let q = 0; for (const v of buf) q += v * v; const rms = Math.sqrt(q / buf.length);
-          if (rms > .3) { if (Date.now() - lastHard > 4000) { lastHard = Date.now(); $('mbHint').textContent = '風太大啦！輕輕吹～'; say([[MB_SAY.blowHard]]); } }
+          if (rms > .3) { if (Date.now() - lastHard > 4000) { lastHard = Date.now(); $('mbHint').textContent = '風太大啦！輕輕吹～'; SAY([[MB_SAY.blowHard]]); } }
           else if (rms > .035) { acc += 16; if (acc >= 260) { acc = 0; fly(); } } else acc = Math.max(0, acc - 8);
           raf = requestAnimationFrame(loop); };
         loop(); S.clean.push(() => { cancelAnimationFrame(raf); try { src.disconnect(); } catch (e) {} st.getTracks().forEach(t => t.stop()); });
@@ -9725,17 +9729,17 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         : f === 'silly' ? '<path d="M64 88 l18 10 l-18 10 M136 88 l-18 10 l18 10" stroke="#3A2140" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M74 126 q26 22 52 0z" fill="#3A2140"/><path d="M92 132 q8 26 20 0z" fill="#FF8FB0"/>'
         : '<path d="M66 92 q10 -12 20 0 M114 92 q10 -12 20 0" stroke="#3A2140" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M74 122 q26 26 52 0" stroke="#3A2140" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="60" cy="112" r="9" fill="#FF8FB0" opacity=".7"/><circle cx="140" cy="112" r="9" fill="#FF8FB0" opacity=".7"/>'}</svg>`;
       stage.innerHTML = gameTop('👾 怪獸捏捏樂') + `<div class="mb-monbox" id="mbMon">${face('angry')}<span class="mb-count" id="mbCnt"></span></div><p class="mb-say" id="mbHint">戳一戳它，或是按住 3 秒把它捏扁！</p><div class="mb-dots" id="mbDots">${'<i></i>'.repeat(3)}</div>`;
-      wireBack(); say([[MB_SAY.monHi]]);
+      wireBack(); SAY([[MB_SAY.monHi]]);
       const box = $('mbMon'); let n = 0, t0 = 0, tm = [], holding = false;
       const set = f => { box.innerHTML = face(f) + '<span class="mb-count" id="mbCnt"></span>'; };
       const clear = () => { tm.forEach(clearTimeout); tm = []; };
       box.onpointerdown = e => { e.preventDefault(); if (n >= 3) return; holding = true; t0 = Date.now(); box.classList.add('squish'); box.classList.remove('wob'); try { navigator.vibrate && navigator.vibrate(30); } catch (er) {} tone([196], .06, 'triangle');
-        clear(); tm.push(setTimeout(() => { if (holding) say([[MB_SAY.monHold]]); }, 500)); [1, 2, 3].forEach(k => tm.push(setTimeout(() => { if (!holding) return; const c = $('mbCnt'); if (c) c.textContent = k; tone([330 + k * 110], .07, 'sine'); try { navigator.vibrate && navigator.vibrate(20); } catch (er) {} if (k === 3) say([[MB_SAY.monGo]]); }, k * 1000))); };
+        clear(); tm.push(setTimeout(() => { if (holding) SAY([[MB_SAY.monHold]]); }, 500)); [1, 2, 3].forEach(k => tm.push(setTimeout(() => { if (!holding) return; const c = $('mbCnt'); if (c) c.textContent = k; tone([330 + k * 110], .07, 'sine'); try { navigator.vibrate && navigator.vibrate(20); } catch (er) {} if (k === 3) SAY([[MB_SAY.monGo]]); }, k * 1000))); };
       const up = () => { if (!holding) return; holding = false; clear(); box.classList.remove('squish'); const c = $('mbCnt'); if (c) c.textContent = '';
         if (Date.now() - t0 < 3000) { box.classList.remove('wob'); void box.offsetWidth; box.classList.add('wob'); tone([262, 392], .05, 'sine'); return; }
         n++; $('mbDots').children[n - 1].classList.add('on'); tone([523, 784, 659], .08, 'square'); box.classList.add('boing');
-        if (n < 3) { set('silly'); say([[MB_SAY.monPop]]); setTimeout(() => { if (S.alive && $('mbMon')) { set('angry'); box.classList.remove('boing'); } }, 2600); }
-        else { set('happy'); say([[MB_SAY.monEnd]]).then(() => { if (S.alive && $('mbMon')) done(''); }); } };
+        if (n < 3) { set('silly'); SAY([[MB_SAY.monPop]]); setTimeout(() => { if (S.alive && $('mbMon')) { set('angry'); box.classList.remove('boing'); } }, 2600); }
+        else { set('happy'); SAY([[MB_SAY.monEnd]]).then(() => { if (S.alive && $('mbMon')) done(''); }); } };
       box.onpointerup = box.onpointerleave = box.onpointercancel = up; S.clean.push(() => { holding = false; clear(); });
     }
     // 遊戲 C：搖搖星空瓶（搖手機或手指畫圈攪拌；放好後 20 秒慢慢沉下來）
@@ -9743,7 +9747,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       stopGame(); track('mb-jar', '百寶箱：星空瓶');
       stage.innerHTML = gameTop('✨ 搖搖星空瓶') + `<div class="mb-jar"><canvas id="mbCv" width="220" height="300"></canvas><div class="mb-cap"></div></div><p class="mb-say" id="mbHint">搖一搖手機，或用手指在瓶子裡畫圈圈</p>
         <div class="mb-row"><button class="mb-act" id="mbShake">📳 搖手機</button><button class="mb-act" id="mbPut">🫙 放好瓶子</button></div>`;
-      wireBack(); say([[MB_SAY.jarHi]]);
+      wireBack(); SAY([[MB_SAY.jarHi]]);
       const cv = $('mbCv'), cx = cv.getContext('2d'), W = 220, H = 300, COL = ['#FFD45C', '#FF8FB0', '#8FD3FF', '#B9A6FF', '#9BE8C0', '#FFFFFF'];
       const P = [...Array(70)].map(() => ({ x: 30 + Math.random() * 160, y: H - 20 - Math.random() * 40, vx: 0, vy: 0, r: 2 + Math.random() * 3, c: COL[Math.floor(Math.random() * COL.length)] }));
       let energy = 0, mode = 'play', raf = 0, lastX = 0, lastY = 0, stirred = 0;
@@ -9770,7 +9774,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         window.addEventListener('devicemotion', on); S.clean.push(() => window.removeEventListener('devicemotion', on));
       };
       $('mbPut').onclick = () => {
-        if (mode !== 'play') return; if (stirred < .6) stir(.9); mode = 'settle'; $('mbPut').disabled = true; $('mbShake').disabled = true; say([[MB_SAY.jarSet]]);
+        if (mode !== 'play') return; if (stirred < .6) stir(.9); mode = 'settle'; $('mbPut').disabled = true; $('mbShake').disabled = true; SAY([[MB_SAY.jarSet]]);
         let s = 20; $('mbHint').textContent = `看著星星慢慢掉下來… ${s}`;
         const t = setInterval(() => { s--; const h = $('mbHint'); if (h) h.textContent = s > 0 ? `看著星星慢慢掉下來… ${s}` : '星星都睡著了'; if (s <= 0) { clearInterval(t); if (S.alive) done(MB_SAY.jarEnd); } }, 1000);
         S.clean.push(() => clearInterval(t));
@@ -9781,24 +9785,24 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       stopGame(); track('mb-breath', '百寶箱：深呼吸球'); let alive = true; S.clean.push(() => { alive = false; });
       stage.innerHTML = gameTop('🫧 深呼吸球') + `<div class="mb-breath"><div class="calm-ball"></div><span class="calm-word" id="mbW">準備</span></div><p class="mb-say" id="mbT">${CALM_SAY.hi}</p>`;
       wireBack(); const ball = stage.querySelector('.calm-ball'), w = $('mbW'), tp = $('mbT');
-      await say([[CALM_SAY.hi]]); if (!alive) return;
+      await SAY([[CALM_SAY.hi]]); if (!alive) return;
       for (let r = 1; r <= 4 && alive; r++) {
-        w.textContent = '吸氣'; tp.textContent = `第 ${r} 次：慢慢吸氣，肚子鼓起來`; ball.classList.add('big'); say([[CALM_SAY.inn]]);
+        w.textContent = '吸氣'; tp.textContent = `第 ${r} 次：慢慢吸氣，肚子鼓起來`; ball.classList.add('big'); SAY([[CALM_SAY.inn]]);
         for (let k = 3; k >= 1 && alive; k--) { w.textContent = `吸氣 ${k}`; await delay(1000); }
         if (!alive) return;
-        w.textContent = '吐氣'; tp.textContent = `第 ${r} 次：慢慢吐氣，把生氣吹走`; ball.classList.remove('big'); say([[CALM_SAY.out]]);
+        w.textContent = '吐氣'; tp.textContent = `第 ${r} 次：慢慢吐氣，把生氣吹走`; ball.classList.remove('big'); SAY([[CALM_SAY.out]]);
         for (let k = 3; k >= 1 && alive; k--) { w.textContent = `吐氣 ${k}`; await delay(1000); }
         await delay(400);
       }
       if (alive) done('');
     }
     // 遊戲完成 → 說一句 → 晴天抱抱
-    async function done(line) { stopGame(); if (line) await say([[line]]); if (S.alive) sunny(); }
+    async function done(line) { stopGame(); if (line) await SAY([[line]]); if (S.alive) sunny(); }
     function sunny() {
       stopGame(); track('mb-sunny', '百寶箱：晴天抱抱');
       stage.innerHTML = `<div class="mb-sky"><span class="mb-cl1">☁️</span><span class="mb-cl2">☁️</span><span class="mb-sun">☀️</span></div><div class="mb-char hug">${ch('up', 'happy')}</div><p class="mb-say">你剛剛靠自己把心情變平靜了，真的超級勇敢！<br>去抱抱你的小熊，或找爸爸媽媽拿一個大抱抱吧！🤗</p>
         <div class="mb-row"><button class="mb-act big" id="mbOk">我好多了！</button><button class="mb-act" id="mbAgain">🔁 再玩一個</button></div>`;
-      tone([523, 659, 784, 1046], .12, 'sine'); say([[MB_SAY.end]]);
+      tone([523, 659, 784, 1046], .12, 'sine'); SAY([[MB_SAY.end]]);
       $('mbOk').onclick = () => { close(); try { lsGive('calm'); } catch (e) {} };
       $('mbAgain').onclick = weather;
     }
