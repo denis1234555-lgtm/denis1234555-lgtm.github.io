@@ -63,7 +63,7 @@
 * { box-sizing: border-box; }
 input, select, textarea { max-width: 100%; min-width: 0; } /* v105：輸入框不要撐破對話框 */
 a, .copyright, .note, .hz-note { overflow-wrap: anywhere; } /* v105：很長的網址會自動換行，手機畫面不會左右晃 */
-.hz-pay, .hz-pv, .mb-tips, .cheer-ov, .pv-busy, .pk-lock, .pk-ask, .al-show, .wcard, .fr-name, .kid-ov, .ls-ov, .zyr { grid-template-columns: minmax(0, 1fr); } .hz-pc, .hz-pvc, .mb-tc, .cheer-card { min-width: 0; max-width: 100%; } /* v105：對話框不會比手機螢幕寬 */
+.hz-pay, .hz-pv, .mb-tips, .cheer-ov, .tc-ov, .cert-ov, .pv-busy, .pk-lock, .pk-ask, .al-show, .wcard, .fr-name, .kid-ov, .ls-ov, .zyr { grid-template-columns: minmax(0, 1fr); } .hz-pc, .hz-pvc, .mb-tc, .cheer-card { min-width: 0; max-width: 100%; } /* v105：對話框不會比手機螢幕寬 */
 [hidden] { display: none !important; }
 html, body, button, a, input, select, .opt { touch-action: manipulation; }
 html.no-zoom, html.no-zoom body, html.no-zoom .pk, html.no-zoom .pk *, html.no-zoom #game *, html.no-zoom #learn *, html.no-zoom #ezlearn * { touch-action: manipulation; }
@@ -90,6 +90,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
 /* 頁首 */
 .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.top .tools { flex-shrink: 0; } @media (max-width: 440px) { .top .brand h1 { display: none; } } /* v106：窄手機上標題會被右邊按鈕蓋住，只留彩色 logo */
 .brand h1 { margin: 0; font-size: clamp(1.05rem, 4.6vw, 1.6rem); font-weight: 900; letter-spacing: .03em; white-space: nowrap; }
 .logo { width: 42px; height: 42px; flex: none; }
 .tools { display: flex; align-items: center; gap: 8px; flex: none; }
@@ -1991,6 +1992,45 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 @keyframes mbwob{25%{transform:rotate(-8deg) scale(1.05)}60%{transform:rotate(6deg)}}@keyframes mbboing{30%{transform:scale(1.25,.8)}60%{transform:scale(.9,1.15)}}
 @keyframes mbsun{to{transform:translateX(-50%) scale(1.3)}}@keyframes mbcl1{to{transform:translateX(-160px);opacity:0}}@keyframes mbcl2{to{transform:translateX(160px);opacity:0}}
 @media (prefers-reduced-motion:reduce){.mb-cloud,.mb-char.talk,.mb-char.hug{animation:none}}
+/* v106 錯題小老師 */
+.tc-card, .cert-btns, .pr-unlock, .hz-pvc, .mb-ov { --c: #F2A23A; --c-deep: #CF7F14; }
+.tc-ov{position:fixed;inset:0;z-index:950;background:rgba(40,30,60,.5);display:grid;place-items:center;padding:16px}.tc-ov.bye{opacity:0;transition:opacity .3s}
+.tc-card{background:#FFFDF5;border-radius:26px;padding:16px 18px 18px;width:min(420px,100%);text-align:center;box-shadow:0 14px 40px rgba(0,0,0,.25);display:flex;flex-direction:column;align-items:center;gap:10px;animation:cheerpop .5s cubic-bezier(.3,1.5,.5,1)}
+.tc-head{display:flex;align-items:center;gap:8px;font-size:1.15rem}.tc-tch svg{width:54px;height:54px}
+.tc-vis{min-height:200px;display:grid;place-items:center;width:100%}.tc-vis.go>*{animation:tcin .45s ease-out}
+.tc-cap{margin:0;font-size:1.15rem;font-weight:900;color:#4A3B5C;line-height:1.5;min-height:3em}
+.tc-dots{display:flex;gap:6px}.tc-dots i{width:10px;height:10px;border-radius:50%;background:#EAD9C0}.tc-dots i.on{background:#F2B53A}
+.tc-ok:disabled{opacity:.45}
+.tc-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.tc-ten{display:grid;grid-template-columns:repeat(5,26px);gap:5px;padding:8px;border-radius:14px;border:3px dashed #D8CFC0;background:#fff}.tc-ten.boxed{border:4px solid #F2B53A;box-shadow:0 0 0 4px #FFE9A8}
+.tc-pile{display:grid;grid-template-columns:repeat(3,26px);gap:5px}
+.tc-dot{width:26px;height:26px;border-radius:50%;display:block}.tc-dot.r{background:#F2735E}.tc-dot.b{background:#4A90D9}.tc-dot.e{background:#F1EBE0}.tc-dot.hi{box-shadow:0 0 0 4px #FFE08A;animation:tcpulse .8s ease-in-out infinite alternate}
+.tc-big{font-size:2.6rem;font-weight:900;color:#E5484D}
+.tc-clock{width:190px;height:190px}.tc-stroke{width:190px;height:190px}
+.tc-zy{display:inline-grid;place-items:center;min-width:70px;height:80px;padding:0 10px;border-radius:18px;font-size:2.6rem;font-weight:900;background:#fff;box-shadow:0 5px 0 #EAD9C0}.tc-zy.r{color:#E5484D}.tc-zy.b{color:#2B6CB0}.tc-zy.g{color:#2F9E5E}.tc-zy.hi{transform:scale(1.15);box-shadow:0 0 0 5px #FFE08A,0 5px 0 #EAD9C0}.tc-zy.big{font-size:3.4rem;min-width:140px;height:110px;color:#4A3B5C}
+.tc-join{gap:0}.tc-join .tc-zy{border-radius:0}.tc-join .tc-zy:first-child{border-radius:18px 0 0 18px}.tc-join .tc-zy:last-child{border-radius:0 18px 18px 0}.tc-plus{font-size:1.8rem;color:#B9AC98}
+@keyframes tcin{from{opacity:0;transform:scale(.85)}}@keyframes tcpulse{to{transform:scale(1.15)}}
+/* v106 生活挑戰、練習卷、獎狀 */
+.dq-row.habit{background:#FFF6DC}.hb-tip{display:block;font-weight:700;color:#8A7A66;font-size:.8rem}.hb-go{white-space:nowrap}
+.pr-unlock{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;background:#FFF6DC;border:2px dashed #F2B53A;border-radius:18px;padding:10px 12px;margin:8px 0;font-weight:900}
+.cert-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.cert-chip{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 8px;border-radius:18px;background:#F4F0E8;border:0;font:inherit;color:#8A7A66;text-align:center}.cert-chip span{font-size:1.8rem}.cert-chip small{font-size:.75rem}
+.cert-chip.on{background:#FFF0B8;color:#4A3B5C;cursor:pointer;box-shadow:0 4px 0 #E8C35A}
+.cert-ov{position:fixed;inset:0;z-index:960;background:rgba(40,30,60,.55);overflow-y:auto;display:grid;place-items:center;padding:16px}
+.cert-wrap{width:min(560px,100%);display:flex;flex-direction:column;align-items:center;gap:10px}.cert-wrap .note{color:#fff;text-align:center;margin:0}
+.cert-new{margin:0;color:#FFE08A;font-weight:900;font-size:1.2rem}
+.cert{width:100%;aspect-ratio:1.414;background:#FFFDF5;border-radius:10px;padding:10px;box-shadow:0 14px 40px rgba(0,0,0,.3)}
+.cert-in{height:100%;border:6px double #E0B33A;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:4% 5%;text-align:center;background:radial-gradient(circle at 50% 30%,#FFF6DC,#FFFDF5 70%);color:#4A3B5C}
+.cert-rib{background:#E8584F;color:#fff;font-weight:900;font-size:clamp(.9rem,3.6vw,1.5rem);padding:4px 22px;border-radius:999px;letter-spacing:.1em}
+.cert-medal{font-size:clamp(1.8rem,8vw,3rem);line-height:1}
+.cert-to{margin:0;font-size:clamp(.9rem,3.4vw,1.3rem);font-weight:800}.cert-name{font-size:1.5em;font-weight:900;color:#E8584F;border-bottom:3px solid #E0B33A;padding:0 10px}
+.cert-why{margin:0;font-size:clamp(.72rem,2.7vw,1.05rem);font-weight:700;line-height:1.6}
+.cert-title{font-size:clamp(1.1rem,4.6vw,1.9rem);font-weight:900;color:#B5651D}
+.cert-foot{width:100%;display:flex;justify-content:space-between;align-items:flex-end;font-size:clamp(.65rem,2.4vw,.95rem)}
+.cert-sign,.cert-date{display:flex;flex-direction:column;align-items:center}.cert-heads{display:flex}.cert-heads svg{width:clamp(28px,8vw,46px);height:auto}.cert-sign b{font-family:var(--f-display);font-size:1.25em}
+.cert-name-row label{color:#fff;font-weight:800;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center}.cert-name-row input{font:inherit;font-weight:900;padding:6px 10px;border-radius:10px;border:0;width:10em}
+.cert-btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+@media print { body.cert-open > *:not(.cert-ov) { display: none !important; } body.cert-open .cert-ov { position: static; background: none; padding: 0; display: block; } body.cert-open .cert-btns, body.cert-open .cert-name-row, body.cert-open .cert-wrap .note, body.cert-open .cert-new { display: none !important; } body.cert-open .cert { box-shadow: none; } }
 .calm-ov,.eye-ov{position:fixed;inset:0;z-index:400;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px 16px;text-align:center;color:#fff}
 .calm-ov{background:radial-gradient(circle at 50% 40%,#3E5C9A,#1F2D52 70%)}
 .calm-ov .calm-char{width:min(150px,38vw);height:auto}
@@ -3231,6 +3271,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       <p class="note">最近 20 回合的答對率，虛線是平均。</p>
       <div class="chart" id="chart"></div>
     </div>
+    <div class="block cert-blk" id="certBlock">
+      <h3>🏆 榮譽獎狀</h3>
+      <p class="note">累積星星、學完注音或字母，就會自動得到獎狀。點一下可以列印、存成圖片或 PDF。</p>
+      <div class="cert-list" id="certList"></div>
+    </div>
     <div class="block weekly print-blk" id="printBlock">
       <h3>🖨️ 列印學習單 <small class="note">⭐ 含列印的方案</small></h3>
       <div class="weekly-body">
@@ -3241,6 +3286,9 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
           <label>一張幾題<select id="prPer"><option value="12">12 題（字和圖比較大）</option><option value="20">20 題（最省紙）</option></select></label>
           <label class="pr-check"><input type="checkbox" id="prBW"> 黑白省墨（圖案變灰階，不印底色）</label>
           <button id="prMake" class="btn small pr-btn">🖨️ 產生學習單</button>
+        </div>
+        <div class="pr-pack">
+          <b>⭐ 今日專屬練習卷</b><span class="note">今天答錯的主題重練＋國字或數字描寫＋連點成圖，一次印好。線上玩 3 分鐘，線下拿筆寫 5 分鐘。</span><div class="pr-pack-row"><button id="prToday" class="btn small pr-btn">⭐ 產生今日練習卷</button></div>
         </div>
         <div class="pr-pack">
           <b>📅 本週複習包</b><span class="note">依照孩子最近兩週比較弱的主題，自動挑 5 張。建議週末印好，平日下班後每天寫 1 張。</span><div class="pr-pack-row"><button id="prWeak" class="btn small pr-btn">📅 產生本週複習包</button></div></div>
@@ -3377,6 +3425,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     <div class="done-sc"><div class="big-score" id="doneScore">0 / 10</div><svg class="done-stamp" id="doneStamp" viewBox="0 0 120 120" aria-hidden="true" hidden><circle cx="60" cy="60" r="54" fill="none" stroke="#D9574A" stroke-width="5"/><circle cx="60" cy="60" r="44" fill="none" stroke="#D9574A" stroke-width="2" stroke-dasharray="3 4"/><text x="60" y="74" font-family="Gaegu, Fredoka, cursive" font-size="40" font-weight="700" text-anchor="middle" fill="#D9574A" id="doneStampTx">100</text><text x="60" y="34" font-size="11" font-weight="900" text-anchor="middle" fill="#D9574A" letter-spacing="2">動動腦</text><path d="M44 88l3 6 6 .8-4.5 4.2 1.1 6-5.6-3-5.6 3 1.1-6-4.5-4.2 6-.8zM76 88l3 6 6 .8-4.5 4.2 1.1 6-5.6-3-5.6 3 1.1-6-4.5-4.2 6-.8z" fill="#D9574A"/></svg></div>
     <div class="star-row" id="doneStars"></div>
     <p id="doneMsg"></p>
+    <div class="pr-unlock" id="prUnlock" hidden><span>🖨️ 拿滿星！解鎖這個主題的 A4 練習卷</span><button class="btn small" id="prUnlockGo">👪 給爸媽印</button></div>
     <div class="fam-task" id="famTask" hidden><b>👨‍👩‍👧 親子任務・<span id="famDom"></span></b><p id="famText"></p><div class="fam-btns"><button id="famDo" class="btn small">✅ 我們一起做到了</button><button id="famNext" class="btn ghost small">換一個任務</button></div><p class="note" id="famNote" hidden></p></div>
     <div class="row-btns">
       <button id="againBtn" class="btn">再玩一次</button>
@@ -7259,7 +7308,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         st.results[st.i] = 'done'; drawTrack(); try { revMark(q, false); } catch (e) {} if (st.sub === 'place' && q.plSub) st.plRes[q.plSub] = false;
         [...$('options').children].forEach(x => { x.disabled = true; });
         let again = false; if (!q.again && st.sub !== 'place' && (st.reN || 0) < 2) { again = true; st.reN = (st.reN || 0) + 1; st.pend.push({ q, at: st.i + 3 }); st.total++; } // 一回合最多再考 2 題，不讓回合變太長
-        say([...(enW ? [['This is the answer.', 'en-US']] : [['答案是這一個喔']]), ...q.after, ...(enW || !again ? [] : [['等一下我們再考一次']])]).then(() => delay(1200)).then(() => { if (st !== cur || $('game').hidden) return; st.i++; nextQ(); });
+        const talk2 = [...(enW ? [['This is the answer.', 'en-US']] : [['答案是這一個喔']]), ...q.after, ...(enW || !again ? [] : [['等一下我們再考一次']])], TT = !enW && teachFor(q); // v106：4 大難點用小老師動畫教
+        (TT ? delay(900).then(() => teachRun(TT, talk2)) : say(talk2).then(() => delay(1200))).then(() => { if (st !== cur || $('game').hidden) return; st.i++; nextQ(); });
         return;
       }
       setTimeout(() => { if (st === cur && st.q === q && !st.locked) $('prompt').textContent = q.prompt; }, 2600);
@@ -9186,6 +9236,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     const cheer = s >= n && n >= 5 && !DQ_PLAY.has(st.sub) && !/^(memory|place)$/.test(st.sub) && canPlay(st.sub) && store.get('cheerOn', true) !== false;
     LS_WAIT = cheer ? 6000 : 1400;
     try { lsAfterRound(st.sub, s, n, hist); } catch (e) {}
+    try { certCheck(); } catch (e) {}
     $('doneScore').textContent = `${s} / ${n}`;
     $('doneStars').innerHTML = Array.from({ length: n }, (_, k) =>
       `<svg class="${k < s ? 'on' : ''}" style="animation-delay:${k * .08}s" fill="${k < s ? 'var(--sun)' : 'var(--line)'}"><use href="#star"/></svg>`).join('');
@@ -9198,6 +9249,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     const fmsg = trialEnd ? '試玩結束囉！想玩更多，請爸爸媽媽開啟。' : msg;
     $('doneTitle').textContent = trialEnd ? '試玩結束！' : ratio >= .9 ? '全部都會了！' : '完成了！';
     $('doneMsg').textContent = fmsg;
+    { const u = $('prUnlock'), full = s >= n && n >= 5 && !trialEnd && !DQ_PLAY.has(st.sub) && prTopics().some(t => t[0] === st.sub); u.hidden = !full; // v106：拿滿星解鎖這個主題的 A4 練習卷
+      if (full) { const sub = st.sub; $('prUnlockGo').onclick = () => openGate(() => { renderReport(); show('report'); setTimeout(() => { try { renderPrint(); $('prTopic').value = sub; } catch (e) {} $('printBlock').scrollIntoView({ behavior: 'smooth' }); }, 150); }); } }
     const showTask = () => { const ft = familyTask(st.sub); $('famDom').textContent = ft.d; $('famText').textContent = ft.t; $('famTask').hidden = false; };
     $('learnAgain').hidden = !LEARN[st.sub];
     showTask(); $('famNext').onclick = () => { showTask(); track('family-task-next', '換親子任務'); };
@@ -10236,6 +10289,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   }
   function renderReport() {
     try { kidReport(); } catch (e) {}
+    try { $('certList').innerHTML = certList(); $('certList').querySelectorAll('[data-cert]').forEach(b => b.onclick = () => certShow(b.dataset.cert)); } catch (e) {}
     try { renderCheat(); } catch (e) { console.warn(e); }
     drawRankSet();
     renderEzSkill(); renderDomains();
@@ -10420,6 +10474,165 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   $('pvClose').addEventListener('click', () => { $('printView').hidden = true; document.body.classList.remove('printing'); prClear(); });
   $('pvPrint').addEventListener('click', () => { track('print-go', '列印學習單'); const imgs = [...$('pvScroll').querySelectorAll('img')]; Promise.all(imgs.map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; setTimeout(r, 2500); }))).then(() => window.print()); });
   $('prAge').addEventListener('change', renderPrint);
+  /* ---------- v106 🧑‍🏫 錯題小老師：同一題錯兩次，4 大難點用 15 秒步驟動畫教觀念（湊十、時鐘、注音拼音、筆順） ---------- */
+  function teachFor(q) {
+    const c = (q.options || []).find(o => o.correct), lab = String(c && c.label || ''), aft = String(((q.after || [])[0] || [])[0] || '');
+    let m;
+    if ((m = aft.match(/^(\d+)加(\d+)等於(\d+)$/)) && +m[1] < 10 && +m[2] < 10 && +m[1] + +m[2] > 10) return { type: 'ten', a: +m[1], b: +m[2] };
+    if ((m = lab.match(/^(\d+)點(半|(\d+)分)?$/)) && +m[1] >= 1 && +m[1] <= 12) return { type: 'clock', h: +m[1], mi: m[2] === '半' ? 30 : +(m[3] || 0) };
+    if (/^[ㄅ-ㄩ]{2,3}[ˊˇˋ˙]?$/.test(lab)) return { type: 'zy', s: lab };
+    if (st.sub === 'yxstroke' && (m = String(q.prompt).match(/「(.)」/)) && YX_STROKES[m[1]] && (m = [m[1], (lab.match(/第(\d+)筆/) || [])[1]]) && m[1]) return { type: 'stroke', ch: m[0], n: +m[1] };
+    return null;
+  }
+  // 每一步：[畫面 HTML, 說明文字]；動畫大約 15 秒，最後念原本的解說
+  function teachSteps(T) {
+    const dots = (n, cls) => [...Array(n)].map(() => `<i class="${cls}"></i>`).join('');
+    if (T.type === 'ten') {
+      const need = 10 - T.a, rest = T.b - need, frame = (a, b, boxed) => `<div class="tc-ten${boxed ? ' boxed' : ''}">${dots(a, 'tc-dot r')}${dots(Math.min(b, 10 - a), 'tc-dot b')}${dots(Math.max(0, 10 - a - b), 'tc-dot e')}</div>`;
+      return [
+        [`<div class="tc-row">${frame(T.a, 0)}<div class="tc-pile">${dots(T.b, 'tc-dot b')}</div></div>`, `${T.a} 加 ${T.b}：先放 ${T.a} 個紅點點`],
+        [`<div class="tc-row">${frame(T.a, 0)}<div class="tc-pile">${dots(need, 'tc-dot b hi')}${dots(rest, 'tc-dot b')}</div></div>`, `${T.a} 再 ${need} 個就湊成 10`],
+        [`<div class="tc-row">${frame(T.a, need, true)}<div class="tc-pile">${dots(rest, 'tc-dot b')}</div></div>`, `框起來，這裡是 10 個！`],
+        [`<div class="tc-row">${frame(T.a, need, true)}<div class="tc-pile">${dots(rest, 'tc-dot b hi')}</div></div>`, `還剩下 ${rest} 個`],
+        [`<div class="tc-big">10 + ${rest} = ${10 + rest}</div>`, `10 和 ${rest}，就是 ${10 + rest}`]
+      ];
+    }
+    if (T.type === 'clock') {
+      const clk = (h, mi, hiH, hiM) => { const ha = ((h % 12) + mi / 60) * 30, ma = mi * 6;
+        return `<svg class="tc-clock" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="#fff" stroke="#E8B07A" stroke-width="8"/>${[...Array(12)].map((_, i) => { const a = (i + 1) * 30 * Math.PI / 180; return `<text x="${100 + Math.sin(a) * 72}" y="${100 - Math.cos(a) * 72 + 7}" text-anchor="middle" font-size="20" font-weight="800" fill="${(hiH && i + 1 === (h % 12 || 12)) || (hiM && (i + 1) % 12 === (mi / 5) % 12 && mi % 5 === 0) ? '#E5484D' : '#4A3B5C'}">${i + 1}</text>`; }).join('')}
+          <line x1="100" y1="100" x2="${100 + Math.sin(ma * Math.PI / 180) * 70}" y2="${100 - Math.cos(ma * Math.PI / 180) * 70}" stroke="${hiM ? '#E5484D' : '#4A90D9'}" stroke-width="${hiM ? 7 : 5}" stroke-linecap="round"/>
+          <line x1="100" y1="100" x2="${100 + Math.sin(ha * Math.PI / 180) * 44}" y2="${100 - Math.cos(ha * Math.PI / 180) * 44}" stroke="${hiH ? '#E5484D' : '#2C2A5A'}" stroke-width="${hiH ? 11 : 9}" stroke-linecap="round"/><circle cx="100" cy="100" r="7" fill="#2C2A5A"/></svg>`; };
+      const mt = T.mi === 0 ? '整點' : T.mi === 30 ? '半' : `${T.mi} 分`;
+      return [
+        [clk(T.h, T.mi, false, false), '時鐘有兩根針：短短胖胖的是「短針」，長長瘦瘦的是「長針」'],
+        [clk(T.h, T.mi, true, false), `先看短針：短針指著 ${T.h}（或剛過 ${T.h}），就是 ${T.h} 點`],
+        [clk(T.h, T.mi, false, true), T.mi === 0 ? '再看長針：長針指著 12，是「整點」' : T.mi === 30 ? '再看長針：長針指著 6，是「半」' : `再看長針：長針指著 ${T.mi / 5}，一格 5 分，是 ${T.mi} 分`],
+        [clk(T.h, T.mi, true, true), `合起來：${T.h} 點${T.mi === 0 ? '' : mt === '半' ? '半' : ' ' + mt}`]
+      ];
+    }
+    if (T.type === 'zy') {
+      const tone = (T.s.match(/[ˊˇˋ˙]$/) || [''])[0], parts = [...T.s.replace(/[ˊˇˋ˙]$/, '')];
+      const card = (z, cls) => `<span class="tc-zy ${cls || ''}">${z}</span>`;
+      return [
+        [`<div class="tc-row">${parts.map((z, i) => card(z, i ? 'b' : 'r')).join('<b class="tc-plus">+</b>')}${tone ? `<b class="tc-plus">+</b>${card(tone, 'g')}` : ''}</div>`, '先分開看：前面是聲母，後面是韻母' + (tone ? '，還有聲調' : '')],
+        [`<div class="tc-row">${card(parts[0], 'r hi')}</div>`, `先念聲母「${parts[0]}」，嘴巴準備好`],
+        [`<div class="tc-row">${parts.slice(1).map(z => card(z, 'b hi')).join('')}</div>`, `再念韻母「${parts.slice(1).join('')}」`],
+        [`<div class="tc-row tc-join">${parts.map((z, i) => card(z, i ? 'b' : 'r')).join('')}${tone ? card(tone, 'g') : ''}</div>`, '快快連在一起念，就拼出來了！'],
+        [`<div class="tc-row">${card(T.s, 'big')}</div>`, `拼起來是「${T.s}」`]
+      ];
+    }
+    if (T.type === 'stroke') {
+      const N = YX_STROKES[T.ch].length, steps = [];
+      for (let k = 0; k < Math.min(N, 6); k++) steps.push([strokeSVG(T.ch, k, k, 'tc-stroke'), `第 ${k + 1} 筆${k === T.n - 1 ? '，就是這一筆！' : ''}`]);
+      if (N > 6) steps.push([strokeSVG(T.ch, N, -1, 'tc-stroke'), `一共 ${N} 筆，寫好了`]);
+      steps.push([strokeSVG(T.ch, T.n - 1, T.n - 1, 'tc-stroke'), `所以答案是第 ${T.n} 筆（紅色那一筆）`]);
+      return steps;
+    }
+    return [];
+  }
+  function teachRun(T, talk) {
+    return new Promise(res => {
+      const S = teachSteps(T); if (!S.length) { say(talk).then(res); return; }
+      const ov = document.createElement('div'); ov.className = 'tc-ov'; track('teach-' + T.type, '錯題小老師：' + T.type);
+      ov.innerHTML = `<div class="tc-card"><div class="tc-head"><span class="tc-tch">${(() => { try { return scnSVG('none|tch 160 stand smile - 200', 'scn', '110 60 100 100'); } catch (e) { return '👩‍🏫'; } })()}</span><b>小老師教你</b></div>
+        <div class="tc-vis" id="tcVis"></div><p class="tc-cap" id="tcCap"></p><div class="tc-dots">${S.map(() => '<i></i>').join('')}</div><button class="btn small tc-ok" id="tcOk" disabled>我懂了 👍</button></div>`;
+      document.body.appendChild(ov);
+      let k = 0, end = false, my = st; const per = Math.max(2200, Math.min(3200, 14000 / S.length));
+      const fin = () => { if (end) return; end = true; clearInterval(tm); ov.classList.add('bye'); setTimeout(() => ov.remove(), 350); res(); };
+      const show = () => { if (!ov.isConnected) return; const [v, cap] = S[k]; $('tcVis').innerHTML = v; $('tcCap').textContent = cap; [...ov.querySelectorAll('.tc-dots i')].forEach((d, i) => d.classList.toggle('on', i <= k)); $('tcVis').classList.remove('go'); void $('tcVis').offsetWidth; $('tcVis').classList.add('go'); tone([660 + k * 60], .05, 'sine'); };
+      show();
+      const tm = setInterval(() => { if (st !== my || $('game').hidden || !ov.isConnected) return fin(); k++; if (k < S.length) return show(); clearInterval(tm); $('tcOk').disabled = false;
+        say(talk).then(() => delay(2500)).then(() => { if (!end) fin(); }); }, per);
+      $('tcOk').onclick = fin;
+      ov.onclick = e => { if (e.target === ov && !$('tcOk').disabled) fin(); };
+    });
+  }
+  /* ---------- v106 🏡 生活好習慣挑戰：每日任務多 1 項，家長確認達成，送雙倍星星（2 顆） ---------- */
+  const HABITS = [['🧸', '自己收玩具'], ['🫁', '生氣的時候深呼吸'], ['👕', '自己穿衣服'], ['🪥', '早晚好好刷牙'], ['🥦', '把青菜吃完'], ['🙏', '說請、謝謝、對不起'], ['🧹', '幫忙做一件家事'], ['🛏️', '準時上床睡覺'], ['🧼', '吃飯前自己洗手'], ['💬', '跟家人說今天學了什麼'], ['👟', '自己把鞋子放整齊'], ['🤗', '給家人一個抱抱']];
+  const habitToday = () => { const seed = [...today()].reduce((a, c) => a * 31 + c.charCodeAt(0) >>> 0, 11); return HABITS[seed % HABITS.length]; };
+  function habitRow() {
+    const [e, t] = habitToday(), L = store.get('habitLog', {}), ok = L[today()];
+    return `<div class="dq-row habit${ok ? ' ok' : ''}"><span class="dq-ic">${e}</span><span class="dq-t"><b>生活挑戰：今天有${t}嗎？</b><small class="hb-tip">做到了，請爸爸媽媽按確認，送 2 顆星星</small></span>${ok ? '<span class="dq-done">✅</span>' : '<button class="dq-get hb-go" id="hbGo">👪 家長確認</button>'}</div>`;
+  }
+  // 家長確認：簡單算數，避免小朋友自己按
+  function habitConfirm() {
+    const a = rand(5, 9), b = rand(4, 9), ans = a + b, opts = shuffle([ans, ans + 1, ans - 2]), [e, t] = habitToday();
+    const ov = document.createElement('div'); ov.className = 'hz-pv';
+    ov.innerHTML = `<div class="hz-pvc"><b>👪 請家長確認</b><small>孩子今天有「${t}」嗎？確認後送 2 顆星星。</small><div class="hz-q">${a} + ${b} = ?</div><div class="hz-g">${opts.map(n => `<button data-a="${n}">${n}</button>`).join('')}</div><button class="btn ghost small" id="hbNo">還沒做到</button></div>`;
+    document.body.appendChild(ov); ov.querySelector('#hbNo').onclick = () => ov.remove();
+    ov.querySelectorAll('[data-a]').forEach(x => x.onclick = () => {
+      ov.remove(); if (+x.dataset.a !== ans) return;
+      const L = store.get('habitLog', {}); if (L[today()]) return; L[today()] = t; const ks = Object.keys(L); if (ks.length > 90) ks.sort((p, q) => new Date(p) - new Date(q)).slice(0, ks.length - 90).forEach(k => delete L[k]); store.set('habitLog', L);
+      giveStars(2); track('habit-ok', '生活挑戰：' + t); tone([523, 659, 784, 1046], .1, 'sine'); try { burst($('dqCard'), 30); } catch (er) {}
+      const line = '好棒！生活挑戰完成，送你兩顆星星！'; if (pvVoiced(line, '')) say([[line]]);
+      dqRender();
+    });
+  }
+  /* ---------- v106 🏆 榮譽獎狀：100／300／500／1000 顆星、學完 37 個注音、學完 26 個字母，自動發獎狀（可列印、存成圖片或 PDF） ---------- */
+  const CERTS = [
+    ['s100', '⭐', '星星小達人', '累積 100 顆星星', () => total >= 100],
+    ['s300', '🌟', '星星大達人', '累積 300 顆星星', () => total >= 300],
+    ['s500', '💫', '星星小博士', '累積 500 顆星星', () => total >= 500],
+    ['s1000', '👑', '星星大博士', '累積 1000 顆星星', () => total >= 1000],
+    ['zy37', 'ㄅ', '注音小博士', '學完 37 個注音符號', () => { try { return cnlLearned('sheng').size + cnlLearned('yun').size >= 37; } catch (e) { return false; } }],
+    ['abc26', '🔤', 'ABC 小博士', '學完 26 個英文字母', () => { try { return ezlLearned('abc').size >= 26; } catch (e) { return false; } }]
+  ].map(([id, ic, n, why, f]) => ({ id, ic, n, why, f }));
+  const certOwn = () => store.get('certs', {});
+  function certCheck() {
+    const own = certOwn(); let fresh = null;
+    CERTS.forEach(c => { if (!own[c.id] && (() => { try { return c.f(); } catch (e) { return false; } })()) { own[c.id] = today(); fresh = fresh || c; } });
+    if (!fresh) return; store.set('certs', own); track('cert-' + fresh.id, '獎狀：' + fresh.n);
+    setTimeout(() => certShow(fresh.id, true), 2200);
+  }
+  const certName = () => { const k = kidNow(), n = String(k && k.name || '').trim(); if (n && n !== '小朋友') return n; const h = ['b1', 'g1'].map(x => heroGet(x)).find(o => o && o.name); return h ? h.name : ''; };
+  function certHTML(c, date, name) {
+    const d = new Date(date), ds = `${d.getFullYear()} 年 ${d.getMonth() + 1} 月 ${d.getDate()} 日`, head = k => { try { return heroHeadOf(k); } catch (e) { return ''; } };
+    return `<div class="cert" id="certSheet"><div class="cert-in"><div class="cert-rib">🏆 榮譽獎狀 🏆</div><div class="cert-medal">${c.ic}</div>
+      <p class="cert-to"><span class="cert-name">${name ? name.replace(/[<>&"]/g, '') : '＿＿＿＿＿＿'}</span> 小朋友</p>
+      <p class="cert-why">在動動腦小學堂 <b>${c.why}</b>，<br>認真學習、表現優異，特頒此狀，以資鼓勵！</p>
+      <div class="cert-title">「${c.n}」</div>
+      <div class="cert-foot"><div class="cert-sign"><span class="cert-heads">${head('b1')}${head('g1')}</span><b>寶哥　筑筑</b><small>動動腦小學堂 小主角</small></div><div class="cert-date"><small>頒發日期</small><b>${ds}</b></div></div></div></div>`;
+  }
+  function certShow(id, fresh) {
+    const c = CERTS.find(x => x.id === id), date = certOwn()[id]; if (!c || !date) return;
+    const ov = document.createElement('div'); ov.className = 'cert-ov';
+    ov.innerHTML = `<div class="cert-wrap">${fresh ? '<p class="cert-new">🎉 恭喜！得到一張新獎狀！</p>' : ''}${certHTML(c, date, certName())}
+      <div class="cert-name-row"><label>獎狀上的名字 <input id="certNm" maxlength="8" value="${certName().replace(/"/g, '')}" placeholder="孩子的名字"></label></div>
+      <div class="cert-btns"><button class="btn small" id="certPng">📷 存成圖片</button><button class="btn small" id="certPdf">📄 存成 PDF</button><button class="btn small" id="certPrint">🖨️ 列印</button><button class="btn ghost small" id="certX">關閉</button></div>
+      <p class="note">可以印出來貼在牆上，或存成圖片分享給家人。</p></div>`;
+    document.body.appendChild(ov); document.body.classList.add('cert-open');
+    tone([523, 659, 784, 1046, 1318], .1, 'sine'); try { burst(ov.querySelector('.cert-medal'), 50); } catch (e) {}
+    const line = `恭喜你得到「${c.n}」獎狀！你好棒！`; if (fresh && pvVoiced(line, 'tch')) say([[line, 'zh-TW', 'tch']]);
+    $('certNm').oninput = () => { const v = $('certNm').value.replace(/[<>&"]/g, ''); ov.querySelector('.cert-name').textContent = v || '＿＿＿＿＿＿'; store.set('certName', v); };
+    if (store.get('certName', '')) { $('certNm').value = store.get('certName', ''); $('certNm').oninput(); }
+    const close = () => { ov.remove(); document.body.classList.remove('cert-open'); };
+    $('certX').onclick = close;
+    $('certPrint').onclick = () => { track('cert-print', '獎狀列印'); window.print(); };
+    const shot = async () => { await loadJS('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'); const el = $('certSheet'), z = el.style.zoom; el.style.zoom = 1; const cv = await window.html2canvas(el, { scale: 2, backgroundColor: '#FFFDF5', logging: false, useCORS: true }); el.style.zoom = z; return cv; };
+    const save = (blob, name) => { const f = new File([blob], name, { type: blob.type }); try { if (navigator.canShare && navigator.canShare({ files: [f] })) return navigator.share({ files: [f], title: name }).catch(() => {}); } catch (e) {} const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 4000); };
+    const busy = async (btn, f) => { const t = btn.textContent; btn.disabled = true; btn.textContent = '製作中⋯'; try { await f(); } catch (e) { btn.textContent = '沒有成功，請確認網路'; setTimeout(() => { btn.textContent = t; btn.disabled = false; }, 2500); return; } btn.textContent = t; btn.disabled = false; };
+    $('certPng').onclick = () => busy($('certPng'), async () => { const cv = await shot(); const b = await new Promise(r => cv.toBlob(r, 'image/png')); save(b, `獎狀-${c.n}.png`); track('cert-png', '獎狀存圖'); });
+    $('certPdf').onclick = () => busy($('certPdf'), async () => { const cv = await shot(); await loadJS('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'); const pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', orientation: 'landscape' }); const w = 277, h = w * cv.height / cv.width; pdf.addImage(cv.toDataURL('image/jpeg', .92), 'JPEG', 10, Math.max(10, (210 - h) / 2), w, Math.min(h, 190)); save(pdf.output('blob'), `獎狀-${c.n}.pdf`); track('cert-pdf', '獎狀 PDF'); });
+  }
+  // 家長專區：我的獎狀
+  function certList() {
+    const own = certOwn();
+    return CERTS.map(c => own[c.id] ? `<button class="cert-chip on" data-cert="${c.id}"><span>${c.ic}</span><b>${c.n}</b><small>${own[c.id].replace(/^\w+ /, '')}</small></button>` : `<span class="cert-chip"><span>🔒</span><b>${c.n}</b><small>${c.why}</small></span>`).join('');
+  }
+  /* ---------- v106 🖨️ 今日專屬練習卷：今天答錯的主題＋描字＋連點成圖，一次印好 ---------- */
+  function buildToday() {
+    const list = prTopics(), byK = Object.fromEntries(list.map(t => [t[0], t])), since = new Date(); since.setHours(0, 0, 0, 0);
+    const wrong = []; store.get('history', []).filter(h => h.t >= since.getTime() && h.n && h.s < h.n).reverse().forEach(h => { if (byK[h.sub] && byK[h.sub][2] === 'q' && !wrong.includes(h.sub)) wrong.push(h.sub); });
+    const picks = wrong.slice(0, 3).map(k => byK[k]);
+    if (!picks.length) { const fb = ['addsub', 'zhuyin', 'compare'].find(k => byK[k]); if (fb) picks.push(byK[fb]); }
+    const tr = byK[prAge === 'six' && byK.yxtrace ? 'yxtrace' : 'trace']; if (tr) picks.push(tr);
+    if (byK.xmdots) picks.push(byK.xmdots);
+    prClear(); prLast = { pack: picks.map(t => t[0]) };
+    picks.forEach((t, i) => { const el = i === 0 ? $('printSheet') : $('pvScroll').appendChild(document.createElement('div')); buildSheet(t[0], el); });
+    document.body.classList.add('pack'); track('print-today', '今日專屬練習卷');
+    return wrong.length;
+  }
+  $('prToday').addEventListener('click', () => { buildToday(); pvFit(); $('printView').hidden = false; document.body.classList.add('printing'); });
   $('sysVoice').addEventListener('change', e => { store.set('sysVoice', e.target.value); track('sysvoice', '選擇裝置語音'); const was = soundOn; soundOn = true; say([['你好，我是圓圓，我們一起動動腦！']]).then(() => { soundOn = was; }); });
   $('backBtn').addEventListener('click', () => { sayStop(); refreshGot(); show(backTo()); });
   $('homeBtn').addEventListener('click', () => show(backTo()));
@@ -10513,6 +10726,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     if (speak) play(false);
   }
   function ezlProgress() {
+    try { certCheck(); } catch (e) {}
     const c = EZL_BY[ezlCur], n = ezlLearned(c.id).size, N = c.items.length, done = n >= N;
     $('ezlProg').textContent = `已學 ${Math.min(n, N)} / ${N}`;
     $('ezlTest').disabled = !done;
@@ -10629,6 +10843,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   function openSchool(id) { if (id === 'en') { CNZ.sch = 'en'; openEZone(); return; } CNZ.sch = id; renderCnZone(); show('cnone'); track('sch-open-' + id, '進入' + SCH_BY[id].name); }
   function cnlOpen(id) { CNZ.sch = 'cn'; CNZ.cur = id; renderCnl(); dqLog('learn'); show('cnlearn'); { const zy = CNL_BY[id].type === 'zy' || CNL_BY[id].type === 'pin'; $('cnlDuo').hidden = !zy; if (zy && !cnlDuoSaid) { cnlDuoSaid = true; say([[CNL_DUO_SAY]]); } } track('cnl-open-' + id, '國語學習卡：' + CNL_BY[id].zh); }
   function cnlProgress() {
+    try { certCheck(); } catch (e) {}
     const c = CNL_BY[CNZ.cur], n = cnlLearned(c.id).size, N = c.items.length, done = n >= N;
     $('cnlProg').textContent = `已學 ${Math.min(n, N)} / ${N}`; $('cnlTest').disabled = !done;
     $('cnlHint').textContent = done ? `全部學過了！按下面開始測驗，一共 ${ROUND} 題。` : `每一張卡片都點一下聽聽看（或按「全部聽一次」），還差 ${N - n} 張就可以測驗。`;
@@ -11892,6 +12107,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     MOVES.forEach(m => out.push(m[1]));
     out.push(...Object.values(CALM_SAY), ...Object.values(EYE_SAY), '情緒急救箱');
     CHEER_0.forEach(t => out.push([t, 'zh-TW', 'tch']));
+    out.push('好棒！生活挑戰完成，送你兩顆星星！'); CERTS.forEach(c => out.push([`恭喜你得到「${c.n}」獎狀！你好棒！`, 'zh-TW', 'tch']));
     out.push(...Object.values(MB_SAY)); MB_LETTERS.forEach(t => { out.push([t, 'zh-TW', 'mom'], [t, 'zh-TW', 'dad']); });
     try { Object.entries(TONE_EX).forEach(([t, A]) => A.forEach(e => out.push(toneExSay(t, e)))); } catch (e) {}
     try { Object.values(NEWSUB_SAMPLE).forEach(f => f().forEach(x => out.push(x))); READ_T.forEach(T => out.push(T.hint)); } catch (e) {}
@@ -12850,10 +13066,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     dqSave(Q);
     const due = revDue().length;
     const plGo = !store.get('place', null) && !store.get('placeSkip', false);
-    box.innerHTML = (plGo ? `<div class="place-go"><button id="placeGo" data-say="第一次來嗎？先玩六題小測驗，幫你找到剛剛好的程度">🧭 第一次來？先玩 6 題小測驗<small>幫你找到剛剛好的程度</small></button><button class="place-x" id="placeX" aria-label="先不要">✕</button></div>` : '') + `<div class="dq-head"><b><span>今天的</span>任務</b>${due ? `<button class="dq-badge rev-btn" id="revGo">📒 複習 ${due} 題</button>` : ''}<button class="dq-badge" id="dqBadges">🏅 我的徽章 ${nb}/${BADGES.length}</button></div>${rows}${all ? (D.bonus ? '<p class="dq-fin">🎉 今天的任務都完成了，明天再來！</p>' : '<button class="dq-box" id="dqBox">🎁 三個都完成了！打開寶箱 ⭐+2</button>') : ''}`;
+    box.innerHTML = (plGo ? `<div class="place-go"><button id="placeGo" data-say="第一次來嗎？先玩六題小測驗，幫你找到剛剛好的程度">🧭 第一次來？先玩 6 題小測驗<small>幫你找到剛剛好的程度</small></button><button class="place-x" id="placeX" aria-label="先不要">✕</button></div>` : '') + `<div class="dq-head"><b><span>今天的</span>任務</b>${due ? `<button class="dq-badge rev-btn" id="revGo">📒 複習 ${due} 題</button>` : ''}<button class="dq-badge" id="dqBadges">🏅 我的徽章 ${nb}/${BADGES.length}</button></div>${rows}${habitRow()}${all ? (D.bonus ? '<p class="dq-fin">🎉 今天的任務都完成了，明天再來！</p>' : '<button class="dq-box" id="dqBox">🎁 三個都完成了！打開寶箱 ⭐+2</button>') : ''}`;
     box.querySelectorAll('.dq-get').forEach(b => b.onclick = () => { const D2 = dqState(); if (D2.got.includes(b.dataset.q)) return; D2.got.push(b.dataset.q); store.set('dq', D2); giveStars(1); say([['任務完成！送你一顆星星']]); try { burst && burst(); } catch (e) {} track('dq-' + b.dataset.q, '每日任務'); dqRender(); badgeCheck(); });
     if ($('dqBox')) $('dqBox').onclick = () => { const D2 = dqState(); D2.bonus = 1; store.set('dq', D2); giveStars(2); const n = store.get('dqDays', 0) + 1; store.set('dqDays', n); try { lsStreak(); } catch (e) {} say([['太棒了！今天的任務全部完成，送你兩顆星星']]); track('dq-all', '每日任務全完成'); dqRender(); badgeCheck(); };
     $('dqBadges').onclick = openBadges;
+    if ($('hbGo')) $('hbGo').onclick = habitConfirm;
     if ($('revGo')) $('revGo').onclick = () => startRound('review');
     if ($('placeGo')) { $('placeGo').onclick = () => startRound('place'); $('placeX').onclick = () => { store.set('placeSkip', true); dqRender(); }; }
   }
