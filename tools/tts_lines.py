@@ -6,19 +6,19 @@ def chunks(t,l):
   en=l.startswith('en')
   for x in re.split(r'(?<=[!?])\s+' if en else r'(?<=[。！？；])',t):
     if x.strip(): yield x
-items={}  # key -> (text,lang,who)
-def add(t,l,w=''):
+items={}  # key -> 1 固定句子；2 隨機出題抽到的句子
+def add(t,l,w='',src=1):
   l=l or 'zh-TW'
   for x in chunks(str(t),l):
     k=(x.strip(),l,w)
     if not re.search(r'[\w一-鿿]',k[0]): continue
-    items[k]=1
+    items[k]=min(items.get(k,src),src)
 # 固定的句子（介面、主角、故事、好朋友…）排在前面先做；隨機出題抽到的句子排後面，額度不夠時先做固定的
 for t,l,w in json.load(open('/tmp/tts_raw2.json')): add(t,l,w)
 d=json.load(open('/tmp/tts_raw1.json'))
 for x in d['out']:
-  if x[0]=='P': add(x[1],x[2])
-for t,l in d['spk']: add(t,l)
+  if x[0]=='P': add(x[1],x[2],'',2)
+for t,l in d['spk']: add(t,l,'',2)
 if os.path.exists('/tmp/tts_raw3.json'):
   for t,l,w in json.load(open('/tmp/tts_raw3.json')): add(t,l,w)
 # 有數字的句子：再把「數字」和「數字中間的字」分開做，題目數字怎麼變都能用 AI 聲音拼起來念
@@ -62,12 +62,21 @@ def b36(n):
   s=''
   while n: s='0123456789abcdefghijklmnopqrstuvwxyz'[n%36]+s; n//=36
   return s or '0'
+# 隨機出題抽到的新句子（數字、顏色組合幾千種）每次上傳最多只做 RAND_NEW 字，避免吃光每月額度；
+# 已經做好的照樣保留。網站只會出「有 AI 語音」的題目，沒做到的組合不會出現。
+try: DONE=set(json.load(open('audio/v/index.json')))
+except Exception: DONE=set()
+RAND_NEW=int(os.environ.get('RAND_NEW','4000')); rand_used=0; rand_skip=0
 rows=[];ids={};chars=collections.Counter()
-for (t,l,w) in sorted(items):
+for (t,l,w) in sorted(items, key=lambda k:(items[k],k)):
   key=f'{w}|{l}|{t}'; i=b36(cyrb53(key))
+  if items[(t,l,w)]==2 and i not in DONE:
+    if rand_used+len(t)>RAND_NEW: rand_skip+=1; continue
+    rand_used+=len(t)
   if i in ids: print('COLLIDE',key,ids[i]); continue
   ids[i]=key
   v=VO[w] if w else (VO['en'] if l.startswith('en') else VO[''])
   rows.append([i,v[0],v[1],t,v[2],v[3]]); chars[w or l]+=len(t)
 json.dump(rows,open('audio/lines.json','w',encoding='utf-8'),ensure_ascii=False,separators=(',',':'))
 print(len(rows),sum(len(r[3]) for r in rows),dict(chars))
+print('隨機新句子：這次做',rand_used,'字，略過',rand_skip,'句')
