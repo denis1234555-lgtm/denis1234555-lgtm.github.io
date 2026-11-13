@@ -1436,6 +1436,11 @@ img.fe { width: 1.08em; height: 1.08em; vertical-align: -.16em; object-fit: cont
 .xm-mirror .mc.left { background: #F4F7FA; }
 .xm-mirror .mc.edge { box-shadow: 4px 0 0 -1px #E5484D; }
 .xm-mirror .mc.on { background: var(--mc); border-color: var(--mc); }
+.xm-mirror.m6 { gap: 3px; padding: 6px; width: min(100%, 360px); }
+.xm-pal { display: flex; gap: 10px; justify-content: center; margin-bottom: 8px; }
+.xm-pen { width: 46px; height: 46px; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 0 0 2px var(--line); font-size: 1.4rem; background: #fff; cursor: pointer; }
+.xm-pen.on { box-shadow: 0 0 0 4px var(--c-deep, #555); }
+.xm-wrap.six .xm-dots-box { width: 100%; max-width: 440px; }
 .xm-dots-box { position: relative; width: min(100%, 340px); background: #fff; border-radius: 22px; box-shadow: 0 5px 0 var(--line-deep); }
 .xm-dots { width: 100%; height: auto; display: block; }
 .xm-dots .dot { cursor: pointer; }
@@ -1855,6 +1860,13 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 .cl-hint{animation:clHint .4s ease-in-out 4 alternate}@keyframes clHint{from{fill:#FFFFFF}to{fill:#FFE38A}}
 .kid-pill{border:0;cursor:pointer;font:inherit;font-weight:800;gap:4px;display:inline-flex;align-items:center;max-width:9em;overflow:hidden;white-space:nowrap}
 .kid-pill #kidNm{overflow:hidden;text-overflow:ellipsis}
+.mg-box{width:min(100%,360px);margin:0 auto}
+.mg-svg{width:100%;height:auto;display:block;background:#fff;border-radius:14px}
+.oo-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.oo-cell{display:flex;flex-direction:column;align-items:center;gap:4px}
+.oo-cell b{font-size:2.6rem;line-height:1.1}
+.oo-cell i{width:2.4rem;height:2.4rem;border-radius:50%;border:3px dashed #C9BFD9;display:grid;place-items:center;font-style:normal;font-size:1.7rem}
+.oo-cell i:not(:empty){border-style:solid;border-color:#9ED4A8;background:#EFFAF1}
 .kid-bar{display:flex;gap:8px;margin:10px 16px 0;flex-wrap:wrap}
 .kid-bar button{flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:center;gap:6px;border:3px solid transparent;background:#F6F1FF;border-radius:18px;padding:8px 10px;font:inherit;font-weight:800;font-size:1.05rem;cursor:pointer;color:#3B3150}
 .kid-bar button .em{font-size:1.6rem}
@@ -3666,6 +3678,33 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     { e: '🧼', q: '吃飯前要洗哪裡？', a: [['✋', '手'], ['🦶', '腳'], ['👂', '耳朵']], lv: 1 },
     { e: '👀', q: '人有幾隻耳朵？', a: [['2️⃣', '兩隻'], ['1️⃣', '一隻'], ['4️⃣', '四隻']], lv: 2 }
   ];
+  // v100：6 歲的「身體部位」改成健康和衛生常識（換牙、3C 距離、流鼻血…），不再考眼睛鼻子在哪裡
+  const BODY6 = [
+    { e: '🦷', q: '牙齒搖搖的，快要掉了，要怎麼辦？', a: [['👨‍👩‍👧', '告訴爸媽，讓它自己掉'], ['💪', '用力拔下來'], ['👅', '一直用舌頭頂'], ['🚫', '都不刷牙']], why: '乳牙搖搖的是要換牙了，告訴爸媽，讓它自己慢慢掉下來。' },
+    { e: '🦷', q: '牙齒掉了，流了一點血，要怎麼做？', a: [['🩹', '咬住乾淨的紗布'], ['☝️', '用手一直摸'], ['🍬', '馬上吃糖果'], ['🙈', '不理它']], why: '咬住乾淨的紗布，血很快就會停。' },
+    { e: '🪥', q: '刷牙大約要刷多久，才會刷乾淨？', a: [['⏱️', '大約兩分鐘'], ['⚡', '刷一下下'], ['🕐', '刷一個小時'], ['🚫', '不用刷']], why: '每一顆牙齒都要刷到，大約要刷兩分鐘。' },
+    { e: '🍬', q: '吃完糖果以後，最好要做什麼？', a: [['🪥', '漱口或刷牙'], ['🍭', '再吃一顆'], ['😴', '馬上睡覺'], ['🥤', '喝汽水']], why: '吃完甜的要漱口或刷牙，才不會蛀牙。' },
+    { e: '📱', q: '看平板的時候，眼睛要離多遠？', a: [['💪', '手臂伸直那麼遠'], ['👃', '鼻子貼著螢幕'], ['🔍', '越近越好'], ['🛏️', '躺著看']], why: '眼睛要離螢幕遠一點，大約手臂伸直那麼遠。' },
+    { e: '⏰', q: '看平板一段時間以後，要做什麼？', a: [['🔭', '看看遠方讓眼睛休息'], ['📱', '一直看不要停'], ['✊', '用力揉眼睛'], ['🌑', '把燈關掉繼續看']], why: '看一段時間就要看看遠方，讓眼睛休息。' },
+    { e: '🌙', q: '晚上睡覺前，可以一直玩手機嗎？', a: [['🙅', '不行，讓眼睛休息'], ['🎮', '可以玩到很晚'], ['🛏️', '躲在被子裡玩'], ['😪', '邊玩邊睡']], why: '睡前玩手機會睡不好，要讓眼睛和身體休息。' },
+    { e: '👃', q: '流鼻血了，要怎麼做？', a: [['🤏', '頭往前低，捏住鼻子'], ['🙆', '頭往後仰'], ['🛏️', '馬上躺平'], ['🤧', '用力擤鼻涕']], why: '頭稍微往前低，捏住鼻子軟軟的地方，不要往後仰。' },
+    { e: '🧼', q: '洗手大約要洗多久？', a: [['🎂', '唱兩次生日快樂歌'], ['💧', '用水沖一下'], ['🕐', '洗一個小時'], ['🚫', '不用洗']], why: '搓手搓到唱完兩次生日快樂歌，大約二十秒，才會洗乾淨。' },
+    { e: '🤒', q: '發燒了，要怎麼辦？', a: [['🙋', '告訴大人，多喝水休息'], ['💊', '自己找藥吃'], ['🏃', '去外面跑步'], ['🧥', '穿很多衣服流汗']], why: '發燒要告訴大人，多喝水、好好休息。' },
+    { e: '💊', q: '可以自己拿藥來吃嗎？', a: [['🙅', '不行，要大人給'], ['🍬', '可以，像糖果一樣'], ['😋', '想吃就吃'], ['➕', '吃越多越好']], why: '藥一定要大人給，吃錯會很危險。' },
+    { e: '🩹', q: '跌倒擦傷流血了，先做什麼？', a: [['🚿', '告訴大人，用乾淨的水沖'], ['👅', '用嘴巴舔'], ['✋', '用髒手摸'], ['🙈', '不管它']], why: '先用乾淨的水沖一沖，再請大人幫忙擦藥。' },
+    { e: '☀️', q: '大太陽在外面玩，要注意什麼？', a: [['🧢', '戴帽子、多喝水'], ['🔥', '一直曬太陽'], ['🚫', '都不喝水'], ['🧥', '穿厚外套']], why: '太陽很大要戴帽子、多喝水，才不會中暑。' },
+    { e: '🥤', q: '口渴的時候，最好喝什麼？', a: [['💧', '白開水'], ['🥤', '汽水'], ['🧋', '珍珠奶茶'], ['🍹', '甜甜的果汁']], why: '白開水最健康，甜的飲料喝多了會蛀牙、變胖。' },
+    { e: '😴', q: '小朋友晚上大約睡多久比較好？', a: [['🛏️', '十個小時左右'], ['🕒', '三個小時'], ['🚫', '不用睡'], ['🕐', '一個小時']], why: '小朋友要睡飽，大約十個小時，才會長高、有精神。' },
+    { e: '🦟', q: '被蚊子叮了，很癢，要怎麼辦？', a: [['🧴', '不要抓，擦藥'], ['💅', '用指甲用力抓'], ['👅', '塗口水'], ['🩸', '抓到破皮']], why: '抓破了會流血、感染，要擦藥，不要抓。' },
+    { e: '🤧', q: '流鼻涕了，要怎麼做？', a: [['🧻', '用衛生紙擤，再洗手'], ['👕', '用袖子擦'], ['😤', '吸回去'], ['🪑', '抹在桌子上']], why: '用衛生紙擤鼻涕，丟進垃圾桶，再去洗手。' },
+    { e: '👀', q: '眼睛跑進沙子了，要怎麼辦？', a: [['💧', '不要揉，用清水沖'], ['✊', '用力揉眼睛'], ['☝️', '用手指挖'], ['🙈', '不理它']], why: '揉了會刮傷眼睛，要用乾淨的水沖一沖。' },
+    { e: '🎒', q: '書包要怎麼背比較好？', a: [['🧍', '兩邊肩膀一起背'], ['↘️', '只背一邊'], ['🧱', '放很多重的東西'], ['🧹', '拖在地上']], why: '兩邊肩膀一起背，身體才不會歪。' },
+    { e: '✏️', q: '寫字的時候，要怎麼坐？', a: [['🪑', '背挺直，眼睛離本子遠一點'], ['😪', '趴在桌子上'], ['🛏️', '躺著寫'], ['👁️', '眼睛貼著紙']], why: '背挺直，眼睛離本子大約一個手臂遠，眼睛才不會累。' },
+    { e: '🥛', q: '換牙的時候，吃什麼對牙齒比較好？', a: [['🥦', '蔬菜、水果和牛奶'], ['🍬', '一直吃糖'], ['🥤', '只喝汽水'], ['🚫', '不吃早餐']], why: '蔬菜、水果和牛奶，可以讓新牙齒長得又白又健康。' },
+    { e: '🧑‍⚕️', q: '為什麼要定期去看牙醫？', a: [['🔍', '檢查有沒有蛀牙'], ['🧸', '去拿玩具'], ['🎢', '因為很好玩'], ['🚫', '不用去']], why: '牙醫會幫我們檢查牙齒，早一點發現蛀牙。' },
+    { e: '🏊', q: '游泳的時候，要注意什麼？', a: [['👨‍👩‍👧', '有大人陪才能下水'], ['🌊', '自己去深水區'], ['🏃', '在池邊跑'], ['🍔', '吃飽馬上游']], why: '游泳一定要有大人陪，不能在池邊奔跑。' },
+    { e: '🤕', q: '頭撞到了很痛，要怎麼辦？', a: [['🧊', '告訴大人，冰敷'], ['🙈', '不說出來'], ['🏃', '繼續跑跳'], ['✊', '用力揉']], why: '撞到頭要馬上告訴大人，先冰敷，讓大人看看。' }
+  ].map(x => Object.assign(x, { lv: 3 }));
   const JOBS = [
     { e: '🔥', q: '失火了，誰會來滅火？', a: [['👨‍🚒', '消防員'], ['👨‍🍳', '廚師'], ['👩‍🏫', '老師']], lv: 1 },
     { e: '🤒', q: '生病了，要找誰？', a: [['👨‍⚕️', '醫生'], ['👮', '警察'], ['👨‍🌾', '農夫']], lv: 1 },
@@ -5599,6 +5638,13 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         if (ch.length === 3 && Math.random() < .3) set.add([ch[1], ch[0], ch[2]].join(''));
       }
       while (set.size < (age === 'small' ? 3 : 4)) set.add(pick(SP)[2]);
+      const q6 = age === 'six' && { // v100：6 歲不給圖、不給拆開的注音，純聽發音選出拼音
+        prompt: '聽一聽，是哪一個拼音？', speech: [[`聽一聽。${t[1]}的${t[0]}，是哪一個拼音？`]],
+        stage: `<div class="pic" aria-hidden="true">👂</div>`,
+        options: shuffle([...set]).map(z => ({ html: `<span class="o-zy">${z}</span>`, label: z, correct: z === t[2] })),
+        after: [[`${t[1]}的${t[0]}`]], key: 'z6' + t[0] + t[1]
+      };
+      if (q6 && qVoiced(q6)) return q6;
       return {
         prompt: `${parts.join(' + ')} 會拼成哪一個？`, speech: [[`${t[1]}的${t[0]}，是哪幾個注音拼起來的？`]],
         stage: `<div><div class="pic">${t[3]}</div><div class="o-zy" style="font-size:2.6rem">${parts.join(' ＋ ')} ＝ ？</div></div>`,
@@ -5911,6 +5957,26 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       };
     },
     measure() {
+      if (age === 'six') { // v100：6 歲改成「數格子量長度」和長度的加減比較
+        const C = shuffle([['#E5484D', '紅色'], ['#2F7BE5', '藍色'], ['#22A05A', '綠色'], ['#F2A516', '黃色']]).slice(0, 2), it = pick([['緞帶', '條'], ['繩子', '條'], ['積木', '排']]);
+        let x, y; do { x = rand(2, 10); y = rand(2, 10); } while (x === y);
+        const type = pick(['one', 'one', 'diff', 'sum']), cell = 26, cols = Math.max(x, y, type === 'sum' ? 0 : 0) + 1, W = 12 * cell;
+        // 每一格畫成一個方塊，格子底線也畫出來，小朋友才數得清楚
+        const sq = (i, row, fill) => `<rect x="${cell * .5 + i * cell + 2}" y="${row * 50 + 10}" width="${cell - 4}" height="${cell - 4}" rx="5" fill="${fill}"${fill === '#fff' ? ' stroke="#D8D2E3" stroke-width="2" stroke-dasharray="3 3"' : ''}/>`;
+        const rowSvg = (n, c, row) => Array.from({ length: 11 }, (_, i) => sq(i, row, i < n ? c : '#fff')).join('');
+        const svg = `<svg viewBox="0 0 ${W} 106" class="mg-svg" role="img" aria-label="格子尺">${rowSvg(x, C[0][0], 0)}${rowSvg(y, C[1][0], 1)}<line x1="${cell * .5}" y1="4" x2="${cell * .5}" y2="102" stroke="#9C8FB5" stroke-width="3"/></svg>`;
+        const [A, B] = [`${C[0][1]}的${it[0]}`, `${C[1][1]}的${it[0]}`], long = x > y ? [A, B] : [B, A];
+        let q, ans;
+        if (type === 'one') { const first = Math.random() < .5; q = `${first ? A : B}有幾格長？`; ans = first ? x : y; }
+        else if (type === 'diff') { q = `${long[0]}比${long[1]}長幾格？`; ans = Math.abs(x - y); }
+        else { q = `兩${it[1]}接起來，一共有幾格長？`; ans = x + y; }
+        const q6 = {
+          prompt: q, speech: [[`數數看格子。${q}`]], stage: `<div class="mg-box">${svg}</div>`,
+          options: numberOptions(ans, 4, 1, 20).map(v => ({ html: numHTML(v), label: String(v), correct: v === ans })),
+          after: [[type === 'one' ? `${ans}格長` : type === 'diff' ? `${Math.max(x, y)}減${Math.min(x, y)}，長${ans}格` : `${x}加${y}，一共${ans}格`]], key: 'mg' + type + x + '-' + y
+        };
+        if (qVoiced(q6)) return q6;
+      }
       const type = pick(age === 'small' ? ['len', 'tall'] : ['len', 'tall', 'weight']);
       const n = age === 'small' ? 3 : 4;
       const want = Math.random() < .5 ? 'max' : 'min';
@@ -5943,6 +6009,19 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       };
     },
     share() {
+      if (age === 'small') { // v100：小班先學「一對一分配」（一人一個），5 歲以上才平均分
+        const P = pick([['🐶', '小狗', '隻', '🦴', '骨頭', '根'], ['🐰', '小兔子', '隻', '🥕', '紅蘿蔔', '根'], ['🐱', '小貓', '隻', '🐟', '魚', '條'], ['🐵', '小猴子', '隻', '🍌', '香蕉', '根'], ['🐭', '小老鼠', '隻', '🧀', '起司', '塊'], ['👧', '小朋友', '個', '🍎', '蘋果', '顆']]);
+        const n = rand(2, 5), have = pick([0, rand(1, n - 1)]), need = n - have, all = have === 0;
+        const row = Array.from({ length: n }, (_, i) => `<span class="oo-cell"><b>${P[0]}</b><i>${i < have ? P[3] : ''}</i></span>`).join('');
+        const q1 = {
+          prompt: all ? `${n} ${P[2]}${P[1]}，一${P[2]}一${P[5]}${P[4]}，要幾${P[5]}？` : `${n} ${P[2]}${P[1]}，已經有 ${have} ${P[5]}${P[4]}，還要幾${P[5]}？`,
+          speech: [[all ? `有${n}${P[2]}${P[1]}，每一${P[2]}都要一${P[5]}${P[4]}。一共要幾${P[5]}${P[4]}？` : `有${n}${P[2]}${P[1]}，已經有${have}${P[5]}${P[4]}了。還要拿幾${P[5]}，才夠一${P[2]}一${P[5]}？`]],
+          stage: `<div class="oo-row">${row}</div>`,
+          options: numberOptions(need, 3, 1, 5).map(v => ({ html: numHTML(v), label: String(v), correct: v === need })),
+          after: [[all ? `${n}${P[2]}${P[1]}，一${P[2]}一${P[5]}，要${n}${P[5]}` : `還要${need}${P[5]}，一${P[2]}一${P[5]}，剛剛好`]], key: 'oo' + n + have + P[0]
+        };
+        if (qVoiced(q1)) return q1; // 新題型的 AI 語音還沒做好前，先出原本的題目
+      }
       const people = age === 'small' ? pick([2, 2, 3]) : age === 'six' ? pick([3, 4, 5, 6]) : pick([2, 2, 3, 4]);
       const each = age === 'small' ? rand(1, people === 3 ? 2 : 4) : age === 'six' ? rand(2, Math.floor(24 / people)) : rand(1, Math.floor(12 / people));
       const total = people * each, item = pick([['🍬', '顆糖', '顆'], ['🍪', '片餅乾', '片'], ['🍓', '顆草莓', '顆'], ['🎈', '個氣球', '個'], ['🍎', '顆蘋果', '顆'], ['⭐', '張星星貼紙', '張'], ['🧸', '個玩偶', '個']]);
@@ -5987,7 +6066,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         after: [[`答案是${f[1]}`]], key: f[0]
       };
     },
-    body() { return bankQ(BODY, pick(lvPool(BODY))); },
+    body() { if (age === 'six') { const q6 = bankQ(BODY6, pick(BODY6)); if (qVoiced(q6)) return q6; } return bankQ(BODY, pick(lvPool(BODY))); },
     jobs() { return bankQ(JOBS, pick(lvPool(JOBS))); },
     seasons() { return bankQ(SEASONS, pick(lvPool(SEASONS))); },
     food() {
@@ -6928,6 +7007,20 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const DIFF_SETS = [['🍎', '🍌', '🍇', '🍓', '🍊', '🍉', '🍐', '🍒'], ['🐶', '🐱', '🐰', '🐻', '🐼', '🐸', '🐵', '🐷'], ['🚗', '🚌', '🚲', '✈️', '🚂', '🚀', '⛵', '🚒'], ['⭐', '🌙', '☀️', '☁️', '🌈', '⚡', '❄️', '🌸']];
   const PUZZLE_PICS = ['🐼', '🦁', '🐸', '🐵', '🦄', '🐯', '🍉', '🚗', '🌈', '🦋', '🐙', '🍔', '🐶', '🐱', '🐰', '🐻', '🐨', '🐷', '🐮', '🦊', '🐧', '🐢', '🍎', '🍓', '🍩', '🚀', '🚂', '⛄', '🌻', '🍦'];
   const COLORS_PEN = ['#E53935', '#FB8C00', '#FDD835', '#43A047', '#1E88E5', '#8E24AA', '#F06FAA', '#8D6E63', '#212121', '#FFFFFF'];
+  // v100：6 歲著色本：對稱曼陀羅圖騰（程式產生，分區多、需要手部穩定），每次都不一樣
+  function mandalaDrawing() {
+    const n = pick([6, 8, 10, 12]), cx = 150, cy = 150, f = v => v.toFixed(1), P = (r, a) => [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    const sector = (r1, r2, a0, a1) => { const [x1, y1] = P(r1, a0), [x2, y2] = P(r1, a1), [x3, y3] = P(r2, a1), [x4, y4] = P(r2, a0); return `<path data-r d="M${f(x1)} ${f(y1)}A${r1} ${r1} 0 0 1 ${f(x2)} ${f(y2)}L${f(x3)} ${f(y3)}A${r2} ${r2} 0 0 0 ${f(x4)} ${f(y4)}Z"/>`; };
+    const petal = (r1, r2, a, w) => { const [x1, y1] = P(r1, a), [x2, y2] = P(r2, a), [c1x, c1y] = P((r1 + r2) / 2, a - w), [c2x, c2y] = P((r1 + r2) / 2, a + w); return `<path data-r d="M${f(x1)} ${f(y1)}Q${f(c1x)} ${f(c1y)} ${f(x2)} ${f(y2)}Q${f(c2x)} ${f(c2y)} ${f(x1)} ${f(y1)}Z"/>`; };
+    const step = 2 * Math.PI / n, o = -Math.PI / 2; let svg = `<circle data-r cx="${cx}" cy="${cy}" r="140"/>`;
+    for (let i = 0; i < n; i++) svg += sector(96, 136, o + i * step, o + (i + 1) * step);
+    for (let i = 0; i < n * 2; i++) svg += sector(62, 96, o + i * step / 2, o + (i + 1) * step / 2);
+    for (let i = 0; i < n; i++) svg += sector(30, 62, o + i * step, o + (i + 1) * step);
+    for (let i = 0; i < n; i++) svg += petal(100, 140, o + (i + .5) * step, step * .32);
+    if (Math.random() < .5) for (let i = 0; i < n; i++) { const [x, y] = P(79, o + (i + .5) * step); svg += `<circle data-r cx="${f(x)}" cy="${f(y)}" r="${n > 8 ? 7 : 9}"/>`; }
+    svg += `<circle data-r cx="${cx}" cy="${cy}" r="30"/>` + Array.from({ length: n }, (_, i) => petal(4, 28, o + i * step, step * .3)).join('');
+    return { n: '對稱圖騰', svg, lv: 'six', need: 10 };
+  }
   const DRAWINGS = [
     { n: '小房子', svg: `<rect data-r x="60" y="120" width="180" height="140" /><path data-r d="M44 124L150 40L256 124Z"/><rect data-r x="128" y="180" width="44" height="80" rx="4"/><rect data-r x="80" y="150" width="36" height="36" rx="4"/><rect data-r x="184" y="150" width="36" height="36" rx="4"/><circle data-r cx="252" cy="44" r="26"/><path data-r d="M0 260h300v40H0z"/><rect data-r x="196" y="58" width="24" height="44"/>` },
     { n: '小魚', svg: `<ellipse data-r cx="140" cy="150" rx="96" ry="62"/><path data-r d="M228 150l60-48v96z"/><path data-r d="M120 92q30-40 60 0z"/><path data-r d="M120 208q30 40 60 0z"/><circle data-r cx="88" cy="138" r="16"/><path data-r d="M150 100q-24 50 0 100q-40-50 0-100z"/><circle data-r cx="44" cy="70" r="10"/><circle data-r cx="64" cy="40" r="14"/>` },
@@ -7190,16 +7283,19 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     coloring: {
       total: () => 1,
       render() {
-        const pool = DRAWINGS.filter(x => age !== 'small' || x.lv !== 'big'), seen = store.get('colSeen', []);
-        const fresh = pool.filter(x => !seen.includes(x.n)), d = pick(fresh.length ? fresh : pool);
-        store.set('colSeen', (fresh.length ? seen : []).filter(n => n !== d.n).concat(d.n).slice(-(pool.length - 1)));
+        const pool = DRAWINGS.filter(x => age === 'six' ? x.lv === 'big' : age !== 'small' || x.lv !== 'big'), seen = store.get('colSeen', []);
+        const fresh = pool.filter(x => !seen.includes(x.n));
+        let d;
+        if (age === 'six' && (Math.random() < .6 || !pool.length)) d = mandalaDrawing(); // 6 歲大多是細格子的對稱圖騰
+        else { d = pick(fresh.length ? fresh : pool); store.set('colSeen', (fresh.length ? seen : []).filter(n => n !== d.n).concat(d.n).slice(-(pool.length - 1))); }
+        st.cl_need = d.need || 2;
         st.cl = { color: COLORS_PEN[0], filled: 0 };
         setQ(`幫${d.n}塗上顏色`, [[`選一個顏色，再點圖畫，幫${d.n}塗上漂亮的顏色。塗好了按完成`]]);
         $('stage').innerHTML = `<div class="cl"><svg class="cl-svg" viewBox="0 0 300 300" id="clSvg">${d.svg}</svg><div class="cl-pal">${COLORS_PEN.map((c, i) => `<button class="cl-color ${i === 0 ? 'on' : ''}" data-c="${c}" style="background:${c}" aria-label="顏色 ${i + 1}"></button>`).join('')}</div><button id="clDone" class="btn small" style="align-self:center">畫好了</button></div>`;
         document.querySelectorAll('#clSvg [data-r]').forEach(el => {
           const line = el.getAttribute('fill') === 'none';
           el.setAttribute('stroke', '#2B2633'); el.setAttribute('stroke-linejoin', 'round'); el.setAttribute('stroke-linecap', 'round');
-          if (!el.getAttribute('stroke-width')) el.setAttribute('stroke-width', '3');
+          if (!el.getAttribute('stroke-width')) el.setAttribute('stroke-width', age === 'six' ? '2' : '3');
           if (line) return;
           el.setAttribute('fill', '#FFFFFF');
           el.addEventListener('click', () => { if (el.getAttribute('fill') === '#FFFFFF') st.cl.filled++; el.setAttribute('fill', st.cl.color); tone([520 + rand(0, 200)], .06, 'sine'); });
@@ -7209,7 +7305,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         }));
         $('clDone').addEventListener('click', () => {
           const regs = [...document.querySelectorAll('#clSvg [data-r]')].filter(el => el.getAttribute('fill') !== 'none');
-          const need = Math.min(2, regs.length);
+          const need = Math.min(st.cl_need || 2, regs.length);
           if (st.cl.filled < need) {
             say([['再多塗幾個地方吧']]); $('prompt').textContent = '再多塗幾個地方吧';
             // 把還沒塗的地方閃一下，讓小朋友知道可以塗哪裡
@@ -7222,6 +7318,29 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     }
   };
 
+  function xmMirror6() {
+    const R = 7, H = 4, C = H * 2, cols = shuffle(XM_COLORS.slice(0, 6)).slice(0, 2);
+    const t = xmFresh(() => { const m = {}; for (let r = 0; r < R; r++) for (let c = 0; c < H; c++) { const x = Math.random(); if (x < .28) m[r * H + c] = 1; else if (x < .5) m[r * H + c] = 2; } if (Object.keys(m).length < 4) { m[0] = 1; m[H * R - 1] = 2; } return m; }, t => JSON.stringify(t));
+    const want = {}; Object.entries(t).forEach(([k, v]) => { k = +k; const r = Math.floor(k / H), c = k % H; want[r * C + (C - 1 - c)] = v; });
+    const on = {}; let pen = 1;
+    setQ('照著左邊，把右邊塗成一樣的', [['左右要一模一樣，像照鏡子一樣。先選顏色，再把右邊的格子塗好']]);
+    const wrap = document.createElement('div'); wrap.className = 'xm-wrap';
+    const pal = document.createElement('div'); pal.className = 'xm-pal';
+    [1, 2].forEach(v => { const b = document.createElement('button'); b.className = 'xm-pen' + (v === 1 ? ' on' : ''); b.style.background = cols[v - 1][2]; b.setAttribute('aria-label', cols[v - 1][1] || '顏色'); b.onclick = () => { pen = v; pal.querySelectorAll('.xm-pen').forEach(x => x.classList.toggle('on', x === b)); try { say([[cols[v - 1][1]]]); } catch (e) {} }; pal.appendChild(b); });
+    const er = document.createElement('button'); er.className = 'xm-pen er'; er.textContent = '🧽'; er.setAttribute('aria-label', '擦掉'); er.onclick = () => { pen = 0; pal.querySelectorAll('.xm-pen').forEach(x => x.classList.toggle('on', x === er)); }; pal.appendChild(er);
+    wrap.appendChild(pal);
+    const g = document.createElement('div'); g.className = 'xm-mirror m6'; g.style.gridTemplateColumns = `repeat(${C}, 1fr)`;
+    for (let r = 0; r < R; r++) for (let c = 0; c < C; c++) {
+      const k = r * C + c, left = c < H, el = document.createElement(left ? 'span' : 'button');
+      el.className = 'mc' + (left ? ' left' : '') + (c === H - 1 ? ' edge' : '');
+      if (left && t[r * H + c]) { el.classList.add('on'); el.style.setProperty('--mc', cols[t[r * H + c] - 1][2]); }
+      if (!left) el.addEventListener('click', () => { if (pen && on[k] !== pen) { on[k] = pen; el.classList.add('on'); el.style.setProperty('--mc', cols[pen - 1][2]); } else { delete on[k]; el.classList.remove('on'); } tone([560], .04, 'sine'); });
+      g.appendChild(el);
+    }
+    wrap.appendChild(g);
+    wrap.appendChild(xmDoneRow('塗好了', () => { const ks = new Set([...Object.keys(want), ...Object.keys(on)]); const ok = [...ks].every(k => want[k] === on[k]); if (ok) return itemDone(st.first); xmFail('還有地方不一樣，從中間的線往外對對看，顏色也要一樣'); }));
+    $('stage').innerHTML = ''; $('stage').appendChild(wrap);
+  }
   function sqTap(b) {
     const sq = st.sq; if (st.locked) return;
     if (b.parentElement.classList.contains('sq-slot')) { $('sqPool').appendChild(b); sq.placed = sq.placed.filter(x => x !== b); return; }
@@ -7645,6 +7764,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     xmmirror: {
       total: () => 5,
       render() {
+        if (age === 'six') return xmMirror6(); // v100：6 歲 7×8 格、兩種顏色
         const R = age === 'small' ? 4 : 6, H = age === 'small' ? 2 : 3, C = H * 2;
         const t = xmFresh(() => { const cells = []; for (let r = 0; r < R; r++) for (let c = 0; c < H; c++) if (Math.random() < .42) cells.push(r * H + c); if (cells.length < 2) cells.push(0, H * R - 1); return { cells: [...new Set(cells)], color: pick(XM_COLORS.slice(0, 6))[2] }; }, t => t.cells.join('.'));
         const want = new Set(t.cells.map(k => { const r = Math.floor(k / H), c = k % H; return r * C + (C - 1 - c); })), on = new Set();
@@ -7666,7 +7786,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     xmdots: {
       total: () => 4,
       render() {
-        const modes = age === 'small' ? [['n', 1, 1, 10], ['n', 1, 1, 12], ['n', 1, 1, 15], ['m', 1, 1, 12]] : [['n', 1, 1, 20], ['n', 1, 1, 25], ['n', 1, 1, 30], ['m', 1, 1, 20], ['n', 2, 2, 20], ['n', 5, 5, 20], ['n', 11, 1, 20], ['m', 1, 1, 30]];
+        // v100：6 歲最多 30 點（再多手指點不準），加「2 的倍數」和「A～Z 字母」連法
+        const modes = age === 'small' ? [['n', 1, 1, 10], ['n', 1, 1, 12], ['n', 1, 1, 15], ['m', 1, 1, 12]] : age === 'six' ? [['n', 1, 1, 30], ['n', 1, 1, 25], ['n', 2, 2, 25], ['n', 2, 2, 20], ['a', 0, 1, 26], ['a', 0, 1, 26], ['m', 1, 1, 30], ['n', 5, 5, 20]] : [['n', 1, 1, 20], ['n', 1, 1, 25], ['n', 1, 1, 30], ['m', 1, 1, 20], ['n', 2, 2, 20], ['n', 5, 5, 20], ['n', 11, 1, 20], ['m', 1, 1, 30]];
         const pool = XM_DOTS.map((x, i) => i).filter(i => age !== 'small' || XM_DOTS[i][4] !== 'b');
         const t = xmFresh(() => ({ p: pick(pool), m: rand(0, modes.length - 1) }), t => t.p + '-' + t.m);
         const [flip, start, step, count] = modes[t.m], shape = XM_DOTS[t.p], ex = shape[5];
@@ -7674,13 +7795,13 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         const minD = P => { let m = 1e9; for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) m = Math.min(m, Math.hypot(P[i][0] - P[j][0], P[i][1] - P[j][1])); return m; };
         let cnt = count, pts = xmDotPts(shape, cnt); while (minD(pts) < 6 && cnt > 10) { cnt -= 5; pts = xmDotPts(shape, cnt); }
         if (flip === 'm') pts = pts.map(([x, y]) => [100 - x, y]);
-        const nums = pts.map((_, i) => start + i * step); let next = 0;
-        const label = step === 1 ? `從 ${nums[0]} 連到 ${nums[nums.length - 1]}` : `${step} 個 ${step} 個數，從 ${nums[0]} 連到 ${nums[nums.length - 1]}`;
-        setQ(`連連看：${label}`, [[`照數字順序點一點，${label.replace(/ /g, '')}，看看會變成什麼`]]);
-        const S = 300, sc = v => 18 + v * (S - 36) / 100, dense = pts.length > 20;
+        const abc = flip === 'a', nums = pts.map((_, i) => abc ? String.fromCharCode(65 + i) : start + i * step); let next = 0;
+        const label = abc ? `照字母順序，從 ${nums[0]} 連到 ${nums[nums.length - 1]}` : step === 1 ? `從 ${nums[0]} 連到 ${nums[nums.length - 1]}` : `${step} 個 ${step} 個數，從 ${nums[0]} 連到 ${nums[nums.length - 1]}`;
+        setQ(`連連看：${label}`, [[abc ? `照字母順序點一點，從${nums[0]}連到${nums[nums.length - 1]}，看看會變成什麼` : `照數字順序點一點，${label.replace(/ /g, '')}，看看會變成什麼`]]);
+        const S = 300, sc = v => 18 + v * (S - 36) / 100, dense = pts.length > 20 && age !== 'six'; // 6 歲畫面放大，點和數字不用縮小
         const scene = xmDotScene(shape, flip === 'm');
         const svg = `<svg viewBox="0 0 ${S} ${S}" class="xm-dots${dense ? ' dense' : ''}">${scene.back}<g class="xm-full">${scene.full}</g><path id="xmPath" d="" fill="none" stroke="var(--c-deep)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>${pts.map(([x, y], i) => `<g class="dot" data-i="${i}"><circle cx="${sc(x)}" cy="${sc(y)}" r="${dense ? 12 : 15}" fill="transparent"/><circle class="dd" cx="${sc(x)}" cy="${sc(y)}" r="${dense ? 5 : 7}"/><text x="${xmLab(pts, i, sc, dense)[0]}" y="${xmLab(pts, i, sc, dense)[1]}" text-anchor="middle" dominant-baseline="central">${nums[i]}</text></g>`).join('')}</svg>`;
-        const wrap = document.createElement('div'); wrap.className = 'xm-wrap'; wrap.innerHTML = `<div class="xm-dots-box">${svg}<div class="xm-reveal" hidden></div></div><p class="note" id="xmDotMsg">從 ${nums[0]} 開始點${scene.hint ? '，看看這些是什麼的一部分？' : ''}</p>`;
+        const wrap = document.createElement('div'); wrap.className = 'xm-wrap' + (age === 'six' ? ' six' : ''); wrap.innerHTML = `<div class="xm-dots-box">${svg}<div class="xm-reveal" hidden></div></div><p class="note" id="xmDotMsg">從 ${nums[0]} 開始點${scene.hint ? '，看看這些是什麼的一部分？' : ''}</p>`;
         $('stage').innerHTML = ''; $('stage').appendChild(wrap);
         const path = wrap.querySelector('#xmPath'), d = [];
         wrap.querySelectorAll('.dot').forEach(g => g.addEventListener('click', () => {
@@ -8243,12 +8364,12 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       return { prompt: `哪一個有短母音 ${t.v} 的聲音？`, en: `Which word has the short ${t.v} sound, ${snd(t.v)}?`, stage: ezCard(`<div class="bigchar ez-letter">${t.v}</div><div class="ez-zh">${EZ_VOWEL[t.v][1]}</div>`), options: opts.map(o => ({ html: `<span class="o-life"><span class="e">${o.e}</span><span class="t">${o.w}</span></span>`, label: o.w, lang: EZ_EN, correct: o === t })), readOpts: true, after: [[t.w, EZ_EN]], key: 'vp' + t.w };
     },
     ezsight() {
-      if (Math.random() < .55) {
+      if (Math.random() < (age === 'six' ? .75 : .55)) {
         const w = pick(EZ_SIGHT), opts = shuffle([w, ...shuffle(EZ_SIGHT.filter(x => x.toLowerCase() !== w.toLowerCase() && Math.abs(x.length - w.length) <= 2)).slice(0, 3)]);
         return { prompt: '聽英文，找出這個字', en: `Find the word ${w === 'a' ? ', a' : w}.`, stage: ezEar(), options: opts.map(x => ({ html: ezW(x, 'big'), label: x, lang: EZ_EN, correct: x === w })), after: [[w, EZ_EN]], practice: w, practiceLang: EZ_EN, key: 'sw' + w };
       }
       const t = pick(EZ_SIGHT_FILL), full = t[0].replace('___', t[1]);
-      return { prompt: '選出對的字，把句子填完整', en: 'Read and fill in the blank.', stage: ezCard(`<div class="pic">${t[3]}</div><div class="ez-sent">${t[0].replace('___', '<b class="q">___</b>')}</div>`), options: ezTxtOpts([t[1], ...t[2]], t[1]), after: [[full, EZ_EN]], practice: full, practiceLang: EZ_EN, key: 'sf' + t[0] };
+      return { prompt: '選出對的字，把句子填完整', en: 'Read and fill in the blank.', stage: ezCard(`${age === 'six' ? '' : `<div class="pic">${t[3]}</div>`}<div class="ez-sent">${t[0].replace('___', '<b class="q">___</b>')}</div>`), options: ezTxtOpts([t[1], ...t[2]], t[1]), after: [[full, EZ_EN]], practice: full, practiceLang: EZ_EN, key: 'sf' + t[0] };
     },
     ezsent() {
       const r = Math.random();
@@ -9283,7 +9404,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     together: () => qaCards(TOGETHER, true),
     habit: () => qaCards(HABIT, true),
     stranger: () => qaCards(strangerBank(), true),
-    body: () => qaCards(BODY),
+    body: () => qaCards(age === 'six' && qVoiced({ speech: [[BODY6[0].q]] }) ? BODY6 : BODY),
     jobs: () => qaCards(JOBS),
     seasons: () => qaCards(SEASONS),
     animals: () => qaCards(ANIMALS),
