@@ -67,10 +67,12 @@ def b36(n):
 try: DONE=set(json.load(open('audio/v/index.json')))
 except Exception: DONE=set()
 RAND_NEW=int(os.environ.get('RAND_NEW','4000')); rand_used=0; rand_skip=0
+try: PRI=set(json.load(open('audio/priority.json')))
+except Exception: PRI=set()  # 優先清單裡的句子不受隨機上限限制
 rows=[];ids={};chars=collections.Counter()
 for (t,l,w) in sorted(items, key=lambda k:(items[k],k)):
   key=f'{w}|{l}|{t}'; i=b36(cyrb53(key))
-  if items[(t,l,w)]==2 and i not in DONE:
+  if items[(t,l,w)]==2 and i not in DONE and t not in PRI:
     if rand_used+len(t)>RAND_NEW: rand_skip+=1; continue
     rand_used+=len(t)
   if i in ids: print('COLLIDE',key,ids[i]); continue
