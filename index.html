@@ -61,6 +61,9 @@
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
+input, select, textarea { max-width: 100%; min-width: 0; } /* v105：輸入框不要撐破對話框 */
+a, .copyright, .note, .hz-note { overflow-wrap: anywhere; } /* v105：很長的網址會自動換行，手機畫面不會左右晃 */
+.hz-pay, .hz-pv, .mb-tips, .cheer-ov, .pv-busy, .pk-lock, .pk-ask, .al-show, .wcard, .fr-name, .kid-ov, .ls-ov, .zyr { grid-template-columns: minmax(0, 1fr); } .hz-pc, .hz-pvc, .mb-tc, .cheer-card { min-width: 0; max-width: 100%; } /* v105：對話框不會比手機螢幕寬 */
 [hidden] { display: none !important; }
 html, body, button, a, input, select, .opt { touch-action: manipulation; }
 html.no-zoom, html.no-zoom body, html.no-zoom .pk, html.no-zoom .pk *, html.no-zoom #game *, html.no-zoom #learn *, html.no-zoom #ezlearn * { touch-action: manipulation; }
@@ -1689,7 +1692,7 @@ html.wc-open body { overflow: hidden; }
 .hz-mini { font: inherit; font-size: .82rem; font-weight: 900; padding: 4px 10px; border-radius: 999px; border: 2px solid var(--line-deep); background: #fff; color: var(--ink); cursor: pointer; }
 .hz-fix { display: block; margin-top: 8px; } .hz-fix input { font: inherit; font-weight: 900; width: 7em; padding: 5px 8px; border-radius: 10px; border: 2px solid var(--line-deep); margin-right: 6px; } .hz-fix small { display: block; margin-top: 6px; font-weight: 600; }
 .hz-pv { position: fixed; inset: 0; z-index: 60; background: rgba(40,30,60,.45); display: grid; place-items: center; padding: 16px; }
-.hz-pvc { background: #fff; border-radius: 22px; padding: 22px 20px; max-width: 340px; width: 100%; text-align: center; display: grid; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.2); } .hz-pvc b { font-size: 1.1rem; } .hz-pvc small { color: var(--muted); font-weight: 700; line-height: 1.5; } .hz-pvc input { font: inherit; font-weight: 900; padding: 8px 10px; border-radius: 12px; border: 2px solid var(--line-deep); text-align: center; }
+.hz-pvc { background: #fff; border-radius: 22px; padding: 22px 20px; max-width: 340px; width: 100%; text-align: center; display: grid; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.2); } .hz-pvc b { font-size: 1.1rem; } .hz-pvc small { color: var(--muted); font-weight: 700; line-height: 1.5; } .hz-pvc > * { min-width: 0; } .hz-pvc input { width: 100%; font: inherit; font-weight: 900; padding: 8px 10px; border-radius: 12px; border: 2px solid var(--line-deep); text-align: center; }
 .hz-spin { width: 46px; height: 46px; margin: 0 auto; border-radius: 50%; border: 5px solid #FCE7B0; border-top-color: #F2B53A; animation: hzspin 1s linear infinite; } @keyframes hzspin { to { transform: rotate(360deg); } }
 .cheer-ov { position: fixed; inset: 0; z-index: 9000; display: grid; place-items: center; background: rgba(255,240,200,.55); overflow: hidden; animation: cheerin .35s ease-out; } .cheer-ov.bye { opacity: 0; transition: opacity .45s; }
 .cheer-card { background: #fff; border-radius: 28px; padding: 22px 26px; text-align: center; max-width: 86vw; box-shadow: 0 14px 40px rgba(242,181,58,.45); border: 4px solid #F2B53A; animation: cheerpop .6s cubic-bezier(.3,1.6,.5,1); }
@@ -1939,6 +1942,55 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 .calm-enter .calm-ic{font-size:2rem}
 .calm-enter b{display:block;font-size:1.15rem}
 .calm-enter small{font-weight:700;color:#5A6680}
+.mb-ov{position:fixed;inset:0;z-index:400;display:flex;flex-direction:column;background:linear-gradient(180deg,#FFF6DC,#FFE9D6 60%,#E3F4FF);color:#4A3B5C;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.mb-top{display:flex;justify-content:space-between;padding:12px 14px 0}
+.mb-btn{border:0;border-radius:999px;padding:9px 16px;font:inherit;font-weight:900;font-size:.95rem;background:#fff;color:#4A3B5C;box-shadow:0 4px 0 #EAD9C0;cursor:pointer;position:relative;overflow:hidden}
+.mb-btn.on{background:#FFD45C;color:#3A2A00;box-shadow:0 4px 0 #E0B33A}
+.mb-par i{position:absolute;left:0;top:0;bottom:0;width:0;background:#FFE08A;z-index:-1}.mb-par{z-index:0}.mb-par.hold i{width:100%;transition:width 3s linear}
+.mb-stage{flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:12px;padding:8px 16px 110px;text-align:center}
+.mb-char{width:min(150px,38vw)}.mb-char svg{width:100%;height:auto}.mb-char.talk{animation:mbbob 1.2s ease-in-out infinite alternate}.mb-char.hug{animation:mbhug 1s ease-in-out infinite alternate}
+.mb-say{margin:0;font-size:1.12rem;font-weight:800;line-height:1.55;max-width:24em}
+.mb-clouds{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:min(420px,100%)}
+.mb-cloud{border:0;border-radius:28px;padding:16px 8px;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 6px 0 rgba(0,0,0,.08),0 10px 24px rgba(120,90,60,.12);animation:mbfloat 3s ease-in-out infinite alternate}
+.mb-cloud:nth-child(2n){animation-delay:-1.5s}.mb-cloud span{font-size:3rem;line-height:1}.mb-cloud b{font-size:1.02rem}
+.mb-cloud:active,.mb-game:active,.mb-act:active,.mb-item:active{transform:scale(.94)}
+.c-angry{background:#FFD9D2}.c-sad{background:#D6E9FF}.c-wild{background:#E6DEFF}.c-sun{background:#FFF0B8}
+.mb-moodtag{border-radius:999px;padding:6px 16px;font-weight:900}
+.mb-games{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;width:min(440px,100%)}
+.mb-game{border:0;border-radius:22px;padding:10px 12px;font:inherit;background:#fff;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 5px 0 #EAD9C0;font-weight:900}
+.mb-game span{font-size:1.6rem}.mb-game.big{width:100%;justify-content:center;padding:16px;background:#FFD45C;box-shadow:0 6px 0 #E0B33A;font-size:1.2rem}.mb-game.big span{font-size:2.2rem}
+.mb-back{margin-top:4px}
+.mb-gtitle{display:flex;align-items:center;gap:10px;width:min(440px,100%)}.mb-gtitle b{font-size:1.2rem}
+.mb-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.mb-act{border:0;border-radius:22px;padding:14px 18px;font:inherit;font-weight:900;font-size:1.05rem;background:#fff;box-shadow:0 5px 0 #EAD9C0;cursor:pointer;touch-action:none}
+.mb-act.on{background:#9BE8C0;box-shadow:0 5px 0 #5CC28F}.mb-act.big{background:#FFD45C;box-shadow:0 5px 0 #E0B33A;font-size:1.2rem}.mb-act:disabled{opacity:.5}
+.mb-dand{width:min(220px,58vw);height:auto;overflow:visible}
+.mb-seed{transform-box:fill-box;transform-origin:0 0}.mb-seed.fly{animation:mbseed 2.4s ease-out forwards}
+.mb-monbox{position:relative;width:min(230px,62vw);touch-action:none;cursor:pointer;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.mb-monbox svg{width:100%;height:auto;display:block}.mb-monbox.squish{transform:scale(1.18,.72);transition:transform 2.6s ease-out}
+.mb-monbox.wob{animation:mbwob .45s}.mb-monbox.boing{animation:mbboing .6s}
+.mb-count{position:absolute;inset:0;display:grid;place-items:center;font-size:3.4rem;font-weight:900;color:#fff;text-shadow:0 3px 0 #D9533F;pointer-events:none}
+.mb-dots{display:flex;gap:8px}.mb-dots i{width:16px;height:16px;border-radius:50%;background:#EAD9C0}.mb-dots i.on{background:#8ED081}
+.mb-jar{position:relative;width:220px;height:300px;border-radius:40px 40px 60px 60px;background:linear-gradient(160deg,#2C2A5A,#1C1B3E);box-shadow:inset 0 0 0 6px rgba(255,255,255,.55),0 12px 30px rgba(40,30,80,.3)}
+.mb-jar canvas{position:absolute;inset:0;border-radius:inherit;touch-action:none}.mb-cap{position:absolute;left:50%;top:-18px;transform:translateX(-50%);width:110px;height:26px;border-radius:10px;background:#E8B07A;box-shadow:0 4px 0 #C98D56}
+.mb-breath{position:relative;width:min(220px,58vw);aspect-ratio:1;display:grid;place-items:center}
+.mb-breath .calm-ball{position:absolute;inset:0;margin:auto;width:40%;height:40%;border-radius:50%;background:radial-gradient(circle at 35% 35%,#BDE8FF,#7FB8F0);box-shadow:0 0 40px rgba(127,184,240,.7);transition:all 3s ease-in-out}.mb-breath .calm-ball.big{width:100%;height:100%}
+.mb-breath .calm-word{position:relative;font-size:1.5rem;font-weight:900;color:#1F2D52}
+.mb-sky{position:relative;width:min(300px,80vw);height:120px}.mb-sky span{position:absolute;font-size:3.4rem}
+.mb-sun{left:50%;top:20px;transform:translateX(-50%) scale(.3);animation:mbsun 1.6s .4s ease-out forwards}.mb-cl1{left:30%;top:24px;animation:mbcl1 1.6s ease-in forwards}.mb-cl2{left:50%;top:30px;animation:mbcl2 1.6s ease-in forwards}
+.mb-drawer{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:26px 26px 0 0;box-shadow:0 -6px 24px rgba(120,90,60,.15);transform:translateY(calc(100% - 58px));transition:transform .35s cubic-bezier(.3,1.3,.5,1)}
+.mb-drawer.open{transform:none}.mb-dtab{display:block;width:100%;border:0;background:none;font:inherit;font-weight:900;font-size:1.05rem;padding:16px;cursor:pointer;color:#4A3B5C}
+.mb-items{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 14px 22px}
+.mb-item{border:0;border-radius:20px;background:#FFF6DC;padding:12px 4px;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 4px 0 #EAD9C0}.mb-item span{font-size:2rem}.mb-item small{font-weight:800}
+.mb-item.pop span{animation:mbboing .6s}
+.mb-tips{position:absolute;inset:0;z-index:5;background:rgba(60,45,80,.4);display:grid;place-items:center;padding:16px}
+.mb-tc{background:#fff;border-radius:24px;padding:18px;max-width:420px;width:100%;max-height:86vh;overflow:auto;text-align:left;user-select:text;-webkit-user-select:text}.mb-tc h3{margin:0 0 8px}
+.mb-tip{background:#FFF6DC;border-radius:16px;padding:10px 12px;margin-bottom:10px}.mb-tip p{margin:6px 0 0;line-height:1.55;font-weight:600}
+@keyframes mbfloat{to{transform:translateY(-6px)}}@keyframes mbbob{to{transform:translateY(-6px) rotate(2deg)}}@keyframes mbhug{to{transform:scale(1.06)}}
+@keyframes mbseed{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:0}}
+@keyframes mbwob{25%{transform:rotate(-8deg) scale(1.05)}60%{transform:rotate(6deg)}}@keyframes mbboing{30%{transform:scale(1.25,.8)}60%{transform:scale(.9,1.15)}}
+@keyframes mbsun{to{transform:translateX(-50%) scale(1.3)}}@keyframes mbcl1{to{transform:translateX(-160px);opacity:0}}@keyframes mbcl2{to{transform:translateX(160px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.mb-cloud,.mb-char.talk,.mb-char.hug{animation:none}}
 .calm-ov,.eye-ov{position:fixed;inset:0;z-index:400;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px 16px;text-align:center;color:#fff}
 .calm-ov{background:radial-gradient(circle at 50% 40%,#3E5C9A,#1F2D52 70%)}
 .calm-ov .calm-char{width:min(150px,38vw);height:auto}
@@ -2307,7 +2359,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     </div>
 
     <div class="kid-bar" id="kidBar" hidden aria-label="切換小朋友"></div>
-    <button class="calm-enter" id="calmEnter" data-say="情緒急救箱"><span class="calm-ic">🛟</span><span><b>情緒急救箱</b><small>生氣、難過、靜不下來的時候，點我一起深呼吸</small></span><span class="sl-go">開始 →</span></button>
+    <button class="calm-enter" id="calmEnter" data-say="情緒急救箱"><span class="calm-ic">🛟</span><span><b>情緒急救箱</b><small>生氣、難過、靜不下來的時候，點我讓心情變好</small></span><span class="sl-go">開始 →</span></button>
     <div class="hm-tabs" id="hmTabs" role="tablist" aria-label="今天的學習"><button data-t="path" role="tab">🗺️ 學習路線</button><button data-t="dq" role="tab">✅ 今天的任務</button></div>
     <section class="pa-card" id="pathCard" aria-label="今天的學習路線"></section>
     <section class="dq-card" id="dqCard" aria-label="今天的任務"></section>
@@ -3222,6 +3274,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       </div>
       <p class="note" id="limitToday"></p>
       <label class="eye-set"><input type="checkbox" id="eyeOn"> 👀 護眼小衛士：每連續玩 10 分鐘，自動暫停 10 秒，帶孩子看遠方、眨眨眼</label>
+      <label class="eye-set">💌 百寶箱的打氣信封：<select id="mbLetterSel" aria-label="選一封打氣信"></select> <select id="mbLetterV" aria-label="誰的聲音"><option value="mom">媽媽的聲音</option><option value="dad">爸爸的聲音</option></select></label>
       <label class="eye-set"><input type="checkbox" id="cheerOn"> 🎉 大聲稱讚：一回合全部答對時，放號角、老師大聲稱讚（晚上 8 點後自動變小聲）</label>
     </div>
     <div class="block">
@@ -9496,7 +9549,208 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     done.onclick = () => { close(); try { lsGive('calm'); } catch (e) {} };
     say([[CALM_SAY.end]]);
   }
-  $('calmEnter').onclick = openCalm;
+  /* ---------- v105 🧰 魔法心情百寶箱：心情天氣 → 感官小遊戲 → 急救寶盒 → 晴天抱抱（升級情緒急救箱） ---------- */
+  const MB_SAY = {
+    hi: '嗨！歡迎來到魔法心情百寶箱。你現在心裡的感覺，像哪一種天氣呢？點點看！',
+    angry: '哇，轟隆隆！你現在好生氣對不對？心裡好像有閃電在亂跳。沒關係，我們一起用魔法把閃電變不見！',
+    sad: '心裡酸酸的、想哭對不對？哭出來沒關係，我們一起陪眼淚慢慢停下來。',
+    wild: '哇，心裡好像有小龍捲風在轉圈圈！別怕，我們一起把風變小吧。',
+    sun: '太棒了，你的心裡現在暖洋洋的！要不要打開急救寶盒玩一玩？',
+    pick: '選一個魔法遊戲吧！',
+    blowHi: '深吸一口氣，把肚子變成大氣球。準備好了嗎？對著手機輕輕吹氣，或是按住螢幕，把蒲公英吹飛吧！',
+    blowHard: '哎呀，風太大啦！慢慢吹、輕輕吹，種子才會飛起來喔。',
+    blowGood: '哇，飛起來了！好棒喔，再輕輕吹一口氣。',
+    blowEnd: '蒲公英的種子全部飛走了，你的呼吸好溫柔喔！',
+    monHi: '這隻生氣怪獸跑出來了！快用你的手指頭用力戳它、把它捏扁，把生氣全部擠出來！',
+    monHold: '用力壓住它！',
+    monGo: '放開！',
+    monPop: '哈哈！生氣怪獸被你捏扁，變成搞笑鬼臉啦！要不要再捏一次？',
+    monEnd: '生氣怪獸變成好朋友了！你把生氣都擠出來了，好厲害！',
+    jarHi: '把手機拿起來輕輕搖一搖，或是用手指在瓶子裡畫圈圈，把煩惱都搖進瓶子裡！',
+    jarSet: '好，現在我們把瓶子放好。眼睛看著星星，跟它們一起慢慢、慢慢地掉下來。',
+    jarEnd: '星星都睡著了，你的心也慢慢安靜下來了。',
+    box: '這是你的急救寶盒，裡面都是讓你安心的小寶貝。',
+    ball: '捏一捏，軟軟的捏捏球。', bear: '小熊給你一個大大的抱抱。', smell: '聞一聞，香香的，好舒服。',
+    noLetter: '請爸爸媽媽在家長專區，幫你選一封打氣信。',
+    end: '你看，太陽公公出來了！你剛剛靠自己把心情變平靜了，真的超級勇敢！現在，去抱抱你的小熊，或找爸爸媽媽拿一個大抱抱吧！'
+  };
+  // 打氣信封：家長在家長專區選一封，用 AI 的媽媽或爸爸聲音念（App 裡的聲音都是 AI）
+  const MB_LETTERS = ['寶貝，深呼吸，爸爸媽媽永遠愛你。', '不管你心情怎麼樣，我們都會陪在你身邊。', '生氣沒關係，難過也沒關係，你可以慢慢來。', '你已經很努力了，我們以你為榮。', '想哭就哭吧，哭完我們一起抱抱。', '你是我們最珍貴的寶貝，我們好愛你。'];
+  const MB_MOODS = [['angry', '⛈️', '打雷生氣雲', 'surprise', 'mon'], ['sad', '🌧️', '下雨哭哭雲', 'sad', 'jar'], ['wild', '🌪️', '龍捲風亂亂雲', 'scared', 'blow'], ['sun', '☀️', '太陽公公', 'laugh', '']];
+  const MB_GAMES = { blow: ['🌼', '吹吹蒲公英'], mon: ['👾', '怪獸捏捏樂'], jar: ['✨', '搖搖星空瓶'], breath: ['🫧', '深呼吸球'] };
+  const MB_TIPS = {
+    angry: ['我知道你很生氣，我陪你。', '蹲下來和孩子一樣高，先不講道理；等他冷靜了再說說剛剛發生什麼事。可以讓他用力捏枕頭或跺跺腳。'],
+    sad: ['你很難過，想哭沒關係。', '先抱抱、拍拍背，讓他把眼淚哭完；不要急著說「不要哭」。'],
+    wild: ['我們一起慢慢呼吸，好嗎？', '帶到安靜的角落、把燈光調暗一點，牽著手一起數呼吸。'],
+    sun: ['你把心情照顧得很好！', '具體稱讚他剛剛用的方法，例如「你剛剛有深呼吸，好棒」。']
+  };
+  // 百寶箱的句子都有 AI 語音以後才換新版；還沒做好時先用原本的深呼吸急救箱
+  const mbReady = () => [...Object.values(MB_SAY)].every(t => pvVoiced(t, ''));
+  async function calmOpen() { if (aiOn() && !AI.ids) await Promise.race([aiReady(), delay(1500)]); return mbReady() ? openBox() : openCalm(); }
+  $('calmEnter').onclick = calmOpen;
+  { const s1 = $('mbLetterSel'), s2 = $('mbLetterV'); if (s1 && s2) { s1.innerHTML = '<option value="-1">還沒選</option>' + MB_LETTERS.map((t, i) => `<option value="${i}">${t}</option>`).join(''); s1.value = String(store.get('mbLetter', -1)); s2.value = store.get('mbLetterV', 'mom'); s1.onchange = () => store.set('mbLetter', +s1.value); s2.onchange = () => store.set('mbLetterV', s2.value); } }
+  function openBox() {
+    sayStop(); track('mb-open', '魔法心情百寶箱');
+    const who = Math.random() < .5 ? 'b1' : 'g1', ch = (pose, mood) => { try { return frSVG(who, pose, mood); } catch (e) { return ''; } };
+    const ov = document.createElement('div'); ov.className = 'mb-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', '魔法心情百寶箱');
+    ov.innerHTML = `<div class="mb-top"><button class="mb-btn" id="mbX">✕ 關閉</button><button class="mb-btn mb-par" id="mbPar" aria-label="家長小抄，長按 3 秒"><i></i>👪 長按</button></div><div class="mb-stage" id="mbStage"></div>
+      <div class="mb-drawer" id="mbDrawer"><button class="mb-dtab" id="mbDtab">🧰 我的急救寶盒</button><div class="mb-items">${[['ball', '🟣', '捏捏球'], ['bear', '🧸', '小熊抱抱'], ['smell', '🌸', '香香瓶'], ['letter', '💌', '打氣信封']].map(([k, e, n]) => `<button class="mb-item" data-it="${k}"><span>${e}</span><small>${n}</small></button>`).join('')}</div></div>`;
+    document.body.appendChild(ov); document.documentElement.classList.add('wc-open');
+    const S = { alive: true, mood: '', clean: [] }, stage = $('mbStage');
+    const close = () => { S.alive = false; S.clean.forEach(f => { try { f(); } catch (e) {} }); S.clean = []; calmMusic(false); sayStop(); ov.remove(); document.documentElement.classList.remove('wc-open'); };
+    const stopGame = () => { S.clean.forEach(f => { try { f(); } catch (e) {} }); S.clean = []; };
+    $('mbX').onclick = close;
+    // 👪 家長小抄：長按 3 秒才打開（小朋友不會不小心按到）
+    { const b = $('mbPar'); let t = 0; const up = () => { clearTimeout(t); b.classList.remove('hold'); };
+      b.onpointerdown = e => { e.preventDefault(); b.classList.add('hold'); t = setTimeout(() => { up(); mbTips(); }, 3000); }; b.onpointerup = b.onpointerleave = b.onpointercancel = up; b.oncontextmenu = e => e.preventDefault(); }
+    function mbTips() {
+      const T = MB_TIPS[S.mood] ? [[S.mood, MB_TIPS[S.mood]]] : Object.entries(MB_TIPS), M = Object.fromEntries(MB_MOODS.map(m => [m[0], m]));
+      const p = document.createElement('div'); p.className = 'mb-tips';
+      p.innerHTML = `<div class="mb-tc"><h3>👪 家長溝通小抄</h3>${T.map(([k, [s, a]]) => `<div class="mb-tip"><b>${M[k][1]} ${M[k][2]}</b><p>💬 可以這樣說：「${s}」</p><p>🤲 可以這樣做：${a}</p></div>`).join('')}<button class="mb-btn on" id="mbTipX">知道了</button></div>`;
+      ov.appendChild(p); p.querySelector('#mbTipX').onclick = () => p.remove();
+    }
+    // 🧰 急救寶盒
+    $('mbDtab').onclick = () => { const d = $('mbDrawer'); d.classList.toggle('open'); if (d.classList.contains('open')) say([[MB_SAY.box]]); };
+    ov.querySelectorAll('.mb-item').forEach(b => b.onclick = () => {
+      const k = b.dataset.it; b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop');
+      if (k === 'letter') { const i = store.get('mbLetter', -1), v = store.get('mbLetterV', 'mom'); if (i >= 0 && MB_LETTERS[i]) { tone([660, 880], .08, 'sine'); if (pvVoiced(MB_LETTERS[i], v)) say([[MB_LETTERS[i], 'zh-TW', v]]); } else say([[MB_SAY.noLetter]]); }
+      else { tone(k === 'ball' ? [330, 262] : k === 'bear' ? [392, 523] : [784, 1046, 1318], .08, 'sine'); say([[MB_SAY[k]]]); try { navigator.vibrate && navigator.vibrate(25); } catch (e) {} }
+    });
+    // 1. 心情天氣
+    function weather() {
+      stopGame(); S.mood = '';
+      stage.innerHTML = `<div class="mb-char" id="mbChar">${ch('stand', 'smile')}</div><p class="mb-say">你現在心裡的感覺，像哪一種天氣呢？</p>
+        <div class="mb-clouds">${MB_MOODS.map(([k, e, n]) => `<button class="mb-cloud c-${k}" data-m="${k}"><span>${e}</span><b>${n}</b></button>`).join('')}</div>`;
+      say([[MB_SAY.hi]]);
+      stage.querySelectorAll('.mb-cloud').forEach(b => b.onclick = () => mood(b.dataset.m));
+    }
+    function mood(k) {
+      const m = MB_MOODS.find(x => x[0] === k); S.mood = k; track('mb-mood-' + k, '百寶箱心情：' + m[2]);
+      const rec = m[4], others = Object.keys(MB_GAMES).filter(g => g !== rec);
+      stage.innerHTML = `<div class="mb-char talk">${ch(k === 'sun' ? 'up' : 'stand', m[3])}</div><div class="mb-moodtag c-${k}">${m[1]} ${m[2]}</div><p class="mb-say">${MB_SAY[k]}</p>
+        ${k === 'sun' ? `<div class="mb-games"><button class="mb-game big" data-g="box"><span>🧰</span><b>打開急救寶盒</b></button><button class="mb-game" data-g="end"><span>🌞</span><b>我很好，結束</b></button></div>`
+        : `<div class="mb-games"><button class="mb-game big" data-g="${rec}"><span>${MB_GAMES[rec][0]}</span><b>${MB_GAMES[rec][1]}</b></button>${others.map(g => `<button class="mb-game" data-g="${g}"><span>${MB_GAMES[g][0]}</span><b>${MB_GAMES[g][1]}</b></button>`).join('')}</div>`}
+        <button class="mb-btn mb-back" id="mbBack">← 換一種天氣</button>`;
+      say([[MB_SAY[k]], ...(k === 'sun' ? [] : [[MB_SAY.pick]])]);
+      $('mbBack').onclick = weather;
+      stage.querySelectorAll('.mb-game').forEach(b => b.onclick = () => { const g = b.dataset.g; if (g === 'box') { $('mbDrawer').classList.add('open'); say([[MB_SAY.box]]); return; } if (g === 'end') return sunny(); ({ blow, mon, jar, breath })[g](); });
+    }
+    const gameTop = (title) => `<div class="mb-gtitle"><button class="mb-btn" id="mbGBack">← 回去</button><b>${title}</b></div>`;
+    const wireBack = () => { $('mbGBack').onclick = () => { stopGame(); sayStop(); S.mood ? mood(S.mood) : weather(); }; };
+    // 遊戲 A：吹吹蒲公英（麥克風吹氣；沒有麥克風就按住螢幕）
+    function blow() {
+      stopGame(); track('mb-blow', '百寶箱：吹蒲公英');
+      const N = 18, seeds = [...Array(N)].map((_, i) => { const a = i / N * Math.PI * 2, x = Math.cos(a) * 34, y = Math.sin(a) * 34; return `<g class="mb-seed" style="--dx:${Math.round(60 + Math.random() * 120)}px;--dy:${Math.round(-140 - Math.random() * 160)}px;--r:${Math.round(Math.random() * 300 - 150)}deg"><line x1="0" y1="0" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#C9C2B0" stroke-width="1.6"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="#FFFFFF" stroke="#E5DFCC"/></g>`; }).join('');
+      stage.innerHTML = gameTop('🌼 吹吹蒲公英') + `<svg class="mb-dand" viewBox="-80 -90 160 230" aria-hidden="true"><path d="M0 40 Q 6 90 -4 138" stroke="#6CB86A" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M-2 100 q-26 -6 -34 -24 q22 -2 34 18" fill="#8ED081"/>${seeds}<circle r="9" fill="#E8C35A"/></svg>
+        <p class="mb-say" id="mbHint">對著手機輕輕吹，或按住下面的按鈕</p><div class="mb-row"><button class="mb-act" id="mbMic">🎤 對著手機吹</button><button class="mb-act hold" id="mbHold">👆 按住吹氣</button></div>`;
+      wireBack(); say([[MB_SAY.blowHi]]);
+      let left = N, lastHard = 0, saidGood = false;
+      const fly = () => { const g = stage.querySelector('.mb-seed:not(.fly)'); if (!g) return; g.classList.add('fly'); left--; tone([880 + Math.random() * 300], .04, 'sine');
+        if (!saidGood && left === N - 3) { saidGood = true; say([[MB_SAY.blowGood]]); } if (left <= 0) { stopGame(); setTimeout(() => { if (S.alive) done(MB_SAY.blowEnd); }, 900); } };
+      // 按住：每 0.45 秒飛走一顆
+      { const b = $('mbHold'); let t = 0; const up = () => { clearInterval(t); t = 0; b.classList.remove('on'); };
+        b.onpointerdown = e => { e.preventDefault(); if (t) return; b.classList.add('on'); fly(); t = setInterval(fly, 450); }; b.onpointerup = b.onpointerleave = b.onpointercancel = up; S.clean.push(up); }
+      // 麥克風：聲音太大提醒輕輕吹；溫柔穩定的吹氣讓種子飛走
+      $('mbMic').onclick = async () => {
+        let st; try { st = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e) { $('mbHint').textContent = '沒有開麥克風也沒關係，按住「👆 按住吹氣」就可以吹喔！'; return; }
+        if (!S.alive) { st.getTracks().forEach(t => t.stop()); return; }
+        $('mbMic').classList.add('on'); $('mbMic').textContent = '🎤 吹吹看…';
+        ac = ac || new (window.AudioContext || window.webkitAudioContext)(); try { await ac.resume(); } catch (e) {}
+        const src = ac.createMediaStreamSource(st), an = ac.createAnalyser(); an.fftSize = 512; src.connect(an); const buf = new Float32Array(an.fftSize);
+        let acc = 0, raf = 0; const loop = () => { an.getFloatTimeDomainData(buf); let q = 0; for (const v of buf) q += v * v; const rms = Math.sqrt(q / buf.length);
+          if (rms > .3) { if (Date.now() - lastHard > 4000) { lastHard = Date.now(); $('mbHint').textContent = '風太大啦！輕輕吹～'; say([[MB_SAY.blowHard]]); } }
+          else if (rms > .035) { acc += 16; if (acc >= 260) { acc = 0; fly(); } } else acc = Math.max(0, acc - 8);
+          raf = requestAnimationFrame(loop); };
+        loop(); S.clean.push(() => { cancelAnimationFrame(raf); try { src.disconnect(); } catch (e) {} st.getTracks().forEach(t => t.stop()); });
+      };
+    }
+    // 遊戲 B：怪獸捏捏樂（戳一戳會晃；按住 3 秒捏扁，放開變鬼臉；捏 3 次變好朋友）
+    function mon() {
+      stopGame(); track('mb-mon', '百寶箱：捏怪獸');
+      const face = f => `<svg class="mb-mon f-${f}" viewBox="0 0 200 180" aria-hidden="true"><path d="M30 120 Q20 40 100 30 Q180 40 170 120 Q165 165 100 165 Q35 165 30 120z" fill="${f === 'happy' ? '#8ED081' : '#F2735E'}" stroke="#fff" stroke-width="5"/><path d="M60 38 l-14 -22 l26 14z M140 38 l14 -22 l-26 14z" fill="${f === 'happy' ? '#6CB86A' : '#D9533F'}"/>
+        ${f === 'angry' ? '<path d="M58 70 l30 12 M142 70 l-30 12" stroke="#3A2140" stroke-width="7" stroke-linecap="round"/><circle cx="76" cy="94" r="9" fill="#3A2140"/><circle cx="124" cy="94" r="9" fill="#3A2140"/><path d="M78 135 q22 -16 44 0" stroke="#3A2140" stroke-width="6" fill="none" stroke-linecap="round"/>'
+        : f === 'silly' ? '<path d="M64 88 l18 10 l-18 10 M136 88 l-18 10 l18 10" stroke="#3A2140" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M74 126 q26 22 52 0z" fill="#3A2140"/><path d="M92 132 q8 26 20 0z" fill="#FF8FB0"/>'
+        : '<path d="M66 92 q10 -12 20 0 M114 92 q10 -12 20 0" stroke="#3A2140" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M74 122 q26 26 52 0" stroke="#3A2140" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="60" cy="112" r="9" fill="#FF8FB0" opacity=".7"/><circle cx="140" cy="112" r="9" fill="#FF8FB0" opacity=".7"/>'}</svg>`;
+      stage.innerHTML = gameTop('👾 怪獸捏捏樂') + `<div class="mb-monbox" id="mbMon">${face('angry')}<span class="mb-count" id="mbCnt"></span></div><p class="mb-say" id="mbHint">戳一戳它，或是按住 3 秒把它捏扁！</p><div class="mb-dots" id="mbDots">${'<i></i>'.repeat(3)}</div>`;
+      wireBack(); say([[MB_SAY.monHi]]);
+      const box = $('mbMon'); let n = 0, t0 = 0, tm = [], holding = false;
+      const set = f => { box.innerHTML = face(f) + '<span class="mb-count" id="mbCnt"></span>'; };
+      const clear = () => { tm.forEach(clearTimeout); tm = []; };
+      box.onpointerdown = e => { e.preventDefault(); if (n >= 3) return; holding = true; t0 = Date.now(); box.classList.add('squish'); box.classList.remove('wob'); try { navigator.vibrate && navigator.vibrate(30); } catch (er) {} tone([196], .06, 'triangle');
+        clear(); tm.push(setTimeout(() => { if (holding) say([[MB_SAY.monHold]]); }, 500)); [1, 2, 3].forEach(k => tm.push(setTimeout(() => { if (!holding) return; const c = $('mbCnt'); if (c) c.textContent = k; tone([330 + k * 110], .07, 'sine'); try { navigator.vibrate && navigator.vibrate(20); } catch (er) {} if (k === 3) say([[MB_SAY.monGo]]); }, k * 1000))); };
+      const up = () => { if (!holding) return; holding = false; clear(); box.classList.remove('squish'); const c = $('mbCnt'); if (c) c.textContent = '';
+        if (Date.now() - t0 < 3000) { box.classList.remove('wob'); void box.offsetWidth; box.classList.add('wob'); tone([262, 392], .05, 'sine'); return; }
+        n++; $('mbDots').children[n - 1].classList.add('on'); tone([523, 784, 659], .08, 'square'); box.classList.add('boing');
+        if (n < 3) { set('silly'); say([[MB_SAY.monPop]]); setTimeout(() => { if (S.alive && $('mbMon')) { set('angry'); box.classList.remove('boing'); } }, 2600); }
+        else { set('happy'); say([[MB_SAY.monEnd]]).then(() => { if (S.alive && $('mbMon')) done(''); }); } };
+      box.onpointerup = box.onpointerleave = box.onpointercancel = up; S.clean.push(() => { holding = false; clear(); });
+    }
+    // 遊戲 C：搖搖星空瓶（搖手機或手指畫圈攪拌；放好後 20 秒慢慢沉下來）
+    function jar() {
+      stopGame(); track('mb-jar', '百寶箱：星空瓶');
+      stage.innerHTML = gameTop('✨ 搖搖星空瓶') + `<div class="mb-jar"><canvas id="mbCv" width="220" height="300"></canvas><div class="mb-cap"></div></div><p class="mb-say" id="mbHint">搖一搖手機，或用手指在瓶子裡畫圈圈</p>
+        <div class="mb-row"><button class="mb-act" id="mbShake">📳 搖手機</button><button class="mb-act" id="mbPut">🫙 放好瓶子</button></div>`;
+      wireBack(); say([[MB_SAY.jarHi]]);
+      const cv = $('mbCv'), cx = cv.getContext('2d'), W = 220, H = 300, COL = ['#FFD45C', '#FF8FB0', '#8FD3FF', '#B9A6FF', '#9BE8C0', '#FFFFFF'];
+      const P = [...Array(70)].map(() => ({ x: 30 + Math.random() * 160, y: H - 20 - Math.random() * 40, vx: 0, vy: 0, r: 2 + Math.random() * 3, c: COL[Math.floor(Math.random() * COL.length)] }));
+      let energy = 0, mode = 'play', raf = 0, lastX = 0, lastY = 0, stirred = 0;
+      const stir = k => { energy = Math.min(1, energy + k); stirred += k; };
+      const draw = () => {
+        cx.clearRect(0, 0, W, H);
+        P.forEach(p => {
+          if (energy > .02) { const ax = (Math.random() - .5) * 1.6 * energy, ay = (Math.random() - .6) * 2.2 * energy; p.vx += ax + (W / 2 - p.x) * .0008 * energy; p.vy += ay; }
+          p.vy += mode === 'settle' ? .004 : .02; p.vx *= mode === 'settle' ? .96 : .985; p.vy *= mode === 'settle' ? .96 : .985;
+          if (mode === 'settle') p.vy = Math.min(p.vy, .35);
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 18) { p.x = 18; p.vx *= -.6; } if (p.x > W - 18) { p.x = W - 18; p.vx *= -.6; } if (p.y < 30) { p.y = 30; p.vy *= -.5; } if (p.y > H - 14) { p.y = H - 14; p.vy *= -.3; }
+          cx.beginPath(); cx.fillStyle = p.c; cx.shadowColor = p.c; cx.shadowBlur = 8; cx.arc(p.x, p.y, p.r, 0, 7); cx.fill();
+        });
+        energy *= mode === 'settle' ? .9 : .985; raf = requestAnimationFrame(draw);
+      };
+      draw(); S.clean.push(() => cancelAnimationFrame(raf));
+      cv.onpointerdown = e => { lastX = e.clientX; lastY = e.clientY; cv.setPointerCapture && cv.setPointerCapture(e.pointerId); };
+      cv.onpointermove = e => { if (!e.buttons && e.pointerType === 'mouse') return; const d = Math.hypot(e.clientX - lastX, e.clientY - lastY); lastX = e.clientX; lastY = e.clientY; if (mode === 'play') stir(Math.min(.25, d / 120)); };
+      $('mbShake').onclick = async () => {
+        try { if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function' && await DeviceMotionEvent.requestPermission() !== 'granted') throw 0; } catch (e) { $('mbHint').textContent = '不能搖也沒關係，用手指在瓶子裡畫圈圈就可以喔！'; return; }
+        $('mbShake').classList.add('on'); let last = 0;
+        const on = e => { const a = e.accelerationIncludingGravity || e.acceleration; if (!a) return; const m = Math.abs(a.x || 0) + Math.abs(a.y || 0) + Math.abs(a.z || 0); if (last && mode === 'play') stir(Math.min(.3, Math.abs(m - last) / 40)); last = m; };
+        window.addEventListener('devicemotion', on); S.clean.push(() => window.removeEventListener('devicemotion', on));
+      };
+      $('mbPut').onclick = () => {
+        if (mode !== 'play') return; if (stirred < .6) stir(.9); mode = 'settle'; $('mbPut').disabled = true; $('mbShake').disabled = true; say([[MB_SAY.jarSet]]);
+        let s = 20; $('mbHint').textContent = `看著星星慢慢掉下來… ${s}`;
+        const t = setInterval(() => { s--; const h = $('mbHint'); if (h) h.textContent = s > 0 ? `看著星星慢慢掉下來… ${s}` : '星星都睡著了'; if (s <= 0) { clearInterval(t); if (S.alive) done(MB_SAY.jarEnd); } }, 1000);
+        S.clean.push(() => clearInterval(t));
+      };
+    }
+    // 深呼吸球（原本的急救箱）
+    async function breath() {
+      stopGame(); track('mb-breath', '百寶箱：深呼吸球'); let alive = true; S.clean.push(() => { alive = false; });
+      stage.innerHTML = gameTop('🫧 深呼吸球') + `<div class="mb-breath"><div class="calm-ball"></div><span class="calm-word" id="mbW">準備</span></div><p class="mb-say" id="mbT">${CALM_SAY.hi}</p>`;
+      wireBack(); const ball = stage.querySelector('.calm-ball'), w = $('mbW'), tp = $('mbT');
+      await say([[CALM_SAY.hi]]); if (!alive) return;
+      for (let r = 1; r <= 4 && alive; r++) {
+        w.textContent = '吸氣'; tp.textContent = `第 ${r} 次：慢慢吸氣，肚子鼓起來`; ball.classList.add('big'); say([[CALM_SAY.inn]]);
+        for (let k = 3; k >= 1 && alive; k--) { w.textContent = `吸氣 ${k}`; await delay(1000); }
+        if (!alive) return;
+        w.textContent = '吐氣'; tp.textContent = `第 ${r} 次：慢慢吐氣，把生氣吹走`; ball.classList.remove('big'); say([[CALM_SAY.out]]);
+        for (let k = 3; k >= 1 && alive; k--) { w.textContent = `吐氣 ${k}`; await delay(1000); }
+        await delay(400);
+      }
+      if (alive) done('');
+    }
+    // 遊戲完成 → 說一句 → 晴天抱抱
+    async function done(line) { stopGame(); if (line) await say([[line]]); if (S.alive) sunny(); }
+    function sunny() {
+      stopGame(); track('mb-sunny', '百寶箱：晴天抱抱');
+      stage.innerHTML = `<div class="mb-sky"><span class="mb-cl1">☁️</span><span class="mb-cl2">☁️</span><span class="mb-sun">☀️</span></div><div class="mb-char hug">${ch('up', 'happy')}</div><p class="mb-say">你剛剛靠自己把心情變平靜了，真的超級勇敢！<br>去抱抱你的小熊，或找爸爸媽媽拿一個大抱抱吧！🤗</p>
+        <div class="mb-row"><button class="mb-act big" id="mbOk">我好多了！</button><button class="mb-act" id="mbAgain">🔁 再玩一個</button></div>`;
+      tone([523, 659, 784, 1046], .12, 'sine'); say([[MB_SAY.end]]);
+      $('mbOk').onclick = () => { close(); try { lsGive('calm'); } catch (e) {} };
+      $('mbAgain').onclick = weather;
+    }
+    calmMusic(true); weather();
+  }
   /* ---------- v101：新主題的 AI 語音還沒做好以前，先不出現在首頁 ---------- */
   const NEWSUB_SAMPLE = {
     yxmirror: () => MIRROR_G.flatMap(G => G.items.map(t => G.type === 'en' ? [`${t.k}. ${t.w}.`, EZ_EN] : [t.say])).concat([['哪一個沒有寫反？'], ['聽一聽，是哪一個？']]),
@@ -11638,6 +11892,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     MOVES.forEach(m => out.push(m[1]));
     out.push(...Object.values(CALM_SAY), ...Object.values(EYE_SAY), '情緒急救箱');
     CHEER_0.forEach(t => out.push([t, 'zh-TW', 'tch']));
+    out.push(...Object.values(MB_SAY)); MB_LETTERS.forEach(t => { out.push([t, 'zh-TW', 'mom'], [t, 'zh-TW', 'dad']); });
     try { Object.entries(TONE_EX).forEach(([t, A]) => A.forEach(e => out.push(toneExSay(t, e)))); } catch (e) {}
     try { Object.values(NEWSUB_SAMPLE).forEach(f => f().forEach(x => out.push(x))); READ_T.forEach(T => out.push(T.hint)); } catch (e) {}
     try { Object.entries(LS_TYPE).forEach(([k, T]) => { if (k !== 'full' && k !== 'up') out.push([`你今天${T[2]}，表現得真好！老師送你一張貼紙！`, 'zh-TW', 'tch']); }); } catch (e) {}
