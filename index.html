@@ -2057,6 +2057,13 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 .options.pills .opt{aspect-ratio:auto;min-height:clamp(72px,11vh,104px);border-radius:999px}.options.pills .o-num{font-size:clamp(2.4rem,10vw,3.6rem)}
 .options.pills.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media (max-width:420px){.options.pills.cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* v126 學習紀錄分頁 */
+.rt-tabs{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:12px 0;padding:8px;background:var(--surface,#fff);border-radius:20px;box-shadow:0 4px 0 var(--line-deep,#E5D6C3),0 6px 16px rgba(60,40,30,.08)}
+.rt-tabs button{border:0;background:transparent;border-radius:14px;padding:8px 4px;font:inherit;font-size:1.3rem;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;color:var(--ink)}
+.rt-tabs button b{font-size:.82rem;white-space:nowrap}.rt-tabs button.on{background:#FFF1B8;box-shadow:0 0 0 3px #F2B544}
+#report .rt-off{display:none!important}
+.pv-set{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}.pv-set .note{flex-basis:100%;margin:0}
+@media (min-width:760px){.rt-tabs button{flex-direction:row;justify-content:center;gap:8px;font-size:1.2rem}.rt-tabs button b{font-size:1rem}}
 .mb-tellmom{margin:4px auto 10px;max-width:22em;background:#FFF3D9;border:3px dashed #F2B544;border-radius:18px;padding:10px 14px;font-size:clamp(1.05rem,4.6vw,1.3rem);font-weight:700;color:#5A3B1A;text-align:center}.mb-tellmom b{color:#C2410C}
 .mb-pop{position:relative;width:min(340px,90vw);height:min(330px,46vh);overflow:hidden;border-radius:24px;background:linear-gradient(#EAF6FF,#FFF5FB);touch-action:none}
 .mb-bub{position:absolute;bottom:-90px;width:var(--s);height:var(--s);border-radius:50%;border:0;padding:0;cursor:pointer;background:radial-gradient(circle at 32% 30%,#fff 0 12%,transparent 13%),radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--c) 35%,transparent) 0 60%,var(--c) 100%);box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--c) 70%,#fff);animation:mbbubup linear forwards;touch-action:none}
@@ -3442,6 +3449,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       <div><b id="kidLine"></b><span id="kidSub"></span></div>
     </div>
     <div class="kpis" id="kpis"></div>
+    <nav class="rt-tabs" id="rtTabs" aria-label="學習紀錄分類"><button data-rt="learn" class="on">📊<b>學習成果</b></button><button data-rt="print">🖨️<b>列印</b></button><button data-rt="time">⏰<b>時間・樂園</b></button><button data-rt="set">⚙️<b>設定・方案</b></button></nav>
     <div class="block cheat" id="cheatBlock">
       <h3>📝 今天 30 秒小抄 <small class="note">下班後看這裡就知道今天學了什麼</small></h3>
       <div id="cheatBody"></div>
@@ -3518,7 +3526,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       </div>
       <p class="note" id="limitToday"></p>
       <label class="eye-set"><input type="checkbox" id="eyeOn"> 👀 護眼小衛士：每連續玩 10 分鐘，自動暫停 10 秒，帶孩子看遠方、眨眨眼</label>
-      <div class="eye-set"><button class="btn small ghost" id="mbPreview" type="button">👪 家長搶先試玩百寶箱</button> <button class="btn small ghost" id="atPreview" type="button">👪 家長搶先看：關注小超人</button> <div id="mbLog" class="note"></div><small class="note">魔法心情百寶箱的語音 12/1 後才會做好，孩子點「情緒急救箱」暫時還是深呼吸版；這裡可以先試玩，沒有語音的句子只顯示文字。</small></div>
+      <div class="pv-set"><button class="btn small ghost" id="mbPreview" type="button">👪 家長搶先試玩百寶箱</button> <button class="btn small ghost" id="atPreview" type="button">👪 家長搶先看：關注小超人</button> <div id="mbLog" class="note"></div><small class="note">魔法心情百寶箱的語音 12/1 後才會做好，孩子點「情緒急救箱」暫時還是深呼吸版；這裡可以先試玩，沒有語音的句子只顯示文字。</small></div>
       <label class="eye-set">💌 百寶箱的打氣信封：<select id="mbLetterSel" aria-label="選一封打氣信"></select> <select id="mbLetterV" aria-label="誰的聲音"><option value="mom">媽媽的聲音</option><option value="dad">爸爸的聲音</option></select></label>
       <label class="eye-set"><input type="checkbox" id="cheerOn"> 🎉 大聲稱讚：一回合全部答對時，放號角、老師大聲稱讚（晚上 8 點後自動變小聲）</label>
     </div>
@@ -9814,7 +9822,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     $('doneTitle').textContent = trialEnd ? '試玩結束！' : ratio >= .9 ? '全部都會了！' : '完成了！';
     $('doneMsg').textContent = fmsg;
     { const u = $('prUnlock'), full = s >= n && n >= 5 && !trialEnd && !DQ_PLAY.has(st.sub) && prTopics().some(t => t[0] === st.sub); u.hidden = !full; // v106：拿滿星解鎖這個主題的 A4 練習卷
-      if (full) { const sub = st.sub; $('prUnlockGo').onclick = () => openGate(() => { renderReport(); show('report'); setTimeout(() => { try { renderPrint(); $('prTopic').value = sub; } catch (e) {} $('printBlock').scrollIntoView({ behavior: 'smooth' }); }, 150); }); } }
+      if (full) { const sub = st.sub; $('prUnlockGo').onclick = () => openGate(() => { renderReport(); show('report'); setTimeout(() => { try { renderPrint(); $('prTopic').value = sub; } catch (e) {} rtGo('printBlock', { behavior: 'smooth' }); }, 150); }); } }
     const showTask = () => { const ft = familyTask(st.sub); $('famDom').textContent = ft.d; $('famText').textContent = ft.t; $('famTask').hidden = false; };
     $('learnAgain').hidden = !LEARN[st.sub];
     showTask(); $('famNext').onclick = () => { showTask(); track('family-task-next', '換親子任務'); };
@@ -11227,7 +11235,22 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     $('cheatBody').innerHTML = `<ul class="ch-list">${lines.map(x => `<li>${x}</li>`).join('')}</ul>${talk}${task}<button class="btn small ghost" id="cheatShare">📤 傳給家人</button>`;
     $('cheatShare').onclick = () => { const tx = '【動動腦小學堂・今天小抄】\n' + $('cheatBody').innerText.replace('📤 傳給家人', '').trim(); if (navigator.share) navigator.share({ text: tx }).catch(() => {}); else { try { navigator.clipboard.writeText(tx); $('cheatShare').textContent = '已複製，可以貼到 LINE'; } catch (e) {} } };
   }
-  function renderReport() {
+  // v126：學習紀錄太長，分成 4 個分頁（上面的孩子名字和數字摘要一直顯示）
+  const RT_MAP = [['learn', /小抄|六大領域|各科表現|英語能力|成長曲線|榮譽獎狀|本週學習報告|在家可以這樣練習/], ['print', /列印學習單/], ['time', /遊戲時間提醒|星星樂園|星星排行榜/], ['set', /小朋友和每日任務|AI 真人語音|說話速度|進階版|喜歡動動腦小學堂/]];
+  function rtSetup() {
+    const rp = $('report'); if (!rp || rp.dataset.rt) return; rp.dataset.rt = '1';
+    [...rp.children].forEach(el => { if (!el.matches('.block, #zyrOpen')) return; const h = (el.querySelector('h3') || el).textContent; const m = el.id === 'zyrOpen' ? 'set' : (RT_MAP.find(([, r]) => r.test(h)) || ['set'])[0]; el.dataset.rtab = m; });
+    $('rtTabs').querySelectorAll('button').forEach(b => b.onclick = () => { rtShow(b.dataset.rt); const t = $('rtTabs'); window.scrollTo({ top: Math.max(0, t.getBoundingClientRect().top + window.scrollY - 8), behavior: 'smooth' }); });
+    rtShow(store.get('repTab', 'learn'));
+  }
+  // 跳到學習紀錄某一區之前，先切到它所在的分頁
+  function rtGo(id, opt) { const el = $(id); if (!el) return; try { rtSetup(); const t = el.closest('[data-rtab]'); if (t) rtShow(t.dataset.rtab); } catch (e) {} el.scrollIntoView(opt || { behavior: 'smooth' }); }
+  function rtShow(k) {
+    if (!RT_MAP.some(([x]) => x === k)) k = 'learn'; store.set('repTab', k);
+    $('rtTabs').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.rt === k));
+    $('report').querySelectorAll('[data-rtab]').forEach(el => el.classList.toggle('rt-off', el.dataset.rtab !== k));
+  }
+  function renderReport() { try { rtSetup(); } catch (e) {}
     try { kidReport(); } catch (e) {}
     try { $('certList').innerHTML = certList(); $('certList').querySelectorAll('[data-cert]').forEach(b => b.onclick = () => certShow(b.dataset.cert)); } catch (e) {}
     try { renderCheat(); } catch (e) { console.warn(e); }
@@ -11854,17 +11877,17 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       setTimeout(() => el ? el.scrollIntoView({ behavior: 'smooth', block: 'start' }) : window.scrollTo({ top: 0, behavior: 'smooth' }), 60);
     });
   })();
-  $('ezoneBuy').addEventListener('click', () => { track('ezone-buy', '英語小學堂購買說明'); openGate(() => { renderReport(); show('report'); setTimeout(() => $('proBox').scrollIntoView({ behavior: 'smooth' }), 100); }); });
+  $('ezoneBuy').addEventListener('click', () => { track('ezone-buy', '英語小學堂購買說明'); openGate(() => { renderReport(); show('report'); setTimeout(() => rtGo('proBox', { behavior: 'smooth' }), 100); }); });
   const openZone = () => { renderZone(); show('zone'); track('zone-open', '進入幼小銜接專區'); };
   $('yxEnter').addEventListener('click', openZone); $('yxChip').addEventListener('click', e => { e.preventDefault(); openZone(); });
   $('zoneBack').addEventListener('click', () => show('home'));
-  $('zoneBuy').addEventListener('click', () => { track('zone-buy', '幼小銜接專區購買說明'); openGate(() => { renderReport(); show('report'); setTimeout(() => $('proBox').scrollIntoView({ behavior: 'smooth' }), 100); }); });
+  $('zoneBuy').addEventListener('click', () => { track('zone-buy', '幼小銜接專區購買說明'); openGate(() => { renderReport(); show('report'); setTimeout(() => rtGo('proBox', { behavior: 'smooth' }), 100); }); });
   $('againBtn').addEventListener('click', () => startRound(st.sub));
   $('reportBtn').addEventListener('click', () => openGate());
   $('lockClose').addEventListener('click', () => { $('lockSheet').hidden = true; });
-  $('promoBtn').addEventListener('click', () => { track('promo-click', '首頁進階版介紹'); openGate(() => { renderReport(); show('report'); setTimeout(() => $('proBox').scrollIntoView({ behavior: 'smooth' }), 100); }); });
+  $('promoBtn').addEventListener('click', () => { track('promo-click', '首頁進階版介紹'); openGate(() => { renderReport(); show('report'); setTimeout(() => rtGo('proBox', { behavior: 'smooth' }), 100); }); });
   document.addEventListener('click', e => { if (e.target && e.target.id === 'buyBtn') track('buy-click', '點了蝦皮購買'); });
-  $('lockParent').addEventListener('click', () => { $('lockSheet').hidden = true; openGate(() => { renderReport(); show('report'); setTimeout(() => $('proBox').scrollIntoView({ behavior: 'smooth' }), 100); }); });
+  $('lockParent').addEventListener('click', () => { $('lockSheet').hidden = true; openGate(() => { renderReport(); show('report'); setTimeout(() => rtGo('proBox', { behavior: 'smooth' }), 100); }); });
   $('restOk').addEventListener('click', () => { say([['你好棒，說到做到！']]); $('restOk').textContent = '你好棒，說到做到！'; $('restOk').disabled = true; });
   $('restUnlock').addEventListener('click', () => openGate(() => {
     const p = playToday(); p.unlocked += 10 * 60000; store.set('playToday', p); tipShown = false;
@@ -11965,7 +11988,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     $('pkHome').onclick = () => { h.hidden = true; show('home'); };
     if (!pkPaid()) {
       $('pkLockBack').onclick = () => { h.hidden = true; show('home'); };
-      $('pkLockPlan').onclick = () => { h.hidden = true; openGate(() => { renderReport(); show('report'); setTimeout(() => $('proBox').scrollIntoView({ behavior: 'smooth' }), 100); }); };
+      $('pkLockPlan').onclick = () => { h.hidden = true; openGate(() => { renderReport(); show('report'); setTimeout(() => rtGo('proBox', { behavior: 'smooth' }), 100); }); };
       return;
     }
     if (!pkMax()) { pkAsk('🔒', '家長已經關閉星星樂園', '可以到家長專區打開喔。', [['好', 'gray', () => {}]]); }
@@ -15446,7 +15469,7 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
     if (!rkOn()) {
       draw(null, '請爸爸媽媽到「家長專區」幫你取一個暱稱，就可以加入排行榜囉！');
       const b = document.createElement('div'); b.style.cssText = 'text-align:center;margin-top:10px'; b.innerHTML = '<button class="pk-btn" id="rkParent">請家長設定</button>';
-      P.querySelector('.rk-list').appendChild(b); $('rkParent').onclick = () => { pkStop(); openGate(() => { renderReport(); show('report'); setTimeout(() => $('rankBlock').scrollIntoView({ behavior: 'smooth' }), 100); }); };
+      P.querySelector('.rk-list').appendChild(b); $('rkParent').onclick = () => { pkStop(); openGate(() => { renderReport(); show('report'); setTimeout(() => rtGo('rankBlock', { behavior: 'smooth' }), 100); }); };
       return;
     }
     const c = store.get('rankCache', null); draw(c, c ? '' : '讀取中…');
