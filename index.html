@@ -1897,6 +1897,27 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 .subject.yx.locked .lock-chip { background: rgba(47,59,82,.88); }
 .pill { background: var(--surface); box-shadow: 0 3px 10px rgba(70,90,110,.12), inset 0 0 0 1.5px var(--line); }
 .icon-btn { box-shadow: 0 3px 10px rgba(70,90,110,.12), inset 0 0 0 1.5px var(--line); }
+/* v124 著色本升級 */
+.cl2 .cl-board{display:flex;justify-content:center}.cl2 .cl-svg{width:min(100%,440px)}
+.cl-svg[data-mode="pen"]{touch-action:none;cursor:crosshair}.cl-stroke{pointer-events:none}.cl-svg[data-mode="erase"] .cl-stroke{pointer-events:stroke;cursor:pointer}
+.cl-tools{display:flex;flex-direction:column;gap:10px}
+.cl-modes{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.cl-mode{border:0;background:var(--surface);border-radius:16px;padding:6px 8px;min-width:64px;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:0 3px 0 var(--line-deep);font:inherit;cursor:pointer}
+.cl-mode span{font-size:1.6rem;line-height:1}.cl-mode small{font-size:.72rem;color:var(--ink-soft,#6B5E73);white-space:nowrap}.cl-mode.on{background:#FFF1B8;box-shadow:0 0 0 3px #F2B544}
+.cl-fxs{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.cl-fx{border:0;background:none;padding:0;display:flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer;font:inherit}.cl-fx svg{width:44px;height:44px;border-radius:50%;box-shadow:0 0 0 2px var(--line-deep)}
+.cl-fx small{font-size:.72rem}.cl-fx.on svg{box-shadow:0 0 0 4px var(--ink);transform:scale(1.08)}
+/* iPad／電腦：著色本放寬成整個螢幕寬，圖畫可以畫得更大 */
+.wrap:has(#game[data-sub="coloring"]:not([hidden])){max-width:min(1280px,100%)}
+@media (min-width:760px){.cl2{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,320px);align-items:start;gap:18px}.cl2 .cl-svg{width:min(100%,calc(100vh - 270px),760px)}.cl2 .cl-tools{position:sticky;top:8px}.cl-color{width:48px;height:48px}.cl-fx svg{width:50px;height:50px}}
+.cl-alb{position:fixed;inset:0;z-index:86;background:rgba(40,30,50,.45);display:flex;align-items:center;justify-content:center;padding:14px}
+.cl-albc{background:#FFFDF5;border-radius:24px;padding:14px;width:min(760px,100%);max-height:100%;overflow:auto}
+.cl-albh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.cl-albh b{font-size:1.2rem}
+.cl-albg{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.cl-albi{border:0;background:#fff;border-radius:16px;padding:6px;box-shadow:0 3px 0 var(--line-deep);cursor:pointer;font:inherit}.cl-albi svg{width:100%;height:auto;display:block}.cl-albi small{display:block;margin-top:4px}
+.cl-alb .btn{--c:#F08A4B;--c-deep:#C2611F;--c-soft:#FFE3CF}
+.cl-albbig svg{width:min(100%,62vh);height:auto;display:block;margin:0 auto;background:#fff;border-radius:16px}.cl-albbtn{display:flex;gap:10px;justify-content:center;margin:10px 0}
+@media print{body.cl-printing>*:not(.cl-alb){display:none!important}body.cl-printing .cl-alb{position:static;background:none;padding:0}body.cl-printing .cl-albh,body.cl-printing .cl-albbtn,body.cl-printing .cl-alb .note{display:none!important}body.cl-printing .cl-albc{box-shadow:none;max-height:none}body.cl-printing .cl-albbig svg{width:180mm}}
 .cl-hint{animation:clHint .4s ease-in-out 4 alternate}@keyframes clHint{from{fill:#FFFFFF}to{fill:#FFE38A}}
 .kid-pill{border:0;cursor:pointer;font:inherit;font-weight:800;gap:4px;display:inline-flex;align-items:center;max-width:9em;overflow:hidden;white-space:nowrap}
 .kid-pill #kidNm{overflow:hidden;text-overflow:ellipsis}
@@ -1991,6 +2012,72 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 .mb-wind{display:flex;align-items:center;gap:8px;width:min(260px,80%)}.mb-wind i{flex:1;height:16px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 2px #EAD9C0;overflow:hidden}.mb-lv{min-width:2.2em;text-align:right;font-weight:800;color:#8A7A66;font-size:.8rem}.mb-wind u{display:block;height:100%;width:0;background:#CFC6B8;transition:width .08s}
 .mb-dand{width:min(220px,58vw);height:auto;overflow:visible}
 .mb-seed{transform-box:fill-box;transform-origin:0 0}.mb-seed.fly{animation:mbseed 2.4s ease-out forwards}
+.mb-sayit{margin:2px auto 12px;font-size:clamp(1.4rem,6.4vw,1.9rem);font-weight:900;color:#C2410C;background:#fff;border-radius:20px;padding:10px 18px;box-shadow:0 4px 0 #F2B544;animation:mbhug 1s ease-in-out infinite alternate}
+.mb-pcard{max-width:24em;margin:20px auto 12px;background:#fff;border:3px solid #8ED081;border-radius:20px;padding:16px 18px;text-align:left;line-height:1.7}.mb-pcard b{font-size:1.2rem;color:#2F7D4F}.mb-pcard p{margin:8px 0}.mb-pcard em{font-style:normal;font-weight:800;color:#C2410C}.mb-pcard small{color:#7A6B5A}
+.mb-thumb{font-size:2.4rem;min-width:110px}.mb-thumb.go{animation:mbhug .6s ease-in-out infinite alternate}
+/* v123 關注小超人 */
+.at-ov{position:fixed;inset:0;z-index:85;background:linear-gradient(#FFF7E3,#FFEFF4);display:flex;flex-direction:column;overscroll-behavior:contain}
+.at-top{display:flex;align-items:center;gap:10px;padding:10px 14px;padding-top:max(10px,env(safe-area-inset-top))}.at-top b{font-size:1.05rem;color:#7A3E9D}
+.at-x{border:0;background:#fff;border-radius:999px;padding:8px 14px;font:inherit;font-weight:700;box-shadow:0 2px 0 #E5D6C3;cursor:pointer}
+.at-stage{flex:1;overflow-y:auto;padding:4px 16px 28px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.at-pic{width:min(520px,100%);border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 4px 0 #EAD9C4}.at-pic.sm{width:min(380px,82%)}
+.at-pic svg{width:100%;height:auto;display:block}.at-rel{position:relative;touch-action:none}
+.at-say{font-size:clamp(1.05rem,4.6vw,1.3rem);font-weight:700;color:#4A3B5C;line-height:1.6;max-width:26em;margin:12px 0 8px}
+.at-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.at-btn{border:0;border-radius:22px;padding:12px 22px;font:inherit;font-weight:800;font-size:1.15rem;background:#FFD45C;color:#4A3000;box-shadow:0 5px 0 #D9A520;cursor:pointer}.at-btn.big{font-size:2rem;min-width:110px}
+.at-btn.go,.at-go.go{animation:mbhug .6s ease-in-out infinite alternate}
+.at-why{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:min(460px,100%)}
+.at-card{border:0;border-radius:22px;background:#fff;padding:14px 8px;box-shadow:0 5px 0 #E5D6C3;cursor:pointer;font:inherit;display:flex;flex-direction:column;align-items:center;gap:4px}
+.at-card span{font-size:2.6rem}.at-card b{font-size:1.02rem;color:#4A3B5C}.at-card.on{background:#FFF3C4;box-shadow:0 5px 0 #F2B544;outline:3px solid #F2B544}.at-card:disabled:not(.on){opacity:.45}
+.at-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:min(480px,100%)}
+.at-opt{border:0;border-radius:24px;padding:16px 8px;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 6px 0 rgba(0,0,0,.12)}
+.at-opt span{font-size:3rem}.at-opt b{font-size:1.05rem}.at-opt.bad{background:#FFE1DA;color:#8A2E1A}.at-opt.good{background:#DDF5E4;color:#1F6B3A}.at-opt:disabled{opacity:.35}
+.at-spill{position:absolute;inset:0;touch-action:none;cursor:pointer}.at-spill i{position:absolute;width:15%;aspect-ratio:1.4;border-radius:50%;background:radial-gradient(#F3E2B8,#C9A66B);translate:-50% -50%;transition:opacity .15s}
+.at-rag{position:absolute;left:80%;top:30%;font-size:2.4rem;translate:-50% -50%;pointer-events:none}
+.at-taps{position:absolute;inset:0;pointer-events:none}.at-tap{position:absolute;translate:-50% -50%;pointer-events:auto;border:0;background:rgba(255,255,255,.85);border-radius:50%;width:56px;height:56px;font-size:1.8rem;box-shadow:0 0 0 4px #FFD45C;animation:mbhug .6s ease-in-out infinite alternate;cursor:pointer}.at-tap.done{animation:none;box-shadow:0 0 0 4px #8ED081}
+.at-hearts{display:block;font-size:1.6rem;margin:-6px 0 6px;animation:mbhug .8s ease-in-out infinite alternate}
+.at-sayit{margin:10px auto 0;font-size:clamp(1.3rem,6vw,1.8rem);font-weight:900;color:#C2410C;background:#fff;border-radius:20px;padding:10px 18px;box-shadow:0 4px 0 #F2B544}
+.at-badge{margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:4px;background:radial-gradient(#FFF6C9,#FFD45C);border-radius:50%;width:170px;height:170px;justify-content:center;box-shadow:0 6px 0 #D9A520;animation:mbhug 1s ease-in-out infinite alternate}.at-badge span{font-size:4rem}.at-badge b{color:#7A3E00}
+/* v125 數的分合、數線跳躍、答對大字、藥丸按鈕 */
+.bd{display:flex;flex-direction:column;align-items:center;gap:0;width:min(100%,420px);margin:0 auto}
+.bd-box{min-width:96px;min-height:78px;padding:8px 12px;border-radius:20px;background:#E6F6FF;border:3px solid #7CC3EE;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.bd-box b{font-family:var(--f-display);font-size:clamp(1.8rem,8vw,2.6rem);line-height:1;color:#2C5E8A}.bd-box.q{background:#2F7DD1;border-color:#2F7DD1}.bd-box.q b{color:#fff}
+.bd-box.fr b{font-size:1.2rem}.bd-fr{font-size:clamp(1.1rem,4.8vw,1.5rem);line-height:1.25;max-width:150px;word-break:break-all;text-align:center}
+.bd-ln{width:min(64%,260px);height:44px;display:block}.bd-ln path{stroke:#7CC3EE;stroke-width:4;stroke-linecap:round;fill:none}
+.bd-bot{display:flex;gap:min(16vw,90px);justify-content:center}
+.nl-wrap{width:100%;display:flex;justify-content:center;margin-top:8px}.nl{width:min(100%,460px);height:auto;overflow:visible}
+.nl-arc{fill:none;stroke:#F2735E;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:120;stroke-dashoffset:120;animation:nlDraw .36s ease-out forwards}
+.tc-nl .nl-arc{animation-duration:.25s}@keyframes nlDraw{to{stroke-dashoffset:0}}
+.nl-end{opacity:0;animation:nlEnd .3s ease-out forwards}@keyframes nlEnd{from{opacity:0;transform:scale(.3)}to{opacity:1}}.nl-end{transform-box:fill-box;transform-origin:center}
+.tc-vis .nl{width:min(100%,420px)}
+.fb-pop{position:fixed;left:50%;top:38%;translate:-50% -50%;z-index:70;pointer-events:none;font-family:var(--f-display);font-weight:900;font-size:clamp(2.6rem,12vw,4.6rem);color:#FFD43B;-webkit-text-stroke:3px #E56A1F;text-shadow:0 5px 0 #C2410C,0 8px 18px rgba(0,0,0,.18);animation:fbPop 1.25s cubic-bezier(.2,1.5,.4,1) forwards;white-space:nowrap}
+.fb-pop.sm{font-size:clamp(2rem,9vw,3.4rem)}
+@keyframes fbPop{0%{transform:scale(.2) rotate(-8deg);opacity:0}25%{transform:scale(1.12) rotate(3deg);opacity:1}45%{transform:scale(1) rotate(0)}80%{opacity:1}100%{transform:translateY(-40px) scale(1);opacity:0}}
+.mascot.fb-jump{animation:fbJump .6s ease-out}@keyframes fbJump{30%{transform:translateY(-18px) scale(1.08)}60%{transform:translateY(0) scale(.96,1.04)}}
+.options.pills .opt{aspect-ratio:auto;min-height:clamp(72px,11vh,104px);border-radius:999px}.options.pills .o-num{font-size:clamp(2.4rem,10vw,3.6rem)}
+.options.pills.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:420px){.options.pills.cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.mb-tellmom{margin:4px auto 10px;max-width:22em;background:#FFF3D9;border:3px dashed #F2B544;border-radius:18px;padding:10px 14px;font-size:clamp(1.05rem,4.6vw,1.3rem);font-weight:700;color:#5A3B1A;text-align:center}.mb-tellmom b{color:#C2410C}
+.mb-pop{position:relative;width:min(340px,90vw);height:min(330px,46vh);overflow:hidden;border-radius:24px;background:linear-gradient(#EAF6FF,#FFF5FB);touch-action:none}
+.mb-bub{position:absolute;bottom:-90px;width:var(--s);height:var(--s);border-radius:50%;border:0;padding:0;cursor:pointer;background:radial-gradient(circle at 32% 30%,#fff 0 12%,transparent 13%),radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--c) 35%,transparent) 0 60%,var(--c) 100%);box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--c) 70%,#fff);animation:mbbubup linear forwards;touch-action:none}
+.mb-bub.pp{animation:mbbubpp .26s ease-out forwards}
+.mb-bub .mb-bm{position:absolute;inset:20%;pointer-events:none}.mb-bub .mb-bm svg{width:100%;height:auto;display:block}
+.mb-bfall{position:absolute;pointer-events:none;animation:mbbfall 1.4s cubic-bezier(.5,0,.9,.6) forwards}.mb-bfall svg{width:100%;height:auto;display:block}
+.mb-ouch{position:absolute;bottom:100%;left:50%;translate:-50% -4px;white-space:nowrap;background:#fff;color:#C2410C;font-size:1rem;font-weight:800;padding:3px 10px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+@keyframes mbbfall{0%{transform:translate(0,0) rotate(0)}20%{transform:translate(0,-18px) rotate(-10deg)}100%{transform:translate(var(--dx),360px) rotate(200deg);opacity:0}}
+.mb-rbw{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;pointer-events:none}.mb-rbw svg{width:92%;height:auto;animation:mbrbw 1.2s ease-out both;clip-path:inset(0 0 0 0)}
+@keyframes mbrbw{from{clip-path:inset(0 100% 0 0);opacity:.3}to{clip-path:inset(0 0 0 0);opacity:1}}
+.mb-rsun{position:absolute;top:8%;right:10%;font-size:3.4rem;animation:mbrsun 1.2s .4s cubic-bezier(.3,1.6,.5,1) both}@keyframes mbrsun{from{transform:translateY(60px) scale(.3);opacity:0}to{transform:none;opacity:1}}
+@keyframes mbbubup{from{transform:translateY(0)}to{transform:translateY(calc(-1 * min(330px,46vh) - 120px))}}
+@keyframes mbbubpp{to{transform:scale(1.5);opacity:0}}
+.mb-drumbox{display:flex;flex-direction:column;align-items:center;gap:6px;overflow:hidden;padding:6px 20px 4px;max-width:100%}
+.mb-dhero{position:relative;width:min(210px,56vw);aspect-ratio:5/6}.mb-dch{position:absolute;inset:0}.mb-dch svg{width:100%;height:100%;display:block}
+.mb-dhero.shk .mb-dch{animation:mbshk .25s}@keyframes mbshk{25%{translate:-5px 0}75%{translate:5px 0}}.mb-dhero.win .mb-dch{animation:mbhug 1s ease-in-out infinite alternate}
+.mb-dm{position:absolute;width:24%;rotate:var(--r);animation:mbdmw .9s ease-in-out infinite alternate}.mb-dm svg{width:100%;height:auto;display:block;filter:drop-shadow(0 3px 3px rgba(0,0,0,.18))}
+@keyframes mbdmw{to{transform:translateY(-4px) scale(1.06)}}
+.mb-dm.fall{animation:mbdmfall 1.1s cubic-bezier(.5,0,.9,.6) forwards}@keyframes mbdmfall{0%{transform:translate(0,-14px) rotate(0)}100%{transform:translate(var(--dx,40px),420px) rotate(260deg);opacity:0}}
+.mb-drum{border:0;background:none;padding:0;width:min(240px,64vw);cursor:pointer;touch-action:none}.mb-drum svg{width:100%;height:auto;display:block}
+.mb-drum.hit{animation:mbhit .18s}@keyframes mbhit{50%{transform:scale(.93,.86)}}
 .mb-monbox{position:relative;width:min(230px,62vw);touch-action:none;cursor:pointer;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
 .mb-monbox svg{width:100%;height:auto;display:block}.mb-monbox.squish{transform:scale(1.18,.72);transition:transform 2.6s ease-out}
 .mb-monbox.wob{animation:mbwob .45s}.mb-monbox.boing{animation:mbboing .6s}
@@ -2545,6 +2632,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         <span class="art"><span class="eqart">3+2=?</span></span>
         <span class="name">加減法</span><span class="what" data-small="5 以內的加法" data-big="10 以內加減、應用題">5 以內的加法</span>
       </button>
+      <button class="subject" data-sub="bond" id="sub-bond" data-newsub="1" hidden>
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="bond">0</span></span>
+        <span class="art"><span class="eqart">7→3+4</span></span>
+        <span class="name">數的分合</span><span class="what" data-small="水果分一分、合一合" data-big="10 以內的分與合">水果分一分、合一合</span>
+      </button>
       <button class="subject" data-sub="compare" id="sub-compare">
         <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="compare">0</span></span>
         <span class="art"><span class="emo">🐘<small>🐭</small></span></span>
@@ -2701,6 +2793,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="calm">0</span></span>
         <span class="art"><span class="emo">😮‍💨🧸</span></span>
         <span class="name">好好說不生氣</span><span class="what" data-small="分享玩具、時間到了、輸贏" data-big="手足相處、輸贏、冷靜方法">分享玩具、時間到了、輸贏</span>
+      </button>
+      <button class="subject" data-sub="aten" id="sub-aten" data-newsub="1" hidden>
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="aten">0</span></span>
+        <span class="art"><span class="emo">🦸🙋</span></span>
+        <span class="name">關注小超人</span><span class="what" data-small="想要大家看我，不搗蛋" data-big="說出需要，用好方法引起注意">想要大家看我，不搗蛋</span>
       </button>
       <button class="subject premium" data-sub="body" id="sub-body">
         <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="body">0</span></span><span class="lock-chip" aria-hidden="true">🔒 進階</span>
@@ -3421,7 +3518,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       </div>
       <p class="note" id="limitToday"></p>
       <label class="eye-set"><input type="checkbox" id="eyeOn"> 👀 護眼小衛士：每連續玩 10 分鐘，自動暫停 10 秒，帶孩子看遠方、眨眨眼</label>
-      <div class="eye-set"><button class="btn small ghost" id="mbPreview" type="button">👪 家長搶先試玩百寶箱</button> <small class="note">魔法心情百寶箱的語音 12/1 後才會做好，孩子點「情緒急救箱」暫時還是深呼吸版；這裡可以先試玩，沒有語音的句子只顯示文字。</small></div>
+      <div class="eye-set"><button class="btn small ghost" id="mbPreview" type="button">👪 家長搶先試玩百寶箱</button> <button class="btn small ghost" id="atPreview" type="button">👪 家長搶先看：關注小超人</button> <div id="mbLog" class="note"></div><small class="note">魔法心情百寶箱的語音 12/1 後才會做好，孩子點「情緒急救箱」暫時還是深呼吸版；這裡可以先試玩，沒有語音的句子只顯示文字。</small></div>
       <label class="eye-set">💌 百寶箱的打氣信封：<select id="mbLetterSel" aria-label="選一封打氣信"></select> <select id="mbLetterV" aria-label="誰的聲音"><option value="mom">媽媽的聲音</option><option value="dad">爸爸的聲音</option></select></label>
       <label class="eye-set"><input type="checkbox" id="cheerOn"> 🎉 大聲稱讚：一回合全部答對時，放號角、老師大聲稱讚（晚上 8 點後自動變小聲）</label>
     </div>
@@ -7234,6 +7331,27 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         options: numberOptions(r, 4, 0, 20).map(k => ({ html: numHTML(k), label: String(k), correct: k === r })), after: [[`${a}加${b}等於${a + b}，再減${c}，等於${r}`]], key: 'x' + a + b + c }; }
     return calc.apply(this, arguments); }; }
   Object.assign(GEN, YX_GEN);
+  /* ---------- v125 🌳 數的分合：樹狀圖（上面是全部，下面分成兩份）；3～5 歲用水果，6 歲用數字，也有 10 和幾 ---------- */
+  const BD_FRUIT = ['🍎', '🍓', '🍊', '🍉', '🍌', '🍇', '🍑', '🍒'];
+  function bdBox(n, f, q, num) {
+    if (q) return '<div class="bd-box q"><b>?</b></div>';
+    if (num || n > 10) return `<div class="bd-box"><b>${n}</b></div>`;
+    return `<div class="bd-box fr"><span class="bd-fr">${f.repeat(n)}</span><b>${n}</b></div>`;
+  }
+  GEN.bond = function () {
+    const num = age === 'six' && Math.random() < .6, f = pick(BD_FRUIT);
+    let t, a, b;
+    if (age === 'six' && Math.random() < .3) { b = rand(1, 8); a = 10; t = a + b; } // 十和幾
+    else { t = age === 'small' ? rand(2, 5) : age === 'big' ? rand(3, 10) : rand(5, 10); a = rand(1, t - 1); b = t - a; }
+    const type = pick(age === 'small' ? ['r', 'r', 'c'] : ['r', 'l', 'c']);
+    const ans = type === 'c' ? t : type === 'r' ? b : a;
+    const stage = `<div class="bd"><div class="bd-top">${bdBox(t, f, type === 'c', num)}</div><svg class="bd-ln" viewBox="0 0 200 44" aria-hidden="true"><path d="M100 2L44 42M100 2L156 42"/></svg><div class="bd-bot">${bdBox(a, f, type === 'l', num)}${bdBox(b, f, type === 'r', num)}</div></div>`;
+    const sp = type === 'c' ? `${a}和${b}合起來是幾？` : type === 'r' ? `${t}可以分成${a}和幾？` : `${t}可以分成幾和${b}？`;
+    const max = Math.max(t, 10);
+    return { prompt: type === 'c' ? `${a} 和 ${b} 合起來是幾？` : type === 'r' ? `${t} 可以分成 ${a} 和幾？` : `${t} 可以分成幾和 ${b}？`, speech: [[sp]], stage,
+      options: numberOptions(ans, age === 'small' ? 3 : 4, type === 'c' ? 2 : 1, max).map(v => ({ html: `<span class="o-num">${v}</span>`, label: String(v), correct: v === ans })),
+      after: [[type === 'c' ? `${a}和${b}合起來是${t}` : `${t}可以分成${a}和${b}`]], key: 'bd' + type + t + '-' + a };
+  };
 
   /* ---------- 聲音 ---------- */
   let voices = [];
@@ -7517,6 +7635,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   }
 
   function startRound(sub) {
+    if (sub === 'aten') return openAten(); // v123 關注小超人是互動劇場，不是一般題目
     if (overLimit()) { showRest(); return; }
     if (!canPlay(sub)) {
       const tr = trials();
@@ -7563,7 +7682,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     const box = $('options');
     const len = q.options.length;
     const scnQ = q.options.some(o => /o-pic scn-o|o-hand/.test(o.html || '')); // 只有圖、沒有文字的情境選項才放大成兩欄
-    box.className = 'options ' + (len === 4 ? 'cols-4' : len === 2 ? 'cols-2' : 'cols-3') + (scnQ ? ' has-scn' : '');
+    const pillQ = q.options.every(o => /^<span class="o-num">[^<]{1,4}<\/span>$/.test(o.html || '')); // v125：純數字答案改成大圓角藥丸按鈕
+    box.className = 'options ' + (len === 4 ? 'cols-4' : len === 2 ? 'cols-2' : 'cols-3') + (scnQ ? ' has-scn' : '') + (pillQ ? ' pills' : '');
     $('stage').classList.toggle('scn-q', scnQ || q.options.some(o => /scn-opt/.test(o.html || '')));
     box.innerHTML = '';
     q.options.forEach((o, i) => {
@@ -7600,6 +7720,22 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     tone([784], .08, 'sine');
   }
 
+  // v125：答對時跳出大字稱讚、吉祥物跳一下
+  const FB_ZH = ['好棒！', '答對了！', '太厲害了！', '你好聰明！', '超級棒！'], FB_EN = ['Great!', 'Good job!', 'Awesome!', 'Super!'];
+  function fbPop(en, first) {
+    const g = $('game'), d = document.createElement('div'); d.className = 'fb-pop' + (first ? '' : ' sm'); d.textContent = pick(en ? FB_EN : FB_ZH);
+    g.appendChild(d); setTimeout(() => d.remove(), 1300);
+    const m = $('gameMascot'); if (m) { m.classList.remove('fb-jump'); void m.getBoundingClientRect(); m.classList.add('fb-jump'); }
+  }
+  // v125：加減法答對後，在數線上一格一格跳給孩子看（20 以內）
+  function nlSVG(a, r, upto, cls) {
+    const lo = Math.max(0, Math.min(a, r) - 1), hi = Math.max(a, r) + 1, n = hi - lo, W = 300, U = (W - 30) / n, X = v => 15 + (v - lo) * U, dir = r >= a ? 1 : -1, steps = Math.abs(r - a), k = upto == null ? steps : upto;
+    let arcs = ''; for (let i = 0; i < k; i++) { const x1 = X(a + i * dir), x2 = X(a + (i + 1) * dir), mx = (x1 + x2) / 2; arcs += `<path class="nl-arc" style="animation-delay:${(i * .38).toFixed(2)}s" d="M${x1.toFixed(1)} 50 Q${mx.toFixed(1)} ${(50 - Math.min(34, U * .9)).toFixed(1)} ${x2.toFixed(1)} 50"/>`; }
+    const ticks = Array.from({ length: n + 1 }, (_, i) => { const v = lo + i, x = X(v); return `<line x1="${x.toFixed(1)}" y1="44" x2="${x.toFixed(1)}" y2="56" stroke="#4A3B5C" stroke-width="2"/><text x="${x.toFixed(1)}" y="${n > 14 ? 72 : 74}" text-anchor="middle" font-size="${n > 14 ? 9 : 12}" font-weight="800" fill="${v === a ? '#2F7DD1' : v === r && k === steps ? '#E5484D' : '#4A3B5C'}">${v}</text>`; }).join('');
+    return `<svg class="nl ${cls || ''}" viewBox="0 0 300 82" aria-hidden="true"><line x1="8" y1="50" x2="292" y2="50" stroke="#4A3B5C" stroke-width="3" stroke-linecap="round"/>${ticks}<circle cx="${X(a).toFixed(1)}" cy="50" r="6" fill="#2F7DD1"/>${arcs}${k === steps ? `<circle class="nl-end" style="animation-delay:${(steps * .38).toFixed(2)}s" cx="${X(r).toFixed(1)}" cy="50" r="7" fill="#E5484D"/>` : ''}</svg>`;
+  }
+  const nlParse = q => { const t = String(((q && q.after || [])[0] || [])[0] || ''), m = t.match(/^(\d+)(加|減)(\d+)等於(\d+)/); if (!m) return null; const a = +m[1], b = +m[3], r = +m[4]; if (b < 1 || b > 10 || Math.max(a, r) > 20 || (m[2] === '加' ? a + b : a - b) !== r) return null; return { a, b, r, op: m[2] }; };
+  function nlHop(q) { const P = nlParse(q); if (!P) return; const stg = $('stage'); if (!stg || stg.querySelector('.nl')) return; stg.hidden = false; stg.insertAdjacentHTML('beforeend', `<div class="nl-wrap">${nlSVG(P.a, P.r)}</div>`); }
   function choose(b, o) {
     if (st.locked || b.disabled || $('options').classList.contains('waiting')) return;
     if (o.correct) {
@@ -7610,7 +7746,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       try { revMark(st.q, st.first); } catch (e) {}
       const enMode = /^ez/.test(st.sub);
       $('prompt').textContent = st.q.practice ? (enMode ? `Say it with me: "${st.q.practice}"` : `跟著說一次：「${st.q.practice}」`) : enMode ? pick(EN_PRAISE) : pick(PRAISE);
-      mood('is-happy'); chime(); burst(b, st.first ? 22 : 10); drawTrack();
+      mood('is-happy'); chime(); burst(b, st.first ? 22 : 10); drawTrack(); try { fbPop(enMode, st.first); nlHop(st.q); } catch (e) {}
       [...$('options').children].forEach(x => { x.disabled = true; });
       const cur = st, pr = st.q.practice;
       const talk = enMode ? [[pick(EN_PRAISE), 'en-US'], ...cur.q.after, ...(pr ? [['Say it with me.', 'en-US'], [pr, 'en-US']] : [])] : pr ? [...cur.q.after, ['跟著圓圓說一次'], [pr, cur.q.practiceLang]] : cur.q.after;
@@ -7720,6 +7856,66 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const PUZZLE_PICS = ['🐼', '🦁', '🐸', '🐵', '🦄', '🐯', '🍉', '🚗', '🌈', '🦋', '🐙', '🍔', '🐶', '🐱', '🐰', '🐻', '🐨', '🐷', '🐮', '🦊', '🐧', '🐢', '🍎', '🍓', '🍩', '🚀', '🚂', '⛄', '🌻', '🍦'];
   const COLORS_PEN = ['#E53935', '#FB8C00', '#FDD835', '#43A047', '#1E88E5', '#8E24AA', '#F06FAA', '#8D6E63', '#212121', '#FFFFFF'];
   // v100：6 歲著色本：對稱曼陀羅圖騰（程式產生，分區多、需要手部穩定），每次都不一樣
+  /* ---------- v124 著色本：花紋、亮片、彩虹、蠟筆筆觸 ---------- */
+  const CL_FX = [['solid', '純色', '純色'], ['crayon', '蠟筆', '蠟筆筆觸'], ['glitter', '亮片', '亮片'], ['star', '星星', '星星花紋'], ['dot', '點點', '點點花紋'], ['stripe', '條紋', '條紋花紋'], ['heart', '愛心', '愛心花紋'], ['leaf', '葉子', '葉子花紋'], ['rainbow', '彩虹', '彩虹']];
+  const clLight = c => { const n = parseInt(c.slice(1), 16), r = n >> 16, g = n >> 8 & 255, b = n & 255; return (r * 299 + g * 587 + b * 114) / 1000 > 170; };
+  const clRnd = seed => () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  function clCrayFilter(defs) {
+    if (!defs || defs.querySelector('#clCrayF')) return;
+    defs.insertAdjacentHTML('beforeend', '<filter id="clCrayF" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="3" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.6" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>');
+  }
+  // 回傳 fill 值；花紋會在 <defs> 裡建一個 pattern（同一個花紋＋顏色只建一次）
+  function clFill(fx, c, preview, defs) {
+    if (fx === 'solid') return c;
+    if (preview || !defs) defs = defs || document.getElementById('clDefs');
+    if (!defs) return c;
+    const id = `clp-${fx}-${c.slice(1)}`;
+    if (fx === 'rainbow') { if (!defs.querySelector('#clp-rainbow')) defs.insertAdjacentHTML('beforeend', `<linearGradient id="clp-rainbow" x1="0" y1="0" x2="1" y2="1">${['#FF6B6B', '#FFA94D', '#FFD43B', '#69DB7C', '#4DABF7', '#9775FA'].map((k, i) => `<stop offset="${i / 5}" stop-color="${k}"/>`).join('')}</linearGradient>`); return 'url(#clp-rainbow)'; }
+    if (!defs.querySelector('#' + id)) {
+      const L = clLight(c), m = L ? 'rgba(60,40,30,.45)' : 'rgba(255,255,255,.8)', R = clRnd(c.length * 7 + parseInt(c.slice(1), 16) % 997);
+      let s = 24, body = '', tr = '';
+      if (fx === 'star') body = `<path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.3L12 16l-4.9 2.6 1.1-5.3-4-3.7 5.4-.6z" fill="${m}"/>`;
+      else if (fx === 'dot') body = `<circle cx="6" cy="6" r="3.2" fill="${m}"/><circle cx="18" cy="18" r="3.2" fill="${m}"/>`;
+      else if (fx === 'stripe') { s = 16; body = `<rect width="6" height="16" fill="${m}"/>`; tr = ' patternTransform="rotate(45)"'; }
+      else if (fx === 'heart') body = `<path d="M12 19s-7-4.3-7-9a3.6 3.6 0 0 1 7-1.4A3.6 3.6 0 0 1 19 10c0 4.7-7 9-7 9z" fill="${m}"/>`;
+      else if (fx === 'leaf') body = `<path d="M5 19C5 10 11 5 19 5c0 8-5 14-14 14z" fill="${m}"/><path d="M6 18L17 7" stroke="${L ? 'rgba(60,40,30,.3)' : 'rgba(255,255,255,.5)'}" stroke-width="1.2"/>`;
+      else if (fx === 'glitter') { s = 30; for (let i = 0; i < 22; i++) { const x = R() * 30, y = R() * 30, r = .5 + R() * 1.3, k = R(); body += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" fill="${k < .5 ? '#FFFFFF' : k < .8 ? '#FFE680' : (L ? '#B88A00' : '#FFD1F0')}" opacity="${(.55 + R() * .45).toFixed(2)}"/>`; } body += `<path d="M8 4l1 3 3 1-3 1-1 3-1-3-3-1 3-1z" fill="#fff"/>`; }
+      else if (fx === 'crayon') { s = 20; for (let i = 0; i < 26; i++) { const x = R() * 20, y = R() * 20; body += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(1 + R() * 3).toFixed(1)}" height="${(.6 + R() * .8).toFixed(1)}" fill="${R() < .6 ? 'rgba(255,255,255,.45)' : 'rgba(0,0,0,.12)'}" transform="rotate(${(-30 + R() * 20).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`; } }
+      defs.insertAdjacentHTML('beforeend', `<pattern id="${id}" patternUnits="userSpaceOnUse" width="${s}" height="${s}"${tr}><rect width="${s}" height="${s}" fill="${c}"/>${body}</pattern>`);
+    }
+    if (preview) return c;
+    return `url(#${id})`;
+  }
+  // 5～6 歲：在主角後面加一個可以塗的背景（天空、草地、雲、太陽、小花）
+  function clScene() {
+    const k = pick(['day', 'day', 'sea', 'night']);
+    const cloud = (x, y, s) => `<path data-r d="M${x} ${y}c${-14 * s} 0 ${-14 * s} ${-18 * s} 0 ${-18 * s}c${4 * s} ${-12 * s} ${22 * s} ${-12 * s} ${26 * s} 0c${14 * s} 0 ${14 * s} ${18 * s} 0 ${18 * s}z"/>`;
+    if (k === 'sea') return `<rect data-r x="0" y="0" width="300" height="300"/><path data-r d="M0 210q25-14 50 0t50 0t50 0t50 0t50 0t50 0V300H0z"/><path data-r d="M0 250q25-12 50 0t50 0t50 0t50 0t50 0t50 0V300H0z"/>${cloud(40, 50, 1)}${cloud(230, 40, .8)}`;
+    if (k === 'night') return `<rect data-r x="0" y="0" width="300" height="300"/><path data-r d="M262 30a22 22 0 1 0 14 38a18 18 0 1 1 -14 -38z"/><path data-r d="M30 40l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/><path data-r d="M90 22l2 5 5 .5-4 3.5 1 5-4-2.5-4 2.5 1-5-4-3.5 5-.5z"/><path data-r d="M0 250q75-30 150 0t150 0V300H0z"/>`;
+    return `<rect data-r x="0" y="0" width="300" height="300"/><circle data-r cx="262" cy="38" r="22"/>${cloud(46, 54, 1)}${cloud(170, 38, .8)}<path data-r d="M0 240q75-26 150 0t150 0V300H0z"/><circle data-r cx="28" cy="262" r="7"/><circle data-r cx="272" cy="268" r="7"/>`;
+  }
+  /* ---------- v124 我的畫冊：畫好的圖自動存起來（每個孩子最近 12 張），可以看大圖、存圖片、列印 ---------- */
+  function clSave(svg, name) {
+    try { const c = svg.cloneNode(true); c.removeAttribute('id'); c.querySelectorAll('[class]').forEach(x => x.removeAttribute('class')); c.querySelectorAll('g[id], defs[id]').forEach(x => x.removeAttribute('id')); c.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      const A = store.get('colAlbum', []); A.unshift({ n: name, t: Date.now(), s: c.outerHTML }); store.set('colAlbum', A.slice(0, 12)); } catch (e) {}
+  }
+  function clPng(s) { return new Promise((ok, no) => { const img = new Image(), url = URL.createObjectURL(new Blob([s.replace('<svg', '<svg width="900" height="900"')], { type: 'image/svg+xml' }));
+    img.onload = () => { const cv = document.createElement('canvas'); cv.width = cv.height = 900; const g = cv.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, 900, 900); g.drawImage(img, 0, 0, 900, 900); URL.revokeObjectURL(url); cv.toBlob(b => b ? ok(b) : no(), 'image/png'); }; img.onerror = no; img.src = url; }); }
+  function clAlbum() {
+    const A = store.get('colAlbum', []), ov = document.createElement('div'); ov.className = 'cl-alb'; track('col-album', '著色本：我的畫冊');
+    const close = () => { ov.remove(); document.body.classList.remove('cl-printing'); };
+    const grid = () => { ov.innerHTML = `<div class="cl-albc"><div class="cl-albh"><b>📒 我的畫冊</b><button class="btn small ghost" id="clAx">關閉</button></div>${A.length ? `<div class="cl-albg">${A.map((x, i) => { const dt = new Date(x.t); return `<button class="cl-albi" data-i="${i}">${x.s}<small>${x.n}・${dt.getMonth() + 1}/${dt.getDate()}</small></button>`; }).join('')}</div>` : '<p class="note">還沒有畫好的圖。塗好一張按「畫好了」，就會自動放進畫冊喔！</p>'}</div>`;
+      ov.querySelector('#clAx').onclick = close; ov.querySelectorAll('.cl-albi').forEach(b => b.onclick = () => one(+b.dataset.i)); };
+    const one = i => { const x = A[i]; ov.innerHTML = `<div class="cl-albc"><div class="cl-albh"><b>${x.n}</b><button class="btn small ghost" id="clAb">← 畫冊</button></div><div class="cl-albbig" id="clPrintMe">${x.s}</div>
+      <div class="cl-albbtn"><button class="btn small" id="clPng">📷 存成圖片</button><button class="btn small" id="clPr">🖨️ 列印</button></div><p class="note">可以存起來傳給家人，或印出來貼在牆上。</p></div>`;
+      ov.querySelector('#clAb').onclick = grid;
+      ov.querySelector('#clPng').onclick = async () => { const b0 = ov.querySelector('#clPng'), t = b0.textContent; b0.disabled = true; b0.textContent = '製作中⋯';
+        try { const b = await clPng(x.s), f = new File([b], `我的畫-${x.n}.png`, { type: 'image/png' }); let shared = false; try { if (navigator.canShare && navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], title: x.n }); shared = true; } } catch (e) { shared = true; }
+          if (!shared) { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = f.name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 4000); } track('col-png', '畫冊存圖'); } catch (e) { b0.textContent = '沒有成功，請再試一次'; setTimeout(() => { b0.textContent = t; b0.disabled = false; }, 2000); return; }
+        b0.textContent = t; b0.disabled = false; };
+      ov.querySelector('#clPr').onclick = () => { track('col-print', '畫冊列印'); document.body.classList.add('cl-printing'); setTimeout(() => { window.print(); setTimeout(() => document.body.classList.remove('cl-printing'), 800); }, 100); }; };
+    grid(); document.body.appendChild(ov);
+  }
   function mandalaDrawing() {
     const n = pick([6, 8, 10, 12]), cx = 150, cy = 150, f = v => v.toFixed(1), P = (r, a) => [cx + r * Math.cos(a), cy + r * Math.sin(a)];
     const sector = (r1, r2, a0, a1) => { const [x1, y1] = P(r1, a0), [x2, y2] = P(r1, a1), [x3, y3] = P(r2, a1), [x4, y4] = P(r2, a0); return `<path data-r d="M${f(x1)} ${f(y1)}A${r1} ${r1} 0 0 1 ${f(x2)} ${f(y2)}L${f(x3)} ${f(y3)}A${r2} ${r2} 0 0 0 ${f(x4)} ${f(y4)}Z"/>`; };
@@ -7994,37 +8190,79 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     },
     coloring: {
       total: () => 1,
+      // v124 著色本升級：花紋和亮片、蠟筆自由畫、橡皮擦和上一步、5～6 歲加背景場景、我的畫冊；iPad 橫向大畫面
       render() {
         const pool = DRAWINGS.filter(x => age === 'six' ? x.lv === 'big' : age !== 'small' || x.lv !== 'big'), seen = store.get('colSeen', []);
         const fresh = pool.filter(x => !seen.includes(x.n));
         let d;
-        if (age === 'six' && (Math.random() < .6 || !pool.length)) d = mandalaDrawing(); // 6 歲大多是細格子的對稱圖騰
+        if (age === 'six' && (Math.random() < .6 || !pool.length)) d = mandalaDrawing(); // 6 歲常出細格子的對稱圖騰
         else { d = pick(fresh.length ? fresh : pool); store.set('colSeen', (fresh.length ? seen : []).filter(n => n !== d.n).concat(d.n).slice(-(pool.length - 1))); }
-        st.cl_need = d.need || 2;
-        st.cl = { color: COLORS_PEN[0], filled: 0 };
+        const scene = age !== 'small' && d.n !== '對稱圖騰' ? clScene() : '';
+        st.cl_need = (d.need || 2) + (scene ? 2 : 0);
+        st.cl = { color: COLORS_PEN[0], fx: 'solid', mode: 'fill', filled: 0, hist: [] };
         setQ(`幫${d.n}塗上顏色`, [[`選一個顏色，再點圖畫，幫${d.n}塗上漂亮的顏色。塗好了按完成`]]);
-        $('stage').innerHTML = `<div class="cl"><svg class="cl-svg" viewBox="0 0 300 300" id="clSvg">${d.svg}</svg><div class="cl-pal">${COLORS_PEN.map((c, i) => `<button class="cl-color ${i === 0 ? 'on' : ''}" data-c="${c}" style="background:${c}" aria-label="顏色 ${i + 1}"></button>`).join('')}</div><button id="clDone" class="btn small" style="align-self:center">畫好了</button></div>`;
-        document.querySelectorAll('#clSvg [data-r]').forEach(el => {
+        $('stage').innerHTML = `<div class="cl cl2"><div class="cl-board"><svg class="cl-svg" viewBox="0 0 300 300" id="clSvg"><defs id="clDefs"></defs><g id="clBg">${scene}</g><g id="clPic">${d.svg}</g><g id="clInk"></g></svg></div>
+          <div class="cl-tools">
+            <div class="cl-modes">${[['fill', '🪣', '點一下塗滿'], ['pen', '🖍️', '蠟筆畫畫'], ['erase', '🧽', '橡皮擦'], ['undo', '↩️', '上一步'], ['album', '📒', '我的畫冊']].map(([k, e, t]) => `<button class="cl-mode${k === 'fill' ? ' on' : ''}" data-m="${k}" aria-label="${t}"><span>${e}</span><small>${t}</small></button>`).join('')}</div>
+            <div class="cl-fxs">${CL_FX.map(([k, e, t]) => `<button class="cl-fx${k === 'solid' ? ' on' : ''}" data-fx="${k}" aria-label="${t}"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="${clFill(k, COLORS_PEN[0], true)}"/></svg><small>${e}</small></button>`).join('')}</div>
+            <div class="cl-pal">${COLORS_PEN.map((c, i) => `<button class="cl-color ${i === 0 ? 'on' : ''}" data-c="${c}" style="background:${c}" aria-label="顏色 ${i + 1}"></button>`).join('')}</div>
+            <button id="clDone" class="btn small" style="align-self:center">畫好了</button>
+          </div></div>`;
+        const svg = $('clSvg'), ink = $('clInk'), defs = $('clDefs');
+        const fillOf = () => clFill(st.cl.fx, st.cl.color, false, defs);
+        const regs = () => [...svg.querySelectorAll('[data-r]')].filter(el => el.getAttribute('fill') !== 'none');
+        svg.querySelectorAll('[data-r]').forEach(el => {
           const line = el.getAttribute('fill') === 'none';
           el.setAttribute('stroke', '#2B2633'); el.setAttribute('stroke-linejoin', 'round'); el.setAttribute('stroke-linecap', 'round');
           if (!el.getAttribute('stroke-width')) el.setAttribute('stroke-width', age === 'six' ? '2' : '3');
           if (line) return;
           el.setAttribute('fill', '#FFFFFF');
-          el.addEventListener('click', () => { if (el.getAttribute('fill') === '#FFFFFF') st.cl.filled++; el.setAttribute('fill', st.cl.color); tone([520 + rand(0, 200)], .06, 'sine'); });
+          el.addEventListener('click', () => {
+            const m = st.cl.mode; if (m !== 'fill' && m !== 'erase') return;
+            const prev = el.getAttribute('fill'), nf = m === 'erase' ? '#FFFFFF' : fillOf(); if (prev === nf) return;
+            st.cl.hist.push({ t: 'fill', el, prev }); if (prev === '#FFFFFF') st.cl.filled++; if (nf === '#FFFFFF') st.cl.filled--;
+            el.setAttribute('fill', nf); tone(m === 'erase' ? [300] : [520 + rand(0, 200)], .06, 'sine');
+            if (st.cl.fx === 'glitter' && m === 'fill') { try { burst(el, 8); } catch (e) {} }
+          });
         });
-        document.querySelectorAll('.cl-color').forEach(b => b.addEventListener('click', () => {
-          document.querySelectorAll('.cl-color').forEach(x => x.classList.remove('on')); b.classList.add('on'); st.cl.color = b.dataset.c;
+        // 蠟筆自由畫（畫在最上層）；橡皮擦點到蠟筆線就擦掉
+        const pt = e => { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()); };
+        let line = null, pts = [];
+        svg.addEventListener('pointerdown', e => { if (st.cl.mode !== 'pen') return; e.preventDefault(); svg.setPointerCapture && svg.setPointerCapture(e.pointerId);
+          const p = pt(e); pts = [[p.x, p.y]]; line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          line.setAttribute('class', 'cl-stroke'); line.setAttribute('fill', 'none'); line.setAttribute('stroke', st.cl.fx === 'solid' || st.cl.fx === 'crayon' ? st.cl.color : fillOf()); line.setAttribute('stroke-width', age === 'small' ? 12 : 9);
+          line.setAttribute('stroke-linecap', 'round'); line.setAttribute('stroke-linejoin', 'round'); if (st.cl.fx === 'crayon' || st.cl.fx === 'solid') line.setAttribute('filter', 'url(#clCrayF)');
+          clCrayFilter(defs); line.setAttribute('d', `M${p.x.toFixed(1)} ${p.y.toFixed(1)}l.1 .1`); ink.appendChild(line); });
+        svg.addEventListener('pointermove', e => { if (!line) return; const p = pt(e), q = pts[pts.length - 1]; if (Math.hypot(p.x - q[0], p.y - q[1]) < 2) return; pts.push([p.x, p.y]); line.setAttribute('d', 'M' + pts.map(v => v[0].toFixed(1) + ' ' + v[1].toFixed(1)).join('L')); });
+        const endLine = () => { if (!line) return; st.cl.hist.push({ t: 'stroke', el: line }); st.cl.filled++; line = null; };
+        svg.addEventListener('pointerup', endLine); svg.addEventListener('pointercancel', endLine);
+        ink.addEventListener('click', e => { if (st.cl.mode !== 'erase' || !e.target.classList.contains('cl-stroke')) return; e.stopPropagation(); const el = e.target; st.cl.hist.push({ t: 'unstroke', el }); el.remove(); st.cl.filled--; tone([300], .06, 'sine'); });
+        const setMode = m => { st.cl.mode = m; svg.dataset.mode = m; document.querySelectorAll('.cl-mode').forEach(b => b.classList.toggle('on', b.dataset.m === m)); };
+        setMode('fill');
+        document.querySelectorAll('.cl-mode').forEach(b => b.addEventListener('click', () => {
+          const m = b.dataset.m;
+          if (m === 'undo') { const h = st.cl.hist.pop(); if (!h) return; tone([440, 330], .05, 'sine');
+            if (h.t === 'fill') { const cur = h.el.getAttribute('fill'); if (cur === '#FFFFFF' && h.prev !== '#FFFFFF') st.cl.filled++; if (h.prev === '#FFFFFF' && cur !== '#FFFFFF') st.cl.filled--; h.el.setAttribute('fill', h.prev); }
+            else if (h.t === 'stroke') { h.el.remove(); st.cl.filled--; } else if (h.t === 'unstroke') { ink.appendChild(h.el); st.cl.filled++; } return; }
+          if (m === 'album') { clAlbum(); return; }
+          setMode(m);
         }));
+        document.querySelectorAll('.cl-fx').forEach(b => b.addEventListener('click', () => {
+          document.querySelectorAll('.cl-fx').forEach(x => x.classList.toggle('on', x === b)); st.cl.fx = b.dataset.fx; if (st.cl.mode !== 'pen') setMode('fill'); tone([660], .04, 'sine');
+        }));
+        const paintFx = () => document.querySelectorAll('.cl-fx circle').forEach(c => c.setAttribute('fill', clFill(c.closest('.cl-fx').dataset.fx, st.cl.color, false, defs)));
+        document.querySelectorAll('.cl-color').forEach(b => b.addEventListener('click', () => {
+          document.querySelectorAll('.cl-color').forEach(x => x.classList.remove('on')); b.classList.add('on'); st.cl.color = b.dataset.c; if (st.cl.mode === 'erase') setMode('fill'); paintFx();
+        }));
+        paintFx();
         $('clDone').addEventListener('click', () => {
-          const regs = [...document.querySelectorAll('#clSvg [data-r]')].filter(el => el.getAttribute('fill') !== 'none');
-          const need = Math.min(st.cl_need || 2, regs.length);
+          const need = Math.min(st.cl_need || 2, regs().length);
           if (st.cl.filled < need) {
             say([['再多塗幾個地方吧']]); $('prompt').textContent = '再多塗幾個地方吧';
-            // 把還沒塗的地方閃一下，讓小朋友知道可以塗哪裡
-            regs.filter(el => el.getAttribute('fill') === '#FFFFFF').forEach(el => { el.classList.remove('cl-hint'); void el.getBBox(); el.classList.add('cl-hint'); setTimeout(() => el.classList.remove('cl-hint'), 1600); });
+            regs().filter(el => el.getAttribute('fill') === '#FFFFFF').forEach(el => { el.classList.remove('cl-hint'); void el.getBBox(); el.classList.add('cl-hint'); setTimeout(() => el.classList.remove('cl-hint'), 1600); });
             return;
           }
-          $('clDone').disabled = true; itemDone(true);
+          clSave(svg, d.n); $('clDone').disabled = true; itemDone(true);
         });
       }
     }
@@ -9965,27 +10203,39 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     wild: '哇，心裡好像有小龍捲風在轉圈圈！別怕，我們一起把風變小吧。',
     sun: '太棒了，你的心裡現在暖洋洋的！要不要打開急救寶盒玩一玩？',
     pick: '選一個魔法遊戲吧！',
-    blowHi: '深吸一口氣，把肚子變成大氣球。準備好了嗎？對著手機輕輕吹氣，或是按住螢幕，把蒲公英吹飛吧！',
+    blowHi: '深吸一口氣，把肚子變成大氣球。準備好了嗎？按下按鈕，對著手機輕輕吹氣，把蒲公英吹飛吧！',
     blowHard: '哎呀，風太大啦！慢慢吹、輕輕吹，種子才會飛起來喔。',
     blowGood: '哇，飛起來了！好棒喔，再輕輕吹一口氣。',
     blowEnd: '蒲公英的種子全部飛走了，你的呼吸好溫柔喔！',
-    monHi: '這隻生氣怪獸跑出來了！快用你的手指頭用力戳它、把它捏扁，把生氣全部擠出來！',
-    monHold: '用力壓住它！',
-    monGo: '放開！',
-    monPop: '哈哈！生氣怪獸被你捏扁，變成搞笑鬼臉啦！要不要再捏一次？',
-    monEnd: '生氣怪獸變成好朋友了！你把生氣都擠出來了，好厲害！',
+    popHi: '哇，好多生氣泡泡！每個泡泡裡都躲著一隻生氣怪獸，用手指把泡泡戳破，把牠們趕走！',
+    popOuch: '好痛！｜哎喲，好痛喔！｜哇啊，我要逃走了！｜痛痛痛，不要戳我！｜好痛，我不生氣了啦！',
+    popGood: '已經趕走一半了，加油，繼續戳！',
+    popEnd: '泡泡都戳破了，生氣怪獸全部跑光光！你看，彩虹和太陽出來了，心情變好了！',
+    drumHi: '哎呀，好多生氣怪獸黏在身上！用力敲大鼓，咚咚咚，把怪獸一隻一隻趕走！',
+    drumMid: '咚咚咚！怪獸掉下去了，繼續敲！',
+    drumEnd: '生氣跑光光，心情變好了！',
     jarHi: '把手機拿起來輕輕搖一搖，或是用手指在瓶子裡畫圈圈，把煩惱都搖進瓶子裡！',
     jarSet: '好，現在我們把瓶子放好。眼睛看著星星，跟它們一起慢慢、慢慢地掉下來。',
     jarEnd: '星星都睡著了，你的心也慢慢安靜下來了。',
     box: '這是你的急救寶盒，裡面都是讓你安心的小寶貝。',
     ball: '捏一捏，軟軟的捏捏球。', bear: '小熊給你一個大大的抱抱。', smell: '聞一聞，香香的，好舒服。',
     noLetter: '請爸爸媽媽在家長專區，幫你選一封打氣信。',
+    cheer1: '你好棒！心裡的壞天氣已經被你趕走一大半了。再玩一個魔法遊戲，把剩下的也趕走吧！',
+    sayAngry: '你好厲害，靠自己把生氣趕走了！跟我一起大聲說一次：媽媽，我不生氣了！',
+    saySad: '你好勇敢，眼淚慢慢停下來了！跟我一起大聲說一次：媽媽，我好多了！',
+    sayWild: '你的心慢慢安靜下來了，好厲害！跟我一起大聲說一次：媽媽，我冷靜下來了！',
+    byeAngry: '說得好棒！現在把手機放下，去找媽媽，跟她說：我不生氣了！再給她一個大大的抱抱。',
+    byeSad: '說得好棒！現在把手機放下，去找媽媽，跟她說：我好多了！再給她一個大大的抱抱。',
+    byeWild: '說得好棒！現在把手機放下，去找媽媽，跟她說：我冷靜下來了！再給她一個大大的抱抱。',
+    locked: '魔法百寶箱在休息喔！現在去找媽媽，給她一個大大的抱抱吧。',
+    yourTurn: '換你說！大聲說出來，媽媽聽到會好開心喔！',
+    saidGood: '說得好大聲，好棒！',
     end: '你看，太陽公公出來了！你剛剛靠自己把心情變平靜了，真的超級勇敢！現在，去抱抱你的小熊，或找爸爸媽媽拿一個大抱抱吧！'
   };
   // 打氣信封：家長在家長專區選一封，用 AI 的媽媽或爸爸聲音念（App 裡的聲音都是 AI）
   const MB_LETTERS = ['寶貝，深呼吸，爸爸媽媽永遠愛你。', '不管你心情怎麼樣，我們都會陪在你身邊。', '生氣沒關係，難過也沒關係，你可以慢慢來。', '你已經很努力了，我們以你為榮。', '想哭就哭吧，哭完我們一起抱抱。', '你是我們最珍貴的寶貝，我們好愛你。'];
-  const MB_MOODS = [['angry', '⛈️', '打雷生氣雲', 'surprise', 'mon'], ['sad', '🌧️', '下雨哭哭雲', 'sad', 'jar'], ['wild', '🌪️', '龍捲風亂亂雲', 'scared', 'blow'], ['sun', '☀️', '太陽公公', 'laugh', '']];
-  const MB_GAMES = { blow: ['🌼', '吹吹蒲公英'], mon: ['👾', '怪獸捏捏樂'], jar: ['✨', '搖搖星空瓶'], breath: ['🫧', '深呼吸球'] };
+  const MB_MOODS = [['angry', '⛈️', '打雷生氣雲', 'surprise', 'drum'], ['sad', '🌧️', '下雨哭哭雲', 'sad', 'jar'], ['wild', '🌪️', '龍捲風亂亂雲', 'scared', 'blow'], ['sun', '☀️', '太陽公公', 'laugh', '']];
+  const MB_GAMES = { blow: ['🌼', '吹吹蒲公英'], drum: ['🥁', '打鼓趕走生氣'], pop: ['💥', '戳泡泡'], jar: ['✨', '搖搖星空瓶'], breath: ['🫧', '深呼吸球'] };
   const MB_TIPS = {
     angry: ['我知道你很生氣，我陪你。', '蹲下來和孩子一樣高，先不講道理；等他冷靜了再說說剛剛發生什麼事。可以讓他用力捏枕頭或跺跺腳。'],
     sad: ['你很難過，想哭沒關係。', '先抱抱、拍拍背，讓他把眼淚哭完；不要急著說「不要哭」。'],
@@ -9993,21 +10243,26 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     sun: ['你把心情照顧得很好！', '具體稱讚他剛剛用的方法，例如「你剛剛有深呼吸，好棒」。']
   };
   // 百寶箱的句子都有 AI 語音以後才換新版；還沒做好時先用原本的深呼吸急救箱
-  const mbReady = () => [...Object.values(MB_SAY)].every(t => pvVoiced(t, ''));
+  const MB_LOCK_MIN = 30, MB_MAX_MIN = 8; // 結束後休息 30 分鐘；一次最多玩約 8 分鐘（最多 2 個遊戲）
+  const mbReady = () => Object.values(MB_SAY).flatMap(t => t.split('｜')).every(t => pvVoiced(t, '')) && ['媽媽，我不生氣了！', '媽媽，我好多了！', '媽媽，我冷靜下來了！'].every(t => pvVoiced(t, 'b1') && pvVoiced(t, 'g1'));
   async function calmOpen() { if (aiOn() && !AI.ids) await Promise.race([aiReady(), delay(1500)]); return mbReady() ? openBox() : openCalm(); }
   $('calmEnter').onclick = calmOpen;
   if ($('mbPreview')) $('mbPreview').onclick = () => { track('mb-preview', '家長搶先試玩百寶箱'); openBox(true); };
+  document.addEventListener('click', e => { if (e.target && e.target.id === 'atPreview') { track('aten-preview', '家長搶先看關注小超人'); openAten(true); } });
   { const s1 = $('mbLetterSel'), s2 = $('mbLetterV'); if (s1 && s2) { s1.innerHTML = '<option value="-1">還沒選</option>' + MB_LETTERS.map((t, i) => `<option value="${i}">${t}</option>`).join(''); s1.value = String(store.get('mbLetter', -1)); s2.value = store.get('mbLetterV', 'mom'); s1.onchange = () => store.set('mbLetter', +s1.value); s2.onchange = () => store.set('mbLetterV', s2.value); } }
   function openBox(preview) {
     // 家長搶先試玩：還沒有 AI 語音的句子不念（只顯示文字），有的照念
     const SAY = parts => say(preview ? parts.filter(p => pvVoiced(p[0], p[2] || '')) : parts);
     sayStop(); track('mb-open', '魔法心情百寶箱');
+    if (!preview && store.get('mbLockUntil', 0) > Date.now()) { // v120：剛玩過，休息中
+      const lk = document.createElement('div'); lk.className = 'hz-pv'; lk.innerHTML = `<div class="hz-pvc"><b>🧰 魔法百寶箱在休息</b><small>${MB_SAY.locked}</small><button class="btn small" id="mbLkOk">好</button></div>`;
+      document.body.appendChild(lk); lk.querySelector('#mbLkOk').onclick = () => { sayStop(); lk.remove(); }; SAY([[MB_SAY.locked]]); return; }
     const who = Math.random() < .5 ? 'b1' : 'g1', ch = (pose, mood) => { try { return frSVG(who, pose, mood); } catch (e) { return ''; } };
     const ov = document.createElement('div'); ov.className = 'mb-ov'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-label', '魔法心情百寶箱');
     ov.innerHTML = `<div class="mb-top"><button class="mb-btn" id="mbX">✕ 關閉</button><button class="mb-btn mb-par" id="mbPar" aria-label="家長小抄，長按 3 秒"><i></i>👪 長按</button></div><div class="mb-stage" id="mbStage"></div>
       <div class="mb-drawer" id="mbDrawer"><button class="mb-dtab" id="mbDtab">🧰 我的急救寶盒</button><div class="mb-items">${[['ball', '🟣', '捏捏球'], ['bear', '🧸', '小熊抱抱'], ['smell', '🌸', '香香瓶'], ['letter', '💌', '打氣信封']].map(([k, e, n]) => `<button class="mb-item" data-it="${k}"><span>${e}</span><small>${n}</small></button>`).join('')}</div></div>`;
     document.body.appendChild(ov); document.documentElement.classList.add('wc-open');
-    const S = { alive: true, mood: '', clean: [] }, stage = $('mbStage');
+    const S = { alive: true, mood: '', clean: [], played: 0, doneG: new Set(), t0: Date.now() }, stage = $('mbStage');
     const close = () => { S.alive = false; S.clean.forEach(f => { try { f(); } catch (e) {} }); S.clean = []; calmMusic(false); sayStop(); ov.remove(); document.documentElement.classList.remove('wc-open'); };
     const stopGame = () => { S.clean.forEach(f => { try { f(); } catch (e) {} }); S.clean = []; };
     $('mbX').onclick = close;
@@ -10066,15 +10321,17 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       stage.querySelectorAll('.mb-cloud').forEach(b => b.onclick = () => mood(b.dataset.m));
     }
     function mood(k) {
+      if (Date.now() - S.t0 > MB_MAX_MIN * 60000) return sunny(); // 玩太久了，直接收尾
       const m = MB_MOODS.find(x => x[0] === k); S.mood = k; track('mb-mood-' + k, '百寶箱心情：' + m[2]);
-      const rec = m[4], others = Object.keys(MB_GAMES).filter(g => g !== rec);
-      stage.innerHTML = `<div class="mb-char talk">${ch(k === 'sun' ? 'up' : 'stand', m[3])}</div><div class="mb-moodtag c-${k}">${m[1]} ${m[2]}</div><p class="mb-say">${MB_SAY[k]}</p>
+      // v120：玩過的遊戲打勾，推薦一個還沒玩過的
+      const rec = S.doneG.has(m[4]) ? (Object.keys(MB_GAMES).find(g => !S.doneG.has(g)) || m[4]) : m[4], others = Object.keys(MB_GAMES).filter(g => g !== rec);
+      stage.innerHTML = `<div class="mb-char talk">${ch(k === 'sun' ? 'up' : 'stand', m[3])}</div><div class="mb-moodtag c-${k}">${m[1]} ${m[2]}</div><p class="mb-say">${S.played ? MB_SAY.pick : MB_SAY[k]}</p>
         ${k === 'sun' ? `<div class="mb-games"><button class="mb-game big" data-g="box"><span>🧰</span><b>打開急救寶盒</b></button><button class="mb-game" data-g="end"><span>🌞</span><b>我很好，結束</b></button></div>`
-        : `<div class="mb-games"><button class="mb-game big" data-g="${rec}"><span>${MB_GAMES[rec][0]}</span><b>${MB_GAMES[rec][1]}</b></button>${others.map(g => `<button class="mb-game" data-g="${g}"><span>${MB_GAMES[g][0]}</span><b>${MB_GAMES[g][1]}</b></button>`).join('')}</div>`}
+        : `<div class="mb-games"><button class="mb-game big" data-g="${rec}"><span>${MB_GAMES[rec][0]}</span><b>${MB_GAMES[rec][1]}</b></button>${others.map(g => `<button class="mb-game" data-g="${g}"><span>${MB_GAMES[g][0]}</span><b>${MB_GAMES[g][1]}${S.doneG.has(g) ? ' ✅' : ''}</b></button>`).join('')}</div>`}
         <button class="mb-btn mb-back" id="mbBack">← 換一種天氣</button>`;
-      SAY([[MB_SAY[k]], ...(k === 'sun' ? [] : [[MB_SAY.pick]])]);
+      SAY(S.played ? [[MB_SAY.pick]] : [[MB_SAY[k]], ...(k === 'sun' ? [] : [[MB_SAY.pick]])]);
       $('mbBack').onclick = weather;
-      stage.querySelectorAll('.mb-game').forEach(b => b.onclick = () => { const g = b.dataset.g; if (g === 'box') { $('mbDrawer').classList.add('open'); SAY([[MB_SAY.box]]); return; } if (g === 'end') return sunny(); ({ blow, mon, jar, breath })[g](); });
+      stage.querySelectorAll('.mb-game').forEach(b => b.onclick = () => { const g = b.dataset.g; if (g === 'box') { $('mbDrawer').classList.add('open'); SAY([[MB_SAY.box]]); return; } if (g === 'end') return sunny(); S.cur = g; ({ blow, drum, pop, jar, breath })[g](); });
     }
     const gameTop = (title) => `<div class="mb-gtitle"><button class="mb-btn" id="mbGBack">← 回去</button><b>${title}</b></div>`;
     const wireBack = () => { $('mbGBack').onclick = () => { stopGame(); sayStop(); S.mood ? mood(S.mood) : weather(); }; };
@@ -10083,17 +10340,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       stopGame(); track('mb-blow', '百寶箱：吹蒲公英');
       const N = 18, seeds = [...Array(N)].map((_, i) => { const a = i / N * Math.PI * 2, x = Math.cos(a) * 34, y = Math.sin(a) * 34; return `<g class="mb-seed" style="--dx:${Math.round(60 + Math.random() * 120)}px;--dy:${Math.round(-140 - Math.random() * 160)}px;--r:${Math.round(Math.random() * 300 - 150)}deg"><line x1="0" y1="0" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#C9C2B0" stroke-width="1.6"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="#FFFFFF" stroke="#E5DFCC"/></g>`; }).join('');
       stage.innerHTML = gameTop('🌼 吹吹蒲公英') + `<svg class="mb-dand" viewBox="-80 -90 160 230" aria-hidden="true"><path d="M0 40 Q 6 90 -4 138" stroke="#6CB86A" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M-2 100 q-26 -6 -34 -24 q22 -2 34 18" fill="#8ED081"/>${seeds}<circle r="9" fill="#E8C35A"/></svg>
-        <p class="mb-say" id="mbHint">對著手機輕輕吹，或按住下面的按鈕</p><div class="mb-row"><button class="mb-act" id="mbMic">🎤 對著手機吹</button><button class="mb-act hold" id="mbHold">👆 按住吹氣</button></div>`;
+        <p class="mb-say" id="mbHint">按下面的按鈕，對著手機輕輕吹</p><div class="mb-row"><button class="mb-act" id="mbMic">🎤 對著手機吹</button></div>`;
       wireBack(); SAY([[MB_SAY.blowHi]]);
       let left = N, lastHard = 0, saidGood = false;
       const fly = () => { const g = stage.querySelector('.mb-seed:not(.fly)'); if (!g) return; g.classList.add('fly'); left--; tone([880 + Math.random() * 300], .04, 'sine');
         if (!saidGood && left === N - 3) { saidGood = true; SAY([[MB_SAY.blowGood]]); } if (left <= 0) { stopGame(); setTimeout(() => { if (S.alive) done(MB_SAY.blowEnd); }, 900); } };
-      // 按住吹氣（v108）：要按住才會慢慢飄；一口氣最多 5 顆，要放開、再吸一口氣
-      { const b = $('mbHold'); let t = 0, w = 0, n = 0; const hint = x => { const h = $('mbHint'); if (h) h.textContent = x; };
-        const up = () => { clearTimeout(w); clearInterval(t); t = w = 0; b.classList.remove('on'); b.textContent = '👆 按住吹氣'; if (n) hint('很好！深深吸一口氣，再按住吐氣～'); n = 0; };
-        b.onpointerdown = e => { e.preventDefault(); if (t || w) return; b.classList.add('on'); b.textContent = '慢慢吐氣～'; hint('按住不要放，慢慢吐氣～');
-          w = setTimeout(() => { w = 0; fly(); n = 1; t = setInterval(() => { if (n >= 5) { clearInterval(t); t = 0; b.textContent = '放開，吸一口氣'; hint('這口氣吐完了，放開手，再吸一口氣'); return; } fly(); n++; }, 650); }, 400); };
-        b.onpointerup = b.onpointerleave = b.onpointercancel = up; b.oncontextmenu = e => e.preventDefault(); S.clean.push(up); }
       // 麥克風：聲音太大提醒輕輕吹；溫柔穩定的吹氣讓種子飛走
       $('mbMic').onclick = async () => {
         if ($('mbMic').classList.contains('on')) return;
@@ -10101,12 +10352,12 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         let st; const hint = t => { const h = $('mbHint'); if (h) h.textContent = t; };
         // iPhone：開麥克風後，原本放音樂的聲音系統會被暫停，所以麥克風另外開一個，而且要在按下去的當下建立
         let mac = null; try { mac = new (window.AudioContext || window.webkitAudioContext)(); mac.resume && mac.resume(); } catch (e) {}
-        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { hint('這台手機不能用麥克風，按住「👆 按住吹氣」就可以吹喔！'); return; }
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { hint('這台手機不能用麥克風，換一台手機或平板試試看喔！'); return; }
         try { st = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } }); }
-        catch (e) { try { st = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e2) { hint(e2 && e2.name === 'NotAllowedError' ? '麥克風沒有開啟。請到手機「設定」允許麥克風，或按住「👆 按住吹氣」' : '沒有開麥克風也沒關係，按住「👆 按住吹氣」就可以吹喔！'); return; } }
+        catch (e) { try { st = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e2) { hint(e2 && e2.name === 'NotAllowedError' ? '麥克風沒有開啟。請到手機「設定」允許麥克風，再按一次「🎤 對著手機吹」' : '沒有開到麥克風，請再按一次「🎤 對著手機吹」試試看'); return; } }
         if (!S.alive) { st.getTracks().forEach(t => t.stop()); return; }
         $('mbMic').classList.add('on'); $('mbMic').textContent = '🎤 吹吹看…'; hint('對著手機下面輕輕吹～看風力條');
-        if (!mac) { hint('這台手機不能分析聲音，按住「👆 按住吹氣」就可以吹喔！'); st.getTracks().forEach(t => t.stop()); return; }
+        if (!mac) { hint('這台手機不能分析聲音，換一台手機或平板試試看喔！'); st.getTracks().forEach(t => t.stop()); return; }
         try { await mac.resume(); } catch (e) {}
         const src = mac.createMediaStreamSource(st), an = mac.createAnalyser(), mute = mac.createGain(); mute.gain.value = 0; an.fftSize = 1024; src.connect(an); an.connect(mute); mute.connect(mac.destination);
         const buf = new Float32Array(an.fftSize), fq = new Uint8Array(an.frequencyBinCount);
@@ -10121,12 +10372,12 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
           const lvl = Math.max(rms * 4, hi * 2.2); peak = Math.max(peak, lvl);
           { const lv = bar.querySelector('.mb-lv'); if (lv) lv.textContent = Math.round(lvl * 100); }
           if (mac.state !== 'running') { quiet++; if (quiet === 90) { mac.resume().catch(() => {}); hint('再按一次「🎤 對著手機吹」試試看'); } }
-          else if (performance.now() - t0 > 4000 && peak < .02 && quiet !== -1) { quiet = -1; hint('手機好像沒聽到聲音。請確認沒有靜音、麥克風已允許，或按住「👆 按住吹氣」'); }
+          else if (performance.now() - t0 > 4000 && peak < .01 && quiet !== -1) { quiet = -1; hint('手機好像沒聽到聲音。請確認麥克風已允許，再對著手機下面吹吹看'); }
           if (performance.now() - t0 < 600) { base += lvl; nb++; }
           else {
-            const b = nb ? base / nb : 0, th = Math.min(.45, Math.max(.06, b * 2.2)), p = Math.min(1, lvl / .9);
-            const u = bar.querySelector('u'); if (u) { u.style.width = (p * 100).toFixed(0) + '%'; u.style.background = lvl > .9 ? '#F2735E' : lvl > th ? '#5CC28F' : '#CFC6B8'; }
-            if (lvl > .9) { hard++; if (hard > 25 && Date.now() - lastHard > 4000) { lastHard = Date.now(); hint('風太大啦！輕輕吹～'); SAY([[MB_SAY.blowHard]]); } acc += 6; }
+            const b = nb ? base / nb : 0, th = Math.min(.2, Math.max(.02, b * 2.5 + .012)), p = Math.min(1, lvl / .15); // v117：實測沒吹 0、正常吹 3～5、用力吹 30（畫面數字＝lvl×100），正常吹就要能吹走
+            const u = bar.querySelector('u'); if (u) { u.style.width = (p * 100).toFixed(0) + '%'; u.style.background = lvl > .4 ? '#F2735E' : lvl > th ? '#5CC28F' : '#CFC6B8'; }
+            if (lvl > .4) { hard++; if (hard > 25 && Date.now() - lastHard > 4000) { lastHard = Date.now(); hint('風太大啦！輕輕吹～'); SAY([[MB_SAY.blowHard]]); } acc += 6; }
             else if (lvl > th) { hard = Math.max(0, hard - 1); acc += 16; } else { hard = Math.max(0, hard - 2); acc = Math.max(0, acc - 6); }
             if (acc >= 220) { acc = 0; fly(); }
           }
@@ -10136,25 +10387,58 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       };
     }
     // 遊戲 B：怪獸捏捏樂（戳一戳會晃；按住 3 秒捏扁，放開變鬼臉；捏 3 次變好朋友）
-    function mon() {
-      stopGame(); track('mb-mon', '百寶箱：捏怪獸');
-      const face = f => `<svg class="mb-mon f-${f}" viewBox="0 0 200 180" aria-hidden="true"><path d="M30 120 Q20 40 100 30 Q180 40 170 120 Q165 165 100 165 Q35 165 30 120z" fill="${f === 'happy' ? '#8ED081' : '#F2735E'}" stroke="#fff" stroke-width="5"/><path d="M60 38 l-14 -22 l26 14z M140 38 l14 -22 l-26 14z" fill="${f === 'happy' ? '#6CB86A' : '#D9533F'}"/>
+    const monFace = f => `<svg class="mb-mon f-${f}" viewBox="0 0 200 180" aria-hidden="true"><path d="M30 120 Q20 40 100 30 Q180 40 170 120 Q165 165 100 165 Q35 165 30 120z" fill="${f === 'happy' ? '#8ED081' : '#F2735E'}" stroke="#fff" stroke-width="5"/><path d="M60 38 l-14 -22 l26 14z M140 38 l14 -22 l-26 14z" fill="${f === 'happy' ? '#6CB86A' : '#D9533F'}"/>
         ${f === 'angry' ? '<path d="M58 70 l30 12 M142 70 l-30 12" stroke="#3A2140" stroke-width="7" stroke-linecap="round"/><circle cx="76" cy="94" r="9" fill="#3A2140"/><circle cx="124" cy="94" r="9" fill="#3A2140"/><path d="M78 135 q22 -16 44 0" stroke="#3A2140" stroke-width="6" fill="none" stroke-linecap="round"/>'
         : f === 'silly' ? '<path d="M64 88 l18 10 l-18 10 M136 88 l-18 10 l18 10" stroke="#3A2140" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M74 126 q26 22 52 0z" fill="#3A2140"/><path d="M92 132 q8 26 20 0z" fill="#FF8FB0"/>'
         : '<path d="M66 92 q10 -12 20 0 M114 92 q10 -12 20 0" stroke="#3A2140" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M74 122 q26 26 52 0" stroke="#3A2140" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="60" cy="112" r="9" fill="#FF8FB0" opacity=".7"/><circle cx="140" cy="112" r="9" fill="#FF8FB0" opacity=".7"/>'}</svg>`;
-      stage.innerHTML = gameTop('👾 怪獸捏捏樂') + `<div class="mb-monbox" id="mbMon">${face('angry')}<span class="mb-count" id="mbCnt"></span></div><p class="mb-say" id="mbHint">戳一戳它，或是按住 3 秒把它捏扁！</p><div class="mb-dots" id="mbDots">${'<i></i>'.repeat(3)}</div>`;
-      wireBack(); SAY([[MB_SAY.monHi]]);
-      const box = $('mbMon'); let n = 0, t0 = 0, tm = [], holding = false;
-      const set = f => { box.innerHTML = face(f) + '<span class="mb-count" id="mbCnt"></span>'; };
-      const clear = () => { tm.forEach(clearTimeout); tm = []; };
-      box.onpointerdown = e => { e.preventDefault(); if (n >= 3) return; holding = true; t0 = Date.now(); box.classList.add('squish'); box.classList.remove('wob'); try { navigator.vibrate && navigator.vibrate(30); } catch (er) {} tone([196], .06, 'triangle');
-        clear(); tm.push(setTimeout(() => { if (holding) SAY([[MB_SAY.monHold]]); }, 500)); [1, 2, 3].forEach(k => tm.push(setTimeout(() => { if (!holding) return; const c = $('mbCnt'); if (c) c.textContent = k; tone([330 + k * 110], .07, 'sine'); try { navigator.vibrate && navigator.vibrate(20); } catch (er) {} if (k === 3) SAY([[MB_SAY.monGo]]); }, k * 1000))); };
-      const up = () => { if (!holding) return; holding = false; clear(); box.classList.remove('squish'); const c = $('mbCnt'); if (c) c.textContent = '';
-        if (Date.now() - t0 < 3000) { box.classList.remove('wob'); void box.offsetWidth; box.classList.add('wob'); tone([262, 392], .05, 'sine'); return; }
-        n++; $('mbDots').children[n - 1].classList.add('on'); tone([523, 784, 659], .08, 'square'); box.classList.add('boing');
-        if (n < 3) { set('silly'); SAY([[MB_SAY.monPop]]); setTimeout(() => { if (S.alive && $('mbMon')) { set('angry'); box.classList.remove('boing'); } }, 2600); }
-        else { set('happy'); SAY([[MB_SAY.monEnd]]).then(() => { if (S.alive && $('mbMon')) done(''); }); } };
-      box.onpointerup = box.onpointerleave = box.onpointercancel = up; S.clean.push(() => { holding = false; clear(); });
+    // 遊戲 B1（v119）：戳泡泡——10 顆泡泡，每顆裡面躲一隻生氣怪獸；戳破泡泡怪獸喊痛掉下去，戳光光出現彩虹和太陽
+    function pop() {
+      stopGame(); track('mb-pop', '百寶箱：戳泡泡');
+      stage.innerHTML = gameTop('💥 戳泡泡') + `<div class="mb-pop" id="mbPop"></div><p class="mb-say" id="mbHint">戳破泡泡，把裡面的生氣怪獸趕走！</p><div class="mb-dots" id="mbDots">${'<i></i>'.repeat(10)}</div>`;
+      wireBack(); SAY([[MB_SAY.popHi]]);
+      const box = $('mbPop'), COL = ['#FF8FB0', '#8FD3FF', '#FFD45C', '#B9A6FF', '#9BE8C0', '#FFB27A'], GOAL = 10, OUCH = MB_SAY.popOuch.split('｜'); let n = 0, live = 0, made = 0, tm = 0, fin = false;
+      const add = () => { if (fin || !S.alive || live >= 4 || made - n >= 4) return; live++; made++;
+        const b = document.createElement('button'), sz = 78 + Math.random() * 24, c = COL[made % COL.length];
+        b.className = 'mb-bub'; b.type = 'button'; b.setAttribute('aria-label', '泡泡');
+        b.style.cssText = `--s:${sz}px;--c:${c};left:${4 + Math.random() * 64}%;animation-duration:${8 + Math.random() * 3}s`;
+        b.innerHTML = `<span class="mb-bm">${monFace('angry')}</span>`;
+        b.onanimationend = e => { if (e.animationName === 'mbbubup') { b.remove(); live--; made--; } };
+        b.onpointerdown = e => { e.preventDefault(); if (b.classList.contains('pp') || fin) return; b.classList.add('pp'); live--; n++;
+          const br = box.getBoundingClientRect(), r = b.getBoundingClientRect(), m = document.createElement('div');
+          m.className = 'mb-bfall'; m.style.cssText = `left:${r.left - br.left + r.width * .2}px;top:${r.top - br.top + r.height * .15}px;width:${r.width * .6}px;--dx:${(Math.random() < .5 ? -1 : 1) * (30 + Math.random() * 40)}px`;
+          const line = OUCH[(n - 1) % OUCH.length]; m.innerHTML = `<b class="mb-ouch">${line}</b>${monFace('silly')}`; box.appendChild(m); setTimeout(() => m.remove(), 1500);
+          tone([700 + Math.random() * 200, 420], .05, 'sine'); try { navigator.vibrate && navigator.vibrate(20); } catch (er) {} try { burst(b, 8); } catch (er) {}
+          setTimeout(() => b.remove(), 260);
+          [...$('mbDots').children].forEach((x, i) => x.classList.toggle('on', i < n));
+          if (n >= GOAL) { fin = true; clearInterval(tm); box.querySelectorAll('.mb-bub').forEach(x => x.classList.add('pp'));
+            setTimeout(() => { if (!S.alive || !$('mbPop')) return; box.insertAdjacentHTML('beforeend', `<div class="mb-rbw"><svg viewBox="0 0 300 160" aria-hidden="true">${['#FF6B6B', '#FFA94D', '#FFD43B', '#69DB7C', '#4DABF7', '#9775FA'].map((k, i) => `<path d="M${20 + i * 12} 160 A${130 - i * 12} ${130 - i * 12} 0 0 1 ${280 - i * 12} 160" stroke="${k}" stroke-width="12" fill="none"/>`).join('')}</svg><span class="mb-rsun">☀️</span></div>`);
+              $('mbHint').textContent = '生氣怪獸跑光光，彩虹和太陽出來了，心情變好了！'; tone([523, 659, 784, 1046, 1318], .1, 'sine'); try { burst(box, 40); } catch (er) {}
+              SAY([[MB_SAY.popEnd]]).then(() => delay(2000)).then(() => { if (S.alive && $('mbPop')) done(''); }); }, 900);
+            return; }
+          SAY([[line]]).then(() => { if (n === GOAL / 2 && !fin) SAY([[MB_SAY.popGood]]); }); };
+        box.appendChild(b); };
+      for (let i = 0; i < 3; i++) setTimeout(add, i * 400); tm = setInterval(add, 1100); S.clean.push(() => { fin = true; clearInterval(tm); });
+    }
+    // 遊戲 B2（v118）：打鼓趕走生氣——主角身上黏滿生氣小怪獸，每敲 3 下鼓就掉下一隻，掉光了主角舉手笑
+    function drum() {
+      stopGame(); track('mb-drum', '百寶箱：打鼓');
+      const POS = [[18, 8, -12], [70, 4, 10], [6, 38, -6], [82, 34, 14], [30, 56, 8], [62, 60, -10], [44, 22, 4], [12, 72, 12], [78, 74, -8]];
+      const N = POS.length, PER = 3;
+      stage.innerHTML = gameTop('🥁 打鼓趕走生氣') + `<div class="mb-drumbox"><div class="mb-dhero" id="mbDHero"><div class="mb-dch" id="mbDCh">${ch('stand', 'angry')}</div>${POS.map(([x, y, r], i) => `<span class="mb-dm" style="left:${x}%;top:${y}%;--r:${r}deg;animation-delay:${(i * .13).toFixed(2)}s">${monFace('angry')}</span>`).join('')}</div>
+        <button class="mb-drum" id="mbDrum" type="button" aria-label="大鼓"><svg viewBox="0 0 220 150" aria-hidden="true"><ellipse cx="110" cy="112" rx="96" ry="30" fill="#B5462E"/><rect x="14" y="44" width="192" height="68" fill="#E2603F"/><path d="M14 44 L56 112 L98 44 L140 112 L182 44 L206 80" stroke="#FFD45C" stroke-width="6" fill="none" stroke-linejoin="round"/><ellipse cx="110" cy="44" rx="96" ry="30" fill="#FFF3D9" stroke="#B5462E" stroke-width="6"/></svg></button></div><p class="mb-say" id="mbHint">用力敲大鼓，把生氣怪獸一隻一隻趕走！</p>`;
+      wireBack(); SAY([[MB_SAY.drumHi]]);
+      const dr = $('mbDrum'), hero = $('mbDHero'), mons = [...hero.querySelectorAll('.mb-dm')]; let n = 0, left = N, fin = false;
+      dr.onpointerdown = e => { e.preventDefault(); if (fin) return; n++;
+        dr.classList.remove('hit'); void dr.offsetWidth; dr.classList.add('hit'); hero.classList.remove('shk'); void hero.offsetWidth; hero.classList.add('shk');
+        tone([98 + Math.random() * 20, 70], .12, 'triangle'); try { navigator.vibrate && navigator.vibrate(35); } catch (er) {}
+        if (n % PER) return;
+        const m = mons[N - left]; left--; if (m) { m.style.setProperty('--dx', (Math.random() < .5 ? -1 : 1) * (40 + Math.random() * 60) + 'px'); m.classList.add('fall'); }
+        tone([660, 440, 330], .06, 'sine');
+        if (left === Math.ceil(N / 2)) SAY([[MB_SAY.drumMid]]);
+        if (left === 2) $('mbDCh').innerHTML = ch('stand', 'surprise');
+        if (left <= 0) { fin = true; setTimeout(() => { if (!S.alive || !$('mbDCh')) return; $('mbDCh').innerHTML = ch('up', 'happy'); hero.classList.add('win'); $('mbHint').textContent = '生氣跑光光，心情變好了！'; tone([523, 659, 784, 1046], .09, 'sine'); try { burst(hero, 40); } catch (er) {}
+          SAY([[MB_SAY.drumEnd]]).then(() => delay(1500)).then(() => { if (S.alive && $('mbDrum')) done(''); }); }, 700); } };
+      dr.oncontextmenu = e => e.preventDefault();
     }
     // 遊戲 C：搖搖星空瓶（搖手機或手指畫圈攪拌；放好後 20 秒慢慢沉下來）
     function jar() {
@@ -10211,19 +10495,252 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       if (alive) done('');
     }
     // 遊戲完成 → 說一句 → 晴天抱抱
-    async function done(line) { stopGame(); if (line) await SAY([[line]]); if (S.alive) sunny(); }
+    // v120：玩完第 1 場先鼓勵、邀請再玩一場；玩完第 2 場（或孩子說好了）就請他放下手機，去找媽媽說「我不生氣了」
+    async function done(line) { stopGame(); if (line) await SAY([[line]]); if (!S.alive) return; S.played++; if (S.cur) S.doneG.add(S.cur); if (S.played === 1 && S.mood && S.mood !== 'sun' && Date.now() - S.t0 < MB_MAX_MIN * 60000) cheer(); else sunny(); }
+    function cheer() {
+      stopGame(); track('mb-cheer', '百寶箱：玩完第一場');
+      stage.innerHTML = `<div class="mb-char talk">${ch('stand', 'smile')}</div><p class="mb-say">${MB_SAY.cheer1}</p>
+        <div class="mb-row"><button class="mb-act big" id="mbMore">🎮 再玩一個</button><button class="mb-act" id="mbFine">😊 我已經好了</button></div>`;
+      tone([523, 659, 784], .1, 'sine'); try { burst(stage.querySelector('.mb-char'), 24); } catch (e) {} SAY([[MB_SAY.cheer1]]);
+      $('mbMore').onclick = () => { sayStop(); mood(S.mood); }; $('mbFine').onclick = () => { sayStop(); sunny(); };
+    }
+    // v120：結束＝①跟著說一次正確的話 ②放下手機去找媽媽 ③給家長看的小卡；之後百寶箱休息 30 分鐘，避免沉迷
     function sunny() {
       stopGame(); track('mb-sunny', '百寶箱：晴天抱抱');
-      stage.innerHTML = `<div class="mb-sky"><span class="mb-cl1">☁️</span><span class="mb-cl2">☁️</span><span class="mb-sun">☀️</span></div><div class="mb-char hug">${ch('up', 'happy')}</div><p class="mb-say">你剛剛靠自己把心情變平靜了，真的超級勇敢！<br>去抱抱你的小熊，或找爸爸媽媽拿一個大抱抱吧！🤗</p>
-        <div class="mb-row"><button class="mb-act big" id="mbOk">我好多了！</button><button class="mb-act" id="mbAgain">🔁 再玩一個</button></div>`;
-      tone([523, 659, 784, 1046], .12, 'sine'); SAY([[MB_SAY.end]]);
-      $('mbOk').onclick = () => { close(); try { lsGive('calm'); } catch (e) {} };
-      $('mbAgain').onclick = weather;
+      const B = { angry: ['我不生氣了！', 'sayAngry', 'byeAngry', '生氣了'], sad: ['我好多了！', 'saySad', 'byeSad', '很難過'], wild: ['我冷靜下來了！', 'sayWild', 'byeWild', '心裡亂亂的'] }[S.mood];
+      const sky = '<div class="mb-sky"><span class="mb-cl1">☁️</span><span class="mb-cl2">☁️</span><span class="mb-sun">☀️</span></div>';
+      if (!preview) { store.set('mbLockUntil', Date.now() + MB_LOCK_MIN * 60000); const L = store.get('mbLog', []); L.unshift({ t: Date.now(), m: S.mood, g: [...S.doneG] }); store.set('mbLog', L.slice(0, 30)); }
+      if (!B) { // 本來就是好天氣
+        stage.innerHTML = sky + `<div class="mb-char hug">${ch('up', 'happy')}</div><p class="mb-say">${MB_SAY.end}</p><div class="mb-row"><button class="mb-act big" id="mbOk">我好多了！</button></div>`;
+        tone([523, 659, 784, 1046], .12, 'sine'); SAY([[MB_SAY.end]]); $('mbOk').onclick = () => { close(); try { lsGive('calm'); } catch (e) {} }; return; }
+      // ① 跟著說一次（v121：孩子看不懂字，全程用聲音帶：老師說 → 主角示範 → 換你說 → 等幾秒自動往下，不用按按鈕）
+      const phrase = '媽媽，' + B[0];
+      stage.innerHTML = sky + `<div class="mb-char hug">${ch('up', 'happy')}</div><div class="mb-sayit">👩🗣️「${phrase}」</div><p class="mb-say">${MB_SAY[B[1]]}</p><div class="mb-row"><button class="mb-act big mb-thumb" id="mbSaid" aria-label="我說好了">👍</button></div>`;
+      tone([523, 659, 784, 1046], .12, 'sine'); try { burst(stage.querySelector('.mb-char'), 40); } catch (e) {}
+      let stepped = false, wt = 0; S.clean.push(() => clearTimeout(wt));
+      const next = () => { if (stepped || !S.alive || !$('mbSaid')) return; stepped = true; clearTimeout(wt); sayStop(); tone([659, 784, 1046], .08, 'sine');
+        // ② 放下手機去找媽媽；同一個畫面放「給爸爸媽媽看」的小卡，媽媽拿起手機就看得到
+        const k = kidNow(), nm = String(k && k.name || '').trim(), kid = nm && nm !== '小朋友' ? nm : '孩子', gs = [...S.doneG].map(g => MB_GAMES[g] ? '「' + MB_GAMES[g][1] + '」' : '').filter(Boolean).join('和') || '魔法遊戲';
+        stage.innerHTML = sky + `<div class="mb-char hug">${ch('up', 'happy')}</div><div class="mb-tellmom">📱⬇️ 👩 🤗</div><p class="mb-say">${MB_SAY[B[2]]}</p>
+          <div class="mb-pcard"><b>👪 給爸爸媽媽看</b><p>${kid.replace(/[<>&"]/g, '')}剛剛${B[3]}，自己玩了${gs}，現在已經平靜下來，想跟你說：<em>「${B[0]}」</em></p><p>請給孩子一個大大的抱抱，稱讚他會自己讓心情變好！</p><small>魔法百寶箱會休息 ${MB_LOCK_MIN} 分鐘，避免孩子一直玩。</small></div>
+          <div class="mb-row"><button class="mb-act big" id="mbOk">🤗 收到了，抱一個！</button></div>`;
+        try { $('mbDrawer').style.display = 'none'; } catch (e) {} track('mb-tellmom', '百寶箱：去找媽媽'); SAY([[MB_SAY[B[2]]]]);
+        $('mbOk').onclick = () => { close(); try { lsGive('calm'); } catch (e) {} }; };
+      $('mbSaid').onclick = next;
+      SAY([[MB_SAY[B[1]]], [phrase, 'zh-TW', who], [MB_SAY.yourTurn]]).then(() => { if (!stepped) { $('mbSaid') && $('mbSaid').classList.add('go'); wt = setTimeout(() => { SAY([[MB_SAY.saidGood]]).then(next); }, 5000); } });
     }
     calmMusic(true); weather();
   }
+  /* ---------- v123 🦸 關注小超人：想要大家注意我的時候，用好方法，不搗蛋 ----------
+     流程：情境 → 猜猜他為什麼想搗蛋 → 二選一（搗蛋：安靜的結果畫面 → 動手修復 → 說對不起 → 再選一次；好方法：老師按讚、同學開心）
+           → 魔法咒語跟著說 → 關注小超人徽章＋給家長的小卡。所有聲音都是 AI 語音，沒做好的句子不念（不用手機內建語音）。 */
+  const AT_HERO = { b1: ['寶哥', '他'], g1: ['筑筑', '她'], mom: ['媽媽', '她'] };
+  const atF = (h, S) => S && S.adult ? 'mom' : h === 'b1' ? 'g1' : 'b1'; // 對象：同學（另一位主角）或媽媽
+  const AT_SC = [
+    { id: 'snack', t: '點心時間', bg: 'table',
+      intro: '點心時間到了，{H}覺得好無聊，大家都在吃東西，沒有人看{T}。{H}好想用力搖桌子。',
+      s0: '{h} 110 stand plain|{f} 220 stand smile f|e 🍪 165 126 24|e 🧃 245 122 24',
+      bad: ['🫨', '用力搖桌子'], badS: '{h} 110 stand surprise|{f} 220 cower sad f|e 🥛 165 132 24',
+      badL: '哎呀！點心打翻了，{F}的水壺也弄髒了，{F}好難過。', fix: 'wipe', fixL: '我們來把桌子擦乾淨。用手指在桌子上擦一擦！',
+      good: ['🙋', '舉手好好說'], goodBg: 'class', goodS: '{h} 90 hand smile|{f} 170 stand happy|tch 250 clap smile f',
+      goodL: '{H}舉起手說：老師，你看我！老師笑著說：哇，你吃得好乾淨！{F}也開心地說：我們一起吃點心吧！',
+      ask: '那要怎麼做呢？是用力搖桌子，還是舉手好好說？' },
+    { id: 'line', t: '排隊時間', bg: 'class',
+      intro: '要排隊去操場了，{H}等得好無聊，好想推一下前面的{F}。',
+      s0: '{h} 110 stand plain|{f} 200 stand plain f',
+      bad: ['🫸', '推同學'], badS: '{h} 110 push surprise|{f} 210 cower sad f',
+      badL: '哎呀！{F}差一點跌倒，手臂好痛，哭了起來。', fix: 'tap', fixL: '我們去幫{F}拍拍。點一點{F}，幫{FT}呼呼！', fixAt: [210, 120],
+      good: ['💬', '跟同學聊天'], goodS: '{h} 110 stand laugh|{f} 200 stand laugh f|tch 280 clap smile f',
+      goodL: '{H}對{F}說：我們來比賽，看誰站得最直！兩個人都笑了，老師也說：排得好整齊！',
+      ask: '那要怎麼做呢？是推同學，還是跟同學聊天？' },
+    { id: 'shout', t: '上課時間', bg: 'class',
+      intro: '上課了，{H}好想讓大家都看{T}，好想故意大叫。',
+      s0: '{h} 100 stand plain|{f} 190 stand smile f|tch 270 point smile f',
+      bad: ['📢', '故意大叫'], badS: '{h} 100 stand surprise|{f} 190 ears scared f|tch 270 ears surprise f',
+      badL: '哇！好大聲，大家都嚇了一跳，耳朵好痛，沒辦法上課了。', fix: 'tap', fixL: '我們幫大家的耳朵呼呼。點一點{F}和老師！', fixAt: [190, 110, 270, 100],
+      good: ['✋', '舉手發言'], goodS: '{h} 100 hand smile|{f} 190 stand smile f|tch 270 point smile f',
+      goodL: '{H}舉起手說：老師，我想回答！老師說：好，請{H}說，大家都在聽你喔！',
+      ask: '那要怎麼做呢？是故意大叫，還是舉手發言？' },
+    { id: 'toy', t: '玩具時間', bg: 'play',
+      intro: '{F}在玩積木，{H}也好想玩，好想直接把積木搶過來。',
+      s0: '{h} 100 stand plain|{f} 210 hold happy f|e 🧱 210 140 26',
+      bad: ['✊', '搶玩具'], badS: '{h} 100 grab plain|{f} 210 stand sad f|e 🧱 140 150 26',
+      badL: '{F}的積木被搶走了，城堡也倒了，{F}好傷心。', fix: 'tap', fixL: '我們把積木還給{F}。點一點積木！', fixAt: [140, 150],
+      good: ['🤝', '問可以一起玩嗎'], goodS: '{h} 100 stand smile|{f} 210 stand happy f|e 🧱 155 150 26|e 🏰 155 112 34',
+      goodL: '{H}問：我們可以一起玩嗎？{F}說：好啊！兩個人一起蓋了一座好高的城堡。',
+      ask: '那要怎麼做呢？是搶玩具，還是問可以一起玩嗎？' },
+    { id: 'draw', t: '畫畫時間', bg: 'class',
+      intro: '畫畫時間，大家都在誇{F}畫得好漂亮，{H}也想被誇獎，好想在{F}的圖上亂畫。',
+      s0: '{h} 100 stand plain|{f} 210 hold happy f|e 🖼️ 210 128 34',
+      bad: ['🖍️', '在同學的圖上亂畫'], badS: '{h} 100 point surprise|{f} 210 stand sad f|e 🖼️ 160 128 34|e 〰️ 160 128 30',
+      badL: '{F}的畫被畫花了，{F}好難過，眼淚都掉下來了。', fix: 'tap', fixL: '我們幫{F}把畫擦乾淨。點一點那張畫！', fixAt: [160, 128],
+      good: ['🖼️', '說你看我畫的'], goodS: '{h} 100 hold happy|{f} 210 stand happy f|e 🖼️ 100 128 30|e 🖼️ 210 128 30',
+      goodL: '{H}拿起自己的畫說：{F}，你看我畫的！{F}說：哇，好漂亮！我們交換看。',
+      ask: '那要怎麼做呢？是在同學的圖上亂畫，還是說你看我畫的？' },
+    { id: 'throw', t: '收玩具時間', bg: 'class',
+      intro: '收玩具的時間到了，{H}還想玩，好想故意把玩具丟得到處都是。',
+      s0: '{h} 110 stand plain|tch 250 point smile f|e 🧸 170 170 26|e 🚗 200 176 24',
+      bad: ['🧸', '把玩具亂丟'], badS: '{h} 110 stand surprise|tch 250 stand sad f|e 🧸 60 180 26|e 🚗 180 186 24|e 🧱 290 184 22',
+      badL: '玩具丟得滿地都是，有人差一點踩到跌倒，老師好傷腦筋。', fix: 'tap', fixL: '我們把玩具撿起來。點一點每一個玩具！', fixAt: [60, 180, 180, 186, 290, 184],
+      good: ['🙋', '說老師我來幫忙'], goodS: '{h} 110 hold happy|tch 250 clap smile f|e 🧺 150 170 34',
+      goodL: '{H}說：老師，我可以幫忙收嗎？老師說：謝謝你，你是收玩具小幫手！',
+      ask: '那要怎麼做呢？是把玩具亂丟，還是說老師我來幫忙？' },
+    { id: 'hair', t: '下課時間', bg: 'play',
+      intro: '下課了，{H}好想跟{F}玩，可是不知道怎麼說，好想去拉{F}的頭髮。',
+      s0: '{h} 110 stand plain|{f} 210 stand smile f',
+      bad: ['🫳', '拉同學的頭髮'], badS: '{h} 110 grab surprise|{f} 210 cower sad f',
+      badL: '哎喲！{F}的頭髮被拉得好痛，{F}嚇得跑開了。', fix: 'tap', fixL: '我們去幫{F}呼呼。點一點{F}！', fixAt: [210, 110],
+      good: ['🤝', '說我們一起玩'], goodS: '{h} 110 run happy|{f} 210 run laugh f',
+      goodL: '{H}說：{F}，我們一起玩鬼抓人好嗎？{F}說：好啊，你先當鬼！',
+      ask: '那要怎麼做呢？是拉同學的頭髮，還是說我們一起玩？' },
+    { id: 'phone', t: '媽媽在講電話', bg: 'home', adult: 1,
+      intro: '媽媽在講電話，{H}好想要媽媽陪，好想一直拉媽媽的衣服大叫。',
+      s0: '{h} 110 stand plain|mom 210 stand plain f|e 📱 228 76 22',
+      bad: ['😫', '拉衣服大叫'], badS: '{h} 110 grab angry|mom 210 stand surprise f|e 📱 230 186 22',
+      badL: '媽媽聽不到電話裡的人說話，好著急，電話也掉到地上了。', fix: 'tap', fixL: '我們把電話撿起來還給媽媽。點一點電話！', fixAt: [230, 186],
+      good: ['🤚', '拍拍肩膀等一下'], goodS: '{h} 110 stand smile|mom 210 stand smile f|e 📱 228 76 22|e 💗 160 60 24',
+      goodL: '{H}輕輕拍拍媽媽說：媽媽，我等你講完。媽媽笑著說：謝謝你等我，等一下陪你玩！',
+      ask: '那要怎麼做呢？是拉衣服大叫，還是拍拍肩膀等一下？' },
+    { id: 'dinner', t: '晚餐時間', bg: 'table', adult: 1,
+      intro: '吃晚餐的時候，大人都在聊天，{H}好想讓大家看{T}，好想故意把飯撥到地上。',
+      s0: '{h} 110 stand plain|mom 220 stand smile f|e 🍚 150 126 24|e 🥢 180 128 20',
+      bad: ['🍚', '把飯撥到地上'], badS: '{h} 110 stand surprise|mom 220 stand sad f|e 🍚 150 186 24',
+      badL: '飯掉了一地，地板黏黏的，媽媽要收好久。', fix: 'wipe', fixL: '我們把地板擦乾淨。用手指擦一擦！',
+      good: ['💬', '說學校的事'], goodS: '{h} 110 up happy|mom 220 stand laugh f|e 🍚 150 126 24',
+      goodL: '{H}說：我想說今天在學校發生的事！大家都轉過來聽，媽媽說：好想聽喔，快說！',
+      ask: '那要怎麼做呢？是把飯撥到地上，還是說學校的事？' },
+    { id: 'baby', t: '媽媽在照顧寶寶', bg: 'home', adult: 1,
+      intro: '媽媽在餵小寶寶喝奶，都沒有陪{H}，{H}好想故意把書丟到地上。',
+      s0: '{h} 100 stand sad|mom 210 hold smile f|e 👶 212 112 26|e 📚 60 176 26',
+      bad: ['📚', '把書丟到地上'], badS: '{h} 100 stand surprise|mom 210 hold sad f|e 👶 212 112 26|e 📕 60 186 22|e 📗 130 190 22',
+      badL: '書掉了一地，小寶寶被嚇哭了，媽媽好累。', fix: 'tap', fixL: '我們把書撿起來。點一點每一本書！', fixAt: [60, 186, 130, 190],
+      good: ['💬', '說等一下陪我'], goodS: '{h} 100 stand smile|mom 210 hold happy f|e 👶 212 112 26|e 💗 150 60 24',
+      goodL: '{H}說：媽媽，等一下可以陪我看書嗎？媽媽說：當然可以！你好會等，媽媽好愛你。',
+      ask: '那要怎麼做呢？是把書丟到地上，還是說等一下陪我？' }
+  ];
+  const AT_WHY = [['bored', '😴', '好無聊'], ['look', '👀', '想要大家看我'], ['play', '🤝', '想跟同學玩'], ['upset', '😣', '心裡不開心']];
+  const AT_SAY = {
+    why: '{H}為什麼會想這樣做呢？你覺得呢？點一張圖。',
+    bored: '原來是覺得好無聊！無聊的時候，可以找事情幫忙。', look: '原來是想要大家看你！想要大家看你的時候，可以好好說。',
+    play: '原來是想跟同學玩！想一起玩的時候，可以開口問。', upset: '原來是心裡不開心！不開心的時候，可以說出來，請大人幫忙。',
+    sorryT: '做錯事沒關係，我們去跟{F}說：對不起，我幫你弄好了。', sorry: '對不起，我幫你弄好了。', your: '換你說說看！',
+    ok: '沒關係，謝謝你！', again: '我們再試一次，這次換一個好方法！', fixed: '弄好了，好棒！',
+    goodYes: '好棒！你選了好方法！', magic: '再學一句魔法咒語，跟我一起說！', said: '說得真好！',
+    badge: '你得到了關注小超人徽章！以後想要大家注意你，就用好方法喔！'
+  };
+  const AT_MAGIC = { bored: '老師，我可以幫忙嗎？', look: '老師，你看我！', play: '我們可以一起玩嗎？', upset: '我不開心，可以抱抱我嗎？' };
+  const AT_HOME = { bored: '孩子無聊時容易搗蛋。可以給他一個小任務：「你可以幫我擺碗筷嗎？」', look: '孩子想被注意時，先看著他說：「我看到你了。」平常他做得好就馬上稱讚，他就不用靠搗蛋來找注意。', play: '孩子想玩卻不會開口時，可以陪他練習：「我們可以一起玩嗎？」被拒絕也沒關係，再找別人。', upset: '孩子不開心時，先說出他的感覺：「你是不是不開心？」再抱抱他，等他平靜了再聊。' };
+  const atFill = (t, h, S) => { const [H, T] = AT_HERO[h], f = atF(h, S), [F, FT] = AT_HERO[f]; return t.replace(/\{H\}/g, H).replace(/\{T\}/g, T).replace(/\{F\}/g, F).replace(/\{FT\}/g, FT).replace(/\{h\}/g, h).replace(/\{f\}/g, f); };
+  // 收集所有要念的句子（語音清單、檢查有沒有做好語音都用這個）
+  function atLines() {
+    const out = [];
+    ['b1', 'g1'].forEach(h => {
+      AT_SC.forEach(S => { [S.intro, S.badL, S.fixL, S.goodL, S.ask, AT_SAY.sorryT].forEach(t => out.push([atFill(t, h, S)])); out.push([AT_SAY.ok, 'zh-TW', atF(h, S)]); });
+      out.push([atFill(AT_SAY.why, h)], [AT_SAY.sorry, 'zh-TW', h]);
+      Object.values(AT_MAGIC).forEach(t => out.push([t, 'zh-TW', h])); });
+    ['bored', 'look', 'play', 'upset', 'your', 'again', 'fixed', 'goodYes', 'magic', 'said', 'badge'].forEach(k => out.push([AT_SAY[k]]));
+    return out;
+  }
+  const atReady = () => { try { return atLines().every(x => pvVoiced(x[0], x[2] || '')); } catch (e) { return false; } };
+  function openAten(preview) {
+    if (!preview && overLimit()) { showRest(); return; }
+    sayStop(); track('aten-open', '關注小超人');
+    // 只念做好 AI 語音的句子（家長搶先看時，沒做好的只顯示文字）
+    const SAY = parts => say(parts.filter(p => pvVoiced(p[0], p[2] || '')));
+    const done0 = store.get('atenDone', {}), S = AT_SC.find(x => !done0[x.id]) || AT_SC[Math.floor(Math.random() * AT_SC.length)];
+    const h = Math.random() < .5 ? 'b1' : 'g1', f = atF(h, S), F = x => atFill(x, h, S);
+    const scn = (spec, bg) => { try { return scnSVG(F((bg || S.bg) + '|' + spec), 'scn at-scn'); } catch (e) { return ''; } };
+    let alive = true, why = 'look', badTried = false; const t0 = Date.now();
+    const ov = document.createElement('div'); ov.className = 'at-ov'; ov.innerHTML = `<div class="at-top"><button class="at-x" aria-label="關閉">✕ 關閉</button><b>🦸 關注小超人・${S.t}</b></div><div class="at-stage" id="atStage"></div>`;
+    document.body.appendChild(ov); document.documentElement.classList.add('wc-open');
+    const stage = ov.querySelector('#atStage');
+    const close = () => { alive = false; sayStop(); ov.remove(); document.documentElement.classList.remove('wc-open'); };
+    ov.querySelector('.at-x').onclick = close;
+    const put = html => { stage.innerHTML = html; stage.scrollTop = 0; };
+    const ok = () => alive && ov.isConnected;
+    // ① 情境
+    function intro() {
+      put(`<div class="at-pic">${scn(S.s0)}</div><p class="at-say">${F(S.intro)}</p><div class="at-row"><button class="at-btn big at-go" id="atNext" aria-label="下一步">👉</button></div>`);
+      let went = false; const go = () => { if (went || !ok()) return; went = true; sayStop(); askWhy(); };
+      $('atNext').onclick = go; SAY([[F(S.intro)]]).then(() => { if (ok() && $('atNext')) $('atNext').classList.add('go'); });
+    }
+    // ② 猜猜他為什麼想搗蛋（每個答案都對，重點是說出背後的需要）
+    function askWhy() {
+      put(`<div class="at-pic sm">${scn(S.s0)}</div><p class="at-say">${F(AT_SAY.why)}</p><div class="at-why">${AT_WHY.map(([k, e, t]) => `<button class="at-card" data-k="${k}"><span>${e}</span><b>${t}</b></button>`).join('')}</div>`);
+      SAY([[F(AT_SAY.why)]]);
+      stage.querySelectorAll('.at-card').forEach(b => b.onclick = () => { if (!ok()) return; why = b.dataset.k; sayStop(); tone([660, 880], .06, 'sine');
+        stage.querySelectorAll('.at-card').forEach(x => { x.disabled = true; x.classList.toggle('on', x === b); });
+        const p = stage.querySelector('.at-say'); p.textContent = AT_SAY[why]; SAY([[AT_SAY[why]]]).then(() => delay(600)).then(() => { if (ok()) choose(); }); });
+    }
+    // ③ 二選一
+    function choose() {
+      put(`<div class="at-pic sm">${scn(S.s0)}</div><p class="at-say">${S.ask}</p><div class="at-two">
+        <button class="at-opt bad" id="atBad"${badTried ? ' disabled' : ''}><span>${S.bad[0]}</span><b>${S.bad[1]}</b></button>
+        <button class="at-opt good" id="atGood"><span>${S.good[0]}</span><b>${S.good[1]}</b></button></div>`);
+      SAY([[badTried ? AT_SAY.again : S.ask]]);
+      $('atBad').onclick = () => { sayStop(); badTried = true; badPath(); };
+      $('atGood').onclick = () => { sayStop(); goodPath(); };
+    }
+    // ④a 搗蛋：結果畫面很安靜、很短，重點在修復和道歉
+    function badPath() {
+      track('aten-bad', '關注小超人：選了搗蛋');
+      const spill = S.fix === 'wipe' ? `<div class="at-spill" id="atSpill">${[[38, 58], [50, 64], [60, 56], [70, 66], [45, 72], [64, 74]].map(([x, y]) => `<i style="left:${x}%;top:${y}%"></i>`).join('')}</div>` : '';
+      const taps = S.fix === 'tap' ? `<div class="at-taps">${(S.fixAt || []).reduce((a, v, i, A) => i % 2 ? a : a.concat([[A[i], A[i + 1]]]), []).map(([x, y]) => `<button class="at-tap" style="left:${x / 3.2}%;top:${y / 2.2}%" aria-label="點這裡">👆</button>`).join('')}</div>` : '';
+      put(`<div class="at-pic"><div class="at-rel">${scn(S.badS)}${spill}${taps}</div></div><p class="at-say">${F(S.badL)}</p>`);
+      tone([392, 330, 262], .14, 'triangle');
+      SAY([[F(S.badL)], [F(S.fixL)]]).then(() => { if (!ok()) return; const p = stage.querySelector('.at-say'); if (p) p.textContent = F(S.fixL); });
+      setTimeout(() => { const p = stage.querySelector('.at-say'); if (p && ok()) p.textContent = F(S.fixL); }, 2500);
+      const fixed = () => { if (!ok()) return; tone([523, 659, 784], .08, 'sine'); try { burst(stage.querySelector('.at-pic'), 20); } catch (e) {} sayStop(); SAY([[AT_SAY.fixed]]).then(() => delay(400)).then(() => { if (ok()) sorry(); }); };
+      if (S.fix === 'wipe') {
+        const blobs = [...stage.querySelectorAll('.at-spill i')], wipe = e => { const r0 = e.clientX, r1 = e.clientY; blobs.forEach(b => { if (b.classList.contains('gone')) return; const r = b.getBoundingClientRect(); if (r0 > r.left - 26 && r0 < r.right + 26 && r1 > r.top - 26 && r1 < r.bottom + 26) { const o = +(b.dataset.o || 1) - .2; b.dataset.o = o; b.style.opacity = o; if (o <= .05) { b.classList.add('gone'); tone([880], .03, 'sine'); } } }); if (blobs.every(b => b.classList.contains('gone'))) { sp.onpointermove = sp.onpointerdown = null; fixed(); } };
+        const sp = $('atSpill'); sp.insertAdjacentHTML('beforeend', '<span class="at-rag">🧽</span>'); const rag = sp.querySelector('.at-rag');
+        sp.onpointerdown = e => { sp.setPointerCapture && sp.setPointerCapture(e.pointerId); wipe(e); }; sp.onpointermove = e => { const r = sp.getBoundingClientRect(); rag.style.left = (e.clientX - r.left) + 'px'; rag.style.top = (e.clientY - r.top) + 'px'; if (e.buttons || e.pointerType === 'touch') wipe(e); };
+      } else {
+        const T = [...stage.querySelectorAll('.at-tap')]; T.forEach(b => { b.dataset.n = 0; b.onclick = () => { b.dataset.n = +b.dataset.n + 1; tone([700 + 100 * b.dataset.n], .05, 'sine'); try { burst(b, 6); } catch (e) {} if (+b.dataset.n >= 3) { b.classList.add('done'); b.textContent = '💗'; b.disabled = true; } if (T.every(x => x.classList.contains('done'))) fixed(); }; });
+      }
+    }
+    // 說對不起（老師說 → 主角示範 → 換你說 → 同學說沒關係），不用看字，等幾秒自動往下
+    function sorry() {
+      put(`<div class="at-pic">${scn('{h} 110 stand shy|{f} 220 stand smile f')}</div><div class="at-sayit">🗣️「${AT_SAY.sorry}」</div><p class="at-say">${F(AT_SAY.sorryT)}</p><div class="at-row"><button class="at-btn big" id="atSaid" aria-label="我說好了">👍</button></div>`);
+      let went = false, wt = 0; const go = () => { if (went || !ok()) return; went = true; clearTimeout(wt); sayStop();
+        stage.querySelector('.at-pic').innerHTML = scn('{h} 110 stand smile|{f} 220 stand happy f'); stage.querySelector('.at-say').textContent = AT_SAY.ok; tone([659, 784], .08, 'sine');
+        SAY([[AT_SAY.ok, 'zh-TW', f]]).then(() => delay(900)).then(() => { if (ok()) choose(); }); };
+      $('atSaid').onclick = go;
+      SAY([[F(AT_SAY.sorryT)], [AT_SAY.sorry, 'zh-TW', h], [AT_SAY.your]]).then(() => { if (went || !ok()) return; $('atSaid') && $('atSaid').classList.add('go'); wt = setTimeout(go, 4500); });
+    }
+    // ④b 好方法
+    function goodPath() {
+      track('aten-good', '關注小超人：選了好方法');
+      put(`<div class="at-pic">${scn(S.goodS, S.goodBg)}<span class="at-hearts">💗💗💗</span></div><p class="at-say">${F(S.goodL)}</p>`);
+      tone([523, 659, 784, 1046], .1, 'sine'); try { burst(stage.querySelector('.at-pic'), 30); } catch (e) {}
+      SAY([[AT_SAY.goodYes], [F(S.goodL)]]).then(() => delay(800)).then(() => { if (ok()) magic(); });
+    }
+    // ⑤ 魔法咒語（依孩子選的原因）
+    function magic() {
+      const ph = AT_MAGIC[why];
+      put(`<div class="at-pic sm">${scn('{h} 160 up happy', 'class')}</div><div class="at-sayit">🪄「${ph}」</div><p class="at-say">${AT_SAY.magic}</p><div class="at-row"><button class="at-btn big" id="atSaid" aria-label="我說好了">👍</button></div>`);
+      let went = false, wt = 0; const go = () => { if (went || !ok()) return; went = true; clearTimeout(wt); sayStop(); SAY([[AT_SAY.said]]).then(() => { if (ok()) finish(); }); };
+      $('atSaid').onclick = go;
+      SAY([[AT_SAY.magic], [ph, 'zh-TW', h], [AT_SAY.your]]).then(() => { if (went || !ok()) return; $('atSaid') && $('atSaid').classList.add('go'); wt = setTimeout(go, 4500); });
+    }
+    // ⑥ 徽章＋星星＋給家長的小卡
+    function finish() {
+      const D = store.get('atenDone', {}), first = !D[S.id]; D[S.id] = Date.now(); if (!preview) store.set('atenDone', D);
+      if (!preview) { giveStars(first ? 2 : 1); const H = store.get('history', []); H.push({ sub: 'aten', age, s: badTried ? 0 : 1, n: 1, t: Date.now() }); store.set('history', H.slice(-400)); try { dqRender(); } catch (e) {} }
+      const k = kidNow(), nm = String(k && k.name || '').trim(), kid = (nm && nm !== '小朋友' ? nm : '孩子').replace(/[<>&"]/g, ''), whyT = (AT_WHY.find(x => x[0] === why) || [])[2];
+      put(`<div class="at-badge"><span>🦸</span><b>關注小超人</b></div><p class="at-say">${AT_SAY.badge}${preview ? '' : `<br>⭐ +${first ? 2 : 1}`}</p>
+        <div class="mb-pcard"><b>👪 給爸爸媽媽看</b><p>${kid}今天練習了「${S.t}」：想要大家注意的時候，不搗蛋，用好方法。${badTried ? '一開始選了搗蛋，也自己動手修復、說了對不起，' : ''}孩子覺得原因是「${whyT}」，學會說：<em>「${AT_MAGIC[why]}」</em></p><p>💡 在家可以這樣做：${AT_HOME[why]}</p></div>
+        <div class="at-row"><button class="at-btn big" id="atEnd">✅ 完成</button></div>`);
+      tone([523, 659, 784, 1046, 1318], .1, 'sine'); try { burst(stage.querySelector('.at-badge'), 40); } catch (e) {}
+      SAY([[AT_SAY.badge]]); track('aten-done', '關注小超人：完成 ' + S.id);
+      $('atEnd').onclick = close;
+    }
+    intro();
+  }
   /* ---------- v101：新主題的 AI 語音還沒做好以前，先不出現在首頁 ---------- */
   const NEWSUB_SAMPLE = {
+    aten: () => atLines(),
+    bond: () => { const L = [], keep = st, ka = age; try { for (const ag of ['small', 'big', 'six']) { age = ag; st = { sub: 'bond', i: 0, used: new Set() }; for (let n = 0; n < 20; n++) { const q = GEN.bond(); L.push(...q.speech, ...q.after); } } } finally { st = keep; age = ka; } return L; },
     yxmirror: () => MIRROR_G.flatMap(G => G.items.map(t => G.type === 'en' ? [`${t.k}. ${t.w}.`, EZ_EN] : [t.say])).concat([['哪一個沒有寫反？'], ['聽一聽，是哪一個？']]),
     yxdict: () => DICT_W.map(([w, ch]) => [`聽寫。${w}的${ch}。`]).concat([['先點聲母。'], ['再點韻母。'], ['最後選聲調。']]),
     yxread: () => READ_T.flatMap(T => T.s(3, 2)).map(x => [x]).concat([['聽一聽，找出關鍵字。']]),
@@ -10403,7 +10920,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   function showLock(justEnded) { if (!justEnded) track('premium-locked', '進階主題試玩用完'); $('lockMsg').textContent = justEnded ? '試玩 3 題結束囉！想繼續玩，請爸爸媽媽到家長專區看看怎麼開啟。' : '試玩已經用完囉！請爸爸媽媽到家長專區看看怎麼開啟。'; $('lockSheet').hidden = false; }
 
   /* ---------- 家長專區 ---------- */
-  const SUBNAME = { digi: '3C 安全小衛士', want: '小小理財家', robot: '機器人指令大冒險', yxmirror: '幼小・鏡像字大挑戰', yxdict: '幼小・聽寫小考官', yxread: '幼小・應用題拆解', yx2big: '超前・1000 以內的數', yx2col: '超前・二位數直式加減', yx2mul: '超前・乘法入門', yx2time: '超前・時間進階', yx2unit: '超前・長度和重量', yx2rad: '超前・國字部首', yx2word: '超前・詞語進階', yx2read: '超前・短文閱讀', review: '錯題複習本', hero: '星光守護隊', pkmath: '星星樂園・數學闖關', pkcolor: '星星樂園・顏色分類', pkzy: '星星樂園・注音國字', pken: '星星樂園・英文', pklife: '星星樂園・生活和禮貌', pkemo: '星星樂園・情緒', pkpos: '星星樂園・方位', ezanimal: '英語・動物 Animals', ezfood: '英語・水果和食物 Food', ezcolor: '英語・顏色和形狀 Colors', eznum: '英語・數字 1–10 Numbers', ezbody: '英語・身體和衣服 Body', ezhello: '英語・打招呼和禮貌 Hello', ezcase: '英語・大寫小寫 Aa Bb', ezfirst: '英語・首音 First Sound', eznum2: '英語・數字 11–20', ezpeople: '英語・家人和職業 People', ezaction: '英語・動作和心情 Actions', ezsimon: '英語・聽指令 Simon Says', ezcvc: '英語・自然發音拼讀 Phonics', ezvowel: '英語・短母音 a e i o u', ezsight: '英語・常見字 Sight Words', ezsent: '英語・看圖選句子', ezqa: '英語・英文問答 Q&A', ezweek: '英語・星期月份天氣', ezstory: '英語・英文小故事 Story', xmcolor: '顏色數數記憶', xmshape: '形狀顏色找找看', xmplace: '聽指令擺放', xmday: '一天的時間表', xmpattern: '規律塗色', xmemo: '情緒小偵探', xmdots: '連點成圖', xmmirror: '對稱畫一半', xmshop: '幼小・購物清單記憶', xmengcolor: '幼小・英文顏色數數', yxzy: '幼小・注音符號', yxtone: '幼小・四聲聲調', yxspell: '幼小・注音拼讀', yxchar: '幼小・認國字', yxsimilar: '幼小・相似字', yxsent: '幼小・句子填空', yxpunct: '幼小・標點符號', yxlook: '幼小・看圖說話', yxstory: '幼小・聽故事', yxstroke: '幼小・國字筆順', yxtrace: '幼小・國字描寫', yxnum: '幼小・100 以內的數', yxcalc: '幼小・20 以內加減', yxword: '幼小・應用題', yxtime: '幼小・認識時間', yxmoney: '幼小・錢幣和買東西', yxmeasure: '幼小・長度比一比', yxstat: '幼小・統計圖表', yxcal: '幼小・星期和月份', yxschool: '幼小・校園生活', cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識', xmcopy: '照樣子塗圓點', tell: '看圖說故事', feel: '心情為什麼', together: '我和大家', habit: '生活自理', music: '聲音和節奏', place: '程度小測驗' };
+  const SUBNAME = { bond: '數的分合', digi: '3C 安全小衛士', want: '小小理財家', robot: '機器人指令大冒險', yxmirror: '幼小・鏡像字大挑戰', yxdict: '幼小・聽寫小考官', yxread: '幼小・應用題拆解', yx2big: '超前・1000 以內的數', yx2col: '超前・二位數直式加減', yx2mul: '超前・乘法入門', yx2time: '超前・時間進階', yx2unit: '超前・長度和重量', yx2rad: '超前・國字部首', yx2word: '超前・詞語進階', yx2read: '超前・短文閱讀', review: '錯題複習本', hero: '星光守護隊', pkmath: '星星樂園・數學闖關', pkcolor: '星星樂園・顏色分類', pkzy: '星星樂園・注音國字', pken: '星星樂園・英文', pklife: '星星樂園・生活和禮貌', pkemo: '星星樂園・情緒', pkpos: '星星樂園・方位', ezanimal: '英語・動物 Animals', ezfood: '英語・水果和食物 Food', ezcolor: '英語・顏色和形狀 Colors', eznum: '英語・數字 1–10 Numbers', ezbody: '英語・身體和衣服 Body', ezhello: '英語・打招呼和禮貌 Hello', ezcase: '英語・大寫小寫 Aa Bb', ezfirst: '英語・首音 First Sound', eznum2: '英語・數字 11–20', ezpeople: '英語・家人和職業 People', ezaction: '英語・動作和心情 Actions', ezsimon: '英語・聽指令 Simon Says', ezcvc: '英語・自然發音拼讀 Phonics', ezvowel: '英語・短母音 a e i o u', ezsight: '英語・常見字 Sight Words', ezsent: '英語・看圖選句子', ezqa: '英語・英文問答 Q&A', ezweek: '英語・星期月份天氣', ezstory: '英語・英文小故事 Story', xmcolor: '顏色數數記憶', xmshape: '形狀顏色找找看', xmplace: '聽指令擺放', xmday: '一天的時間表', xmpattern: '規律塗色', xmemo: '情緒小偵探', xmdots: '連點成圖', xmmirror: '對稱畫一半', xmshop: '幼小・購物清單記憶', xmengcolor: '幼小・英文顏色數數', yxzy: '幼小・注音符號', yxtone: '幼小・四聲聲調', yxspell: '幼小・注音拼讀', yxchar: '幼小・認國字', yxsimilar: '幼小・相似字', yxsent: '幼小・句子填空', yxpunct: '幼小・標點符號', yxlook: '幼小・看圖說話', yxstory: '幼小・聽故事', yxstroke: '幼小・國字筆順', yxtrace: '幼小・國字描寫', yxnum: '幼小・100 以內的數', yxcalc: '幼小・20 以內加減', yxword: '幼小・應用題', yxtime: '幼小・認識時間', yxmoney: '幼小・錢幣和買東西', yxmeasure: '幼小・長度比一比', yxstat: '幼小・統計圖表', yxcal: '幼小・星期和月份', yxschool: '幼小・校園生活', cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', aten: '關注小超人', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識', xmcopy: '照樣子塗圓點', tell: '看圖說故事', feel: '心情為什麼', together: '我和大家', habit: '生活自理', music: '聲音和節奏', place: '程度小測驗' };
   EZL.forEach(c => { SUBNAME['ezl_' + c.id] = '英語單字・' + c.zh; });
   const TIPS = {
     math: '吃點心時一起數一數有幾個。', compare: '分東西時問孩子「哪一邊比較多？」', money: '買東西時讓孩子幫忙拿硬幣付錢。',
@@ -10411,7 +10928,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     en: '在家裡的物品貼上英文單字卡。', abc: '一起唱 ABC 歌，找找看招牌上的英文字母。', geo: '出門找找看路上的圓形和三角形。',
     color: '穿衣服時讓孩子說出衣服的顏色。', position: '收玩具時說「把熊熊放在箱子上面」。', odd: '整理玩具時，請孩子把同一類的放在一起。',
     memory: '玩翻牌，或「少了哪一個」的遊戲。', life: '出門時一起看紅綠燈，回家練習垃圾分類。',
-    addsub: '用餅乾或積木玩「多 1 個、少 1 個」。', solid: '找找家裡哪些東西是圓柱體、正方體，像罐頭和骰子。',
+    addsub: '用餅乾或積木玩「多 1 個、少 1 個」。', bond: '拿 5～10 顆餅乾，請孩子分成兩堆，說說看「7 可以分成 3 和 4」，再合起來數一數。', solid: '找找家裡哪些東西是圓柱體、正方體，像罐頭和骰子。',
     hide: '玩躲貓貓，或用毛巾蓋住玩具只露出一點點讓孩子猜。', logic: '用積木排出「紅藍紅藍」，讓孩子接下去。',
     riddle: '睡前互相出謎語，也讓孩子出題給你猜。',
     spell: '從家人的稱呼開始拼，像「媽媽」ㄇㄚ。', words: '生活中常問「大的相反是什麼？」「一＿狗？」', story: '睡前講故事後，問孩子一兩個小問題。',
@@ -10427,6 +10944,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     moneypro: '讓孩子拿零錢付款，再一起算找回多少。', cnsimilar: '把長得像的字寫在一起，比比看哪裡不一樣。', sentence: '說話時讓孩子接最後一個詞。',
     storyseq: '看繪本後，請孩子說說先發生什麼、後發生什麼。', stranger: '和孩子演練：陌生人給東西、叫你跟他走、問地址時，大聲說「不要」並馬上告訴大人。', safety: '定期和孩子演練走失、地震時要怎麼做，並背熟爸媽電話。',
     science: '在家做浮沉、磁鐵的小實驗。', festival: '過節時說說這個節日的故事和習俗。', animals: '去動物園或看動物影片時，一起聊聊牠們的特點。', clockpro: '出門前問孩子：「現在幾點幾分？」', tracepro: '描寫時注意坐姿和握筆，一天寫 3～5 個字就好。',
+    aten: '孩子搗蛋常常是想被注意。平常他做得好時就馬上看著他稱讚，他就不需要靠搗蛋找注意。搗蛋時先處理安全，少說教，帶他一起把東西弄好、說對不起，再教他一句可以說的話，例如「老師，你看我！」「我們可以一起玩嗎？」。',
     calm: '孩子為玩具或食物生氣時，先抱住或靠近他，說出他的感覺（你很想要對不對），等冷靜了再教他一句可以說的話。要結束遊戲前 5 分鐘先預告，時間到用「說到做到」來稱讚他。孩子愛比第一名時，多稱讚他的努力（你一直練習），少說「你最棒、第一名」。可以在家設一個安靜角落，平時就練習小烏龜深呼吸。',
     manners: '孩子說屁股、大便或「揍扁你」這類話時，先不要大笑或大驚小怪，平靜地說「這句話會讓人不舒服，可以換成⋯⋯」，並給他一句可以替代的話。孩子不肯道歉時，先幫他說出感覺（你也嚇到了對不對？），再陪他一起說；不要逼或罰，說出口後立刻稱讚他很勇敢。大人也要以身作則，常說請、謝謝、對不起。', trash: '倒垃圾時讓孩子幫忙分類；各縣市規定略有不同，以居住地的規定為準。',
     xmcopy: '照樣子塗圓點練習「一排一排、一個一個對位置」，是寫字和看表格的基本功。可以陪孩子用手指一列一列指著對，也可以印學習單用彩色筆塗。',
@@ -10457,16 +10975,16 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const DOMAINS = ['認知', '語文', '社會', '情緒', '美感', '身體動作與健康'];
   const DOMAIN_ICON = { 認知: '🧩', 語文: '🗣️', 社會: '🤝', 情緒: '💗', 美感: '🎨', 身體動作與健康: '🏃' };
   const DOMAIN_SUBS = {
-    認知: 'robot yxread yx2big yx2col yx2mul yx2time yx2unit pkmath pkcolor pkpos math addsub compare measure share ordinal money time calendar geo solid position hide odd logic riddle sequence memory puzzle maze spotdiff match challenge mathpro wordpro moneypro clockpro patternpro deduce science animals seasons xmcolor xmshape xmplace xmday xmpattern xmdots xmmirror xmshop yxnum yxcalc yxword yxtime yxmoney yxmeasure yxstat yxcal eznum eznum2 ezweek',
+    認知: 'robot bond yxread yx2big yx2col yx2mul yx2time yx2unit pkmath pkcolor pkpos math addsub compare measure share ordinal money time calendar geo solid position hide odd logic riddle sequence memory puzzle maze spotdiff match challenge mathpro wordpro moneypro clockpro patternpro deduce science animals seasons xmcolor xmshape xmplace xmday xmpattern xmdots xmmirror xmshop yxnum yxcalc yxword yxtime yxmoney yxmeasure yxstat yxcal eznum eznum2 ezweek',
     語文: 'yxmirror yxdict yx2rad yx2word yx2read tell pkzy pken cn zhuyin spell en abc words story cnword cnsimilar sentence zhuyinpro enspell enphrase enverb storyseq riddle xmengcolor yxzy yxtone yxspell yxchar yxsimilar yxsent yxpunct yxlook yxstory yxstroke yxtrace',
-    社會: 'digi want together pklife manners stranger life jobs safety festival trash yxschool xmshop ezhello ezpeople',
-    情緒: 'feel pkemo emotion calm xmemo manners',
+    社會: 'digi want together pklife manners aten stranger life jobs safety festival trash yxschool xmshop ezhello ezpeople',
+    情緒: 'feel pkemo emotion calm aten xmemo manners',
     美感: 'music coloring color xmcolor xmpattern xmmirror xmcopy xmshape geo',
     身體動作與健康: 'habit body food seasons safety trace tracepro yxtrace maze xmdots coloring puzzle ezbody ezsimon'
   };
   const DOMAIN_OF = {};
   Object.entries(DOMAIN_SUBS).forEach(([d, list]) => list.split(' ').forEach(k => { (DOMAIN_OF[k] = DOMAIN_OF[k] || []).push(d); }));
-  const DOMAIN_MAIN = { coloring: '美感', color: '美感', xmpattern: '美感', xmmirror: '美感', xmcopy: '美感', xmcolor: '美感', trace: '身體動作與健康', tracepro: '身體動作與健康', maze: '身體動作與健康', puzzle: '身體動作與健康', xmdots: '身體動作與健康', body: '身體動作與健康', food: '身體動作與健康', seasons: '身體動作與健康', safety: '身體動作與健康', emotion: '情緒', calm: '情緒', xmemo: '情緒', manners: '社會', ezbody: '語文', ezsimon: '語文' };
+  const DOMAIN_MAIN = { aten: '情緒', coloring: '美感', color: '美感', xmpattern: '美感', xmmirror: '美感', xmcopy: '美感', xmcolor: '美感', trace: '身體動作與健康', tracepro: '身體動作與健康', maze: '身體動作與健康', puzzle: '身體動作與健康', xmdots: '身體動作與健康', body: '身體動作與健康', food: '身體動作與健康', seasons: '身體動作與健康', safety: '身體動作與健康', emotion: '情緒', calm: '情緒', xmemo: '情緒', manners: '社會', ezbody: '語文', ezsimon: '語文' };
   const domainsOf = sub => { const L = DOMAIN_OF[sub] || (/^ez/.test(sub) ? ['語文'] : ['認知']), m = DOMAIN_MAIN[sub]; return m && L.includes(m) ? [m, ...L.filter(x => x !== m)] : L; };
   const DOMAIN_TRY = { 認知: '數一數、規律進階、推理', 語文: '注音、聽故事、英語小學堂', 社會: '禮貌和交朋友、安全教育', 情緒: '認識情緒、好好說不生氣', 美感: '著色本、規律塗色、對稱畫', 身體動作與健康: '描字練習、走迷宮、健康飲食' };
 
@@ -10901,6 +11419,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     const c = (q.options || []).find(o => o.correct), lab = String(c && c.label || ''), aft = String(((q.after || [])[0] || [])[0] || '');
     let m;
     if ((m = aft.match(/^(\d+)加(\d+)等於(\d+)$/)) && +m[1] < 10 && +m[2] < 10 && +m[1] + +m[2] > 10) return { type: 'ten', a: +m[1], b: +m[2] };
+    { const P = nlParse(q); if (P) return { type: 'line', ...P }; }
     if ((m = lab.match(/^(\d+)點(半|(\d+)分)?$/)) && +m[1] >= 1 && +m[1] <= 12) return { type: 'clock', h: +m[1], mi: m[2] === '半' ? 30 : +(m[3] || 0) };
     if (/^[ㄅ-ㄩ]{2,3}[ˊˇˋ˙]?$/.test(lab)) return { type: 'zy', s: lab };
     if (st.sub === 'yxstroke' && (m = String(q.prompt).match(/「(.)」/)) && YX_STROKES[m[1]] && (m = [m[1], (lab.match(/第(\d+)筆/) || [])[1]]) && m[1]) return { type: 'stroke', ch: m[0], n: +m[1] };
@@ -10917,6 +11436,15 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         [`<div class="tc-row">${frame(T.a, need, true)}<div class="tc-pile">${dots(rest, 'tc-dot b')}</div></div>`, `框起來，這裡是 10 個！`],
         [`<div class="tc-row">${frame(T.a, need, true)}<div class="tc-pile">${dots(rest, 'tc-dot b hi')}</div></div>`, `還剩下 ${rest} 個`],
         [`<div class="tc-big">10 + ${rest} = ${10 + rest}</div>`, `10 和 ${rest}，就是 ${10 + rest}`]
+      ];
+    }
+    if (T.type === 'line') {
+      const h = Math.ceil(T.b / 2), up = T.op === '加';
+      return [
+        [nlSVG(T.a, T.r, 0, 'tc-nl'), `${T.a} ${up ? '加' : '減'} ${T.b}：先站在 ${T.a}（藍色）`],
+        [nlSVG(T.a, T.r, h, 'tc-nl'), `${up ? '往右' : '往左'}跳，一次跳一格，跳了 ${h} 下`],
+        [nlSVG(T.a, T.r, T.b, 'tc-nl'), `一共跳 ${T.b} 下`],
+        [`<div class="tc-big">${T.a} ${up ? '+' : '−'} ${T.b} = ${T.r}</div>`, `停在 ${T.r}，答案就是 ${T.r}`]
       ];
     }
     if (T.type === 'clock') {
@@ -11084,18 +11612,19 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   }
   /* ---------- 🔤 大圖卡：點點看一起念（字母方塊、慢慢念、錄自己的聲音） ---------- */
   const WC_TILE = [['#FDEBE3', '#D9574A'], ['#EEE8FA', '#6A4FB0'], ['#E2F1EC', '#3E8E7A'], ['#FFF3D1', '#B07A12'], ['#E1EEF8', '#2B5F99']];
-  let wcList = [], wcI = 0, wcRec = null, wcUrl = '';
+  let wcList = [], wcI = 0, wcRec = null, wcUrl = '', wcAud = null;
+  const wcAudStop = () => { try { wcAud && wcAud.pause(); } catch (e) {} wcAud = null; };
   function wcOpen(list, i) {
     wcList = list; wcI = i; let box = $('wcard');
     if (!box) { box = document.createElement('div'); box.id = 'wcard'; box.className = 'wcard'; document.body.appendChild(box); box.addEventListener('click', e => { if (e.target === box) wcClose(); }); }
     box.hidden = false; document.documentElement.classList.add('wc-open'); wcDraw(true);
   }
-  function wcClose() { const b = $('wcard'); if (b) { b.hidden = true; b.innerHTML = ''; } document.documentElement.classList.remove('wc-open'); wcStopRec(); if (wcUrl) { URL.revokeObjectURL(wcUrl); wcUrl = ''; } }
+  function wcClose() { const b = $('wcard'); if (b) { b.hidden = true; b.innerHTML = ''; } document.documentElement.classList.remove('wc-open'); wcStopRec(); wcAudStop(); if (wcUrl) { URL.revokeObjectURL(wcUrl); wcUrl = ''; } }
   function wcStopRec() { try { if (wcRec && wcRec.state === 'recording') wcRec.stop(); } catch (e) {} }
   function wcDraw(speak) {
     const x = wcList[wcI], box = $('wcard'); if (!x || !box) return;
     const w = (x.word || '').trim(), tiles = /^[A-Za-z]{1,12}$/.test(w);
-    if (wcUrl) { URL.revokeObjectURL(wcUrl); wcUrl = ''; }
+    wcAudStop(); if (wcUrl) { URL.revokeObjectURL(wcUrl); wcUrl = ''; }
     box.innerHTML = `<div class="wc-card" role="dialog" aria-label="大圖卡">
       <button class="wc-x" id="wcX" aria-label="關閉">✕</button>
       <div class="wc-pic">${x.vis}${x.tag ? `<span class="wc-tag">${x.tag}</span>` : ''}</div>
@@ -11108,7 +11637,10 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       <div class="wc-more"><b>再點點看</b><div>${[1, 2, 3].map(d => wcList[(wcI + d) % wcList.length]).filter((y, j, A) => y && y !== x && A.indexOf(y) === j).map(y => `<button class="wc-mini" data-j="${wcList.indexOf(y)}"><span>${y.vis}</span><b>${y.word && y.word.length < 12 ? y.word : ''}</b></button>`).join('')}</div></div>
       <div class="wc-nav"><button id="wcPrev" aria-label="上一張"${wcI ? '' : ' disabled'}>◀</button><span>${wcI + 1} / ${wcList.length}</span><button id="wcNext" aria-label="下一張"${wcI < wcList.length - 1 ? '' : ' disabled'}>▶</button></div>
     </div>`;
-    const play = async slow => { const c = box.querySelector('.wc-card'); c.classList.add('talk'); sayRateMul = slow ? .6 : 1; x.onSay && x.onSay(); await say(x.say); sayRateMul = 1; c.classList.remove('talk'); };
+    // v122：錄音、自動播放自己的聲音時，其他會出聲的按鈕先鎖住，避免兩個聲音同時播
+    const lockW = (on, keep) => { ['wcSay', 'wcSlow', 'wcMe', 'wcTalk', 'wcRecB', 'wcPrev', 'wcNext'].forEach(id => { const b = $(id); if (!b || id === keep) return; b.disabled = on || (id === 'wcPrev' && !wcI) || (id === 'wcNext' && wcI >= wcList.length - 1); }); box.querySelectorAll('.wc-mini, .wc-t').forEach(b => b.disabled = on); box.classList.toggle('wc-busy', on); };
+    const playMe = () => new Promise(r => { sayStop(); wcAudStop(); if (!wcUrl) return r(); const a = new Audio(wcUrl); a.setAttribute('playsinline', ''); wcAud = a; let d = false; const end = () => { if (d) return; d = true; if (wcAud === a) wcAud = null; r(); }; a.onended = end; a.onerror = end; a.play().catch(end); setTimeout(end, 6000); });
+    const play = async slow => { wcAudStop(); const c = box.querySelector('.wc-card'); c.classList.add('talk'); sayRateMul = slow ? .6 : 1; x.onSay && x.onSay(); await say(x.say); sayRateMul = 1; c.classList.remove('talk'); };
     $('wcX').onclick = wcClose; $('wcSay').onclick = () => play(false); $('wcSlow').onclick = () => play(true);
     $('wcPrev').onclick = () => { if (wcI > 0) { wcI--; wcDraw(true); } };
     $('wcNext').onclick = () => { if (wcI < wcList.length - 1) { wcI++; wcDraw(true); } };
@@ -11121,18 +11653,18 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       try {
         const st = await navigator.mediaDevices.getUserMedia({ audio: true }), ch = [];
         wcRec = new MediaRecorder(st); wcRec.ondataavailable = e => ch.push(e.data);
-        wcRec.onstop = () => { st.getTracks().forEach(t => t.stop()); $('wcRecB') && $('wcRecB').classList.remove('on'); if (!$('wcMe')) return; if (wcUrl) URL.revokeObjectURL(wcUrl); wcUrl = URL.createObjectURL(new Blob(ch, { type: wcRec.mimeType || 'audio/webm' })); $('wcMe').hidden = false; note.textContent = '錄好了！按 ▶️ 聽聽看自己念得像不像'; const a = new Audio(wcUrl); a.play().catch(() => {}); };
-        wcRec.start(); $('wcRecB').classList.add('on'); note.textContent = '🎤 錄音中…念完再按一次（最多 4 秒）'; setTimeout(wcStopRec, 4000); track('wcard-rec', '大圖卡錄音');
-      } catch (e) { note.textContent = '要先允許使用麥克風，才能錄音喔！'; }
+        wcRec.onstop = async () => { st.getTracks().forEach(t => t.stop()); $('wcRecB') && $('wcRecB').classList.remove('on'); if (!$('wcMe')) return; lockW(true); if (wcUrl) URL.revokeObjectURL(wcUrl); wcUrl = URL.createObjectURL(new Blob(ch, { type: wcRec.mimeType || 'audio/webm' })); $('wcMe').hidden = false; note.textContent = '▶️ 聽聽看自己念得像不像⋯'; await playMe(); if (!$('wcMe')) return; lockW(false); note.textContent = '錄好了！想再聽一次就按 ▶️'; };
+        sayStop(); wcAudStop(); wcRec.start(); lockW(true, 'wcRecB'); $('wcRecB').classList.add('on'); note.textContent = '🎤 錄音中…念完再按一次（最多 4 秒）'; setTimeout(wcStopRec, 4000); track('wcard-rec', '大圖卡錄音');
+      } catch (e) { lockW(false); note.textContent = '要先允許使用麥克風，才能錄音喔！'; }
     };
-    $('wcMe').onclick = () => { if (wcUrl) new Audio(wcUrl).play().catch(() => {}); };
+    $('wcMe').onclick = async () => { if (!wcUrl || $('wcMe').disabled) return; lockW(true); await playMe(); if ($('wcMe')) lockW(false); };
     // 開口說：先聽老師念，再換孩子說（自動錄 3 秒），最後放出來聽自己；錄音只留在這台裝置，不會上傳
     $('wcTalk').onclick = async () => {
       const note = $('wcNote'), me = x;
       if (!navigator.mediaDevices || !window.MediaRecorder) { await play(false); note.textContent = '換你大聲說一次！'; await say([['換你說說看']]); return; }
       let stream; try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e) { note.textContent = '要先允許使用麥克風，才能錄下你的聲音喔！'; return; }
-      $('wcTalk').disabled = true; note.textContent = '👂 先聽我念'; await play(false);
-      if (wcList[wcI] !== me) { stream.getTracks().forEach(t => t.stop()); return; }
+      lockW(true); note.textContent = '👂 先聽我念'; await play(false);
+      if (wcList[wcI] !== me || !$('wcTalk')) { stream.getTracks().forEach(t => t.stop()); return; }
       note.textContent = '🗣️ 換你說！'; await say([['換你說']]);
       const ch = [], rec = new MediaRecorder(stream); wcRec = rec; rec.ondataavailable = e => ch.push(e.data);
       const done = new Promise(r => rec.onstop = r); rec.start(); $('wcRecB').classList.add('on');
@@ -11141,9 +11673,9 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       if (!$('wcTalk')) return;
       if (wcUrl) URL.revokeObjectURL(wcUrl); wcUrl = URL.createObjectURL(new Blob(ch, { type: rec.mimeType || 'audio/webm' })); $('wcMe').hidden = false;
       note.textContent = '▶️ 聽聽看你自己的聲音';
-      await new Promise(r => { const a = new Audio(wcUrl); a.onended = r; a.onerror = r; a.play().catch(r); setTimeout(r, 4500); });
+      await playMe(); if (!$('wcTalk')) return;
       const L = store.get('speakLog', {}); L[today()] = (L[today()] || 0) + 1; store.set('speakLog', L);
-      note.textContent = '說得真好！再按一次可以再練習'; $('wcTalk').disabled = false; say([['說得真好']]); track('wcard-talk', '大圖卡跟我說');
+      note.textContent = '說得真好！再按一次可以再練習'; await say([['說得真好']]); if ($('wcTalk')) lockW(false); track('wcard-talk', '大圖卡跟我說');
     };
     if (speak) play(false);
   }
@@ -11338,7 +11870,10 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     const p = playToday(); p.unlocked += 10 * 60000; store.set('playToday', p); tipShown = false;
     $('restOk').disabled = false; $('restOk').textContent = '好，我休息一下'; show('home');
   }));
-  function drawLimit() {
+  // v120：家長專區看得到孩子最近用百寶箱讓自己平靜下來的紀錄
+  function drawMbLog() { const el = $('mbLog'); if (!el) return; const L = store.get('mbLog', []), MN = { angry: '⛈️ 生氣', sad: '🌧️ 難過', wild: '🌪️ 心裡亂亂', sun: '☀️ 心情好' };
+    el.innerHTML = L.length ? `<b>🧰 最近用百寶箱平靜下來的紀錄</b><br>` + L.slice(0, 5).map(x => { const d = new Date(x.t); return `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}　${MN[x.m] || ''} → ${(x.g || []).map(g => MB_GAMES[g] ? MB_GAMES[g][1] : '').filter(Boolean).join('、') || '直接結束'} → 平靜下來 ✅`; }).join('<br>') : ''; }
+  function drawLimit() { try { drawMbLog(); } catch (e) {}
     const m = store.get('limitMin', 20);
     document.querySelectorAll('.limit-btn').forEach(b => b.setAttribute('aria-checked', String(Number(b.dataset.min) === m)));
     const p = playToday(), used = Math.round(p.ms / 60000);
@@ -12531,7 +13066,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     out.push(...Object.values(CALM_SAY), ...Object.values(EYE_SAY), '情緒急救箱');
     CHEER_0.forEach(t => out.push([t, 'zh-TW', 'tch']));
     out.push('好棒！生活挑戰完成，送你兩顆星星！', '先完成今天的學習任務，再來星星樂園玩喔！'); CERTS.forEach(c => out.push([`恭喜你得到「${c.n}」獎狀！你好棒！`, 'zh-TW', 'tch']));
-    out.push(...Object.values(MB_SAY)); MB_LETTERS.forEach(t => { out.push([t, 'zh-TW', 'mom'], [t, 'zh-TW', 'dad']); });
+    try { out.push(...atLines()); } catch (e) {}
+    out.push(...Object.values(MB_SAY).flatMap(t => t.split('｜'))); ['媽媽，我不生氣了！', '媽媽，我好多了！', '媽媽，我冷靜下來了！'].forEach(t => out.push([t, 'zh-TW', 'b1'], [t, 'zh-TW', 'g1'])); MB_LETTERS.forEach(t => { out.push([t, 'zh-TW', 'mom'], [t, 'zh-TW', 'dad']); });
     try { Object.entries(TONE_EX).forEach(([t, A]) => A.forEach(e => out.push(toneExSay(t, e)))); } catch (e) {}
     try { Object.values(NEWSUB_SAMPLE).forEach(f => f().forEach(x => out.push(x))); READ_T.forEach(T => out.push(T.hint)); } catch (e) {}
     try { Object.entries(LS_TYPE).forEach(([k, T]) => { if (k !== 'full' && k !== 'up') out.push([`你今天${T[2]}，表現得真好！老師送你一張貼紙！`, 'zh-TW', 'tch']); }); } catch (e) {}
@@ -12629,7 +13165,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   function zyrPlay(src, my) {
     return new Promise(res => {
       const a = new Audio(), url = typeof src === 'string' ? src : URL.createObjectURL(src); a.setAttribute('playsinline', '');
-      let t = 0, end = () => { clearInterval(t); if (typeof src !== 'string') URL.revokeObjectURL(url); res(); };
+      let t = 0, fin = false, end = () => { if (fin) return; fin = true; clearInterval(t); if (typeof src !== 'string') URL.revokeObjectURL(url); res(); };
+      setTimeout(() => end(), 8000); // v122：保險，播放沒有回應也會結束，按鈕才會解鎖
       document.body.classList.add('zy-moe'); const end0 = end; end = () => { document.body.classList.remove('zy-moe'); end0(); };
       a.onended = end; a.onerror = end; t = setInterval(() => { if (my !== undefined && my !== sayToken) { try { a.pause(); } catch (e) {} end(); } }, 120);
       a.src = url; const p = a.play(); if (p) p.catch(end);
@@ -12679,9 +13216,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         <p class="zyr-st" id="zyrSt">已錄 ${n()} / 21。錄好的聲音這台手機會馬上使用；要讓所有人都聽到，請按「下載全部」，再把檔案上傳到 GitHub。</p>
         <div class="zyr-foot"><button class="btn small" id="zyrAll">▶ 全部聽一次</button><button class="btn small" id="zyrDl" ${n() ? '' : 'disabled'}>⬇️ 下載全部（zip）</button></div></div>`;
       box.querySelector('.zyr-x').onclick = () => { if (TL.rec && TL.rec.state === 'recording') TL.rec.stop(); box.hidden = true; };
+      // v122：錄音中、自動播放剛錄好的聲音、全部聽一次的時候，其他播放和錄音按鈕都鎖住
+      const zLock = (on, keep) => box.querySelectorAll('.zyr-pl, .zyr-mic, #zyrAll, #zyrDl').forEach(b => { if (b !== keep) b.disabled = on || (b.id === 'zyrDl' && !n()); });
       box.querySelectorAll('.zyr-row').forEach(r => {
         const z = r.dataset.z;
-        r.querySelector('.zyr-pl').onclick = () => ZYR.local[z] && zyrPlay(ZYR.local[z]);
+        r.querySelector('.zyr-pl').onclick = async () => { if (!ZYR.local[z]) return; zLock(true); await zyrPlay(ZYR.local[z]); zLock(false); };
         r.querySelector('.zyr-mic').onclick = async () => {
           if (TL.rec && TL.rec.state === 'recording') { TL.rec.stop(); return; }
           let stream; try { stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: true, autoGainControl: false } }); } catch (e) { $('zyrSt').textContent = '沒辦法使用麥克風，請到手機設定允許這個網站使用麥克風。'; return; }
@@ -12689,14 +13228,14 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
           rec.ondataavailable = e => { if (e.data && e.data.size) ch.push(e.data); };
           rec.onstop = async () => {
             stream.getTracks().forEach(t => t.stop()); r.classList.remove('on');
-            try { const wav = await zyrProcess(new Blob(ch, { type: (ch[0] && ch[0].type) || mt || 'audio/mp4' })); if (!wav) { $('zyrSt').textContent = `${z} 沒有錄到聲音，請再錄一次。`; return; } ZYR.local[z] = wav; await tlPut('zy:' + z, wav); draw(); zyrPlay(wav); }
-            catch (e) { $('zyrSt').textContent = '這段錄音處理不了，請再錄一次。'; }
+            try { const wav = await zyrProcess(new Blob(ch, { type: (ch[0] && ch[0].type) || mt || 'audio/mp4' })); if (!wav) { $('zyrSt').textContent = `${z} 沒有錄到聲音，請再錄一次。`; return; } ZYR.local[z] = wav; await tlPut('zy:' + z, wav); draw(); box.querySelectorAll('.zyr-pl, .zyr-mic, #zyrAll, #zyrDl').forEach(x => x.disabled = true); $('zyrSt').textContent = `▶ 播放剛錄好的「${z}」⋯`; await zyrPlay(wav); if (!box.hidden) draw(); return; }
+            catch (e) { $('zyrSt').textContent = '這段錄音處理不了，請再錄一次。'; } zLock(false);
           };
-          sayStop(); rec.start(500); r.classList.add('on'); $('zyrSt').textContent = `錄音中：請念「${z}」的本音，念完再按一次 🎙️`;
+          sayStop(); rec.start(500); zLock(true, r.querySelector('.zyr-mic')); r.classList.add('on'); $('zyrSt').textContent = `錄音中：請念「${z}」的本音，念完再按一次 🎙️`;
           setTimeout(() => { if (rec.state === 'recording') rec.stop(); }, 6000);
         };
       });
-      $('zyrAll').onclick = async () => { for (const z of ZY_INIT) { if (box.hidden) return; const s = ZYR.local[z]; if (!s) continue; const r = box.querySelector(`[data-z="${z}"]`); r.classList.add('on'); await zyrPlay(s); r.classList.remove('on'); await delay(700); } };
+      $('zyrAll').onclick = async () => { zLock(true); for (const z of ZY_INIT) { if (box.hidden) break; const s = ZYR.local[z]; if (!s) continue; const r = box.querySelector(`[data-z="${z}"]`); r.classList.add('on'); await zyrPlay(s); r.classList.remove('on'); await delay(700); } zLock(false); };
       $('zyrDl').onclick = async () => {
         const files = ZY_INIT.filter(z => ZYR.local[z]).map(z => [`${ZY_ROM[z]}.wav`, ZYR.local[z]]);
         files.push(['index.json', new Blob([JSON.stringify(ZY_INIT.filter(z => ZYR.local[z]))], { type: 'application/json' })]);
@@ -13376,7 +13915,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     // 老師在念的時候先不能錄音（才不會錄到老師的聲音），念完才亮起來
     const micOn = on => { const m = $('tlMic'); if (!m || my !== TL.tok) return; m.disabled = !on; if (!(TL.rec && TL.rec.state === 'recording')) $('tlSt').textContent = on ? '按一下麥克風開始說，說完再按一下' : '先聽老師說完，再按麥克風'; };
     micOn(false);
-    $('tlHear').onclick = async () => { if (TL.rec && TL.rec.state === 'recording') return; micOn(false); await Promise.race([say([[p.s]]), delay(20000)]); micOn(true); };
+    $('tlHear').onclick = async () => { if (TL.rec && TL.rec.state === 'recording') return; try { TL.au && TL.au.pause(); } catch (e) {} micOn(false); await Promise.race([say([[p.s]]), delay(20000)]); micOn(true); };
     const old = await tlGet(tlKey(S, i));
     if (old) { $('tlMe').hidden = false; $('tlDel').hidden = false; $('tlNext').hidden = false; }
     let mine = old;
