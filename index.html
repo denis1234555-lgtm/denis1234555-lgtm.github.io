@@ -2064,6 +2064,28 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 #report .rt-off{display:none!important}
 .pv-set{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}.pv-set .note{flex-basis:100%;margin:0}
 @media (min-width:760px){.rt-tabs button{flex-direction:row;justify-content:center;gap:8px;font-size:1.2rem}.rt-tabs button b{font-size:1rem}}
+/* v127 遊戲大街 */
+.pk-x{background:#FFF8E1}/* 免費版：鎖定卡改放在下方，孩子可以往上滑看到所有遊戲 */
+.pk-lock{inset:auto 0 0 0;background:none;place-items:end center;padding:12px 12px max(12px,env(safe-area-inset-bottom));pointer-events:none}.pk-lock .pk-lock-card .big{font-size:2.4rem;line-height:1.1;margin:0}.pk-lock .pk-lock-card{max-width:420px;padding:14px 18px;pointer-events:auto;box-shadow:0 -6px 24px rgba(30,50,80,.25)}
+.pkx-cv{position:absolute;inset:0;display:block;touch-action:none;z-index:1}
+.pk-play.pk-x .pk-hud,.pk-play.pk-x .pk-tip,.pk-play.pk-x .pk-count{z-index:5}
+.pkx-sec{position:relative;z-index:3;margin:22px 0 4px;display:flex;align-items:baseline;justify-content:space-between;gap:8px;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 4px 0 rgba(43,38,51,.15)}.pkx-sec b{font-size:1.25rem}.pkx-sec span{font-size:.9rem;font-weight:700;color:#7A5BA8}
+.pkx-sub{position:relative;z-index:3;margin:14px 4px 6px;font-weight:800;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.pk-cards.pkx-grid{margin-top:0;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (min-width:700px){.pk-cards.pkx-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.pkx-card .pk-art{font-size:2.3rem}.pkx-card b{font-size:.95rem}.pkx-card .pk-price{font-size:.75rem}
+.pkx-tag{position:absolute;top:6px;right:6px;z-index:2;font-style:normal;font-size:.66rem;font-weight:900;border-radius:999px;padding:2px 7px;color:#fff;background:#FA5252;box-shadow:0 2px 0 rgba(0,0,0,.15)}.pkx-tag.td{background:#7950F2}
+.pkx-res{display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:700}.pkx-new{font-size:1.3rem;color:#E8590C}
+.pkx-medals{display:flex;gap:10px}.pkx-medals span{display:flex;flex-direction:column;align-items:center;font-size:2rem;opacity:.25;filter:grayscale(1)}.pkx-medals span.on{opacity:1;filter:none}.pkx-medals small{font-size:.7rem;color:#868E96}
+.pkx-unlock{background:#FFF3BF;border-radius:14px;padding:6px 12px;font-weight:900;color:#7A4B00}
+.pkx-dex{position:fixed;inset:0;z-index:80;background:rgba(30,20,50,.55);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:16px}
+.pkx-dexc{background:#fff;border-radius:24px;padding:16px;width:min(760px,100%);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.pkx-dexh{display:flex;justify-content:space-between;align-items:center;gap:8px}.pkx-dexh b{font-size:1.3rem}.pkx-dexp{margin:6px 0 4px;color:#6B5A80;font-size:.92rem}
+.pkx-dexg{margin:14px 0 6px;font-weight:900;color:#7A5BA8}.pkx-dexl{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.pkx-dexi{background:#F1F8FF;border-radius:16px;padding:6px;text-align:center}.pkx-dexi canvas{width:100%;max-width:120px;aspect-ratio:120/85;display:block;margin:0 auto}.pkx-dexi small{font-weight:800;font-size:.85rem}.pkx-dexi.lock{background:#F1F3F5}.pkx-dexi.lock small{color:#ADB5BD}
+.pk-float.pkx-big{font-size:2rem;color:#FFD43B;-webkit-text-stroke:2px #E56A1F}
+.pkx-dexrow .pk-art{font-size:1.8rem}
+.pkx-rec{position:absolute;left:50%;top:30%;translate:-50% -50%;z-index:30;pointer-events:none;font-weight:900;font-size:clamp(2.6rem,12vw,4.4rem);color:#FFD43B;-webkit-text-stroke:3px #E56A1F;text-shadow:0 5px 0 #C2410C;animation:fbPop 1.6s cubic-bezier(.2,1.5,.4,1) forwards;white-space:nowrap}
 .mb-tellmom{margin:4px auto 10px;max-width:22em;background:#FFF3D9;border:3px dashed #F2B544;border-radius:18px;padding:10px 14px;font-size:clamp(1.05rem,4.6vw,1.3rem);font-weight:700;color:#5A3B1A;text-align:center}.mb-tellmom b{color:#C2410C}
 .mb-pop{position:relative;width:min(340px,90vw);height:min(330px,46vh);overflow:hidden;border-radius:24px;background:linear-gradient(#EAF6FF,#FFF5FB);touch-action:none}
 .mb-bub{position:absolute;bottom:-90px;width:var(--s);height:var(--s);border-radius:50%;border:0;padding:0;cursor:pointer;background:radial-gradient(circle at 32% 30%,#fff 0 12%,transparent 13%),radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--c) 35%,transparent) 0 60%,var(--c) 100%);box-shadow:inset 0 0 0 3px color-mix(in srgb,var(--c) 70%,#fff);animation:mbbubup linear forwards;touch-action:none}
@@ -11968,7 +11990,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     const card = (id, emo, name, a, s) => `<button class="pk-card" data-g="${id}" style="--a:${a};--s:${s}"><div class="pk-awn"></div><div class="pk-art">${emo}</div><b>${name}</b><div class="pk-price">⭐${PK_COST}・1 分鐘</div></button>`;
     const wheel = `<svg class="pk-wheel" viewBox="0 0 190 230" aria-hidden="true"><path d="M95 95l-38 130M95 95l38 130" stroke="#fff" stroke-width="8" stroke-linecap="round"/><g class="rot"><circle cx="95" cy="95" r="80" fill="none" stroke="#fff" stroke-width="7"/><circle cx="95" cy="95" r="80" fill="none" stroke="#F57E7E" stroke-width="3" stroke-dasharray="6 10"/><g stroke="#fff" stroke-width="4"><path d="M95 15v160M15 95h160M38 38l114 114M152 38L38 152"/></g>${[0, 45, 90, 135, 180, 225, 270, 315].map((d, i) => { const r = d * Math.PI / 180; return `<circle cx="${(95 + Math.sin(r) * 80).toFixed(1)}" cy="${(95 - Math.cos(r) * 80).toFixed(1)}" r="12" fill="${['#FFC93C', '#B9A2F0', '#7CC4F5', '#FFE07A', '#FF9DB8', '#F7A35C', '#8ED07A', '#F57E7E'][i]}" stroke="#2B2633" stroke-width="3"/>`; }).join('')}</g><circle cx="95" cy="95" r="13" fill="#FFC93C" stroke="#2B2633" stroke-width="3"/></svg>`;
     const sky = `<svg class="pk-sky" viewBox="0 0 400 360" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><g fill="#fff" opacity=".95"><path d="M30 60a18 18 0 0 1 22-24a24 24 0 0 1 44 0a18 18 0 0 1 16 24z"/><path d="M170 40a14 14 0 0 1 18-18a19 19 0 0 1 34 0a14 14 0 0 1 12 18z"/></g><g transform="translate(60 280)"><path d="M-40 64V14h80v50z" fill="#fff" stroke="#2B2633" stroke-width="3"/><path d="M-50 16L0-30 50 16z" fill="#F57E7E" stroke="#2B2633" stroke-width="3" stroke-linejoin="round"/><path d="M-24 16L0-30 24 16" fill="#fff" stroke="#2B2633" stroke-width="2"/><path d="M0-30v-14" stroke="#2B2633" stroke-width="3"/><path d="M0-44l14 5-14 5z" fill="#FFC93C" stroke="#2B2633" stroke-width="2"/><path d="M-12 64V40a12 12 0 0 1 24 0v24z" fill="#7CC4F5" stroke="#2B2633" stroke-width="3"/></g></svg>`;
-    const lock = pkPaid() ? '' : `<div class="pk-lock"><div class="pk-lock-card"><div class="big">🎡</div><h3>星星樂園是付費方案的功能</h3><p>開通任一付費方案，就能用學習拿到的星星換遊戲玩，還有 4 個邊玩邊學的闖關遊戲。</p><div class="pk-row"><button class="pk-btn gray" id="pkLockBack">回首頁</button><button class="pk-btn" id="pkLockPlan">看方案</button></div></div></div>`;
+    const lock = pkPaid() ? '' : `<div class="pk-lock"><div class="pk-lock-card"><div class="big">🎡</div><h3>星星樂園是付費方案的功能</h3><p>開通任一付費方案，每天學習拿到的星星，就能換 30 多個遊戲玩！往上滑看看有哪些遊戲 👆</p><div class="pk-row"><button class="pk-btn gray" id="pkLockBack">回首頁</button><button class="pk-btn" id="pkLockPlan">看方案</button></div></div></div>`;
     return `<div class="pk-hub-in">${sky}<div class="pk-grass"></div>
       <div class="pk-hud"><button class="pk-back" id="pkHome" aria-label="回首頁">${pkBack}</button><div style="display:flex;gap:8px"><span class="pk-pill">🎟️ 今天 ${pkLeft()} 次</span><span class="pk-pill">⭐ <span id="pkBal">${pkBal()}</span></span></div></div>
       ${wheel}<div class="pk-head"><div class="pk-ttl">星星樂園</div><div class="pk-sub">闖關拿星星，星星可以換遊戲玩！</div>
@@ -11978,8 +12000,24 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         <button class="pk-card wide" data-g="alb" style="background:linear-gradient(110deg,#FFF4D6,#E9F1FF)"><div class="pk-art al-hub">${alSVG('h1')}</div><div><b>收集貼紙相簿</b><small>已收集 ${alOwn().length}/${AL.length} 張・點了會動！</small></div></button>
         <button class="pk-card" data-g="stk" style="--a:#B9A2F0;--s:#EFE9FF"><div class="pk-awn"></div><div class="pk-art">🎨</div><b>貼紙樂園</b><div class="pk-price">已收集 ${pkOwned().length} 張</div></button>
         <button class="pk-card wide" data-g="rank" style="background:linear-gradient(110deg,#FFF1C2,#FFE0EE)"><div class="pk-art">🏆</div><div><b>星星排行榜</b><small>${(() => { const c = store.get('rankCache', null); return rkOn() && c && c.week && c.week.me ? `本週第 ${c.week.me} 名・⭐ ${wkNow()}` : '和全台灣的小朋友比星星'; })()}</small></div><div class="pk-price">看排名 →</div></button></div>
+      ${pkxHubHTML()}
       <div class="pk-note">星星樂園是學習的獎勵：每一場用 ⭐${PK_COST}，玩 1 分鐘。<br>🧠 <b>闖關</b>：照圓圓說的玩，過關送 1～3 顆星星。🎮 <b>純玩</b>：盡情玩 1 分鐘。</div>
       ${lock}<div class="pk-ask" id="pkAsk" hidden></div></div>`;
+  }
+  // v127 遊戲大街：一大排小卡片（NEW、今日推薦、獎牌），讓孩子看到好多遊戲想玩
+  function pkxHubHTML() {
+    try {
+      const PL = pkxPlayed(), B = pkxBest(), td = pkxToday(), ready = pkxLearnReady();
+      const ids = Object.keys(PKX).filter(k => !PKX[k].learn || ready), all = ids.length + 12, played = ids.filter(k => PL[k]).length + ['bub', 'fruit', 'mole', 'slice', 'match', 'run', 'sling', 'snake', 'block', 'g2048', 'castle', 'race'].filter(k => PL[k]).length;
+      const card = k => { const G = PKX[k], m = pkxMedal(k, B[k] || 0), sk = pkxSkinOn(k) && PKX_SKIN[k] ? PKX_SKIN[k][1] : G.e;
+        return `<button class="pk-card pkx-card" data-g="${k}" style="--a:${G.a};--s:${G.s}">${!PL[k] ? '<i class="pkx-tag new">NEW</i>' : k === td ? '<i class="pkx-tag td">今日推薦</i>' : ''}<div class="pk-art">${sk}</div><b>${G.n}</b><div class="pk-price">${m ? m + ' ' : ''}${B[k] ? '最高 ' + B[k] : '⭐' + PK_COST}</div></button>`; };
+      const learnIds = ids.filter(k => PKX[k].learn), playIds = ids.filter(k => !PKX[k].learn);
+      const dexCard = (k, e, n, a, b, c1, c2) => `<button class="pk-card pkx-card" data-g="${k}" style="--a:${c1};--s:${c2}"><div class="pk-art">${e}📖</div><b>${n}</b><div class="pk-price">${a}/${b}</div></button>`;
+      return `<div class="pkx-sec"><b>🎮 遊戲大街</b><span>已經玩過 ${played}/${all} 個遊戲</span></div>
+        ${learnIds.length ? `<div class="pkx-sub">🧠 邊玩邊學（闖關可以拿星星）</div><div class="pk-cards pkx-grid">${learnIds.map(card).join('')}</div>` : ''}
+        <div class="pkx-sub">🎉 好玩小遊戲（每場 1 分鐘，拿金牌解鎖新角色）</div><div class="pk-cards pkx-grid">${playIds.map(card).join('')}</div>
+        <div class="pkx-sub">📖 我的圖鑑（收集越多越厲害）</div><div class="pk-cards pkx-grid pkx-dexrow">${dexCard('fdex', '🐟', '魚類圖鑑', store.get('fishDex', []).filter(n => FISH_DEX.some(f => f[0] === n)).length, FISH_DEX.length, '#4DABF7', '#DFF4FF')}${ready ? dexCard('ddex', '🦖', '恐龍圖鑑', store.get('dinoDex', []).filter(n => DINO_DEX.some(d => d[0] === n)).length, DINO_DEX.length, '#82C91E', '#E9FAC8') : ''}</div>`;
+    } catch (e) { return ''; }
   }
   function openPark() {
     if (overLimit()) { showRest(); return; }
@@ -11999,14 +12037,19 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       if (g === 'alb') return pkAlbum();
       if (g === 'rank') return openRank();
       if (g === 'pet') return pkPet();
-      const nm = { bub: '泡泡戳戳', fruit: '接水果', mole: '打地鼠', slice: '算式切切', match: '星星消消樂', run: '校園跑跑', sling: '彈弓打怪', snake: '字母貪食蛇', block: '湊十方塊', g2048: '數字合合樂', castle: '守護城堡', race: '答題賽車' }[g], em = { bub: '🫧', fruit: '🧺', mole: '🐹', slice: '🍉', match: '🍬', run: '🏃', sling: '🎯', snake: '🐍', block: '🧮', g2048: '🔢', castle: '🏰', race: '🏎️' }[g];
+      if (g === 'fdex') return pkxDex('fish');
+      if (g === 'ddex') return pkxDex('dino');
+      const nm = { bub: '泡泡戳戳', fruit: '接水果', mole: '打地鼠', slice: '算式切切', match: '星星消消樂', run: '校園跑跑', sling: '彈弓打怪', snake: '字母貪食蛇', block: '湊十方塊', g2048: '數字合合樂', castle: '守護城堡', race: '答題賽車' }[g] || (PKX[g] && PKX[g].n), em = { bub: '🫧', fruit: '🧺', mole: '🐹', slice: '🍉', match: '🍬', run: '🏃', sling: '🎯', snake: '🐍', block: '🧮', g2048: '🔢', castle: '🏰', race: '🏎️' }[g] || (PKX[g] && PKX[g].e);
       // 樂園是學習之後的獎勵：每一場都要先花星星，最多玩 1 分鐘
       const pay = mode => {
         if (!pkLeft()) return pkAsk('🎟️', '今天的次數用完了', '明天再來玩，先去學習拿星星吧！', [['好', 'gray', () => {}]]);
         if (pkBal() < PK_COST) return pkAsk('⭐', `還差 ${PK_COST - pkBal()} 顆星星`, '先去學習答題，就能拿到星星喔！', [['去學習', '', () => { $('pkHub').hidden = true; show('home'); }], ['好', 'gray', () => {}]]);
         store.set('pkSpent', pkSpent() + PK_COST); const d = pkDay(); d.n++; store.set('pkDay', d); track('park-play-' + g, mode === 'learn' ? '星星樂園闖關' : '星星樂園純玩');
+        const PL = pkxPlayed(); PL[g] = (PL[g] || 0) + 1; store.set('pkxPlayed', PL);
         pkStart(g, mode);
       };
+      // v127 遊戲大街的純遊戲：只能花星星玩，沒有闖關；顯示最高紀錄和獎牌
+      if (PKX[g] && !PKX[g].learn) { const b = pkxBest()[g] || 0, m = pkxMedal(g, b); return pkAsk(em, nm, `每一場用 ⭐${PK_COST}，玩 1 分鐘${b ? `<br>最高紀錄 ${b} 分 ${m}` : ''}`, [['🎮 開始玩', '', () => pay('play')]]); }
       pkAsk(em, nm, `每一場用 ⭐${PK_COST}，玩 1 分鐘`, [['🧠 闖關（過關送星星）', '', () => pay('learn')], ['🎮 純玩', 'gray', () => pay('play')]]);
     });
   }
@@ -12022,16 +12065,16 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     pkStop();
     const P = $('pkPlay'), learn = mode === 'learn';
     const goal = g === 'snake' ? 3 : g === 'run' || g === 'sling' ? 6 : age !== 'small' || pkLvl() === 'e' ? 8 : 6;
-    const task = !learn ? null : g === 'slice' ? pkQ() : g === 'run' ? { cat: 'pkmath', label: '跑進答案對的門', say: [['看題目，跑進答案對的門']] } : g === 'match' ? { cat: 'pkmath', label: '收集水果', say: [['']] } : ['sling', 'snake', 'block', 'g2048', 'castle', 'race'].includes(g) ? { cat: 'pkmath', label: '', say: [['']] } : pkTask(g);
+    const task = !learn ? null : g === 'slice' ? pkQ() : g === 'run' ? { cat: 'pkmath', label: '跑進答案對的門', say: [['看題目，跑進答案對的門']] } : g === 'match' ? { cat: 'pkmath', label: '收集水果', say: [['']] } : ['sling', 'snake', 'block', 'g2048', 'castle', 'race'].includes(g) ? { cat: 'pkmath', label: '', say: [['']] } : PKX[g] ? (PKX[g].task || { cat: 'pkmath', label: PKX[g].n, say: [['']] }) : pkTask(g);
     const R = pkRun = { g, mode, learn, task, goal, got: 0, miss: 0, score: 0, combo: 0, t0: 0, left: PK_PLAY_MS, items: [], last: 0, done: false, start: Date.now() };
     pkWatch(R);
-    const bg = { bub: 'pk-sea', fruit: 'pk-orch', mole: 'pk-mead', slice: 'pk-dojo', match: 'pk-candy', run: 'pk-track', sling: 'pk-sky2', snake: 'pk-garden', block: 'pk-toy', g2048: 'pk-nest', castle: 'pk-castlebg', race: 'pk-racebg' }[g], icon = { bub: '🫧', fruit: '🍓', mole: '🔨', slice: '🍉', match: '🍬', run: '⭐', sling: '👾', snake: '🍎', block: '🧮', g2048: '🔢', castle: '👾', race: '🏁' }[g];
+    const bg = { bub: 'pk-sea', fruit: 'pk-orch', mole: 'pk-mead', slice: 'pk-dojo', match: 'pk-candy', run: 'pk-track', sling: 'pk-sky2', snake: 'pk-garden', block: 'pk-toy', g2048: 'pk-nest', castle: 'pk-castlebg', race: 'pk-racebg' }[g] || 'pk-x', icon = { bub: '🫧', fruit: '🍓', mole: '🔨', slice: '🍉', match: '🍬', run: '⭐', sling: '👾', snake: '🍎', block: '🧮', g2048: '🔢', castle: '👾', race: '🏁' }[g] || (PKX[g] && PKX[g].e) || '⭐';
     P.className = `pk pk-play ${bg}`; P.hidden = false; $('pkHub').hidden = true; $('pkHub').innerHTML = '';
     P.innerHTML = `<div class="pk-field" id="pkField">${['mole', 'sling', 'castle', 'race', 'fruit'].includes(g) ? '<div class="pk-clouds"></div>' : ''}${pkScene(g)}</div>
       <div class="pk-hud"><button class="pk-back" id="pkQuit" aria-label="離開">${pkBack}</button>
       ${learn ? `<button class="pk-pill" id="pkSay" style="max-width:48vw;font-size:1rem">🔊 ${task.label}</button><span class="pk-pill" id="pkClock" style="font-size:.9rem">⏱ 60</span>` : `<div class="pk-timer" id="pkTimer" style="--p:100"><span>1:00</span></div>`}
       ${(learn && ['match', 'race', 'g2048'].includes(g)) || (!learn && g === 'race') ? '<span></span>' : `<span class="pk-pill">${learn ? '🎯' : icon} <span id="pkScore">${learn ? `0/${goal}` : 0}</span></span>`}</div>
-      <div class="pk-tip"><span class="pk-pill" style="font-size:.95rem">${learn ? { bub: '點破對的泡泡！', fruit: '移動籃子，接對的東西！', mole: '打舉著對的牌子的小動物！', slice: '用手指劃過去，切開答案對的水果！', match: '換位置，三個一樣就消掉！', run: '左右滑，跑進答案對的門！', sling: '往後拉彈弓，打中答案對的怪獸！', snake: '滑動或按方向鍵，照順序吃！', block: '點方塊，加起來剛好等於目標！', g2048: '滑動方塊，一樣的數字會合起來！', castle: '答對題目，大砲就會打怪獸！', race: '答對題目，賽車就會加速！' }[g] : { bub: '點破泡泡，救出海底小動物！', fruit: '接水果，小心炸彈！', mole: '看到小動物就打牠！', slice: '用手指劃過去切水果，不要切到炸彈！', match: '換位置，三個一樣就消掉！', run: '左右滑，撿星星、躲障礙物！', sling: '往後拉彈弓，把怪獸都打下來！', snake: '吃水果變長長，不要咬到自己！', block: '點方塊湊出 10！', g2048: '滑動方塊，合成越大越厲害！', castle: '點怪獸，不讓牠們靠近城堡！', race: '一直按加速，衝第一名！' }[g]}</span></div>
+      <div class="pk-tip"><span class="pk-pill" style="font-size:.95rem">${learn ? { bub: '點破對的泡泡！', fruit: '移動籃子，接對的東西！', mole: '打舉著對的牌子的小動物！', slice: '用手指劃過去，切開答案對的水果！', match: '換位置，三個一樣就消掉！', run: '左右滑，跑進答案對的門！', sling: '往後拉彈弓，打中答案對的怪獸！', snake: '滑動或按方向鍵，照順序吃！', block: '點方塊，加起來剛好等於目標！', g2048: '滑動方塊，一樣的數字會合起來！', castle: '答對題目，大砲就會打怪獸！', race: '答對題目，賽車就會加速！' }[g] || (PKX[g] && PKX[g].tip) : { bub: '點破泡泡，救出海底小動物！', fruit: '接水果，小心炸彈！', mole: '看到小動物就打牠！', slice: '用手指劃過去切水果，不要切到炸彈！', match: '換位置，三個一樣就消掉！', run: '左右滑，撿星星、躲障礙物！', sling: '往後拉彈弓，把怪獸都打下來！', snake: '吃水果變長長，不要咬到自己！', block: '點方塊湊出 10！', g2048: '滑動方塊，合成越大越厲害！', castle: '點怪獸，不讓牠們靠近城堡！', race: '一直按加速，衝第一名！' }[g] || (PKX[g] && PKX[g].tip)}</span></div>
       <div class="pk-count" id="pkCount"><b class="pk-ttl">3</b></div>`;
     $('pkQuit').onclick = () => pkEnd(true);
     if (learn) { $('pkSay').onclick = () => say(R.task.say); }
@@ -12090,7 +12133,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       const st3 = late ? (R.got * 2 >= R.goal ? 1 : 0) : fail ? 1 : R.g === 'match' ? (R.moves >= 6 ? 3 : R.moves >= 2 ? 2 : 1) : R.miss <= 1 ? 3 : R.miss <= 4 ? 2 : 1; pkEarn(st3, R.task.cat, R.got, R.got + R.miss);
       big = st3 ? '⭐'.repeat(st3) : '⏰'; msg = late ? (st3 ? '時間到！送你 1 顆星' : '時間到了，下次照圓圓說的玩喔') : fail ? { match: '步數用完了，送你 1 顆星', castle: '城堡被攻破了，送你 1 顆星', g2048: '沒有空格了，送你 1 顆星' }[R.g] || '送你 1 顆星，再試一次！' : R.g === 'race' ? `第 ${R.place} 名！拿到 ${st3} 顆星星` : `過關了！拿到 ${st3} 顆星星`; extra = `現在有 ⭐ ${pkBal()} 顆`;
       say([[late ? '時間到了！' : fail ? '差一點點，再試一次吧！' : R.g === 'race' ? `你是第${R.place}名！拿到${st3}顆星星`  : `過關了！拿到${st3}顆星星，你好棒！`]]); track('park-learn-' + R.g, '星星樂園闖關過關');
-    } else { big = '🏆'; msg = R.g === 'race' ? `第 ${R.place || '-'} 名！` : `你得到 ${R.score} 分！`; extra = '時間到囉，休息一下再玩吧'; say([[`時間到！你得到${R.score}分，好厲害！`]]); }
+    } else { big = '🏆'; msg = R.g === 'race' ? `第 ${R.place || '-'} 名！` : `你得到 ${R.score} 分！`; extra = '時間到囉，休息一下再玩吧'; say([[`時間到！你得到${R.score}分，好厲害！`]]); try { const x = pkxEndExtra(R); if (x) { extra = x; big = pkxMedal(R.g, R.score) || '🏆'; } } catch (e) {} }
     const e = document.createElement('div'); e.className = 'pk-end';
     e.innerHTML = `<div class="pk-end-card"><div class="big">${big}</div><div class="score">${msg}</div><p>${extra}</p><div class="pk-row"><button class="pk-btn gray" id="pkOut">回樂園</button></div></div>`;
     P.appendChild(e);
@@ -12107,7 +12150,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       if (left <= 0) { clearInterval(pkDog); R.timeUp = true; pkEnd(); }
     }, 250);
   }
-  function pkStop() { clearInterval(pkDog); if (pkRun) pkRun.done = true; pkRun = null; clearInterval(pkTick); const P = $('pkPlay'); if (P) { P.hidden = true; P.innerHTML = ''; } }
+  function pkStop() { clearInterval(pkDog); if (pkRun) { pkRun.done = true; try { pkRun.cleanup && pkRun.cleanup(); } catch (e) {} } pkRun = null; clearInterval(pkTick); const P = $('pkPlay'); if (P) { P.hidden = true; P.innerHTML = ''; } }
   // ---------- 🫧 泡泡戳戳 ----------
   const PK_SEA = ['🐠', '🐙', '🐢', '🐡', '🐬', '🦐', '🐳', '🦀', '🐟', '🦑'];
   function pkBubInit(R) {
@@ -13090,6 +13133,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     CHEER_0.forEach(t => out.push([t, 'zh-TW', 'tch']));
     out.push('好棒！生活挑戰完成，送你兩顆星星！', '先完成今天的學習任務，再來星星樂園玩喔！'); CERTS.forEach(c => out.push([`恭喜你得到「${c.n}」獎狀！你好棒！`, 'zh-TW', 'tch']));
     try { out.push(...atLines()); } catch (e) {}
+    try { out.push(...Object.values(PKX_SAY)); } catch (e) {}
     out.push(...Object.values(MB_SAY).flatMap(t => t.split('｜'))); ['媽媽，我不生氣了！', '媽媽，我好多了！', '媽媽，我冷靜下來了！'].forEach(t => out.push([t, 'zh-TW', 'b1'], [t, 'zh-TW', 'g1'])); MB_LETTERS.forEach(t => { out.push([t, 'zh-TW', 'mom'], [t, 'zh-TW', 'dad']); });
     try { Object.entries(TONE_EX).forEach(([t, A]) => A.forEach(e => out.push(toneExSay(t, e)))); } catch (e) {}
     try { Object.values(NEWSUB_SAMPLE).forEach(f => f().forEach(x => out.push(x))); READ_T.forEach(T => out.push(T.hint)); } catch (e) {}
@@ -15390,6 +15434,787 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
     track('park-pet', '我的小寵物');
   }
   Object.assign(PK_EXTRA, { sling: pkSlingInit, snake: pkSnakeInit, block: pkBlockInit, g2048: pk2048Init, castle: pkCastleInit, race: pkRaceInit });
+  /* ---------- v127 🎮 星星樂園遊戲大街：20 個純遊戲＋3 個邊玩邊學（每場最多 1 分鐘，只能用星星換，沒有試玩） ----------
+     共用畫布引擎：每個遊戲 mk(S) 回傳 { step(dt,t), down(x,y), move(x,y,held), up(x,y) }；S.hit / S.miss 記分 */
+  const PKX = {};
+  const PKX_EMO = '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+  let PKX_SKINNOW = null;
+  function pkxE(c, ch, x, y, s, rot, flip, alpha) { if (PKX_SKINNOW && PKX_SKINNOW[ch]) ch = PKX_SKINNOW[ch]; c.save(); c.translate(x, y); if (rot) c.rotate(rot); if (flip) c.scale(-1, 1); if (alpha != null) c.globalAlpha = alpha; c.font = `${s}px ${PKX_EMO}`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(ch, 0, 0); c.restore(); }
+  function pkxSky(c, W, H, a, b) { const g = c.createLinearGradient(0, 0, 0, H); g.addColorStop(0, a); g.addColorStop(1, b); c.fillStyle = g; c.fillRect(0, 0, W, H); }
+  function pkxRR(c, x, y, w, h, r, fill, stroke) { c.beginPath(); c.roundRect ? c.roundRect(x, y, w, h, r) : c.rect(x, y, w, h); if (fill) { c.fillStyle = fill; c.fill(); } if (stroke) { c.strokeStyle = stroke; c.lineWidth = 3; c.stroke(); } }
+  const pkxTop = 96; // 上方留給計時和分數
+  function pkxInit(R) {
+    const G = PKX[R.g], F = $('pkField'), cv = document.createElement('canvas'); cv.className = 'pkx-cv'; F.appendChild(cv);
+    const dpr = Math.min(2, window.devicePixelRatio || 1), c = cv.getContext('2d');
+    const S = { c, R, W: 0, H: 0, hit: (x, y) => pkHit(R, true, x, y), miss: () => pkHit(R, false), parts: [] };
+    const fit = () => { S.W = F.clientWidth; S.H = F.clientHeight; cv.width = S.W * dpr; cv.height = S.H * dpr; cv.style.width = S.W + 'px'; cv.style.height = S.H + 'px'; };
+    fit(); window.addEventListener('resize', fit);
+    // 小粒子（答對的閃光）
+    // v128 一次加好幾分（稀有的東西 3 分、5 分）
+    S.add = (n, x, y) => { pkHit(R, true, x, y); if (n > 1 && !R.learn) { R.score += n - 1; const sc = $('pkScore'); if (sc) sc.textContent = R.score; const fl = [...$('pkField').querySelectorAll('.pk-float')].pop(); if (fl) { fl.textContent = '+' + n; fl.classList.add('pkx-big'); } } };
+    S.pop = (x, y, col, n) => { for (let i = 0; i < (n || 10); i++) { const a = Math.random() * 6.28, v = .08 + Math.random() * .18; S.parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 600, col: col || pick(['#FFD43B', '#FF6B6B', '#4DABF7', '#69DB7C', '#B197FC']) }); } };
+    PKX_SKINNOW = pkxSkinMap(R.g); const g = G.mk(S);
+    const xy = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+    let held = false;
+    cv.addEventListener('pointerdown', e => { e.preventDefault(); held = true; try { cv.setPointerCapture(e.pointerId); } catch (er) {} if (R.t0 && !R.done && g.down) g.down(...xy(e)); });
+    cv.addEventListener('pointermove', e => { if (R.t0 && !R.done && g.move) g.move(...xy(e), held); });
+    const up = e => { held = false; if (R.t0 && !R.done && g.up) g.up(...xy(e)); };
+    cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', () => { held = false; });
+    const draw = (dt, t) => { c.setTransform(dpr, 0, 0, dpr, 0, 0); g.step(dt, t);
+      S.parts = S.parts.filter(p => { p.life -= dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vy += .0004 * dt; c.globalAlpha = Math.max(0, p.life / 600); c.fillStyle = p.col; c.beginPath(); c.arc(p.x, p.y, 4, 0, 6.3); c.fill(); c.globalAlpha = 1; return p.life > 0; }); };
+    R.step = draw; draw(0, 0);
+    if (G.goal && R.learn) { R.goal = G.goal(); const sc = $('pkScore'); if (sc) sc.textContent = `0/${R.goal}`; }
+    R.cleanup = () => window.removeEventListener('resize', fit);
+  }
+  const pkxReg = (id, e, n, a, s, tip, mk, extra) => { PKX[id] = Object.assign({ e, n, a, s, tip, mk }, extra || {}); };
+  /* ---------- v128 釣魚樂：25 種魚（用程式畫，不用圖片），有大有小 ---------- */
+  // [名字, 等級 0小 1中 2大 3巨大 4傳說, 分數, 長度(px), 畫法]
+  const FISH_DEX = [
+    ['小丑魚', 0, 1, 46, { k: 'fish', hr: .3, b: '#FF8C1A', bl: '#FFB347', pat: 'clown', tail: 'round', fin: '#FF8C1A' }],
+    ['秋刀魚', 0, 1, 64, { k: 'fish', hr: .09, b: '#3D5A80', bl: '#E8EEF5', pat: 'line', tail: 'fork', beak: '#FFC83D' }],
+    ['沙丁魚', 0, 1, 44, { k: 'fish', hr: .15, b: '#4A7FB0', bl: '#EEF3F8', pat: 'dots', tail: 'fork' }],
+    ['金魚', 0, 1, 42, { k: 'fish', hr: .34, b: '#FF6A1A', bl: '#FFB067', tail: 'fan', fin: '#FF8A3D' }],
+    ['孔雀魚', 0, 1, 40, { k: 'fish', hr: .16, b: '#9AA5B1', bl: '#DDE3EA', tail: 'guppy', fin: '#2EC4FF' }],
+    ['熱帶魚', 0, 1, 46, { k: 'fish', hr: .36, b: '#FFD43B', bl: '#FFE680', pat: 'bands', bandC: '#1C3D8C', tail: 'round', fin: '#1C3D8C' }],
+    ['鬥魚', 0, 1, 46, { k: 'fish', hr: .2, b: '#7B2FBE', bl: '#B565E8', tail: 'veil', fin: '#C2255C' }],
+    ['河豚', 0, 1, 44, { k: 'puffer' }],
+    ['鯛魚', 1, 2, 70, { k: 'fish', hr: .36, b: '#F0506E', bl: '#FFC2CF', tail: 'fork', fin: '#F0506E', dors: 'spiky' }],
+    ['鮭魚', 1, 2, 84, { k: 'fish', hr: .2, b: '#6B8FA8', bl: '#F4F7FA', pat: 'salmon', tail: 'fork', dots: 1 }],
+    ['比目魚', 1, 2, 72, { k: 'flat' }],
+    ['鯖魚', 1, 2, 78, { k: 'fish', hr: .16, b: '#2F8F83', bl: '#EAF4F2', pat: 'tiger', tail: 'fork', finlets: '#F5C74D' }],
+    ['石斑', 1, 2, 86, { k: 'fish', hr: .28, b: '#8A6A44', bl: '#D9C49F', pat: 'spots', tail: 'round', mouth: 'big', dors: 'spiky' }],
+    ['神仙魚', 1, 2, 60, { k: 'angel' }],
+    ['海馬', 1, 2, 56, { k: 'horse' }],
+    ['魷魚', 1, 2, 72, { k: 'squid' }],
+    ['章魚', 1, 2, 70, { k: 'octo' }],
+    ['鮪魚', 2, 3, 130, { k: 'fish', hr: .21, b: '#1D3557', bl: '#E3E8EE', tail: 'moon', finlets: '#FFD23F', fin: '#FFD23F', sharp: 1 }],
+    ['旗魚', 2, 3, 150, { k: 'fish', hr: .13, b: '#1F4E9A', bl: '#E2ECF7', tail: 'moon', bill: 1, dors: 'sail', pat: 'bars', sharp: 1 }],
+    ['鰻魚', 2, 3, 130, { k: 'eel' }],
+    ['魟魚', 2, 3, 120, { k: 'ray' }],
+    ['海龜', 2, 3, 110, { k: 'turtle' }],
+    ['鯊魚', 3, 5, 180, { k: 'shark', b: '#7D8FA3' }],
+    ['鎚頭鯊', 3, 5, 180, { k: 'shark', b: '#8C8A7E', hammer: 1 }],
+    ['藍鯨', 4, 10, 300, { k: 'whale' }]
+  ];
+  const FISH_TIER = ['小魚', '中魚', '大魚', '超大魚', '傳說'];
+  // 共用：一條沿著二次曲線、粗細漸變的管子
+  function dxTube(p0, pc, p1, w0, w1, n) {
+    n = n || 14; const L = [], R = [];
+    for (let i = 0; i <= n; i++) { const t = i / n, a = 1 - t, x = a * a * p0[0] + 2 * a * t * pc[0] + t * t * p1[0], y = a * a * p0[1] + 2 * a * t * pc[1] + t * t * p1[1];
+      const dx = 2 * a * (pc[0] - p0[0]) + 2 * t * (p1[0] - pc[0]), dy = 2 * a * (pc[1] - p0[1]) + 2 * t * (p1[1] - pc[1]), d = Math.hypot(dx, dy) || 1, w = (w0 + (w1 - w0) * t) / 2;
+      L.push([x - dy / d * w, y + dx / d * w]); R.push([x + dy / d * w, y - dx / d * w]); }
+    const p = new Path2D(); p.moveTo(...L[0]); L.forEach(q => p.lineTo(...q)); R.reverse().forEach(q => p.lineTo(...q)); p.closePath(); return p;
+  }
+  const dxEl = (x, y, rx, ry, r) => { const p = new Path2D(); p.ellipse(x, y, Math.max(.1, rx), Math.max(.1, ry), r || 0, 0, 6.2832); return p; };
+  const dxPoly = pts => { const p = new Path2D(); p.moveTo(...pts[0]); pts.slice(1).forEach(q => p.lineTo(...q)); p.closePath(); return p; };
+  function dxEye(c, x, y, r, look) { c.fillStyle = '#fff'; c.beginPath(); c.arc(x, y, r, 0, 6.3); c.fill(); c.fillStyle = '#1B1B24'; c.beginPath(); c.arc(x + (look || 0) * r * .25, y, r * .62, 0, 6.3); c.fill(); c.fillStyle = '#fff'; c.beginPath(); c.arc(x + r * .1, y - r * .28, r * .24, 0, 6.3); c.fill(); }
+  // 畫一條魚：(x,y) 是中心，len 是長度，dir 1 往右 -1 往左，t 是時間（尾巴擺動）
+  function fishDraw(c, f, x, y, len, dir, t) {
+    const S = f[4], L = len || f[3], tw = Math.sin((t || 0) / 140 + x * .01);
+    c.save(); c.translate(x, y); if (dir < 0) c.scale(-1, 1); c.lineJoin = 'round'; c.lineCap = 'round';
+    const ol = Math.max(1.5, L * .025), OUT = 'rgba(20,30,50,.55)';
+    const sk = (p, fill) => { c.fillStyle = fill; c.fill(p); c.strokeStyle = OUT; c.lineWidth = ol; c.stroke(p); };
+    if (S.k === 'fish') {
+      const h = L * S.hr, tb = -L * .3;
+      const body = new Path2D(); const nose = S.sharp ? L * .5 : L * .47;
+      body.moveTo(nose, 0); body.bezierCurveTo(L * .32, -h * 1.15, -L * .1, -h * 1.05, tb, -h * .22); body.lineTo(tb, h * .22); body.bezierCurveTo(-L * .1, h * 1.05, L * .32, h * 1.15, nose, 0); body.closePath();
+      const fc = S.fin || S.b;
+      // 尾巴
+      const tl = tb + 2, sw = tw * L * .03;
+      let tail;
+      if (S.tail === 'fork') tail = dxPoly([[tl, 0], [tb - L * .2, -h * 1.05 + sw], [tb - L * .12, sw], [tb - L * .2, h * 1.05 + sw]]);
+      else if (S.tail === 'moon') { tail = new Path2D(); tail.moveTo(tl, 0); tail.quadraticCurveTo(tb - L * .1, -h * .5, tb - L * .2, -h * 1.5 + sw); tail.quadraticCurveTo(tb - L * .12, sw, tb - L * .2, h * 1.5 + sw); tail.quadraticCurveTo(tb - L * .1, h * .5, tl, 0); }
+      else if (S.tail === 'round') tail = dxEl(tb - L * .1, sw * .5, L * .13, h * .75, 0);
+      else if (S.tail === 'fan') { tail = new Path2D(); tail.moveTo(tl, 0); tail.bezierCurveTo(tb - L * .3, -h * 2.2 + sw, tb - L * .55, -h * .4 + sw, tb - L * .3, sw); tail.bezierCurveTo(tb - L * .55, h * .4 + sw, tb - L * .3, h * 2.2 + sw, tl, 0); }
+      else if (S.tail === 'guppy') { tail = new Path2D(); tail.moveTo(tl, 0); tail.quadraticCurveTo(tb - L * .3, -h * 3 + sw, tb - L * .55, -h * 1.2 + sw); tail.quadraticCurveTo(tb - L * .6, sw, tb - L * .55, h * 1.2 + sw); tail.quadraticCurveTo(tb - L * .3, h * 3 + sw, tl, 0); }
+      else { tail = new Path2D(); tail.moveTo(tl, 0); tail.bezierCurveTo(tb - L * .2, -h * 3 + sw, tb - L * .7, -h * 1 + sw, tb - L * .5, sw * 2); tail.bezierCurveTo(tb - L * .7, h * 1 + sw, tb - L * .2, h * 3 + sw, tl, 0); }
+      if (S.tail === 'guppy') { const g = c.createLinearGradient(tb, 0, tb - L * .55, 0); g.addColorStop(0, '#2EC4FF'); g.addColorStop(.5, '#FF5DA2'); g.addColorStop(1, '#FFD43B'); sk(tail, g); }
+      else if (S.tail === 'veil' || S.tail === 'fan') { c.globalAlpha = .9; sk(tail, fc); c.globalAlpha = 1; }
+      else sk(tail, fc);
+      // 背鰭、腹鰭
+      if (S.dors === 'sail') { const p = new Path2D(); p.moveTo(L * .28, -h * .8); p.bezierCurveTo(L * .2, -h * 4.2, -L * .1, -h * 3.6, -L * .2, -h * .5); p.closePath(); sk(p, '#2D6FD1'); c.strokeStyle = 'rgba(10,30,80,.4)'; c.lineWidth = ol * .6; for (let i = 1; i < 6; i++) { c.beginPath(); c.moveTo(L * .28 - i * L * .08, -h * .8); c.lineTo(L * .24 - i * L * .07, -h * (3.6 - i * .45)); c.stroke(); } }
+      else if (S.dors === 'spiky') { const p = new Path2D(); p.moveTo(L * .22, -h * .9); for (let i = 0; i <= 6; i++) p.lineTo(L * (.18 - i * .06), -h * (i % 2 ? 1.25 : 1.55)); p.lineTo(-L * .2, -h * .6); p.closePath(); sk(p, fc); }
+      else if (S.tail === 'veil') { const p = new Path2D(); p.moveTo(L * .15, -h * .9); p.bezierCurveTo(-L * .05, -h * 3 + tw * 3, -L * .45, -h * 2.6, -L * .28, -h * .3); p.closePath(); sk(p, fc); const q = new Path2D(); q.moveTo(L * .15, h * .9); q.bezierCurveTo(-L * .05, h * 3.2 - tw * 3, -L * .45, h * 2.6, -L * .28, h * .3); q.closePath(); sk(q, fc); }
+      else { const p = dxPoly([[L * .14, -h * .95], [-L * .02, -h * 1.55], [-L * .16, -h * .8]]); sk(p, fc); }
+      if (S.tail !== 'veil') sk(dxPoly([[L * .02, h * .9], [-L * .1, h * 1.3], [-L * .14, h * .75]]), fc);
+      // 身體（背深、肚子淺）
+      const g = c.createLinearGradient(0, -h, 0, h); g.addColorStop(0, S.b); g.addColorStop(.55, S.b); g.addColorStop(.75, S.bl); g.addColorStop(1, S.bl); sk(body, g);
+      c.save(); c.clip(body);
+      if (S.pat === 'clown') { [L * .25, -L * .02, -L * .26].forEach((bx, i) => { c.fillStyle = '#1B1B24'; c.fillRect(bx - L * .065, -h * 1.2, L * .13, h * 2.4); c.fillStyle = '#fff'; c.fillRect(bx - L * .045, -h * 1.2, L * .09, h * 2.4); }); }
+      if (S.pat === 'bands') { c.fillStyle = S.bandC; [L * .08, -L * .16].forEach(bx => c.fillRect(bx - L * .05, -h * 1.2, L * .1, h * 2.4)); }
+      if (S.pat === 'line') { c.fillStyle = 'rgba(255,255,255,.75)'; c.fillRect(-L * .3, -h * .05, L * .75, h * .22); }
+      if (S.pat === 'dots') { c.fillStyle = 'rgba(30,50,90,.75)'; for (let i = 0; i < 5; i++) { c.beginPath(); c.arc(L * (.22 - i * .1), h * .05, L * .022, 0, 6.3); c.fill(); } }
+      if (S.pat === 'salmon') { c.fillStyle = 'rgba(255,120,140,.6)'; c.fillRect(-L * .3, -h * .05, L * .7, h * .5); }
+      if (S.dots) { c.fillStyle = 'rgba(25,40,60,.55)'; for (let i = 0; i < 10; i++) { c.beginPath(); c.arc(L * (.2 - (i % 5) * .11), -h * (.55 - Math.floor(i / 5) * .3), L * .012, 0, 6.3); c.fill(); } }
+      if (S.pat === 'tiger') { c.strokeStyle = 'rgba(10,40,40,.7)'; c.lineWidth = L * .025; for (let i = 0; i < 7; i++) { const bx = L * (.22 - i * .075); c.beginPath(); c.moveTo(bx, -h * 1.1); c.quadraticCurveTo(bx + L * .04, -h * .6, bx - L * .02, -h * .15); c.stroke(); } }
+      if (S.pat === 'spots') { c.fillStyle = 'rgba(60,40,20,.55)'; for (let i = 0; i < 16; i++) { c.beginPath(); c.arc(L * (.28 - (i * .37 % 1) * .58), h * (((i * .61) % 1) * 1.6 - .8), L * .028, 0, 6.3); c.fill(); } }
+      if (S.pat === 'bars') { c.fillStyle = 'rgba(120,170,255,.45)'; for (let i = 0; i < 8; i++) c.fillRect(L * (.25 - i * .07), -h, L * .025, h * 1.2); }
+      c.restore();
+      if (S.finlets) { c.fillStyle = S.finlets; for (let i = 0; i < 5; i++) { const fx = -L * (.08 + i * .045); c.beginPath(); c.moveTo(fx, -h * .62 + i * h * .08); c.lineTo(fx - L * .03, -h * .9 + i * h * .1); c.lineTo(fx - L * .03, -h * .55 + i * h * .08); c.fill(); c.beginPath(); c.moveTo(fx, h * .62 - i * h * .08); c.lineTo(fx - L * .03, h * .9 - i * h * .1); c.lineTo(fx - L * .03, h * .55 - i * h * .08); c.fill(); } }
+      // 胸鰭、鰓、眼睛、嘴巴
+      c.globalAlpha = .85; sk(dxPoly([[L * .2, h * .12], [L * .04, h * .55 + tw * h * .15], [L * .1, h * .1]]), S.fin || S.b); c.globalAlpha = 1;
+      c.strokeStyle = 'rgba(20,30,50,.35)'; c.lineWidth = ol; c.beginPath(); c.arc(L * .22, 0, h * .7, -1, 1); c.stroke();
+      if (S.bill) { sk(dxPoly([[L * .46, -h * .2], [L * .95, -h * .02], [L * .46, h * .12]]), '#24365C'); }
+      if (S.beak) { sk(dxPoly([[L * .44, -h * .1], [L * .56, 0], [L * .44, h * .15]]), S.beak); }
+      if (S.mouth === 'big') { c.fillStyle = '#5A3A22'; c.beginPath(); c.moveTo(L * .47, 0); c.lineTo(L * .36, h * .22); c.lineTo(L * .4, -h * .05); c.fill(); }
+      else { c.strokeStyle = 'rgba(20,30,50,.6)'; c.lineWidth = ol; c.beginPath(); c.moveTo(L * .45, h * .05); c.lineTo(L * .4, h * .12); c.stroke(); }
+      dxEye(c, L * .34, -h * .22, Math.max(2.5, Math.min(h * .32, L * .07)), 1);
+    } else if (S.k === 'shark') {
+      const h = L * .16, B = S.b;
+      const body = new Path2D(); body.moveTo(L * .5, h * .1); body.bezierCurveTo(L * .4, -h * 1.1, -L * .1, -h * 1.1, -L * .34, -h * .15); body.lineTo(-L * .34, h * .15); body.bezierCurveTo(-L * .1, h * 1.05, L * .35, h * 1.0, L * .5, h * .1); body.closePath();
+      const sw = tw * L * .025, tail = new Path2D(); tail.moveTo(-L * .32, 0); tail.quadraticCurveTo(-L * .42, -h * .6, -L * .52, -h * 1.9 + sw); tail.quadraticCurveTo(-L * .44, -h * .2, -L * .46, h * .9 + sw); tail.closePath(); sk(tail, B);
+      sk(dxPoly([[L * .1, -h * .85], [-L * .04, -h * 2.1], [-L * .12, -h * .8]]), B); sk(dxPoly([[L * .12, h * .6], [L * .0, h * 1.5], [-L * .04, h * .7]]), B); sk(dxPoly([[-L * .22, -h * .45], [-L * .27, -h * .95], [-L * .29, -h * .35]]), B);
+      const g = c.createLinearGradient(0, -h, 0, h); g.addColorStop(0, B); g.addColorStop(.5, B); g.addColorStop(.62, '#F2F4F7'); g.addColorStop(1, '#F2F4F7'); sk(body, g);
+      c.strokeStyle = 'rgba(30,40,50,.45)'; c.lineWidth = ol; for (let i = 0; i < 4; i++) { c.beginPath(); c.moveTo(L * (.25 - i * .03), -h * .3); c.quadraticCurveTo(L * (.23 - i * .03), 0, L * (.25 - i * .03), h * .3); c.stroke(); }
+      if (S.hammer) { sk(dxPoly([[L * .38, -h * .3], [L * .43, -h * 1.25], [L * .51, -h * 1.3], [L * .53, h * .9], [L * .45, h * .95], [L * .4, h * .35]]), B); dxEye(c, L * .48, -h * 1.05, h * .2, 1); }
+      else dxEye(c, L * .37, -h * .25, h * .2, 1);
+      c.strokeStyle = 'rgba(30,40,50,.6)'; c.lineWidth = ol; c.beginPath(); c.moveTo(L * .44, h * .4); c.quadraticCurveTo(L * .36, h * .55, L * .3, h * .45); c.stroke();
+      c.fillStyle = '#fff'; for (let i = 0; i < 4; i++) { c.beginPath(); c.moveTo(L * (.43 - i * .033), h * .42); c.lineTo(L * (.415 - i * .033), h * .58); c.lineTo(L * (.4 - i * .033), h * .46); c.fill(); }
+    } else if (S.k === 'whale') {
+      const h = L * .11;
+      const body = new Path2D(); body.moveTo(L * .5, -h * .1); body.bezierCurveTo(L * .45, -h * 1.15, L * .05, -h * 1.1, -L * .38, -h * .12); body.lineTo(-L * .38, h * .12); body.bezierCurveTo(-L * .05, h * 1.0, L * .45, h * 1.2, L * .5, -h * .1); body.closePath();
+      const sw = tw * L * .02, fl = new Path2D(); fl.moveTo(-L * .36, 0); fl.quadraticCurveTo(-L * .45, -h * .1 + sw, -L * .5, -h * .9 + sw); fl.quadraticCurveTo(-L * .46, sw, -L * .5, h * .9 + sw); fl.quadraticCurveTo(-L * .45, h * .1 + sw, -L * .36, 0); sk(fl, '#4F6E96');
+      sk(dxPoly([[-L * .2, -h * .62], [-L * .25, -h * 1.0], [-L * .27, -h * .5]]), '#4F6E96');
+      const g = c.createLinearGradient(0, -h, 0, h); g.addColorStop(0, '#5B7FB0'); g.addColorStop(.6, '#7E9CC6'); g.addColorStop(1, '#C9D6EA'); sk(body, g);
+      c.save(); c.clip(body); c.strokeStyle = 'rgba(40,60,100,.35)'; c.lineWidth = ol * .8; for (let i = 0; i < 7; i++) { c.beginPath(); c.moveTo(L * .45, h * (.2 + i * .1)); c.lineTo(L * .05, h * (.35 + i * .1)); c.stroke(); }
+      c.fillStyle = 'rgba(255,255,255,.35)'; for (let i = 0; i < 14; i++) { c.beginPath(); c.arc(L * (.3 - (i * .53 % 1) * .6), -h * (((i * .37) % 1) * .8), L * .008, 0, 6.3); c.fill(); } c.restore();
+      sk(dxEl(L * .2, h * .55, L * .09, h * .18, .4 + tw * .1), '#5B7FB0');
+      dxEye(c, L * .36, h * .02, h * .14, 1); c.strokeStyle = 'rgba(30,40,70,.55)'; c.lineWidth = ol; c.beginPath(); c.moveTo(L * .5, -h * .05); c.quadraticCurveTo(L * .42, h * .25, L * .3, h * .18); c.stroke();
+      c.fillStyle = 'rgba(255,255,255,.8)'; [[0, 0], [-.03, -1], [.03, -1]].forEach(([dx, k]) => { c.beginPath(); c.arc(L * (.25 + dx), -h * 1.25 + k * h * .3 - Math.abs(tw) * h * .2, h * .1, 0, 6.3); c.fill(); });
+    } else if (S.k === 'puffer') {
+      const r = L * .38; for (let i = 0; i < 14; i++) { const a = i / 14 * 6.28; c.strokeStyle = '#B08A2E'; c.lineWidth = ol; c.beginPath(); c.moveTo(Math.cos(a) * r * .9, Math.sin(a) * r * .9); c.lineTo(Math.cos(a) * r * 1.22, Math.sin(a) * r * 1.22); c.stroke(); }
+      sk(dxPoly([[-r * .85, 0], [-r * 1.45, -r * .5 + tw * 2], [-r * 1.45, r * .5 + tw * 2]]), '#E8B93A');
+      const g = c.createLinearGradient(0, -r, 0, r); g.addColorStop(0, '#E8B93A'); g.addColorStop(.6, '#F6DA7A'); g.addColorStop(1, '#FFF4CF'); sk(dxEl(0, 0, r, r * .92), g);
+      c.fillStyle = 'rgba(120,80,20,.4)'; for (let i = 0; i < 6; i++) { c.beginPath(); c.arc(-r * .4 + i % 3 * r * .3, -r * .5 + Math.floor(i / 3) * r * .3, r * .08, 0, 6.3); c.fill(); }
+      dxEye(c, r * .4, -r * .25, r * .26, 1); c.fillStyle = '#C2410C'; c.beginPath(); c.arc(r * .95, r * .1, r * .12, 0, 6.3); c.fill();
+    } else if (S.k === 'flat') {
+      const h = L * .34, p = dxEl(0, 0, L * .42, h, 0);
+      const fr = dxEl(-L * .02, 0, L * .5, h * 1.25, 0); sk(fr, '#B78E5C');
+      sk(dxPoly([[-L * .4, 0], [-L * .52, -h * .55 + tw * 2], [-L * .52, h * .55 + tw * 2]]), '#B78E5C');
+      const g = c.createLinearGradient(0, -h, 0, h); g.addColorStop(0, '#9C7A4E'); g.addColorStop(1, '#C9A777'); sk(p, g);
+      c.fillStyle = 'rgba(80,55,25,.45)'; for (let i = 0; i < 12; i++) { c.beginPath(); c.arc(L * (.22 - (i * .41 % 1) * .5), h * ((i * .67 % 1) * 1.3 - .65), L * .03, 0, 6.3); c.fill(); }
+      c.fillStyle = 'rgba(255,255,255,.7)'; for (let i = 0; i < 8; i++) { c.beginPath(); c.arc(L * (.2 - (i * .29 % 1) * .45), h * ((i * .83 % 1) * 1.1 - .55), L * .012, 0, 6.3); c.fill(); }
+      dxEye(c, L * .26, -h * .62, L * .05, 1); dxEye(c, L * .34, -h * .38, L * .05, 1);
+      c.strokeStyle = 'rgba(40,30,20,.6)'; c.lineWidth = ol; c.beginPath(); c.moveTo(L * .41, -h * .05); c.lineTo(L * .36, h * .08); c.stroke();
+    } else if (S.k === 'angel') {
+      const h = L * .3;
+      sk(dxPoly([[L * .1, -h * .8], [-L * .3, -h * 3.2 + tw * 2], [-L * .22, -h * .3]]), '#E9ECEF'); sk(dxPoly([[L * .1, h * .8], [-L * .3, h * 3.2 - tw * 2], [-L * .22, h * .3]]), '#E9ECEF');
+      sk(dxPoly([[-L * .22, 0], [-L * .5, -h * .9 + tw * 2], [-L * .45, 0], [-L * .5, h * .9 + tw * 2]]), '#E9ECEF');
+      const body = dxPoly([[L * .45, 0], [L * .05, -h * 1.15], [-L * .28, -h * .2], [-L * .28, h * .2], [L * .05, h * 1.15]]); sk(body, '#F4F1E4');
+      c.save(); c.clip(body); c.fillStyle = '#2B2633'; [L * .26, L * .02, -L * .2].forEach(bx => c.fillRect(bx - L * .035, -h * 1.4, L * .07, h * 2.8)); c.fillStyle = 'rgba(255,212,59,.5)'; c.fillRect(L * .3, -h * 1.4, L * .2, h * 1.1); c.restore();
+      c.strokeStyle = '#E9ECEF'; c.lineWidth = ol * 1.2; c.beginPath(); c.moveTo(L * .1, h * .4); c.quadraticCurveTo(L * .0, h * 1.8, -L * .05, h * 2.6); c.stroke();
+      dxEye(c, L * .32, -h * .18, L * .06, 1);
+    } else if (S.k === 'horse') {
+      const s = L / 100; c.scale(s, s);
+      const body = new Path2D(); body.moveTo(8, -30); body.bezierCurveTo(30, -20, 28, 10, 10, 18); body.bezierCurveTo(-2, 24, 4, 36, 14, 38); body.bezierCurveTo(22, 40, 22, 30, 15, 30); body.bezierCurveTo(12, 30, 10, 32, 12, 34); body.lineTo(9, 36); body.bezierCurveTo(-4, 32, -6, 18, 0, 10); body.bezierCurveTo(10, -2, 4, -16, -4, -22); body.closePath();
+      sk(dxEl(-2, -10, 9, 14, -.5 + tw * .2), 'rgba(255,220,140,.8)');
+      c.lineWidth = 4; sk(body, '#FFB020');
+      const hd = new Path2D(); hd.ellipse(2, -36, 12, 10, .3, 0, 6.3); sk(hd, '#FFB020'); sk(dxTube([10, -38], [22, -36], [32, -30], 9, 7), '#FFB020');
+      sk(dxPoly([[-6, -44], [-10, -54], [-2, -48], [0, -56], [4, -46]]), '#FF8A00');
+      c.strokeStyle = 'rgba(120,60,0,.45)'; c.lineWidth = 2; for (let i = 0; i < 6; i++) { c.beginPath(); c.moveTo(6 + i * 2, -24 + i * 7); c.lineTo(20 - i * 1, -22 + i * 7); c.stroke(); }
+      dxEye(c, 6, -38, 4.5, 1);
+    } else if (S.k === 'squid') {
+      const s = L / 100; c.scale(s, s);
+      for (let i = 0; i < 8; i++) { const yy = -12 + i * 3.4; sk(dxTube([-18, yy * .6], [-36, yy + Math.sin(t / 150 + i) * 4], [-52 - (i % 3) * 4, yy * 1.3 + Math.sin(t / 120 + i) * 6], 5, 1.5), '#F5A3B5'); }
+      sk(dxTube([-18, -4], [-50, -18 + tw * 4], [-66, -8], 3, 5), '#F5A3B5'); sk(dxTube([-18, 4], [-50, 18 - tw * 4], [-66, 10], 3, 5), '#F5A3B5');
+      const m = dxPoly([[44, 0], [30, -16], [-16, -15], [-20, 0], [-16, 15], [30, 16]]); sk(dxPoly([[52, 0], [32, -24], [30, 0], [32, 24]]), '#F28AA0'); sk(m, '#F7B3C2');
+      c.fillStyle = 'rgba(200,60,90,.4)'; for (let i = 0; i < 10; i++) { c.beginPath(); c.arc(30 - (i * 7.3 % 44), -10 + (i * 5.7 % 20), 2, 0, 6.3); c.fill(); }
+      dxEye(c, -10, -4, 6, -1);
+    } else if (S.k === 'octo') {
+      const s = L / 100; c.scale(s, s);
+      for (let i = 0; i < 6; i++) { const a = -2.6 + i * .3; sk(dxTube([-8 + i * 4, 10], [-30 + i * 10 + Math.sin(t / 160 + i) * 8, 34], [-40 + i * 16 + Math.sin(t / 130 + i) * 8, 44 + (i % 2) * 6], 10, 3), '#E8590C'); }
+      const g = c.createRadialGradient(-4, -24, 4, 0, -14, 40); g.addColorStop(0, '#FF8A50'); g.addColorStop(1, '#E8590C'); sk(dxEl(0, -14, 30, 28), g);
+      c.fillStyle = 'rgba(255,240,220,.55)'; for (let i = 0; i < 5; i++) { c.beginPath(); c.arc(-14 + i * 7, -32 + (i % 2) * 6, 3, 0, 6.3); c.fill(); }
+      dxEye(c, 10, -8, 7, 1); dxEye(c, -8, -8, 7, 1); c.strokeStyle = '#8A2E05'; c.lineWidth = 2.5; c.beginPath(); c.arc(1, 2, 4, .3, 2.8); c.stroke();
+    } else if (S.k === 'eel') {
+      const s = L / 100; c.scale(s, s); const pts = []; for (let i = 0; i <= 20; i++) { const u = i / 20; pts.push([50 - u * 100, Math.sin(u * 7 + (t || 0) / 160) * 8 * u]); }
+      const P = new Path2D(), Q = []; pts.forEach((p, i) => { const w = i < 2 ? 6 + i * 2 : 10 * (1 - i / 22); P[i ? 'lineTo' : 'moveTo'](p[0], p[1] - w); Q.push([p[0], p[1] + w]); }); Q.reverse().forEach(q => P.lineTo(...q)); P.closePath();
+      const fin = new Path2D(); pts.forEach((p, i) => { if (i < 5) return; const w = 10 * (1 - i / 22) + 4; fin[i === 5 ? 'moveTo' : 'lineTo'](p[0], p[1] - w); }); [...pts].reverse().forEach((p, j) => { const i = 20 - j; if (i < 5) return; fin.lineTo(p[0], p[1] + 10 * (1 - i / 22) + 4); }); fin.closePath(); sk(fin, '#8B9A6B');
+      const g = c.createLinearGradient(0, -10, 0, 10); g.addColorStop(0, '#4F5B3A'); g.addColorStop(.6, '#6E7B4F'); g.addColorStop(1, '#D8D2A8'); sk(P, g);
+      dxEye(c, 40, -3, 3.4, 1); c.strokeStyle = 'rgba(30,30,20,.6)'; c.lineWidth = 1.6; c.beginPath(); c.moveTo(50, 2); c.lineTo(42, 4); c.stroke();
+    } else if (S.k === 'ray') {
+      const s = L / 100; c.scale(s, s); const fl = Math.sin((t || 0) / 200) * 6;
+      c.strokeStyle = '#5E4B3C'; c.lineWidth = 2.5; c.beginPath(); c.moveTo(-20, 0); c.quadraticCurveTo(-50, tw * 6, -70, tw * 10); c.stroke();
+      const body = new Path2D(); body.moveTo(34, 0); body.quadraticCurveTo(20, -10, 0, -36 - fl); body.quadraticCurveTo(-8, -20, -22, 0); body.quadraticCurveTo(-8, 20, 0, 36 + fl); body.quadraticCurveTo(20, 10, 34, 0); body.closePath();
+      const g = c.createRadialGradient(6, 0, 4, 6, 0, 40); g.addColorStop(0, '#8C7A68'); g.addColorStop(1, '#5E4B3C'); sk(body, g);
+      c.fillStyle = 'rgba(255,255,255,.35)'; for (let i = 0; i < 9; i++) { c.beginPath(); c.arc(-4 + (i * 9.3 % 26), -20 + (i * 13.7 % 40), 2.2, 0, 6.3); c.fill(); }
+      dxEye(c, 22, -6, 3.2, 1); dxEye(c, 22, 6, 3.2, 1);
+    } else if (S.k === 'turtle') {
+      const s = L / 100; c.scale(s, s); const fl = Math.sin((t || 0) / 220) * .35;
+      [[18, -16, -1], [18, 16, 1]].forEach(([x0, y0, k]) => { c.save(); c.translate(x0, y0); c.rotate(k * (.6 + fl)); sk(dxEl(0, k * 14, 9, 18, 0), '#7FB069'); c.restore(); });
+      [[-20, -14, -1], [-20, 14, 1]].forEach(([x0, y0, k]) => sk(dxEl(x0 - 4, y0 + k * 6, 10, 6, k * .6), '#7FB069'));
+      sk(dxEl(38, 0, 12, 10), '#8CC277'); dxEye(c, 42, -4, 3.2, 1);
+      const sh = dxEl(0, 0, 34, 26); const g = c.createRadialGradient(-4, -6, 3, 0, 0, 36); g.addColorStop(0, '#A3753A'); g.addColorStop(1, '#6B4A22'); sk(sh, g);
+      c.strokeStyle = 'rgba(255,230,170,.55)'; c.lineWidth = 2; c.beginPath(); c.moveTo(-14, -10); c.lineTo(0, -16); c.lineTo(14, -10); c.lineTo(14, 10); c.lineTo(0, 16); c.lineTo(-14, 10); c.closePath(); c.stroke(); [[-14, -10, -26, -18], [14, -10, 26, -18], [14, 10, 26, 18], [-14, 10, -26, 18], [0, -16, 0, -26], [0, 16, 0, 26]].forEach(([a, b, d, e]) => { c.beginPath(); c.moveTo(a, b); c.lineTo(d, e); c.stroke(); });
+    }
+    c.restore();
+  }
+  /* ---------- v128 恐龍蛋：24 種恐龍（用程式畫），普通蛋／金蛋（稀有）／彩虹蛋（傳說） ---------- */
+  // [名字, 稀有度 0普通 1稀有 2傳說, 主色, 肚子, 裝飾色, 畫法]
+  const DINO_DEX = [
+    ['迅猛龍', 0, '#C98B4B', '#F3D9B1', '#7A4E2A', 'raptor'], ['冠龍', 0, '#9C6ADE', '#E6D8FA', '#FF8A3D', 'guan'], ['雙冠龍', 0, '#6FBF73', '#DFF3D9', '#E8590C', 'dilo'],
+    ['梁龍', 0, '#7FA7C9', '#DDEAF5', '#4E7396', 'diplo'], ['雷龍', 0, '#8E9C6E', '#E3E8D2', '#5F6B45', 'bronto'], ['原角龍', 0, '#D9A05B', '#F6E3C4', '#B5651D', 'proto'],
+    ['劍龍', 0, '#7BAE5A', '#E2F0D6', '#E8590C', 'stego'], ['甲龍', 0, '#A68A64', '#E9DCC6', '#6B5636', 'anky'], ['副櫛龍', 0, '#5FB3B3', '#DDF3F3', '#E64980', 'para'],
+    ['慈母龍', 0, '#B98AC9', '#F0E2F5', '#7B4C8C', 'maia'], ['厚頭龍', 0, '#E0A458', '#F8E6C9', '#9C5B16', 'pachy'], ['禽龍', 0, '#6E9E8E', '#DCEDE7', '#355E50', 'iguano'],
+    ['似鳥龍', 0, '#E3B23C', '#FBEFC9', '#B07D10', 'ornitho'], ['翼龍', 0, '#D98E73', '#F7DDD3', '#A0533A', 'ptero'],
+    ['三角龍', 1, '#5C8DD6', '#DCE8F8', '#F5E6C8', 'trike'], ['戟龍', 1, '#D9534F', '#F8D7D6', '#FFD43B', 'styra'], ['異特龍', 1, '#B5553A', '#F2D3C6', '#5C2A1C', 'allo'],
+    ['蛇頸龍', 1, '#3E8EDE', '#D5E8FA', '#1F5FA3', 'plesio'], ['無齒翼龍', 1, '#7A86B8', '#E1E5F4', '#E8590C', 'pteran'], ['小盜龍', 1, '#3A4A8C', '#9FB0E8', '#38D9A9', 'micro'],
+    ['暴龍', 2, '#4F9D57', '#E3F3D6', '#2E6B35', 'rex'], ['腕龍', 2, '#E8A33D', '#FBE7C4', '#A86A12', 'brachio'], ['棘龍', 2, '#C2473E', '#F6D4CF', '#F59F00', 'spino'],
+    ['滄龍', 2, '#2B6CB0', '#D4E6F7', '#163F70', 'mosa']
+  ];
+  const DINO_RARE = ['普通', '稀有', '傳說'];
+  function dinoDraw(c, d, x, y, size, dir, t, sil) {
+    const [, , C1, C2, C3, K] = d, s = size / 100, T = (t || 0) / 1000, br = Math.sin(T * 3) * 1.2;
+    c.save(); c.translate(x, y); c.scale(s * (dir < 0 ? -1 : 1), s); c.lineJoin = 'round'; c.lineCap = 'round';
+    const P = [], D = [], dk = 'rgba(0,0,0,.18)';
+    const add = (p, f, line) => P.push({ p, f, line }); const det = fn => D.push(fn);
+    const tube = dxTube, el = dxEl, poly = dxPoly;
+    const far = p => { add(p, C1, false); P.push({ p, f: dk, shade: 1 }); };
+    // 小工具：腳（遠的那隻顏色深一點）
+    const leg2 = (x0, y0, x1, y1, w0, w1, near) => { const p = tube([x0, y0], [(x0 + x1) / 2 + 2, (y0 + y1) / 2], [x1, y1], w0, w1); if (near) add(p, C1, true); else far(p); const f = el(x1 + 3, y1 + 1, w1 * .75 + 2, 3); if (near) add(f, C1, true); else far(f); };
+    const eye = (ex, ey, r) => det(() => dxEye(c, ex, ey, r || 3.6, 1));
+    const teeth = (x0, y0, x1, n) => det(() => { c.fillStyle = '#fff'; for (let i = 0; i < n; i++) { const xx = x0 + (x1 - x0) * i / n; c.beginPath(); c.moveTo(xx, y0); c.lineTo(xx + (x1 - x0) / n / 2, y0 + 2.6); c.lineTo(xx + (x1 - x0) / n, y0); c.fill(); } });
+    const smile = (x0, y0, x1, y1) => det(() => { c.strokeStyle = 'rgba(30,20,20,.55)'; c.lineWidth = 1.4; c.beginPath(); c.moveTo(x0, y0); c.quadraticCurveTo((x0 + x1) / 2, y1 + 2, x1, y1); c.stroke(); });
+    const spots = (cx, cy, rx, ry, n, col) => det(() => { c.fillStyle = col || 'rgba(0,0,0,.14)'; for (let i = 0; i < n; i++) { const a = i * 2.39, r = Math.sqrt((i + .5) / n); c.beginPath(); c.ellipse(cx + Math.cos(a) * r * rx * .8, cy + Math.sin(a) * r * ry * .7, 2.2, 1.6, 0, 0, 6.3); c.fill(); } });
+    const belly = (cx, cy, rx, ry, rot) => det(() => { c.fillStyle = C2; c.globalAlpha = .9; c.beginPath(); c.ellipse(cx, cy, rx, ry, rot || 0, 0, 6.3); c.fill(); c.globalAlpha = 1; });
+    // 兩隻腳走路的（獸腳類）
+    const biped = o => {
+      add(tube([-12, -2], o.tc || [-32, -4], o.tt || [-50, -12 + br], o.tw || 17, 2), C1, false);
+      leg2(-2, 8, 2, 36, 10, 6.5, false);
+      add(el(0, 0, o.bw || 22, o.bh || 15, -.2), C1, false);
+      if (o.neck) add(tube(...o.neck), C1, false);
+      leg2(-5, 10, -1, 36, 11, 7, true); add(el(-5, 8, 11, 12, -.4), C1, true);
+      belly(4, 5, (o.bw || 22) * .6, (o.bh || 15) * .5, -.2);
+    };
+    const quad = o => {
+      add(tube(o.t0 || [-22, 2], o.tc || [-38, 8], o.tt || [-52, 18 + br * .5], o.tw || 14, 2), C1, false);
+      leg2(o.bx + 8, 8, o.bx + 8, 38, o.lw || 10, o.lw2 || 9, false); leg2(o.fx + 6, 8, o.fx + 6, 38, o.lw || 10, o.lw2 || 9, false);
+      add(el(0, o.by || 4, o.bw || 25, o.bh || 16, o.br || 0), C1, false);
+      leg2(o.bx, 8, o.bx, 38, (o.lw || 10) + 1, o.lw2 || 9, true); leg2(o.fx, 8, o.fx, 38, (o.lw || 10) + 1, o.lw2 || 9, true);
+      belly(0, (o.by || 4) + (o.bh || 16) * .45, (o.bw || 25) * .7, (o.bh || 16) * .4);
+    };
+    switch (K) {
+      case 'rex': biped({ bw: 24, bh: 17 }); add(tube([12, -8], [20, -16], [22, -22], 15, 12), C1, false); add(el(30, -17, 13, 5.5, .15), C1, true); add(el(28, -26, 16, 10, .08), C1, false);
+        add(tube([18, 2], [22, 5], [24, 8], 4.5, 2.5), C1, true); teeth(20, -20.5, 42, 7); eye(30, -30, 4); spots(-8, -6, 14, 8, 7, C3 + '66'); det(() => { c.fillStyle = C3; c.beginPath(); c.arc(42, -27, 1.3, 0, 6.3); c.fill(); }); break;
+      case 'allo': biped({ bw: 23, bh: 15 }); add(tube([12, -8], [20, -16], [22, -22], 13, 11), C1, false); add(el(30, -18, 12, 4.5, .15), C1, true); add(el(29, -25, 15, 8.5, .1), C1, false);
+        add(poly([[24, -32], [27, -40], [31, -32]]), C3, true); add(tube([17, 1], [24, 6], [27, 10], 5, 3), C1, true); teeth(21, -20.5, 41, 6); eye(28, -28, 3.4);
+        det(() => { c.strokeStyle = C3; c.lineWidth = 2.4; c.globalAlpha = .55; for (let i = 0; i < 6; i++) { c.beginPath(); c.moveTo(-14 + i * 5, -12); c.lineTo(-12 + i * 5, -2); c.stroke(); } c.globalAlpha = 1; }); break;
+      case 'raptor': biped({ bw: 19, bh: 12, tt: [-54, -6 + br], tc: [-36, -6], tw: 12 }); add(tube([12, -6], [18, -14], [22, -18], 10, 7), C1, false); add(el(29, -20, 12, 5.5, .1), C1, false);
+        add(tube([14, 0], [24, 4], [28, 12], 5, 3), C1, true); add(poly([[16, 0], [30, 10], [22, 14], [12, 6]]), C3, true); add(poly([[-44, -10 + br], [-60, -14 + br], [-46, -2 + br]]), C3, true);
+        add(poly([[3, 34], [7, 28], [6, 36]]), '#fff', true); teeth(24, -17, 40, 5); eye(29, -23, 3.2); det(() => { c.strokeStyle = C3; c.lineWidth = 2; c.globalAlpha = .6; for (let i = 0; i < 5; i++) { c.beginPath(); c.moveTo(-10 + i * 5, -10); c.lineTo(-12 + i * 5, -2); c.stroke(); } c.globalAlpha = 1; }); break;
+      case 'micro': biped({ bw: 16, bh: 10, tt: [-52, -4 + br], tc: [-34, -2], tw: 8 }); add(poly([[10, -4], [-6, -30 + br * 2], [-14, -24 + br * 2], [-8, -12], [-18, -14 + br], [-6, 2]]), C3, true);
+        add(poly([[-2, 22], [-20, 34], [-22, 28], [-6, 16]]), C3, true); add(poly([[-44, -6 + br], [-56, -14 + br], [-60, -4 + br], [-48, 0 + br]]), C3, true);
+        add(tube([10, -4], [16, -12], [19, -16], 8, 6), C1, false); add(el(25, -18, 9, 5, .1), C1, false); add(poly([[31, -19], [37, -17], [31, -15]]), '#F5C04A', true); eye(26, -20, 2.8);
+        det(() => { c.fillStyle = 'rgba(56,217,169,.35)'; c.beginPath(); c.ellipse(0, -4, 10, 4, -.2, 0, 6.3); c.fill(); }); break;
+      case 'spino': add(poly([[-18, -8], [-14, -30], [-6, -42], [4, -40], [12, -28], [14, -10]]), C3, true);
+        det(() => { c.strokeStyle = 'rgba(120,60,0,.45)'; c.lineWidth = 1.6; for (let i = 0; i < 6; i++) { c.beginPath(); c.moveTo(-14 + i * 5, -8); c.lineTo(-13 + i * 4.6, -32 - Math.sin(i / 5 * 3.14) * 8); c.stroke(); } });
+        biped({ bw: 24, bh: 15, tw: 16 }); add(tube([12, -6], [18, -12], [22, -16], 12, 9), C1, false); add(el(34, -16, 18, 5.5, .12), C1, false); add(el(22, -19, 8, 6), C1, false);
+        add(tube([16, 1], [22, 6], [26, 10], 5, 3), C1, true); teeth(24, -13, 48, 8); eye(25, -21, 3.2); break;
+      case 'dilo': biped({ bw: 20, bh: 13 }); add(tube([12, -6], [18, -14], [22, -20], 11, 8), C1, false); add(el(29, -21, 13, 6.5, .1), C1, false);
+        add(el(25, -28, 7, 5, -.3), C3, true); add(el(32, -28, 7, 4.5, .1), C3, true); add(tube([15, 0], [20, 5], [23, 9], 4, 2.5), C1, true); smile(28, -17, 40, -18); eye(27, -23, 3.2);
+        det(() => { c.fillStyle = 'rgba(255,255,255,.35)'; for (let i = 0; i < 4; i++) { c.beginPath(); c.ellipse(-12 + i * 7, -6, 2.5, 4, 0, 0, 6.3); c.fill(); } }); break;
+      case 'guan': biped({ bw: 19, bh: 12 }); add(tube([12, -6], [18, -14], [22, -20], 10, 7), C1, false); add(poly([[22, -26], [28, -38], [36, -30], [34, -24]]), C3, true); add(el(29, -21, 12, 6, .1), C1, false);
+        add(tube([14, 0], [20, 6], [24, 10], 4.5, 2.5), C1, true); smile(28, -17, 40, -18); eye(27, -23, 3.2); spots(-6, -4, 12, 7, 6, 'rgba(255,255,255,.35)'); break;
+      case 'ornitho': add(tube([-10, -4], [-30, -8], [-48, -6 + br], 10, 2), C1, false); leg2(-1, 4, 4, 36, 8, 5, false); add(el(0, -2, 17, 11, -.15), C1, false);
+        add(tube([10, -8], [16, -24], [20, -36], 7, 5), C1, false); add(el(25, -38, 8, 5, .1), C1, false); add(poly([[31, -39], [40, -36], [31, -35]]), '#5C4A2A', true);
+        leg2(-4, 6, 0, 36, 9, 5.5, true); add(tube([10, -2], [18, 2], [22, 8], 3.5, 2.5), C1, true); belly(3, 2, 10, 5, -.15); eye(25, -40, 3);
+        det(() => { c.fillStyle = C3; c.globalAlpha = .6; for (let i = 0; i < 5; i++) { c.beginPath(); c.moveTo(-10 - i * 5, -12); c.lineTo(-14 - i * 5, -18); c.lineTo(-16 - i * 5, -10); c.fill(); } c.globalAlpha = 1; }); break;
+      case 'para': biped({ bw: 22, bh: 15 }); add(tube([12, -6], [18, -14], [20, -20], 12, 10), C1, false); add(tube([24, -26], [12, -36], [2, -40], 7, 6), C3, true); add(el(27, -22, 12, 7, .15), C1, false);
+        add(el(37, -19, 6, 3.5, .1), '#F2C14E', true); add(tube([16, 0], [20, 6], [22, 10], 4.5, 3), C1, true); eye(26, -25, 3.2); det(() => { c.strokeStyle = 'rgba(255,255,255,.45)'; c.lineWidth = 2; for (let i = 0; i < 5; i++) { c.beginPath(); c.moveTo(-14 + i * 6, -12); c.lineTo(-16 + i * 6, -4); c.stroke(); } }); break;
+      case 'maia': biped({ bw: 23, bh: 16 }); add(tube([12, -6], [18, -14], [20, -20], 12, 10), C1, false); add(el(27, -22, 12, 7.5, .15), C1, false); add(el(37, -19, 6.5, 4, .1), '#F2C14E', true);
+        add(poly([[23, -28], [26, -33], [29, -28]]), C3, true); add(tube([16, 0], [20, 6], [22, 10], 4.5, 3), C1, true); eye(26, -25, 3.2); spots(-4, -2, 16, 9, 8, 'rgba(255,255,255,.35)');
+        det(() => { c.save(); c.translate(-30, 30); c.fillStyle = '#FFF4DC'; c.strokeStyle = 'rgba(0,0,0,.25)'; c.lineWidth = 1; [[0, 0], [7, 1], [3.5, -4]].forEach(([a, b]) => { c.beginPath(); c.ellipse(a, b, 3.2, 4.2, 0, 0, 6.3); c.fill(); c.stroke(); }); c.restore(); }); break;
+      case 'iguano': biped({ bw: 25, bh: 17 }); add(tube([12, -6], [18, -14], [20, -20], 13, 10), C1, false); add(el(28, -21, 13, 7.5, .1), C1, false); add(el(38, -18, 5, 4), '#D9C9A3', true);
+        add(tube([16, 0], [22, 8], [26, 14], 6, 4), C1, true); add(poly([[25, 10], [30, 4], [28, 12]]), '#F8F9FA', true); eye(27, -24, 3.2); det(() => { c.fillStyle = C3; c.globalAlpha = .35; for (let i = 0; i < 6; i++) { c.beginPath(); c.arc(-12 + i * 6, -10 + (i % 2) * 3, 2.2, 0, 6.3); c.fill(); } c.globalAlpha = 1; }); break;
+      case 'pachy': biped({ bw: 21, bh: 14 }); add(tube([12, -6], [18, -14], [20, -20], 12, 9), C1, false); add(el(28, -22, 11, 7, .1), C1, false); add(el(27, -28, 10, 8.5), C3, true);
+        det(() => { c.fillStyle = '#F8E6C9'; [[18, -26], [17, -21], [36, -27], [38, -22]].forEach(([a, b]) => { c.beginPath(); c.arc(a, b, 1.8, 0, 6.3); c.fill(); }); c.fillStyle = 'rgba(255,255,255,.4)'; c.beginPath(); c.ellipse(24, -32, 4, 2, -.3, 0, 6.3); c.fill(); });
+        add(tube([16, 0], [20, 6], [22, 10], 4.5, 3), C1, true); eye(31, -23, 3); smile(32, -18, 38, -18); break;
+      case 'brachio': add(tube([-22, -2], [-38, 4], [-52, 16 + br * .5], 13, 2), C1, false); leg2(-10, 8, -10, 38, 10, 9, false); leg2(18, 4, 18, 38, 10, 9, false);
+        add(el(0, 0, 25, 16, -.25), C1, false); add(tube([14, -8], [22, -30], [24, -48], 13, 8), C1, false); add(el(29, -50, 9, 5.5, .1), C1, false); add(el(25, -54, 5, 4), C1, false);
+        leg2(-14, 10, -14, 38, 11, 9, true); leg2(14, 6, 14, 38, 11, 9, true); belly(2, 8, 17, 6, -.25); eye(28, -52, 2.8); smile(32, -47, 37, -48); spots(-6, -4, 16, 8, 8, C3 + '55'); break;
+      case 'diplo': quad({ bx: -12, fx: 12, bw: 24, bh: 14, tt: [-62, 4 + br * .5], tc: [-44, 8], tw: 12, lw: 8, lw2: 7 }); add(tube([18, -2], [34, -12], [44, -18], 11, 6), C1, false); add(el(49, -19, 7, 4.5, .1), C1, false);
+        eye(49, -21, 2.5); det(() => { c.strokeStyle = C3; c.lineWidth = 2.5; c.globalAlpha = .5; for (let i = 0; i < 6; i++) { c.beginPath(); c.moveTo(-16 + i * 6, -10); c.lineTo(-14 + i * 6, 2); c.stroke(); } c.globalAlpha = 1; }); break;
+      case 'bronto': quad({ bx: -12, fx: 12, bw: 26, bh: 17, tw: 15, lw: 11, lw2: 10 }); add(tube([16, -4], [30, -22], [36, -32], 16, 9), C1, false); add(el(41, -33, 8, 5.5, .1), C1, false);
+        eye(41, -35, 2.6); smile(44, -31, 48, -31); spots(-2, -2, 18, 9, 9, C3 + '55'); break;
+      case 'trike': quad({ bx: -14, fx: 10, bw: 24, bh: 16, by: 6, t0: [-22, 6], tc: [-34, 10], tt: [-44, 16 + br * .5], tw: 12, lw: 10, lw2: 9 });
+        add(el(18, -4, 12, 16, .2), C3, true); add(el(29, 2, 13, 9, .15), C1, false); add(poly([[38, 4], [46, 6], [38, 9]]), '#6B5636', true);
+        add(poly([[26, -6], [44, -20], [30, -3]]), '#FFF8E7', true); add(poly([[22, -6], [38, -22], [26, -2]]), '#FFF8E7', true); add(poly([[36, -1], [41, -8], [39, 1]]), '#FFF8E7', true);
+        eye(30, -1, 3); det(() => { c.fillStyle = 'rgba(92,141,214,.45)'; for (let i = 0; i < 6; i++) { const a = -1.9 + i * .5; c.beginPath(); c.arc(18 + Math.cos(a) * 11, -4 + Math.sin(a) * 14, 2.2, 0, 6.3); c.fill(); } }); break;
+      case 'styra': quad({ bx: -14, fx: 10, bw: 23, bh: 15, by: 6, t0: [-22, 6], tc: [-34, 10], tt: [-44, 16 + br * .5], tw: 12, lw: 10, lw2: 9 });
+        for (let i = 0; i < 6; i++) { const a = -2.6 + i * .42; add(poly([[16 + Math.cos(a - .15) * 10, -4 + Math.sin(a - .15) * 12], [16 + Math.cos(a) * 24, -4 + Math.sin(a) * 26], [16 + Math.cos(a + .15) * 10, -4 + Math.sin(a + .15) * 12]]), C3, true); }
+        add(el(16, -4, 11, 13, .2), C1, true); add(el(28, 2, 12, 8.5, .15), C1, false); add(poly([[33, -2], [40, -20], [38, 0]]), '#FFF8E7', true); add(poly([[37, 4], [44, 6], [37, 9]]), '#6B5636', true); eye(28, -1, 3); break;
+      case 'proto': quad({ bx: -12, fx: 10, bw: 21, bh: 14, by: 6, t0: [-20, 6], tc: [-32, 10], tt: [-42, 14 + br * .5], tw: 11, lw: 8, lw2: 7 });
+        add(el(17, -2, 8, 11, .3), C3, true); add(el(27, 3, 12, 8, .15), C1, false); add(poly([[36, 1], [43, 5], [36, 9]]), '#6B5636', true); eye(26, 0, 3); spots(-4, 2, 12, 7, 6, 'rgba(255,255,255,.35)'); break;
+      case 'stego': for (let i = 0; i < 7; i++) { const px = -24 + i * 8, py = -12 - Math.sin((i + .5) / 7 * 3.14) * 8, h = 10 + Math.sin((i + .5) / 7 * 3.14) * 6; add(poly([[px - 4, py + 6], [px - 3, py - h * .5], [px, py - h], [px + 3, py - h * .5], [px + 4, py + 6]]), C3, true); }
+        add(poly([[-48, 12], [-58, 2], [-50, 14]]), '#FFF8E7', true); add(poly([[-50, 16], [-62, 12], [-52, 18]]), '#FFF8E7', true);
+        quad({ bx: -12, fx: 12, bw: 25, bh: 16, by: 4, br: -.08, tt: [-54, 16 + br * .5], tw: 13, lw: 10, lw2: 8 }); add(tube([20, 4], [26, 8], [28, 12], 9, 8), C1, false); add(el(32, 13, 8, 5, .2), C1, false); eye(33, 11, 2.6); break;
+      case 'anky': add(tube([-24, 10], [-40, 14], [-50, 16 + br * .5], 10, 4), C1, false); add(el(-52, 16 + br * .5, 7, 6), C3, true);
+        quad({ bx: -12, fx: 12, bw: 27, bh: 12, by: 10, tt: [-26, 10], tc: [-26, 10], tw: 1, lw: 9, lw2: 8 });
+        for (let i = 0; i < 6; i++) add(poly([[-20 + i * 8, 2], [-23 + i * 8, -5], [-16 + i * 8, 1]]), '#F8F1E3', true);
+        add(el(29, 12, 10, 7.5, .1), C1, false); add(poly([[24, 6], [22, 0], [28, 5]]), '#F8F1E3', true); eye(31, 10, 2.8);
+        det(() => { c.fillStyle = C3; c.globalAlpha = .55; for (let i = 0; i < 12; i++) { c.beginPath(); c.arc(-20 + (i % 6) * 8, 3 + Math.floor(i / 6) * 6, 2.6, 0, 6.3); c.fill(); } c.globalAlpha = 1; }); break;
+      case 'ptero': case 'pteran': { const fl = Math.sin(T * 6) * 8, crest = K === 'pteran';
+        add(poly([[-2, -2], [-30, -26 - fl], [-50, -8 - fl * .4], [-14, 6]]), C3, true); add(el(-2, 2, 14, 7, -.1), C1, false);
+        add(poly([[4, -2], [30, -28 - fl], [48, -12 - fl * .4], [10, 6]]), C1, true); add(tube([8, -2], [14, -8], [16, -12], 6, 5), C1, false); add(el(18, -14, 7, 5), C1, false);
+        add(poly([[22, -16], [44, -10], [22, -11]]), '#F5C04A', true); if (crest) add(poly([[14, -16], [-6, -30], [18, -19]]), C3, true); else add(poly([[16, -18], [12, -25], [20, -19]]), C3, true);
+        add(tube([-6, 6], [-10, 14], [-8, 20], 3, 2), C1, true); eye(19, -15, 2.6); break; }
+      case 'plesio': add(tube([-20, 2], [-34, 6], [-44, 4 + br], 10, 1), C1, false); add(el(-16, 14, 10, 4, .6), C1, false); add(el(10, 16, 11, 4, -.5), C1, false);
+        add(el(0, 4, 24, 13), C1, false); add(tube([18, -2], [32, -18], [36, -34], 9, 6), C1, false); add(el(41, -35, 8, 5, .1), C1, false); add(el(-20, 12, 12, 4.5, .7 + br * .05), C1, true); add(el(14, 14, 13, 4.5, -.6 - br * .05), C1, true);
+        belly(2, 9, 17, 5); smile(44, -33, 48, -33); eye(41, -37, 2.6); spots(-4, 0, 14, 6, 6, 'rgba(255,255,255,.3)'); break;
+      case 'mosa': add(poly([[-36, 0], [-56, -14 + br], [-52, 0], [-56, 14 + br]]), C3, true); add(tube([-10, 0], [-28, 2], [-40, 0], 18, 6), C1, false);
+        add(el(0, 0, 26, 12), C1, false); add(el(28, -2, 18, 8, .05), C1, false); add(el(30, 4, 15, 4, .05), C1, true); add(el(-10, 12, 10, 4, .6), C1, true); add(el(14, 12, 10, 4, -.6), C1, true);
+        belly(4, 6, 20, 5); teeth(16, 1, 44, 10); eye(26, -6, 3); det(() => { c.fillStyle = 'rgba(255,255,255,.25)'; for (let i = 0; i < 6; i++) { c.beginPath(); c.arc(-14 + i * 7, -6, 2, 0, 6.3); c.fill(); } }); break;
+    }
+    // 畫：先描外框，再塗顏色，最後畫細節
+    const ow = 3.2 / Math.max(.5, s) * .9;
+    if (sil) { c.fillStyle = sil; P.forEach(q => { if (!q.shade) c.fill(q.p); }); c.restore(); return; }
+    c.strokeStyle = 'rgba(40,30,40,.7)'; c.lineWidth = ow * 2; P.forEach(q => { if (!q.shade) c.stroke(q.p); });
+    P.forEach(q => { c.fillStyle = q.f; c.fill(q.p); if (q.line) { c.strokeStyle = 'rgba(40,30,40,.35)'; c.lineWidth = ow * .6; c.stroke(q.p); } });
+    D.forEach(fn => fn());
+    c.restore();
+  }
+  // 蛋：0 普通、1 金蛋、2 彩虹蛋
+  function dinoEgg(c, tier, x, y, s, t, crack) {
+    c.save(); c.translate(x, y); const w = Math.sin((t || 0) / 180) * (tier ? .08 : .04); c.rotate(w);
+    const p = new Path2D(); p.moveTo(0, -s * .62); p.bezierCurveTo(s * .44, -s * .62, s * .5, s * .1, s * .42, s * .3); p.bezierCurveTo(s * .3, s * .55, -s * .3, s * .55, -s * .42, s * .3); p.bezierCurveTo(-s * .5, s * .1, -s * .44, -s * .62, 0, -s * .62); p.closePath();
+    if (tier) { c.shadowColor = tier === 2 ? 'rgba(255,255,255,.9)' : 'rgba(255,200,40,.9)'; c.shadowBlur = s * .3; }
+    let g; if (tier === 1) { g = c.createLinearGradient(-s * .4, -s * .6, s * .4, s * .5); g.addColorStop(0, '#FFF3B0'); g.addColorStop(.5, '#FFC832'); g.addColorStop(1, '#D99A00'); }
+    else if (tier === 2) { g = c.createLinearGradient(0, -s * .6, 0, s * .5); ['#FF6B6B', '#FFA94D', '#FFD43B', '#69DB7C', '#4DABF7', '#9775FA'].forEach((k, i) => g.addColorStop(i / 5, k)); }
+    else { g = c.createLinearGradient(0, -s * .6, 0, s * .5); g.addColorStop(0, '#FFFDF3'); g.addColorStop(1, '#F1E3C2'); }
+    c.fillStyle = g; c.fill(p); c.shadowBlur = 0; c.strokeStyle = 'rgba(80,60,30,.45)'; c.lineWidth = Math.max(1.5, s * .04); c.stroke(p);
+    c.save(); c.clip(p); c.fillStyle = tier ? 'rgba(255,255,255,.55)' : 'rgba(120,170,90,.55)'; [[-.18, -.25, .1], [.16, -.05, .08], [-.08, .2, .07], [.2, .28, .06], [.02, -.42, .05]].forEach(([a, b, r]) => { c.beginPath(); c.arc(a * s, b * s, r * s, 0, 6.3); c.fill(); });
+    c.fillStyle = 'rgba(255,255,255,.45)'; c.beginPath(); c.ellipse(-s * .2, -s * .3, s * .06, s * .14, .4, 0, 6.3); c.fill(); c.restore();
+    if (tier) { const k = (t || 0) / 300; c.fillStyle = '#fff'; [[.4, -.4], [-.45, .05], [.35, .35]].forEach(([a, b], i) => { const z = s * .07 * (.6 + .4 * Math.sin(k + i * 2)); c.beginPath(); c.moveTo(a * s, b * s - z * 2); c.lineTo(a * s + z * .6, b * s); c.lineTo(a * s, b * s + z * 2); c.lineTo(a * s - z * .6, b * s); c.closePath(); c.fill(); }); }
+    if (crack) { c.strokeStyle = 'rgba(60,40,20,.75)'; c.lineWidth = Math.max(1.5, s * .035); c.beginPath(); c.moveTo(-s * .3, -s * .05); c.lineTo(-s * .15, -s * .15); c.lineTo(0, -s * .02); c.lineTo(s * .14, -s * .16); c.lineTo(s * .3, -s * .04); c.stroke(); }
+    c.restore();
+  }
+  /* ---------- v128 圖鑑：魚類圖鑑、恐龍圖鑑（還沒收集到的只看得到黑影子） ---------- */
+  function pkxDex(kind) {
+    const fishK = kind === 'fish', L = fishK ? FISH_DEX : DINO_DEX, own = store.get(fishK ? 'fishDex' : 'dinoDex', []), n = L.filter(x => own.includes(x[0])).length;
+    const groups = fishK ? FISH_TIER.map((g, i) => [g + `（${[1, 2, 3, 5, 10][i]} 分）`, L.filter(x => x[1] === i)]) : DINO_RARE.map((g, i) => [['🥚 普通蛋', '🌟 金蛋・稀有', '🌈 彩虹蛋・傳說'][i], L.filter(x => x[1] === i)]);
+    const ov = document.createElement('div'); ov.className = 'pkx-dex'; track(fishK ? 'fish-dex' : 'dino-dex', fishK ? '魚類圖鑑' : '恐龍圖鑑');
+    ov.innerHTML = `<div class="pkx-dexc"><div class="pkx-dexh"><b>${fishK ? '🐟 魚類圖鑑' : '🦖 恐龍圖鑑'} ${n}/${L.length}</b><button class="btn small ghost" data-x>關閉</button></div>
+      <p class="pkx-dexp">${fishK ? '去「釣魚樂」釣魚，釣到新的魚就會收進來！越深的地方魚越大喔。' : '去「恐龍蛋孵化」孵蛋，孵到新的恐龍就會收進來！金蛋、彩虹蛋裡有稀有恐龍。'}</p>
+      ${groups.map(([g, a]) => `<div class="pkx-dexg">${g}</div><div class="pkx-dexl">${a.map(x => `<div class="pkx-dexi${own.includes(x[0]) ? '' : ' lock'}"><canvas width="240" height="170" data-n="${x[0]}"></canvas><small>${own.includes(x[0]) ? x[0] : '？？？'}</small></div>`).join('')}</div>`).join('')}</div>`;
+    document.body.appendChild(ov); ov.querySelector('[data-x]').onclick = () => ov.remove(); ov.onclick = e => { if (e.target === ov) ov.remove(); };
+    ov.querySelectorAll('canvas').forEach(cv => { const x = L.find(q => q[0] === cv.dataset.n), c = cv.getContext('2d'); c.scale(2, 2);
+      try { if (fishK) fishDraw(c, x, 60, 45, Math.min(108, x[3] < 60 ? x[3] * 1.7 : x[3] < 100 ? x[3] * 1.2 : 108), 1, 0); else dinoDraw(c, x, 62, 44, 92, 1, 0);
+        if (!own.includes(x[0])) { c.globalCompositeOperation = 'source-in'; c.fillStyle = '#3B3550'; c.fillRect(0, 0, 120, 85); } } catch (e) {} });
+  }
+  // ======== 20 個純遊戲 ========
+  // 1 恐龍跳跳：點一下跳過仙人掌和石頭
+  pkxReg('jump', '🦖', '恐龍跳跳', '#8ED07A', '#E5F7DC', '點一下畫面，恐龍就會跳！', S => {
+    let y = 0, vy = 0, obs = [], next = 900, cl = [[60, 150], [260, 200]], hurt = 0, it = [];
+    return { down() { if (y >= 0) { vy = -.95; tone([520, 700], .05, 'sine'); } },
+      step(dt, t) { const { c, W, H } = S, gy = H * .72, sp = .3 + t / 260000, dx = W * .24;
+        pkxSky(c, W, H, '#BDE6FF', '#FFF6D6'); pkxE(c, '☀️', W - 60, 150, 56); pkxE(c, '🌋', W * .7, gy - 30, 80, 0, false, .55); pkxE(c, '🌴', W * .15, gy - 40, 76, 0, false, .6);
+        cl.forEach(p => { p[0] -= sp * dt * .2; if (p[0] < -60) p[0] = W + 60; pkxE(c, '☁️', p[0], p[1], 54); });
+        c.fillStyle = '#9BD772'; c.fillRect(0, gy, W, H - gy); c.fillStyle = '#7CC05A'; c.fillRect(0, gy, W, 8);
+        vy += .0032 * dt; y = Math.min(0, y + vy * dt); if (y === 0) vy = 0; hurt = Math.max(0, hurt - dt);
+        next -= dt; if (next < 0) { obs.push({ x: W + 40, e: pick(['🌵', '🪨', '🌵', '🍄', '🪵', '🦴']), done: false }); if (Math.random() < .55) { const rare = Math.random() < .15; it.push({ x: W + 40 + 160 + Math.random() * 120, h: 100 + Math.random() * 50, e: rare ? '💎' : pick(['⭐', '🍖', '⭐']), p: rare ? 3 : 1 }); } next = 800 + Math.random() * 900; }
+        it = it.filter(o => { o.x -= sp * dt; pkxE(c, o.e, o.x, gy - o.h + Math.sin(t / 200 + o.x) * 4, o.p > 1 ? 44 : 38); if (Math.abs(o.x - dx) < 34 && Math.abs((gy - 34 + y) - (gy - o.h)) < 44) { S.add(o.p, o.x, gy - o.h); S.pop(o.x, gy - o.h, o.p > 1 ? '#74C0FC' : '#FFD43B'); return false; } return o.x > -40; });
+        obs = obs.filter(o => { o.x -= sp * dt; pkxE(c, o.e, o.x, gy - 24, 48);
+          if (!o.done && Math.abs(o.x - dx) < 30 && y > -48) { o.done = true; S.miss(); hurt = 600; }
+          if (!o.done && o.x < dx - 30) { o.done = true; S.hit(dx, gy - 120); S.pop(dx, gy - 60); }
+          return o.x > -60; });
+        pkxE(c, '🦖', dx, gy - 34 + y, 72, 0, true, hurt && Math.floor(hurt / 100) % 2 ? .4 : 1); } };
+  });
+  // 2 火箭閃隕石：手指左右拖，吃星星、躲隕石
+  pkxReg('rocket', '🚀', '火箭閃隕石', '#7C8CF8', '#E7E9FF', '手指左右拖，吃星星、躲開隕石！', S => {
+    let x = 0, tx = 0, it = [], next = 0, stars = [];
+    for (let i = 0; i < 40; i++) stars.push([Math.random(), Math.random(), Math.random() * 2 + 1]);
+    return { down(px) { tx = px; }, move(px, py, h) { if (h) tx = px; },
+      step(dt, t) { const { c, W, H } = S, ry = H - 140; if (!x) x = tx = W / 2;
+        pkxSky(c, W, H, '#14123A', '#3B2C7A'); c.fillStyle = '#fff'; stars.forEach(s => { s[1] = (s[1] + dt * .00008 * s[2]) % 1; c.globalAlpha = .4 + s[2] * .2; c.fillRect(s[0] * W, s[1] * H, s[2], s[2]); }); c.globalAlpha = 1;
+        x += (tx - x) * Math.min(1, dt * .012);
+        next -= dt; if (next < 0) { const bad = Math.random() < .42, r = Math.random(), g = r < .04 ? ['🛸', 5] : r < .16 ? ['💎', 3] : r < .3 ? ['🪐', 2] : [pick(['⭐', '🌟', '⭐']), 1]; it.push({ x: 30 + Math.random() * (W - 60), y: pkxTop - 20, v: .16 + Math.random() * .1 + t / 500000, vx: !bad && g[1] === 5 ? .12 : 0, bad, e: bad ? pick(['☄️', '☄️', '🛰️', '🪨']) : g[0], p: g[1] }); next = 420 + Math.random() * 380; }
+        it = it.filter(o => { o.y += o.v * dt; if (o.vx) { o.x += o.vx * dt; if (o.x > W - 30 || o.x < 30) o.vx *= -1; } pkxE(c, o.e, o.x, o.y, o.p >= 3 ? 52 : 44, o.bad ? .6 : 0);
+          if (Math.hypot(o.x - x, o.y - ry) < 42) { if (o.bad) { S.miss(); S.pop(x, ry, '#FF8A3D', 14); } else { S.add(o.p, o.x, o.y); S.pop(o.x, o.y, null, 6 + o.p * 4); } return false; } return o.y < H + 30; });
+        pkxE(c, '🔥', x, ry + 52, 30, 3.14, false, .6 + Math.random() * .4); pkxE(c, '🚀', x, ry, 66, -0.785); } };
+  });
+  // 3 小魚吃吃：小魚跟著手指游，吃蝦子、躲螃蟹
+  pkxReg('fish', '🐠', '小魚吃吃', '#4DABF7', '#DFF4FF', '手指在水裡移動，帶小魚去吃蝦子，躲開螃蟹！', S => {
+    let x = 0, y = 0, tx = 0, ty = 0, it = [], next = 0, face = 1, bub = [];
+    return { down(px, py) { tx = px; ty = py; }, move(px, py) { tx = px; ty = py; },
+      step(dt, t) { const { c, W, H } = S; if (!x) { x = tx = W / 2; y = ty = H * .55; }
+        pkxSky(c, W, H, '#7FD1F5', '#1F78B4'); c.fillStyle = '#F3D9A0'; c.fillRect(0, H - 50, W, 50); pkxE(c, '🪸', 40, H - 70, 50); pkxE(c, '🌿', W - 40, H - 74, 54);
+        if (Math.random() < dt * .004) bub.push([Math.random() * W, H]); bub = bub.filter(b => { b[1] -= dt * .06; c.strokeStyle = 'rgba(255,255,255,.6)'; c.lineWidth = 2; c.beginPath(); c.arc(b[0], b[1], 5, 0, 6.3); c.stroke(); return b[1] > pkxTop; });
+        const ox = x; x += (tx - x) * Math.min(1, dt * .006); y += (ty - y) * Math.min(1, dt * .006); y = Math.max(pkxTop + 30, Math.min(H - 70, y)); if (Math.abs(x - ox) > .3) face = x > ox ? 1 : -1;
+        next -= dt; if (next < 0) { const bad = Math.random() < .3, L = Math.random() < .5, r = Math.random(), g = r < .08 ? ['🦪', 3] : r < .2 ? ['⭐', 2] : [pick(['🦐', '🦐', '🍤', '🐚', '🫧']), 1]; it.push({ x: L ? -30 : W + 30, y: pkxTop + 40 + Math.random() * (H - pkxTop - 130), v: (L ? 1 : -1) * (.07 + Math.random() * .08), bad, e: bad ? pick(['🦀', '🪼', '🦀']) : g[0], p: g[1] }); next = 600 + Math.random() * 500; }
+        it = it.filter(o => { o.x += o.v * dt; o.y += Math.sin((t + o.x) / 300) * .3; pkxE(c, o.e, o.x, o.y, 40);
+          if (Math.hypot(o.x - x, o.y - y) < 38) { if (o.bad) { S.miss(); tx = x - face * 80; } else { S.add(o.p, o.x, o.y); S.pop(o.x, o.y, '#fff', 6 + o.p * 4); } return false; } return o.x > -60 && o.x < W + 60; });
+        pkxE(c, '🐠', x, y, 64, 0, face > 0); } };
+  });
+  // 4 疊疊蛋糕：時間到點一下，把蛋糕疊高高
+  pkxReg('stack', '🎂', '疊疊蛋糕', '#F7A1C4', '#FFE6F1', '蛋糕滑過來時點一下，對準下面那層，疊得越高越好！', S => {
+    const COL = ['#FFB3C7', '#FFE08A', '#B7E4A7', '#A5D8FF', '#D0BFFF', '#FFC9A3'];
+    let L = [], cur = null, dir = 1, cam = 0, pf = 0; const TOP = ['🍓', '🍒', '🫐', '🍑', '🥝', '🍫', '🍋', '🍬'];
+    const reset = () => { const { W } = S; L = [{ x: W * .22, w: W * .56 }]; cur = { x: 0, w: W * .56 }; };
+    return { down() { if (!cur) return; const b = L[L.length - 1], l = Math.max(cur.x, b.x), r = Math.min(cur.x + cur.w, b.x + b.w);
+        if (r - l < 10) { S.miss(); tone([200], .1, 'triangle'); cur = { x: 0, w: Math.max(S.W * .3, b.w) }; return; }
+        const perf = Math.abs(cur.x - b.x) < 7; if (perf) { L.push({ x: b.x, w: b.w }); S.add(3, b.x + b.w / 2, S.H * .5); S.pop(b.x + b.w / 2, S.H * .55, '#FFD43B', 24); pf = 700; tone([784, 988, 1175], .07, 'sine'); } else { L.push({ x: l, w: r - l }); S.hit(l + (r - l) / 2, S.H * .5); S.pop(l + (r - l) / 2, S.H * .55); } if (L.length > 14) { L = L.slice(-14); } const nw = L[L.length - 1].w; cur = { x: dir > 0 ? S.W - nw : 0, w: nw }; dir = -dir; if (cur.w < 40) reset(); },
+      step(dt, t) { const { c, W, H } = S; if (!cur) reset(); pkxSky(c, W, H, '#FFF0F6', '#FFE3B8');
+        const LH = 34, base = H - 120; c.fillStyle = '#C9A27A'; pkxRR(c, W * .14, base + 8, W * .72, 16, 8, '#E9D2B4');
+        L.forEach((s, i) => { pkxRR(c, s.x, base - i * LH, s.w, LH - 2, 10, COL[i % COL.length], 'rgba(0,0,0,.12)'); c.fillStyle = 'rgba(255,255,255,.7)'; for (let d = 0; d < s.w - 16; d += 14) { c.beginPath(); c.arc(s.x + 8 + d, base - i * LH + 3, 4, 0, 3.14); c.fill(); } if (i) pkxE(c, TOP[i % TOP.length], s.x + s.w - 12, base - i * LH + 4, 18); });
+        if (pf) { pf -= dt; pkxE(c, '✨', W / 2, base - L.length * LH - 40, 50); c.fillStyle = '#E8590C'; c.font = '900 26px sans-serif'; c.textAlign = 'center'; c.fillText('完美！', W / 2, base - L.length * LH - 80); if (pf < 0) pf = 0; }
+        const sp = .22 + L.length * .012; cur.x += dir * sp * dt; if (cur.x < 0) { cur.x = 0; dir = 1; } if (cur.x + cur.w > W) { cur.x = W - cur.w; dir = -1; }
+        const cy = base - L.length * LH; pkxRR(c, cur.x, cy, cur.w, LH - 2, 10, COL[L.length % COL.length], 'rgba(0,0,0,.2)'); pkxE(c, TOP[L.length % TOP.length], cur.x + cur.w / 2, cy - 8, 26); } };
+  });
+  // 5 煙火秀：點往上飛的煙火，砰！（v128：會散開成圈圈、愛心、星星；金色大煙火 3 分）
+  pkxReg('firework', '🎆', '煙火秀', '#9775FA', '#EEE8FF', '點往上飛的小火光，就會放出漂亮的煙火！金色的大煙火有 3 分！', S => {
+    let rk = [], next = 0, city = null, sp = [], tw = null;
+    const boom = (r) => { const n = r.gold ? 60 : 36, sh = pick(['ring', 'ring', 'heart', 'star', 'double']); for (let i = 0; i < n; i++) { const a = i / n * 6.283; let k = 1;
+        if (sh === 'heart') { const hx = 16 * Math.pow(Math.sin(a), 3), hy = -(13 * Math.cos(a) - 5 * Math.cos(2 * a) - 2 * Math.cos(3 * a) - Math.cos(4 * a)); sp.push({ x: r.x, y: r.y, vx: hx * .011, vy: hy * .011, life: 1300, col: r.col }); continue; }
+        if (sh === 'star') k = .6 + .4 * Math.abs(Math.cos(a * 2.5)); if (sh === 'double' && i % 2) k = .55;
+        const v = (r.gold ? .3 : .22) * k; sp.push({ x: r.x, y: r.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 1300, col: r.gold ? pick(['#FFD43B', '#FFE066', '#FFF3BF', '#FF922B']) : sh === 'double' && i % 2 ? '#fff' : r.col }); } };
+    return { down(px, py) { let best = null, d = 64; rk.forEach(r => { const k = Math.hypot(r.x - px, r.y - py); if (k < d + (r.gold ? 16 : 0)) { d = k; best = r; } });
+        if (best) { rk = rk.filter(r => r !== best); boom(best); S.add(best.gold ? 3 : 1, best.x, best.y); tone(best.gold ? [523, 784, 1046, 1318] : [880, 660, 990], .06, 'sine'); } else S.pop(px, py, '#fff', 5); },
+      step(dt, t) { const { c, W, H } = S; pkxSky(c, W, H, '#0B1033', '#3A2A6E');
+        if (!tw) tw = Array.from({ length: 40 }, () => [Math.random() * W, pkxTop + Math.random() * (H * .55), Math.random() * 6]); tw.forEach(s => { c.globalAlpha = .35 + .35 * Math.sin(t / 400 + s[2]); c.fillStyle = '#fff'; c.fillRect(s[0], s[1], 2, 2); }); c.globalAlpha = 1;
+        pkxE(c, '🌕', W - 60, pkxTop + 50, 56);
+        if (!city) city = Array.from({ length: 9 }, (_, i) => [i / 9, .08 + Math.random() * .14, Math.random()]);
+        city.forEach(([x, h, q]) => { const bx = x * W, bw = W / 9 - 4, by = H - h * H - 70; c.fillStyle = '#1B1540'; c.fillRect(bx, by, bw, h * H + 70); c.fillStyle = 'rgba(255,214,90,.75)';
+          for (let wy = by + 8; wy < H - 80; wy += 16) for (let wx = bx + 5; wx < bx + bw - 8; wx += 12) if (((wx * 7 + wy * 13 + q * 100) | 0) % 3) c.fillRect(wx, wy, 6, 8); });
+        c.fillStyle = '#2B2350'; c.fillRect(0, H - 64, W, 64); for (let i = 0; i < Math.ceil(W / 46); i++) pkxE(c, ['🧒', '👧', '👦', '🧑', '👩', '👨'][i % 6], 23 + i * 46, H - 34 + (i % 2) * 6, 34);
+        next -= dt; if (next < 0) { const gold = Math.random() < .1; rk.push({ x: 40 + Math.random() * (W - 80), y: H - 70, v: (gold ? .16 : .2) + Math.random() * .12, gold, col: gold ? '#FFD43B' : pick(['#FF6B6B', '#FFD43B', '#69DB7C', '#4DABF7', '#F783AC', '#B197FC']) }); next = 450 + Math.random() * 450; }
+        rk = rk.filter(r => { r.y -= r.v * dt; c.globalAlpha = .45; c.fillStyle = r.col; c.fillRect(r.x - 2, r.y + 8, 4, r.gold ? 44 : 30); c.globalAlpha = 1; if (r.gold) { c.shadowColor = '#FFD43B'; c.shadowBlur = 20; } c.fillStyle = r.col; c.beginPath(); c.arc(r.x, r.y, r.gold ? 15 : 9, 0, 6.3); c.fill(); c.shadowBlur = 0; if (r.gold) pkxE(c, '⭐', r.x, r.y, 20); return r.y > pkxTop; });
+        sp = sp.filter(p => { p.life -= dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vy += .00012 * dt; p.vx *= .995; c.globalAlpha = Math.max(0, p.life / 1300); c.fillStyle = p.col; c.beginPath(); c.arc(p.x, p.y, 3.2, 0, 6.3); c.fill(); return p.life > 0; }); c.globalAlpha = 1; } };
+  });
+  // 6 節奏小鼓手：音符掉到線上時點那一排（v128：舞台、觀眾；金色星星音符 3 分）
+  pkxReg('beat', '🥁', '節奏小鼓手', '#F08A4B', '#FFE8D6', '音符掉到線上的時候，點那一排的鼓！金色星星音符有 3 分！', S => {
+    let notes = [], next = 0, flash = [0, 0, 0], cheer = 0;
+    const lane = x => Math.max(0, Math.min(2, Math.floor(x / (S.W / 3)))), LC = ['#FF6B6B', '#4DABF7', '#69DB7C'];
+    return { down(px) { const k = lane(px), ly = S.H * .72; flash[k] = 160; tone([[262, 330, 392][k]], .08, 'triangle');
+        const n = notes.find(o => o.l === k && Math.abs(o.y - ly) < 46); if (n) { notes = notes.filter(o => o !== n); S.add(n.gold ? 3 : 1, n.x, ly - 40); S.pop(n.x, ly, n.gold ? '#FFD43B' : n.col, n.gold ? 24 : 10); if (n.gold) cheer = 900; } else S.miss(); },
+      step(dt, t) { const { c, W, H } = S, ly = H * .72, lw = W / 3; pkxSky(c, W, H, '#2B1B4A', '#5A2D6E');
+        [[W * .2, '#FFF3BF'], [W * .8, '#D0EBFF']].forEach(([sx, col], i) => { const a = Math.sin(t / 900 + i * 2) * W * .15; c.globalAlpha = .16; c.fillStyle = col; c.beginPath(); c.moveTo(sx, pkxTop); c.lineTo(sx + a - 90, ly); c.lineTo(sx + a + 90, ly); c.closePath(); c.fill(); }); c.globalAlpha = 1;
+        c.fillStyle = '#C92A2A'; [0, 1].forEach(sd => { c.beginPath(); const x0 = sd ? W : 0, d = sd ? -1 : 1; c.moveTo(x0, pkxTop - 10); c.lineTo(x0 + d * W * .12, pkxTop - 10); c.quadraticCurveTo(x0 + d * W * .05, H * .35, x0 + d * W * .09, ly); c.lineTo(x0, ly); c.fill(); });
+        c.fillStyle = '#A61E4D'; for (let i = 0; i < W; i += 30) { c.beginPath(); c.arc(i + 15, pkxTop - 10, 15, 0, 3.14); c.fill(); }
+        for (let k = 0; k < 3; k++) { c.fillStyle = flash[k] ? LC[k] + '55' : 'rgba(255,255,255,.07)'; c.fillRect(k * lw + 6, pkxTop, lw - 12, ly - pkxTop); flash[k] = Math.max(0, flash[k] - dt); }
+        c.fillStyle = '#8B5A2B'; c.fillRect(0, ly + 6, W, H - ly); c.fillStyle = '#A9743A'; for (let i = 0; i < W; i += 40) c.fillRect(i, ly + 6, 2, H - ly);
+        for (let k = 0; k < 3; k++) { c.fillStyle = LC[k]; c.beginPath(); c.arc(k * lw + lw / 2, ly, 30, 0, 6.3); c.globalAlpha = .35; c.fill(); c.globalAlpha = 1; pkxE(c, '🥁', k * lw + lw / 2, ly + 44, flash[k] ? 66 : 58); }
+        pkxE(c, '🐻', W / 2, ly + 96 + (flash.some(Boolean) ? -6 : 0), 54);
+        for (let i = 0; i < Math.ceil(W / 44); i++) pkxE(c, cheer ? '🙌' : ['🐰', '🐱', '🐶', '🐼', '🦊', '🐸'][i % 6], 22 + i * 44, H - 22 + (cheer ? Math.sin(t / 80 + i) * 4 : 0), 32); cheer = Math.max(0, cheer - dt);
+        c.strokeStyle = '#FFD43B'; c.lineWidth = 5; c.beginPath(); c.moveTo(0, ly); c.lineTo(W, ly); c.stroke();
+        next -= dt; if (next < 0) { const l = Math.floor(Math.random() * 3), gold = Math.random() < .08; notes.push({ l, x: l * lw + lw / 2, y: pkxTop, col: LC[l], gold, e: gold ? '⭐' : pick(['🎵', '🎶']) }); next = 520 + Math.random() * 420 - Math.min(250, t / 300); }
+        notes = notes.filter(o => { o.y += (.2 + t / 400000) * dt; if (o.gold) { c.shadowColor = '#FFD43B'; c.shadowBlur = 18; } c.fillStyle = o.gold ? '#FFD43B' : o.col; c.beginPath(); c.arc(o.x, o.y, o.gold ? 26 : 22, 0, 6.3); c.fill(); c.shadowBlur = 0; pkxE(c, o.e, o.x, o.y, 24); if (o.y > ly + 50) { S.miss(); return false; } return true; }); } };
+  });
+  // 7 小雞過馬路：點一下往前跳一格，躲開車子
+  pkxReg('chick', '🐥', '小雞過馬路', '#FCC419', '#FFF6CC', '點一下，小雞往前跳一格，看準車子再走！', S => {
+    let row = 0, lanes = null, hopT = 0, dead = 0, bon = {};
+    const bonus = () => { bon = {}; for (let i = 1; i <= N; i++) if (Math.random() < .35) bon[i] = Math.random() < .2 ? ['⭐', 3] : ['🌽', 1]; };
+    const N = 5;
+    return { down() { if (dead) return; row++; hopT = 160; tone([700], .04, 'sine'); if (bon[row]) { const b = bon[row]; delete bon[row]; S.add(b[1], S.W / 2, S.H * .5); } if (row > N) { S.add(2, S.W / 2, pkxTop + 60); S.pop(S.W / 2, pkxTop + 70, null, 20); row = 0; bonus(); } },
+      step(dt, t) { const { c, W, H } = S, top = pkxTop + 50, bot = H - 70, rh = (bot - top) / (N + 1);
+        if (!lanes) { bonus(); } if (!lanes) lanes = Array.from({ length: N }, (_, i) => ({ d: i % 2 ? 1 : -1, v: .08 + Math.random() * .08, cars: [0, .5].map(o => ({ x: o * (W + 160), e: pick(['🚗', '🚕', '🚙', '🚌', '🚓', '🚑', '🚒', '🛻', '🚚', '🚜']) })) }));
+        c.fillStyle = '#9BD772'; c.fillRect(0, 0, W, H); c.fillStyle = '#8CE99A'; c.fillRect(0, top - rh / 2, W, rh); c.fillRect(0, bot - rh / 2, W, rh + 80); pkxE(c, '🏠', W / 2, top - 6, 44);
+        lanes.forEach((L, i) => { const ly = bot - (i + 1) * rh; c.fillStyle = '#5C5F66'; c.fillRect(0, ly - rh / 2, W, rh); c.strokeStyle = '#F1F3F5'; c.setLineDash([16, 14]); c.lineWidth = 3; c.beginPath(); c.moveTo(0, ly + rh / 2); c.lineTo(W, ly + rh / 2); c.stroke(); c.setLineDash([]);
+          L.cars.forEach(k => { k.x += L.d * (L.v + t / 900000) * dt; if (L.d > 0 && k.x > W + 80) k.x = -80; if (L.d < 0 && k.x < -80) k.x = W + 80; pkxE(c, k.e, k.x, ly, 50, 0, L.d > 0);
+            if (!dead && row === i + 1 && Math.abs(k.x - W / 2) < 40) { dead = 700; S.miss(); } }); });
+        if (dead) { dead -= dt; if (dead <= 0) { dead = 0; row = 0; } }
+        Object.keys(bon).forEach(i => pkxE(c, bon[i][0], W / 2, bot - i * rh, bon[i][1] > 1 ? 38 : 32, 0, false, .95)); pkxE(c, '🐔', W / 2 + 40, top - 6, 34);
+        hopT = Math.max(0, hopT - dt); const cy = bot - row * rh - (hopT ? Math.sin(hopT / 160 * 3.14) * 14 : 0);
+        pkxE(c, dead ? '💫' : '🐥', W / 2, cy, 48); } };
+  });
+  // 8 投籃高手：往上滑把球投進籃框
+  pkxReg('hoop', '🏀', '投籃高手', '#F76707', '#FFE8CC', '手指往上滑，把球投進籃框！', S => {
+    let ball = null, sx = 0, sy = 0, hx = 0, hd = 1, msg = 0, shots = 0, gold = false;
+    return { down(px, py) { sx = px; sy = py; }, up(px, py) { if (ball || sy - py < 30) return; const { W, H } = S; const dx = (px - sx) / Math.max(30, sy - py); ball = { t: 0, x0: W / 2, tx: W / 2 + dx * (H * .5), g: gold }; shots++; tone([440], .05, 'sine'); },
+      step(dt, t) { const { c, W, H } = S, hy = pkxTop + 120; pkxSky(c, W, H, '#FFE8CC', '#E9B98A'); c.fillStyle = '#C08552'; c.fillRect(0, H - 60, W, 60); for (let i = 0; i < Math.ceil(W / 40); i++) pkxE(c, ['🧒', '👧', '👦', '🐻', '🐰'][i % 5], 20 + i * 40, pkxTop + 18 + (i % 2) * 6, 26, 0, false, .7);
+        hx += hd * (.06 + t / 900000) * dt; if (hx > W * .3) hd = -1; if (hx < -W * .3) hd = 1; const X = W / 2 + hx;
+        pkxRR(c, X - 60, hy - 70, 120, 80, 8, '#fff', '#ADB5BD'); c.strokeStyle = '#F03E3E'; c.lineWidth = 6; c.beginPath(); c.moveTo(X - 38, hy + 10); c.lineTo(X + 38, hy + 10); c.stroke();
+        if (msg) { msg -= dt; pkxE(c, '✨', X, hy - 20, 40); }
+        if (ball) { ball.t += dt / 650; const k = Math.min(1, ball.t), bx = ball.x0 + (ball.tx - ball.x0) * k, by = (H - 120) - (H - 120 - hy - 10) * k - Math.sin(k * 3.14) * 120;
+          if (ball.g) { c.shadowColor = '#FFD43B'; c.shadowBlur = 24; } pkxE(c, '🏀', bx, by, 54 - k * 18, k * 6); c.shadowBlur = 0; if (ball.t >= 1) { if (Math.abs(bx - X) < 40) { S.add(ball.g ? 3 : 1, X, hy); S.pop(X, hy + 20, ball.g ? '#FFD43B' : null, ball.g ? 26 : 10); msg = 500; } else S.miss(); ball = null; gold = shots % 5 === 4 || Math.random() < .08; } }
+        else { if (gold) { c.shadowColor = '#FFD43B'; c.shadowBlur = 26; pkxE(c, '✨', W / 2 + 34, H - 150, 26); } pkxE(c, '🏀', W / 2, H - 120, 56); c.shadowBlur = 0; } c.strokeStyle = '#F03E3E'; c.lineWidth = 6; c.beginPath(); c.moveTo(X - 38, hy + 10); c.lineTo(X + 38, hy + 10); c.stroke();
+        c.strokeStyle = 'rgba(255,255,255,.9)'; c.lineWidth = 2; for (let i = 0; i < 5; i++) { c.beginPath(); c.moveTo(X - 36 + i * 18, hy + 12); c.lineTo(X - 28 + i * 14, hy + 44); c.stroke(); } } };
+  });
+  // 9 射門得分：箭頭左右擺，點一下踢球，不要被守門員擋住
+  pkxReg('goal', '⚽', '射門得分', '#37B24D', '#DDF5E1', '箭頭指到空的地方時點一下，踢球射門！', S => {
+    let aim = 0, ad = 1, kx = 0, kd = 1, ball = null, msg = 0, mt = '', gold = false;
+    return { down() { if (ball) return; ball = { t: 0, tx: S.W / 2 + aim * S.W * .36, g: gold }; tone([300], .06, 'triangle'); },
+      step(dt, t) { const { c, W, H } = S, gy = pkxTop + 90, gw = W * .8; c.fillStyle = '#69C36B'; c.fillRect(0, 0, W, H); for (let i = 0; i < 8; i++) { c.fillStyle = i % 2 ? '#62B864' : '#72CC74'; c.fillRect(0, pkxTop + i * (H / 8), W, H / 8); }
+        c.strokeStyle = '#fff'; c.lineWidth = 6; c.strokeRect(W / 2 - gw / 2, gy - 60, gw, 80); c.strokeStyle = 'rgba(255,255,255,.4)'; c.lineWidth = 1; for (let x = W / 2 - gw / 2; x < W / 2 + gw / 2; x += 16) { c.beginPath(); c.moveTo(x, gy - 60); c.lineTo(x, gy + 20); c.stroke(); }
+        kx += kd * (.12 + t / 700000) * dt; if (kx > gw * .38) kd = -1; if (kx < -gw * .38) kd = 1; pkxE(c, '🧤', W / 2 + kx, gy - 10, 60);
+        if (!ball) { aim += ad * dt * .0016; if (aim > 1) ad = -1; if (aim < -1) ad = 1; const ax = W / 2 + aim * W * .36; c.strokeStyle = '#FFD43B'; c.lineWidth = 6; c.beginPath(); c.moveTo(W / 2, H - 140); c.lineTo(ax, gy + 40); c.stroke(); if (gold) { c.shadowColor = '#FFD43B'; c.shadowBlur = 26; } pkxE(c, '⚽', W / 2, H - 130, 56); c.shadowBlur = 0; }
+        else { ball.t += dt / 450; const k = Math.min(1, ball.t), bx = W / 2 + (ball.tx - W / 2) * k, by = H - 130 - (H - 130 - gy + 10) * k; pkxE(c, '⚽', bx, by, 56 - 20 * k, k * 8);
+          if (ball.t >= 1) { if (Math.abs(bx - (W / 2 + kx)) < 50) { S.miss(); mt = '🧤'; } else { S.add(ball.g ? 3 : 1, bx, gy); S.pop(bx, gy, ball.g ? '#FFD43B' : '#fff', ball.g ? 28 : 16); mt = ball.g ? '🏆' : '🎉'; } msg = 600; ball = null; gold = Math.random() < .15; } }
+        if (msg) { msg -= dt; pkxE(c, mt, W / 2, H * .5, 80); } } };
+  });
+  // 10 飛飛小鳥：點一下往上飛，穿過雲朵的縫
+  pkxReg('bird', '🐤', '飛飛小鳥', '#74C0FC', '#E3F2FF', '點一下往上飛，穿過中間的空隙！', S => {
+    let y = 0, vy = 0, pp = [], next = 0, hurt = 0;
+    return { down() { vy = -.52; tone([760], .03, 'sine'); },
+      step(dt, t) { const { c, W, H } = S, bx = W * .28; if (!y) y = H / 2; pkxSky(c, W, H, '#A5D8FF', '#E7F5FF');
+        vy += .0016 * dt; y += vy * dt; if (y > H - 40) { y = H - 40; vy = -.3; } if (y < pkxTop + 20) { y = pkxTop + 20; vy = 0; } hurt = Math.max(0, hurt - dt);
+        next -= dt; if (next < 0) { const gap = 200, gc = pkxTop + 80 + Math.random() * (H - pkxTop - 240); const r = Math.random(); pp.push({ x: W + 40, gc, gap, done: 0, it: r < .1 ? ['🌈', 3] : r < .55 ? ['⭐', 1] : null }); next = 1700; }
+        pp = pp.filter(p => { p.x -= (.17 + t / 600000) * dt; c.fillStyle = '#fff';
+          pkxRR(c, p.x - 34, pkxTop, 68, p.gc - p.gap / 2 - pkxTop, 30, '#FFFFFF', '#D0EBFF'); pkxRR(c, p.x - 34, p.gc + p.gap / 2, 68, H - p.gc - p.gap / 2, 30, '#FFFFFF', '#D0EBFF');
+          if (!p.done && Math.abs(p.x - bx) < 44 && Math.abs(y - p.gc) > p.gap / 2 - 18) { p.done = 1; S.miss(); hurt = 600; }
+          if (p.it) { pkxE(c, p.it[0], p.x, p.gc, p.it[1] > 1 ? 44 : 34); if (Math.abs(p.x - bx) < 30 && Math.abs(y - p.gc) < 36) { S.add(p.it[1], p.x, p.gc); S.pop(p.x, p.gc, '#FFD43B'); p.it = null; } }
+          if (!p.done && p.x < bx - 44) { p.done = 1; S.hit(bx, y - 40); S.pop(bx, y); }
+          return p.x > -60; });
+        pkxE(c, '🐤', bx, y, 52, Math.max(-.5, Math.min(.6, vy)), true, hurt && Math.floor(hurt / 100) % 2 ? .4 : 1); } };
+  });
+  // 11 賽車閃避：點左邊或右邊換車道，撿金幣、躲三角錐
+  pkxReg('lane', '🏎️', '賽車閃避', '#FA5252', '#FFE3E3', '點左邊或右邊換車道，撿金幣、躲開三角錐！', S => {
+    let ln = 1, cx = 0, it = [], next = 0, off = 0;
+    return { down(px) { ln = Math.max(0, Math.min(2, ln + (px < S.W / 2 ? -1 : 1))); tone([600], .03, 'sine'); },
+      step(dt, t) { const { c, W, H } = S, rw = Math.min(W * .8, 330), x0 = (W - rw) / 2, lw = rw / 3, cy = H - 140, sp = .32 + t / 250000;
+        c.fillStyle = '#8CE99A'; c.fillRect(0, 0, W, H); off = (off + sp * dt) % 60; if (x0 > 30) for (let i = 0; i < 6; i++) { const ty = (i * 140 + off * 2.33) % (H + 80) - 40; pkxE(c, i % 2 ? '🌳' : '🌲', x0 / 2, ty, 40); pkxE(c, i % 2 ? '🌲' : '🌳', W - x0 / 2, ty + 70, 40); } c.fillStyle = '#495057'; c.fillRect(x0, 0, rw, H);
+        c.strokeStyle = '#fff'; c.lineWidth = 4; c.setLineDash([30, 30]); c.lineDashOffset = -off; [1, 2].forEach(k => { c.beginPath(); c.moveTo(x0 + k * lw, 0); c.lineTo(x0 + k * lw, H); c.stroke(); }); c.setLineDash([]);
+        const tx = x0 + lw * ln + lw / 2; if (!cx) cx = tx; cx += (tx - cx) * Math.min(1, dt * .02);
+        next -= dt; if (next < 0) { const bad = Math.random() < .5, r = Math.random(); it.push({ l: Math.floor(Math.random() * 3), y: pkxTop - 30, bad, e: bad ? pick(['🚧', '🛢️', '🪨', '🚧']) : r < .08 ? '💰' : r < .2 ? '⭐' : '🪙', p: r < .08 ? 3 : r < .2 ? 2 : 1 }); next = 380 + Math.random() * 300; }
+        it = it.filter(o => { o.y += sp * dt; const ox = x0 + lw * o.l + lw / 2; pkxE(c, o.e, ox, o.y, 44);
+          if (Math.abs(o.y - cy) < 40 && Math.abs(ox - cx) < 34) { if (o.bad) S.miss(); else { S.add(o.p, ox, o.y); S.pop(ox, o.y, '#FFD43B', 6 + o.p * 4); } return false; } return o.y < H + 40; });
+        pkxE(c, '🏎️', cx, cy, 64, -1.5708); } };
+  });
+  // 12 釣魚樂（v128）：25 種魚，越深的地方魚越大，大魚收線比較慢、分數比較高；第一次釣到的魚收進魚類圖鑑
+  pkxReg('fishing', '🎣', '釣魚樂', '#1C7ED6', '#D0EBFF', '小船移動時點一下放下魚鉤，越深的地方魚越大！', S => {
+    let bx = 0, bd = 1, hook = null, fish = [], next = 0, ban = null, tag = null, weeds = null;
+    const dex = () => store.get('fishDex', []);
+    const pickF = () => { const r = Math.random(), big = fish.some(x => x.f[1] >= 3); let tier = r < .42 ? 0 : r < .72 ? 1 : r < .9 ? 2 : r < .975 ? 3 : r < .99 ? 2 : 4; if (tier >= 3 && big) tier = 2; if (tier === 4 && Math.random() < .5) tier = 3; const pool = FISH_DEX.filter(f => f[1] === tier); return pick(pool); }; // 超大魚和藍鯨一次只會出現一隻，藍鯨很少見
+    const BAND = [[0, .4], [.2, .62], [.45, .8], [.62, .9], [.72, .9]], SPD = [[.05, .11], [.04, .08], [.03, .06], [.03, .05], [.025, .03]], REEL = [-.45, -.36, -.27, -.2, -.14];
+    return { down() { if (!hook) { hook = { x: bx, y: S.pkxSea + 6, v: .45, f: null }; tone([500, 380], .04, 'sine'); } },
+      step(dt, t) { const { c, W, H } = S, sea = pkxTop + 80, k = Math.max(.75, Math.min(1.3, W / 520)); S.pkxSea = sea;
+        pkxSky(c, W, sea, '#BDE6FF', '#FFF3BF'); pkxE(c, '☀️', W - 50, pkxTop + 30, 40); pkxE(c, '☁️', W * .3 + Math.sin(t / 4000) * 30, pkxTop + 22, 36);
+        const g = c.createLinearGradient(0, sea, 0, H); g.addColorStop(0, '#74C0FC'); g.addColorStop(.5, '#1C7ED6'); g.addColorStop(1, '#0B3A73'); c.fillStyle = g; c.fillRect(0, sea, W, H - sea);
+        c.fillStyle = 'rgba(255,255,255,.12)'; for (let i = 0; i < 5; i++) { c.beginPath(); c.moveTo(W * (i / 5) + Math.sin(t / 900 + i) * 20, sea); c.lineTo(W * (i / 5) + 60 + Math.sin(t / 900 + i) * 20, sea); c.lineTo(W * (i / 5) - 40, H * .7); c.closePath(); c.fill(); }
+        if (!weeds) weeds = Array.from({ length: 7 }, (_, i) => [(i + .3 + Math.random() * .4) * W / 7, pick(['🌿', '🪸', '🪨', '🐚', '🌿'])]);
+        c.fillStyle = '#C8A869'; c.beginPath(); c.moveTo(0, H); c.lineTo(0, H - 26); for (let x = 0; x <= W; x += 40) c.lineTo(x, H - 26 - Math.sin(x / 70) * 8); c.lineTo(W, H); c.fill();
+        weeds.forEach(([x, e], i) => pkxE(c, e, x, H - 40, 40, e === '🌿' ? Math.sin(t / 700 + i) * .12 : 0));
+        if (!bx) bx = W / 2; if (!hook) { bx += bd * .1 * dt; if (bx > W - 50) bd = -1; if (bx < 50) bd = 1; }
+        c.fillStyle = 'rgba(255,255,255,.55)'; c.fillRect(0, sea - 2, W, 4); pkxE(c, '🚣', bx, sea - 14 + Math.sin(t / 400) * 2, 54);
+        next -= dt; if (next < 0 && fish.length < 8) { const f = pickF(), L = Math.random() < .5, len = Math.min(W * .8, f[3] * k), b = BAND[f[1]], top = sea + 40, span = H - 70 - top, sp = SPD[f[1]];
+          fish.push({ f, len, x: L ? -len / 2 - 10 : W + len / 2 + 10, y: top + span * (b[0] + Math.random() * (b[1] - b[0])), v: (L ? 1 : -1) * (sp[0] + Math.random() * (sp[1] - sp[0])) }); next = 500 + Math.random() * 400; }
+        fish = fish.filter(o => { if (!(hook && hook.f === o)) { o.x += o.v * dt; o.y += Math.sin((t + o.x * 3) / 600) * .08; } fishDraw(c, o.f, o.x, o.y, o.len, o.v > 0 ? 1 : -1, t); return o.x > -o.len && o.x < W + o.len; });
+        if (hook) { c.strokeStyle = '#343A40'; c.lineWidth = 2; c.beginPath(); c.moveTo(hook.x, sea - 20); c.lineTo(hook.x, hook.y); c.stroke(); pkxE(c, '🪝', hook.x, hook.y, 30);
+          if (!hook.f) { hook.y += hook.v * dt; const f = hook.v > 0 && fish.find(o => Math.abs(o.x - hook.x) < o.len * .4 && Math.abs(o.y - hook.y) < Math.max(16, o.len * (o.f[1] === 4 ? .1 : .16)));
+            if (f) { hook.f = f; hook.v = REEL[f.f[1]]; tone(f.f[1] >= 3 ? [220, 330, 440] : [660], .06, 'triangle'); if (f.f[1] >= 2) tag = { s: f.f[1] === 4 ? '傳說的魚！' : '大魚上鉤了！', t: 1400 }; } else if (hook.y > H - 40) hook.v = -.6; }
+          else { hook.y += hook.v * dt; hook.f.x = hook.x; hook.f.y = hook.y + Math.max(14, hook.f.len * .12) + Math.sin(t / 45) * 3; }
+          if (hook.v < 0 && hook.y <= sea + 6) { const o = hook.f; if (o) { fish = fish.filter(f => f !== o); const pts = o.f[2]; S.add(pts, hook.x, sea - 40); S.pop(hook.x, sea - 20, null, 8 + pts * 4);
+              const D = dex(); if (!D.includes(o.f[0])) { D.push(o.f[0]); store.set('fishDex', D); ban = { f: o.f, t: 2200, n: D.filter(n => FISH_DEX.some(x => x[0] === n)).length }; tone([523, 659, 784, 1046], .07, 'sine'); } else tag = { s: `${o.f[0]} +${pts}`, t: 1100 }; }
+            hook = null; } }
+        if (tag) { tag.t -= dt; c.globalAlpha = Math.min(1, tag.t / 300); c.font = `900 ${Math.round(22 * Math.min(1.2, k))}px sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.lineWidth = 5; c.strokeStyle = '#fff'; c.strokeText(tag.s, W / 2, sea + 30); c.fillStyle = '#C2410C'; c.fillText(tag.s, W / 2, sea + 30); c.globalAlpha = 1; if (tag.t <= 0) tag = null; }
+        if (ban) { ban.t -= dt; const a = Math.min(1, ban.t / 300), bw = Math.min(W - 30, 330), bh = 120, x0 = (W - bw) / 2, y0 = sea + 50; c.globalAlpha = a; pkxRR(c, x0, y0, bw, bh, 22, 'rgba(255,255,255,.95)', '#FFB020');
+          c.fillStyle = '#E8590C'; c.font = '900 20px sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('🆕 新的魚！', W / 2, y0 + 20); fishDraw(c, ban.f, W / 2, y0 + 64, Math.min(bw * .45, ban.f[4].k === 'turtle' || ban.f[4].k === 'ray' ? 70 : 96, Math.max(70, ban.f[3])), 1, t);
+          c.fillStyle = '#2B2633'; c.font = '900 18px sans-serif'; c.fillText(`${ban.f[0]}・${FISH_TIER[ban.f[1]]} ${ban.f[2]} 分　📖 ${ban.n}/${FISH_DEX.length}`, W / 2, y0 + bh - 14); c.globalAlpha = 1; if (ban.t <= 0) ban = null; } } };
+  });
+  // 13 打靶射擊：點飛過去的氣球和鴨子
+  pkxReg('target', '🎯', '打靶射擊', '#E64980', '#FFDEEB', '點飛過去的氣球和小鴨子！', S => {
+    let it = [], next = 0;
+    return { down(px, py) { const o = it.find(o => Math.hypot(o.x - px, o.y - py) < 36); if (o) { it = it.filter(x => x !== o); S.add(o.p, o.x, o.y); S.pop(o.x, o.y, o.p > 2 ? '#FFD43B' : o.col, 12 + o.p * 4); tone([990], .04, 'square'); } else S.pop(px, py, '#adb5bd', 3); },
+      step(dt, t) { const { c, W, H } = S; pkxSky(c, W, H, '#FFE3EC', '#FFF0F6'); c.fillStyle = '#B5543C'; for (let r = 0; r < 3; r++) c.fillRect(0, pkxTop + 120 + r * ((H - pkxTop - 160) / 3) + 34, W, 8);
+        next -= dt; if (next < 0) { const r = Math.floor(Math.random() * 3), L = r % 2 === 0, q = Math.random(), g = q < .04 ? ['👑', 5, 2.2] : q < .14 ? ['🎁', 3, 1.6] : q < .3 ? ['⭐', 2, 1.2] : [pick(['🎈', '🦆', '🎈', '🦆', '🐤', '🎯']), 1, 1]; it.push({ x: L ? -30 : W + 30, y: pkxTop + 120 + r * ((H - pkxTop - 160) / 3), v: (L ? 1 : -1) * (.1 + Math.random() * .08 + t / 600000) * g[2], e: g[0], p: g[1], col: pick(['#FF6B6B', '#FFD43B', '#4DABF7']) }); next = 380 + Math.random() * 350; }
+        it = it.filter(o => { o.x += o.v * dt; if (o.p >= 3) { c.shadowColor = '#FFD43B'; c.shadowBlur = 18; } pkxE(c, o.e, o.x, o.y + Math.sin((t + o.x) / 200) * 4, o.p >= 3 ? 44 : 50, 0, o.v > 0 && (o.e === '🦆' || o.e === '🐤')); c.shadowBlur = 0; return o.x > -60 && o.x < W + 60; }); } };
+  });
+  // 14 鬆餅翻翻：鬆餅變金黃色時點它翻面（v128：平底鍋、廚房、做好的鬆餅會疊起來；金色鬆餅 3 分）
+  pkxReg('pancake', '🥞', '鬆餅翻翻', '#F59F00', '#FFF3BF', '鬆餅變成金黃色時點它翻面，不要烤焦了！閃閃發亮的金色鬆餅有 3 分！', S => {
+    const P = [0, 1, 2, 3].map(i => ({ t: -i * 900 - 300, flip: 0, g: false })); let done = 0;
+    const col = k => k < 0 ? null : k < 1600 ? '#FFF1C9' : k < 2900 ? '#E9A23B' : '#5C3B1E';
+    const pos = i => { const { W, H } = S; return [W * (i % 2 ? .7 : .26), pkxTop + 130 + Math.floor(i / 2) * Math.min(230, (H - pkxTop - 300) * .62)]; };
+    return { down(px, py) { P.forEach((p, i) => { const [x, y] = pos(i); if (Math.hypot(px - x, py - y) < 72) { if (p.t >= 1600 && p.t < 2900) { S.add(p.g ? 3 : 1, x, y - 40); S.pop(x, y, '#F7B731', p.g ? 26 : 14); p.flip = 400; p.t = -400; done++; p.g = Math.random() < .12; } else if (p.t >= 0) { S.miss(); p.t = -500; } } }); },
+      step(dt, t) { const { c, W, H } = S, r = Math.min(64, W * .12); pkxSky(c, W, H, '#FFF9DB', '#FFE8CC');
+        c.strokeStyle = 'rgba(214,170,110,.35)'; c.lineWidth = 2; for (let y = pkxTop; y < H; y += 40) { c.beginPath(); c.moveTo(0, y); c.lineTo(W, y); c.stroke(); } for (let x = 0; x < W; x += 40) { c.beginPath(); c.moveTo(x, pkxTop); c.lineTo(x, H); c.stroke(); }
+        P.forEach((p, i) => { p.t += dt; if (p.t > 3600) { p.t = -300; p.g = Math.random() < .12; } p.flip = Math.max(0, p.flip - dt); const [x, y] = pos(i);
+          c.save(); c.translate(x, y); c.save(); c.rotate(.7); pkxRR(c, r * .85, -8, r * 1.0, 16, 8, '#9C6230', '#5C3A1A'); c.fillStyle = '#ADB5BD'; c.fillRect(r * .8, -5, 14, 10); c.restore();
+          c.fillStyle = '#6C757D'; c.beginPath(); c.ellipse(0, 0, r * 1.08, r * .78, 0, 0, 6.3); c.fill(); const g = c.createRadialGradient(-r * .2, -r * .2, 4, 0, 0, r); g.addColorStop(0, '#495057'); g.addColorStop(1, '#212529'); c.fillStyle = g; c.beginPath(); c.ellipse(0, 0, r * .92, r * .64, 0, 0, 6.3); c.fill();
+          c.strokeStyle = 'rgba(255,255,255,.35)'; c.lineWidth = 3; c.beginPath(); c.ellipse(0, 0, r * 1.0, r * .71, 0, 3.6, 4.9); c.stroke(); c.restore();
+          const k = col(p.t); if (k) { const fy = y - (p.flip ? Math.sin(p.flip / 400 * 3.14) * 60 : 0); if (p.g && p.t < 2900) { c.shadowColor = '#FFD43B'; c.shadowBlur = 24; }
+            c.fillStyle = p.g && p.t >= 1600 && p.t < 2900 ? '#FFC929' : k; c.beginPath(); c.ellipse(x, fy, r * .7, r * .45, 0, 0, 6.3); c.fill(); c.shadowBlur = 0; c.strokeStyle = p.t < 1600 ? 'rgba(230,200,140,.9)' : 'rgba(150,90,20,.55)'; c.lineWidth = 4; c.stroke(); if (p.t < 1600) { c.fillStyle = 'rgba(255,255,255,.8)'; for (let b = 0; b < 5; b++) { c.beginPath(); c.arc(x - r * .4 + b * r * .2, fy - r * .1 + (b % 2) * r * .18, 2.5 + (b % 2), 0, 6.3); c.fill(); } } else { c.fillStyle = 'rgba(255,255,255,.3)'; c.beginPath(); c.ellipse(x - r * .2, fy - r * .12, r * .22, r * .08, -.2, 0, 6.3); c.fill(); }
+            if (p.t > 2900) pkxE(c, '💨', x + 20, y - 50, 30, 0, false, .7); if (p.t >= 1600 && p.t < 2900) pkxE(c, '✨', x - 40, y - 40, 26); if (p.g) pkxE(c, '⭐', x + r * .55, fy - r * .5, 22); } });
+        const n = Math.min(done, 10), px = W / 2, py = H - 50; pkxRR(c, px - 80, py + 8, 160, 14, 7, '#fff', '#DEE2E6'); for (let i = 0; i < n; i++) { c.fillStyle = i % 2 ? '#E8A33D' : '#F2B95A'; c.beginPath(); c.ellipse(px, py - i * 9, 62, 10, 0, 0, 6.3); c.fill(); }
+        if (n) { c.fillStyle = '#FFE066'; c.fillRect(px - 12, py - n * 9 - 8, 24, 12); pkxE(c, n > 5 ? '🍓' : '🧈', px + 30, py - n * 9 - 6, 22); } } };
+  });
+  // 15 挖寶藏：用手指刮開沙子，找出寶石
+  pkxReg('dig', '💎', '挖寶藏', '#D9A441', '#FFF1D6', '用手指刮開沙子，把藏起來的寶石找出來！', S => {
+    let G = null; const C = 4, Rr = 5;
+    const TR = [['🪙', 1], ['💎', 1], ['💍', 2], ['🏺', 2], ['👑', 3], ['🦕', 3], ['🧰', 5]], tr = () => { const r = Math.random(); return r < .06 ? TR[6] : r < .2 ? TR[4 + (Math.random() < .5 ? 0 : 1)] : r < .45 ? TR[2 + (Math.random() < .5 ? 0 : 1)] : TR[Math.random() < .5 ? 0 : 1]; };
+    const fresh = () => { const gem = new Set(); while (gem.size < 4) gem.add(Math.floor(Math.random() * C * Rr)); G = Array.from({ length: C * Rr }, (_, i) => { const q = gem.has(i) ? tr() : null; return { h: 1, gem: gem.has(i), e: q ? q[0] : pick(['🦴', '🐚', '🪨', '🌿', '🪱', '🍂']), p: q ? q[1] : 0, got: 0 }; }); };
+    const cell = () => { const { W, H } = S, w = Math.min((W - 40) / C, (H - pkxTop - 60) / Rr); return [w, (W - w * C) / 2, pkxTop + 20]; };
+    const rub = (px, py) => { const [w, x0, y0] = cell(), i = Math.floor((px - x0) / w), j = Math.floor((py - y0) / w); if (i < 0 || j < 0 || i >= C || j >= Rr) return; const g = G[j * C + i]; if (g.h <= 0) return; g.h -= .22;
+        if (g.h <= 0 && g.gem && !g.got) { g.got = 1; S.add(g.p, x0 + i * w + w / 2, y0 + j * w + w / 2); S.pop(x0 + i * w + w / 2, y0 + j * w + w / 2, g.p >= 3 ? '#FFD43B' : null, 8 + g.p * 4); if (g.p >= 5) tone([523, 659, 784, 1046], .08, 'sine'); if (G.every(x => !x.gem || x.got)) setTimeout(fresh, 600); } };
+    return { down: rub, move(px, py, h) { if (h) rub(px, py); },
+      step(dt, t) { const { c, W, H } = S; if (!G) fresh(); pkxSky(c, W, H, '#F4D58D', '#E0B65A'); const [w, x0, y0] = cell();
+        G.forEach((g, k) => { const x = x0 + (k % C) * w, y = y0 + Math.floor(k / C) * w; pkxRR(c, x + 3, y + 3, w - 6, w - 6, 12, '#C99A4B'); if (g.got && g.p >= 3) { c.shadowColor = '#FFD43B'; c.shadowBlur = 20; } pkxE(c, g.e, x + w / 2, y + w / 2, w * .5); c.shadowBlur = 0;
+          if (g.h > 0) { c.globalAlpha = Math.min(1, g.h); pkxRR(c, x + 3, y + 3, w - 6, w - 6, 12, '#F2D08A'); c.fillStyle = '#D9B25E'; for (let d = 0; d < 6; d++) c.fillRect(x + 10 + (d * 37 % (w - 20)), y + 10 + (d * 53 % (w - 20)), 4, 4); c.globalAlpha = 1; } }); } };
+  });
+  // 16 青蛙跳荷葉：點一下往前跳，要跳到荷葉上（v128：跳 5 片到對岸 +3；荷葉發綠光就可以跳；蒼蠅多 1 分）
+  pkxReg('frog', '🐸', '青蛙跳荷葉', '#40C057', '#D3F9D8', '荷葉發出綠光的時候點一下跳上去，跳過 5 片荷葉就到對岸了！', S => {
+    let rows = null, fx = 0, splash = 0, jumpT = 0, prog = 0, party = 0;
+    const mk = () => ({ x: Math.random() * S.W, v: (Math.random() < .5 ? -1 : 1) * (.06 + Math.random() * .07 + prog * .006), fly: Math.random() < .3 });
+    return { down() { if (jumpT || splash || party) return; jumpT = 260; tone([500, 800], .04, 'sine'); },
+      step(dt, t) { const { c, W, H } = S, by = H - 120, gap = Math.min(120, (by - pkxTop - 90) / 4); if (!rows) { rows = [mk(), mk(), mk(), mk()]; fx = W / 2; }
+        c.fillStyle = '#4DABF7'; c.fillRect(0, 0, W, H); c.fillStyle = 'rgba(255,255,255,.18)'; for (let i = 0; i < 12; i++) c.fillRect((i * 97 + t * .02) % W, pkxTop + (i * 71) % (H - pkxTop), 30, 3);
+        const left = 5 - prog, sy = by - left * gap - gap * .55; if (left <= 3) { c.fillStyle = '#8CE99A'; c.fillRect(0, pkxTop, W, Math.max(0, sy - pkxTop + 20)); pkxE(c, '🏁', W / 2, sy - 8, 46); pkxE(c, '🌳', 40, sy - 20, 50); pkxE(c, '🌳', W - 40, sy - 20, 50); }
+        c.fillStyle = '#8CE99A'; c.fillRect(0, by + 30, W, H); pkxE(c, '🌸', 30, by + 60, 34); pkxE(c, '🌸', W - 30, by + 70, 34);
+        rows.forEach((r, i) => { if (i >= left) return; r.x += r.v * dt; if (r.x > W + 50) r.x = -50; if (r.x < -50) r.x = W + 50; const ry = by - (i + 1) * gap, ok = i === 0 && Math.abs(r.x - fx) < 44;
+          if (i === 0) { c.strokeStyle = ok ? '#B2F2BB' : 'rgba(255,255,255,.55)'; c.lineWidth = ok ? 8 : 3; c.setLineDash(ok ? [] : [8, 8]); c.beginPath(); c.ellipse(r.x, ry + 4, 42, 24, 0, 0, 6.3); c.stroke(); c.setLineDash([]); }
+          pkxE(c, '🪷', r.x, ry, 70); if (r.fly) pkxE(c, '🪰', r.x + 14 + Math.sin(t / 90) * 3, ry - 18, 24); });
+        if (!jumpT && !splash && rows[0] && Math.abs(rows[0].x - fx) < 44 && !party) pkxE(c, '⬆️', fx, by - gap * .5 + Math.sin(t / 120) * 5, 30);
+        c.fillStyle = 'rgba(255,255,255,.9)'; for (let i = 0; i < 5; i++) { c.beginPath(); c.arc(20 + i * 22, pkxTop + 14, 8, 0, 6.3); c.fill(); if (i < prog) pkxE(c, '🪷', 20 + i * 22, pkxTop + 14, 16); } pkxE(c, '🏁', 20 + 5 * 22 + 6, pkxTop + 14, 18);
+        if (jumpT) { jumpT -= dt; if (jumpT <= 0) { jumpT = 0; const r = rows[0]; if (Math.abs(r.x - fx) < 44) { S.hit(fx, by - gap); S.pop(fx, by - gap, '#fff'); if (r.fly) S.add(1, r.x, by - gap - 30); fx = r.x; rows.shift(); rows.push(mk()); prog++;
+              if (prog >= 5) { party = 1600; S.add(3, W / 2, by - gap * 2); S.pop(W / 2, by - gap, '#FFD43B', 40); tone([523, 659, 784, 1046], .08, 'sine'); } } else { splash = 600; S.miss(); } } }
+        if (party) { party -= dt; c.fillStyle = '#E8590C'; c.font = '900 30px sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.lineWidth = 6; c.strokeStyle = '#fff'; c.strokeText('到對岸了！+3', W / 2, H * .4); c.fillText('到對岸了！+3', W / 2, H * .4); pkxE(c, '🎉', W / 2, H * .4 - 50, 50); if (party <= 0) { party = 0; prog = 0; rows = null; } }
+        if (splash) { splash -= dt; pkxE(c, '💦', fx, by - gap, 60); if (splash <= 0) splash = 0; }
+        const fy = jumpT ? by - (1 - jumpT / 260) * gap - Math.sin((1 - jumpT / 260) * 3.14) * 40 : by;
+        if (!splash) pkxE(c, '🐸', fx, fy, 60); } };
+  });
+  // 17 太空打磚塊：拖動板子接住球，打掉磚塊
+  pkxReg('brick', '🧱', '太空打磚塊', '#5F3DC4', '#E5DBFF', '手指左右拖動板子，接住球，把磚塊打掉！', S => {
+    let px = 0, b = null, B = null;
+    const COL = ['#FF6B6B', '#FFA94D', '#FFD43B', '#69DB7C', '#4DABF7'];
+    let lvl = 0; const SHP = [(r, k) => 1, (r, k) => k >= r / 2 && k < 6 - r / 2 ? 1 : 0, (r, k) => (r + k) % 2 === 0, (r, k) => [[0, 1, 0, 0, 1, 0], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 0], [0, 0, 1, 1, 0, 0]][r][k], (r, k) => r === 0 || r === 4 || k === 0 || k === 5];
+    const fresh = () => { const { W } = S, cols = 6, bw = (W - 40) / cols, f = SHP[lvl++ % SHP.length]; B = []; for (let r = 0; r < 5; r++) for (let k = 0; k < cols; k++) if (f(r, k)) B.push({ x: 20 + k * bw, y: pkxTop + 30 + r * 30, w: bw - 6, h: 24, c: COL[r], on: 1, hp: Math.random() < .15 ? 2 : 1, st: 0 }); for (let i = 0; i < 3; i++) { const q = pick(B); q.st = 1; q.hp = 1; } };
+    const serve = () => { b = { x: px, y: S.H - 170, vx: (Math.random() < .5 ? -1 : 1) * .22, vy: -.32 }; };
+    return { down(x) { px = x; }, move(x, y, h) { if (h) px = x; },
+      step(dt, t) { const { c, W, H } = S, py = H - 140; if (!B) { fresh(); px = W / 2; serve(); } pkxSky(c, W, H, '#1A1446', '#3B2F7A');
+        px = Math.max(50, Math.min(W - 50, px)); pkxRR(c, px - 50, py, 100, 16, 8, '#FFD43B');
+        const n = Math.ceil(dt / 8); for (let s = 0; s < n; s++) { const d = dt / n; b.x += b.vx * d; b.y += b.vy * d; if (b.x < 10 || b.x > W - 10) b.vx *= -1; if (b.y < pkxTop + 10) b.vy = Math.abs(b.vy);
+          if (b.vy > 0 && b.y > py - 10 && b.y < py + 14 && Math.abs(b.x - px) < 58) { b.vy = -Math.abs(b.vy) * 1.01; b.vx = (b.x - px) / 50 * .3; tone([440], .03, 'sine'); }
+          const k = B.find(q => q.on && b.x > q.x && b.x < q.x + q.w && b.y > q.y && b.y < q.y + q.h); if (k) { b.vy *= -1; if (--k.hp > 0) { tone([330], .03, 'square'); } else { k.on = 0; S.add(k.st ? 3 : 1, k.x + k.w / 2, k.y); S.pop(k.x + k.w / 2, k.y, k.st ? '#FFD43B' : k.c, k.st ? 20 : 8); } } }
+        if (b.y > H) { S.miss(); serve(); } if (B.every(q => !q.on)) fresh();
+        B.forEach(q => { if (!q.on) return; pkxRR(c, q.x, q.y, q.w, q.h, 6, q.st ? '#FFF3BF' : q.c, q.hp > 1 ? '#fff' : null); if (q.hp > 1) { c.fillStyle = 'rgba(0,0,0,.22)'; c.fillRect(q.x + 4, q.y + 4, q.w - 8, q.h - 8); } if (q.st) pkxE(c, '⭐', q.x + q.w / 2, q.y + q.h / 2, 20); }); c.fillStyle = '#fff'; c.beginPath(); c.arc(b.x, b.y, 10, 0, 6.3); c.fill(); } };
+  });
+  // 18 洗車小幫手：用手指把車子上的泥巴擦乾淨
+  pkxReg('wash', '🧽', '洗車小幫手', '#3BC9DB', '#E3FAFC', '用手指擦一擦，把車子上的泥巴洗乾淨！', S => {
+    let mud = [], car = null, slide = 0, sp = { x: -99, y: -99 };
+    const fresh = () => { const { W, H } = S; car = Math.random() < .08 ? '🚀' : pick(['🚗', '🚙', '🚌', '🚒', '🚜', '🚓', '🚑', '🚐', '🚚', '🛻', '🏎️', '🚛']); mud = Array.from({ length: 6 }, () => ({ x: W / 2 + (Math.random() - .5) * W * .5, y: H * .5 + (Math.random() - .5) * 110, r: 22 + Math.random() * 14, a: 1 })); slide = 0; };
+    const rub = (x, y) => { sp = { x, y }; mud.forEach(m => { if (m.a > 0 && Math.hypot(m.x - x, m.y - y) < m.r + 20) { m.a -= .08; if (m.a <= 0) { S.hit(m.x, m.y); S.pop(m.x, m.y, '#fff', 8); } } }); if (mud.every(m => m.a <= 0) && !slide) { slide = 1; S.add(car === '🚀' ? 5 : 2, S.W / 2, S.H * .3); tone([523, 659, 784], .08, 'sine'); } };
+    return { down: rub, move(x, y, h) { if (h) rub(x, y); },
+      step(dt, t) { const { c, W, H } = S; if (!car) fresh(); pkxSky(c, W, H, '#E3FAFC', '#C5F6FA'); c.fillStyle = '#ADB5BD'; c.fillRect(0, H * .5 + 90, W, 20); pkxE(c, '🚿', W * .2, pkxTop + 40, 46); pkxE(c, '🚿', W * .8, pkxTop + 40, 46, 0, true); c.fillStyle = 'rgba(116,192,252,.35)'; for (let i = 0; i < 14; i++) c.fillRect(W * (i % 2 ? .8 : .2) - 20 + (i * 7) % 40, pkxTop + 60 + ((t * .3 + i * 40) % 120), 3, 10); if (car === '🚀' && !slide) pkxE(c, '✨', W / 2 + 90, H * .5 - 90, 36);
+        let ox = 0; if (slide) { slide += dt; ox = slide * .8; if (ox > W) fresh(); }
+        pkxE(c, car, W / 2 + ox, H * .5, Math.min(W * .7, 260)); mud.forEach(m => { if (m.a > 0) { c.globalAlpha = m.a; c.fillStyle = '#7A5230'; c.beginPath(); c.arc(m.x + ox, m.y, m.r, 0, 6.3); c.fill(); c.globalAlpha = 1; } });
+        if (slide) for (let i = 0; i < 6; i++) pkxE(c, '🫧', W / 2 + ox - 80 + i * 30, H * .5 - 90 + (i % 2) * 20, 26); pkxE(c, '🧽', sp.x, sp.y, 44); } };
+  });
+  // 19 吹氣球：按住吹大，在綠色區域放開（v128：每次不同顏色；剛好在中間的白線＝完美 +3）
+  pkxReg('balloon', '🎈', '吹氣球', '#FF8787', '#FFE3E3', '按住讓氣球變大，大小到綠色圈圈時放開！剛好在白線上有 3 分！', S => {
+    let r = 20, hold = false, lo = 70, hi = 95, fly = null, popT = 0, col = '#FF6B6B', perf = 0, done = [];
+    const COLS = ['#FF6B6B', '#FFA94D', '#FFD43B', '#69DB7C', '#4DABF7', '#9775FA', '#F783AC', '#3BC9DB'];
+    const fresh = () => { r = 20; lo = 55 + Math.random() * 40; hi = lo + 22; col = pick(COLS); };
+    const bal = (c, x, y, rr, k) => { c.strokeStyle = '#868E96'; c.lineWidth = 2; c.beginPath(); c.moveTo(x, y + rr * 1.15); c.quadraticCurveTo(x + 10, y + rr * 1.6, x, y + rr * 2.2); c.stroke();
+      const g = c.createRadialGradient(x - rr * .35, y - rr * .4, rr * .1, x, y, rr * 1.2); g.addColorStop(0, '#fff'); g.addColorStop(.25, k); g.addColorStop(1, k); c.fillStyle = g; c.beginPath(); c.ellipse(x, y, rr, rr * 1.15, 0, 0, 6.3); c.fill(); c.strokeStyle = 'rgba(0,0,0,.15)'; c.stroke();
+      c.fillStyle = k; c.beginPath(); c.moveTo(x - 6, y + rr * 1.2); c.lineTo(x + 6, y + rr * 1.2); c.lineTo(x, y + rr * 1.1); c.fill(); };
+    return { down() { if (!fly && !popT) hold = true; }, up() { if (!hold) return; hold = false; if (r >= lo && r <= hi) { const p = Math.abs(r - (lo + hi) / 2) < 4; fly = { y: 0, r, col }; if (p) { S.add(3, S.W / 2, S.H * .4); perf = 900; tone([660, 880, 1046], .07, 'sine'); } else { S.hit(S.W / 2, S.H * .45); tone([660, 880], .06, 'sine'); } done.push(col); if (done.length > 8) done.shift(); } else { S.miss(); fresh(); } },
+      step(dt, t) { const { c, W, H } = S, cx = W / 2, cy = H * .5; pkxSky(c, W, H, '#FFF0F6', '#E7F5FF');
+        done.forEach((k, i) => bal(c, 30 + i * ((W - 60) / 8), pkxTop + 40 + Math.sin(t / 500 + i) * 6, 14, k));
+        c.strokeStyle = '#51CF66'; c.lineWidth = hi - lo; c.globalAlpha = .35; c.beginPath(); c.arc(cx, cy, (lo + hi) / 2, 0, 6.3); c.stroke(); c.globalAlpha = 1;
+        c.strokeStyle = '#fff'; c.lineWidth = 3; c.setLineDash([10, 8]); c.beginPath(); c.arc(cx, cy, (lo + hi) / 2, 0, 6.3); c.stroke(); c.setLineDash([]);
+        if (hold) { r += dt * .06; if (r > 140) { hold = false; popT = 500; S.miss(); tone([150], .12, 'square'); S.pop(cx, cy, col, 30); } }
+        if (popT) { popT -= dt; pkxE(c, '💥', cx, cy, 90); if (popT <= 0) { popT = 0; fresh(); } }
+        else if (fly) { fly.y += dt * .5; bal(c, cx, cy - fly.y, fly.r, fly.col); if (fly.y > H) { fly = null; fresh(); } }
+        else bal(c, cx, cy, r, col);
+        if (perf) { perf -= dt; c.fillStyle = '#E8590C'; c.font = '900 30px sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('完美！+3', cx, cy - 150); if (perf < 0) perf = 0; }
+        pkxE(c, hold ? '😤' : '🙂', cx, H - 50, 50); } };
+  });
+  // 20 抓蝴蝶：點飛來飛去的蝴蝶
+  pkxReg('butterfly', '🦋', '抓蝴蝶', '#94D82D', '#F4FCE3', '用網子點飛來飛去的蝴蝶！', S => {
+    let bf = [], net = null;
+    const add = () => { const g = Math.random() < .07; bf.push({ x: Math.random() * S.W, y: pkxTop + 60 + Math.random() * (S.H - pkxTop - 200), a: Math.random() * 6, v: (g ? .1 : .05) + Math.random() * .05, e: g ? '🦋' : pick(['🦋', '🦋', '🐝', '🐞', '🪲', '🦗']), g }); };
+    return { down(px, py) { net = { x: px, y: py, t: 250 }; const o = bf.find(o => Math.hypot(o.x - px, o.y - py) < 44); if (o) { bf = bf.filter(x => x !== o); S.add(o.g ? 5 : 1, o.x, o.y); S.pop(o.x, o.y, o.g ? '#FFD43B' : pick(['#F783AC', '#74C0FC', '#FFD43B']), o.g ? 30 : 14); tone(o.g ? [784, 1046, 1318] : [1046], .05, 'sine'); } },
+      step(dt, t) { const { c, W, H } = S; pkxSky(c, W, H, '#E7F5FF', '#D8F5A2'); for (let i = 0; i < 7; i++) pkxE(c, ['🌷', '🌼', '🌸', '🌻'][i % 4], (i + .5) * W / 7, H - 40 - (i % 2) * 20, 40);
+        while (bf.length < 5) add();
+        bf.forEach(o => { o.a += (Math.random() - .5) * dt * .004; o.x += Math.cos(o.a) * o.v * dt; o.y += Math.sin(o.a) * o.v * dt; if (o.x < 20 || o.x > W - 20) o.a = 3.14 - o.a; if (o.y < pkxTop + 30 || o.y > H - 120) o.a = -o.a; o.x = Math.max(10, Math.min(W - 10, o.x)); o.y = Math.max(pkxTop + 20, Math.min(H - 110, o.y)); if (o.g) { c.shadowColor = '#FFD43B'; c.shadowBlur = 26; c.fillStyle = 'rgba(255,212,59,.45)'; c.beginPath(); c.arc(o.x, o.y, 30, 0, 6.3); c.fill(); } pkxE(c, o.e, o.x, o.y, o.g ? 50 : 44, Math.sin(t / 120) * .2); c.shadowBlur = 0; if (o.g) pkxE(c, '✨', o.x + 22, o.y - 22, 20); });
+        if (net) { net.t -= dt; pkxE(c, '🥅', net.x, net.y, 60, -.3); if (net.t <= 0) net = null; } } };
+  });
+  // ======== 3 個邊玩邊學（闖關模式可以拿星星） ========
+  // A 機器人寫程式：排箭頭，帶機器人去拿電池
+  const PKX_SAY = { robot: '排好箭頭，按出發，帶機器人去拿電池！', robotOk: '拿到電池了，你好會寫程式！', robotNo: '咦，沒有走到電池，改一改箭頭再試試看！', egg: '照順序點恐龍蛋，從一開始，把小恐龍孵出來！', eggOk: '恐龍寶寶全部孵出來了！', eggNo: '不對喔，要照順序點！', food: '小動物肚子餓了，看看牠要吃幾個，把食物送給牠！', foodOk: '答對了，小動物吃得好開心！', foodNo: '數量不對喔，再數一數！' };
+  pkxReg('robot', '🤖', '機器人寫程式', '#4C6EF5', '#DBE4FF', '按箭頭排好路線，再按「出發」，帶機器人拿電池！', S => {
+    let lv = null, prog = [], run = null, flash = 0, fmsg = '';
+    const N = 5, D = { '⬆️': [0, -1], '➡️': [1, 0], '⬇️': [0, 1], '⬅️': [-1, 0] };
+    const mkLv = () => { const len = Math.min(8, 2 + Math.floor((S.R.got || 0) + (age === 'small' ? 0 : 1) + Math.random() * 2)); for (let tries = 0; tries < 200; tries++) { const s = [Math.floor(Math.random() * N), Math.floor(Math.random() * N)]; let p = s.slice(), path = [s.join()], ok = true; for (let k = 0; k < len; k++) { const opts = Object.values(D).map(d => [p[0] + d[0], p[1] + d[1]]).filter(q => q[0] >= 0 && q[1] >= 0 && q[0] < N && q[1] < N && !path.includes(q.join())); if (!opts.length) { ok = false; break; } p = pick(opts); path.push(p.join()); } if (!ok) continue; const rocks = []; for (let i = 0; i < 3; i++) { const q = [Math.floor(Math.random() * N), Math.floor(Math.random() * N)]; if (!path.includes(q.join())) rocks.push(q.join()); } lv = { s, g: p, rocks, pos: s.slice() }; prog = []; return; } };
+    const geo = () => { const { W, H } = S, cs = Math.min((W - 40) / N, (H - pkxTop - 260) / N), x0 = (W - cs * N) / 2, y0 = pkxTop + 30; return { cs, x0, y0, by: y0 + cs * N + 20 }; };
+    const btns = () => { const { W } = S, { by } = geo(), ks = ['⬆️', '⬇️', '⬅️', '➡️', '🗑️', '▶️'], bw = Math.min(64, (W - 40) / 6 - 6); return ks.map((k, i) => ({ k, x: 20 + i * (bw + 6) + (W - 40 - 6 * (bw + 6)) / 2, y: by + 60, w: bw, h: 58 })); };
+    return { down(px, py) { if (run) return; const b = btns().find(b => px > b.x && px < b.x + b.w && py > b.y && py < b.y + b.h); if (!b) return; tone([600], .04, 'sine');
+        if (b.k === '🗑️') prog = []; else if (b.k === '▶️') { if (prog.length) run = { i: 0, t: 0 }; } else if (prog.length < 10) prog.push(b.k); },
+      step(dt, t) { const { c, W, H } = S; if (!lv) { mkLv(); SAY_PK([[PKX_SAY.robot]]); } pkxSky(c, W, H, '#EDF2FF', '#DBE4FF'); const { cs, x0, y0, by } = geo();
+        for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) pkxRR(c, x0 + i * cs + 2, y0 + j * cs + 2, cs - 4, cs - 4, 10, (i + j) % 2 ? '#fff' : '#F1F3F5');
+        lv.rocks.forEach(r => { const [i, j] = r.split(',').map(Number); pkxE(c, '🪨', x0 + i * cs + cs / 2, y0 + j * cs + cs / 2, cs * .6); });
+        pkxE(c, '🔋', x0 + lv.g[0] * cs + cs / 2, y0 + lv.g[1] * cs + cs / 2, cs * .6); pkxE(c, '🤖', x0 + lv.pos[0] * cs + cs / 2, y0 + lv.pos[1] * cs + cs / 2, cs * .7);
+        pkxRR(c, 16, by, W - 32, 48, 14, '#fff', '#BAC8FF'); prog.forEach((k, i) => pkxE(c, k, 40 + i * Math.min(34, (W - 70) / 10), by + 24, 28, 0, false, run && i < run.i ? .35 : 1));
+        btns().forEach(b => { pkxRR(c, b.x, b.y, b.w, b.h, 14, b.k === '▶️' ? '#51CF66' : b.k === '🗑️' ? '#FFE3E3' : '#FFF3BF', 'rgba(0,0,0,.1)'); pkxE(c, b.k, b.x + b.w / 2, b.y + b.h / 2, 30); });
+        if (run) { run.t += dt; if (run.t > 420) { run.t = 0; const d = D[prog[run.i]], n = [lv.pos[0] + d[0], lv.pos[1] + d[1]];
+            if (n[0] < 0 || n[1] < 0 || n[0] >= N || n[1] >= N || lv.rocks.includes(n.join())) { run = null; S.miss(); lv.pos = lv.s.slice(); flash = 900; fmsg = '💥'; SAY_PK([[PKX_SAY.robotNo]]); }
+            else { lv.pos = n; tone([500 + run.i * 40], .04, 'sine'); run.i++;
+              if (lv.pos[0] === lv.g[0] && lv.pos[1] === lv.g[1]) { run = null; S.hit(x0 + n[0] * cs + cs / 2, y0 + n[1] * cs); S.pop(x0 + n[0] * cs + cs / 2, y0 + n[1] * cs + cs / 2, '#51CF66', 24); flash = 900; fmsg = '⚡'; SAY_PK([[PKX_SAY.robotOk]]); setTimeout(() => { lv = null; }, 900); }
+              else if (run.i >= prog.length) { run = null; S.miss(); flash = 900; fmsg = '❓'; SAY_PK([[PKX_SAY.robotNo]]); setTimeout(() => { if (lv) lv.pos = lv.s.slice(); }, 700); } } } }
+        if (flash) { flash -= dt; if (flash < 0) flash = 0; pkxE(c, fmsg, W / 2, y0 + cs * N / 2, 90, 0, false, Math.min(1, flash / 300)); } } };
+  }, { learn: 1, goal: () => 3, task: { cat: 'pkmath', label: '帶機器人拿電池', say: [[PKX_SAY.robot]] } });
+  // B 恐龍蛋孵化（v128）：照順序點蛋；普通蛋、金蛋（稀有）、彩虹蛋（傳說），24 種恐龍收進恐龍圖鑑
+  pkxReg('egg', '🥚', '恐龍蛋孵化', '#82C91E', '#E9FAC8', '照 1、2、3 的順序點恐龍蛋，孵出小恐龍！金蛋和彩虹蛋裡有稀有恐龍喔！', S => {
+    let eggs = null, nxt = 1, show = 0, got = [];
+    const dex = () => store.get('dinoDex', []), dexN = () => dex().filter(n => DINO_DEX.some(d => d[0] === n)).length;
+    const roll = () => { const r = Math.random(), tier = r < .84 ? 0 : r < .97 ? 1 : 2, D = dex(), pool = DINO_DEX.filter(d => d[1] === tier), fresh = pool.filter(d => !D.includes(d[0])); return [tier, fresh.length && Math.random() < .75 ? pick(fresh) : pick(pool)]; };
+    const fresh = () => { const { W, H } = S, n = age === 'small' ? 5 : age === 'big' ? 7 : 9, sz = Math.max(58, Math.min(80, W / 7)), pts = []; let tries = 0;
+      while (pts.length < n && tries++ < 3000) { const p = [sz * .7 + Math.random() * (W - sz * 1.4), pkxTop + sz * .9 + Math.random() * (H - pkxTop - sz * 2.4)]; if (pts.every(q => Math.hypot(q[0] - p[0], q[1] - p[1]) > sz * 1.35)) pts.push(p); }
+      eggs = pts.map((p, i) => { const [tier, d] = roll(); return { x: p[0], y: p[1], n: i + 1, open: 0, ht: 0, tier, d, sz, nw: 0 }; }); nxt = 1; got = []; };
+    return { down(px, py) { if (!eggs || show) return; const e = eggs.find(e => !e.open && Math.hypot(e.x - px, e.y - py) < e.sz * .55); if (!e) return;
+        if (e.n === nxt) { e.open = 1; nxt++; tone(e.tier ? [700, 900, 1200] : [500 + nxt * 50], .06, 'sine'); S.pop(e.x, e.y, e.tier === 2 ? null : e.tier ? '#FFD43B' : '#fff', 8 + e.tier * 12);
+          const D = dex(); if (!D.includes(e.d[0])) { D.push(e.d[0]); store.set('dinoDex', D); e.nw = 1; got.push(e.d); }
+          if (nxt > eggs.length) { setTimeout(() => { show = 2600; }, 700); SAY_PK([[PKX_SAY.eggOk]]); } }
+        else { S.miss(); SAY_PK([[PKX_SAY.eggNo]]); } },
+      step(dt, t) { const { c, W, H } = S; if (!eggs) { fresh(); SAY_PK([[PKX_SAY.egg]]); }
+        pkxSky(c, W, H, '#E9FAC8', '#C0EB75'); c.fillStyle = '#A9D86E'; c.beginPath(); c.moveTo(0, H); c.lineTo(0, H - 60); c.quadraticCurveTo(W * .3, H - 90, W * .6, H - 60); c.quadraticCurveTo(W * .85, H - 40, W, H - 70); c.lineTo(W, H); c.fill();
+        pkxE(c, '🌋', W - 50, H - 70, 70); pkxE(c, '🌴', 40, H - 70, 70); pkxE(c, '🌿', W * .5, H - 40, 40);
+        c.fillStyle = 'rgba(40,80,20,.75)'; c.font = '800 15px sans-serif'; c.textAlign = 'right'; c.textBaseline = 'top'; c.fillText(`📖 恐龍圖鑑 ${dexN()}/${DINO_DEX.length}`, W - 12, pkxTop + 6);
+        eggs.forEach(e => { if (e.open) { e.ht = Math.min(600, e.ht + dt); const k = e.ht / 600, sc = k < .5 ? 0 : Math.min(1, (k - .5) * 2.4);
+            if (k < .5) dinoEgg(c, e.tier, e.x, e.y, e.sz, t * 3, true);
+            else { c.save(); c.globalAlpha = .7; c.fillStyle = e.tier === 1 ? '#FFD43B' : e.tier === 2 ? '#B197FC' : '#F1E3C2'; c.beginPath(); c.ellipse(e.x, e.y + e.sz * .32, e.sz * .4, e.sz * .1, 0, 0, 6.3); c.fill(); c.restore();
+              dinoDraw(c, e.d, e.x, e.y - e.sz * .05, e.sz * 1.15 * (.5 + sc * .5), e.x > W / 2 ? -1 : 1, t);
+              c.font = `800 ${e.sz > 70 ? 14 : 12}px sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.lineWidth = 4; c.strokeStyle = '#fff'; c.strokeText(e.d[0], e.x, e.y + e.sz * .55); c.fillStyle = e.d[1] === 2 ? '#7048E8' : e.d[1] ? '#B07D10' : '#2B2633'; c.fillText(e.d[0], e.x, e.y + e.sz * .55);
+              if (e.nw) { pkxRR(c, e.x + e.sz * .2, e.y - e.sz * .62, 40, 20, 10, '#FA5252'); c.fillStyle = '#fff'; c.font = '900 12px sans-serif'; c.fillText('NEW', e.x + e.sz * .2 + 20, e.y - e.sz * .62 + 10); } } }
+          else { dinoEgg(c, e.tier, e.x, e.y + Math.sin(t / 200 + e.n) * 2, e.sz, t + e.n * 300); c.font = `900 ${Math.round(e.sz * .36)}px sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.lineWidth = 4; c.strokeStyle = 'rgba(255,255,255,.9)'; c.strokeText(e.n, e.x, e.y + 4); c.fillStyle = '#2B2633'; c.fillText(e.n, e.x, e.y + 4); } });
+        if (show) { show -= dt; const bw = Math.min(W - 30, 360), bh = got.length ? 250 : 170, x0 = (W - bw) / 2, y0 = H / 2 - bh / 2; pkxRR(c, x0, y0, bw, bh, 24, 'rgba(255,255,255,.96)', '#82C91E');
+          c.fillStyle = '#2B2633'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = '900 22px sans-serif'; c.fillText(got.length ? `🆕 新的恐龍 ${got.length} 隻！` : `孵出 ${eggs.length} 隻小恐龍！`, W / 2, y0 + 30);
+          if (got.length) { const sh = got.slice(-3), gw = bw / sh.length; sh.forEach((d, i) => { dinoDraw(c, d, x0 + gw * i + gw / 2, y0 + 110, Math.min(110, gw * .9), 1, t); c.font = '800 15px sans-serif'; c.fillStyle = d[1] === 2 ? '#7048E8' : d[1] ? '#B07D10' : '#2B2633'; c.fillText(`${d[0]}${d[1] ? '・' + DINO_RARE[d[1]] : ''}`, x0 + gw * i + gw / 2, y0 + 178); }); }
+          else { [0, 1, 2].forEach(i => pkxE(c, ['🦕', '🦖', '🦕'][i], W / 2 - 60 + i * 60, y0 + 90, 50)); }
+          c.font = '700 16px sans-serif'; c.fillStyle = '#5C940D'; c.fillText(`📖 恐龍圖鑑 ${dexN()}/${DINO_DEX.length}`, W / 2, y0 + bh - 26); if (show <= 0) { show = 0; eggs = null; S.hit(W / 2, H / 2); } } } };
+  }, { learn: 1, goal: () => 2, task: { cat: 'pkmath', label: '照順序孵恐龍蛋', say: [[PKX_SAY.egg]] } });
+  // C 動物餐廳：數一數小動物要幾個，把食物送給牠
+  const PKX_ZOO = [['🐰', '🥕', '紅蘿蔔'], ['🐻', '🍯', '蜂蜜'], ['🐵', '🍌', '香蕉'], ['🐱', '🐟', '魚'], ['🐶', '🦴', '骨頭'], ['🐼', '🎋', '竹子'], ['🐭', '🧀', '起司'], ['🐿️', '🌰', '栗子']];
+  pkxReg('cafe', '🐰', '動物餐廳', '#F783AC', '#FFDEEB', '看小動物要吃什麼、要幾個，點食物再按 ✅ 送出！', S => {
+    let cur = null, plate = [], happy = 0, sad = 0;
+    const fresh = () => { const a = pick(PKX_ZOO), n = 1 + Math.floor(Math.random() * (age === 'small' ? 3 : 5)); cur = { a, n, x: -80 }; plate = []; };
+    const foods = () => { const opts = [cur.a, ...PKX_ZOO.filter(z => z !== cur.a).slice(0, 8)].slice(0, 4); return opts; };
+    let F4 = null;
+    const btn = () => { const { W, H } = S, bw = Math.min(78, (W - 40) / 5 - 8), y = H - 130; return [...F4.map((z, i) => ({ k: z[1], x: 20 + i * (bw + 8), y, w: bw, h: 70 })), { k: '✅', x: 20 + 4 * (bw + 8), y, w: bw, h: 70 }]; };
+    return { down(px, py) { if (!cur || happy || sad) return; const b = btn().find(b => px > b.x && px < b.x + b.w && py > b.y && py < b.y + b.h); if (!b) { if (plate.length && py > S.H * .5 && py < S.H - 140) { plate.pop(); tone([300], .03, 'sine'); } return; }
+        if (b.k === '✅') { const ok = plate.length === cur.n && plate.every(k => k === cur.a[1]); if (ok) { happy = 1300; S.hit(S.W / 2, S.H * .35); S.pop(S.W / 2, S.H * .35, '#F783AC', 20); SAY_PK([[PKX_SAY.foodOk]]); } else { sad = 900; S.miss(); SAY_PK([[PKX_SAY.foodNo]]); } return; }
+        if (plate.length < 8) { plate.push(b.k); tone([700], .03, 'sine'); } },
+      step(dt, t) { const { c, W, H } = S; if (!cur) { fresh(); F4 = PKX_ZOO.filter(z => z !== cur.a).sort(() => Math.random() - .5).slice(0, 3).concat([cur.a]).sort(() => Math.random() - .5); if (!S.said) { S.said = 1; SAY_PK([[PKX_SAY.food]]); } }
+        pkxSky(c, W, H, '#FFF0F6', '#FFE8CC'); c.fillStyle = '#E9B98A'; c.fillRect(0, H * .52, W, H * .48);
+        cur.x += (W / 2 - cur.x) * Math.min(1, dt * .006); const ay = H * .34;
+        pkxE(c, cur.a[0], cur.x, ay, 110, 0, false); pkxE(c, happy ? '💗' : sad ? '💦' : '', cur.x + 60, ay - 60, 40);
+        pkxRR(c, cur.x + 30, ay - 140, 150, 64, 20, '#fff', '#F783AC'); pkxE(c, cur.a[1], cur.x + 70, ay - 108, 38); c.fillStyle = '#C2255C'; c.font = '900 34px sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('×' + cur.n, cur.x + 130, ay - 106);
+        c.fillStyle = '#fff'; c.beginPath(); c.ellipse(W / 2, H * .62, Math.min(150, W * .4), 46, 0, 0, 6.3); c.fill(); plate.forEach((k, i) => pkxE(c, k, W / 2 - (plate.length - 1) * 18 + i * 36, H * .62 - 4, 34));
+        btn().forEach(b => { pkxRR(c, b.x, b.y, b.w, b.h, 16, b.k === '✅' ? '#B2F2BB' : '#fff', 'rgba(0,0,0,.12)'); pkxE(c, b.k, b.x + b.w / 2, b.y + b.h / 2, 38); });
+        if (happy) { happy -= dt; if (happy <= 0) { happy = 0; cur = null; } } if (sad) { sad -= dt; if (sad <= 0) { sad = 0; plate = []; } } } };
+  }, { learn: 1, goal: () => 3, task: { cat: 'pkmath', label: '數一數，送食物', say: [[PKX_SAY.food]] } });
+  // 邊玩邊學的 3 個遊戲有語音：只念做好 AI 語音的句子
+  function SAY_PK(parts) { try { const ok = parts.filter(p => pvVoiced(p[0], p[2] || '')); if (ok.length) say(ok); } catch (e) {} }
+  const pkxLearnReady = () => { try { return Object.values(PKX_SAY).every(t => pvVoiced(t, '')); } catch (e) { return false; } };
+  Object.keys(PKX).forEach(k => { PK_EXTRA[k] = pkxInit; });
+  /* ---------- 耐玩度：最高紀錄、銅銀金牌、金牌解鎖新角色、今日推薦、NEW 標記 ---------- */
+  // 每個遊戲 1 分鐘大概能拿的分數（金牌），銅＝30%、銀＝60%
+  const PKX_GOLD = { jump: 28, rocket: 50, fish: 36, stack: 32, firework: 62, beat: 66, chick: 14, hoop: 18, goal: 20, bird: 24, lane: 44, fishing: 26, target: 70, pancake: 28, dig: 32, frog: 30, brick: 50, wash: 40, balloon: 16, butterfly: 50 }; // v128 加了稀有高分的東西，金牌分數跟著調高
+  // 拿到金牌後可以換的角色
+  const PKX_SKIN = { jump: ['🦖', '🐉'], rocket: ['🚀', '🛸'], fish: ['🐠', '🐡'], bird: ['🐤', '🦜'], lane: ['🏎️', '🚓'], frog: ['🐸', '🐢'], chick: ['🐥', '🐧'], hoop: ['🏀', '🏐'], goal: ['⚽', '🏈'], balloon: ['🎈', '🪅'], wash: ['🧽', '🫧'], butterfly: ['🥅', '🪣'] };
+  const pkxBest = () => store.get('pkxBest', {}), pkxPlayed = () => store.get('pkxPlayed', {});
+  const pkxMedal = (g, s) => { const G = PKX_GOLD[g]; if (!G) return ''; return s >= G ? '🥇' : s >= Math.ceil(G * .6) ? '🥈' : s >= Math.ceil(G * .3) ? '🥉' : ''; };
+  const pkxSkinOn = g => pkxMedal(g, pkxBest()[g] || 0) === '🥇'; // 拿到金牌就自動換新角色
+  const pkxToday = () => { const ids = Object.keys(PKX).filter(k => !PKX[k].learn), d = today(); let h = 0; for (const ch of d) h = h * 31 + ch.charCodeAt(0) >>> 0; return ids[h % ids.length]; };
+  // 金牌角色：畫的時候把預設角色換掉
+  const pkxSkinMap = g => pkxSkinOn(g) && PKX_SKIN[g] ? { [PKX_SKIN[g][0]]: PKX_SKIN[g][1] } : null;
+  function pkxEndExtra(R) {
+    if (!PKX[R.g] || !PKX_GOLD[R.g]) return ''; // 只有純遊戲有獎牌
+    const g = R.g, s = R.score, B = pkxBest(), old = B[g] || 0, rec = s > old, m0 = pkxMedal(g, old), m1 = pkxMedal(g, s);
+    if (rec) { B[g] = s; store.set('pkxBest', B); }
+    const gold = PKX_GOLD[g], nextT = !gold ? 0 : s < Math.ceil(gold * .3) ? Math.ceil(gold * .3) : s < Math.ceil(gold * .6) ? Math.ceil(gold * .6) : s < gold ? gold : 0;
+    const skin = PKX_SKIN[g] && m1 === '🥇' && m0 !== '🥇' ? `<div class="pkx-unlock">🎁 解鎖新角色：${PKX_SKIN[g][1]}！</div>` : '';
+    if (rec) setTimeout(() => { try { const c = document.createElement('div'); c.className = 'pkx-rec'; c.textContent = '新紀錄！'; $('pkPlay').appendChild(c); setTimeout(() => c.remove(), 1800); tone([523, 659, 784, 1046, 1318], .09, 'sine'); } catch (e) {} }, 200);
+    return `<div class="pkx-res">${rec ? '<b class="pkx-new">🎉 新紀錄！</b>' : `<span>最高紀錄 ${old} 分</span>`}<div class="pkx-medals">${['🥉', '🥈', '🥇'].map((x, i) => `<span class="${['🥉', '🥈', '🥇'].indexOf(m1) >= i ? 'on' : ''}">${x}<small>${gold ? Math.ceil(gold * [.3, .6, 1][i]) : ''}</small></span>`).join('')}</div>${nextT ? `<small>再拿 ${nextT - s} 分就有下一面牌！</small>` : '<small>全部的牌都拿到了，你是高手！</small>'}${skin}</div>`;
+  }
 
   /* ---------- 🏆 星星排行榜：所有付費玩家一起比，只顯示家長設定的暱稱 ---------- */
   const RK_AVA = ['🐻', '🐰', '🐱', '🐶', '🐼', '🦁', '🐯', '🦊', '🐸', '🐧', '🦄', '🦖'];
