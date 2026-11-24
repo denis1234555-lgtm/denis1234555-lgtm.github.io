@@ -2059,7 +2059,7 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 .options.pills.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media (max-width:420px){.options.pills.cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* v126 學習紀錄分頁 */
-.rt-tabs{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:12px 0;padding:8px;background:var(--surface,#fff);border-radius:20px;box-shadow:0 4px 0 var(--line-deep,#E5D6C3),0 6px 16px rgba(60,40,30,.08)}
+.rt-tabs{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:12px 0;padding:8px 6px;background:var(--surface,#fff);border-radius:20px;box-shadow:0 4px 0 var(--line-deep,#E5D6C3),0 6px 16px rgba(60,40,30,.08)}
 .rt-tabs button{border:0;background:transparent;border-radius:14px;padding:8px 4px;font:inherit;font-size:1.3rem;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;color:var(--ink)}
 .rt-sub{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:-4px 0 12px;padding:2px}.rt-sub::-webkit-scrollbar{display:none}.rt-sub button{flex:none;border:2px solid var(--line-deep,#E5D6C3);background:var(--surface,#fff);border-radius:999px;padding:5px 10px;font:inherit;font-weight:800;font-size:.82rem;color:var(--ink);cursor:pointer;white-space:nowrap}.rt-sub button.on{background:#FFF1B8;border-color:#F2B544}.rt-off2{display:none!important}
 .rt-tabs button b{font-size:.82rem;white-space:nowrap}.rt-tabs button.on{background:#FFF1B8;box-shadow:0 0 0 3px #F2B544}
@@ -2140,6 +2140,39 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 .gc-btn{display:block;margin:8px auto 12px}
 .gc-img{width:100%;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.15);margin:6px 0}
 .gc-up{margin:10px 0 0;font-weight:700;color:#5A6785}
+/* v138 律動操、小豬撲滿 */
+.mv-ov{position:fixed;inset:0;z-index:95;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 16px 20px;background:linear-gradient(#FFF8EA,#FFEFD6);overflow:auto}
+.mv-top{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:520px}.mv-top b{font-size:1.15rem;color:#2E3A59}
+.mv-x,.mv-music{width:44px;height:44px;border:0;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.12);font-size:1.2rem;cursor:pointer}.mv-music.off{opacity:.4;text-decoration:line-through}
+.mv-dots{display:flex;gap:8px}.mv-dots i{width:14px;height:14px;border-radius:50%;background:#EADFC8}.mv-dots i.on{background:#F28C28;transform:scale(1.25)}.mv-dots i.ok{background:#7CC67E}.mv-done{border:0;background:#F28C28;color:#fff;box-shadow:0 5px 0 #C2621A;padding:12px 34px;border-radius:18px;font:inherit;font-size:1.15rem;font-weight:900;cursor:pointer}
+.mv-stage{width:100%;max-width:520px;border-radius:24px;overflow:hidden;box-shadow:0 8px 22px rgba(120,80,30,.18)}.mv-svg{display:block;width:100%;height:auto}
+.mv-cap{text-align:center}.mv-name{display:block;font-size:1.5rem;color:#2E3A59}.mv-cmd{display:block;font-size:1.1rem;font-weight:800;color:#C2562A}
+.mv-ring{position:relative;width:86px;height:86px;display:grid;place-items:center}.mv-ring svg{position:absolute;inset:0}.mv-arc{transition:stroke-dashoffset .9s linear}.mv-sec{position:relative;font-size:1.8rem;color:#2E3A59}
+.mv-safe{margin:0;font-size:.85rem;color:#8A6A2E;font-weight:700;text-align:center}
+.mv-enter{background:linear-gradient(135deg,#E9F8EE,#FFF6DA)}
+.pig-card{border-color:#F4A7BC;background:linear-gradient(135deg,#FFF1F5,#FFF7E6);box-shadow:0 4px 0 #EBA0B6}
+.pig-pic{flex:none;display:grid;place-items:center;width:84px}
+.pig-bar i{background:linear-gradient(90deg,#FFC93C,#F2A81E)!important}
+.pig-new{font-style:normal;color:#C2410C;font-weight:900}
+.pig-box{text-align:center}.pig-big{position:relative;display:inline-block}.pig-bal{font-size:1.2rem;margin:4px 0}.pig-bal b{font-size:2rem;color:#D06A24}
+.pig-drop{position:absolute;inset:0;pointer-events:none}.pig-drop span{position:absolute;top:-40px;animation:pigDrop 1.1s cubic-bezier(.5,0,.8,.6) both}
+@keyframes pigDrop{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:1}85%{transform:translateY(70px) rotate(200deg);opacity:1}100%{transform:translateY(80px) scale(.4);opacity:0}}
+.pig-pay{position:absolute;left:0;right:0;bottom:-6px;color:#C2410C;font-size:1.1rem;animation:pkPop .6s .9s both}
+@keyframes pkPop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+.pig-week{margin:8px 0;padding:8px;border-radius:14px;background:#FFF6E0;font-weight:700}
+.pig-amts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}.pig-amt{display:flex;align-items:center;gap:6px;padding:10px 14px;border:3px solid #F2C46B;border-radius:18px;background:#fff;font:inherit;cursor:pointer}
+.pig-wait{font-weight:800;color:#8A5A2E}
+.pig-req{padding:10px;margin-bottom:10px;border:3px solid #F4A7BC;border-radius:16px;background:#FFF1F5}.pig-req small{display:block;margin:4px 0 8px;color:#6A5A3A}
+.pig-sum{font-weight:700}.pig-days{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.pig-days button{flex:none;min-width:58px;padding:6px 4px;border:2px solid #E5D8BC;border-radius:14px;background:#fff;font:inherit;font-weight:800;cursor:pointer}.pig-days button small{display:block;font-weight:600;color:#8A7A5A}
+.pig-days button.on{border-color:#F28C28;background:#FFF1D9}.pig-days button.got::after{content:'✓';display:block;color:#3E9B4F;font-size:.8rem}
+.pig-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px dashed #EADFC8}.pig-row>span:first-child{font-weight:800}
+.pig-seg{display:flex;gap:4px;flex:none}.pig-seg button{padding:6px 8px;border:2px solid #E5D8BC;border-radius:12px;background:#fff;font:inherit;font-size:.85rem;cursor:pointer}
+.pig-seg button.on[data-v="1"]{background:#DFF5E3;border-color:#3E9B4F}.pig-seg button.on[data-v="-1"]{background:#FFF0D9;border-color:#E8A21C}.pig-seg button.on[data-v="0"]{background:#EEF0F4;border-color:#A0A8B8}
+.pig-today{font-weight:700}.pig-set{margin-top:10px}.pig-set label{display:block;margin:8px 0;font-weight:700}.pig-set textarea,.pig-set input,.pig-set select{font:inherit;padding:6px;border-radius:10px;border:2px solid #E5D8BC;max-width:100%}
+.pig-set textarea{width:100%}.pig-log{padding-left:18px;font-size:.9rem}
+.pig-toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:120;padding:10px 18px;border-radius:16px;background:#2E3A59;color:#fff;font-weight:800}
+.rt-tabs button{min-width:0}
 .wk-mic{display:flex;align-items:center;gap:8px;justify-content:center;font-weight:800;color:#4B5A6B;background:rgba(255,255,255,.8);border-radius:16px;padding:8px 12px;max-width:360px}.wk-mic input{width:22px;height:22px}
 .wk-rep{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:8px 0;border-bottom:1px dashed var(--line,#E5D6C3)}.wk-rep b{min-width:5em}.wk-rep span{font-size:1.2rem;letter-spacing:2px}.wk-rep small{color:var(--ink-soft,#6B5A80)}
 .pkx-rec{position:absolute;left:50%;top:30%;translate:-50% -50%;z-index:30;pointer-events:none;font-weight:900;font-size:clamp(2.6rem,12vw,4.4rem);color:#FFD43B;-webkit-text-stroke:3px #E56A1F;text-shadow:0 5px 0 #C2410C;animation:fbPop 1.6s cubic-bezier(.2,1.5,.4,1) forwards;white-space:nowrap}
@@ -2629,6 +2662,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
 
     <div class="kid-bar" id="kidBar" hidden aria-label="切換小朋友"></div>
     <button class="lv-card" id="lvCard" aria-label="我的主角等級"></button>
+    <button class="lv-card pig-card" id="pigCard" hidden aria-label="我的小豬撲滿"></button>
+    <button class="calm-enter mv-enter" id="mvEnter" hidden><span class="calm-ic">🤸</span><span><b>跟著主角動一動</b><small>律動操時間！站起來，跟著主角做 4 個動作</small></span><span class="sl-go">開始 →</span></button>
     <button class="calm-enter" id="calmEnter" data-say="情緒急救箱"><span class="calm-ic">🛟</span><span><b>情緒急救箱</b><small>生氣、難過、靜不下來的時候，點我讓心情變好</small></span><span class="sl-go">開始 →</span></button>
     <div class="hm-tabs" id="hmTabs" role="tablist" aria-label="今天的學習"><button data-t="path" role="tab">🗺️ 學習路線</button><button data-t="dq" role="tab">✅ 今天的任務</button></div>
     <section class="pa-card" id="pathCard" aria-label="今天的學習路線"></section>
@@ -3530,7 +3565,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     </div>
     <div class="kpis" id="kpis"></div>
     <button class="btn small gc-btn" id="gcMake">🖼️ 做一張本週成長卡（可以存圖、傳 LINE）</button>
-    <nav class="rt-tabs" id="rtTabs" aria-label="學習紀錄分類"><button data-rt="learn" class="on">📊<b>學習成果</b></button><button data-rt="print">🖨️<b>列印</b></button><button data-rt="time">⏰<b>時間・樂園</b></button><button data-rt="set">⚙️<b>設定・方案</b></button></nav>
+    <nav class="rt-tabs" id="rtTabs" aria-label="學習紀錄分類"><button data-rt="learn" class="on">📊<b>學習成果</b></button><button data-rt="print">🖨️<b>列印</b></button><button data-rt="time">⏰<b>時間・樂園</b></button><button data-rt="pig">🐷<b>撲滿</b></button><button data-rt="set">⚙️<b>設定・方案</b></button></nav>
     <div class="block cheat" id="cheatBlock">
       <h3>📝 今天 30 秒小抄 <small class="note">下班後看這裡就知道今天學了什麼</small></h3>
       <div id="cheatBody"></div>
@@ -3565,6 +3600,15 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       <h3>🎬 走路學</h3>
       <p class="note">孩子陪主角走過的字母、注音和單字，每走完一段得到一個 🏅。</p>
       <div id="wkRep"></div>
+    </div>
+    <div class="block pig-blk" id="pigBlock">
+      <h3>🐷 小豬撲滿</h3>
+      <div id="pigPar"></div>
+    </div>
+    <div class="block" id="bkBlock">
+      <h3>💾 資料備份</h3>
+      <p class="note">所有紀錄只存在這台裝置。換手機或清除瀏覽器資料前，先備份成檔案；到新手機再「還原」就能接著用（星星、撲滿、學習紀錄都會回來）。</p>
+      <div class="row-btns" style="justify-content:flex-start"><button class="btn small" id="bkOut">⬇️ 備份成檔案</button><label class="btn ghost small" style="cursor:pointer">⬆️ 從檔案還原<input type="file" id="bkIn" accept=".json,application/json" hidden></label></div>
     </div>
     <div class="block weekly print-blk" id="printBlock">
       <h3>🖨️ 列印學習單 <small class="note">⭐ 含列印的方案</small></h3>
@@ -4279,7 +4323,16 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     clap: { a: [[-3, -56], [3, -56]] }, jump: { a: [[-30, -94], [30, -94]], l: [[-14, -6], [14, -6]], dy: -22 }, dance: { a: [[-32, -92], [30, -42]], l: [[-14, 0], [12, -12]], r: -6 },
     tnose: { a: [[-22, -34], [3, -82]] }, teye: { a: [[-22, -34], [9, -90]] }, tear: { a: [[-22, -34], [25, -88]] }, thead: { a: [[-14, -108], [14, -108]] },
     tarm: { a: [[-22, -34], [-15, -50]] }, tleg: { a: [[-22, -34], [9, -16]], ru: 18 }, eat: { a: [[-10, -46], [5, -76]] }, sitdown: { sit: 2, a: [[-6, -40], [10, -40]] },
-    belly: { a: [[-6, -42], [6, -42]] }, run2: { a: [[-22, -30], [26, -66]], l: [[-2, 0], [24, -8]], r: 12 }, side: { a: [[-34, -48], [34, -48]] }, back: { a: [[-24, -36], [24, -36]], back: 1 }, beckon: { a: [[-22, -34], [-36, -80]] }, listen: { a: [[-22, -34], [26, -84]], top: 1 }
+    belly: { a: [[-6, -42], [6, -42]] }, run2: { a: [[-22, -30], [26, -66]], l: [[-2, 0], [24, -8]], r: 12 }, side: { a: [[-34, -48], [34, -48]] }, back: { a: [[-24, -36], [24, -36]], back: 1 }, beckon: { a: [[-22, -34], [-36, -80]] }, listen: { a: [[-22, -34], [26, -84]], top: 1 },
+    // v138 律動操動作
+    flam1: { a: [[-46, -52], [46, -52]], l: [[-6, 0], [0, -24, 26, -38]] }, flam2: { a: [[-44, -72], [44, -72]], l: [[-6, 0], [0, -24, 26, -38]] },
+    gir1: { a: [[-34, -64], [34, -64]] }, gir2: { a: [[-26, -124], [26, -124]], l: [[-7, 7], [7, 7]], dy: -7, tip: 1 },
+    march1: { a: [[-30, -40], [24, -70]], l: [[-8, 0], [18, -12, 20, -36]] }, march2: { a: [[-24, -70], [30, -40]], l: [[-18, -12, -20, -36], [8, 0]] },
+    hop1: { a: [[-22, -40], [22, -40]], l: [[-5, 0], [5, 0]] }, hop2: { a: [[-30, -76], [30, -76]], l: [[-5, -4], [5, -4]], dy: -22 },
+    mill1: { a: [[-44, -58], [44, -58]] }, mill2: { a: [[-42, -96], [42, -20]], fx: '<g fill="none" stroke="#4FA3E0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M-60 -70 A44 44 0 0 1 -22 -122"/><path d="M-30 -128 l8 6 -10 3"/><path d="M60 -48 A44 44 0 0 1 22 4"/><path d="M30 10 l-8 -6 10 -3"/></g>' }, mill3: { a: [[-42, -20], [42, -96]], fx: '<g fill="none" stroke="#4FA3E0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M60 -70 A44 44 0 0 0 22 -122"/><path d="M30 -128 l-8 6 10 3"/><path d="M-60 -48 A44 44 0 0 0 -22 4"/><path d="M-30 10 l8 -6 -10 -3"/></g>' },
+    frog1: { a: [[-20, -40], [20, -40]] }, frog2: { a: [[-22, -36], [22, -36]], l: [[-18, -10, -32, -30], [18, -10, 32, -30]], dy: 10 },
+    peng1: { a: [[-34, -28], [34, -28]], l: [[-6, 0], [9, -12]], ru: -12 }, peng2: { a: [[-34, -28], [34, -28]], l: [[-9, -12], [6, 0]], ru: 12 },
+    tree1: { a: [[-48, -100], [48, -100]], ru: -24 }, tree2: { a: [[-48, -100], [48, -100]], ru: 24 }
   };
   function scnFace(m, o) {
     const I = SCN_INK, E = o ? o.eye : 'dot';
@@ -4704,6 +4757,172 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       d.insertAdjacentHTML('afterend', `<div class="mon-win" id="monWin">${monSVG(M.id, 'friend', 96)}<p><b>${m[1]}被打敗了，變成你的好朋友！</b><br>⭐ +1${fresh ? '　🆕 新的怪獸好朋友' : ''}</p></div>`); sayIf(MON_SAY.win); track('mon-win', '打敗糊塗小怪獸'); }
     else d.insertAdjacentHTML('afterend', `<div class="mon-win" id="monWin">${monSVG(M.id, 'bad', 80)}<p>${m[1]}還在搗蛋，明天再來打敗牠！</p></div>`); }
 
+
+  /* ---------- v138 🤸 跟著主角動一動（律動操）：主角示範、孩子跟著做，原創背景音樂 ---------- */
+  const MV = [
+    ['flam', '紅鶴單腳站', '像紅鶴一樣單腳站穩！', 5, '周圍清空，搖晃時張開雙手', 'flam1', 'flam2', 700],
+    ['gir', '長頸鹿摸天空', '雙手舉高，踮腳尖伸長！', 6, '腳跟要慢慢放下來', 'gir1', 'gir2', 900],
+    ['march', '大熊踏步走', '抬高膝蓋，原地踏步走！', 8, '穿止滑襪或光腳，不要穿拖鞋', 'march1', 'march2', 500],
+    ['hop', '小兔子輕輕跳', '雙腳併攏，原地輕輕跳！', 5, '膝蓋微彎，輕輕落地', 'hop1', 'hop2', 420],
+    ['mill', '風車轉轉手', '雙手張開，像風車畫大圈！', 6, '旁邊留一個手臂的距離', 'mill2', 'mill3', 650],
+    ['frog', '青蛙蹲一蹲', '像小青蛙蹲下再站起來！', 8, '慢慢蹲，膝蓋對著腳尖', 'frog1', 'frog2', 1000],
+    ['peng', '企鵝搖搖走', '雙手張開，左右搖擺走！', 8, '前面不要有玩具，免得絆倒', 'peng1', 'peng2', 500],
+    ['tree', '大樹吹微風', '雙手舉高，左右慢慢彎腰！', 6, '動作放慢，不要用力甩', 'tree1', 'tree2', 1100]
+  ];
+  const MV_SAY = { hi: '跟著主角一起動一動！', good: '做得好！', next: '換下一個動作！', end: '全部做完了，身體變得好有精神！' };
+  const mvLines = () => [...Object.values(MV_SAY), ...MV.map(m => m[2])];
+  const mvReady = () => { try { if (!aiOn()) return false; const L = mvLines(); return L.filter(t => aiHas(t, 'zh-TW', '')).length >= L.length * .9; } catch (e) { return false; } };
+  let MVS = null;
+  // 原創背景音樂：C 大調、每分鐘 112 拍，貝斯＋和弦＋輕快旋律＋小鼓點，全部用程式即時合成
+  function mvBgm(on) {
+    if (MVS && MVS.bgm) { clearInterval(MVS.bgm.iv); try { MVS.bgm.g.gain.setTargetAtTime(0, ac.currentTime, .15); } catch (e) {} MVS.bgm = null; }
+    if (!on || !soundOn || !MVS) return;
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)(); if (ac.state === 'suspended') ac.resume();
+      const g = ac.createGain(); g.gain.value = .0001; g.connect(ac.destination); g.gain.setTargetAtTime(.5, ac.currentTime, .3);
+      const BEAT = 60 / 112, CH = [[48, 52, 55], [43, 47, 50], [45, 48, 52], [41, 45, 48]], MEL = [[76, 74, 72, 74, 76, 76, 76, -1], [74, 74, 74, -1, 76, 79, 79, -1], [76, 74, 72, 74, 76, 76, 76, 76], [74, 74, 76, 74, 72, -1, -1, -1]];
+      const hz = n => 440 * Math.pow(2, (n - 69) / 12);
+      const note = (n, t, d, type, vol) => { const o = ac.createOscillator(), e = ac.createGain(); o.type = type; o.frequency.value = hz(n); e.gain.setValueAtTime(.0001, t); e.gain.exponentialRampToValueAtTime(vol, t + .02); e.gain.exponentialRampToValueAtTime(.0001, t + d); o.connect(e).connect(g); o.start(t); o.stop(t + d + .05); };
+      const tick = (t, k) => { const len = Math.floor(ac.sampleRate * .05), b = ac.createBuffer(1, len, ac.sampleRate), d = b.getChannelData(0); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3); const s = ac.createBufferSource(), e = ac.createGain(); s.buffer = b; e.gain.value = k; s.connect(e).connect(g); s.start(t); };
+      let bar = 0, next = ac.currentTime + .1;
+      const plan = () => { while (next < ac.currentTime + .6) { const c = CH[bar % 4], m = MEL[bar % 4];
+        note(c[0] - 12, next, BEAT * 1.8, 'triangle', .22); note(c[0] - 12, next + BEAT * 2, BEAT * 1.8, 'triangle', .2);
+        c.forEach(n => { note(n + 12, next, BEAT * 3.8, 'sine', .035); });
+        m.forEach((n, i) => { if (n > 0) note(n, next + i * BEAT / 2, BEAT * .45, 'square', .025); });
+        for (let b = 0; b < 4; b++) tick(next + b * BEAT, b % 2 ? .05 : .09);
+        next += BEAT * 4; bar++; } };
+      plan(); MVS.bgm = { g, iv: setInterval(plan, 200) };
+    } catch (e) {}
+  }
+  function mvStageSVG(m, f) {
+    const keep = SCN_RANK; SCN_RANK = rkLv(); let p = ''; try { p = scnPerson(rkLook(), 0, 0, m[5 + f], 'happy'); } catch (e) {} SCN_RANK = keep;
+    return `<svg viewBox="0 0 360 300" class="mv-svg" aria-hidden="true"><defs><linearGradient id="mvWall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF4DC"/><stop offset="1" stop-color="#FFE3BE"/></linearGradient><linearGradient id="mvFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8B986"/><stop offset="1" stop-color="#D49A64"/></linearGradient><linearGradient id="mvMat" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7ED3C3"/><stop offset="1" stop-color="#5BBFAF"/></linearGradient></defs>
+      <rect width="360" height="220" fill="url(#mvWall)"/><rect y="218" width="360" height="82" fill="url(#mvFloor)"/><path d="M0 218h360" stroke="#C98B52" stroke-width="3"/>
+      <g opacity=".9"><rect x="22" y="34" width="70" height="56" rx="8" fill="#BFE6FA" stroke="#B98A5A" stroke-width="4"/><path d="M57 34v56M22 62h70" stroke="#B98A5A" stroke-width="3"/><circle cx="300" cy="58" r="22" fill="#FFD45A" opacity=".55"/><path d="M270 120h60v8h-60z" fill="#C98B52"/><circle cx="286" cy="112" r="8" fill="#F28C8C"/><circle cx="312" cy="110" r="10" fill="#8FD3F5"/></g>
+      <ellipse cx="180" cy="262" rx="120" ry="22" fill="url(#mvMat)"/><ellipse cx="180" cy="258" rx="112" ry="17" fill="none" stroke="#fff" stroke-width="2" opacity=".5"/>
+      <g transform="translate(180 262) scale(1.15)">${p}</g></svg>`;
+  }
+  async function mvOpen() {
+    if (MVS) return; const n = Math.min(4, MV.length), list = shuffle(MV.slice()).slice(0, n);
+    const ov = document.createElement('div'); ov.className = 'mv-ov'; ov.id = 'mvOv';
+    ov.innerHTML = `<div class="mv-top"><button class="mv-x" aria-label="結束">✕</button><b>🤸 跟著主角動一動</b><button class="mv-music" aria-label="背景音樂">🎵</button></div><div class="mv-dots">${list.map(() => '<i></i>').join('')}</div><div class="mv-stage"></div><div class="mv-cap"><b class="mv-name"></b><span class="mv-cmd"></span></div><div class="mv-ring"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" fill="none" stroke="#F3E3C0" stroke-width="8"/><circle class="mv-arc" cx="40" cy="40" r="34" fill="none" stroke="#F28C28" stroke-width="8" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="0" transform="rotate(-90 40 40)"/></svg><b class="mv-sec"></b></div><p class="mv-safe"></p>`;
+    document.body.appendChild(ov); MVS = { stop: false, music: store.get('mvMusic', true) };
+    const mb = ov.querySelector('.mv-music'); mb.classList.toggle('off', !MVS.music);
+    mb.onclick = () => { MVS.music = !MVS.music; store.set('mvMusic', MVS.music); mb.classList.toggle('off', !MVS.music); mvBgm(MVS.music); };
+    ov.querySelector('.mv-x').onclick = () => mvClose();
+    mvBgm(MVS.music); track('move-open', '律動操開始');
+    const st = ov.querySelector('.mv-stage'), arc = ov.querySelector('.mv-arc'), sec = ov.querySelector('.mv-sec');
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    await say([[MV_SAY.hi]]); if (MVS.stop) return;
+    for (let i = 0; i < list.length; i++) { const m = list[i];
+      ov.querySelectorAll('.mv-dots i').forEach((d, k) => d.className = k < i ? 'ok' : k === i ? 'on' : '');
+      ov.querySelector('.mv-name').textContent = m[1]; ov.querySelector('.mv-cmd').textContent = m[2]; ov.querySelector('.mv-safe').textContent = '⚠️ ' + m[4];
+      let f = 0; st.innerHTML = mvStageSVG(m, 0); sec.textContent = m[3]; arc.style.strokeDashoffset = 0;
+      const anim = setInterval(() => { f = 1 - f; st.innerHTML = mvStageSVG(m, f); }, m[7]);
+      await say([[m[2]]]); if (MVS.stop) { clearInterval(anim); return; }
+      for (let s = m[3]; s > 0; s--) { sec.textContent = s; arc.style.strokeDashoffset = (213.6 * (1 - s / m[3])).toFixed(1); tone([660], .08, 'sine'); await wait(1000); if (MVS.stop) { clearInterval(anim); return; } }
+      clearInterval(anim); arc.style.strokeDashoffset = 213.6; sec.textContent = '👍'; tone([784, 1046], .12, 'sine');
+      await say([[MV_SAY.good]]); if (MVS.stop) return;
+      if (i < list.length - 1) { await say([[MV_SAY.next]]); if (MVS.stop) return; }
+    }
+    ov.querySelectorAll('.mv-dots i').forEach(d => d.className = 'ok');
+    const day = new Date().toDateString(), log = store.get('mvLog', {}), first = !log[day]; log[day] = (log[day] || 0) + 1; store.set('mvLog', log);
+    if (first) { try { giveStars(1); } catch (e) {} }
+    st.innerHTML = mvStageSVG(MV.find(x => x[0] === 'hop'), 1); ov.querySelector('.mv-name').textContent = '全部做完了！'; ov.querySelector('.mv-cmd').textContent = first ? '⭐ +1　今天的律動操完成！' : '身體變得好有精神！'; ov.querySelector('.mv-safe').textContent = '';
+    ov.querySelector('.mv-ring').outerHTML = '<button class="btn mv-done" id="mvDone">好棒！</button>'; ov.querySelector('#mvDone').onclick = () => mvClose();
+    tone([523, 659, 784, 1046], .12, 'sine'); try { burst(st, 30); } catch (e) {} track('move-done', '律動操完成'); await say([[MV_SAY.end]]);
+  }
+  function mvClose() { if (!MVS) return; MVS.stop = true; mvBgm(false); sayStop(); MVS = null; const ov = $('mvOv'); if (ov) ov.remove(); }
+  function mvPaint() { const b = $('mvEnter'); if (b) b.hidden = !mvReady(); }
+
+  /* ---------- v138 🐷 小豬撲滿：家長每天評分，週日發薪水存進撲滿；加分小、絕不扣到存款 ---------- */
+  const PIG_DEF = ['準時起床', '準時上床睡覺', '自己收玩具', '幫忙做家事', '早晚刷牙', '好好吃飯'];
+  const PIG_SAY = { pay: '發薪水囉！金幣存進小豬撲滿了！', ask: '請爸爸媽媽來確認喔！', zero: '這週還沒開始存錢喔，下週一起加油！' };
+  const pgD = d => { const x = new Date(d); return `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`; };
+  const pgMon = d => { const x = new Date(d); x.setHours(0, 0, 0, 0); x.setDate(x.getDate() - ((x.getDay() + 6) % 7)); return x; };
+  const pgCfg = () => Object.assign({ on: false, items: PIG_DEF.slice(), rate: 1, goal: 100, goalName: '' }, store.get('pigCfg', {}));
+  const pgDays = () => store.get('pigDays', {});
+  function pgDayScore(key) { const r = pgDays()[key] || {}; let s = 0; Object.values(r).forEach(v => { s += v === 1 ? 2 : v === -1 ? -1 : 0; }); return Math.max(0, Math.min(12, s)); } // 每天最多 +12、最少 0：扣分只抵當天的加分
+  const pgRated = key => Object.values(pgDays()[key] || {}).some(v => v === 1 || v === -1);
+  function pgWeek(mon) { let s = 0, n = 0; for (let i = 0; i < 7; i++) { const k = pgD(new Date(mon.getTime() + i * DAY)); s += pgDayScore(k); if (pgRated(k)) n++; } return { s, n }; }
+  function pgSettle() { // 週日晚上 7 點以後結算；跨週才打開也會補算，每週只算一次
+    const C = pgCfg(); if (!C.on) return; let last = store.get('pigWeek', ''); if (!last) { last = pgD(new Date(pgMon(Date.now()).getTime() - 7 * DAY)); store.set('pigWeek', last); }
+    let mon = new Date(new Date(last + 'T00:00:00').getTime() + 7 * DAY), bal = store.get('pigBal', 0); const log = store.get('pigLog', []);
+    while (mon.getTime() + 6 * DAY + 19 * 3600e3 <= Date.now()) { const w = pgWeek(mon), bonus = w.n >= 5 ? 5 : 0, pay = Math.round(w.s * C.rate) + (w.s > 0 ? bonus : 0);
+      if (pay > 0) { bal += pay; log.push({ t: Date.now(), type: 'pay', amt: pay, wk: pgD(mon), note: `週薪 ${w.s} 分${bonus && w.s > 0 ? '＋滿勤獎 5 元' : ''}` }); }
+      else log.push({ t: Date.now(), type: 'zero', amt: 0, wk: pgD(mon) });
+      store.set('pigWeek', pgD(mon)); mon = new Date(mon.getTime() + 7 * DAY); }
+    store.set('pigBal', bal); store.set('pigLog', log.slice(-200));
+  }
+  function pigSVG(w, full) { const f = Math.max(0, Math.min(1, full || 0));
+    return `<svg viewBox="0 0 220 180" width="${w}" height="${w * 180 / 220}" aria-hidden="true"><defs><radialGradient id="pgB" cx=".38" cy=".32" r=".85"><stop offset="0" stop-color="#FFE1EA"/><stop offset=".45" stop-color="#FFB3C7"/><stop offset="1" stop-color="#EE7E9F"/></radialGradient><radialGradient id="pgS" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#FFD0DC"/><stop offset="1" stop-color="#F08BA8"/></radialGradient><linearGradient id="pgC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE58A"/><stop offset="1" stop-color="#F2B630"/></linearGradient><clipPath id="pgClip"><ellipse cx="108" cy="98" rx="76" ry="60"/></clipPath></defs>
+      <ellipse cx="110" cy="166" rx="74" ry="9" fill="#000" opacity=".12"/>
+      <path d="M180 92 q22 -6 18 -22 q-4 -10 -12 -4 q-6 6 2 10" fill="none" stroke="#E2738F" stroke-width="5" stroke-linecap="round"/>
+      ${[[62, 140], [88, 146], [128, 146], [154, 140]].map(([x, y]) => `<rect x="${x - 11}" y="${y - 14}" width="22" height="26" rx="9" fill="#F08BA8" stroke="#5A2E3A" stroke-width="3"/>`).join('')}
+      <ellipse cx="108" cy="98" rx="76" ry="60" fill="url(#pgB)" stroke="#5A2E3A" stroke-width="3.5"/>
+      <g clip-path="url(#pgClip)" opacity=".9"><rect x="30" y="${158 - 120 * f}" width="160" height="${120 * f}" fill="url(#pgC)" opacity=".35"/></g>
+      <path d="M70 50 l-6 -26 l26 14 z" fill="url(#pgS)" stroke="#5A2E3A" stroke-width="3.5" stroke-linejoin="round"/><path d="M136 46 l12 -24 l10 26 z" fill="url(#pgS)" stroke="#5A2E3A" stroke-width="3.5" stroke-linejoin="round"/>
+      <rect x="92" y="40" width="34" height="8" rx="4" fill="#5A2E3A"/>
+      <ellipse cx="44" cy="104" rx="20" ry="17" fill="url(#pgS)" stroke="#5A2E3A" stroke-width="3.5"/><ellipse cx="38" cy="103" rx="3.5" ry="5" fill="#5A2E3A"/><ellipse cx="50" cy="103" rx="3.5" ry="5" fill="#5A2E3A"/>
+      <circle cx="76" cy="78" r="6.5" fill="#2E2438"/><circle cx="78" cy="76" r="2.2" fill="#fff"/><path d="M110 76 q6 -6 12 0" fill="none" stroke="#2E2438" stroke-width="3.5" stroke-linecap="round"/>
+      <ellipse cx="70" cy="122" rx="10" ry="6" fill="#FF8FA3" opacity=".6"/><path d="M62 128 q10 8 20 2" fill="none" stroke="#5A2E3A" stroke-width="3" stroke-linecap="round"/>
+      <ellipse cx="128" cy="70" rx="22" ry="11" fill="#fff" opacity=".35" transform="rotate(-18 128 70)"/></svg>`; }
+  const coinSVG = s => `<svg viewBox="0 0 40 40" width="${s}" height="${s}" aria-hidden="true"><defs><radialGradient id="cnG" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFF6C8"/><stop offset=".5" stop-color="#FFD45A"/><stop offset="1" stop-color="#E09A1E"/></radialGradient></defs><circle cx="20" cy="20" r="17" fill="url(#cnG)" stroke="#A8690F" stroke-width="2.5"/><circle cx="20" cy="20" r="11.5" fill="none" stroke="#C98714" stroke-width="2"/><path d="M20 12.5l2.3 4.7 5.2.8-3.8 3.6.9 5.2L20 24.3l-4.6 2.5.9-5.2-3.8-3.6 5.2-.8z" fill="#FFF3B0"/></svg>`;
+  function pigCardPaint() { const b = $('pigCard'); if (!b) return; const C = pgCfg(); b.hidden = !C.on; if (!C.on) return; pgSettle();
+    const bal = store.get('pigBal', 0), g = Math.max(1, C.goal), p = Math.min(100, Math.round(bal / g * 100)), newPay = store.get('pigLog', []).filter(x => x.type === 'pay').length > store.get('pigSeen', 0);
+    b.innerHTML = `<span class="pig-pic">${pigSVG(78, bal / g)}</span><span class="lv-t"><small>我的小豬撲滿${newPay ? '　<em class="pig-new">💰 發薪水了！</em>' : ''}</small><b>存了 ${bal} 元</b><span class="lv-bar pig-bar"><i style="width:${p}%"></i></span><small>${C.goalName ? `目標：${C.goalName}（${C.goal} 元）` : `目標 ${C.goal} 元`}${bal >= C.goal ? '　🎉 達成了！' : `　還差 ${C.goal - bal} 元`}</small></span>`; }
+  function pigOpen() { pgSettle(); const C = pgCfg(), log = store.get('pigLog', []), pays = log.filter(x => x.type === 'pay'), seen = store.get('pigSeen', 0), fresh = pays.slice(seen), bal = store.get('pigBal', 0), req = store.get('pigReq', null);
+    const now = pgMon(Date.now()), wk = pgWeek(now), ov = document.createElement('div'); ov.className = 'lv-ov pig-ov';
+    ov.innerHTML = `<div class="lv-box pig-box"><button class="lv-x" aria-label="關閉">✕</button><h3>🐷 我的小豬撲滿</h3><div class="pig-big">${pigSVG(220, bal / Math.max(1, C.goal))}<div class="pig-drop"></div></div>
+      <p class="pig-bal">存了 <b>${bal}</b> 元</p><span class="lv-bar pig-bar"><i style="width:${Math.min(100, Math.round(bal / Math.max(1, C.goal) * 100))}%"></i></span><p class="note">${C.goalName ? `存錢目標：${C.goalName}（${C.goal} 元）` : `存錢目標：${C.goal} 元`}</p>
+      <div class="pig-week">這週的努力：<b>⭐ ${wk.s} 分</b>　星期天晚上發薪水</div>
+      <div class="pig-act"></div></div>`;
+    document.body.appendChild(ov); const act = ov.querySelector('.pig-act');
+    const paint = () => { const r = store.get('pigReq', null), b = store.get('pigBal', 0);
+      if (r) { act.innerHTML = `<p class="pig-wait">⏳ 想用 <b>${r.amt}</b> 元，等爸爸媽媽確認中</p><button class="btn small" id="pigParent">爸爸媽媽按這裡</button>`; act.querySelector('#pigParent').onclick = () => { ov.remove(); openGate(() => { renderReport(); show('report'); rtShow('pig'); }); }; return; }
+      if (b <= 0) { act.innerHTML = '<p class="note">好好表現，星期天就會有薪水存進來喔！</p>'; return; }
+      const opts = [...new Set([10, 20, 50].filter(v => v < b).concat([b]))];
+      act.innerHTML = `<p><b>我想用撲滿的錢</b></p><div class="pig-amts">${opts.map(v => `<button class="pig-amt" data-v="${v}">${coinSVG(26)}<b>${v === b ? `全部 ${v}` : v} 元</b></button>`).join('')}</div>`;
+      act.querySelectorAll('.pig-amt').forEach(x => x.onclick = () => { if (store.get('pigReq', null)) return; store.set('pigReq', { amt: +x.dataset.v, t: Date.now() }); track('pig-ask', '撲滿兌現申請'); sayIf(PIG_SAY.ask); paint(); }); };
+    paint(); ov.onclick = e => { if (e.target === ov || e.target.closest('.lv-x')) { ov.remove(); pigCardPaint(); } };
+    if (fresh.length) { const sum = fresh.reduce((a, x) => a + x.amt, 0), drop = ov.querySelector('.pig-drop');
+      drop.innerHTML = Array.from({ length: Math.min(8, Math.max(3, Math.round(sum / 10))) }, (_, k) => `<span style="left:${30 + (k * 37) % 40}%;animation-delay:${k * .18}s">${coinSVG(34)}</span>`).join('') + `<b class="pig-pay">💰 發薪水囉！+${sum} 元</b>`;
+      store.set('pigSeen', pays.length); tone([784, 988, 1175, 1568], .1, 'sine'); sayIf(PIG_SAY.pay); }
+    else if (log.length && log[log.length - 1].type === 'zero' && !store.get('pigZeroSeen_' + log[log.length - 1].wk, false)) { store.set('pigZeroSeen_' + log[log.length - 1].wk, true); act.insertAdjacentHTML('beforebegin', `<p class="pig-wait">${PIG_SAY.zero}</p>`); sayIf(PIG_SAY.zero); }
+  }
+  // 家長專區：每天評分（可補登 7 天、可改）、設定、兌現確認、紀錄
+  let PG_DAY = null;
+  function pigParent() { const box = $('pigPar'); if (!box) return; const C = pgCfg();
+    if (!C.on) { box.innerHTML = `<p>孩子每天守規矩、幫忙做事，爸爸媽媽就幫他評分；每個星期天晚上自動「發薪水」存進小豬撲滿。</p><ul class="note"><li>每項做到 +2 分、要加油 −1 分；每天最多 12 分、最少 0 分</li><li>扣分只會抵當天的加分，<b>不會扣到撲滿裡已經存的錢</b></li><li>一週評分 5 天以上，再送滿勤獎 5 元</li></ul><button class="btn" id="pigOn">開始使用小豬撲滿</button>`;
+      $('pigOn').onclick = () => { const c = pgCfg(); c.on = true; store.set('pigCfg', c); store.set('pigWeek', pgD(new Date(pgMon(Date.now()).getTime() - 7 * DAY))); pigParent(); pigCardPaint(); track('pig-on', '開啟小豬撲滿'); }; return; }
+    pgSettle(); const today = pgD(Date.now()); if (!PG_DAY) PG_DAY = today; const D = pgDays(), rec = D[PG_DAY] || {}, req = store.get('pigReq', null), bal = store.get('pigBal', 0), wk = pgWeek(pgMon(Date.now()));
+    const days = Array.from({ length: 7 }, (_, i) => new Date(Date.now() - (6 - i) * DAY)), wd = ['日', '一', '二', '三', '四', '五', '六'];
+    box.innerHTML = `${req ? `<div class="pig-req"><b>🙋 孩子想用撲滿的 ${req.amt} 元</b><small>請把錢或約好的東西交給孩子後，再按「確認」。</small><div class="row-btns"><button class="btn small" id="pigYes">✅ 確認，已經給孩子</button><button class="btn ghost small" id="pigLater">稍後再說</button></div></div>` : ''}
+      <p class="pig-sum">撲滿 <b>${bal}</b> 元　・　這週 <b>${wk.s}</b> 分（已評 ${wk.n} 天${wk.n >= 5 ? '，有滿勤獎' : ''}）　・　1 分 = ${C.rate} 元</p>
+      <div class="pig-days">${days.map(d => { const k = pgD(d); return `<button data-d="${k}" class="${k === PG_DAY ? 'on' : ''}${pgRated(k) ? ' got' : ''}">${k === today ? '今天' : '週' + wd[d.getDay()]}<small>${d.getMonth() + 1}/${d.getDate()}</small></button>`; }).join('')}</div>
+      <div class="pig-rows">${C.items.map((t, i) => `<div class="pig-row"><span>${t}</span><span class="pig-seg">${[[1, '✅ 做到', '+2'], [-1, '💪 加油', '−1'], [0, '略過', '']].map(([v, l]) => `<button data-i="${i}" data-v="${v}" class="${(rec[i] == null ? 0 : rec[i]) === v ? 'on' : ''}">${l}</button>`).join('')}</span></div>`).join('')}</div>
+      <p class="pig-today">${PG_DAY === today ? '今天' : PG_DAY} 得分：<b>${pgDayScore(PG_DAY)}</b> 分（每天最多 12 分、最少 0 分）</p>
+      <details class="pig-set"><summary>⚙️ 撲滿設定</summary>
+        <label>好習慣清單（一行一項，4～8 項）<textarea id="pigItems" rows="6">${C.items.join('\n')}</textarea></label>
+        <label>1 分等於<select id="pigRate">${[.5, 1, 2].map(v => `<option value="${v}"${v === C.rate ? ' selected' : ''}>${v} 元</option>`).join('')}</select></label>
+        <label>存錢目標<input id="pigGoal" type="number" min="10" max="5000" value="${C.goal}"> 元　想買：<input id="pigGoalN" maxlength="12" value="${C.goalName.replace(/"/g, '')}" placeholder="例如：樂高"></label>
+        <button class="btn small" id="pigSave">儲存設定</button></details>
+      <details class="pig-set"><summary>📒 撲滿紀錄</summary><ul class="pig-log">${store.get('pigLog', []).slice().reverse().slice(0, 30).map(x => `<li>${new Date(x.t).toLocaleDateString('zh-TW')}　${x.type === 'pay' ? `💰 +${x.amt} 元（${x.note}）` : x.type === 'cash' ? `🛍️ −${x.amt} 元（孩子使用）` : '這週 0 分，沒有發薪水'}</li>`).join('') || '<li>還沒有紀錄</li>'}</ul></details>`;
+    box.querySelectorAll('.pig-days button').forEach(b => b.onclick = () => { PG_DAY = b.dataset.d; pigParent(); });
+    box.querySelectorAll('.pig-seg button').forEach(b => b.onclick = () => { const D2 = pgDays(), r = D2[PG_DAY] = D2[PG_DAY] || {}; r[b.dataset.i] = +b.dataset.v; store.set('pigDays', D2); pigParent(); pigCardPaint(); });
+    if (req) { $('pigYes').onclick = () => { const r = store.get('pigReq', null); if (!r) return; const b = store.get('pigBal', 0), amt = Math.min(r.amt, b); store.set('pigBal', b - amt); const L = store.get('pigLog', []); L.push({ t: Date.now(), type: 'cash', amt }); store.set('pigLog', L.slice(-200)); store.set('pigReq', null); track('pig-cash', '撲滿兌現'); pigParent(); pigCardPaint(); };
+      $('pigLater').onclick = () => { store.set('pigReq', null); pigParent(); pigCardPaint(); }; }
+    $('pigSave').onclick = () => { const c = pgCfg(), it = $('pigItems').value.split('\n').map(s => s.trim().slice(0, 14)).filter(Boolean).slice(0, 8);
+      if (it.length < 4) { alertNote('好習慣至少要 4 項喔'); return; } c.items = it; c.rate = +$('pigRate').value || 1; c.goal = Math.max(10, Math.min(5000, Math.round(+$('pigGoal').value || 100))); c.goalName = $('pigGoalN').value.trim().slice(0, 12); store.set('pigCfg', c); pigParent(); pigCardPaint(); };
+  }
+  function alertNote(t) { const n = document.createElement('div'); n.className = 'pig-toast'; n.textContent = t; document.body.appendChild(n); setTimeout(() => n.remove(), 2200); }
+  // 💾 資料備份：資料只存在這台裝置，換手機或清除資料前先備份
+  function bkExport() { const o = {}; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (/^ddn/.test(k)) o[k] = localStorage.getItem(k); }
+    const blob = new Blob([JSON.stringify({ app: 'ddn', v: 1, t: Date.now(), data: o })], { type: 'application/json' }), a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = `動動腦小學堂備份-${pgD(Date.now())}.json`; document.body.appendChild(a); a.click(); a.remove(); track('backup-out', '資料備份'); }
+  function bkImport(file) { const r = new FileReader(); r.onload = () => { try { const j = JSON.parse(r.result); if (!j || j.app !== 'ddn' || !j.data) throw 0;
+      Object.entries(j.data).forEach(([k, v]) => { if (/^ddn/.test(k) && typeof v === 'string') localStorage.setItem(k, v); }); track('backup-in', '資料還原'); alertNote('還原完成，重新開啟中⋯'); setTimeout(() => location.reload(), 900); } catch (e) { alertNote('這個檔案不是動動腦小學堂的備份喔'); } }; r.readAsText(file); }
+  try { $('pigCard').onclick = pigOpen; $('mvEnter').onclick = mvOpen; $('bkOut').onclick = bkExport; $('bkIn').onchange = e => { const f = e.target.files[0]; if (f) bkImport(f); }; } catch (e) {}
   function scnPerson(look, x, y, pose, mood, flip) {
     if (look === 'b1' || look === 'g1') heroSync();
     const [shirt, hair, type, k] = SCN_LOOK[look] || SCN_LOOK.b1, P = SCN_POSE[pose] || SCN_POSE.stand, I = SCN_INK, C = SCN_CHAR[look];
@@ -4728,12 +4947,13 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     } else {
       const rkOn = SCN_RANK && (look === 'b1' || look === 'g1'); if (rkOn) s += rkAcc(SCN_RANK, 'back');
       if (C && C.under) s += C.under;
-      (P.l || [[-8, 0], [8, 0]]).forEach(([lx, ly]) => { s += scnLimb(lx < 0 ? -7 : 7, -26, lx, ly - 4, pants, 10) + `${C && C.sock ? `<path d="M${lx - 4} ${ly - 9}h8" stroke="${C.sock}" stroke-width="6" stroke-linecap="round"/>` : ''}<ellipse cx="${lx}" cy="${ly}" rx="8" ry="5" fill="${shoe}"/>`; });
+      (P.l || [[-8, 0], [8, 0]]).forEach(([lx, ly, kx, ky]) => { s += (kx != null ? scnLimb(kx < 0 ? -7 : 7, -26, kx, ky, pants, 10) + scnLimb(kx, ky, lx, ly - 4, pants, 10) : scnLimb(lx < 0 ? -7 : 7, -26, lx, ly - 4, pants, 10)) + `${C && C.sock ? `<path d="M${lx - 4} ${ly - 9}h8" stroke="${C.sock}" stroke-width="6" stroke-linecap="round"/>` : ''}<ellipse cx="${lx}" cy="${ly}" rx="${P.tip ? 5 : 8}" ry="${P.tip ? 6 : 5}" fill="${shoe}"/>`; });
       if (C && C.bot) s += C.bot;
       if (P.ru) s += `<g transform="rotate(${P.ru} 0 -26)">`;
       let armTop = ''; P.a.forEach(([ax, ay]) => { const t = scnLimb(ax < 0 ? -13 : 13, -56, ax, ay, sleeve, 8) + hand(ax, ay); if (P.top && ax > 0) armTop += t; else s += t; });
       if (P.cane) s += `<path d="M26 -30V0" stroke="#8B5A2B" stroke-width="4" stroke-linecap="round"/><path d="M26 -30q0-8 -8-8" fill="none" stroke="#8B5A2B" stroke-width="4" stroke-linecap="round"/>`;
-      s += body + (rkOn ? rkAcc(SCN_RANK, 'front') : '') + head(mood) + (rkOn ? rkAcc(SCN_RANK, 'top') : '') + armTop + (P.ru ? '</g>' : ''); // top：右手畫在臉前面（噓、聽）
+      s += body + (rkOn ? rkAcc(SCN_RANK, 'front') : '') + head(mood) + (rkOn ? rkAcc(SCN_RANK, 'top') : '') + armTop + (P.ru ? '</g>' : '');
+      if (P.fx) s += P.fx; // top：右手畫在臉前面（噓、聽）
     }
     return `<g transform="translate(${x} ${y + (P.dy || 0) * k}) scale(${flip ? -k : k} ${k}) rotate(${P.r || 0})">${P.dy ? `<ellipse cx="0" cy="${-P.dy + 2}" rx="20" ry="4" fill="#000" opacity=".12"/>` : ''}${s}</g>`;
   }
@@ -5431,6 +5651,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     { e: '🤝', q: '朋友想跟你換玩具，換之前要做什麼？', a: [['🙋', '先問爸媽可不可以'], ['🔄', '馬上換'], ['✊', '搶他的']], why: '交換東西要先問爸媽，大家都同意才可以', lv: 3 },
     { e: '🧮', q: '你有 10 元，買了 6 元的餅乾，還剩幾元？', a: [['4️⃣', '4 元'], ['6️⃣', '6 元'], ['🔟', '10 元']], why: '10 減 6 等於 4，還剩 4 元', lv: 3 }
   ];
+  MANNERS_MORE.push( // v138 台灣生活禮貌（捷運、超商、餐桌、鞦韆）
+    { sc: 'bus|b1 120 stand smile|mom 220 stand smile f', e: '🚇', q: '在捷運上想跟媽媽說話，要怎麼說？', a: [['🤫', '小聲慢慢說'], ['📢', '大聲尖叫'], ['🦘', '在座位上跳來跳去']], why: '車上要小聲說話，才不會吵到別人', lv: 1 },
+    { sc: 'store|g1 110 hand happy|mom 230 stand smile f', e: '🏪', q: '超商店員把東西交給你，要說什麼？', a: [['🙏', '說謝謝'], ['🏃', '拿了轉身就跑'], ['🙄', '不理他']], why: '別人幫我們忙，要說謝謝', lv: 1 },
+    { sc: 'table|b1 100 stand plain|mom 220 give smile f|e 🍲 190 112 30', e: '🍲', q: '媽媽端著熱湯走過來，要怎麼做？', a: [['🪑', '坐好等，離遠一點'], ['🏃', '在旁邊跑來跑去'], ['✋', '伸手去摸碗']], why: '熱湯很燙，坐好等才安全', lv: 1 },
+    { sc: 'play|g1 70 stand plain|b1 210 run happy', e: '🎠', q: '有人盪鞦韆盪得很高，要站在哪裡等？', a: [['🧍', '站遠一點等'], ['🏃', '跑到鞦韆前面'], ['✋', '去拉鞦韆的鍊子']], why: '離鞦韆遠一點，才不會被撞到', lv: 1 });
   CALM.push(...CALM_MORE); MANNERS.push(...MANNERS_MORE);
   const TRASH = [
     { e: '🍌', n: '香蕉皮', bin: 'food', lv: 1 }, { e: '🍎', n: '吃剩的蘋果', bin: 'food', lv: 1 }, { e: '🍚', n: '剩飯剩菜', bin: 'food', lv: 1 },
@@ -7750,7 +7975,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     if (m) { void mascot.getBoundingClientRect(); mascot.classList.add(m); }
   }
 
-  function show(id) { if (id !== 'game' && id !== 'done') age = baseAge(); pinchLock(['park', 'game', 'learn', 'ezlearn', 'cnlearn'].includes(id)); if (id !== 'park') { const a = $('pkHub'), b = $('pkPlay'); if (a) a.hidden = true; if (b) b.hidden = true; } ['home', 'zone', 'ezone', 'ezlearn', 'cnone', 'cnlearn', 'learn', 'game', 'done', 'gate', 'report', 'rest', 'park'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); if (id === 'home' || id === 'done') { try { dqRender(); pathRender(); badgeCheck(); } catch (e) {} try { rkRender(); if (id === 'home') rkCheck(); } catch (e) {} } document.body.classList.toggle('on-home', id === 'home'); document.body.classList.toggle('has-bot', ['home', 'cnone', 'ezone', 'zone'].includes(id)); if (id === 'home') try { CNZ.from = false; CNZ.sch = ''; } catch (e) {} }
+  function show(id) { if (id !== 'game' && id !== 'done') age = baseAge(); pinchLock(['park', 'game', 'learn', 'ezlearn', 'cnlearn'].includes(id)); if (id !== 'park') { const a = $('pkHub'), b = $('pkPlay'); if (a) a.hidden = true; if (b) b.hidden = true; } ['home', 'zone', 'ezone', 'ezlearn', 'cnone', 'cnlearn', 'learn', 'game', 'done', 'gate', 'report', 'rest', 'park'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); if (id === 'home' || id === 'done') { try { dqRender(); pathRender(); badgeCheck(); } catch (e) {} try { rkRender(); if (id === 'home') rkCheck(); pigCardPaint(); mvPaint(); } catch (e) {} } document.body.classList.toggle('on-home', id === 'home'); document.body.classList.toggle('has-bot', ['home', 'cnone', 'ezone', 'zone'].includes(id)); if (id === 'home') try { CNZ.from = false; CNZ.sch = ''; } catch (e) {} }
 
   function addStar() {
     const pt = playToday(); pt.stars++; store.set('playToday', pt); wkAdd(1);
@@ -10920,7 +11145,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     });
     document.querySelectorAll('[data-newgrp]').forEach(g => { const box = document.querySelector('.subjects[data-newgrp]'); g.hidden = !box || ![...box.querySelectorAll('[data-newsub]')].some(b => !b.hidden); });
   }
-  newSubPaint(); if (location.protocol !== 'file:') aiReady().then(newSubPaint);
+  newSubPaint(); if (location.protocol !== 'file:') aiReady().then(() => { newSubPaint(); try { mvPaint(); } catch (e) {} });
   /* ---------- v99 👀 護眼小衛士：連續玩 10 分鐘，休息 10 秒 ---------- */
   const EYE_SAY = { a: '玩了十分鐘了，我們讓眼睛休息一下。看看遠遠的地方。', b: '眨眨眼睛，眨一眨。', c: '眼睛休息好了，我們繼續玩吧！' };
   const eyeOn = () => store.get('eyeGuard', true) !== false;
@@ -11393,7 +11618,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     $('cheatShare').onclick = () => { const tx = '【動動腦小學堂・今天小抄】\n' + $('cheatBody').innerText.replace('📤 傳給家人', '').trim(); if (navigator.share) navigator.share({ text: tx }).catch(() => {}); else { try { navigator.clipboard.writeText(tx); $('cheatShare').textContent = '已複製，可以貼到 LINE'; } catch (e) {} } };
   }
   // v126：學習紀錄太長，分成 4 個分頁（上面的孩子名字和數字摘要一直顯示）
-  const RT_MAP = [['learn', /小抄|六大領域|各科表現|英語能力|成長曲線|榮譽獎狀|走路學|本週學習報告|在家可以這樣練習/], ['print', /列印學習單/], ['time', /遊戲時間提醒|星星樂園|星星排行榜/], ['set', /小朋友和每日任務|AI 真人語音|說話速度|進階版|喜歡動動腦小學堂/]];
+  const RT_MAP = [['learn', /小抄|六大領域|各科表現|英語能力|成長曲線|榮譽獎狀|走路學|本週學習報告|在家可以這樣練習/], ['print', /列印學習單/], ['pig', /小豬撲滿/], ['time', /遊戲時間提醒|星星樂園|星星排行榜/], ['set', /小朋友和每日任務|AI 真人語音|說話速度|進階版|喜歡動動腦小學堂/]];
   // v134 學習成果太長：再分成小分頁，一次看一項
   const RT_SUB = [['cheat', '📝', '今天小抄', /小抄/], ['dom', '🌱', '六大領域', /六大領域/], ['sub', '📈', '各科表現', /各科表現/], ['en', '🔤', '英語能力', /英語能力/], ['grow', '📉', '成長曲線', /成長曲線/], ['cert', '🏆', '獎狀', /榮譽獎狀/], ['walk', '🎬', '走路學', /走路學/], ['week', '📅', '本週報告', /本週學習報告/], ['home', '🏠', '在家練習', /在家可以這樣練習/]];
   function rtSubShow(k) { const nav = $('rtSub'); if (!nav) return; nav.querySelectorAll('button').forEach(b => { b.hidden = ![...$('report').querySelectorAll(`[data-rsub="${b.dataset.rs}"]`)].some(el => !el.hidden); }); const ok = [...nav.querySelectorAll('button')].filter(b => !b.hidden).map(b => b.dataset.rs); if (!ok.includes(k)) k = ok[0]; store.set('repSub', k);
@@ -11416,7 +11641,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     $('report').querySelectorAll('[data-rtab]').forEach(el => el.classList.toggle('rt-off', el.dataset.rtab !== k));
     if ($('rtSub')) { $('rtSub').hidden = k !== 'learn'; if (k === 'learn') rtSubShow(store.get('repSub', 'cheat')); }
   }
-  function renderReport() { try { rtSetup(); } catch (e) {} try { $('gcMake').onclick = gcOpen; } catch (e) {}
+  function renderReport() { try { rtSetup(); } catch (e) {} try { $('gcMake').onclick = gcOpen; } catch (e) {} try { pigParent(); } catch (e) {}
     try { kidReport(); } catch (e) {}
     try { $('certList').innerHTML = certList(); $('certList').querySelectorAll('[data-cert]').forEach(b => b.onclick = () => certShow(b.dataset.cert)); } catch (e) {}
     try { renderCheat(); } catch (e) { console.warn(e); }
@@ -13296,6 +13521,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     try { out.push(...abcLines()); } catch (e) {}
     try { out.push(...cnzLines()); } catch (e) {}
     try { out.push(...Object.values(RK_SAY), ...Object.values(MON_SAY), ...wkZhLines()); } catch (e) {}
+    try { out.push(...mvLines(), ...Object.values(PIG_SAY)); } catch (e) {}
     out.push(...Object.values(MB_SAY).flatMap(t => t.split('｜'))); ['媽媽，我不生氣了！', '媽媽，我好多了！', '媽媽，我冷靜下來了！'].forEach(t => out.push([t, 'zh-TW', 'b1'], [t, 'zh-TW', 'g1'])); MB_LETTERS.forEach(t => { out.push([t, 'zh-TW', 'mom'], [t, 'zh-TW', 'dad']); });
     try { Object.entries(TONE_EX).forEach(([t, A]) => A.forEach(e => out.push(toneExSay(t, e)))); } catch (e) {}
     try { Object.values(NEWSUB_SAMPLE).forEach(f => f().forEach(x => out.push(x))); READ_T.forEach(T => out.push(T.hint)); } catch (e) {}
