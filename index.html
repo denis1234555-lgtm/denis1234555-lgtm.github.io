@@ -2173,6 +2173,27 @@ h1, h2, h3, .brand h1, .subject .name, .yx-enter-text b, .pk-ttl, .group-title {
 .pig-set textarea{width:100%}.pig-log{padding-left:18px;font-size:.9rem}
 .pig-toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:120;padding:10px 18px;border-radius:16px;background:#2E3A59;color:#fff;font-weight:800}
 .rt-tabs button{min-width:0}
+/* v139 一起闖關 */
+.co-ov{position:fixed;inset:0;z-index:95;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 16px 24px;background:linear-gradient(#EEF8FF,#FFF6E6);overflow:auto}
+.co-top{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:560px;gap:8px}.co-top>b{font-size:1.15rem;color:#2E3A59}
+.co-pick{width:100%;max-width:480px;text-align:center}.co-kids{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.co-kids button{padding:6px 12px;border:2px solid #E5D8BC;border-radius:14px;background:#fff;font:inherit;font-weight:800}.co-kids button.on{border-color:#F28C28;background:#FFF1D9}
+.co-pair{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0}
+.co-av{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 12px;min-width:92px;border-radius:20px;background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.08);font-size:2rem;transition:transform .25s,opacity .25s,box-shadow .25s}
+.co-av b{font-size:1rem;color:#2E3A59}.co-av small{font-size:.78rem;color:#6A5A3A;font-weight:700}
+.co-heads{display:flex;align-items:center;gap:8px;flex:1;justify-content:center}.co-av.sm{min-width:70px;padding:6px 8px;font-size:1.5rem;opacity:.45;transform:scale(.9)}
+.co-av.sm.now{opacity:1;transform:scale(1.12);box-shadow:0 0 0 4px #FFC93C,0 0 18px 6px rgba(255,201,60,.6);animation:coGlow 1.4s ease-in-out infinite alternate}
+@keyframes coGlow{to{box-shadow:0 0 0 4px #FFC93C,0 0 26px 10px rgba(255,201,60,.35)}}
+.co-egg{display:flex;flex-direction:column;align-items:center;gap:2px}.co-eggpic{font-size:1.7rem}.co-segs{display:flex;gap:2px}.co-segs i{width:8px;height:8px;border-radius:50%;background:#E3DDEA}.co-segs i.on{background:#7CC67E}
+.co-turn{font-size:1.05rem;color:#5A4A75}.co-prompt{margin:0;font-size:1.2rem;font-weight:900;color:#2E3A59;text-align:center}
+.co-stage{width:100%;max-width:520px}.co-opts{width:100%;max-width:520px}
+.co-hint{animation:coHint .8s ease-in-out infinite alternate;box-shadow:0 0 0 5px #FFC93C!important}@keyframes coHint{to{transform:scale(1.06)}}
+.co-lock{position:fixed;inset:0;z-index:97;display:grid;place-items:center;background:rgba(255,255,255,.72)}.co-lock b{padding:18px 26px;border-radius:24px;background:#fff;font-size:1.6rem;color:#C2562A;box-shadow:0 8px 24px rgba(0,0,0,.15);animation:pkPop .4s both}
+.co-hatch{position:relative;text-align:center}.co-dino{width:46%;max-width:220px}.co-dino.d1{animation:coFlyL 1.6s .4s both}.co-dino.d2{animation:coFlyR 1.6s .4s both}
+@keyframes coFlyL{0%{transform:translateX(50%) scale(.3);opacity:0}40%{transform:translateX(30%) scale(1);opacity:1}100%{transform:translateX(0) scale(1)}}
+@keyframes coFlyR{0%{transform:translateX(-50%) scale(.3);opacity:0}40%{transform:translateX(-30%) scale(1);opacity:1}100%{transform:translateX(0) scale(1)}}
+.co-enter{background:linear-gradient(135deg,#EAF4FF,#FFF1F5)}
+.mv-pick{display:flex;flex-direction:column;gap:10px;align-items:center}.mv-pick .btn{min-width:220px}.mv-pick small{display:block;font-size:.8rem;opacity:.85}
+.lv-ov,.mv-ov,.co-ov{--c:#F28C28;--c-deep:#C2621A;--c-soft:#FFF1D9}
 .wk-mic{display:flex;align-items:center;gap:8px;justify-content:center;font-weight:800;color:#4B5A6B;background:rgba(255,255,255,.8);border-radius:16px;padding:8px 12px;max-width:360px}.wk-mic input{width:22px;height:22px}
 .wk-rep{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:8px 0;border-bottom:1px dashed var(--line,#E5D6C3)}.wk-rep b{min-width:5em}.wk-rep span{font-size:1.2rem;letter-spacing:2px}.wk-rep small{color:var(--ink-soft,#6B5A80)}
 .pkx-rec{position:absolute;left:50%;top:30%;translate:-50% -50%;z-index:30;pointer-events:none;font-weight:900;font-size:clamp(2.6rem,12vw,4.4rem);color:#FFD43B;-webkit-text-stroke:3px #E56A1F;text-shadow:0 5px 0 #C2410C;animation:fbPop 1.6s cubic-bezier(.2,1.5,.4,1) forwards;white-space:nowrap}
@@ -2663,6 +2684,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     <div class="kid-bar" id="kidBar" hidden aria-label="切換小朋友"></div>
     <button class="lv-card" id="lvCard" aria-label="我的主角等級"></button>
     <button class="lv-card pig-card" id="pigCard" hidden aria-label="我的小豬撲滿"></button>
+    <button class="calm-enter co-enter" id="coEnter" hidden><span class="calm-ic">👫</span><span><b>一起闖關</b><small>兄弟姊妹一起玩：小的開門、大的接力，一起孵蛋</small></span><span class="sl-go">開始 →</span></button>
     <button class="calm-enter mv-enter" id="mvEnter" hidden><span class="calm-ic">🤸</span><span><b>跟著主角動一動</b><small>律動操時間！站起來，跟著主角做 4 個動作</small></span><span class="sl-go">開始 →</span></button>
     <button class="calm-enter" id="calmEnter" data-say="情緒急救箱"><span class="calm-ic">🛟</span><span><b>情緒急救箱</b><small>生氣、難過、靜不下來的時候，點我讓心情變好</small></span><span class="sl-go">開始 →</span></button>
     <div class="hm-tabs" id="hmTabs" role="tablist" aria-label="今天的學習"><button data-t="path" role="tab">🗺️ 學習路線</button><button data-t="dq" role="tab">✅ 今天的任務</button></div>
@@ -3686,8 +3708,8 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     </div>
     <div class="block" id="aiVoiceBlock">
       <h3>🎙️ AI 真人語音</h3>
-      <label class="ai-sw"><input type="checkbox" id="aiVoiceOn"> 用 AI 真人聲音念題目和故事（建議開啟）</label>
-      <p class="note">聲音像真人說話，不會有機器音；寶哥、筑筑、媽媽、老師、壞人都有自己的聲音。需要網路，聽過的句子會存在手機裡，下次沒網路也能聽。沒有音檔的句子會自動改用裝置內建語音。</p>
+      <label class="ai-sw" hidden><input type="checkbox" id="aiVoiceOn"> 用 AI 真人聲音念題目和故事</label>
+      <p class="note">所有題目和故事都用 AI 真人聲音，不會有機器音；寶哥、筑筑、媽媽、老師、壞人都有自己的聲音。需要網路，聽過的句子會存在手機裡，下次沒網路也能聽。還沒有音檔的句子只顯示文字，不會改用裝置內建的機器聲音。</p>
     </div>
     <div class="block" id="voiceBlock">
       <h3>說話速度</h3>
@@ -4802,8 +4824,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
       <ellipse cx="180" cy="262" rx="120" ry="22" fill="url(#mvMat)"/><ellipse cx="180" cy="258" rx="112" ry="17" fill="none" stroke="#fff" stroke-width="2" opacity=".5"/>
       <g transform="translate(180 262) scale(1.15)">${p}</g></svg>`;
   }
-  async function mvOpen() {
-    if (MVS) return; const n = Math.min(4, MV.length), list = shuffle(MV.slice()).slice(0, n);
+  async function mvOpen(cnt) {
+    if (MVS) return;
+    if (cnt == null) { const ch = document.createElement('div'); ch.className = 'lv-ov'; ch.innerHTML = `<div class="lv-box"><button class="lv-x" aria-label="關閉">✕</button><h3>🤸 跟著主角動一動</h3><p class="note">要做幾個動作呢？</p><div class="mv-pick"><button class="btn" data-n="8">🌟 全部 8 個<small>約 2 分鐘</small></button><button class="btn ghost" data-n="4">⚡ 快速 4 個<small>約 1 分鐘</small></button></div></div>`;
+      document.body.appendChild(ch); ch.onclick = e => { const b = e.target.closest('[data-n]'); if (b) { ch.remove(); mvOpen(+b.dataset.n); } else if (e.target === ch || e.target.closest('.lv-x')) ch.remove(); }; return; }
+    const n = Math.min(cnt, MV.length), list = n >= MV.length ? MV.slice() : shuffle(MV.slice()).slice(0, n);
     const ov = document.createElement('div'); ov.className = 'mv-ov'; ov.id = 'mvOv';
     ov.innerHTML = `<div class="mv-top"><button class="mv-x" aria-label="結束">✕</button><b>🤸 跟著主角動一動</b><button class="mv-music" aria-label="背景音樂">🎵</button></div><div class="mv-dots">${list.map(() => '<i></i>').join('')}</div><div class="mv-stage"></div><div class="mv-cap"><b class="mv-name"></b><span class="mv-cmd"></span></div><div class="mv-ring"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" fill="none" stroke="#F3E3C0" stroke-width="8"/><circle class="mv-arc" cx="40" cy="40" r="34" fill="none" stroke="#F28C28" stroke-width="8" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="0" transform="rotate(-90 40 40)"/></svg><b class="mv-sec"></b></div><p class="mv-safe"></p>`;
     document.body.appendChild(ov); MVS = { stop: false, music: store.get('mvMusic', true) };
@@ -4922,7 +4947,91 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     a.href = URL.createObjectURL(blob); a.download = `動動腦小學堂備份-${pgD(Date.now())}.json`; document.body.appendChild(a); a.click(); a.remove(); track('backup-out', '資料備份'); }
   function bkImport(file) { const r = new FileReader(); r.onload = () => { try { const j = JSON.parse(r.result); if (!j || j.app !== 'ddn' || !j.data) throw 0;
       Object.entries(j.data).forEach(([k, v]) => { if (/^ddn/.test(k) && typeof v === 'string') localStorage.setItem(k, v); }); track('backup-in', '資料還原'); alertNote('還原完成，重新開啟中⋯'); setTimeout(() => location.reload(), 900); } catch (e) { alertNote('這個檔案不是動動腦小學堂的備份喔'); } }; r.readAsText(file); }
-  try { $('pigCard').onclick = pigOpen; $('mvEnter').onclick = mvOpen; $('bkOut').onclick = bkExport; $('bkIn').onchange = e => { const f = e.target.files[0]; if (f) bkImport(f); }; } catch (e) {}
+
+  /* ---------- v139 👫 一起闖關（兄弟姊妹大帶小）：小的先開門、大的接力解題，一起孵同一顆蛋 ---------- */
+  const CO_SAY = { start: '我們一起來闖關！', open: '輪到你開門囉！', door: '門打開了！', relay: '換你接力囉！', help: '請你的好夥伴牽手一起點！', hint: '請你的好夥伴幫忙點提示！', good: '答對了！', egg: '蛋孵出來了！兩個人都得到新朋友！' };
+  const CO_LV = 8, CO_AGE = { small: 0, big: 1, six: 2 };
+  const CO_POOL = { door: ['color', 'animals', 'odd', 'compare', 'food'], small: ['math', 'color', 'compare', 'odd', 'animals'], big: ['math', 'zhuyin', 'compare', 'sequence', 'money', 'odd'], six: ['math', 'zhuyin', 'cnword', 'time', 'money', 'sequence'] };
+  const coReady = () => { try { if (kidList().length < 2) return false; if (!aiOn()) return false; const L = Object.values(CO_SAY); return L.every(t => aiHas(t, 'zh-TW', '')); } catch (e) { return false; } };
+  function coPaint() { const b = $('coEnter'); if (b) b.hidden = !coReady(); }
+  const coAge = id => storeFor(id).get('age', 'small');
+  const coKid = id => kidList().find(k => k.id === id) || { id, name: '小朋友', em: '🐻' };
+  function coGen(pool, ag) { // 借用原本的出題器：暫時換成這位小朋友的年齡，題目要有 AI 語音才出
+    const keepAge = age, keepSt = st; let best = null;
+    try { for (let n = 0; n < 40; n++) { const sub = pick(pool.filter(k => GEN[k])); age = ag; st = { sub, emoNext: null, i: n, stars: 0, total: 10, results: [], q: null, first: true, locked: false, used: new Set(), wrongN: 0, pend: [] };
+      let q = null; try { q = GEN[sub](); } catch (e) {} if (!q || !Array.isArray(q.options) || q.options.length < 2 || q.options.filter(o => o.correct).length !== 1 || q.play) continue;
+      if (qVoiced(q)) { best = q; break; } best = best || q; } }
+    finally { age = keepAge; st = keepSt; } return best;
+  }
+  let CO = null;
+  function coOpen() { const L = kidList(); if (L.length < 2) return; const sv = (() => { try { return JSON.parse(localStorage.getItem('ddn-coSave') || 'null'); } catch (e) { return null; } })();
+    let a = L[0].id, b = L[1].id; if (sv && L.some(k => k.id === sv.a) && L.some(k => k.id === sv.b)) { a = sv.a; b = sv.b; } else { const s = L.slice().sort((x, y) => CO_AGE[coAge(x.id)] - CO_AGE[coAge(y.id)]); a = s[0].id; b = s[1].id; }
+    const ov = document.createElement('div'); ov.className = 'co-ov'; ov.id = 'coOv'; document.body.appendChild(ov);
+    const pickUI = () => { const A = coKid(a), B = coKid(b);
+      ov.innerHTML = `<div class="co-top"><button class="mv-x" id="coX" aria-label="結束">✕</button><b>👫 一起闖關</b><span></span></div>
+        <div class="co-pick"><p class="note">小的先「開門」，大的再「接力」解題，一起把蛋孵出來！不計時、不比分。</p>
+        ${L.length > 2 ? `<div class="co-kids">${L.map(k => `<button data-k="${k.id}" class="${k.id === a || k.id === b ? 'on' : ''}">${k.em} ${k.name}</button>`).join('')}</div><p class="note">點兩位小朋友</p>` : ''}
+        <div class="co-pair"><span class="co-av">${A.em}<b>${A.name}</b><small>🚪 負責開門</small></span><button class="btn small" id="coSwap">⇄ 交換</button><span class="co-av">${B.em}<b>${B.name}</b><small>🧩 負責接力</small></span></div>
+        ${sv && sv.a === a && sv.b === b && sv.lv > 0 ? `<p class="note">上次孵到第 ${sv.lv} 關，會接著孵喔！</p>` : ''}
+        <button class="btn" id="coGo">開始闖關！</button></div>`;
+      ov.querySelector('#coX').onclick = coClose; ov.querySelector('#coSwap').onclick = () => { [a, b] = [b, a]; pickUI(); };
+      ov.querySelectorAll('.co-kids button').forEach(x => x.onclick = () => { const id = x.dataset.k; if (id === a || id === b) return; b = a; a = id; pickUI(); });
+      ov.querySelector('#coGo').onclick = () => coRun(a, b, sv && sv.a === a && sv.b === b ? sv.lv : 0); };
+    pickUI(); track('co-open', '一起闖關開啟');
+  }
+  function coClose() { if (CO) CO.stop = true; CO = null; sayStop(); const ov = $('coOv'); if (ov) ov.remove(); }
+  async function coRun(a, b, lv0) {
+    const ov = $('coOv'), A = coKid(a), B = coKid(b); CO = { a, b, lv: lv0 || 0, stop: false, ok: { [a]: 0, [b]: 0 } }; const me = CO;
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    ov.innerHTML = `<div class="co-top"><button class="mv-x" id="coX" aria-label="結束">✕</button><div class="co-heads"><span class="co-av sm" data-id="${a}">${A.em}<b>${A.name}</b></span><span class="co-egg"></span><span class="co-av sm" data-id="${b}">${B.em}<b>${B.name}</b></span></div><span></span></div>
+      <div class="co-turn"></div><p class="co-prompt"></p><div class="stage co-stage"></div><div class="options co-opts"></div><div class="co-help"></div><div class="co-lock" hidden></div>`;
+    ov.querySelector('#coX').onclick = coClose;
+    const egg = () => { ov.querySelector('.co-egg').innerHTML = `<span class="co-eggpic">🥚</span><span class="co-segs">${Array.from({ length: CO_LV }, (_, i) => `<i class="${i < me.lv ? 'on' : ''}"></i>`).join('')}</span>`; };
+    const turn = id => ov.querySelectorAll('.co-av').forEach(x => x.classList.toggle('now', x.dataset.id === id));
+    const lock = async (txt) => { const L = ov.querySelector('.co-lock'); L.innerHTML = `<b>${txt}</b>`; L.hidden = false; await wait(1200); L.hidden = true; }; // 交接時鎖住畫面，避免小的連點到大的題目
+    const ask = (who, other, q, isDoor) => new Promise(res => {
+      const box = ov.querySelector('.co-opts'), help = ov.querySelector('.co-help'); let idle = null, done = false;
+      ov.querySelector('.co-turn').innerHTML = `${coKid(who).em} <b>${coKid(who).name}</b>　${isDoor ? '🚪 開門' : '🧩 接力挑戰'}`;
+      ov.querySelector('.co-prompt').textContent = q.prompt; const sg = ov.querySelector('.co-stage'); sg.innerHTML = q.stage || ''; sg.hidden = !q.stage;
+      box.className = 'options co-opts ' + (q.options.length === 4 ? 'cols-4' : q.options.length === 2 ? 'cols-2' : 'cols-3'); box.innerHTML = ''; help.innerHTML = '';
+      const hint = () => { const i = q.options.findIndex(o => o.correct); const bt = box.children[i]; if (bt) bt.classList.add('co-hint'); };
+      const arm = () => { clearTimeout(idle); if (!isDoor) return; idle = setTimeout(() => { if (done || me.stop) return; help.innerHTML = `<button class="btn small co-hbtn">🤝 請 ${coKid(other).name} 牽手一起點</button>`; help.firstChild.onclick = () => { hint(); help.innerHTML = ''; }; sayIf(CO_SAY.help); }, 9000); };
+      q.options.forEach(o => { const bt = document.createElement('button'); bt.className = 'opt chunky'; bt.innerHTML = o.html; bt.setAttribute('aria-label', o.label || '選項');
+        bt.onclick = async () => { if (done || me.stop) return; arm();
+          if (o.correct) { done = true; clearTimeout(idle); bt.classList.add('right'); tone([660, 880], .1, 'sine'); try { burst(bt, 14); } catch (e) {} res(true); }
+          else { bt.classList.add('wrong'); bt.disabled = true; tone([220], .15, 'triangle');
+            if (!isDoor && !help.innerHTML) { help.innerHTML = `<button class="btn small co-hbtn">💡 請 ${coKid(other).name} 幫忙點提示</button>`; help.firstChild.onclick = () => { hint(); help.innerHTML = ''; }; sayIf(CO_SAY.hint); } } };
+        box.appendChild(bt); });
+      arm(); say(q.speech || [[q.prompt]]);
+    });
+    egg(); await say([[CO_SAY.start]]); if (me.stop) return;
+    while (me.lv < CO_LV && !me.stop) {
+      turn(a); await lock(`🚪 換 ${A.name} 開門！`); if (me.stop) return; sayIf(CO_SAY.open);
+      const dq = coGen(CO_POOL.door, 'small'); if (!dq) break; await ask(a, b, dq, true); if (me.stop) return; me.ok[a]++;
+      await say([[CO_SAY.door]]); if (me.stop) return;
+      turn(b); await lock(`🧩 換 ${B.name} 接力！`); if (me.stop) return; sayIf(CO_SAY.relay);
+      const ag = coAge(b), bq = coGen(CO_POOL[ag] || CO_POOL.big, ag); if (!bq) break; await ask(b, a, bq, false); if (me.stop) return; me.ok[b]++;
+      me.lv++; egg(); try { localStorage.setItem('ddn-coSave', JSON.stringify({ a, b, lv: me.lv })); } catch (e) {}
+      await say([[CO_SAY.good]]); if (me.stop) return;
+    }
+    if (me.stop || me.lv < CO_LV) return;
+    try { localStorage.removeItem('ddn-coSave'); } catch (e) {}
+    // 孵蛋：同一隻恐龍複製兩份，分別飛進兩個人的圖鑑
+    const SA = storeFor(a), SB = storeFor(b), ownA = SA.get('dinoDex', []), ownB = SB.get('dinoDex', []);
+    const pool = DINO_DEX.filter(d => !ownA.includes(d[0]) || !ownB.includes(d[0])), d = pick(pool.length ? pool : DINO_DEX);
+    [[SA, ownA], [SB, ownB]].forEach(([S, own]) => { if (!own.includes(d[0])) { own.push(d[0]); S.set('dinoDex', own); } });
+    [a, b].forEach(id => { const S = storeFor(id); if (id === kidCur) { try { giveStars(3); } catch (e) {} } else S.set('stars', S.get('stars', 0) + 3);
+      const H = S.get('history', []); H.push({ t: Date.now(), sub: 'coplay', s: me.ok[id], n: CO_LV }); S.set('history', H.slice(-400)); });
+    ov.querySelector('.co-turn').innerHTML = ''; ov.querySelector('.co-prompt').textContent = '蛋孵出來了！'; ov.querySelector('.co-opts').innerHTML = ''; ov.querySelector('.co-help').innerHTML = '';
+    const sg = ov.querySelector('.co-stage'); sg.hidden = false; sg.innerHTML = `<div class="co-hatch"><canvas width="220" height="180" class="co-dino d1"></canvas><canvas width="220" height="180" class="co-dino d2"></canvas><p><b>${d[0]}</b>　${A.name} 和 ${B.name} 都得到了！⭐ 各 +3</p></div>`;
+    try { await artLoad([d[5]]); } catch (e) {}
+    sg.querySelectorAll('canvas').forEach((cv, i) => { const c = cv.getContext('2d'); try { dinoDraw(c, d, 110, 150, 120, i ? -1 : 1, 0); } catch (e) {} });
+    tone([523, 659, 784, 1046, 1318], .1, 'sine'); try { burst(sg, 36); } catch (e) {} track('co-done', '一起闖關孵蛋');
+    await say([[CO_SAY.egg]]);
+    ov.querySelector('.co-help').innerHTML = '<button class="btn mv-done" id="coEnd">好棒！</button>'; ov.querySelector('#coEnd').onclick = coClose;
+  }
+  try { $('coEnter').onclick = () => coOpen(); } catch (e) {}
+  try { $('pigCard').onclick = pigOpen; $('mvEnter').onclick = () => mvOpen(); $('bkOut').onclick = bkExport; $('bkIn').onchange = e => { const f = e.target.files[0]; if (f) bkImport(f); }; } catch (e) {}
   function scnPerson(look, x, y, pose, mood, flip) {
     if (look === 'b1' || look === 'g1') heroSync();
     const [shirt, hair, type, k] = SCN_LOOK[look] || SCN_LOOK.b1, P = SCN_POSE[pose] || SCN_POSE.stand, I = SCN_INK, C = SCN_CHAR[look];
@@ -7793,7 +7902,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   // 依序念完每一段才 resolve；長的故事會照句號拆開念（避免手機念太長的句子會中斷）
   /* ---------- AI 真人語音（Azure 預先做好的音檔；沒有音檔或沒網路時改用裝置語音） ---------- */
   const AI = { ids: null, load: null, el: null, pre: new Map(), unlocked: false };
-  const aiOn = () => store.get('aiVoice', true);
+  const aiOn = () => true; // v139：一律用 AI 真人語音，不再提供切換成系統語音
   function aiHash(str) {
     let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
     for (let i = 0; i < str.length; i++) { const c = str.charCodeAt(i); h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677); }
@@ -7903,8 +8012,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     // 👑 我的主角：名字和前後的句子分開念（名字有自己的真人語音檔）
     { heroSync(); const hn = HERO_CALLS.filter(n => String(text).includes(n));
       if (hn.length && AI.ids) { const ps = String(text).split(new RegExp('(' + hn.join('|') + ')')).map(x => x.trim()).filter(x => /[\w\u4e00-\u9fff]/.test(x)); if (ps.length > 1 && ps.every(x => aiHas(x, lang, who))) { if (await stitchPlay(ps.map(x => ({ key: aiId(x, lang, who), id: aiId(x, lang, who), t: x })), my)) return; for (const x of ps) { if (my !== sayToken) return; await aiPlay(x, lang, my, who); } return; } } }
-    if (!('speechSynthesis' in window)) return;
-    return ttsOne(String(text).replace(/⟦([^|⟧]*)\|?([^⟧]*)⟧/g, (m, a, b) => b || a), lang, my);
+    return; // v139：一律不用手機內建的系統語音（聲音太機械）；沒有 AI 音檔的句子只顯示文字
   }
   // 依序念完每一段才 resolve；長的故事會照句號拆開念（避免手機念太長的句子會中斷）
   // parts 每一段：[文字, 語言, 角色]；角色（例如 b1、mom、jin）會用那個角色的 AI 聲音
@@ -7975,7 +8083,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     if (m) { void mascot.getBoundingClientRect(); mascot.classList.add(m); }
   }
 
-  function show(id) { if (id !== 'game' && id !== 'done') age = baseAge(); pinchLock(['park', 'game', 'learn', 'ezlearn', 'cnlearn'].includes(id)); if (id !== 'park') { const a = $('pkHub'), b = $('pkPlay'); if (a) a.hidden = true; if (b) b.hidden = true; } ['home', 'zone', 'ezone', 'ezlearn', 'cnone', 'cnlearn', 'learn', 'game', 'done', 'gate', 'report', 'rest', 'park'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); if (id === 'home' || id === 'done') { try { dqRender(); pathRender(); badgeCheck(); } catch (e) {} try { rkRender(); if (id === 'home') rkCheck(); pigCardPaint(); mvPaint(); } catch (e) {} } document.body.classList.toggle('on-home', id === 'home'); document.body.classList.toggle('has-bot', ['home', 'cnone', 'ezone', 'zone'].includes(id)); if (id === 'home') try { CNZ.from = false; CNZ.sch = ''; } catch (e) {} }
+  function show(id) { if (id !== 'game' && id !== 'done') age = baseAge(); pinchLock(['park', 'game', 'learn', 'ezlearn', 'cnlearn'].includes(id)); if (id !== 'park') { const a = $('pkHub'), b = $('pkPlay'); if (a) a.hidden = true; if (b) b.hidden = true; } ['home', 'zone', 'ezone', 'ezlearn', 'cnone', 'cnlearn', 'learn', 'game', 'done', 'gate', 'report', 'rest', 'park'].forEach(s => { $(s).hidden = s !== id; }); window.scrollTo(0, 0); if (id === 'home' || id === 'done') { try { dqRender(); pathRender(); badgeCheck(); } catch (e) {} try { rkRender(); if (id === 'home') rkCheck(); pigCardPaint(); mvPaint(); coPaint(); } catch (e) {} } document.body.classList.toggle('on-home', id === 'home'); document.body.classList.toggle('has-bot', ['home', 'cnone', 'ezone', 'zone'].includes(id)); if (id === 'home') try { CNZ.from = false; CNZ.sch = ''; } catch (e) {} }
 
   function addStar() {
     const pt = playToday(); pt.stars++; store.set('playToday', pt); wkAdd(1);
@@ -11145,7 +11253,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     });
     document.querySelectorAll('[data-newgrp]').forEach(g => { const box = document.querySelector('.subjects[data-newgrp]'); g.hidden = !box || ![...box.querySelectorAll('[data-newsub]')].some(b => !b.hidden); });
   }
-  newSubPaint(); if (location.protocol !== 'file:') aiReady().then(() => { newSubPaint(); try { mvPaint(); } catch (e) {} });
+  newSubPaint(); if (location.protocol !== 'file:') aiReady().then(() => { newSubPaint(); try { mvPaint(); coPaint(); } catch (e) {} });
   /* ---------- v99 👀 護眼小衛士：連續玩 10 分鐘，休息 10 秒 ---------- */
   const EYE_SAY = { a: '玩了十分鐘了，我們讓眼睛休息一下。看看遠遠的地方。', b: '眨眨眼睛，眨一眨。', c: '眼睛休息好了，我們繼續玩吧！' };
   const eyeOn = () => store.get('eyeGuard', true) !== false;
@@ -11309,7 +11417,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   function showLock(justEnded) { if (!justEnded) track('premium-locked', '進階主題試玩用完'); $('lockMsg').textContent = justEnded ? '試玩 3 題結束囉！想繼續玩，請爸爸媽媽到家長專區看看怎麼開啟。' : '試玩已經用完囉！請爸爸媽媽到家長專區看看怎麼開啟。'; $('lockSheet').hidden = false; }
 
   /* ---------- 家長專區 ---------- */
-  const SUBNAME = { bond: '數的分合', digi: '3C 安全小衛士', want: '小小理財家', robot: '機器人指令大冒險', yxmirror: '幼小・鏡像字大挑戰', yxdict: '幼小・聽寫小考官', yxread: '幼小・應用題拆解', yx2big: '超前・1000 以內的數', yx2col: '超前・二位數直式加減', yx2mul: '超前・乘法入門', yx2time: '超前・時間進階', yx2unit: '超前・長度和重量', yx2rad: '超前・國字部首', yx2word: '超前・詞語進階', yx2read: '超前・短文閱讀', review: '錯題複習本', hero: '星光守護隊', pkmath: '星星樂園・數學闖關', pkcolor: '星星樂園・顏色分類', pkzy: '星星樂園・注音國字', pken: '星星樂園・英文', pklife: '星星樂園・生活和禮貌', pkemo: '星星樂園・情緒', pkpos: '星星樂園・方位', ezanimal: '英語・動物 Animals', ezfood: '英語・水果和食物 Food', ezcolor: '英語・顏色和形狀 Colors', eznum: '英語・數字 1–10 Numbers', ezbody: '英語・身體和衣服 Body', ezhello: '英語・打招呼和禮貌 Hello', ezcase: '英語・大寫小寫 Aa Bb', ezfirst: '英語・首音 First Sound', eznum2: '英語・數字 11–20', ezpeople: '英語・家人和職業 People', ezaction: '英語・動作和心情 Actions', ezsimon: '英語・聽指令 Simon Says', ezcvc: '英語・自然發音拼讀 Phonics', ezvowel: '英語・短母音 a e i o u', ezsight: '英語・常見字 Sight Words', ezsent: '英語・看圖選句子', ezqa: '英語・英文問答 Q&A', ezweek: '英語・星期月份天氣', ezstory: '英語・英文小故事 Story', xmcolor: '顏色數數記憶', xmshape: '形狀顏色找找看', xmplace: '聽指令擺放', xmday: '一天的時間表', xmpattern: '規律塗色', xmemo: '情緒小偵探', xmdots: '連點成圖', xmmirror: '對稱畫一半', xmshop: '幼小・購物清單記憶', xmengcolor: '幼小・英文顏色數數', yxzy: '幼小・注音符號', yxtone: '幼小・四聲聲調', yxspell: '幼小・注音拼讀', yxchar: '幼小・認國字', yxsimilar: '幼小・相似字', yxsent: '幼小・句子填空', yxpunct: '幼小・標點符號', yxlook: '幼小・看圖說話', yxstory: '幼小・聽故事', yxstroke: '幼小・國字筆順', yxtrace: '幼小・國字描寫', yxnum: '幼小・100 以內的數', yxcalc: '幼小・20 以內加減', yxword: '幼小・應用題', yxtime: '幼小・認識時間', yxmoney: '幼小・錢幣和買東西', yxmeasure: '幼小・長度比一比', yxstat: '幼小・統計圖表', yxcal: '幼小・星期和月份', yxschool: '幼小・校園生活', cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', aten: '關注小超人', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識', xmcopy: '照樣子塗圓點', tell: '看圖說故事', feel: '心情為什麼', together: '我和大家', habit: '生活自理', music: '聲音和節奏', place: '程度小測驗' };
+  const SUBNAME = { coplay: '一起闖關', bond: '數的分合', digi: '3C 安全小衛士', want: '小小理財家', robot: '機器人指令大冒險', yxmirror: '幼小・鏡像字大挑戰', yxdict: '幼小・聽寫小考官', yxread: '幼小・應用題拆解', yx2big: '超前・1000 以內的數', yx2col: '超前・二位數直式加減', yx2mul: '超前・乘法入門', yx2time: '超前・時間進階', yx2unit: '超前・長度和重量', yx2rad: '超前・國字部首', yx2word: '超前・詞語進階', yx2read: '超前・短文閱讀', review: '錯題複習本', hero: '星光守護隊', pkmath: '星星樂園・數學闖關', pkcolor: '星星樂園・顏色分類', pkzy: '星星樂園・注音國字', pken: '星星樂園・英文', pklife: '星星樂園・生活和禮貌', pkemo: '星星樂園・情緒', pkpos: '星星樂園・方位', ezanimal: '英語・動物 Animals', ezfood: '英語・水果和食物 Food', ezcolor: '英語・顏色和形狀 Colors', eznum: '英語・數字 1–10 Numbers', ezbody: '英語・身體和衣服 Body', ezhello: '英語・打招呼和禮貌 Hello', ezcase: '英語・大寫小寫 Aa Bb', ezfirst: '英語・首音 First Sound', eznum2: '英語・數字 11–20', ezpeople: '英語・家人和職業 People', ezaction: '英語・動作和心情 Actions', ezsimon: '英語・聽指令 Simon Says', ezcvc: '英語・自然發音拼讀 Phonics', ezvowel: '英語・短母音 a e i o u', ezsight: '英語・常見字 Sight Words', ezsent: '英語・看圖選句子', ezqa: '英語・英文問答 Q&A', ezweek: '英語・星期月份天氣', ezstory: '英語・英文小故事 Story', xmcolor: '顏色數數記憶', xmshape: '形狀顏色找找看', xmplace: '聽指令擺放', xmday: '一天的時間表', xmpattern: '規律塗色', xmemo: '情緒小偵探', xmdots: '連點成圖', xmmirror: '對稱畫一半', xmshop: '幼小・購物清單記憶', xmengcolor: '幼小・英文顏色數數', yxzy: '幼小・注音符號', yxtone: '幼小・四聲聲調', yxspell: '幼小・注音拼讀', yxchar: '幼小・認國字', yxsimilar: '幼小・相似字', yxsent: '幼小・句子填空', yxpunct: '幼小・標點符號', yxlook: '幼小・看圖說話', yxstory: '幼小・聽故事', yxstroke: '幼小・國字筆順', yxtrace: '幼小・國字描寫', yxnum: '幼小・100 以內的數', yxcalc: '幼小・20 以內加減', yxword: '幼小・應用題', yxtime: '幼小・認識時間', yxmoney: '幼小・錢幣和買東西', yxmeasure: '幼小・長度比一比', yxstat: '幼小・統計圖表', yxcal: '幼小・星期和月份', yxschool: '幼小・校園生活', cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', aten: '關注小超人', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識', xmcopy: '照樣子塗圓點', tell: '看圖說故事', feel: '心情為什麼', together: '我和大家', habit: '生活自理', music: '聲音和節奏', place: '程度小測驗' };
   EZL.forEach(c => { SUBNAME['ezl_' + c.id] = '英語單字・' + c.zh; });
   const TIPS = {
     math: '吃點心時一起數一數有幾個。', compare: '分東西時問孩子「哪一邊比較多？」', money: '買東西時讓孩子幫忙拿硬幣付錢。',
@@ -13521,7 +13629,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     try { out.push(...abcLines()); } catch (e) {}
     try { out.push(...cnzLines()); } catch (e) {}
     try { out.push(...Object.values(RK_SAY), ...Object.values(MON_SAY), ...wkZhLines()); } catch (e) {}
-    try { out.push(...mvLines(), ...Object.values(PIG_SAY)); } catch (e) {}
+    try { out.push(...mvLines(), ...Object.values(PIG_SAY), ...Object.values(CO_SAY)); } catch (e) {}
     out.push(...Object.values(MB_SAY).flatMap(t => t.split('｜'))); ['媽媽，我不生氣了！', '媽媽，我好多了！', '媽媽，我冷靜下來了！'].forEach(t => out.push([t, 'zh-TW', 'b1'], [t, 'zh-TW', 'g1'])); MB_LETTERS.forEach(t => { out.push([t, 'zh-TW', 'mom'], [t, 'zh-TW', 'dad']); });
     try { Object.entries(TONE_EX).forEach(([t, A]) => A.forEach(e => out.push(toneExSay(t, e)))); } catch (e) {}
     try { Object.values(NEWSUB_SAMPLE).forEach(f => f().forEach(x => out.push(x))); READ_T.forEach(T => out.push(T.hint)); } catch (e) {}
