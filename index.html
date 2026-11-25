@@ -4747,8 +4747,16 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     return back + `<circle cx="0" cy="-86" r="22" fill="${C.skin}" ${st}/>` + face + front + extra;
   }
   /* ---------- v137 🎖️ 主角成長階級：累積星星越多，寶哥、筑筑的裝備越多 ---------- */
-  const RK = [[0, '小小探險家', '🌱', '剛出發的小探險家'], [50, '森林見習生', '🍀', '胸前別上星星徽章'], [150, '勇敢小隊員', '🧣', '圍上勇敢紅圍巾'], [400, '星光冒險家', '🦸', '披上星光披風'], [800, '大冒險家', '🦕', '小恐龍夥伴一起走'], [1500, '傳說小英雄', '👑', '金色披風和小皇冠']];
+  // v142：主角成長階級 6 級 → 5 大階段 × 4 小級 = 20 級（SA 審定級距），2300 星之後每 500 星一顆「傳說之星」，永不封頂
+  const RK_ST = [['小芽探險家', '🌱', '剛出發的小探險家'], ['星光見習生', '⭐', '胸前別上星星徽章'], ['風鈴小隊員', '🧣', '圍上勇敢紅圍巾'], ['雲端冒險家', '🦸', '披上紅色披風'], ['龍伴小英雄', '🦕', '小恐龍夥伴一起走']];
+  const RK_T = [0, 25, 60, 105, 155, 215, 285, 365, 455, 555, 665, 785, 920, 1070, 1235, 1415, 1610, 1820, 2050, 2300];
+  const RK = RK_T.map((t, k) => { const g = RK_ST[k >> 2], sub = k % 4; return [t, `${g[0]} ${'★'.repeat(sub + 1)}`, g[1], k === 19 ? '戴上金色披風和小皇冠' : sub ? `稱號後面的星星變成 ${sub + 1} 顆` : g[2], k >> 2]; });
+  const RK_LEG0 = 2300, RK_LEGN = 500, rkLeg = (t) => { const v = t == null ? total : t; return v >= RK_LEG0 + RK_LEGN ? Math.floor((v - RK_LEG0) / RK_LEGN) : 0; };
   function rkLv(t) { const v = t == null ? total : t; let i = 0; RK.forEach((r, k) => { if (v >= r[0]) i = k; }); return i; }
+  const rkVisOf = k => k < 4 ? 0 : k < 8 ? 1 : k < 12 ? 2 : k < 16 ? 3 : k < 19 ? 4 : 5; // 第幾級對應哪一套裝備（0 無、1 徽章、2 圍巾、3 披風、4 恐龍、5 金披風皇冠）
+  const rkOldVis = v => [0, 50, 150, 400, 800, 1500].reduce((a, t, k) => v >= t ? k : a, 0); // 舊版 6 級的裝備
+  // SA：已經拿到的裝備永遠不收回 → 改版那一刻記下舊版裝備，之後取兩者較高
+  function rkVis(k) { const i = k == null ? rkLv() : k; let m = 0; try { m = i === rkLv() ? (store.get('rkV2', 0) ? +store.get('rkVisMin', 0) || 0 : rkOldVis(total)) : 0; } catch (e) {} return Math.max(rkVisOf(i), m); }
   let SCN_RANK = 0; // scnPerson 畫寶哥、筑筑時要加上的裝備（0＝沒有）
   function rkAcc(lv, layer) {
     const I = '#3B2F2F';
@@ -4836,7 +4844,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     } catch (e) {}
   }
   function mvStageSVG(m, f) {
-    const keep = SCN_RANK; SCN_RANK = rkLv(); let p = ''; try { p = scnPerson(rkLook(), 0, 0, m[5 + f], 'happy'); } catch (e) {} SCN_RANK = keep;
+    const keep = SCN_RANK; SCN_RANK = rkVis(); let p = ''; try { p = scnPerson(rkLook(), 0, 0, m[5 + f], 'happy'); } catch (e) {} SCN_RANK = keep;
     return `<svg viewBox="0 0 360 300" class="mv-svg" aria-hidden="true"><defs><linearGradient id="mvWall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF4DC"/><stop offset="1" stop-color="#FFE3BE"/></linearGradient><linearGradient id="mvFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8B986"/><stop offset="1" stop-color="#D49A64"/></linearGradient><linearGradient id="mvMat" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7ED3C3"/><stop offset="1" stop-color="#5BBFAF"/></linearGradient></defs>
       <rect width="360" height="220" fill="url(#mvWall)"/><rect y="218" width="360" height="82" fill="url(#mvFloor)"/><path d="M0 218h360" stroke="#C98B52" stroke-width="3"/>
       <g opacity=".9"><rect x="22" y="34" width="70" height="56" rx="8" fill="#BFE6FA" stroke="#B98A5A" stroke-width="4"/><path d="M57 34v56M22 62h70" stroke="#B98A5A" stroke-width="3"/><circle cx="300" cy="58" r="22" fill="#FFD45A" opacity=".55"/><path d="M270 120h60v8h-60z" fill="#C98B52"/><circle cx="286" cy="112" r="8" fill="#F28C8C"/><circle cx="312" cy="110" r="10" fill="#8FD3F5"/></g>
@@ -16389,7 +16397,7 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
   const WK_POSE = { wk1: { a: [[-26, -46], [18, -30]], l: [[-15, 0], [11, -1]] }, wk2: { a: [[-18, -30], [26, -46]], l: [[-9, -3], [15, 0]] } };
   const WK_IMG = {};
   function wkHero(look, pose) {
-    const lv = rkLv(), key = look + pose + lv; if (WK_IMG[key]) return WK_IMG[key]; const o = WK_IMG[key] = { ok: false };
+    const lv = rkVis(), key = look + pose + lv; if (WK_IMG[key]) return WK_IMG[key]; const o = WK_IMG[key] = { ok: false };
     try { Object.assign(SCN_POSE, WK_POSE); const mood = pose === 'jump' ? 'laugh' : pose === 'wave' ? 'happy' : 'smile';
       SCN_RANK = lv; const s = `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="400" viewBox="-80 -190 160 200">${scnPerson(look, 0, 0, pose, mood)}</svg>`; SCN_RANK = 0;
       const img = new Image(); img.onload = () => { o.img = img; o.ok = true; }; img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(s); } catch (e) {}
@@ -16539,28 +16547,37 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
       return `<div class="wk-rep"><b>${name}</b><span>${Array.from({ length: n || set.size }, (_, i) => set.has(i) ? '🏅' : '⚪').join(' ')}</span><small>走完 ${set.size}／${n || set.size} 段</small></div>`; }).join(''); }
 
 
-  function rkHeroSVG(look, lv, pose, w) { const keep = SCN_RANK; SCN_RANK = lv; let s = ''; try { s = scnPerson(look, 0, 0, pose || 'wave', 'happy'); } catch (e) {} SCN_RANK = keep;
+  function rkHeroSVG(look, lv, pose, w) { const keep = SCN_RANK; SCN_RANK = rkVis(lv); let s = ''; try { s = scnPerson(look, 0, 0, pose || 'wave', 'happy'); } catch (e) {} SCN_RANK = keep;
     return `<svg viewBox="-60 -150 120 156" width="${w || 72}" height="${(w || 72) * 1.3}" aria-hidden="true">${s}</svg>`; }
   const rkLook = () => store.get('wkHero', 'b1') === 'g1' ? 'g1' : 'b1';
   function rkRender() { const el = $('lvCard'); if (!el) return; const i = rkLv(), r = RK[i], nx = RK[i + 1];
     const p = nx ? Math.min(100, Math.round((total - r[0]) / (nx[0] - r[0]) * 100)) : 100;
-    el.innerHTML = `<span class="lv-pic">${rkHeroSVG(rkLook(), i, 'wave', 64)}</span><span class="lv-t"><small>我的主角・Lv${i + 1}</small><b>${r[2]} ${r[1]}</b><span class="lv-bar"><i style="width:${p}%"></i></span><small>${nx ? `再 ${nx[0] - total} 顆星 → ${nx[2]} ${nx[1]}` : '已經是最高等級了！'}</small></span>`; }
+    const lg = rkLeg(), lgNext = RK_LEG0 + (lg + 1) * RK_LEGN, lgP = nx ? p : Math.min(100, Math.round((total - (lg ? RK_LEG0 + lg * RK_LEGN : RK_LEG0)) / (lgNext - (lg ? RK_LEG0 + lg * RK_LEGN : RK_LEG0)) * 100));
+    el.innerHTML = `<span class="lv-pic">${rkHeroSVG(rkLook(), i, 'wave', 64)}</span><span class="lv-t"><small>我的主角・Lv${i + 1}${lg ? `・傳說之星 ★${lg}` : ''}</small><b>${r[2]} ${r[1]}</b><span class="lv-bar"><i style="width:${lgP}%"></i></span><small>${nx ? `再 ${nx[0] - total} 顆星 → ${nx[2]} ${nx[1]}` : `再 ${lgNext - total} 顆星 → 👑 傳說之星 ★${lg + 1}`}</small></span>`; }
   function rkSheet() { const i = rkLv(), ov = document.createElement('div'); ov.className = 'lv-ov';
-    ov.innerHTML = `<div class="lv-box"><button class="lv-x" aria-label="關閉">✕</button><h3>🎖️ 主角成長階級</h3><p class="note">每拿到星星就會往上升，主角會得到新裝備。</p>
+    ov.innerHTML = `<div class="lv-box"><button class="lv-x" aria-label="關閉">✕</button><h3>🎖️ 主角成長階級</h3><p class="note">每拿到星星就會往上升；每升一個大階段，主角就會得到新裝備。</p>
       <div class="lv-tabs"><button data-l="b1" class="${rkLook() === 'b1' ? 'on' : ''}">寶哥</button><button data-l="g1" class="${rkLook() === 'g1' ? 'on' : ''}">筑筑</button></div>
       <div class="lv-list"></div></div>`;
-    const fill = () => { ov.querySelector('.lv-list').innerHTML = RK.map((r, k) => `<div class="lv-row${k <= i ? ' got' : ''}${k === i ? ' cur' : ''}"><span class="lv-pic">${rkHeroSVG(rkLook(), k, k === i ? 'wave' : 'stand', 58)}</span><span><b>Lv${k + 1} ${r[2]} ${r[1]}</b><small>${r[3]}</small><small class="lv-need">${k <= i ? (k === i ? '⭐ 現在在這裡' : '✅ 已經達成') : `需要 ${r[0]} 顆星（還差 ${r[0] - total}）`}</small></span></div>`).join(''); };
+    const fill = () => { ov.querySelector('.lv-list').innerHTML = RK.map((r, k) => `<div class="lv-row${k <= i ? ' got' : ''}${k === i ? ' cur' : ''}"><span class="lv-pic">${rkHeroSVG(rkLook(), k, k === i ? 'wave' : 'stand', 58)}</span><span><b>Lv${k + 1} ${r[2]} ${r[1]}</b><small>${r[3]}</small><small class="lv-need">${k <= i ? (k === i ? '⭐ 現在在這裡' : '✅ 已經達成') : `需要 ${r[0]} 顆星（還差 ${r[0] - total}）`}</small></span></div>`).join('') + `<div class="lv-row${rkLeg() ? ' got cur' : ''}"><span class="lv-pic" style="font-size:34px;text-align:center">👑</span><span><b>傳說之星 ★${Math.max(1, rkLeg())}${rkLeg() ? '' : ''}</b><small>到了最高級以後，每多 ${RK_LEGN} 顆星就再得到一顆傳說之星，永遠可以一直升！</small><small class="lv-need">${rkLeg() ? `⭐ 已經有 ${rkLeg()} 顆傳說之星，再 ${RK_LEG0 + (rkLeg() + 1) * RK_LEGN - total} 顆星得到下一顆` : `需要 ${RK_LEG0 + RK_LEGN} 顆星`}</small></span></div>`; };
     fill(); document.body.appendChild(ov);
     ov.querySelectorAll('.lv-tabs button').forEach(b => b.onclick = () => { store.set('wkHero', b.dataset.l); ov.querySelectorAll('.lv-tabs button').forEach(x => x.classList.toggle('on', x === b)); fill(); rkRender(); });
     ov.onclick = e => { if (e.target === ov || e.target.closest('.lv-x')) ov.remove(); };
   }
-  const RK_SAY = { up: '恭喜升級！主角得到新裝備了！' };
+  const RK_SAY = { up: '恭喜升級！主角得到新裝備了！', star: '恭喜升級！又多了一顆星星！', leg: '太厲害了！得到一顆傳說之星！' };
   const sayIf = t => (aiHas(t, 'zh-TW', '') ? say([[t]]) : Promise.resolve()); // 沒有 AI 語音的句子只顯示文字
-  function rkCheck() { const i = rkLv(), seen = store.get('rkSeen', -1); if (seen < 0) { store.set('rkSeen', i); return; } if (i <= seen) return; store.set('rkSeen', i);
-    const r = RK[i], ov = document.createElement('div'); ov.className = 'lv-ov lv-up';
-    ov.innerHTML = `<div class="lv-box"><p class="lv-new">🎉 升級了！</p><span class="lv-big">${rkHeroSVG(rkLook(), i, 'jump', 150)}</span><h3>Lv${i + 1} ${r[2]} ${r[1]}</h3><p>${r[3]}！</p><button class="btn" id="lvOk">好棒！</button></div>`;
-    document.body.appendChild(ov); tone([523, 659, 784, 1046, 1318], .1, 'sine'); try { burst(ov.querySelector('.lv-big'), 36); } catch (e) {} sayIf(RK_SAY.up);
-    ov.querySelector('#lvOk').onclick = () => ov.remove(); track('rank-up-' + (i + 1), '主角升級 Lv' + (i + 1)); }
+  function rkCheck() { const i = rkLv(), lg = rkLeg();
+    // v142 改版遷移（每位小朋友只做一次）：記下舊版已拿到的裝備，只跳一次「升級改版」卡，不連播
+    if (!store.get('rkV2', 0)) { store.set('rkV2', 1); store.set('rkVisMin', rkOldVis(total)); store.set('rkLegSeen', lg); const had = store.get('rkSeen', -1); store.set('rkSeen', i);
+      if (had < 0 || total <= 0) return; const r = RK[i], ov = document.createElement('div'); ov.className = 'lv-ov lv-up';
+      ov.innerHTML = `<div class="lv-box"><p class="lv-new">🎉 主角等級變成 20 級了！</p><span class="lv-big">${rkHeroSVG(rkLook(), i, 'wave', 150)}</span><h3>Lv${i + 1} ${r[2]} ${r[1]}</h3><p>已經得到的裝備都會留著，繼續收集星星往上升吧！</p><button class="btn" id="lvOk">好棒！</button></div>`;
+      document.body.appendChild(ov); tone([523, 659, 784, 1046], .1, 'sine'); ov.querySelector('#lvOk').onclick = () => ov.remove(); return; }
+    const seen = store.get('rkSeen', -1), lgSeen = store.get('rkLegSeen', 0); if (seen < 0) { store.set('rkSeen', i); store.set('rkLegSeen', lg); return; }
+    if (i <= seen && lg <= lgSeen) return; const legUp = i <= seen; store.set('rkSeen', i); store.set('rkLegSeen', lg);
+    const r = RK[i], gear = !legUp && rkVisOf(i) > rkVisOf(seen) && rkVisOf(i) > (+store.get('rkVisMin', 0) || 0), ov = document.createElement('div'); ov.className = 'lv-ov lv-up';
+    ov.innerHTML = legUp ? `<div class="lv-box"><p class="lv-new">👑 傳說之星！</p><span class="lv-big">${rkHeroSVG(rkLook(), i, 'jump', 150)}</span><h3>傳說之星 ★${lg}</h3><p>又收集了 ${RK_LEGN} 顆星星，太厲害了！</p><button class="btn" id="lvOk">好棒！</button></div>`
+      : `<div class="lv-box"><p class="lv-new">🎉 升級了！</p><span class="lv-big">${rkHeroSVG(rkLook(), i, 'jump', 150)}</span><h3>Lv${i + 1} ${r[2]} ${r[1]}</h3><p>${r[3]}！</p><button class="btn" id="lvOk">好棒！</button></div>`;
+    document.body.appendChild(ov); tone([523, 659, 784, 1046, 1318], .1, 'sine'); try { burst(ov.querySelector('.lv-big'), 36); } catch (e) {} sayIf(legUp ? RK_SAY.leg : gear ? RK_SAY.up : RK_SAY.star);
+    ov.querySelector('#lvOk').onclick = () => ov.remove(); track(legUp ? 'rank-leg-' + lg : 'rank-up-' + (i + 1), legUp ? '傳說之星 ' + lg : '主角升級 Lv' + (i + 1)); }
 
   /* ---------- v137 🖼️ 本週成長卡：一張可以存起來、傳到 LINE 的圖 ---------- */
   function gcData() {
@@ -16587,7 +16604,7 @@ const STK_PAL = {"main": "#FF9E4A", "main2": "#F2672E", "accent": "#FF5C8A", "ac
     if (hero) c.drawImage(hero, 100, 208, 236, 307);
     const r = RK[D.lv]; c.textAlign = 'left'; c.fillStyle = '#8A6A2E'; c.font = `800 36px ${F}`; c.fillText(`主角等級 Lv${D.lv + 1}`, 390, 270);
     c.fillStyle = '#2E3A59'; c.font = `900 58px ${F}`; c.fillText(`${r[1]}`, 390, 338); c.font = `700 32px ${F}`; c.fillStyle = '#5A6785'; c.fillText(r[3], 390, 400);
-    const nx = RK[D.lv + 1]; c.fillText(nx ? `再 ${Math.max(0, nx[0] - total)} 顆星升到「${nx[1]}」` : '已經是最高等級！', 390, 452);
+    const nx = RK[D.lv + 1]; c.fillText(nx ? `再 ${Math.max(0, nx[0] - total)} 顆星升到「${nx[1]}」` : `傳說之星 ★${rkLeg()}，繼續加油！`, 390, 452);
     const tiles = [['⭐', D.stars, '這週星星'], ['🌞', D.active, '練習天數'], ['✅', D.dq, '完成任務']];
     tiles.forEach(([ic, v, k], i) => { const x = 60 + i * 330, y = 560; rr(x, y, 300, 220, 40, '#FFFFFF', '#F2C46B', 5); c.textAlign = 'center'; c.font = `60px ${F}`; c.fillText(ic, x + 150, y + 62); c.fillStyle = '#E0663C'; c.font = `900 72px ${F}`; c.fillText(String(v), x + 150, y + 136); c.fillStyle = '#5A6785'; c.font = `800 32px ${F}`; c.fillText(k, x + 150, y + 192); });
     const wd = ['日', '一', '二', '三', '四', '五', '六']; rr(60, 810, 960, 150, 36, 'rgba(255,255,255,.85)');
