@@ -156,7 +156,7 @@ button:focus-visible { outline: 4px solid var(--en); outline-offset: 3px; }
 [data-sub="fix"] { --c: #5E9E4A; --c-soft: #E6F2DD; --c-deep: #437A34; }
 [data-sub="stranger"] { --c: #C2414B; --c-soft: #FDE6E6; --c-deep: #8A2A2A; }
 [data-sub="trash"] { --c: var(--geo); --c-soft: var(--geo-soft); --c-deep: var(--geo-deep); }
-[data-sub="feel"], [data-sub="together"] { --c: var(--cn); --c-soft: var(--cn-soft); --c-deep: var(--cn-deep); }
+[data-sub="feel"], [data-sub="together"], [data-sub="playf"] { --c: var(--cn); --c-soft: var(--cn-soft); --c-deep: var(--cn-deep); }
 [data-sub="habit"] { --c: var(--life); --c-soft: var(--life-soft); --c-deep: var(--life-deep); }
 [data-sub="music"] { --c: var(--color); --c-soft: var(--color-soft); --c-deep: var(--color-deep); }
 .o-bin { width: clamp(70px, 22vw, 110px); height: auto; }
@@ -2997,6 +2997,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
         <span class="art"><span class="yx-art"><span class="yx-emo">🐷</span></span></span>
         <span class="name">小小理財家</span><span class="what" data-small="想要和需要、存錢" data-big="想要和需要、存錢">想要和需要、存錢</span>
       </button>
+      <button class="subject" data-sub="playf" id="sub-playf" data-newsub="1" hidden>
+        <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="playf">0</span></span>
+        <span class="art"><span class="yx-art"><span class="yx-emo">🤝</span></span></span>
+        <span class="name">一起玩・輸了也沒關係</span><span class="what" data-small="輪流、分享、輸了不生氣" data-big="說好規則、道歉、為別人拍手">輪流、分享、輸了不生氣</span>
+      </button>
       <button class="subject" data-sub="feel" id="sub-feel">
         <span class="got"><svg aria-hidden="true" fill="#3A2A00"><use href="#star"/></svg><span data-got="feel">0</span></span>
         <span class="art"><span class="emo">🥺🤗</span></span>
@@ -4342,7 +4347,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const scnMix = (a, b, t) => { const h = x => [1, 3, 5].map(i => parseInt(x.slice(i, i + 2), 16)); const A = h(a), B = h(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
   // [衣服, 頭髮, 髮型, 比例]  髮型：0 男孩 1 綁辮子女孩 2 長髮女生 3 短髮男生 4 爺爺 5 奶奶 6 陌生人 7 寶寶
   const SCN_LOOK = {
-    b1: ['#2E3F66', '#3A2A22', 0, 1], b2: ['#F5DE9A', '#8A5A3A', 0, 1], b3: ['#8FC27E', '#2E2622', 0, 1],
+    b1: ['#2E3F66', '#3A2A22', 0, 1], b2: ['#F5DE9A', '#8A5A3A', 0, 1], b3: ['#8FC27E', '#2E2622', 0, 1], b4: ['#F08A2C', '#2A2422', 0, 1.04],
     g1: ['#F6B8C0', '#5A3A28', 1, .9], g2: ['#86C3E3', '#F2C04E', 1, 1], g3: ['#F3A3BC', '#7A4A30', 1, 1],
     sis: ['#F3A3BC', '#6A4630', 1, .82], bro: ['#F5DE9A', '#4A3326', 0, .82], sis2: ['#E8584F', '#4A3326', 1, 1.14], bro2: ['#E8584F', '#3A2A22', 0, 1.16],
     mom: ['#E0457A', '#3A2A22', 2, 1.32], dad: ['#6F94D6', '#3A3036', 3, 1.38], tch: ['#86BFB0', '#3A2A22', 2, 1.32],
@@ -4425,6 +4430,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     b2: { n: '小安', hair: 'an', fit: 'overall', skin: '#FFDCC4', legs: '#5C7FB8' },
     g2: { n: '米米', hair: 'mimi', fit: 'pinafore', skin: '#FFE3D0', legs: '#FFE3D0', sock: '#FF9DB8' },
     b3: { n: '阿哲', hair: 'zhe', fit: 'hoodie', skin: '#D9A57A', legs: '#3F5A7A' },
+    b4: { n: '哥哥', hair: 'bowl', fit: 'crew', skin: '#FFDCC4', legs: '#7A5238', shoe: '#F4F4F4' },
     g3: { n: '朵朵', hair: 'duo', fit: 'bow', skin: '#FFE0CC', legs: '#FFE0CC', sock: '#fff' },
     mom: { n: '媽媽', hair: 'mom2', fit: 'polka', skin: '#FFE0CC', legs: '#2E2A2E', sleeve: '#A9AEB8', shoe: '#F6B8C8', sock: '#E8B23A' },
     tch: { n: '林老師', hair: 'tch', fit: 'cardigan', skin: '#FFDCC4', legs: '#5B6475' },
@@ -4719,6 +4725,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     if (f === 'fur') return `<path d="M-14 -62h28l12 37h-52z" fill="${shirt}" ${st}/><path d="M-15 -64q15 10 30 0q4 6-2 10q-13 6-26 0q-6-4-2-10z" fill="#F4EDE4" ${st}/><g fill="#6B3A28" opacity=".55"><circle cx="-8" cy="-44" r="2"/><circle cx="4" cy="-38" r="2.4"/><circle cx="10" cy="-48" r="1.8"/><circle cx="-12" cy="-32" r="2.2"/><circle cx="14" cy="-30" r="2"/></g><rect x="12" y="-48" width="13" height="11" rx="3" fill="#2E2622" stroke="${I}" stroke-width="1.6"/><path d="M15 -48q3.5-6 7 0" fill="none" stroke="#F5C542" stroke-width="1.6"/>`;
     if (f === 'shawl') return `<path d="M-15 -62h30l9 37h-48z" fill="${shirt}" ${st}/><path d="M-17 -62q17 20 34 0l2 10q-19 18-38 0z" fill="#B88A5A" ${st}/><path d="M-6 -46l-3 9M0 -44v9M6 -46l3 9" stroke="#8A6040" stroke-width="1.6" stroke-linecap="round"/><path d="M-20 -30h40" stroke="${scnMix(shirt, '#2E2622', .3)}" stroke-width="3"/>`;
     if (f === 'coat') return `<path d="M-17 -63h34v40h-34z" fill="${shirt}" ${st}/><path d="M-10 -63l10 14 10-14" fill="#E9E1D2" stroke="${I}" stroke-width="2"/><path d="M0 -49v26" stroke="${I}" stroke-width="1.8"/><circle cx="-4" cy="-42" r="1.6" fill="${I}"/><circle cx="-4" cy="-32" r="1.6" fill="${I}"/><path d="M-17 -40h8M9 -40h8" stroke="${scnMix(shirt, '#2E2622', .3)}" stroke-width="3"/>`;
+    if (f === 'crew') return tee + `<path d="M-7 -63q7 6 14 0" fill="none" stroke="${I}" stroke-width="2"/>`;
     if (f === 'tie') return tee + `<path d="M-8 -63l8 8 8-8" fill="#fff" stroke="${I}" stroke-width="2"/><path d="M0 -56l-3 4 3 14 3-14z" fill="#D9574A" stroke="${I}" stroke-width="1.4"/>`;
     return dress ? frock(shirt) : tee;
   };
@@ -4729,6 +4736,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     if (h === 'lele') { back = `<path d="M-24 -92q-3 26 -1 38h50q2-12-1-38z" fill="${hair}" ${st}/>`; front = `<path d="M-22 -84q0-28 22-28t22 28q-3-9-8-12h-28q-5 3-8 12z" fill="${hair}" ${st}/><path d="M-21 -97q21-20 42 0" fill="none" stroke="#9B7BE6" stroke-width="4.5" stroke-linecap="round"/>`; extra = `<path d="M-12 -92l-2-2M12 -92l2-2" stroke="${I}" stroke-width="1.4"/>`; }
     if (h === 'an') { front = [[-17, -99, 9], [-6, -107, 10], [8, -107, 10], [18, -98, 8.5], [-21, -89, 6], [21, -88, 6]].map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${hair}" ${st}/>`).join('') + `<path d="M-16 -100q16-10 32 0" fill="${hair}"/>`; extra = `<g fill="rgba(255,255,255,.25)" stroke="${I}" stroke-width="2"><circle cx="-8" cy="-88" r="6.5"/><circle cx="8" cy="-88" r="6.5"/></g><path d="M-1.5 -88h3M-14.5 -89l-7-2M14.5 -89l7-2" stroke="${I}" stroke-width="2"/>`; }
     if (h === 'mimi') { back = `<g><ellipse cx="-30" cy="-86" rx="8" ry="17" fill="${hair}" ${st} transform="rotate(20 -30 -86)"/><ellipse cx="30" cy="-86" rx="8" ry="17" fill="${hair}" ${st} transform="rotate(-20 30 -86)"/></g>`; front = `<path d="M-22 -86q0-26 22-26t22 26q-6-10-12-11q-4 6-10 4q-6 3-10-3q-8 2-12 10z" fill="${hair}" ${st}/><circle cx="-23" cy="-100" r="4" fill="#FF8FA8" stroke="${I}" stroke-width="1.6"/><circle cx="23" cy="-100" r="4" fill="#FF8FA8" stroke="${I}" stroke-width="1.6"/>`; extra = `<g fill="#D98A5A"><circle cx="-15" cy="-83" r="1"/><circle cx="-12" cy="-81" r="1"/><circle cx="-16" cy="-79.5" r="1"/><circle cx="15" cy="-83" r="1"/><circle cx="12" cy="-81" r="1"/><circle cx="16" cy="-79.5" r="1"/></g>`; }
+    if (h === 'bowl') { front = `<path d="M-26 -78q-5-38 26-38t26 38q-1-3-4-6q-1-5-2-10h-40q-1 5-2 10q-3 3-4 6z" fill="${hair}" ${st}/><path d="M-12 -108q8-4 16-2" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".35"/>`; }
     if (h === 'zhe') { front = `<path d="M-21 -92q2-20 21-20t21 20q-21-9-42 0z" fill="${hair}" ${st}/><path d="M-22 -96q22-11 44 0" fill="none" stroke="#5DBB4E" stroke-width="5.5" stroke-linecap="round"/><path d="M-22 -96q22-11 44 0" fill="none" stroke="#fff" stroke-width="1.4" stroke-dasharray="3 4"/>`; }
     if (h === 'duo') { back = `<path d="M-25 -94q-4 24 1 32h48q5-8 1-32z" fill="${hair}" ${st}/>`; front = `<path d="M-23 -84q0-28 23-28t23 28q-3-8-5-12q-18 3-36 0q-2 4-5 12z" fill="${hair}" ${st}/><g transform="translate(15 -108) rotate(15)"><path d="M0 0l-12-7v14zM0 0l12-7v14z" fill="#FF7FA6" stroke="${I}" stroke-width="1.8" stroke-linejoin="round"/><circle r="3" fill="#FF7FA6" stroke="${I}" stroke-width="1.6"/></g>`; }
     if (h === 'mom') { back = `<path d="M-24 -92c-7 14-4 22-11 34c8 5 15 2 19-3h32c4 5 11 8 19 3c-7-12-4-20-11-34z" fill="${hair}" ${st}/>`; front = `<path d="M-23 -82q-1-30 25-30q21 2 20 26q-10-15-27-12q-10 3-18 16z" fill="${hair}" ${st}/><path d="M6 -110q-6 8-4 16" fill="none" stroke="${scnMix(hair, '#FFFFFF', .25)}" stroke-width="2" stroke-linecap="round"/>`; extra = `<circle cx="-22" cy="-76" r="2.6" fill="#F5C542" stroke="${I}" stroke-width="1"/><circle cx="22" cy="-76" r="2.6" fill="#F5C542" stroke="${I}" stroke-width="1"/><path d="M-13 -92l-3-2.5M-11 -93.5l-1.5-3M13 -92l3-2.5M11 -93.5l1.5-3" stroke="${I}" stroke-width="1.4" stroke-linecap="round"/>`; }
@@ -5214,6 +5222,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   // v91：不用 emoji、直接畫的小物件（emoji 的牙刷斜放在臉上像叉叉）
   const SCN_OBJ = {
     brush: (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><rect x="2" y="-3.5" width="34" height="7" rx="3.5" fill="#5AB4F0" stroke="${SCN_INK}" stroke-width="2.2"/><rect x="-6" y="-6" width="11" height="8" rx="2" fill="#fff" stroke="${SCN_INK}" stroke-width="2"/><g fill="#fff" stroke="#BFE3F7" stroke-width="1.4"><circle cx="-10" cy="4" r="4"/><circle cx="-4" cy="9" r="3"/><circle cx="-14" cy="-3" r="2.6"/></g></g>`,
+    hoop: (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><rect x="14" y="-30" width="6" height="110" rx="2" fill="#8A93A3" stroke="${SCN_INK}" stroke-width="2.4"/><rect x="-26" y="-40" width="46" height="32" rx="4" fill="#fff" stroke="${SCN_INK}" stroke-width="2.6"/><rect x="-12" y="-30" width="18" height="14" fill="none" stroke="#E8584F" stroke-width="2.4"/><path d="M-18 -6 L-14 14 M-10 -6 L-8 14 M-2 -6 L-2 14 M6 -6 L4 14 M10 -6 L8 14 M-16 4 H8" stroke="#BFC6D1" stroke-width="1.6" fill="none"/><ellipse cx="-3" cy="-6" rx="14" ry="3.6" fill="none" stroke="#E8584F" stroke-width="3.2"/></g>`, // v143：籃球架
     quilt: (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><rect x="-16" y="-22" width="92" height="26" rx="11" fill="#F6C1CF" stroke="${SCN_INK}" stroke-width="3"/><path d="M-8 -12h76" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/></g>`, // v141：被子
     belt: (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><path d="M-16 -22L16 22" stroke="${SCN_INK}" stroke-width="11" stroke-linecap="round"/><path d="M-16 -22L16 22" stroke="#6B7380" stroke-width="6" stroke-linecap="round"/><rect x="4" y="4" width="13" height="10" rx="2" fill="#D9DEE3" stroke="${SCN_INK}" stroke-width="2" transform="rotate(54 10 9)"/></g>`
   };
@@ -5774,6 +5783,43 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     { e: '🏫', q: '網路上有人問你讀哪一個學校，怎麼辦？', a: [['🤐', '不說，告訴爸媽'], ['🏫', '告訴他學校名字'], ['📷', '拍制服給他看']], why: '學校和班級也是個人資料，不能告訴陌生人', lv: 2 },
     { e: '💤', q: '眼睛看平板看得很累，怎麼辦？', a: [['🔭', '休息，看看遠方'], ['📱', '繼續看'], ['✊', '用力揉眼睛']], why: '眼睛累了要休息，看看遠方，不要揉眼睛', lv: 1 },
     { e: '📵', q: '爸媽說今天不能玩平板，怎麼做？', a: [['🧩', '去玩別的玩具'], ['😭', '大哭大鬧'], ['🙈', '偷偷拿來玩']], why: '可以去玩玩具、看書、畫畫，不一定要玩平板', lv: 1 }
+  ];
+  const PLAYF = [ // v143 👫 一起玩・輸了也沒關係（跟朋友好好玩、輸贏都能接受）
+    { sc: 'room|b1 110 stand plain|b3 210 stand happy f|e 🚗 236 168 22', e: '🚗', q: '朋友在玩小汽車，你也很想玩，要怎麼做？', a: [['🙋', '問他：可以借我玩嗎？'], ['✊', '直接搶過來'], ['😭', '大哭到他給你']], why: '想玩別人的玩具，要先問「可以借我嗎」，他答應了才拿', lv: 1 },
+    { sc: 'play|b1 100 stand smile|b3 170 stand smile f|g2 236 stand shy f', e: '⚽', q: '有小朋友站在旁邊，看起來也想一起玩，你可以怎麼做？', a: [['👋', '邀請他：一起來玩吧！'], ['🙅', '說：不給你玩'], ['🙈', '假裝沒看到']], why: '邀請別人一起玩，大家都會很開心，也會多一個好朋友', lv: 1 },
+    { sc: 'room|b1 110 stand plain|b3 210 stand plain f|e 🤖 160 150 26', e: '🤖', q: '你和朋友都想先玩同一個機器人玩具，怎麼辦？', a: [['✊', '猜拳或輪流'], ['🤜', '推開他自己先玩'], ['😠', '生氣不玩了']], why: '可以猜拳決定，或是你一次、我一次輪流玩', lv: 1 },
+    { sc: 'room|b1 120 stand sad|b3 200 stand plain f|e 🟥 146 168 14|e 🟦 164 170 14|e 🟨 156 154 14|e 🔺 176 160 12', e: '🧱', q: '朋友不小心把你的積木弄倒了，你可以怎麼做？', a: [['🗣️', '說：沒關係，我們一起再蓋'], ['🤜', '打他'], ['💥', '把他的積木也推倒']], why: '不小心的事可以原諒他，兩個人一起蓋會更快', lv: 1 },
+    { sc: 'room|b1 110 stomp angry|b3 210 stand sad f|e 🎲 160 150 26', e: '🎲', q: '玩遊戲輸了，好生氣，可以怎麼做？', a: [['😮‍💨', '深呼吸，說：好可惜，再玩一次！'], ['🧺', '把遊戲丟掉'], ['😭', '大哭說不玩了']], why: '輸了會難過很正常，深呼吸三次，再玩一次就有機會贏', lv: 1 },
+    { sc: 'room|b1 110 up happy|b3 210 stand sad f|e 🏆 160 70 26', e: '🏆', q: '你贏了，朋友輸了很難過，你可以說什麼？', a: [['🤝', '說：你也很厲害，我們再玩一次'], ['😝', '笑他：你好遜'], ['🙄', '不理他']], why: '贏了不笑別人，鼓勵朋友，下次他還會想跟你玩', lv: 1 },
+    { sc: 'room|b1 120 cry cry|mom 230 stand smile f|e 🎲 170 150 24', e: '😢', q: '每次玩遊戲都想贏，輸了就哭，媽媽說什麼是對的？', a: [['💗', '有時候贏、有時候輸，好玩最重要'], ['🥇', '一定要贏才可以'], ['🚫', '輸了就再也不要玩']], why: '玩遊戲有時候贏、有時候輸，一起玩得開心最重要', lv: 1 },
+    { sc: 'play|b1 110 run happy|b3 210 run laugh f', e: '🏃', q: '和朋友賽跑，你跑輸了，可以怎麼做？', a: [['👏', '幫他拍拍手，說：你跑好快'], ['🤜', '推他'], ['🗯️', '說：你作弊']], why: '為贏的人拍手，是很有風度的好孩子', lv: 1 },
+    { sc: 'room|b1 110 stomp angry|b3 210 stand scared f', e: '😠', q: '很生氣，快要忍不住想打人，要怎麼做？', a: [['🚶', '先走開，深呼吸，找大人幫忙'], ['👊', '打下去'], ['📢', '大聲罵他']], why: '生氣的時候先離開、深呼吸，再請大人幫忙，不可以打人', lv: 1 },
+    { sc: 'room|b1 110 stand smile|b3 210 stand smile f|e 🧩 160 140 30', e: '🧩', q: '哪一種遊戲沒有輸贏，大家一起完成？', a: [['🧩', '一起拼拼圖'], ['🏃', '賽跑比誰快'], ['🎲', '比誰先到終點']], why: '一起拼拼圖、一起蓋積木城堡，大家合作完成，都會很開心', lv: 1 },
+    { sc: 'play|b1 110 stand sad|b3 200 stand plain f|g2 250 stand plain f', e: '😔', q: '朋友說「不給你玩」，你很難過，可以怎麼做？', a: [['🗣️', '說：我很難過，我也想玩'], ['🤜', '推他'], ['🤐', '自己躲起來哭']], why: '把難過說出來，朋友才知道；如果還是不行，可以去找大人幫忙', lv: 1 },
+    { sc: 'room|b1 120 give happy|b3 210 stand happy f|e 🍪 156 120 22', e: '🍪', q: '朋友來家裡玩，你有好吃的餅乾，可以怎麼做？', a: [['🤲', '分給朋友一起吃'], ['🙈', '藏起來自己吃'], ['😝', '在他面前吃給他看']], why: '和朋友分享，大家一起吃更好吃', lv: 1 },
+    { sc: 'room|b1 110 stand plain|b3 210 stand angry f|e 🎲 160 150 24', e: '📏', q: '朋友玩遊戲的規則跟你不一樣，吵起來了，怎麼辦？', a: [['😮‍💨', '先停下來冷靜，再一起說好規則'], ['📢', '大叫說不公平'], ['🧺', '把遊戲收走']], why: '先冷靜、不生氣，再一起講好怎麼玩，大家都同意再開始', lv: 2 },
+    { sc: 'room|b1 120 stand sad|mom 240 stand smile f', e: '🧑‍🏫', q: '跟朋友玩的時候吵架了，回家可以怎麼做？', a: [['🗣️', '把發生的事完整告訴爸媽'], ['🤫', '什麼都不說'], ['😤', '只說朋友的壞話']], why: '把整件事從頭說清楚，爸媽才知道怎麼幫你和朋友和好', lv: 2 },
+    { sc: 'room|b1 130 stand sorry|e 🙏 148 118 18|b3 210 stand sad f', e: '🙇', q: '你剛剛輸了生氣推了朋友，現在可以怎麼做？', a: [['🙇', '跟他說：對不起，我不應該推你'], ['🏃', '跑走不理他'], ['🗯️', '說：是你害我輸的']], why: '做錯事要道歉，朋友才會原諒你，還會想再跟你玩', lv: 2 },
+    { sc: 'room|b1 110 stand happy|b3 210 stand happy f|e 🎲 160 150 24', e: '🎲', q: '玩遊戲之前，先說哪一句話最好？', a: [['😊', '贏了開心，輸了也沒關係'], ['🥇', '我一定要贏'], ['😠', '輸的人是笨蛋']], why: '玩之前先說好「輸了也沒關係」，玩起來會更開心', lv: 2 },
+    { sc: 'play|b1 110 stand plain|b3 200 kick happy f|e ⚽ 168 172 22', e: '⚽', q: '朋友一直玩球不讓你玩，你可以怎麼說？', a: [['🙋', '問他：什麼時候可以換我玩？'], ['✊', '搶走球就跑'], ['🤜', '推他']], why: '用禮貌問問什麼時候輪到我，如果還是不行，再請大人幫忙', lv: 2 },
+    { sc: 'room|b1 160 stand smile|b3 236 stand smile f|mom 50 stand smile', e: '👀', q: '跟朋友一起玩時，大人在旁邊有什麼好處？', a: [['🤝', '吵架或誤會時，可以幫忙講清楚'], ['🃏', '大人會幫我作弊'], ['🙅', '就不能跟朋友玩了']], why: '有大人在旁邊，遇到吵架或誤會，大人可以幫忙講清楚', lv: 2 },
+    { sc: 'room|b1 110 cry cry|b3 210 stand plain f', e: '😣', q: '輸了很想哭，可以說什麼讓心情好一點？', a: [['💪', '下次我會更厲害！'], ['😠', '這個遊戲好爛'], ['🙅', '我再也不玩了']], why: '跟自己說「下次會更厲害」，多練習就會進步', lv: 2 },
+    { sc: 'room|b1 110 stand sad|b3 200 stand plain f|mom 270 stand plain f', e: '🗣️', q: '明明不是你先推人，大人卻以為是你，怎麼辦？', a: [['🗣️', '冷靜地把發生的事說清楚'], ['🤜', '生氣推回去'], ['📢', '大聲罵他亂說']], why: '先冷靜，把發生了什麼事慢慢說給大人聽，不打架、不罵人', lv: 2 },
+    { sc: 'table|b1 110 stand scared|b3 220 stand happy f|e 🎲 165 128 22|e 💦 140 66 16', e: '🎲', q: '玩遊戲快要輸了，心裡好急，可以怎麼做？', a: [['😮‍💨', '深呼吸，把這局玩完'], ['🔀', '偷偷改規則'], ['💥', '把遊戲弄亂']], why: '快輸了也要玩完，這一局當練習，不管輸贏都很棒', lv: 2 },
+    { sc: 'play|b1 70 stand sad|e 💧 92 92 12|b3 180 stand happy f|g2 262 stand happy f', e: '💛', q: '好朋友在跟別人玩，你心裡酸酸的，可以怎麼做？', a: [['🙋', '走過去問：我可以一起玩嗎？'], ['😠', '生氣說：不要跟他玩'], ['😭', '躲起來哭']], why: '可以問問能不能一起玩，或是先玩自己喜歡的遊戲，好朋友還是你的好朋友', lv: 1 },
+    { sc: 'play|b1 86 raise happy|b3 236 raise happy f', e: '🤝', q: '跟朋友玩完要回家了，可以說什麼？', a: [['👋', '今天好好玩，下次再一起玩'], ['🙄', '我不要跟你玩了'], ['🤐', '直接走掉']], why: '跟朋友說再見、說下次再玩，友誼會越來越好', lv: 1 },
+    { sc: 'room|b1 110 stand plain|b3 210 hips sad f|e 🟥 150 168 14|e 🟦 166 170 14|e 🟨 158 156 14|e 🔺 178 162 12', e: '🧱', q: '你和哥哥玩積木，你都照自己的方法蓋，哥哥不開心，可以怎麼做？', a: [['🙋', '問哥哥：你想怎麼蓋？'], ['🧱', '繼續照我的方法'], ['🙅', '叫他走開']], why: '問問朋友的想法，兩個人一起決定，大家都會玩得開心', lv: 1 },
+    { sc: 'play|ob hoop 270 80 1|b1 100 stand smile|b3 196 hold happy f|e 🏀 196 112 20', e: '🏀', q: '投籃的時候，哥哥說「我想換一種玩法」，你可以怎麼做？', a: [['👍', '說：好啊，我們試試你的方法'], ['🙅', '說：不要，聽我的'], ['😠', '生氣不玩了']], why: '試試朋友的玩法，說不定會發現更好玩的遊戲', lv: 1 },
+    { sc: 'room|b1 110 listen smile|b3 210 stand happy f|e 💬 186 66 22', e: '👂', q: '朋友在說話的時候，要怎麼做？', a: [['👀', '看著他、聽他說完'], ['🗣️', '一直搶著講話'], ['🏃', '走去玩別的']], why: '別人說話時看著他、聽他說完，才知道他想玩什麼，也是有禮貌的好孩子', lv: 1 },
+    { sc: 'room|b1 110 hold smile|e 🫖 110 112 20|b3 210 stand smile f|e 🟥 250 168 14|e 🟦 266 170 14', e: '🫖', q: '你想玩扮家家酒，朋友想玩積木，怎麼辦？', a: [['🔁', '先玩一個，再換另一個'], ['🙋', '只能玩我想玩的'], ['🙈', '各自玩不理對方']], why: '輪流玩彼此想玩的，先玩一個，再換另一個，兩個人都開心', lv: 1 },
+    { sc: 'table|b1 110 think plain|b3 220 stand plain f|e 🎲 165 128 22|e ❓ 138 64 18', e: '😊', q: '玩遊戲時，怎麼知道朋友玩得開不開心？', a: [['👀', '看他的表情，也問問他'], ['😎', '只要我開心就好'], ['🙈', '不用管他']], why: '看看朋友的表情，問一句「你覺得好玩嗎？」，就知道他的感受', lv: 2 },
+    { sc: 'room|b1 120 reach smile|b3 220 hips plain f', e: '👉', q: '朋友說「每次都是你決定」，你可以怎麼說？', a: [['🤝', '這次換你決定玩什麼'], ['😤', '因為我比較厲害'], ['🚪', '不然你回家']], why: '輪流當決定的人，這次你決定、下次我決定，才公平', lv: 2 },
+    { sc: 'room|b1 90 stand laugh|b3 240 stand laugh f|e 🏰 165 146 40|e 🚂 165 180 16', e: '🏰', q: '你想蓋城堡，哥哥想玩火車，可以怎麼做？', a: [['🏰', '一起蓋有火車站的城堡'], ['😠', '吵到對方放棄'], ['🙈', '一個人玩自己的']], why: '把兩個人的點子合在一起，例如一起蓋火車站城堡，會變得更好玩', lv: 2 },
+    { sc: 'room|b1 120 reach smile|b3 220 stand sad f', e: '😔', q: '哥哥看起來不開心，不想玩了，你可以說什麼？', a: [['💬', '你怎麼了？你想怎麼玩？'], ['🙄', '不玩就算了'], ['😝', '你好愛生氣']], why: '關心朋友、問問他想怎麼玩，朋友覺得被重視，就會想繼續一起玩', lv: 2 },
+    { sc: 'play|b1 110 stand smile|b3 210 hips plain f', e: '🏃', q: '你想玩鬼抓人，哥哥說「我不想玩這個」，你可以怎麼做？', a: [['🙋', '問他：那你想玩什麼？'], ['📢', '生氣大叫：一定要玩！'], ['🙄', '說：你不跟我玩算了']], why: '別人不想玩的時候不生氣，問問他想玩什麼，兩個人才玩得下去', lv: 2 },
+    { sc: 'table|b1 110 raise smile|b3 220 stand smile f|e 🃏 165 128 22', e: '🃏', q: '玩到一半，你想改遊戲規則，要怎麼做？', a: [['🙋', '先問哥哥同不同意再改'], ['✋', '自己改了就算數'], ['😤', '快輸了才突然改規則']], why: '想改規則要先問過一起玩的人，大家都說好才可以改', lv: 2 },
+    { sc: 'play|ob hoop 270 80 1|b1 110 hold happy|e 🏀 110 112 20|b3 200 stand sad f', e: '🏀', q: '一起玩投籃，你一直自己投，哥哥都沒投到，可以怎麼做？', a: [['🔁', '你投一球，我投一球'], ['🏀', '繼續自己一直投'], ['🙅', '說：你投不進啦']], why: '一人投一球輪流來，大家都有機會投，玩起來更開心', lv: 1 },
+    { sc: 'play|ob hoop 270 80 1|b1 100 stand smile|b3 196 hold happy f|e 🏀 196 112 20', e: '🏀', q: '哥哥想比賽誰投得多，你只想隨便投，怎麼辦？', a: [['💬', '說好先比賽三球，再隨便投'], ['😠', '說：只能照我的玩'], ['🏃', '抱著球跑走']], why: '兩個人的想法都試試看，先照一個人的玩，再換另一個人的', lv: 2 }
   ];
   const WANT = [
     { e: '🛒', q: '去超市，哪一個是「需要」買的？', a: [['🥛', '牛奶'], ['🍭', '大棒棒糖'], ['🧸', '新的玩偶']], why: '牛奶是每天要喝的，是需要；糖果和玩具是想要', lv: 1 },
@@ -6937,6 +6983,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     },
     digi() { return bankQ(DIGI, pick(lvPool(DIGI))); },
     want() { return bankQ(WANT, pick(lvPool(WANT))); },
+    playf() { return bankQ(PLAYF, pick(lvPool(PLAYF))); },
     calm() {
       const t = pick(lvPool(CALM));
       return Object.assign(bankQ(CALM, t), { practice: t.say });
@@ -11288,6 +11335,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     ...Object.fromEntries(['yx2big', 'yx2col', 'yx2mul', 'yx2time', 'yx2unit', 'yx2rad', 'yx2word', 'yx2read'].map(k => [k, () => { const L = [], keep = st; try { st = { sub: k, i: 0, used: new Set() }; for (let n = 0; n < 40; n++) { st.i = n; const q = GEN[k](); (q.speech || []).concat(q.after || []).forEach(x => L.push(x)); } } finally { st = keep; } return L; }])),
     digi: () => DIGI.flatMap(t => [[t.q], [t.why]]),
     want: () => WANT.flatMap(t => [[t.q], [t.why]]),
+    playf: () => PLAYF.flatMap(t => [[t.q], [t.why]]),
     robot: () => [['小恐龍會照指令走：前進、左轉、右轉。排好以後按出發。'], ['幫小恐龍排好方向，走到寶箱。排好以後按出發。'], ['成功了！小恐龍拿到寶箱了！'], ['撞到石頭了，再想想看。'], ['走出去了，再想想看。'], ['還沒走到寶箱，再試一次。'], ['前進'], ['左轉'], ['右轉'], ['往上'], ['往下'], ['往左'], ['往右']]
   };
   function newSubPaint() {
@@ -11461,7 +11509,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   function showLock(justEnded) { if (!justEnded) track('premium-locked', '進階主題試玩用完'); $('lockMsg').textContent = justEnded ? '試玩 3 題結束囉！想繼續玩，請爸爸媽媽到家長專區看看怎麼開啟。' : '試玩已經用完囉！請爸爸媽媽到家長專區看看怎麼開啟。'; $('lockSheet').hidden = false; }
 
   /* ---------- 家長專區 ---------- */
-  const SUBNAME = { coplay: '一起闖關', bond: '數的分合', digi: '3C 安全小衛士', want: '小小理財家', robot: '機器人指令大冒險', yxmirror: '幼小・鏡像字大挑戰', yxdict: '幼小・聽寫小考官', yxread: '幼小・應用題拆解', yx2big: '超前・1000 以內的數', yx2col: '超前・二位數直式加減', yx2mul: '超前・乘法入門', yx2time: '超前・時間進階', yx2unit: '超前・長度和重量', yx2rad: '超前・國字部首', yx2word: '超前・詞語進階', yx2read: '超前・短文閱讀', review: '錯題複習本', hero: '星光守護隊', pkmath: '星星樂園・數學闖關', pkcolor: '星星樂園・顏色分類', pkzy: '星星樂園・注音國字', pken: '星星樂園・英文', pklife: '星星樂園・生活和禮貌', pkemo: '星星樂園・情緒', pkpos: '星星樂園・方位', ezanimal: '英語・動物 Animals', ezfood: '英語・水果和食物 Food', ezcolor: '英語・顏色和形狀 Colors', eznum: '英語・數字 1–10 Numbers', ezbody: '英語・身體和衣服 Body', ezhello: '英語・打招呼和禮貌 Hello', ezcase: '英語・大寫小寫 Aa Bb', ezfirst: '英語・首音 First Sound', eznum2: '英語・數字 11–20', ezpeople: '英語・家人和職業 People', ezaction: '英語・動作和心情 Actions', ezsimon: '英語・聽指令 Simon Says', ezcvc: '英語・自然發音拼讀 Phonics', ezvowel: '英語・短母音 a e i o u', ezsight: '英語・常見字 Sight Words', ezsent: '英語・看圖選句子', ezqa: '英語・英文問答 Q&A', ezweek: '英語・星期月份天氣', ezstory: '英語・英文小故事 Story', xmcolor: '顏色數數記憶', xmshape: '形狀顏色找找看', xmplace: '聽指令擺放', xmday: '一天的時間表', xmpattern: '規律塗色', xmemo: '情緒小偵探', xmdots: '連點成圖', xmmirror: '對稱畫一半', xmshop: '幼小・購物清單記憶', xmengcolor: '幼小・英文顏色數數', yxzy: '幼小・注音符號', yxtone: '幼小・四聲聲調', yxspell: '幼小・注音拼讀', yxchar: '幼小・認國字', yxsimilar: '幼小・相似字', yxsent: '幼小・句子填空', yxpunct: '幼小・標點符號', yxlook: '幼小・看圖說話', yxstory: '幼小・聽故事', yxstroke: '幼小・國字筆順', yxtrace: '幼小・國字描寫', yxnum: '幼小・100 以內的數', yxcalc: '幼小・20 以內加減', yxword: '幼小・應用題', yxtime: '幼小・認識時間', yxmoney: '幼小・錢幣和買東西', yxmeasure: '幼小・長度比一比', yxstat: '幼小・統計圖表', yxcal: '幼小・星期和月份', yxschool: '幼小・校園生活', cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', aten: '關注小超人', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識', xmcopy: '照樣子塗圓點', tell: '看圖說故事', feel: '心情為什麼', together: '我和大家', habit: '生活自理', music: '聲音和節奏', place: '程度小測驗' };
+  const SUBNAME = { playf: '一起玩・輸了也沒關係', coplay: '一起闖關', bond: '數的分合', digi: '3C 安全小衛士', want: '小小理財家', robot: '機器人指令大冒險', yxmirror: '幼小・鏡像字大挑戰', yxdict: '幼小・聽寫小考官', yxread: '幼小・應用題拆解', yx2big: '超前・1000 以內的數', yx2col: '超前・二位數直式加減', yx2mul: '超前・乘法入門', yx2time: '超前・時間進階', yx2unit: '超前・長度和重量', yx2rad: '超前・國字部首', yx2word: '超前・詞語進階', yx2read: '超前・短文閱讀', review: '錯題複習本', hero: '星光守護隊', pkmath: '星星樂園・數學闖關', pkcolor: '星星樂園・顏色分類', pkzy: '星星樂園・注音國字', pken: '星星樂園・英文', pklife: '星星樂園・生活和禮貌', pkemo: '星星樂園・情緒', pkpos: '星星樂園・方位', ezanimal: '英語・動物 Animals', ezfood: '英語・水果和食物 Food', ezcolor: '英語・顏色和形狀 Colors', eznum: '英語・數字 1–10 Numbers', ezbody: '英語・身體和衣服 Body', ezhello: '英語・打招呼和禮貌 Hello', ezcase: '英語・大寫小寫 Aa Bb', ezfirst: '英語・首音 First Sound', eznum2: '英語・數字 11–20', ezpeople: '英語・家人和職業 People', ezaction: '英語・動作和心情 Actions', ezsimon: '英語・聽指令 Simon Says', ezcvc: '英語・自然發音拼讀 Phonics', ezvowel: '英語・短母音 a e i o u', ezsight: '英語・常見字 Sight Words', ezsent: '英語・看圖選句子', ezqa: '英語・英文問答 Q&A', ezweek: '英語・星期月份天氣', ezstory: '英語・英文小故事 Story', xmcolor: '顏色數數記憶', xmshape: '形狀顏色找找看', xmplace: '聽指令擺放', xmday: '一天的時間表', xmpattern: '規律塗色', xmemo: '情緒小偵探', xmdots: '連點成圖', xmmirror: '對稱畫一半', xmshop: '幼小・購物清單記憶', xmengcolor: '幼小・英文顏色數數', yxzy: '幼小・注音符號', yxtone: '幼小・四聲聲調', yxspell: '幼小・注音拼讀', yxchar: '幼小・認國字', yxsimilar: '幼小・相似字', yxsent: '幼小・句子填空', yxpunct: '幼小・標點符號', yxlook: '幼小・看圖說話', yxstory: '幼小・聽故事', yxstroke: '幼小・國字筆順', yxtrace: '幼小・國字描寫', yxnum: '幼小・100 以內的數', yxcalc: '幼小・20 以內加減', yxword: '幼小・應用題', yxtime: '幼小・認識時間', yxmoney: '幼小・錢幣和買東西', yxmeasure: '幼小・長度比一比', yxstat: '幼小・統計圖表', yxcal: '幼小・星期和月份', yxschool: '幼小・校園生活', cn: '中文', zhuyin: '注音', en: '英文', abc: 'ABC 字母', math: '數一數', compare: '比大小', money: '認識錢幣', time: '時鐘', geo: '幾何', color: '顏色', position: '上下左右', odd: '哪個不一樣', memory: '記憶翻牌', life: '生活常識', addsub: '加減法', solid: '立體圖形', hide: '躲貓貓', logic: '推理', riddle: '猜謎', manners: '禮貌和交朋友', trash: '垃圾分類', spell: '注音拼音', words: '相反詞・量詞', story: '聽故事', ordinal: '第幾個', measure: '比長短', share: '平分', calendar: '星期和月份', spotdiff: '找不同', emotion: '認識情緒', body: '身體部位', jobs: '認識職業', seasons: '四季和穿衣', food: '健康飲食', trace: '描字練習', sequence: '排順序', match: '連連看', maze: '走迷宮', puzzle: '拼圖', coloring: '著色本', calm: '好好說不生氣', aten: '關注小超人', challenge: '綜合大考驗', cnword: '認詞語', mathpro: '數學先修', enspell: '英文拼字', clockpro: '時鐘進階', tracepro: '國字描寫', zhuyinpro: '注音拼讀進階', enphrase: '英文生活用語', enverb: '英文動作', wordpro: '應用題進階', patternpro: '規律進階', deduce: '邏輯推理', moneypro: '買東西找錢', cnsimilar: '相似字', sentence: '句子填空', storyseq: '故事排序', safety: '安全教育', science: '科學小常識', festival: '認識節日', animals: '動物知識', xmcopy: '照樣子塗圓點', tell: '看圖說故事', feel: '心情為什麼', together: '我和大家', habit: '生活自理', music: '聲音和節奏', place: '程度小測驗' };
   EZL.forEach(c => { SUBNAME['ezl_' + c.id] = '英語單字・' + c.zh; });
   const TIPS = {
     math: '吃點心時一起數一數有幾個。', compare: '分東西時問孩子「哪一邊比較多？」', money: '買東西時讓孩子幫忙拿硬幣付錢。',
@@ -11489,6 +11537,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     calm: '孩子為玩具或食物生氣時，先抱住或靠近他，說出他的感覺（你很想要對不對），等冷靜了再教他一句可以說的話。要結束遊戲前 5 分鐘先預告，時間到用「說到做到」來稱讚他。孩子愛比第一名時，多稱讚他的努力（你一直練習），少說「你最棒、第一名」。可以在家設一個安靜角落，平時就練習小烏龜深呼吸。',
     manners: '孩子說屁股、大便或「揍扁你」這類話時，先不要大笑或大驚小怪，平靜地說「這句話會讓人不舒服，可以換成⋯⋯」，並給他一句可以替代的話。孩子不肯道歉時，先幫他說出感覺（你也嚇到了對不對？），再陪他一起說；不要逼或罰，說出口後立刻稱讚他很勇敢。大人也要以身作則，常說請、謝謝、對不起。', trash: '倒垃圾時讓孩子幫忙分類；各縣市規定略有不同，以居住地的規定為準。',
     xmcopy: '照樣子塗圓點練習「一排一排、一個一個對位置」，是寫字和看表格的基本功。可以陪孩子用手指一列一列指著對，也可以印學習單用彩色筆塗。',
+    playf: '孩子輸了生氣時，先說出他的感受「你很想贏，輸了好難過」，等他平靜再聊；在家可以故意輸給他，示範「好可惜，再玩一次！」。跟朋友玩時大人在旁邊，吵架當場陪他們說好規則、輪流，回家也聽孩子把事情從頭說完。',
     feel: '孩子有情緒時，先幫他說出來：「你很生氣，因為積木倒了」，被理解的孩子比較快平靜。也可以聊繪本角色的心情。', together: '搭車、排隊、去圖書館時，就是最好的練習機會；出門前先說好規則，做到了具體稱讚。', habit: '讓孩子自己洗手、穿衣，慢一點沒關係；把步驟拍成照片貼在洗手台旁，孩子會更有成就感。', music: '用鍋碗瓢盆敲敲看哪個聲音高、哪個低，或一起拍手玩「我拍你學」的節奏遊戲。'
   };
   // 綠界「實況主收款」的贊助網址，例如 https://p.ecpay.com.tw/XXXXXXX；留空就不會顯示贊助區
@@ -11518,14 +11567,14 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   const DOMAIN_SUBS = {
     認知: 'robot bond yxread yx2big yx2col yx2mul yx2time yx2unit pkmath pkcolor pkpos math addsub compare measure share ordinal money time calendar geo solid position hide odd logic riddle sequence memory puzzle maze spotdiff match challenge mathpro wordpro moneypro clockpro patternpro deduce science animals seasons xmcolor xmshape xmplace xmday xmpattern xmdots xmmirror xmshop yxnum yxcalc yxword yxtime yxmoney yxmeasure yxstat yxcal eznum eznum2 ezweek',
     語文: 'yxmirror yxdict yx2rad yx2word yx2read tell pkzy pken cn zhuyin spell en abc words story cnword cnsimilar sentence zhuyinpro enspell enphrase enverb storyseq riddle xmengcolor yxzy yxtone yxspell yxchar yxsimilar yxsent yxpunct yxlook yxstory yxstroke yxtrace',
-    社會: 'digi want together pklife manners aten stranger life jobs safety festival trash yxschool xmshop ezhello ezpeople',
-    情緒: 'feel pkemo emotion calm aten xmemo manners',
+    社會: 'playf digi want together pklife manners aten stranger life jobs safety festival trash yxschool xmshop ezhello ezpeople',
+    情緒: 'playf feel pkemo emotion calm aten xmemo manners',
     美感: 'music coloring color xmcolor xmpattern xmmirror xmcopy xmshape geo',
     身體動作與健康: 'habit body food seasons safety trace tracepro yxtrace maze xmdots coloring puzzle ezbody ezsimon'
   };
   const DOMAIN_OF = {};
   Object.entries(DOMAIN_SUBS).forEach(([d, list]) => list.split(' ').forEach(k => { (DOMAIN_OF[k] = DOMAIN_OF[k] || []).push(d); }));
-  const DOMAIN_MAIN = { aten: '情緒', coloring: '美感', color: '美感', xmpattern: '美感', xmmirror: '美感', xmcopy: '美感', xmcolor: '美感', trace: '身體動作與健康', tracepro: '身體動作與健康', maze: '身體動作與健康', puzzle: '身體動作與健康', xmdots: '身體動作與健康', body: '身體動作與健康', food: '身體動作與健康', seasons: '身體動作與健康', safety: '身體動作與健康', emotion: '情緒', calm: '情緒', xmemo: '情緒', manners: '社會', ezbody: '語文', ezsimon: '語文' };
+  const DOMAIN_MAIN = { playf: '情緒', aten: '情緒', coloring: '美感', color: '美感', xmpattern: '美感', xmmirror: '美感', xmcopy: '美感', xmcolor: '美感', trace: '身體動作與健康', tracepro: '身體動作與健康', maze: '身體動作與健康', puzzle: '身體動作與健康', xmdots: '身體動作與健康', body: '身體動作與健康', food: '身體動作與健康', seasons: '身體動作與健康', safety: '身體動作與健康', emotion: '情緒', calm: '情緒', xmemo: '情緒', manners: '社會', ezbody: '語文', ezsimon: '語文' };
   const domainsOf = sub => { const L = DOMAIN_OF[sub] || (/^ez/.test(sub) ? ['語文'] : ['認知']), m = DOMAIN_MAIN[sub]; return m && L.includes(m) ? [m, ...L.filter(x => x !== m)] : L; };
   const DOMAIN_TRY = { 認知: '數一數、規律進階、推理', 語文: '注音、聽故事、英語小學堂', 社會: '禮貌和交朋友、安全教育', 情緒: '認識情緒、好好說不生氣', 美感: '著色本、規律塗色、對稱畫', 身體動作與健康: '描字練習、走迷宮、健康飲食' };
 
@@ -11634,6 +11683,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     calm: () => qaCards(CALM.filter(t => qVoiced({ speech: [[t.q]] })), true).concat(KIND.map(k => ({ v: lcEmo('💬'), t: k, s: '好聽的話', say: [[k]] }))),
     manners: () => qaCards(MANNERS.filter(t => qVoiced({ speech: [[t.q]] })), true),
     digi: () => qaCards(DIGI, true),
+    playf: () => qaCards(PLAYF.filter(t => qVoiced({ speech: [[t.q]] })), true),
     want: () => qaCards(WANT, true),
     safety: () => qaCards(SAFETY),
     feel: () => qaCards(FEELQ, true),
@@ -12885,6 +12935,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     ['b2', '小安', '聰明、愛看書', '#FFF3D1', n => `我是${n}，我最愛看書，有不會的問題可以問我！`],
     ['g2', '米米', '活潑、愛唱歌', '#E1EEF8', n => `我是${n}！我愛唱歌，我們一起唱首歌吧！`],
     ['b3', '阿哲', '運動健將', '#DDF0E3', n => `我是${n}，我是運動健將，戴上頭帶就充滿力量！`],
+    ['b4', '西瓜弟', '愛笑、愛投籃', '#FFE8D2', n => `我是${n}，我最喜歡投籃，我們一起輪流投球吧！`, 'b2'],
     ['g3', '朵朵', '害羞、很有禮貌', '#FBE1EA', n => `我是${n}，我有一點害羞，可是我會說請、謝謝、對不起。`],
     ['mom', '媽媽', '漂亮又溫柔', '#FCE3EE', n => `我是${n}，我最愛你們了，有什麼事都可以跟我說。`],
     ['tch', '林老師', '有氣質的老師', '#DAF0F1', n => `我是${n}，歡迎來到動動腦小學堂，我們一起學習吧！`],
@@ -12903,18 +12954,18 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     box.innerHTML = `<div class="fr-in"><div class="fr-top"><button class="chunky back" id="frBack" aria-label="回首頁"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button></div>
       <h2 class="fr-h"><span>動動腦</span>的好朋友</h2><p class="fr-sub">點一下，聽他們自我介紹！題目裡會一直看到他們喔</p>
       <button class="hz-banner" id="frHero"><span class="hz-bh">${heroHeadOf('b1')}${heroHeadOf('g1')}</span><span><b>👑 讓孩子當主角</b><small>${heroPaid() ? '幫寶哥或筑筑換成孩子的名字' : '用孩子的名字取代寶哥或筑筑（家長付費功能，可以先免費看看）'}</small></span><i>›</i></button>
-      <div class="fr-grid">${FRIENDS.map(([k, n, t, bg], i) => `<div class="fr-cell"><button class="fr-card" data-i="${i}" aria-label="${frName(k)}"><span class="fr-art" style="background:${bg}">${frSVG(k, 'stand', 'smile')}</span><b>${frName(k)}</b><small>${(k === 'b1' || k === 'g1') && heroGet(k) ? '👑 我的主角' : t}</small></button>${k === 'b1' || k === 'g1' ? `<button class="fr-edit frh" data-k="${k}">👑 ${heroGet(k) ? '換造型' : '變成我的主角'}</button>` : ''}</div>`).join('')}</div>
+      <div class="fr-grid">${FRIENDS.map(([k, n, t, bg, ib, vo], i) => vo && !aiHas(ib(frName(k)), 'zh-TW', vo) ? '' : `<div class="fr-cell"><button class="fr-card" data-i="${i}" aria-label="${frName(k)}"><span class="fr-art" style="background:${bg}">${frSVG(k, 'stand', 'smile')}</span><b>${frName(k)}</b><small>${(k === 'b1' || k === 'g1') && heroGet(k) ? '👑 我的主角' : t}</small></button>${k === 'b1' || k === 'g1' ? `<button class="fr-edit frh" data-k="${k}">👑 ${heroGet(k) ? '換造型' : '變成我的主角'}</button>` : ''}</div>`).join('')}</div>
       <h3 class="fr-h2">⚠️ 小心！他們是陌生人</h3><p class="fr-sub">不拿陌生人的糖果、不跟陌生人走、不告訴他家裡地址</p>
       <div class="fr-grid bad">${FR_BAD.map(([k, n, t, bg], i) => `<button class="fr-card fr-bad" data-b="${i}" aria-label="${n}"><span class="fr-art" style="background:${bg}">${frSVG(k, 'give', 'smile')}</span><b>${n}</b><small>${t}</small></button>`).join('')}</div>
       <div class="fr-name" id="frName" hidden></div></div>`;
     box.hidden = false; document.documentElement.classList.add('wc-open');
     $('frBack').onclick = () => { box.hidden = true; box.innerHTML = ''; document.documentElement.classList.remove('wc-open'); sayStop(); };
     box.querySelectorAll('.fr-card').forEach(b => b.onclick = async () => {
-      const [k, , , , intro] = FRIENDS[+b.dataset.i], art = b.querySelector('.fr-art');
+      const [k, , , , intro, vo] = FRIENDS[+b.dataset.i], art = b.querySelector('.fr-art');
       box.querySelectorAll('.fr-card.talk').forEach(x => { x.classList.remove('talk'); const f = FRIENDS[+x.dataset.i]; x.querySelector('.fr-art').innerHTML = frSVG(f[0], 'stand', 'smile'); });
-      art.innerHTML = frSVG(k, k === 'tch' || k === 'mom' ? 'wave' : ['wave', 'up', 'clap'][+b.dataset.i % 3] || 'wave', 'happy'); b.classList.add('talk');
+      art.innerHTML = frSVG(k, k === 'tch' || k === 'mom' ? 'wave' : ['wave', 'up', 'raise'][+b.dataset.i % 3] || 'wave', 'happy'); b.classList.add('talk');
       track('friend-' + k, '認識好朋友'); { const S = new Set(store.get('frHeard', [])); S.add(k); store.set('frHeard', [...S]); const A = store.get('dqAll', {}); A.friend = S.size; store.set('dqAll', A); }
-      { const o = (k === 'b1' || k === 'g1') && heroGet(k); await say([[o ? HERO_INTRO(heroCall(k)) : intro(frName(k)), 'zh-TW', o ? heroWho(k) : k]]); }
+      { const o = (k === 'b1' || k === 'g1') && heroGet(k); await say([[o ? HERO_INTRO(heroCall(k)) : intro(frName(k)), 'zh-TW', o ? heroWho(k) : (vo || k)]]); }
       if (b.classList.contains('talk')) { b.classList.remove('talk'); art.innerHTML = frSVG(k, 'stand', 'smile'); }
     });
     box.querySelectorAll('.fr-bad').forEach(b => b.onclick = async () => {
@@ -13677,6 +13728,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     try { out.push(...mvLines(), ...Object.values(PIG_SAY), ...Object.values(CO_SAY)); } catch (e) {}
     out.push(...Object.values(MB_SAY).flatMap(t => t.split('｜'))); ['媽媽，我不生氣了！', '媽媽，我好多了！', '媽媽，我冷靜下來了！'].forEach(t => out.push([t, 'zh-TW', 'b1'], [t, 'zh-TW', 'g1'])); MB_LETTERS.forEach(t => { out.push([t, 'zh-TW', 'mom'], [t, 'zh-TW', 'dad']); });
     try { Object.entries(TONE_EX).forEach(([t, A]) => A.forEach(e => out.push(toneExSay(t, e)))); } catch (e) {}
+    try { FRIENDS.forEach(f => { if (f[5]) out.push([f[4](f[1]), 'zh-TW', f[5]]); }); } catch (e) {}
     try { Object.values(NEWSUB_SAMPLE).forEach(f => f().forEach(x => out.push(x))); READ_T.forEach(T => out.push(T.hint)); } catch (e) {}
     try { Object.entries(LS_TYPE).forEach(([k, T]) => { if (k !== 'full' && k !== 'up') out.push([`你今天${T[2]}，表現得真好！老師送你一張貼紙！`, 'zh-TW', 'tch']); }); } catch (e) {}
     out.push('翻翻看，找出相配的兩張牌', '數字和一樣多的點點是一對', '大寫和小寫是一對', '算式和答案是一對', '拿到鑰匙了！門打開了', '門鎖住了，要先拿到鑰匙喔'); [['小老鼠', '起司'], ['小兔子', '紅蘿蔔'], ['小狗', '骨頭'], ['小蜜蜂', '花朵']].forEach(([a, b]) => out.push(`先拿到鑰匙，才能打開門。帶${a}去拿鑰匙，再去找${b}`));
