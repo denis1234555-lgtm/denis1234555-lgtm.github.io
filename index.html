@@ -1663,6 +1663,11 @@ html.wc-open body { overflow: hidden; }
 .fr-nc .pk-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
 .fr-faces svg { width: 34px; height: 34px; margin-left: -10px; } .fr-et b { font-size: 1.2rem; white-space: nowrap; } .fr-et span { font-size: .8rem; }
 #frOk { background: #3E8E8B; color: #fff; box-shadow: 0 5px 0 #2C6866; }
+.dq-go { flex: none; margin-left: 6px; border: 0; border-radius: 99px; padding: 6px 12px; font: inherit; font-weight: 900; font-size: .9rem; color: #fff; background: #E8743B; box-shadow: 0 3px 0 #B85424; }
+.dq-go:active { transform: translateY(2px); box-shadow: 0 1px 0 #B85424; }
+button.pk-dqr { width: 100%; border: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.pk-dqr em { flex: none; margin-left: 8px; font-style: normal; font-weight: 900; font-size: .9rem; color: #fff; background: #E8743B; border-radius: 99px; padding: 4px 10px; }
+.again-tag { display: inline-block; margin-right: 8px; padding: 2px 10px; border-radius: 99px; background: #FFE7C2; color: #8A4B00; font-size: .7em; font-weight: 900; vertical-align: middle; }
 /* 👑 我的主角 */
 .hz-banner { width: 100%; margin: 0 0 16px; border: 0; border-radius: 24px; padding: 10px 16px 10px 10px; display: flex; align-items: center; gap: 12px; text-align: left; font: inherit; color: var(--ink); background: linear-gradient(110deg, #FFF3D1, #FCE7D8 60%, #ECE6F8); box-shadow: 0 6px 16px rgba(70,60,40,.12), inset 0 0 0 2px #F2D27A; cursor: pointer; }
 .hz-banner:active { transform: translateY(3px); }
@@ -6837,7 +6842,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     },
     moneypro() {
       if (age === 'small') {
-        const target = rand(2, 10);
+        const target = rand(2, 14);
         const make = v => { const c = []; let r = v; for (const d of [10, 5, 1]) while (r >= d) { c.push(d); r -= d; } return c; };
         const vals = shuffle([target, ...shuffle([target + 1, target - 1, target + 5, target + 2].filter(v => v > 0 && v <= 15)).slice(0, 2)]);
         return {
@@ -8232,15 +8237,18 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     if (eyeDue && st.i > 0) { const cur = st; eyeBreak().then(() => { if (st === cur && !$('game').hidden) nextQ(); }); return; }
     let q, n = 0;
     const back = st.pend.findIndex(x => x.at <= st.i);
-    if (back >= 0) { q = Object.assign({}, st.pend[back].q, { again: 1 }); st.pend.splice(back, 1); }
+    if (back >= 0) { const q0 = st.pend[back].q; q = Object.assign({}, q0, { again: 1, speech: [['剛剛那一題，我們再考一次！']].concat(q0.speech || [[q0.prompt]]) }); st.pend.splice(back, 1); }
     else if (st.sub === 'review') { const r = st.rev[st.i]; q = Object.assign({}, r.q, { revKey: r.k, revSub: r.sub }); }
     else if (st.sub === 'place') { const k = st.plan[st.i]; q = Object.assign(GEN[k](), { plSub: k, revSub: k }); }
     else {
       // v99：優先出「已經有 AI 語音」的題目；隨機組合還沒做成語音的，多抽幾次換掉（真的找不到才照出）
-      const lim = /^(yx|ez)/.test(st.sub) ? 60 : 12; let qBest = null;
-      do { q = GEN[st.sub](); n++; if (!st.used.has(q.key)) { if (qVoiced(q)) break; qBest = qBest || q; } } while (n < lim + 30);
-      if (!qVoiced(q) && qBest) q = qBest;
-      st.used.add(q.key);
+      // v145：同一輪不重複——除了 key，也比對「看得到、聽得到的內容」（題目、語音、圖、選項），避免換了 key 卻是同一題
+      const lim = /^(yx|ez)/.test(st.sub) ? 60 : 12; let qBest = null; st.sigs = st.sigs || new Set();
+      const seenQ = x => st.used.has(x.key) || st.sigs.has(qSig(x));
+      do { q = GEN[st.sub](); n++; if (!seenQ(q)) { if (qVoiced(q)) break; qBest = qBest || q; } } while (n < lim + 70);
+      if ((seenQ(q) || !qVoiced(q)) && qBest) q = qBest; // 抽不到新的有聲題時，寧可出沒出過的題，也不要重複
+      if (seenQ(q) && !qBest && st.i >= 3) { st.total = st.i; return finish(); } // 這個主題的題目都出過了：提早結束這一輪，不出重複題
+      st.used.add(q.key); st.sigs.add(qSig(q));
       const recent = store.get('recent', {});
       recent[st.sub] = [...(recent[st.sub] || []).filter(k => k !== q.key), q.key].slice(/^(yx|ez)/.test(st.sub) ? -45 : -25);
       store.set('recent', recent);
@@ -8248,6 +8256,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     st.q = q; st.first = true; st.locked = false; st.wrongN = 0;
     mood('');
     $('prompt').textContent = q.prompt;
+    if (q.again) { const tg = document.createElement('span'); tg.className = 'again-tag'; tg.textContent = '🔁 再考一次'; $('prompt').prepend(tg); }
     $('stage').className = 'stage';
     $('stage').innerHTML = q.stage; $('stage').hidden = !q.stage;
     const box = $('options');
@@ -8269,6 +8278,11 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     readQuestion(q).then(() => { if (q.play && st.q === q) q.play(); });
   }
 
+  // v145：題目的「內容指紋」（拿掉每次都會變的 id、url(#…) 參照），用來判斷同一輪是不是出過一樣的題
+  function qSig(q) {
+    const n = s => String(s || '').replace(/\s(id|href|xlink:href|clip-path|mask|filter)="[^"]*"/g, '').replace(/url\(#[^)]*\)/g, 'u').replace(/\s+/g, ' ');
+    return [q.prompt, JSON.stringify(q.speech || ''), n(q.stage), (q.options || []).map(o => n(o.html) + (o.correct ? '*' : '')).sort().join('|')].join('#');
+  }
   // 先唸題目；需要看懂文字的選項，逐一發亮並唸出來，唸完才開放作答
   async function readQuestion(q) {
     const box = $('options'), cur = st;
@@ -14682,16 +14696,41 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
   // v115：今天的學習任務（不含生活挑戰）完成了沒？星星樂園要先完成才能玩
   function dqLearn() { const D = dqState(), Q = D.ids.map(id => DQ_POOL.find(q => q.id === id)).filter(Boolean), left = Q.filter(q => q.n() < (q.need || 1)); return { done: !left.length, left, total: Q.length }; }
   function pkNeedDq() { return store.get('pkNeedDq', true) !== false; }
-  function pkGoTasks() { show('home'); setTimeout(() => { const c = $('dqCard'); if (c) c.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150); }
+  // v145：任務頁籤要先切到「今天的任務」，不然任務卡是藏起來的，捲過去也看不到
+  function pkGoTasks() { show('home'); const t = document.querySelector('#hmTabs [data-t="dq"]'); if (t && !$('home').classList.contains('t-dq')) t.click(); setTimeout(() => { const c = $('dqCard'); if (c) c.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150); }
+  // v145：每一項任務都可以「一鍵直接進去做」：自動挑一個符合條件、可以玩的主題
+  function dqSubs(test) {
+    const seen = new Set(), L = [];
+    document.querySelectorAll('#home .subject[data-sub]').forEach(b => { const k = b.dataset.sub; if (seen.has(k) || b.hidden || b.closest('[hidden]') || b.classList.contains('locked') || getComputedStyle(b).display === 'none' || !canPlay(k) || k === 'fix' || !GEN[k]) return; seen.add(k); if (test(k)) L.push(b); });
+    return L;
+  }
+  function dqPick(test) {
+    const L = dqSubs(test); if (!L.length) return null;
+    const played = {}; dqToday().forEach(h => { played[h.sub] = (played[h.sub] || 0) + 1; });
+    const fresh = L.filter(b => !played[b.dataset.sub]); const P = fresh.length ? fresh : L;
+    return P[Math.floor(Math.random() * P.length)];
+  }
+  function dqGo(id) {
+    const D = dqState(), last = (store.get('history', []).slice(-1)[0] || {}).sub;
+    const go = b => { if (!b) { pkGoTasks(); return; } show('home'); b.click(); track('dq-go-' + id, '一鍵去做任務'); };
+    if (id === 'rev') { if (revDue().length) { show('home'); startRound('review'); track('dq-go-rev', '一鍵去做任務'); return; } return go(dqPick(() => true)); }
+    if (id === 'ez') { show('home'); openEZone(); track('dq-go-ez', '一鍵去做任務'); return; }
+    if (id === 'learn') { const b = dqPick(k => !!LEARN[k]); if (b) { show('home'); openLearn(b.dataset.sub); track('dq-go-learn', '一鍵去做任務'); return; } return pkGoTasks(); }
+    const T = { cn: k => subGroup(k) === 'g-0', math: k => subGroup(k) === 'g-1', life: k => subGroup(k) === 'g-5', dom: k => domainsOf(k).includes(D.dom || '社會') }[id];
+    if (T) return go(dqPick(T));
+    if ((id === 'ans' || id === 'full') && last && GEN[last] && dqSubs(k => k === last).length) return go(dqSubs(k => k === last)[0]);
+    go(dqPick(k => subGroup(k) === 'g-1') || dqPick(() => true));
+  }
   function pkDqLock() {
     document.querySelectorAll('.pk-dqlock').forEach(x => x.remove()); // v132 手機上連點兩下會跳出兩個框，上面那個按了沒反應；先清掉舊的
     const L = dqLearn(), ov = document.createElement('div'); ov.className = 'hz-pv pk-dqlock';
     ov.innerHTML = `<div class="hz-pvc"><b>🎡 完成任務，玩更多遊戲！</b><small>今天先玩的 ${pkPreMax()} 場用完了。完成今天的學習任務，就能再玩星星樂園。還差 ${L.left.length} 項：</small>
-      <div class="pk-dql">${L.left.map(q => { const need = q.need || 1, v = Math.min(need, q.n()); return `<div class="pk-dqr"><span>${q.ic}</span><b>${q.t}</b><small>${v}/${need}</small></div>`; }).join('')}</div>
+      <div class="pk-dql">${L.left.map(q => { const need = q.need || 1, v = Math.min(need, q.n()); return `<button class="pk-dqr" data-q="${q.id}"><span>${q.ic}</span><b>${q.t}</b><small>${v}/${need}</small><em>去做 ▶</em></button>`; }).join('')}</div>
       <button class="btn small" id="pkDqGo">📚 去完成任務</button><button class="btn ghost small" id="pkDqNo">知道了</button></div>`;
     document.body.appendChild(ov); track('park-dqlock', '星星樂園：要先完成任務');
     const line = '先完成今天的學習任務，再來星星樂園玩喔！'; if (pvVoiced(line, '')) say([[line]]);
     ov.querySelector('#pkDqNo').onclick = () => ov.remove();
+    ov.querySelectorAll('.pk-dqr[data-q]').forEach(b => b.onclick = () => { ov.remove(); $('pkHub').hidden = true; dqGo(b.dataset.q); });
     ov.querySelector('#pkDqGo').onclick = () => { ov.remove(); $('pkHub').hidden = true; pkGoTasks(); };
     ov.onclick = e => { if (e.target === ov) ov.remove(); };
   }
@@ -14699,7 +14738,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     const box = $('dqCard'); if (!box) return;
     const D = dqState(), Q = D.ids.map(id => DQ_POOL.find(q => q.id === id)).filter(Boolean);
     const rows = Q.map(q => { const need = q.need || 1, v = Math.min(need, q.n()), ok = v >= need, got = D.got.includes(q.id);
-      return `<div class="dq-row${ok ? ' ok' : ''}"><span class="dq-ic">${q.ic}</span><span class="dq-t"><b>${q.t}</b><i><u style="width:${v / need * 100}%"></u></i></span>${got ? '<span class="dq-done">✅</span>' : ok ? `<button class="dq-get" data-q="${q.id}">領 ⭐1</button>` : `<span class="dq-n">${v}/${need}</span>`}</div>`; }).join('');
+      return `<div class="dq-row${ok ? ' ok' : ''}"><span class="dq-ic">${q.ic}</span><span class="dq-t"><b>${q.t}</b><i><u style="width:${v / need * 100}%"></u></i></span>${got ? '<span class="dq-done">✅</span>' : ok ? `<button class="dq-get" data-q="${q.id}">領 ⭐1</button>` : `<span class="dq-n">${v}/${need}</span><button class="dq-go" data-q="${q.id}" aria-label="去做：${q.t}">去做 ▶</button>`}</div>`; }).join('');
     const all = Q.every(q => D.got.includes(q.id)), nb = badgeList().filter(b => b.on).length;
     dqSave(Q);
     const due = revDue().length;
@@ -14707,6 +14746,7 @@ body.zy-moe::after { content: "👩‍🏫 注音老師"; position: fixed; left:
     box.innerHTML = (plGo ? `<div class="place-go"><button id="placeGo" data-say="第一次來嗎？先玩六題小測驗，幫你找到剛剛好的程度">🧭 第一次來？先玩 6 題小測驗<small>幫你找到剛剛好的程度</small></button><button class="place-x" id="placeX" aria-label="先不要">✕</button></div>` : '') + `<div class="dq-head"><b><span>今天的</span>任務</b>${due ? `<button class="dq-badge rev-btn" id="revGo">📒 複習 ${due} 題</button>` : ''}<button class="dq-badge" id="dqBadges">🏅 我的徽章 ${nb}/${BADGES.length}</button></div>${due >= 3 ? monCard(due) : ''}${rows}${habitRow()}${all ? (D.bonus ? '<p class="dq-fin">🎉 今天的任務都完成了，明天再來！</p>' : '<button class="dq-box" id="dqBox">🎁 三個都完成了！打開寶箱 ⭐+2</button>') : ''}`;
     box.querySelectorAll('.dq-get').forEach(b => b.onclick = () => { const D2 = dqState(); if (D2.got.includes(b.dataset.q)) return; D2.got.push(b.dataset.q); store.set('dq', D2); giveStars(1); say([['任務完成！送你一顆星星']]); try { burst && burst(); } catch (e) {} track('dq-' + b.dataset.q, '每日任務'); dqRender(); badgeCheck(); });
     if ($('dqBox')) $('dqBox').onclick = () => { const D2 = dqState(); D2.bonus = 1; store.set('dq', D2); giveStars(2); const n = store.get('dqDays', 0) + 1; store.set('dqDays', n); try { lsStreak(); } catch (e) {} say([['太棒了！今天的任務全部完成，送你兩顆星星']]); track('dq-all', '每日任務全完成'); dqRender(); badgeCheck(); };
+    box.querySelectorAll('.dq-go').forEach(b => b.onclick = () => dqGo(b.dataset.q));
     $('dqBadges').onclick = openBadges;
     { const pill = document.querySelector('#parkEnter .yx-pill'); if (pill) { const lock = pkPreLock(); pill.textContent = lock ? (pkPreLeft() ? `🎡 今天可以先玩 ${pkPreLeft()} 場` : '🔒 完成任務玩更多') : '🎡 用星星換遊戲'; } }
     if ($('hbGo')) $('hbGo').onclick = habitConfirm;
